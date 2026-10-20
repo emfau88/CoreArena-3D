@@ -81,6 +81,11 @@ test('3D target selection and muzzle obstruction use the actual first Rapier col
       assert.equal(weapon.hits[target.id], 1);
     }
     const target = M1_ARENA.targets![0]!;
+    const upper = M1_ARENA.targets![2]!;
+    const sideHit = solveAim(world, rayTo({ x: upper.center.x + 30, y: upper.center.y + 52, z: upper.center.z + 41 }, upper.center),
+      { x: -7, y: 4.12, z: -9 })!;
+    assert.equal(sideHit.impact?.id, upper.id);
+    assert.equal(sideHit.blocked, false, 'different contact points on the same curved target are not cover');
     const ray = rayTo({ x: 5, y: 14, z: 13 }, target.center);
     const blocked = solveAim(world, ray, { x: -1.08, y: 0.02, z: 3 })!;
     assert.equal(blocked.target.id, target.id);

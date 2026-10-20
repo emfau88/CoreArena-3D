@@ -84,5 +84,49 @@
   },
   "errors": [],
   "externalRequests": [],
-  "scope": "Focused M1 path plus four M0 regressions; no complete multi-browser matrix or personal acceptance."
+  "scope": "Focused M1 path plus four M0 regressions; no complete multi-browser matrix or personal acceptance.",
+  "finalM1Recheck": {
+    "reason": "Correct free/blocked marker on curved targets; final M1 build",
+    "stats": {
+      "startTime": "2026-10-20T19:37:22.863Z",
+      "duration": 22478.666,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "hits": {
+      "dummy-e1": 1,
+      "dummy-e2": 7,
+      "dummy-e0": 1
+    },
+    "probe": {
+      "status": "complete",
+      "snapshot": {
+        "tick": 207,
+        "position": {
+          "x": -11.5,
+          "y": 0.02999535799026487,
+          "z": -9
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "surface": "floor",
+        "ceiling": false,
+        "facing": -1.5707963267948966
+      },
+      "visited": [
+        "floor",
+        "e1",
+        "e2",
+        "floor"
+      ]
+    },
+    "errors": [],
+    "externalRequests": []
+  }
 }

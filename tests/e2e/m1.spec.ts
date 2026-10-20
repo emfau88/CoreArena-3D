@@ -69,6 +69,7 @@ test('play the height route, hit three height targets, respect cover and show th
   expect((await read(page)).camera).toBe('isometric');
   point = await target(page, 'dummy-e2');
   expect((await read(page)).aim?.impact?.id).toBe('dummy-e2');
+  expect((await read(page)).aim?.blocked).toBe(false);
   await page.mouse.click(point.x, point.y);
   await page.screenshot({ path: info.outputPath('isometric.png') });
   // From the upper platform this target has a free line over the central wall.

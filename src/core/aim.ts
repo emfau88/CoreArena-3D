@@ -26,8 +26,10 @@ export function solveAim(world: RayWorld, cameraRay: Ray, foot: Vec3): AimSoluti
   const shot = toward(muzzle, target.point);
   const impact = barrelHit ?? world.raycast({ origin: muzzle, direction: shot.direction }, shot.distance + 0.025);
   const end = impact?.point ?? target.point;
+  // Camera and muzzle hit different points on a curved target. That is still a free hit;
+  // only a different collider between the shooter and the selected object is cover.
   return { target, muzzle: barrelHit ? shoulder : muzzle, impact, end,
-    blocked: !!barrelHit || Math.hypot(end.x - target.point.x, end.y - target.point.y, end.z - target.point.z) > 0.12 };
+    blocked: !!impact && impact.id !== target.id };
 }
 
 export interface DiagnosticShot { readonly sequence: number; readonly tick: number; readonly aim: AimSolution }

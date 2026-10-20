@@ -45,6 +45,10 @@ Kampf-KI und Matchsystem gehören zu M2. Mobile ist unverändert optional.
   Tastaturbewegung/Sprung, Kamerawechsel und sichtbare Navigationsprobe bedient.
 - Nach dem Browserlauf ergänzte Rückkehr zum Spawn nochmals im echten Rapier-
   Kerntest geprüft; kleine HUD-Korrekturen im Produktionsbrowser gesichtet.
+- Abschließende Sichtkorrektur: unterschiedliche Auftreffpunkte von Kamera und
+  Mündung auf derselben Kugel gelten nicht als Deckung. Kernprüfung und integrierter
+  M1-Browserablauf danach erneut bestanden (1/1, ca. 23 Sekunden inklusive Start).
+  Die Bilder zeigen diesen finalen Stand; beide Läufe sind im JSON dokumentiert.
 
 Umgebung: Windows, Chromium **156.0.8078.4**, **1366×768**, ANGLE/D3D11 auf AMD
 Radeon Graphics. Kein neuer Benchmark und keine erneute vollständige Chrome-/Edge-
