@@ -7,9 +7,12 @@ import { ArenaView } from '../render/arenaView';
 import { DiagnosticWeapon, solveAim } from '../core/aim';
 import type { AimSolution } from '../core/aim';
 import { TraversalProbe } from '../core/traversal';
-import { ArenaMatch, MATCH_RULES } from '../core/match';
-import type { Damage } from '../core/match';
+import { ArenaMatch } from '../core/match';
 import { inTrainingField, TRAINING_FIELD } from '../arena/training';
+import { Combat } from '../core/combat';
+import type { WeaponId } from '../core/combat';
+import { Pickups } from '../core/pickups';
+import { ARENA_PICKUPS } from '../arena/pickups';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
   const world = await createSpatialWorld(M1_ARENA);
@@ -18,6 +21,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const probeSimulation = new Simulation(probeWorld, M1_ARENA.spawn);
   let probe = new TraversalProbe(M1_ARENA.links ?? []);
   const weapon = new DiagnosticWeapon();
+  const combat = new Combat();
+  const pickups = new Pickups(ARENA_PICKUPS);
   const match = new ArenaMatch([{ id: 'player', team: 'blue' },
     ...(M1_ARENA.targets ?? []).map((target) => ({ id: target.id, team: 'red' as const }))]);
   let aim: AimSolution | null = null;
@@ -45,6 +50,9 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
       <button id="match-start" type="button">Trainingsmatch starten</button><button id="match-restart" type="button" hidden>Neu starten</button>
       <small id="match-hint">Drei stationäre Ziele · Höhen und Deckung zählen.</small></div>
+      <div id="weapon-panel" hidden><div class="weapon-buttons"><button id="weapon-arc" type="button" aria-pressed="true"><kbd>1</kbd> Arc Lash <b>∞</b></button>
+      <button id="weapon-pulse" type="button" aria-pressed="false"><kbd>2</kbd> Pulse <b id="ammo-count">—</b></button></div>
+      <small id="weapon-hint">Arc Lash · 5 m · enger Zielkegel</small><small>1 / 2 oder Mausrad · Pulse-Pickup hinter dem Start</small></div>
       <div id="life-panel" hidden><div><span id="hp-value">100</span> HP <span class="armor"><span id="armor-value">50</span> ARMOR</span></div>
       <progress id="hp-bar" max="100" value="100" aria-label="Lebenspunkte"></progress><p id="life-status"></p>
       <small>Orange Fläche links: Schaden testen.<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.</small></div>
@@ -78,7 +86,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     if (diagnosticsAllowed) diagnostics = !diagnostics;
     diagnosticPanel.hidden = !diagnostics;
     view.showColliders(diagnostics);
-  }, startProbe);
+  }, startProbe, (id) => {
+    if (match.snapshot().phase !== 'running' || !match.snapshot().actors.player!.alive) return;
+    if (id === 'cycle') combat.cycle(); else combat.select(id);
+  });
   const abort = new AbortController();
   const options = { signal: abort.signal };
   function setPaused(value: boolean) {
@@ -99,15 +110,19 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   }, options);
   host.querySelector('#camera-toggle')!.addEventListener('click', toggleCamera, options);
   probeButton.addEventListener('click', startProbe, options);
+  for (const id of ['arc', 'pulse'] as WeaponId[]) element(`weapon-${id}`).addEventListener('click', () => {
+    if (match.snapshot().phase === 'running' && match.snapshot().actors.player!.alive) combat.select(id);
+  }, options);
   function restartMatch() {
-    match.start(); weapon.reset(); aim = null; input.clear();
+    match.start(); weapon.reset(); combat.reset(); pickups.reset(); aim = null; input.clear();
     current = simulation.reset(); previous = current;
     probeSimulation.reset(); probe = new TraversalProbe(M1_ARENA.links ?? []); probeButton.disabled = false;
     for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, true);
     element('match-start').hidden = true; element('match-restart').hidden = false;
     element('match-result').hidden = true; element('life-panel').hidden = false;
+    element('weapon-panel').hidden = false;
     host.querySelector<HTMLElement>('.location')!.hidden = true;
-    element('match-hint').textContent = 'HP zuerst durch Armor geschützt · Ziele respawnen nach 4 s.';
+    element('match-hint').textContent = 'Arc Lash: kurz & unbegrenzt · Pulse: Projektile & Munition';
     view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   }
   for (const id of ['match-start', 'match-restart', 'result-restart']) element(id).addEventListener('click', restartMatch, options);
@@ -130,23 +145,27 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         if (canPlay) current = simulation.step(command);
         // Jumping over the practice arena's low perimeter must not leave an endless fall.
         if (current.position.y < -8 && before.phase === 'ready') { current = simulation.reset(); previous = current; }
-        aim = canPlay && input.pointer.active ? solveAim(world, view.pointerRay(input.pointer.x, input.pointer.y), current.position) : null;
-        const shot = weapon.step(current.tick, canPlay && firing, aim);
-        const damage: Damage[] = [];
-        if (shot?.aim.impact) damage.push({ target: shot.aim.impact.id, source: 'player', amount: MATCH_RULES.damage });
+        const cameraRay = canPlay && input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
+        aim = cameraRay ? solveAim(world, cameraRay, current.position) : null;
+        if (before.phase === 'ready') weapon.step(current.tick, canPlay && firing, aim);
+        const attack = before.phase === 'running' ? combat.step(before.tick + 1, canPlay && firing, aim, cameraRay, world,
+          (M1_ARENA.targets ?? []).filter((target) => before.actors[target.id]!.alive)) : { attacked: false, damage: [] };
+        const damage = [...attack.damage];
         if (current.position.y < -8) damage.push({ target: 'player', amount: 1000 });
         if (inTrainingField(current.position) && (before.tick + 1) % TRAINING_FIELD.intervalTicks === 0)
           damage.push({ target: 'player', amount: TRAINING_FIELD.damage });
-        match.step(damage, shot ? ['player'] : []);
+        match.step(damage, attack.attacked ? ['player'] : []);
         const after = match.snapshot();
         const playerAfter = after.actors.player!;
         if (before.phase === 'running') {
           for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, after.actors[target.id]!.alive);
           if (playerAfter.alive !== playerBefore.alive || after.phase === 'ended') {
-            input.clear(); aim = null; weapon.lastShot = null;
-            if (playerAfter.alive && !playerBefore.alive) { current = simulation.reset(); previous = current; weapon.reset(); }
+            input.clear(); aim = null; weapon.lastShot = null; combat.clearEffects();
+            if (playerAfter.alive && !playerBefore.alive) { current = simulation.reset(); previous = current; weapon.reset(); combat.reset(); }
           }
         }
+        if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount) =>
+          kind === 'pulse' || kind === 'ammo' ? combat.addAmmo(amount, kind === 'pulse') : match.restore('player', kind === 'health' ? 'hp' : 'armor', amount));
         if (probe.status !== 'ready' && after.phase !== 'ended') probeSimulation.step(probe.command(probeSimulation.snapshot()));
         steps.push(performance.now() - start);
         if (steps.length > 600) steps.shift();
@@ -155,6 +174,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     if (now - lastHud >= 100) {
       hitLabel.textContent = (M1_ARENA.targets ?? []).map((target) => weapon.hits[target.id] ?? 0).join(' / ');
       const state = match.snapshot(); const player = state.actors.player!;
+      const inventory = combat.snapshot();
+      element('ammo-count').textContent = inventory.ownsPulse ? `${inventory.ammo} / 54` : 'FINDEN';
+      element('weapon-arc').setAttribute('aria-pressed', String(inventory.selected === 'arc'));
+      element('weapon-pulse').setAttribute('aria-pressed', String(inventory.selected === 'pulse'));
+      (element('weapon-pulse') as HTMLButtonElement).disabled = !inventory.ownsPulse || inventory.ammo === 0;
+      element('weapon-hint').textContent = inventory.selected === 'arc' ? 'Arc Lash · 5 m · enger Zielkegel' : 'Pulse Repeater · 32 m · Projektile';
       element('blue-score').textContent = String(state.scores.blue); element('red-score').textContent = String(state.scores.red);
       const seconds = Math.ceil(state.remainingTicks / 60);
       element('match-time').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
@@ -181,8 +206,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       lastHud = now;
     }
     if (diagnostics) view.showColliders(true, world.debugLines());
-    view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, weapon.lastShot,
-      probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot());
+    view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
+      probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
     frameId = requestAnimationFrame(frame);
   }
   // Read-only observability is compiled into test builds only. No setters or result injection.
@@ -196,6 +221,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           rendered: { x: view.actor.position.x, y: view.actor.position.y, z: view.actor.position.z },
           marker: { x: view.marker.position.x, z: view.marker.position.z },
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
+          weapons: combat.snapshot(), pickups: pickups.snapshot(),
           probe: { status: probe.status, snapshot: probeSimulation.snapshot(), visited: [...probe.visited] },
           targets: (M1_ARENA.targets ?? []).map((target) => ({ ...target,
             screen: view.projectedPosition({ ...target.center, y: target.center.y - 0.9 }) })),

@@ -1,0 +1,44 @@
+[
+  {
+    "file": "m0.spec.ts",
+    "name": "real input moves the rendered actor in screen directions in both cameras",
+    "status": "passed",
+    "durationMs": 5190
+  },
+  {
+    "file": "m0.spec.ts",
+    "name": "real keyboard collision blocks a wall and allows sliding along it",
+    "status": "passed",
+    "durationMs": 3983
+  },
+  {
+    "file": "m0.spec.ts",
+    "name": "focus loss pauses, clears held movement and does not catch up on return",
+    "status": "passed",
+    "durationMs": 4436
+  },
+  {
+    "file": "m0.spec.ts",
+    "name": "resize, camera and collider diagnostics render correctly; capture evidence",
+    "status": "passed",
+    "durationMs": 7264
+  },
+  {
+    "file": "m1.spec.ts",
+    "name": "jump directly against both plateau walls without slow edge climbing",
+    "status": "passed",
+    "durationMs": 6516
+  },
+  {
+    "file": "m1.spec.ts",
+    "name": "play the height route, hit three height targets, respect cover and show the route probe",
+    "status": "passed",
+    "durationMs": 16191
+  },
+  {
+    "file": "m2-1.spec.ts",
+    "name": "play damage, death, protected respawns, ten real kills, match result and restart",
+    "status": "passed",
+    "durationMs": 89031
+  }
+]

@@ -99,6 +99,15 @@ export class RapierWorld implements SpatialWorld, RayWorld {
       this.world.step();
     }
   }
+  sweepBall(ray: Ray, distance: number, radius: number): RayHit | null {
+    const hit = this.world.castShape(ray.origin, { x: 0, y: 0, z: 0, w: 1 }, ray.direction,
+      new RAPIER.Ball(radius), 0, distance, true, undefined, undefined, this.collider);
+    if (!hit) return null;
+    return { id: this.names.get(hit.collider.handle)!, distance: hit.time_of_impact,
+      point: { x: ray.origin.x + ray.direction.x * hit.time_of_impact,
+        y: ray.origin.y + ray.direction.y * hit.time_of_impact, z: ray.origin.z + ray.direction.z * hit.time_of_impact },
+      normal: { ...hit.normal1 } };
+  }
   reset(position: Vec3): void {
     const center = { x: position.x, y: position.y + CAPSULE_CENTER, z: position.z };
     this.body.setTranslation(center, true);

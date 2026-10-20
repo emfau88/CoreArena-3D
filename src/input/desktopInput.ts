@@ -9,7 +9,8 @@ export class DesktopInput {
   private firePending = false;
   private firing = false;
   readonly pointer = { x: 0, y: 0, active: false };
-  constructor(canvas: HTMLCanvasElement, onCamera: () => void, onDiagnostics: () => void, onProbe: () => void) {
+  constructor(canvas: HTMLCanvasElement, onCamera: () => void, onDiagnostics: () => void, onProbe: () => void,
+    onWeapon: (id: 'arc' | 'pulse' | 'cycle') => void = () => {}) {
     const options = { signal: this.abort.signal };
     window.addEventListener('keydown', (event) => {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
@@ -19,9 +20,12 @@ export class DesktopInput {
       if (event.code === 'KeyV' && !event.repeat) onCamera();
       if (event.code === 'F3' && !event.repeat) onDiagnostics();
       if (event.code === 'KeyB' && !event.repeat) onProbe();
+      if (event.code === 'Digit1' && !event.repeat) onWeapon('arc');
+      if (event.code === 'Digit2' && !event.repeat) onWeapon('pulse');
       if (event.code === 'Space' && !event.repeat) this.jumpPending = true;
       this.keys.add(event.code);
     }, options);
+    canvas.addEventListener('wheel', (event) => { event.preventDefault(); if (event.deltaY) onWeapon('cycle'); }, { ...options, passive: false });
     window.addEventListener('keyup', (event) => this.keys.delete(event.code), options);
     canvas.addEventListener('pointermove', (event) => {
       Object.assign(this.pointer, { x: event.clientX, y: event.clientY, active: true });

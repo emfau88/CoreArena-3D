@@ -1,0 +1,133 @@
+{
+  "startTime": "2026-10-20T20:16:24.625Z",
+  "status": "passed",
+  "durationMs": 18915,
+  "browser": "156.0.8078.4",
+  "depleted": {
+    "ammo": 0,
+    "pickups": [
+      {
+        "id": "pulse-e0",
+        "kind": "pulse",
+        "position": {
+          "x": -7,
+          "y": 0,
+          "z": 4
+        },
+        "surface": "floor",
+        "amount": 54,
+        "remaining": 54,
+        "respawnAt": 0
+      },
+      {
+        "id": "ammo-e1",
+        "kind": "ammo",
+        "position": {
+          "x": -7,
+          "y": 2.05,
+          "z": -4
+        },
+        "surface": "e1",
+        "amount": 27,
+        "remaining": 21,
+        "respawnAt": 0
+      },
+      {
+        "id": "armor-e2",
+        "kind": "armor",
+        "position": {
+          "x": -7,
+          "y": 4.1,
+          "z": -9
+        },
+        "surface": "e2",
+        "amount": 50,
+        "remaining": 50,
+        "respawnAt": 0
+      },
+      {
+        "id": "health-e0",
+        "kind": "health",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": 5
+        },
+        "surface": "floor",
+        "amount": 25,
+        "remaining": 25,
+        "respawnAt": 0
+      }
+    ],
+    "selected": "arc",
+    "scores": {
+      "blue": 1,
+      "red": 0
+    }
+  },
+  "restarted": {
+    "weapons": {
+      "selected": "arc",
+      "ownsPulse": false,
+      "ammo": 0,
+      "projectiles": [],
+      "lastArc": null,
+      "impact": null
+    },
+    "pickups": [
+      {
+        "id": "pulse-e0",
+        "kind": "pulse",
+        "position": {
+          "x": -7,
+          "y": 0,
+          "z": 4
+        },
+        "surface": "floor",
+        "amount": 54,
+        "remaining": 54,
+        "respawnAt": 0
+      },
+      {
+        "id": "ammo-e1",
+        "kind": "ammo",
+        "position": {
+          "x": -7,
+          "y": 2.05,
+          "z": -4
+        },
+        "surface": "e1",
+        "amount": 27,
+        "remaining": 27,
+        "respawnAt": 0
+      },
+      {
+        "id": "armor-e2",
+        "kind": "armor",
+        "position": {
+          "x": -7,
+          "y": 4.1,
+          "z": -9
+        },
+        "surface": "e2",
+        "amount": 50,
+        "remaining": 50,
+        "respawnAt": 0
+      },
+      {
+        "id": "health-e0",
+        "kind": "health",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": 5
+        },
+        "surface": "floor",
+        "amount": 25,
+        "remaining": 25,
+        "respawnAt": 0
+      }
+    ]
+  },
+  "errors": []
+}

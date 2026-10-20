@@ -24,6 +24,13 @@ export class ArenaMatch {
   }
   snapshot(): MatchSnapshot { return this.state; }
   start(): void { this.state = this.fresh('running'); }
+  restore(id: string, kind: 'hp' | 'armor', amount: number): number {
+    const actor = this.state.actors[id];
+    if (this.state.phase !== 'running' || !actor?.alive) return 0;
+    const accepted = Math.min(Math.max(0, amount), 100 - actor[kind]);
+    this.state = { ...this.state, actors: { ...this.state.actors, [id]: { ...actor, [kind]: actor[kind] + accepted } } };
+    return accepted;
+  }
   step(damage: readonly Damage[] = [], attacks: readonly string[] = []): void {
     if (this.state.phase !== 'running') return;
     const actors: Record<string, Life> = {};

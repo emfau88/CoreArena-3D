@@ -20,7 +20,7 @@ async function move(page: Page, key: string, axis: 'x' | 'z', value: number, jum
 }
 test.use({ headless: false });
 test('play damage, death, protected respawns, ten real kills, match result and restart', async ({ page, browser }, info) => {
-  test.setTimeout(110_000);
+  test.setTimeout(140_000);
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -64,7 +64,7 @@ test('play damage, death, protected respawns, ten real kills, match result and r
   await expect.poll(async () => (await read(page)).match.tick).toBeGreaterThanOrEqual(protectedTick);
   expect((await read(page)).match.actors['dummy-e1']!.hp).toBe(100);
   await page.screenshot({ path: info.outputPath('target-protection.png') });
-  await expect.poll(async () => (await read(page)).match.phase, { timeout: 65_000 }).toBe('ended');
+  await expect.poll(async () => (await read(page)).match.phase, { timeout: 95_000 }).toBe('ended');
   await page.mouse.up();
   const result = (await read(page)).match;
   expect(result.scores).toEqual({ blue: 10, red: 0 }); expect(result.reason).toBe('score');

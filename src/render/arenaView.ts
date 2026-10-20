@@ -8,6 +8,10 @@ import { ArenaCamera } from './camera';
 import { buildArena } from './buildArena';
 import { createFighter } from './fighter';
 import type { MatchSnapshot } from '../core/match';
+import type { WeaponSnapshot } from '../core/combat';
+import type { PickupState } from '../core/pickups';
+import { ARENA_PICKUPS } from '../arena/pickups';
+import { CombatView } from './combatView';
 
 export class ArenaView {
   readonly renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
@@ -21,6 +25,7 @@ export class ArenaView {
     new THREE.LineBasicMaterial({ vertexColors: true, depthTest: false, transparent: true, opacity: 0.8 }));
   private readonly position = new THREE.Vector3();
   private readonly practice: PracticeView;
+  private readonly combat: CombatView;
   private readonly raycaster = new THREE.Raycaster();
 
   constructor(host: HTMLElement, arena: ArenaDefinition) {
@@ -43,6 +48,7 @@ export class ArenaView {
     this.scene.add(sun);
     buildArena(this.scene, arena);
     this.practice = new PracticeView(this.scene, arena);
+    this.combat = new CombatView(this.scene, ARENA_PICKUPS);
     this.scene.add(this.actor);
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
@@ -59,7 +65,8 @@ export class ArenaView {
     this.camera.resize(innerWidth, innerHeight);
   }
   draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
-    aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot): void {
+    aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot,
+    weapons?: WeaponSnapshot, pickups?: readonly PickupState[]): void {
     this.position.set(
       THREE.MathUtils.lerp(previous.position.x, current.position.x, alpha),
       THREE.MathUtils.lerp(previous.position.y, current.position.y, alpha),
@@ -74,6 +81,7 @@ export class ArenaView {
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt);
     this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera);
+    this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups);
     this.renderer.render(this.scene, this.camera.camera);
   }
   pointerRay(x: number, y: number): Ray {

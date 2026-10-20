@@ -43,6 +43,11 @@ button:focus-visible { outline: 2px solid #d6b680; outline-offset: 3px; }
 #match-result > div { min-width: 330px; padding: 38px; background: #171c22f5; border: 1px solid #d6b68077; border-radius: 8px; text-align: center; }
 #match-result h2 { font-size: 32px; font-weight: 500; } #match-result p { color: #bac3c8; margin-bottom: 28px; }
 #pause { z-index: 3; }
+#weapon-panel { position: absolute; left: 32px; top: 120px; padding: 12px; border: 1px solid #ffffff25; border-radius: 7px; background: #171c22ed; width: 320px; }
+.weapon-buttons { display: flex; gap: 8px; } .weapon-buttons button { pointer-events: auto; flex: 1; font-size: 11px; padding: 10px 8px; }
+.weapon-buttons b { display: block; margin-top: 5px; font-size: 14px; } .weapon-buttons [aria-pressed="true"] { border-color: #d6b680; background: #3a3730; }
+.weapon-buttons button:disabled { opacity: .5; cursor: default; } #weapon-panel small { display: block; font-size: 10px; color: #aab4ba; margin-top: 8px; }
+@media (max-width: 900px) { #weapon-panel { left: 20px; width: 265px; } }
 @media (max-width: 900px) { #match-panel { width: 265px; right: 20px; } #life-panel { left: 20px; width: 260px; } }
 #pause h2 { font-size: 28px; font-weight: 500; }
 [hidden] { display: none !important; }

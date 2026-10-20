@@ -77,7 +77,8 @@ export class PracticeView {
         (state.position.y + 1.15 + aim.muzzle.y) / 2, (state.position.z + aim.muzzle.z) / 2);
       this.gun.lookAt(aim.target.point.x, aim.target.point.y, aim.target.point.z);
     }
-    const recent = !!shot && state.tick - shot.tick < 6;
+    const tick = match && match.phase !== 'ready' ? match.tick : state.tick;
+    const recent = !!shot && tick - shot.tick >= 0 && tick - shot.tick < 6;
     this.tracer.visible = this.impact.visible = recent;
     if (shot && recent) {
       const { muzzle, end } = shot.aim;
@@ -95,7 +96,7 @@ export class PracticeView {
       mesh.material.emissiveIntensity = recent && shot?.aim.impact?.id === id ? 1.5 : 0;
       detail.hoop.material.color.setHex(life && life.protectionTicks > 0 ? 0x8ddcfa : 0xd9bd87);
       detail.bars.visible = !!life?.alive;
-      if (life) { detail.hp.scale.x = life.hp / 100; detail.armor.scale.x = life.armor / 50; }
+      if (life) { detail.hp.scale.x = life.hp / 100; detail.armor.scale.x = life.armor / 100; }
       if (camera) detail.bars.quaternion.copy(camera.quaternion);
     }
     this.bot.actor.visible = !!bot;
