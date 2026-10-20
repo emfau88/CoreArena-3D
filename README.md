@@ -1,15 +1,16 @@
 # CORE ARENA 3D
 
-Eigenständiges Desktop-Spielprojekt. **M0 und M1 sind umgesetzt und technisch
-geprüft.** Erste M1-Spielrückmeldung eingearbeitet; M2 benötigt eine neue Freigabe.
+Eigenständiges Desktop-Spielprojekt. **M0, M1 und M2.1 sind umgesetzt und technisch
+geprüft.** M2.2 und folgende Pakete benötigen die nächste Freigabe.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
 Eine goldene Testfigur zeigt dieselbe Höhenroute mit demselben Motor.
 E2 ist ein massives Plateau bis zum Boden. Sprünge direkt an der Wand behalten
 ihren Aufwärtsimpuls; Kantenkontakt beim Aufstieg zählt nicht als Landung.
-Optik und Bewegung orientieren sich an V5. Kampfbots, Waffeninventar und Matches
-folgen frühestens in M2; Mobile bleibt optional.
+Optik und Bewegung orientieren sich an V5. M2.1 ergänzt einen Trainingsmatch mit
+HP/Armor, Tod/Respawn, Spawn-Schutz, Punkten, Timer und Neustart.
+Kampfbots und Waffeninventar folgen in späteren Paketen; Mobile bleibt optional.
 
 ## Lokal starten
 
@@ -39,6 +40,16 @@ den äußeren Rand fällt, kehrt zum Start zurück.
 Beim Fokusverlust pausiert das Spiel und löscht gehaltene Tasten.
 F3 zeigt ausschließlich im Entwicklungs-/Testbuild die Diagnose und echten Collider.
 
+„Trainingsmatch starten“ aktiviert 120 Sekunden Spielzeit oder 10 Abschüsse.
+Die drei roten Ziele haben wie der Spieler 100 HP und zunächst 50 Armor. Armor
+fängt Schaden zuerst ab; ein Diagnoseschuss verursacht 35 Schaden. Nach einem
+Tod folgen 4 Sekunden Respawn, dann 100 HP ohne Armor und 2 Sekunden Schutz.
+Schießen beendet den eigenen Schutz. Ein blauer Ring markiert geschützte Ziele,
+ein goldener Ring den geschützten Spieler. Die orange Bodenfläche links vom Spawn
+verursacht Schaden zum Ausprobieren des eigenen Lebenszyklus; Umwelttod gibt keine
+Teampunkte. „Neu starten“ bzw. „Noch einmal spielen“ setzt die Runde zurück.
+Dies ist eine Trainingsrunde gegen stationäre Ziele, noch kein 2v2 mit Kampf-Bots.
+
 ## Stand und Prüfung
 
 | Paket | Stand |
@@ -50,9 +61,10 @@ F3 zeigt ausschließlich im Entwicklungs-/Testbuild die Diagnose und echten Coll
 | M1.2 Aim/Diagnosefeuer | Erledigt; drei Höhenziele und Deckung geprüft |
 | M1.3 Navigationsprobe | Erledigt; E0→E1→E2→E0 mit gemeinsamem Motor |
 | M1.4 Zusammenspiel/Übergabe | Technisch geprüft; persönliches Spielurteil offen |
-| M2 erstes Match | Nicht begonnen; separate Freigabe erforderlich |
+| M2.1 Lebenszyklus und Match | Erledigt; kompletter Trainingsmatch im Browser geprüft |
+| M2.2–M2.6 | Nicht begonnen; nächste Freigabe erforderlich |
 
-[M1-Ergebnis und Testnachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
+[M2.1-Ergebnis und Testnachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 
 ```powershell
 npm test

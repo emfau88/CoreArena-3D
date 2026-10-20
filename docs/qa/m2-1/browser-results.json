@@ -1,0 +1,64 @@
+{
+  "startTime": "2026-10-20T20:01:53.848Z",
+  "status": "passed",
+  "durationMs": 70439,
+  "browser": "156.0.8078.4",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "respawn": {
+    "lastShot": null,
+    "position": {
+      "x": -7,
+      "y": 0.022055542469024636,
+      "z": 2
+    },
+    "player": {
+      "id": "player",
+      "team": "blue",
+      "life": 2,
+      "hp": 100,
+      "armor": 0,
+      "alive": true,
+      "respawnTicks": 0,
+      "protectionTicks": 100
+    }
+  },
+  "result": {
+    "tick": 4062,
+    "phase": "ended",
+    "reason": "score",
+    "scores": {
+      "blue": 10,
+      "red": 0
+    },
+    "winner": "blue"
+  },
+  "restart": {
+    "lastShot": null,
+    "player": {
+      "id": "player",
+      "team": "blue",
+      "life": 1,
+      "hp": 100,
+      "armor": 50,
+      "alive": true,
+      "respawnTicks": 0,
+      "protectionTicks": 120
+    },
+    "remainingTicks": 7200,
+    "tick": 0,
+    "position": {
+      "x": -7,
+      "y": 0.06,
+      "z": 2
+    },
+    "scores": {
+      "blue": 0,
+      "red": 0
+    },
+    "phase": "running"
+  },
+  "errors": []
+}

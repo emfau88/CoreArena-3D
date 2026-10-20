@@ -55,6 +55,6 @@ export class DesktopInput {
     this.firePending = false;
     return fire;
   }
-  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.firing = false; }
+  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.firing = false; this.pointer.active = false; }
   dispose(): void { this.abort.abort(); this.clear(); }
 }

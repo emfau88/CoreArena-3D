@@ -7,14 +7,19 @@ import { ArenaView } from '../render/arenaView';
 import { DiagnosticWeapon, solveAim } from '../core/aim';
 import type { AimSolution } from '../core/aim';
 import { TraversalProbe } from '../core/traversal';
+import { ArenaMatch, MATCH_RULES } from '../core/match';
+import type { Damage } from '../core/match';
+import { inTrainingField, TRAINING_FIELD } from '../arena/training';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
   const world = await createSpatialWorld(M1_ARENA);
   // An isolated, non-blocking route probe shares the identical arena and player motor.
   const probeWorld = await createSpatialWorld(M1_ARENA);
   const probeSimulation = new Simulation(probeWorld, M1_ARENA.spawn);
-  const probe = new TraversalProbe(M1_ARENA.links ?? []);
+  let probe = new TraversalProbe(M1_ARENA.links ?? []);
   const weapon = new DiagnosticWeapon();
+  const match = new ArenaMatch([{ id: 'player', team: 'blue' },
+    ...(M1_ARENA.targets ?? []).map((target) => ({ id: target.id, team: 'red' as const }))]);
   let aim: AimSolution | null = null;
   let view: ArenaView;
   try { view = new ArenaView(host, M1_ARENA); }
@@ -35,7 +40,14 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     <div id="hud">
       <header><div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div>
       <span class="eyebrow">CORE ARENA</span><h1>Obsidian Garden</h1></div></div>
-      <span class="phase"><i></i>M1 · HÖHEN &amp; ZIELEN</span></header>
+      <span class="phase"><i></i>TRAININGSARENA</span></header>
+      <div id="match-panel"><div class="eyebrow">TRAINING · 10 ABSCHÜSSE / 2 MINUTEN</div>
+      <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
+      <button id="match-start" type="button">Trainingsmatch starten</button><button id="match-restart" type="button" hidden>Neu starten</button>
+      <small id="match-hint">Drei stationäre Ziele · Höhen und Deckung zählen.</small></div>
+      <div id="life-panel" hidden><div><span id="hp-value">100</span> HP <span class="armor"><span id="armor-value">50</span> ARMOR</span></div>
+      <progress id="hp-bar" max="100" value="100" aria-label="Lebenspunkte"></progress><p id="life-status"></p>
+      <small>Orange Fläche links: Schaden testen.<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.</small></div>
       <div class="location"><span class="eyebrow">01 / OBSIDIAN GARDEN</span>
       <p>Hoch hinaus.</p><small>Folge den Sprungmarkierungen zu E1 und E2.</small>
       <div id="practice-status"><span id="height-status">E0</span> · Treffer <span id="hit-count">0 / 0 / 0</span></div>
@@ -46,6 +58,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     </div>
     <div id="pause" hidden><div><span class="eyebrow">PAUSE</span><h2>Bereit, wenn du es bist.</h2>
     <button id="resume" type="button">Weiter</button></div></div>
+    <div id="match-result" hidden><div><span class="eyebrow">TRAINING BEENDET</span><h2 id="result-title"></h2>
+    <p id="result-detail"></p><button id="result-restart" type="button">Noch einmal spielen</button></div></div>
     <pre id="diagnostics" hidden></pre>`);
   const label = host.querySelector<HTMLElement>('#camera-label')!;
   const pausePanel = host.querySelector<HTMLElement>('#pause')!;
@@ -54,6 +68,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const heightLabel = host.querySelector<HTMLElement>('#height-status')!;
   const probeLabel = host.querySelector<HTMLElement>('#probe-status')!;
   const probeButton = host.querySelector<HTMLButtonElement>('#probe-start')!;
+  const element = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
   const startProbe = () => { probe.start(); probeButton.disabled = true; };
   const toggleCamera = () => {
     view.camera.toggle();
@@ -84,6 +99,18 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   }, options);
   host.querySelector('#camera-toggle')!.addEventListener('click', toggleCamera, options);
   probeButton.addEventListener('click', startProbe, options);
+  function restartMatch() {
+    match.start(); weapon.reset(); aim = null; input.clear();
+    current = simulation.reset(); previous = current;
+    probeSimulation.reset(); probe = new TraversalProbe(M1_ARENA.links ?? []); probeButton.disabled = false;
+    for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, true);
+    element('match-start').hidden = true; element('match-restart').hidden = false;
+    element('match-result').hidden = true; element('life-panel').hidden = false;
+    host.querySelector<HTMLElement>('.location')!.hidden = true;
+    element('match-hint').textContent = 'HP zuerst durch Armor geschützt · Ziele respawnen nach 4 s.';
+    view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
+  }
+  for (const id of ['match-start', 'match-restart', 'result-restart']) element(id).addEventListener('click', restartMatch, options);
 
   function frame(now: number) {
     const elapsed = Math.max(0, (now - lastTime) / 1000);
@@ -94,19 +121,52 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       if (frames.length > 600) frames.shift();
       alpha = clock.advance(elapsed, () => {
         const start = performance.now();
+        const before = match.snapshot();
+        const playerBefore = before.actors.player!;
+        const canPlay = before.phase === 'ready' || (before.phase === 'running' && playerBefore.alive);
         previous = current;
-        current = simulation.step(input.command(view.camera.basis()));
+        const command = input.command(view.camera.basis());
+        const firing = input.fire();
+        if (canPlay) current = simulation.step(command);
         // Jumping over the practice arena's low perimeter must not leave an endless fall.
-        if (current.position.y < -8) { current = simulation.reset(); previous = current; }
-        aim = input.pointer.active ? solveAim(world, view.pointerRay(input.pointer.x, input.pointer.y), current.position) : null;
-        weapon.step(current.tick, input.fire(), aim);
-        if (probe.status !== 'ready') probeSimulation.step(probe.command(probeSimulation.snapshot()));
+        if (current.position.y < -8 && before.phase === 'ready') { current = simulation.reset(); previous = current; }
+        aim = canPlay && input.pointer.active ? solveAim(world, view.pointerRay(input.pointer.x, input.pointer.y), current.position) : null;
+        const shot = weapon.step(current.tick, canPlay && firing, aim);
+        const damage: Damage[] = [];
+        if (shot?.aim.impact) damage.push({ target: shot.aim.impact.id, source: 'player', amount: MATCH_RULES.damage });
+        if (current.position.y < -8) damage.push({ target: 'player', amount: 1000 });
+        if (inTrainingField(current.position) && (before.tick + 1) % TRAINING_FIELD.intervalTicks === 0)
+          damage.push({ target: 'player', amount: TRAINING_FIELD.damage });
+        match.step(damage, shot ? ['player'] : []);
+        const after = match.snapshot();
+        const playerAfter = after.actors.player!;
+        if (before.phase === 'running') {
+          for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, after.actors[target.id]!.alive);
+          if (playerAfter.alive !== playerBefore.alive || after.phase === 'ended') {
+            input.clear(); aim = null; weapon.lastShot = null;
+            if (playerAfter.alive && !playerBefore.alive) { current = simulation.reset(); previous = current; weapon.reset(); }
+          }
+        }
+        if (probe.status !== 'ready' && after.phase !== 'ended') probeSimulation.step(probe.command(probeSimulation.snapshot()));
         steps.push(performance.now() - start);
         if (steps.length > 600) steps.shift();
       });
     }
     if (now - lastHud >= 100) {
       hitLabel.textContent = (M1_ARENA.targets ?? []).map((target) => weapon.hits[target.id] ?? 0).join(' / ');
+      const state = match.snapshot(); const player = state.actors.player!;
+      element('blue-score').textContent = String(state.scores.blue); element('red-score').textContent = String(state.scores.red);
+      const seconds = Math.ceil(state.remainingTicks / 60);
+      element('match-time').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+      element('hp-value').textContent = String(player.hp); element('armor-value').textContent = String(player.armor);
+      (element('hp-bar') as HTMLProgressElement).value = player.hp;
+      element('life-status').textContent = !player.alive ? `Eliminiert · Respawn in ${(player.respawnTicks / 60).toFixed(1)} s`
+        : player.protectionTicks > 0 ? `Spawn-Schutz · ${(player.protectionTicks / 60).toFixed(1)} s` : 'Bereit';
+      element('match-result').hidden = state.phase !== 'ended';
+      if (state.phase === 'ended') {
+        element('result-title').textContent = state.winner === 'draw' ? 'Unentschieden.' : state.winner === 'blue' ? 'Blau gewinnt.' : 'Rot gewinnt.';
+        element('result-detail').textContent = `${state.scores.blue} : ${state.scores.red} · ${state.reason === 'score' ? 'Abschussziel erreicht' : 'Zeit abgelaufen'}`;
+      }
       heightLabel.textContent = current.grounded ? `${current.surface === 'floor' ? 'E0' : current.surface?.toUpperCase() ?? 'KANTE'} · ${current.position.y.toFixed(2)} m` : `SPRUNG / FALL · ${current.position.y.toFixed(2)} m`;
       const statuses = { ready: 'Goldene Figur · E0 → E1 → E2 → E0', running: `Route läuft · ${probe.visited.join(' → ').replaceAll('floor', 'E0')}`,
         complete: 'Route geschafft · E0 → E1 → E2 → E0', failed: 'Route blockiert · Diagnose erforderlich' };
@@ -122,7 +182,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     }
     if (diagnostics) view.showColliders(true, world.debugLines());
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, weapon.lastShot,
-      probe.status === 'ready' ? null : probeSimulation.snapshot());
+      probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot());
     frameId = requestAnimationFrame(frame);
   }
   // Read-only observability is compiled into test builds only. No setters or result injection.
@@ -135,7 +195,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           screen: view.projectedPosition(current.position),
           rendered: { x: view.actor.position.x, y: view.actor.position.y, z: view.actor.position.z },
           marker: { x: view.marker.position.x, z: view.marker.position.z },
-          aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot,
+          aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           probe: { status: probe.status, snapshot: probeSimulation.snapshot(), visited: [...probe.visited] },
           targets: (M1_ARENA.targets ?? []).map((target) => ({ ...target,
             screen: view.projectedPosition({ ...target.center, y: target.center.y - 0.9 }) })),
@@ -156,7 +216,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     world.dispose();
     probeWorld.dispose();
     view.dispose();
-    host.querySelectorAll('#hud, #pause, #diagnostics').forEach((element) => element.remove());
+    host.querySelectorAll('#hud, #pause, #diagnostics, #match-result').forEach((element) => element.remove());
     Reflect.deleteProperty(window, '__coreArena');
   };
 }

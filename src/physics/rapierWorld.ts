@@ -16,6 +16,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
   private readonly collider: RAPIER.Collider;
   private readonly controller: RAPIER.KinematicCharacterController;
   private readonly names = new Map<number, string>();
+  private readonly targets = new Map<string, RAPIER.Collider>();
 
   constructor(arena: ArenaDefinition) {
     this.world.timestep = TICK_SECONDS;
@@ -30,6 +31,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
       const collider = this.world.createCollider(RAPIER.ColliderDesc.ball(radius)
         .setTranslation(center.x, center.y, center.z).setSensor(true));
       this.names.set(collider.handle, id);
+      this.targets.set(id, collider);
     }
     this.body = this.world.createRigidBody(
       RAPIER.RigidBodyDesc.kinematicPositionBased()
@@ -89,6 +91,13 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     if (!hit) return null;
     return { id: this.names.get(hit.collider.handle)!, point: query.pointAt(hit.timeOfImpact),
       normal: { ...hit.normal }, distance: hit.timeOfImpact };
+  }
+  setTargetEnabled(id: string, enabled: boolean): void {
+    const collider = this.targets.get(id);
+    if (collider && collider.isEnabled() !== enabled) {
+      collider.setEnabled(enabled);
+      this.world.step();
+    }
   }
   reset(position: Vec3): void {
     const center = { x: position.x, y: position.y + CAPSULE_CENTER, z: position.z };

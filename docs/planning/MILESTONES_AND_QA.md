@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 20. Oktober 2026. **M0 und M1 umgesetzt und technisch geprüft. Erste M1-Spielrückmeldung erhalten und nachgearbeitet. M2–M5 nicht freigegeben.** Bestätigung der Nacharbeit offen.
+Stand: 20. Oktober 2026. **M0, M1 und das separat freigegebene M2.1 umgesetzt und technisch geprüft. Erste M1-Spielrückmeldung nachgearbeitet.** M2.2–M2.6 und M3–M5 nicht freigegeben.
 
 ## Aktueller Fortschritt
 
@@ -15,13 +15,18 @@ Stand: 20. Oktober 2026. **M0 und M1 umgesetzt und technisch geprüft. Erste M1-
 - [x] M1.4: Gezielter integrierter Browser-Spielablauf und technische Übergabe.
 - [x] Erste persönliche M1-Rückmeldung: Kantensprung und Lesbarkeit von E2.
 - [x] M1-Nacharbeit: Sprungimpuls bei aufsteigendem Kantenkontakt erhalten; E2 als massives Plateau.
-- [ ] Persönliche Bestätigung der Nacharbeit und gesonderte M2-Freigabe.
+- [ ] Persönliche Bestätigung der M1-Nacharbeit.
+- [x] Gesonderte Freigabe ausschließlich für M2.1.
+- [x] M2.1: HP/Armor, Schaden, Tod/Respawn, Spawn-Schutz, TDM-Score, Timer und Restart; spielbar als Trainingsmatch mit stationären Zielen.
+- [ ] M2.2–M2.6: Waffen, Kampfbots, Teamspiel, Gesamtarena und integrierte Matchabnahme; noch nicht freigegeben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.
 
 M1-Nachweise: [M1-Ergebnis](../qa/M1_RESULT.md), insgesamt zehn bestandene Kern-/Physiktests und fünf Browserfälle in Chromium 1366×768, darunter ein vollständiger Höhen-/Treffer-/Navigationsablauf mit echten Eingaben. Keine erneute Vollmatrix über alle Browser; keine persönliche Abnahme behauptet.
 
 Nacharbeit auf konkrete Spielrückmeldung: elf Kern-/Physiktests und zwei gezielte Browserabläufe, darunter Sprünge unmittelbar gegen beide Plateauwände. Die erste Übergabe prüfte erfolgreiche Landungen, aber nicht deren Dauer; der neue Regressionstest begrenzt die Landungszeit und erkennt das frühere langsame Hochziehen.
+
+M2.1-Nachweise: [Ergebnis](../qa/M2_1_RESULT.md), 16 bestandene Kern-/Physiktests, sechs bestandene M0/M1-Browserregressionen und ein vollständiger neuer Matchablauf in Chromium 1366×768. Spieler-Tod/Respawn, Schutz, zehn tatsächliche Abschüsse, Ergebnis und Restart wurden durch echte Eingaben erreicht. Zeitende/Gleichstand/gleichzeitige Kills sind zusätzlich im numerischen Kern geprüft. Das vollständige 2v2-M2-Gate bleibt offen.
 
 **Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
 
@@ -45,12 +50,12 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 | --- | --- | --- | --- |
 | **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **Ist: ca. 30 Minuten** (Nutzerangabe) | Browsernachweise vorhanden; persönliches Spielurteil offen |
 | **M1 Höhen und Aim — technisch erledigt, nachgearbeitet** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Ist Erststand: ca. 30 Minuten** (Nutzerangabe); Nacharbeit separat | Erste Spielrückmeldung eingearbeitet; erneute persönliche Bestätigung offen |
-| **M2 erstes Spiel** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden** | Vollständige echte Matches; Höhenbots funktionieren; Nutzer bestätigt Movement und Combat |
+| **M2 erstes Spiel — 1 von 6 Paketen technisch erledigt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden ursprünglicher Gesamtplan** | M2.1 geprüft; vollständige echte 2v2-Matches und Nutzerabnahme noch offen |
 | **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **1–2 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
 | **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **1–2 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
 | **M5 spätere Produktvalidierung** | Weitere Arenen, zusätzliche Waffen, größere Liga und Distributionsentscheidung nach Kernspielabnahme | **Noch nicht seriös schätzbar** | Eigenständiges Go/No-Go und neuer begrenzter Auftrag |
 
-**Ab M1 verbleiben geschätzt 1,5–3 Stunden bis einschließlich M2 beziehungsweise 3,5–7 Stunden bis einschließlich M4.** Mit den gemeldeten Erstständen von M0/M1 zusammen ca. einer Stunde entspricht das **2,5–4** beziehungsweise **4,5–8 Stunden**, zuzüglich separat anfallender weiterer Feedbackrunden. Die Bereiche gelten für den beschriebenen Umfang und sind keine Kalendertermine. Nach M2 erneut anhand der tatsächlichen Umsetzung kalibrieren, statt den Faktor aus zwei kleinen Meilensteinen blind fortzuschreiben.
+**Nach dem erledigten M2.1 verbleiben laut Paketplan 80–160 Minuten bis einschließlich M2 beziehungsweise 3 Stunden 20 Minuten bis 6 Stunden 40 Minuten bis einschließlich M4.** Die ursprünglichen Gesamtspannen bleiben zur Einordnung in der Tabelle erhalten. Weitere Feedbackrunden kommen separat hinzu. Die Bereiche gelten für den beschriebenen Umfang und sind keine Kalendertermine. Nach M2 erneut anhand der tatsächlichen Umsetzung kalibrieren, statt den Faktor aus zwei kleinen Meilensteinen blind fortzuschreiben.
 
 Bei einem ungelösten Grundproblem wird das Layout vereinfacht oder der laufende Meilenstein geteilt. Es werden nicht gleichzeitig zusätzliche Maps, Waffen oder Menüs begonnen.
 
@@ -173,4 +178,4 @@ Der Abschlussbericht enthält tatsächlichen Commit/Branch, Start-/Preview-Link 
 - **Technisch geprüft:** automatische und reale Browserfälle bestanden.
 - **Spielerisch abgenommen:** Nutzer hat den jeweiligen Spieltest bestätigt.
 
-Nur der letzte zutreffende Status wird behauptet. Aktuell sind M0 und M1 **umgesetzt und technisch geprüft**; das persönliche M1-Spielurteil sowie jede Umsetzung ab M2 stehen aus.
+Nur der letzte zutreffende Status wird behauptet. Aktuell sind M0, M1 und M2.1 **umgesetzt und technisch geprüft**; die persönliche Bestätigung der M1-Nacharbeit und das M2.1-Spielurteil stehen aus. M2.2–M2.6 benötigen die nächste Freigabe.

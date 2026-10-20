@@ -148,3 +148,11 @@ Qualitätsstufen reduzieren zuerst Schatten, Laub und Effekte. Kollision, Tickra
 | Frühe Liga-/Contentarbeit | Gute Menüs über schlechtem Combat | M2-Spielgefühl als Pflichtgate vor M3/M4; gesonderte Aufträge |
 
 Die Architektur ist nach bestandenem M1 erneut kurz zu prüfen. Ein solcher Review darf konkrete Probleme lösen, soll aber keine pauschale zweite Neuentwicklung auslösen.
+
+## Umsetzung M2.1: numerischer Lebenszyklus und Match
+
+`src/core/match.ts` führt HP, Armor, Leben, Respawn, Spawn-Schutz, Teamscore und Matchende im festen 60-Hz-Takt. Das Modul importiert weder Renderer noch Physik noch Eingabe. Die App übergibt tatsächliche Treffer aus der vorhandenen 3D-Mündungsprüfung und Umweltschaden. Tod deaktiviert den Zielcollider und die sichtbare Figur; Respawn stellt beide wieder her. Spieler-Respawn setzt zusätzlich den Motor an den Spawn zurück und verwirft gehaltene Eingaben.
+
+Übernommen als angepasste Regeln aus CTF-3.0: Armor vor HP, 4 Sekunden Respawn, 2 Sekunden Spawn-Schutz, Schutzende beim Angriff, Friendly Fire aus, keine Punkte für Umwelttod, genau ein Kill pro Opferleben. Alle Treffer eines Ticks werden vor Scorelimit/Zeitende ausgewertet; gleichzeitige tödliche Treffer bleiben möglich. Referenzquellen: `actors/actorLifecycle.ts`, `actors/ActorLifecycleConfig.ts`, `modes/TeamDeathmatchMode.ts` und `scoring/scoreBoard.ts`; Quellstand siehe Übernahmeaudit. Keine Runtime-Imports aus CTF.
+
+Der separat freigegebene M2.1-Stand nutzt einen Trainingsmatch mit drei stationären roten Zielen und der Diagnosewaffe: 120 Sekunden oder 10 Abschüsse, 100 HP, zunächst 50 Armor, nach Respawn 0 Armor, 35 Schaden pro Treffer. Das markierte Schadensfeld links vom Spawn prüft den Spieler-Lebenszyklus ohne vorgezogene Kampf-KI; es wirkt ausschließlich bodennah und nur im laufenden Match. Freies Höhentraining bleibt vor Matchstart verfügbar. Waffeninventar, echte 2v2-Bots und endgültige Arena-/HUD-Abstimmung folgen in späteren Paketen.

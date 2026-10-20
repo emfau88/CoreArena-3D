@@ -3,6 +3,8 @@ import type { ArenaDefinition } from '../arena/arena';
 import type { AimSolution, DiagnosticShot } from '../core/aim';
 import type { Snapshot } from '../core/types';
 import { createFighter } from './fighter';
+import type { MatchSnapshot } from '../core/match';
+import { TRAINING_FIELD } from '../arena/training';
 
 export function labelMesh(text: string, width = 3): THREE.Mesh {
   const canvas = document.createElement('canvas');
@@ -27,6 +29,8 @@ export class PracticeView {
     new THREE.MeshStandardMaterial({ color: 0x424e55, metalness: 0.7, roughness: 0.35 }));
   private readonly bot = createFighter(0xd7b779);
   private readonly targets = new Map<string, THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>>();
+  private readonly targetDetails = new Map<string, { hoop: THREE.Mesh<THREE.TorusGeometry, THREE.MeshStandardMaterial>; bars: THREE.Group; hp: THREE.Mesh; armor: THREE.Mesh }>();
+  private readonly hazard = new THREE.Group();
   private readonly normal = new THREE.Vector3();
   constructor(scene: THREE.Scene, arena: ArenaDefinition) {
     for (const target of arena.targets ?? []) {
@@ -38,6 +42,14 @@ export class PracticeView {
       const hoop = new THREE.Mesh(new THREE.TorusGeometry(target.radius + 0.14, 0.035, 6, 32),
         new THREE.MeshStandardMaterial({ color: 0xd9bd87, metalness: 0.6, roughness: 0.3 }));
       hoop.rotation.x = Math.PI / 2; hoop.position.copy(mesh.position); scene.add(hoop);
+      const bars = new THREE.Group();
+      bars.position.set(target.center.x, target.center.y + 1, target.center.z);
+      const bar = (color: number, y: number) => {
+        const item = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.09), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+        item.position.y = y; bars.add(item); return item;
+      };
+      const hp = bar(0xeaa18b, 0); const armor = bar(0x8ddcfa, 0.16);
+      scene.add(bars); this.targetDetails.set(target.id, { hoop, bars, hp, armor });
       const label = labelMesh(`${target.level} / ZIEL`, 3.2);
       label.position.set(target.center.x, target.center.y - 1.07, target.center.z + 1.25);
       label.rotation.x = -Math.PI / 2; scene.add(label);
@@ -45,9 +57,15 @@ export class PracticeView {
     this.reticle.renderOrder = this.impact.renderOrder = 20;
     this.tracer.frustumCulled = false;
     this.bot.actor.visible = false;
+    const field = new THREE.Mesh(new THREE.PlaneGeometry(TRAINING_FIELD.width, TRAINING_FIELD.depth),
+      new THREE.MeshBasicMaterial({ color: 0xe98754, transparent: true, opacity: 0.4, side: THREE.DoubleSide }));
+    field.rotation.x = -Math.PI / 2;
+    this.hazard.position.set(TRAINING_FIELD.x, 0.035, TRAINING_FIELD.z);
+    const fieldLabel = labelMesh('SCHADENSFELD', 3.1); fieldLabel.rotation.x = -Math.PI / 2; fieldLabel.position.z = 2;
+    this.hazard.add(field, fieldLabel); scene.add(this.hazard);
     scene.add(this.reticle, this.impact, this.tracer, this.gun, this.bot.actor);
   }
-  update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number): void {
+  update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number, match?: MatchSnapshot, camera?: THREE.Camera): void {
     this.reticle.visible = this.gun.visible = !!aim;
     if (aim) {
       this.reticle.position.set(aim.target.point.x, aim.target.point.y, aim.target.point.z);
@@ -68,7 +86,18 @@ export class PracticeView {
       points.needsUpdate = true;
       this.impact.position.set(end.x, end.y, end.z);
     }
-    for (const [id, mesh] of this.targets) mesh.material.emissiveIntensity = recent && shot?.aim.impact?.id === id ? 1.5 : 0;
+    const training = match?.phase !== undefined && match.phase !== 'ready';
+    this.hazard.visible = training;
+    for (const [id, mesh] of this.targets) {
+      const life = training ? match?.actors[id] : undefined;
+      const detail = this.targetDetails.get(id)!;
+      mesh.visible = detail.hoop.visible = life?.alive ?? true;
+      mesh.material.emissiveIntensity = recent && shot?.aim.impact?.id === id ? 1.5 : 0;
+      detail.hoop.material.color.setHex(life && life.protectionTicks > 0 ? 0x8ddcfa : 0xd9bd87);
+      detail.bars.visible = !!life?.alive;
+      if (life) { detail.hp.scale.x = life.hp / 100; detail.armor.scale.x = life.armor / 50; }
+      if (camera) detail.bars.quaternion.copy(camera.quaternion);
+    }
     this.bot.actor.visible = !!bot;
     if (bot) {
       this.bot.actor.position.set(bot.position.x, bot.position.y, bot.position.z);

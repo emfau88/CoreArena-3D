@@ -7,6 +7,7 @@ import { CAPSULE_CENTER } from '../core/types';
 import { ArenaCamera } from './camera';
 import { buildArena } from './buildArena';
 import { createFighter } from './fighter';
+import type { MatchSnapshot } from '../core/match';
 
 export class ArenaView {
   readonly renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
@@ -58,7 +59,7 @@ export class ArenaView {
     this.camera.resize(innerWidth, innerHeight);
   }
   draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
-    aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null): void {
+    aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot): void {
     this.position.set(
       THREE.MathUtils.lerp(previous.position.x, current.position.x, alpha),
       THREE.MathUtils.lerp(previous.position.y, current.position.y, alpha),
@@ -68,8 +69,11 @@ export class ArenaView {
     this.actor.rotation.y = aim ? Math.atan2(aim.target.point.x - current.position.x, aim.target.point.z - current.position.z) : current.facing;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt);
     this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
+    const life = match?.phase === 'ready' ? undefined : match?.actors.player;
+    this.actor.visible = this.marker.visible = life?.alive ?? true;
+    (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt);
-    this.practice.update(current, aim, shot, bot, dt);
+    this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera);
     this.renderer.render(this.scene, this.camera.camera);
   }
   pointerRay(x: number, y: number): Ray {

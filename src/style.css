@@ -28,6 +28,22 @@ button:focus-visible { outline: 2px solid #d6b680; outline-offset: 3px; }
 #camera-toggle { pointer-events: auto; padding: 0; border: 0; background: transparent; }
 #pause { position: fixed; inset: 0; display: grid; place-items: center; background: #101419ab; backdrop-filter: blur(5px); }
 #pause > div { text-align: center; }
+#match-panel { position: absolute; top: 120px; right: 32px; width: 310px; padding: 16px; border: 1px solid #ffffff25; border-radius: 7px; background: #171c22ed; text-align: center; }
+#match-panel .eyebrow { font-size: 9px; letter-spacing: .12em; }
+#match-score { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: 12px 0; font-size: 11px; }
+#match-score b { font-size: 24px; margin: 0 8px; } #match-time { font-variant-numeric: tabular-nums; font-size: 22px; }
+.blue, .armor { color: #8ddcfa; } .red { color: #eaa18b; }
+#match-panel button { pointer-events: auto; font-size: 12px; }
+#match-panel small { display: block; margin-top: 10px; font-size: 11px; color: #aab4ba; line-height: 1.5; }
+#life-panel { position: absolute; left: 32px; bottom: 115px; width: 290px; background: #171c22ed; border: 1px solid #ffffff25; border-radius: 7px; padding: 18px; font-size: 13px; }
+#life-panel .armor { margin-left: 25px; } #hp-value, #armor-value { font-size: 23px; font-weight: 600; }
+#hp-bar { width: 100%; height: 7px; accent-color: #91e6d4; margin-top: 12px; } #life-status { min-height: 18px; color: #d6b680; }
+#life-panel small { color: #aab4ba; font-size: 11px; line-height: 1.6; }
+#match-result { position: fixed; inset: 0; display: grid; place-items: center; background: #10141999; }
+#match-result > div { min-width: 330px; padding: 38px; background: #171c22f5; border: 1px solid #d6b68077; border-radius: 8px; text-align: center; }
+#match-result h2 { font-size: 32px; font-weight: 500; } #match-result p { color: #bac3c8; margin-bottom: 28px; }
+#pause { z-index: 3; }
+@media (max-width: 900px) { #match-panel { width: 265px; right: 20px; } #life-panel { left: 20px; width: 260px; } }
 #pause h2 { font-size: 28px; font-weight: 500; }
 [hidden] { display: none !important; }
 #diagnostics { position: fixed; left: 20px; top: 110px; margin: 0; background: #080c11e8; padding: 16px; color: #8fecd0; font: 12px/1.7 Consolas, monospace; pointer-events: none; }

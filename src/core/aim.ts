@@ -38,11 +38,17 @@ export class DiagnosticWeapon {
   private sequence = 0;
   readonly hits: Record<string, number> = {};
   lastShot: DiagnosticShot | null = null;
-  step(tick: number, firing: boolean, aim: AimSolution | null): void {
-    if (!firing || !aim || tick < this.nextTick) return;
+  reset(): void {
+    this.nextTick = this.sequence = 0;
+    this.lastShot = null;
+    for (const id of Object.keys(this.hits)) delete this.hits[id];
+  }
+  step(tick: number, firing: boolean, aim: AimSolution | null): DiagnosticShot | null {
+    if (!firing || !aim || tick < this.nextTick) return null;
     this.nextTick = tick + 8;
     this.lastShot = { sequence: ++this.sequence, tick, aim };
     const id = aim.impact?.id;
     if (id?.startsWith('dummy-')) this.hits[id] = (this.hits[id] ?? 0) + 1;
+    return this.lastShot;
   }
 }
