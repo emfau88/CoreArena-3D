@@ -38,6 +38,9 @@ async function move(page: Page, keys: string[], count: number) {
 const distance = (a: Observation, b: Observation) =>
   Math.hypot(a.snapshot.position.x - b.snapshot.position.x, a.snapshot.position.z - b.snapshot.position.z);
 
+// Real OS-backed focus is part of this suite. CI needs a display (e.g. xvfb-run).
+test.use({ headless: false });
+
 test.beforeEach(async ({ page }) => {
   const failures: string[] = [], urls: string[] = [];
   errors.set(page, failures);
@@ -84,8 +87,6 @@ test('real keyboard collision blocks a wall and allows sliding along it', async 
   expect(slide.after.snapshot.position.y).toBeGreaterThanOrEqual(0);
 });
 
-test.describe('real window focus', () => {
-test.use({ headless: false });
 test('focus loss pauses, clears held movement and does not catch up on return', async ({ page, context }) => {
   // Playwright normally emulates every tab as focused, even when another is in front.
   // Disable that emulation so this exercises real browser focus/visibility events.
@@ -112,7 +113,6 @@ test('focus loss pauses, clears held movement and does not catch up on return', 
   const fresh = await move(page, ['KeyD'], 10);
   expect(distance(fresh.before, fresh.after)).toBeGreaterThan(0.8);
   await other.close();
-});
 });
 
 test('resize, camera and collider diagnostics render correctly; capture evidence', async ({ page, browser }, info) => {

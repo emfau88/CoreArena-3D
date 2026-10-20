@@ -1,14 +1,17 @@
 import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
 import type { Snapshot, Vec3 } from '../core/types';
-import { CAPSULE, CAPSULE_CENTER } from '../core/types';
+import { CAPSULE_CENTER } from '../core/types';
 import { ArenaCamera } from './camera';
+import { buildArena } from './buildArena';
+import { createFighter } from './fighter';
 
 export class ArenaView {
   readonly renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   readonly scene = new THREE.Scene();
   readonly camera = new ArenaCamera();
-  readonly actor = new THREE.Group();
+  private readonly fighter = createFighter();
+  readonly actor = this.fighter.actor;
   readonly marker: THREE.Mesh;
   private readonly debugGeometry = new THREE.BufferGeometry();
   private readonly debug = new THREE.LineSegments(this.debugGeometry,
@@ -20,37 +23,20 @@ export class ArenaView {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.1;
+    this.renderer.toneMappingExposure = 0.95;
     this.renderer.domElement.setAttribute('aria-label', 'Obsidian Garden – begehbare 3D-Arena');
     this.renderer.domElement.tabIndex = 0;
     host.append(this.renderer.domElement);
     this.scene.background = new THREE.Color(0x171b20);
-    this.scene.add(new THREE.HemisphereLight(0xf5f6f2, 0x34383d, 2));
-    const sun = new THREE.DirectionalLight(0xfff3e4, 3);
+    this.scene.add(new THREE.HemisphereLight(0xf5f6f2, 0x34383d, 1.6));
+    const sun = new THREE.DirectionalLight(0xfff3e4, 2.7);
     sun.position.set(-20, 35, 18);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     Object.assign(sun.shadow.camera, { left: -32, right: 32, top: 25, bottom: -25, near: 1, far: 100 });
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
-    const materials = {
-      floor: new THREE.MeshStandardMaterial({ color: 0x45494d, roughness: 0.95 }),
-      stone: new THREE.MeshStandardMaterial({ color: 0x62676a, roughness: 0.88 }),
-      metal: new THREE.MeshStandardMaterial({ color: 0x363c42, roughness: 0.55, metalness: 0.65 }),
-    };
-    for (const box of arena.boxes) {
-      const mesh = new THREE.Mesh(new THREE.BoxGeometry(box.size.x, box.size.y, box.size.z), materials[box.material]);
-      mesh.name = box.id;
-      mesh.position.set(box.center.x, box.center.y, box.center.z);
-      mesh.castShadow = box.id !== 'floor';
-      mesh.receiveShadow = true;
-      this.scene.add(mesh);
-    }
-    const body = new THREE.Mesh(new THREE.CapsuleGeometry(CAPSULE.radius, CAPSULE.halfHeight * 2, 6, 12),
-      new THREE.MeshStandardMaterial({ color: 0xcbd7d9, metalness: 0.4, roughness: 0.5 }));
-    body.position.y = CAPSULE_CENTER;
-    body.castShadow = true;
-    this.actor.add(body);
+    buildArena(this.scene, arena);
     this.scene.add(this.actor);
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
@@ -74,6 +60,7 @@ export class ArenaView {
     );
     this.actor.position.copy(this.position);
     this.actor.rotation.y = current.facing;
+    this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt);
     this.marker.position.set(this.position.x, 0.028, this.position.z);
     this.camera.follow(this.position, dt);
     this.renderer.render(this.scene, this.camera.camera);
@@ -92,14 +79,19 @@ export class ArenaView {
   dispose(): void {
     const geometries = new Set<THREE.BufferGeometry>();
     const materials = new Set<THREE.Material>();
+    const textures = new Set<THREE.Texture>();
     this.scene.traverse((object) => {
       if (object instanceof THREE.Mesh || object instanceof THREE.LineSegments) {
         geometries.add(object.geometry);
-        for (const material of Array.isArray(object.material) ? object.material : [object.material]) materials.add(material);
+        for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+          materials.add(material);
+          for (const value of Object.values(material)) if (value instanceof THREE.Texture) textures.add(value);
+        }
       }
     });
     geometries.forEach((geometry) => geometry.dispose());
     materials.forEach((material) => material.dispose());
+    textures.forEach((texture) => texture.dispose());
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

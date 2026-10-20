@@ -1,6 +1,18 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 20. Oktober 2026. Status: vorgeschlagener Plan, noch keine Umsetzungsfreigabe.
+Stand: 20. Oktober 2026. **M0 freigegeben, umgesetzt und technisch geprüft. Persönliches Spielurteil offen. M1–M5 nicht begonnen und nicht freigegeben.**
+
+## Aktueller Fortschritt
+
+- [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
+- [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.
+- [x] M0.3: V5-Materialprobe, Figur/Vegetation, Diagnose, Browsernachweise und lokale Übergabe.
+- [ ] Persönliches M0-Spielurteil des Nutzers.
+- [ ] Gesonderte M1-Freigabe; bis dahin keine Höhen-/Aim-Implementierung.
+
+Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.
+
+**Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
 
 Das erste Produktziel ist ein verlässlich spielbares 2v2-TDM auf einer guten Höhenarena. Jeder Meilenstein endet mit einem sichtbaren Ergebnis und einer gesonderten Freigabe. Eine M0-Freigabe autorisiert keine automatische Weiterarbeit bis M4.
 
@@ -18,7 +30,7 @@ Schätzungen für eine erfahrene alleinige Umsetzung mit verfügbaren Agentenwer
 
 | Meilenstein | Lieferumfang | Aufwand | Sichtbares Gate |
 | --- | --- | --- | --- |
-| **M0 Fundament** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, lokale Start-/Buildanleitung | **3–5 Tage** | Tatsächlich im Browser laufen und steuern; Referenzlook erkennbar; reproduzierbarer Build |
+| **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **3–5 Tage, ursprüngliche Schätzung** | Browsernachweise vorhanden; persönliches Spielurteil offen |
 | **M1 Höhen und Aim** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **8–12 Tage** | Reproduzierbare Höhen- und Trefferfälle sowie 5–10 Minuten persönlicher Spieltest |
 | **M2 erstes Spiel** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **12–18 Tage** | Vollständige echte Matches; Höhenbots funktionieren; Nutzer bestätigt Movement und Combat |
 | **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **8–12 Tage** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
@@ -145,4 +157,4 @@ Der Abschlussbericht enthält tatsächlichen Commit/Branch, Start-/Preview-Link 
 - **Technisch geprüft:** automatische und reale Browserfälle bestanden.
 - **Spielerisch abgenommen:** Nutzer hat den jeweiligen Spieltest bestätigt.
 
-Nur der letzte zutreffende Status wird behauptet. Aktuell ist ausschließlich die Analyse erstellt.
+Nur der letzte zutreffende Status wird behauptet. Aktuell ist M0 **umgesetzt und technisch geprüft**; die persönliche Spielabnahme sowie jede Umsetzung ab M1 stehen aus.

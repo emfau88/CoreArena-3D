@@ -1,6 +1,8 @@
 # CORE ARENA 3D erster Umsetzungsauftrag M0
 
-Stand: 20. Oktober 2026. **Noch nicht freigegeben. Erst nach ausdrücklicher M0-Freigabe ausführen.**
+Stand: 20. Oktober 2026. **M0 ausdrücklich freigegeben; M0.1–M0.3 umgesetzt und technisch geprüft. Persönliches Spielurteil offen. M1 nicht freigegeben.**
+
+Ergebnis: [M0_RESULT.md](../qa/M0_RESULT.md). Der folgende Auftrag dokumentiert den freigegebenen Umfang. Nach Nutzerfeedback werden zusätzliche Randfallprüfungen zurückgestellt, um schneller spielbare Ergebnisse zu liefern.
 
 ## Ziel
 

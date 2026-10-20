@@ -24,8 +24,11 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const steps: number[] = [];
   host.insertAdjacentHTML('beforeend', `
     <div id="hud">
-      <header><div><span class="eyebrow">CORE ARENA</span><h1>Obsidian Garden</h1></div>
-      <span class="phase">M0 · FUNDAMENT</span></header>
+      <header><div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div>
+      <span class="eyebrow">CORE ARENA</span><h1>Obsidian Garden</h1></div></div>
+      <span class="phase"><i></i>M0 · FUNDAMENT</span></header>
+      <div class="location"><span class="eyebrow">01 / OBSIDIAN GARDEN</span>
+      <p>Erkunde die Arena.</p><small>Bewegung &amp; Kamerastudie</small></div>
       <footer><span><kbd>W A S D</kbd> Bewegen</span><span><kbd>SHIFT</kbd> Sprinten</span>
       <button id="camera-toggle" type="button"><kbd>V</kbd> <span id="camera-label">Gerade Ansicht</span></button></footer>
     </div>

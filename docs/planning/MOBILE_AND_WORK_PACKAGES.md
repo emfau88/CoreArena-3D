@@ -1,6 +1,8 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 20. Oktober 2026. Ergänzung zur Analyse, **keine Umsetzungsfreigabe**. Desktop bleibt das erste Qualitätsziel. Der [M0-Auftrag](M0_IMPLEMENTATION_BRIEF.md) bleibt unverändert begrenzt; Touch gehört nicht zu M0.
+Stand: 20. Oktober 2026. **M0.1–M0.3 wurden freigegeben, umgesetzt und technisch geprüft.** Persönliches Spielurteil offen. M1–M4 und Mobile bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel; Touch gehört nicht zu M0.
+
+Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 
 ## Entscheidungsvorschlag zu Mobile
 
@@ -72,9 +74,9 @@ M0 ist ausführungsnah beschrieben. M1 ist nach Risiken gegliedert. M2–M4 blei
 
 | Paket | Ergebnis und Abgrenzung | Voraussetzung | Tage | Konkreter Nachweis |
 | --- | --- | --- | --- | --- |
-| **M0.1 Startfähiges Projekt** | Toolchain, lokale Abhängigkeiten, minimaler Simulationsstart und sichtbare Szene; keine sSpielsysteme | M0-Freigabe und Remote-Abgleich | 1 | Frische Installation, Typecheck, Build, Browserstart |
-| **M0.2 Bewegung und Kamera** | Kapsel auf E0, Wandkontakt, WASD/Shift, fester Takt, beide Kameras und Fokusbehandlung | M0.1 | 1–2 | Echte Eingaben, normierte Diagonalen, Wandtest in beiden Ansichten |
-| **M0.3 Gestaltung und Übergabe** | Kleine V5-Materialprobe, Diagnose und vollständige M0-Abnahme | M0.2 | 1–2 | Gebauter Browserlauf, zwei Vergleichsaufnahmen, Startanleitung |
+| **M0.1 ✅ technisch geprüft** | Toolchain, lokale Abhängigkeiten und sichtbare Szene | Erledigt | 1, ursprüngliche Schätzung | Installation, Typecheck, Build und Browserstart bestanden |
+| **M0.2 ✅ technisch geprüft** | Kapsel auf E0, Wandkontakt, WASD/Shift, fester Takt, Kameras und Fokus | Erledigt | 1–2, ursprüngliche Schätzung | Kern-/Physiktests und echte Browser-Eingaben bestanden |
+| **M0.3 ✅ technisch geprüft** | V5-Materialprobe, Diagnose, Aufnahmen und Übergabe | Erledigt; Nutzerurteil offen | 1–2, ursprüngliche Schätzung | 24 Browserfälle bestanden; Bilder und Startanleitung vorhanden |
 | **M1.1 Höhenmotor** | Sprung/Fall, Standflächen, E0/E1/E2, Unterseiten und Kopfkontakt | M0 abgenommen, M1 freigegeben | 2–3 | Wiederholbare Auf-/Abstiege, Überhang- und Überlappungsfälle |
 | **M1.2 Zielwahl und Diagnosefeuer** | 3D-Zielpunkt, Mündungsprüfung, Diagnosewaffe und drei Dummies; kein Waffeninventar | M1.1 | 2–3 | Freie/verdeckte Treffer aus allen Höhen, kein Schuss um die Ecke |
 | **M1.3 Navigationsprobe** | Flächenverbindungen und ein einfacher Bot, der Pflichtwege mit demselben Motor durchläuft | M1.1; M1.2 für gemeinsame Diagnose | 2–3 | Zehn Durchläufe je Pflichtlink, Fehlertrace bei Scheitern |
@@ -105,4 +107,4 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand: ausschließlich Planung. Kein M0-Code und keine Mobile-Implementierung sind durch diese Ergänzung autorisiert oder begonnen.**
+**Aktueller Stand: M0.1–M0.3 umgesetzt und technisch geprüft. M1 und Mobile nicht begonnen. Vor M1 ausdrücklich auf Nutzerfreigabe warten.**

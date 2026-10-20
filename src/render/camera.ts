@@ -17,7 +17,7 @@ export class ArenaCamera {
     this.place();
   }
   resize(width: number, height: number): void {
-    const viewHeight = 32;
+    const viewHeight = 28;
     this.camera.left = -viewHeight * width / height / 2;
     this.camera.right = -this.camera.left;
     this.camera.top = viewHeight / 2;
