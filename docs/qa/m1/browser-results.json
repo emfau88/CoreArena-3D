@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-20",
+  "command": "npx playwright test --project=chromium-1366",
+  "stats": {
+    "startTime": "2026-10-20T19:29:58.586Z",
+    "duration": 36446.943999999996,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "real input moves the rendered actor in screen directions in both cameras",
+      "project": "chromium-1366",
+      "status": "expected",
+      "durationMs": 3663
+    },
+    {
+      "title": "real keyboard collision blocks a wall and allows sliding along it",
+      "project": "chromium-1366",
+      "status": "expected",
+      "durationMs": 3584
+    },
+    {
+      "title": "focus loss pauses, clears held movement and does not catch up on return",
+      "project": "chromium-1366",
+      "status": "expected",
+      "durationMs": 3417
+    },
+    {
+      "title": "resize, camera and collider diagnostics render correctly; capture evidence",
+      "project": "chromium-1366",
+      "status": "expected",
+      "durationMs": 6210
+    },
+    {
+      "title": "play the height route, hit three height targets, respect cover and show the route probe",
+      "project": "chromium-1366",
+      "status": "expected",
+      "durationMs": 16430
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "graphics": {
+    "vendor": "Google Inc. (AMD)",
+    "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
+  },
+  "hits": {
+    "dummy-e1": 1,
+    "dummy-e2": 9,
+    "dummy-e0": 1
+  },
+  "probe": {
+    "status": "complete",
+    "snapshot": {
+      "tick": 196,
+      "position": {
+        "x": -11.5,
+        "y": 0.024995362758636452,
+        "z": -9
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "grounded": true,
+      "surface": "floor",
+      "ceiling": false,
+      "facing": -1.5707963267948966
+    },
+    "visited": [
+      "floor",
+      "e1",
+      "e2",
+      "floor"
+    ]
+  },
+  "errors": [],
+  "externalRequests": [],
+  "scope": "Focused M1 path plus four M0 regressions; no complete multi-browser matrix or personal acceptance."
+}

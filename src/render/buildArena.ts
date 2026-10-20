@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
 import { createMaterials } from './materials';
 import { addGarden } from './garden';
+import { labelMesh } from './practiceView';
 
 export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
   const materials = createMaterials();
@@ -21,6 +22,16 @@ export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
     mesh.name = shape.id;
     if (shape.id === 'floor') { mesh.castShadow = false; continue; }
     const top = c.y + s.y / 2;
+    if (shape.level) {
+      const tiles = materials.floor.clone();
+      tiles.map = materials.floor.map!.clone();
+      tiles.map.repeat.set(5.5 * s.x / 44, 3.5 * s.z / 28);
+      box(c.x, top + 0.006, c.z, s.x - 0.18, 0.012, s.z - 0.18, tiles);
+      box(c.x, top - 0.08, c.z + s.z / 2 + 0.006, s.x, 0.05, 0.012, materials.brass);
+      const label = labelMesh(shape.level, 4);
+      label.position.set(c.x + 1, top + 0.022, c.z + s.z / 2 - 0.7);
+      label.rotation.x = -Math.PI / 2; scene.add(label);
+    }
     if (shape.planted) {
       // Decorative insets stay inside the shared visible/collision boundary.
       box(c.x, top + 0.008, c.z, s.x - 0.22, 0.016, s.z - 0.22, materials.soil);
@@ -63,4 +74,11 @@ export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
   sign.position.set(0, 0.014, 9.8);
   scene.add(sign);
   addGarden(scene, arena);
+  for (const link of arena.links ?? []) {
+    if (link.kind !== 'jump') continue;
+    const sign = labelMesh('↑  SPRUNG', 3.5);
+    sign.rotation.x = -Math.PI / 2;
+    sign.position.set(link.start.x, link.start.y + 0.025, link.start.z);
+    scene.add(sign);
+  }
 }

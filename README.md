@@ -1,11 +1,13 @@
 # CORE ARENA 3D
 
-Eigenständiges Desktop-Spielprojekt. **M0.1–M0.3 sind umgesetzt und technisch
-geprüft.** Persönliches Spielurteil offen; M1 ist noch nicht freigegeben.
+Eigenständiges Desktop-Spielprojekt. **M0 und M1 sind umgesetzt und technisch
+geprüft.** Persönliches M1-Spielurteil offen; M2 benötigt eine neue Freigabe.
 
-Spielbar sind Bewegung auf E0, Sprint, Wandkollision und beide V5-Kameras.
-Optik und Bewegung orientieren sich an V5. Sprung, Waffen, Bots und Matches
-gehören zu späteren Meilensteinen.
+Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
+3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
+Eine goldene Testfigur zeigt dieselbe Höhenroute mit demselben Motor.
+Optik und Bewegung orientieren sich an V5. Kampfbots, Waffeninventar und Matches
+folgen frühestens in M2; Mobile bleibt optional.
 
 ## Lokal starten
 
@@ -26,7 +28,12 @@ npm run preview
 
 Gebautes Spiel: http://127.0.0.1:8743/CoreArena-3D/
 
-WASD bewegt bildschirmbezogen, Shift sprintet, V wechselt die Kamera.
+WASD bewegt bildschirmbezogen, Shift sprintet, Space springt, V wechselt die Kamera.
+Maus zielt; linke Maustaste tippen/halten feuert. Der Ring zeigt den tatsächlichen
+3D-Zielpunkt (mint: frei, orange: Mündung verdeckt). Treffer werden pro Höhe gezählt.
+B bzw. „Route zeigen“ startet einmal die goldene Navigationsprobe; Neuladen setzt
+die Übung zurück. Die markierten Absprungstellen führen über E1 und E2. Wer über
+den äußeren Rand fällt, kehrt zum Start zurück.
 Beim Fokusverlust pausiert das Spiel und löscht gehaltene Tasten.
 F3 zeigt ausschließlich im Entwicklungs-/Testbuild die Diagnose und echten Collider.
 
@@ -37,9 +44,13 @@ F3 zeigt ausschließlich im Entwicklungs-/Testbuild die Diagnose und echten Coll
 | M0.1 Projektstart | Erledigt, Build und Browserstart geprüft |
 | M0.2 Bewegung/Kamera | Erledigt, Rapier-Kollision und echte Eingaben geprüft |
 | M0.3 Gestaltung/Übergabe | Erledigt, Vergleichsbilder und Browsermatrix vorhanden |
-| M1 Höhen/Aim | Nicht begonnen; separate Freigabe erforderlich |
+| M1.1 Höhenmotor | Erledigt; Sprung, Fall, Standfläche und Kopfkontakt geprüft |
+| M1.2 Aim/Diagnosefeuer | Erledigt; drei Höhenziele und Deckung geprüft |
+| M1.3 Navigationsprobe | Erledigt; E0→E1→E2→E0 mit gemeinsamem Motor |
+| M1.4 Zusammenspiel/Übergabe | Technisch geprüft; persönliches Spielurteil offen |
+| M2 erstes Match | Nicht begonnen; separate Freigabe erforderlich |
 
-[M0-Ergebnis und Testnachweise](docs/qa/M0_RESULT.md).
+[M1-Ergebnis und Testnachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 
 ```powershell
 npm test
@@ -47,6 +58,10 @@ npm run build
 npx playwright install chromium
 npm run test:browser
 ```
+
+Gezielter schneller Desktoplauf: `npm run build:test`, anschließend
+`npx playwright test --project=chromium-1366`. M1 wurde mit diesem begrenzten
+Umfang geprüft; die vollständige Browser-/Auflösungsmatrix bleibt optional.
 
 Browsertests starten den gebauten Teststand auf Port 8744 in isolierten Profilen.
 Sie nutzen echte Eingaben und ausschließlich lesende Diagnose. Installiertes

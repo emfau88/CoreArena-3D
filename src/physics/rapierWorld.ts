@@ -1,7 +1,7 @@
 import RAPIER from '@dimforge/rapier3d-compat';
 import type { ArenaDefinition } from '../arena/arena';
 import { CAPSULE, CAPSULE_CENTER, TICK_SECONDS } from '../core/types';
-import type { MotionResult, SpatialWorld, Vec3 } from '../core/types';
+import type { MotionResult, Ray, RayHit, RayWorld, SpatialWorld, Vec3 } from '../core/types';
 
 let ready: Promise<void> | undefined;
 export async function createSpatialWorld(arena: ArenaDefinition): Promise<RapierWorld> {
@@ -10,19 +10,26 @@ export async function createSpatialWorld(arena: ArenaDefinition): Promise<Rapier
   return new RapierWorld(arena);
 }
 
-export class RapierWorld implements SpatialWorld {
+export class RapierWorld implements SpatialWorld, RayWorld {
   private readonly world = new RAPIER.World({ x: 0, y: -22.6, z: 0 });
   private readonly body: RAPIER.RigidBody;
   private readonly collider: RAPIER.Collider;
   private readonly controller: RAPIER.KinematicCharacterController;
+  private readonly names = new Map<number, string>();
 
   constructor(arena: ArenaDefinition) {
     this.world.timestep = TICK_SECONDS;
-    for (const { size, center } of arena.boxes) {
-      this.world.createCollider(
+    for (const { id, size, center } of arena.boxes) {
+      const collider = this.world.createCollider(
         RAPIER.ColliderDesc.cuboid(size.x / 2, size.y / 2, size.z / 2)
           .setTranslation(center.x, center.y, center.z),
       );
+      this.names.set(collider.handle, id);
+    }
+    for (const { id, center, radius } of arena.targets ?? []) {
+      const collider = this.world.createCollider(RAPIER.ColliderDesc.ball(radius)
+        .setTranslation(center.x, center.y, center.z).setSensor(true));
+      this.names.set(collider.handle, id);
     }
     this.body = this.world.createRigidBody(
       RAPIER.RigidBodyDesc.kinematicPositionBased()
@@ -33,7 +40,7 @@ export class RapierWorld implements SpatialWorld {
     );
     this.controller = this.world.createCharacterController(CAPSULE.offset);
     // A 1 cm normal nudge prevents zero-distance floor contacts consuming a tick.
-    // M0 has only flat traversal: snapping is unnecessary and caused intermittent stalls.
+    // No ground snapping: ledges and undersides must be resolved by actual collision.
     this.controller.setNormalNudgeFactor(0.01);
     this.controller.disableAutostep();
     this.controller.disableSnapToGround();
@@ -44,16 +51,48 @@ export class RapierWorld implements SpatialWorld {
     this.controller.computeColliderMovement(this.collider, displacement,
       RAPIER.QueryFilterFlags.EXCLUDE_KINEMATIC | RAPIER.QueryFilterFlags.EXCLUDE_SENSORS);
     const movement = this.controller.computedMovement();
+    let ceiling = false;
+    let surface: string | null = null;
+    for (let i = 0; i < this.controller.numComputedCollisions(); i++) {
+      const collision = this.controller.computedCollision(i);
+      if (!collision) continue;
+      if (collision.normal1.y < -0.5) ceiling = true;
+      if (collision.normal1.y > 0.7 && collision.collider) surface = this.names.get(collision.collider.handle) ?? null;
+    }
     const before = this.body.translation();
     this.body.setNextKinematicTranslation({
       x: before.x + movement.x, y: before.y + movement.y, z: before.z + movement.z,
     });
     this.world.step();
     const position = this.body.translation();
+    const grounded = this.controller.computedGrounded();
+    // Rapier can report a grounded resting contact without a new movement collision.
+    // Recover its identity with a short physical support ray, never an X/Z height lookup.
+    if (grounded && !surface) surface = this.raycast({
+      origin: { x: position.x, y: position.y - CAPSULE_CENTER + 0.05, z: position.z },
+      direction: { x: 0, y: -1, z: 0 },
+    }, 0.12, true)?.id ?? null;
     return {
       position: { x: position.x, y: position.y - CAPSULE_CENTER, z: position.z },
-      grounded: this.controller.computedGrounded(),
+      grounded,
+      ceiling,
+      surface: grounded ? surface : null,
     };
+  }
+  raycast(ray: Ray, distance: number, surfacesOnly = false): RayHit | null {
+    const query = new RAPIER.Ray(ray.origin, ray.direction);
+    const hit = this.world.castRayAndGetNormal(query, distance, true,
+      surfacesOnly ? RAPIER.QueryFilterFlags.EXCLUDE_SENSORS : undefined,
+      undefined, this.collider);
+    if (!hit) return null;
+    return { id: this.names.get(hit.collider.handle)!, point: query.pointAt(hit.timeOfImpact),
+      normal: { ...hit.normal }, distance: hit.timeOfImpact };
+  }
+  reset(position: Vec3): void {
+    const center = { x: position.x, y: position.y + CAPSULE_CENTER, z: position.z };
+    this.body.setTranslation(center, true);
+    this.body.setNextKinematicTranslation(center);
+    this.world.step();
   }
   debugLines(): { vertices: Float32Array; colors: Float32Array } {
     return this.world.debugRender();

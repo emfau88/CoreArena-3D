@@ -1,6 +1,6 @@
 # CORE ARENA 3D erster Umsetzungsauftrag M0
 
-Stand: 20. Oktober 2026. **M0 ausdrücklich freigegeben; M0.1–M0.3 umgesetzt und technisch geprüft. Persönliches Spielurteil offen. M1 nicht freigegeben.**
+Stand: 20. Oktober 2026. **M0.1–M0.3 umgesetzt und technisch geprüft. M1 inzwischen gesondert freigegeben.** Dieses Dokument bewahrt den damaligen M0-Auftrag; den aktuellen Fortschritt führt die [Roadmap](MILESTONES_AND_QA.md).
 
 Ergebnis: [M0_RESULT.md](../qa/M0_RESULT.md). Der folgende Auftrag dokumentiert den freigegebenen Umfang. Nach Nutzerfeedback werden zusätzliche Randfallprüfungen zurückgestellt, um schneller spielbare Ergebnisse zu liefern.
 
@@ -62,7 +62,7 @@ Die Tests müssen in einem separaten Browserkontext ohne bestehende CTF-Spielst�
 
 ## Abbruchgrenzen und Übergabe
 
-Aufwand: **3–5 konzentrierte Arbeitstage**, gegebenenfalls plus gezielte Risikoreserve. Wenn schon Basisbewegung/Wandkontakt nach zwei Tagen gezielter Arbeit unzuverlässig bleiben, die konkrete Ursache und eine kleine Alternative vorlegen. Keinen zweiten vollständigen Physikmotor parallel beginnen und das Problem nicht unter mehr Content verstecken.
+Aufwand **Ist: ca. 30 Minuten Agent-Arbeitszeit insgesamt laut Nutzer**, keine getrennt gemessenen Paketzeiten. Die ursprüngliche Schätzung von 3–5 menschlichen Arbeitstagen war für diesen Arbeitsmodus ungeeignet und ist ersetzt. Künftige Controllerprobleme zuerst in einer gezielten Zeitbox von 30–60 Minuten eingrenzen, dann den Befund und eine kleine Alternative vorlegen. Keinen zweiten vollständigen Physikmotor parallel beginnen.
 
 Am Ende liefern:
 

@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
-export function createFighter() {
+export function createFighter(color = 0xc7c9c3) {
   const actor = new THREE.Group();
-  const armor = new THREE.MeshStandardMaterial({ color: 0xc7c9c3, roughness: 0.48, metalness: 0.45 });
+  const armor = new THREE.MeshStandardMaterial({ color, roughness: 0.48, metalness: 0.45 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x343b42, roughness: 0.65, metalness: 0.3 });
   const visor = new THREE.MeshStandardMaterial({ color: 0x7db9ca, emissive: 0x427a8b, emissiveIntensity: 0.45, roughness: 0.3, metalness: 0.5 });
   const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number) => {

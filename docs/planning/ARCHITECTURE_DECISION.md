@@ -1,6 +1,8 @@
 # CORE ARENA 3D Architekturentscheidung
 
-ADR 001. Stand: 20. Oktober 2026. Status: als M0-Grundlage freigegeben und umgesetzt. Weiterführende M1–M4-Systeme bleiben Planung und benötigen ihre jeweiligen Aufträge.
+ADR 001. Stand: 20. Oktober 2026. Status: M0 und M1 freigegeben und umgesetzt. Weiterführende M2–M4-Systeme bleiben Planung und benötigen ihre jeweiligen Aufträge.
+
+M1 konkretisiert diese Entscheidung: numerische Ziel-/Trefferdaten in `core/aim.ts`, gemeinsame Sprung-/Fallbefehle und gerichtete Verbindungen in der Arena-Beschreibung. Die goldene Navigationsprobe nutzt denselben Motor und eine identische, isolierte Rapier-Welt; sie blockiert den Spieler nicht und ist noch kein Kampfbotsystem. Die drei Dummies sind feste Treffer-Sensoren. Waffenschaden, Inventar und Kampf-KI folgen frühestens in M2.
 
 Entscheidung: **Vite und TypeScript, Three.js für Darstellung, Rapier 3D für räumliche Abfragen und einen kinematischen Figurenmotor, ein rendererunabhängiger Spielkern mit 60 festen Simulationstakten pro Sekunde.** Eine gemeinsame Arena-Beschreibung erzeugt Kollisionskörper, spielrelevante sichtbare Formen und Navigationsflächen. CTF-Regeln werden gezielt in diesen Kern übernommen.
 
@@ -132,7 +134,7 @@ Qualitätsstufen reduzieren zuerst Schatten, Laub und Effekte. Kollision, Tickra
 | Risiko | Auswirkung | Frühester Nachweis und Reaktion |
 | --- | --- | --- |
 | Maus trifft falsche Höhe oder schießt durch Deckung | Kernspiel unpräzise | M1: E0/E1/E2, Kanten, Mündung hinter Wand und beide Kameras; Zielmodell vor weiteren Waffen korrigieren |
-| Rapier fühlt sich rutschig oder klebrig an | Movement verliert die Referenzqualität | M0-Wandtest, M1-Kantenlabor; Werte/Step/Snap eingrenzen, höchstens zwei Tage gezielter Controllervergleich |
+| Rapier fühlt sich rutschig oder klebrig an | Movement verliert die Referenzqualität | Gezielter Wand-/Kantentest; Werte/Step/Snap in 30–60 Minuten Agent-Zeit eingrenzen, dann Befund und begrenzte Alternative vorlegen |
 | Eigenbau umgeht bei Problemen die Physik | Doppelte räumliche Wahrheit | Kein zweiter Kollisionstopf; bei ungelöstem Controllerproblem ADR erneut öffnen |
 | Botgraph erlaubt physisch unmögliche Wege | Bots hängen fest, Objectives versagen | M1-Linkprobe; ungültige Kante sperren und Layout korrigieren |
 | Easy erreicht wichtige Orte nicht | Schwierigkeit wird unfair statt leichter | Erreichbarkeit aller Pflichtziele mit Easy-Profil, sichere Routen auf jeder Höhe |

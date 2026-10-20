@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
-import type { Snapshot, Vec3 } from '../core/types';
+import type { Ray, Snapshot, Vec3 } from '../core/types';
+import type { AimSolution, DiagnosticShot } from '../core/aim';
+import { PracticeView } from './practiceView';
 import { CAPSULE_CENTER } from '../core/types';
 import { ArenaCamera } from './camera';
 import { buildArena } from './buildArena';
@@ -17,6 +19,8 @@ export class ArenaView {
   private readonly debug = new THREE.LineSegments(this.debugGeometry,
     new THREE.LineBasicMaterial({ vertexColors: true, depthTest: false, transparent: true, opacity: 0.8 }));
   private readonly position = new THREE.Vector3();
+  private readonly practice: PracticeView;
+  private readonly raycaster = new THREE.Raycaster();
 
   constructor(host: HTMLElement, arena: ArenaDefinition) {
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
@@ -37,6 +41,7 @@ export class ArenaView {
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
     buildArena(this.scene, arena);
+    this.practice = new PracticeView(this.scene, arena);
     this.scene.add(this.actor);
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
@@ -52,18 +57,24 @@ export class ArenaView {
     this.renderer.setSize(innerWidth, innerHeight);
     this.camera.resize(innerWidth, innerHeight);
   }
-  draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number): void {
+  draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
+    aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null): void {
     this.position.set(
       THREE.MathUtils.lerp(previous.position.x, current.position.x, alpha),
       THREE.MathUtils.lerp(previous.position.y, current.position.y, alpha),
       THREE.MathUtils.lerp(previous.position.z, current.position.z, alpha),
     );
     this.actor.position.copy(this.position);
-    this.actor.rotation.y = current.facing;
+    this.actor.rotation.y = aim ? Math.atan2(aim.target.point.x - current.position.x, aim.target.point.z - current.position.z) : current.facing;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt);
-    this.marker.position.set(this.position.x, 0.028, this.position.z);
+    this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
     this.camera.follow(this.position, dt);
+    this.practice.update(current, aim, shot, bot, dt);
     this.renderer.render(this.scene, this.camera.camera);
+  }
+  pointerRay(x: number, y: number): Ray {
+    this.raycaster.setFromCamera(new THREE.Vector2(x / innerWidth * 2 - 1, 1 - y / innerHeight * 2), this.camera.camera);
+    return { origin: { ...this.raycaster.ray.origin }, direction: { ...this.raycaster.ray.direction } };
   }
   showColliders(visible: boolean, lines?: { vertices: Float32Array; colors: Float32Array }): void {
     this.debug.visible = visible;
@@ -81,7 +92,7 @@ export class ArenaView {
     const materials = new Set<THREE.Material>();
     const textures = new Set<THREE.Texture>();
     this.scene.traverse((object) => {
-      if (object instanceof THREE.Mesh || object instanceof THREE.LineSegments) {
+      if (object instanceof THREE.Mesh || object instanceof THREE.Line) {
         geometries.add(object.geometry);
         for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
           materials.add(material);
