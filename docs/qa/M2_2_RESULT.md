@@ -1,6 +1,6 @@
 # M2.2 — Waffen, Ressourcen und GitHub-Playlink
 
-Stand: 20. Oktober 2026. **Umgesetzt und lokal technisch geprüft; persönliches Spielurteil offen.** Branch `main`. M2.3 nicht begonnen.
+Stand: 20. Oktober 2026. **Umgesetzt, technisch geprüft und auf GitHub Pages veröffentlicht; persönliches Spielurteil offen.** Branch `main`, Spielcommit `1dbff990e2c475c339b2731c913bb564aea11efa`. M2.3 nicht begonnen.
 
 ## Spielbarer Umfang
 
@@ -28,7 +28,11 @@ Keine neue Browser-/Geräte-Vollmatrix, keine Kampf-Bot-Performanceabnahme, kein
 
 Vom Nutzer zusätzlich freigegeben. [Playlink](https://emfau88.github.io/CoreArena-3D/) steht prominent in der README. GitHub Pages war bereits als öffentliches Workflow-Deployment aktiviert. Der neue [Actions-Workflow](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml) installiert gepinnte Abhängigkeiten, führt Kerntests/Typecheck aus, baut und veröffentlicht ausschließlich `dist`. Reine Dokumentationsänderungen lösen keinen neuen Build aus; manueller Start bleibt verfügbar. Konfiguration anhand der [offiziellen GitHub-Pages-Dokumentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-Deployment- und Live-Browsernachweis werden nach dem ersten Push ergänzt. Lokale Tests allein behaupten keine erfolgreiche Veröffentlichung.
+**Veröffentlicht und live geprüft:** [Actions-Lauf 39490912559](https://github.com/emfau88/CoreArena-3D/actions/runs/39490912559) erfolgreich, Build in 24 Sekunden, Deployment in 26 Sekunden. Frische Linux-Installation, alle 21 Kerntests und Produktionsbuild auf dem GitHub-Runner bestanden. [Deployment-Metadaten](m2-2/deployment.json).
+
+Die öffentliche Seite wurde anschließend im In-App-Browser geöffnet. Über normale Eingaben: Trainingsmatch gestartet, mit S zum tatsächlichen Pulse-Pickup gelaufen, mit 2 Pulse gewählt (54/54), auf das Spielfeld gefeuert (50/54), laufenden Timer und HUD beobachtet. Danach neu geladen und startbereit offengelassen. Dies ist ein zusätzlicher Produktions-Smoke, keine zweite vollständige Matchabnahme. Die später ergänzten Dokumentationsnachweise verändern den veröffentlichten Spielbuild nicht.
+
+![Öffentlicher GitHub-Spielstand nach Pulse-Aufnahme und Schüssen](m2-2/github-live.png)
 
 ## Bilder
 
