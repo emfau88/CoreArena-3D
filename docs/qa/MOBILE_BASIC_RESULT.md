@@ -21,6 +21,10 @@ Neuer Browserablauf in sichtbarem Chromium mit 844×390 CSS-Pixeln, Touch und Ge
 ![Touch-Oberfläche im Querformat](mobile-basic/mobile-landscape.png)
 ![Hinweis im Hochformat](mobile-basic/mobile-portrait.png)
 
+## Veröffentlichung
+
+Commit `8e6a3c1` ist auf `main` veröffentlicht. [GitHub Actions: Build und Deployment erfolgreich](https://github.com/emfau88/CoreArena-3D/actions/runs/39493314926). Der [öffentliche Playlink](https://emfau88.github.io/CoreArena-3D/) liefert die neuen Produktionsdateien; die Asset-Hashes stimmen mit dem lokalen Build überein.
+
 ## Grenze
 
 Dies ist eine einfache spielbare Touch-Basis. Echte Android-/iPhone-Hardware, Safari, Bedienkomfort mit Daumen und dauerhafte Leistung/Wärme sind noch nicht geprüft. Kein natives App-Projekt, keine Touch-Aim-Varianten und keine zusätzlichen Spielsysteme wurden begonnen. Der bestehende GitHub-Pages-Workflow veröffentlicht diesen Zusatz über denselben Playlink.

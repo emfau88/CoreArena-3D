@@ -121,7 +121,7 @@ sie eine Anzeige, beispielsweise `xvfb-run`.
 
 Arbeitsweise nach Nutzerfeedback: kleine spielbare Ergebnisse zuerst,
 gezielte Kernprüfungen je Änderung; breite Randfall- und Langzeitabsicherung
-erst nach Bewährung des Spielgefühls. Mobile bleibt optional.
+erst nach Bewährung des Spielgefühls. Weiterer Mobile-Ausbau bleibt optional.
 
 ## Planung und Referenz
 
