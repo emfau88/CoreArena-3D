@@ -29,7 +29,8 @@ export class ArenaView {
   private readonly raycaster = new THREE.Raycaster();
 
   constructor(host: HTMLElement, arena: ArenaDefinition) {
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    const touch = matchMedia('(any-pointer: coarse)').matches;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -42,7 +43,7 @@ export class ArenaView {
     const sun = new THREE.DirectionalLight(0xfff3e4, 2.7);
     sun.position.set(-20, 35, 18);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(touch ? 1024 : 2048, touch ? 1024 : 2048);
     Object.assign(sun.shadow.camera, { left: -32, right: 32, top: 25, bottom: -25, near: 1, far: 100 });
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);

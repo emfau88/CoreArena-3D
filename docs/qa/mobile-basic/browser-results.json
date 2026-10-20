@@ -1,0 +1,32 @@
+{
+  "startTime": "2026-10-20T20:34:19.081Z",
+  "status": "passed",
+  "durationMs": 8049,
+  "viewport": "844x390, touch-enabled Chromium, deviceScaleFactor 2",
+  "renderDpr": 1,
+  "together": {
+    "position": {
+      "x": -4.005592346191406,
+      "y": 0.042319214344024636,
+      "z": 3.3203213214874268
+    },
+    "ammo": 51
+  },
+  "movementOnly": {
+    "position": {
+      "x": -1.965586543083191,
+      "y": 0.024877405166625954,
+      "z": 3.320317029953003
+    },
+    "ammo": 51
+  },
+  "aimOnly": {
+    "position": {
+      "x": -1.7255859375,
+      "y": 0.021628296375274636,
+      "z": 3.320319890975952
+    },
+    "ammo": 48
+  },
+  "errors": []
+}

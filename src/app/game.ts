@@ -93,6 +93,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const abort = new AbortController();
   const options = { signal: abort.signal };
   function setPaused(value: boolean) {
+    value ||= input.touchEnabled && innerHeight > innerWidth;
     paused = value;
     input.clear();
     clock.reset();
@@ -103,7 +104,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   window.addEventListener('blur', () => setPaused(true), options);
   window.addEventListener('focus', () => { if (!document.hidden) setPaused(false); }, options);
   document.addEventListener('visibilitychange', () => setPaused(document.hidden || !document.hasFocus()), options);
-  window.addEventListener('resize', () => view.resize(), options);
+  window.addEventListener('resize', () => {
+    view.resize();
+    if (input.touchEnabled) setPaused(document.hidden || !document.hasFocus());
+  }, options);
   host.querySelector('#resume')!.addEventListener('click', () => {
     view.renderer.domElement.focus();
     setPaused(false);

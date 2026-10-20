@@ -21,6 +21,7 @@ Stand: 20. Oktober 2026. **M0, M1, M2.1 und M2.2 umgesetzt und technisch geprüf
 - [x] Gesonderte Freigabe für M2.2 einschließlich GitHub-Pages-Spielstand und README-Playlink.
 - [x] M2.2: Arc Lash/Pulse, Waffenwahl, Munition und räumlich gebundene Pickups; Kern- und Browserprüfung bestanden.
 - [x] GitHub Pages veröffentlicht: Actions erfolgreich, öffentliche Seite mit Start/Pickup/Waffenwahl/Feuer geprüft; Playlink in README.
+- [x] Separat freigegebener einfacher Mobile-Zugang: Joystick, direktes Touch-Aim/Feuer, Sprung/Sprint, kompakte Anzeige und Querformat. Keine vorgezogene M2.3-Implementierung; echte Smartphone-Abnahme offen.
 - [ ] M2.3–M2.6: Kampfbots, Teamspiel, Gesamtarena und integrierte Matchabnahme; noch nicht freigegeben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.

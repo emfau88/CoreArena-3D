@@ -54,3 +54,35 @@ button:focus-visible { outline: 2px solid #d6b680; outline-offset: 3px; }
 #diagnostics { position: fixed; left: 20px; top: 110px; margin: 0; background: #080c11e8; padding: 16px; color: #8fecd0; font: 12px/1.7 Consolas, monospace; pointer-events: none; }
 @media (max-width: 1400px) { .location { bottom: 105px; } header { left: 20px; right: 20px; top: 20px; } footer { left: 20px; right: auto; bottom: 20px; max-width: calc(100vw - 40px); flex-wrap: wrap; white-space: normal; } }
 @media (max-height: 600px) { .location { display: none; } }
+#touch-controls { display: none; }
+.touch-mode body { overscroll-behavior: none; }
+.touch-mode canvas, .touch-mode button, #touch-controls { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.touch-mode #touch-controls { display: block; position: fixed; inset: 0; pointer-events: none; }
+#touch-stick { position: absolute; left: max(18px, env(safe-area-inset-left)); bottom: max(18px, env(safe-area-inset-bottom)); width: 116px; height: 116px; border-radius: 50%; border: 1px solid #d6b68088; background: #171c2277; pointer-events: auto; display: grid; place-items: center; }
+#touch-stick span { width: 48px; height: 48px; border-radius: 50%; background: #d6b68066; border: 1px solid #d6b680aa; }
+#touch-stick small { position: absolute; bottom: 9px; font-size: 8px; letter-spacing: .1em; color: #d6b680; }
+#touch-actions { position: absolute; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); display: flex; align-items: end; gap: 8px; }
+#touch-actions button { pointer-events: auto; min-height: 48px; background: #171c22cc; font-size: 12px; }
+#touch-jump { width: 78px; height: 78px; border-radius: 50%; border-color: #d6b680aa; }
+#touch-sprint[aria-pressed="true"] { color: #ffdd88; border-color: #ffdd88; }
+#touch-hint { position: absolute; bottom: 12px; left: 155px; right: 255px; text-align: center; font-size: 10px; color: #b9c4c8; }
+#rotate-device { display: none; }
+.touch-mode header, .touch-mode footer, .touch-mode .location { display: none; }
+.touch-mode #match-panel { top: max(8px, env(safe-area-inset-top)); right: max(10px, env(safe-area-inset-right)); width: 215px; padding: 7px 10px; }
+.touch-mode #match-panel .eyebrow, .touch-mode #match-hint { display: none; }
+.touch-mode #match-score { margin: 0 0 4px; gap: 8px; } .touch-mode #match-score b { font-size: 19px; } .touch-mode #match-time { font-size: 19px; }
+.touch-mode #match-panel button { padding: 10px 14px; min-height: 40px; }
+.touch-mode #weapon-panel { top: max(8px, env(safe-area-inset-top)); left: max(10px, env(safe-area-inset-left)); width: 205px; padding: 5px; }
+.touch-mode #weapon-panel small, .touch-mode #weapon-panel kbd { display: none; }
+.touch-mode .weapon-buttons button { min-height: 46px; padding: 5px; }
+.touch-mode .weapon-buttons b { margin-top: 3px; font-size: 12px; }
+.touch-mode #life-panel { top: auto; bottom: 38px; left: 46%; transform: translateX(-50%); width: 165px; padding: 6px 10px; font-size: 10px; }
+.touch-mode #life-panel small { display: none; } .touch-mode #hp-value, .touch-mode #armor-value { font-size: 16px; }
+.touch-mode #life-panel .armor { margin-left: 10px; } .touch-mode #hp-bar { margin-top: 4px; height: 4px; }
+.touch-mode #life-status { margin: 3px 0 0; min-height: 12px; font-size: 10px; }
+.touch-mode #match-result { z-index: 2; } .touch-mode #match-result > div { padding: 20px; }
+@media (orientation: portrait) {
+  .touch-mode #rotate-device { display: grid; place-items: center; position: fixed; inset: 0; background: #171b20f5; pointer-events: auto; z-index: 5; text-align: center; }
+  #rotate-device small { display: block; margin-top: 15px; color: #aab4ba; font-size: 12px; }
+  .touch-mode #touch-controls { z-index: 4; }
+}

@@ -2,7 +2,7 @@
 
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
 
-**Desktop: Maus + Tastatur.** „Trainingsmatch starten“, dann WASD/Shift/Space.
+**Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Trainingsmatch starten“, am Desktop dann WASD/Shift/Space.
 Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt Arc Lash.
 [Build & Deployment](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml)
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
@@ -18,7 +18,20 @@ ihren Aufwärtsimpuls; Kantenkontakt beim Aufstieg zählt nicht als Landung.
 Optik und Bewegung orientieren sich an V5. M2.1 ergänzt einen Trainingsmatch mit
 HP/Armor, Tod/Respawn, Spawn-Schutz, Punkten, Timer und Neustart.
 M2.2 ergänzt Arc Lash, Pulse Repeater, Waffenwahl und Pickups.
-Kampfbots folgen in späteren Paketen; Mobile bleibt optional.
+Kampfbots folgen in späteren Paketen. Eine einfache mobile Touch-Steuerung ist verfügbar.
+
+### Einfach mobil spielen
+
+Handy ins **Querformat** drehen. **Links unten den Joystick ziehen**, auf die Arena
+**tippen oder halten**, um dort hinzuzielen und zu feuern. Ziehen mit dem Zielfinger
+führt das Ziel nach. Bewegung und Feuer funktionieren gleichzeitig und unabhängig.
+**Sprung** springt, **Sprint** schaltet schnelleres Laufen an/aus, **Ansicht** wechselt
+die Kamera. Waffen oben links antippen. Für Pulse zunächst den blauen Pickup hinter
+dem Startpunkt aufnehmen. Unterbrechung, Drehung oder Neustart löschen gehaltene Eingaben.
+
+Die Touch-Version verwendet dieselbe Simulation und reduziert nur Renderauflösung
+und Schattenauflösung. In Chromium mit echten Mehrfinger-Browserereignissen geprüft;
+Bediengefühl und Leistung auf echten Android-/iPhone-Geräten sind noch nicht abgenommen.
 
 ## Lokal starten
 

@@ -1,6 +1,12 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 20. Oktober 2026. **M0, M1, M2.1 und M2.2 umgesetzt und technisch geprüft.** M2.3–M2.6, M3–M4 und Mobile bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
+Stand: 20. Oktober 2026. **M0, M1, M2.1 und M2.2 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
+
+## Freigegebener kleiner Mobile-Zusatz
+
+Auf ausdrücklichen Wunsch „so simpel wie möglich“: linker analoger Joystick, direkter Touch-Zielpunkt auf der Arena mit Halten/Tippen zum Feuern, Sprungtaste, Sprint-Umschalter, Kamera und bestehende Waffenbuttons. Getrennte Finger-IDs für Bewegung und Aim, Aufräumen bei Abbruch/Fokus/Drehung/Respawn/Restart. Kompaktes Querformat-HUD und Hinweis/Pause im Hochformat. Gemeinsamer Spielkern; mobile Render-DPR auf 1, Schattenmap auf 1024 begrenzt.
+
+Das ist ein enger spielbarer Zusatz, keine vollständige Umsetzung des unten beschriebenen größeren T0-Gerätevergleichs. Echte Android-/iPhone-Tests, alternatives Touch-Aim und Langzeit-/Wärmemessungen bleiben offen. [Aktueller Nachweis](../qa/MOBILE_BASIC_RESULT.md). Die folgenden Vorschläge bleiben historische Planung für einen späteren Ausbau.
 
 Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 
@@ -109,4 +115,4 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand: M0.1–M0.3, M1.1–M1.4, M2.1 und M2.2 umgesetzt und technisch geprüft.** [M2.2-Nachweise](../qa/M2_2_RESULT.md). Vor M2.3 auf die nächste Freigabe warten. Mobile bleibt optional.
+**Aktueller Stand: M0.1–M0.3, M1.1–M1.4, M2.1 und M2.2 umgesetzt und technisch geprüft; einfacher Touch-Zugang zusätzlich umgesetzt.** [M2.2-Nachweise](../qa/M2_2_RESULT.md). Vor M2.3 auf die nächste Freigabe warten. Weiterer Mobile-Ausbau bleibt optional.
