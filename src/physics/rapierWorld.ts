@@ -65,7 +65,9 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     });
     this.world.step();
     const position = this.body.translation();
-    const grounded = this.controller.computedGrounded();
+    // The capsule can touch a ledge with its rounded underside while still rising.
+    // That contact must not cancel the jump and turn forward input into a slow climb.
+    const grounded = displacement.y <= 0 && this.controller.computedGrounded();
     // Rapier can report a grounded resting contact without a new movement collision.
     // Recover its identity with a short physical support ray, never an X/Z height lookup.
     if (grounded && !surface) surface = this.raycast({

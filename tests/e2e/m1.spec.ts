@@ -31,6 +31,31 @@ async function target(page: Page, id: string) {
   return point;
 }
 test.use({ headless: false });
+test('jump directly against both plateau walls without slow edge climbing', async ({ page }, info) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto('./');
+  await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
+  await page.locator('canvas').click();
+  await walkNorth(page, -1.015);
+  await waitTicks(page, 10);
+  const e0Tick = (await read(page)).snapshot.tick;
+  await walkNorth(page, -4, true);
+  await expect.poll(async () => (await read(page)).snapshot.surface).toBe('e1');
+  expect((await read(page)).snapshot.tick - e0Tick).toBeLessThan(90);
+  await walkNorth(page, -6.515);
+  await waitTicks(page, 10);
+  const e1Tick = (await read(page)).snapshot.tick;
+  await walkNorth(page, -9, true);
+  await expect.poll(async () => (await read(page)).snapshot.surface).toBe('e2');
+  expect((await read(page)).snapshot.tick - e1Tick).toBeLessThan(90);
+  await page.screenshot({ path: info.outputPath('solid-plateaus-straight.png') });
+  await page.keyboard.press('KeyV');
+  await waitTicks(page, 20);
+  await page.screenshot({ path: info.outputPath('solid-plateaus-isometric.png') });
+  await info.attach('edge-jump-result', { body: JSON.stringify({ snapshot: await read(page), errors }), contentType: 'application/json' });
+  expect(errors).toEqual([]);
+});
 test('play the height route, hit three height targets, respect cover and show the route probe', async ({ page, browser }, info) => {
   const errors: string[] = [], external: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));

@@ -43,8 +43,7 @@ export const M1_ARENA: ArenaDefinition = {
     ...M0_ARENA.boxes.filter((box) => box.id !== 'garden-west'),
     { id: 'garden-west', center: { x: -16, y: 1.025, z: -8.5 }, size: { x: 5, y: 2.05, z: 5 }, material: 'stone', planted: true },
     { id: 'e1', center: { x: -6, y: 1.025, z: -4 }, size: { x: 8, y: 2.05, z: 5 }, material: 'stone', level: 'E1 · 2.05' },
-    { id: 'e2', center: { x: -6, y: 3.875, z: -9.5 }, size: { x: 8, y: 0.45, z: 5 }, material: 'stone', level: 'E2 · 4.10' },
-    ...[-9.3, -2.7].map((x) => ({ id: `pillar-${x}`, center: { x, y: 1.825, z: -10.5 }, size: { x: 0.6, y: 3.65, z: 0.6 }, material: 'metal' as const })),
+    { id: 'e2', center: { x: -6, y: 2.05, z: -9.5 }, size: { x: 8, y: 4.1, z: 5 }, material: 'stone', level: 'E2 · 4.10' },
   ],
   targets: [
     { id: 'dummy-e0', center: { x: 5, y: 1.1, z: 3 }, radius: 0.6, level: 'E0' },

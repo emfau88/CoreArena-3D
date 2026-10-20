@@ -4,6 +4,8 @@ ADR 001. Stand: 20. Oktober 2026. Status: M0 und M1 freigegeben und umgesetzt. W
 
 M1 konkretisiert diese Entscheidung: numerische Ziel-/Trefferdaten in `core/aim.ts`, gemeinsame Sprung-/Fallbefehle und gerichtete Verbindungen in der Arena-Beschreibung. Die goldene Navigationsprobe nutzt denselben Motor und eine identische, isolierte Rapier-Welt; sie blockiert den Spieler nicht und ist noch kein Kampfbotsystem. Die drei Dummies sind feste Treffer-Sensoren. Waffenschaden, Inventar und Kampf-KI folgen frühestens in M2.
 
+M1-Spielrückmeldung: E2 ist als massiver Baukörper bis E0 ausgeführt, um seine Höhe wie in V5 klar zu vermitteln. Überhänge bleiben eine separate Physik-Testszene. Der Adapter darf einen aufsteigenden Kantenkontakt nicht als Landung melden; sonst beendet die Kapsel ihren Sprung vorzeitig und klettert langsam am Rand hoch.
+
 Entscheidung: **Vite und TypeScript, Three.js für Darstellung, Rapier 3D für räumliche Abfragen und einen kinematischen Figurenmotor, ein rendererunabhängiger Spielkern mit 60 festen Simulationstakten pro Sekunde.** Eine gemeinsame Arena-Beschreibung erzeugt Kollisionskörper, spielrelevante sichtbare Formen und Navigationsflächen. CTF-Regeln werden gezielt in diesen Kern übernommen.
 
 ## Begründung und Alternativen

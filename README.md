@@ -1,11 +1,13 @@
 # CORE ARENA 3D
 
 Eigenständiges Desktop-Spielprojekt. **M0 und M1 sind umgesetzt und technisch
-geprüft.** Persönliches M1-Spielurteil offen; M2 benötigt eine neue Freigabe.
+geprüft.** Erste M1-Spielrückmeldung eingearbeitet; M2 benötigt eine neue Freigabe.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
 Eine goldene Testfigur zeigt dieselbe Höhenroute mit demselben Motor.
+E2 ist ein massives Plateau bis zum Boden. Sprünge direkt an der Wand behalten
+ihren Aufwärtsimpuls; Kantenkontakt beim Aufstieg zählt nicht als Landung.
 Optik und Bewegung orientieren sich an V5. Kampfbots, Waffeninventar und Matches
 folgen frühestens in M2; Mobile bleibt optional.
 

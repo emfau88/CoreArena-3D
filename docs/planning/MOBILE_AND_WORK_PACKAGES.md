@@ -51,7 +51,7 @@ Schon die Desktop-Architektur sollte Bewegungsrichtung samt Stärke und getrennt
 
 ### Optionaler Versuch T0 nach M1
 
-**Separat freizugeben, nicht Teil der Desktop-Aufwandssummen.** Zeitbox: **1–2 Stunden Agent-Arbeitszeit** für den ersten Touch-Versuch und technische Korrekturen. Dazu **je 15–30 Minuten tatsächliche Bedienung auf Android und iPhone** durch eine Person mit Gerätezugriff; Bereitstellung und Wartezeit separat. Das Zeitlimit verspricht Erkenntnisse, keine fertige Mobile-Version. Wenn die grundlegende Bedienung innerhalb der Zeitbox nicht funktioniert, den Befund dokumentieren und Desktop fortsetzen.
+**Separat freizugeben, nicht Teil der Desktop-Aufwandssummen.** Zeitbox: **30–60 Minuten Agent-Arbeitszeit** für den ersten Touch-Versuch und technische Korrekturen. Dazu **je 15–30 Minuten tatsächliche Bedienung auf Android und iPhone** durch eine Person mit Gerätezugriff; Bereitstellung und Wartezeit separat. Das Zeitlimit verspricht Erkenntnisse, keine fertige Mobile-Version. Wenn die grundlegende Bedienung innerhalb der Zeitbox nicht funktioniert, den Befund dokumentieren und Desktop fortsetzen.
 
 Liefergegenstand: M1-Testarena auf einem realen Android-Gerät mit Chrome und einem realen iPhone mit Safari; je ein kurzer Versuch mit direkter Zielwahl und relativer Cursorsteuerung. Falls ein Gerät fehlt, den fehlenden Plattformnachweis offen ausweisen.
 
@@ -68,34 +68,34 @@ Ergebnis: bevorzugte Steuerung, verbleibende Probleme, vorläufige Zielgerätekl
 
 ## Arbeitspakete der Desktop-Roadmap
 
-Die [Meilenstein-Roadmap](MILESTONES_AND_QA.md) definiert Umfang und Abnahme. Die folgenden Pakete verteilen dieselben Aufwandsspannen; sie kommen nicht zusätzlich dazu. **Minuten/Stunden bezeichnen aktive Agent-Arbeitszeit einschließlich gezielter Prüfungen und Korrekturpuffer.** Nutzer-Spieltests und Freigabewartezeit sind separat. M0 ist mit ca. 30 Minuten Gesamtzeit laut Nutzer der erste Kalibrierungspunkt; seine Paketzeiten wurden nicht einzeln gemessen.
+Die [Meilenstein-Roadmap](MILESTONES_AND_QA.md) definiert Umfang und Abnahme. Die folgenden Pakete verteilen dieselben Aufwandsspannen; sie kommen nicht zusätzlich dazu. **Minuten/Stunden bezeichnen aktive Agent-Arbeitszeit einschließlich gezielter Prüfungen und Korrekturpuffer.** Nutzer-Spieltests und Freigabewartezeit sind separat. M0 und M1 dauerten laut Nutzer jeweils ca. 30 Minuten bis zur ersten technischen Übergabe. Paketzeiten wurden nicht einzeln gemessen; spätere M1-Nacharbeit ist separat dokumentiert.
 
-M0 ist ausführungsnah beschrieben. M1 ist nach Risiken gegliedert. M2–M4 bleiben überprüfbare Planungsannahmen und werden nach M1 anhand der Befunde neu geschätzt. Ein im Voraus endgültig „optimaler“ Zuschnitt wäre angesichts ungeprüfter 3D-Steuerung und Navigation nicht seriös.
+M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet. M2–M4 sind anhand beider Erststände neu geschätzte Planungsannahmen. Ein im Voraus endgültig „optimaler“ Zuschnitt wäre angesichts ungeprüfter 3D-Steuerung und Navigation nicht seriös.
 
 | Paket | Ergebnis und Abgrenzung | Voraussetzung | Agent-Zeit | Konkreter Nachweis |
 | --- | --- | --- | --- | --- |
 | **M0.1 ✅ technisch geprüft** | Toolchain, lokale Abhängigkeiten und sichtbare Szene | Erledigt | Anteil an ca. 30 Min. M0 gesamt | Installation, Typecheck, Build und Browserstart bestanden |
 | **M0.2 ✅ technisch geprüft** | Kapsel auf E0, Wandkontakt, WASD/Shift, fester Takt, Kameras und Fokus | Erledigt | Anteil an ca. 30 Min. M0 gesamt | Kern-/Physiktests und echte Browser-Eingaben bestanden |
 | **M0.3 ✅ technisch geprüft** | V5-Materialprobe, Diagnose, Aufnahmen und Übergabe | Erledigt; Nutzerurteil offen | Anteil an ca. 30 Min. M0 gesamt | 24 Browserfälle bestanden; Bilder und Startanleitung vorhanden |
-| **M1.1 ✅ Höhenmotor** | Sprung/Fall, Standflächen, E0/E1/E2, Unterseiten und Kopfkontakt | M1 freigegeben | 25–50 Min. | Auf-/Abstieg und Kopfkontakt mit echter Physik |
-| **M1.2 ✅ Zielwahl und Diagnosefeuer** | 3D-Zielpunkt, Mündungsprüfung, Diagnosewaffe und drei Dummies; kein Waffeninventar | M1.1 | 25–50 Min. | Treffer auf drei Höhen; Wand blockiert den Schuss |
-| **M1.3 ✅ Navigationsprobe** | Flächenverbindungen und einfacher Bot mit demselben Motor | M1.1; M1.2 für gemeinsame Diagnose | 20–40 Min. | E0→E1→E2→E0 durch normale Bewegungsbefehle |
-| **M1.4 ✅ Technische Übergabe** | Kamera, Motor, Aim und Navigation zusammen prüfen und gezielt nacharbeiten | M1.1–M1.3 | 20–40 Min. | Browser-Spielablauf, Aufnahmen; Nutzer-Test separat |
-| **M2.1 Lebenszyklus und Match** | HP/Armor, Schaden, Tod/Respawn, Spawn-Schutz, TDM-Score, Timer und Restart | M1 abgenommen, M2 freigegeben | 30–60 Min. | Echte Zustandsübergänge; pro Leben höchstens ein Kill |
-| **M2.2 Waffen und Ressourcen** | Arc Lash/Pulse, Auswahl, Munition und Pickups; Zielregel festhalten | M2.1 und M1.2 | 30–60 Min. | Unterscheidbare Waffen; keine Aufnahme durch Etagen |
-| **M2.3 Botwahrnehmung und Kampf** | Begrenzte Wahrnehmung, Gedächtnis, Reaktion und Waffenbedienung | M2.2 und M1.3 | 45–90 Min. | Verdeckte Gegner verborgen; keine vorzeitige Reaktion |
-| **M2.4 Teamspiel und Schwierigkeiten** | 2v2, Ressourcenwahl, Easy/Normal/Hard und blockierte Routen | M2.3 | 25–50 Min. | Alle Stufen nutzen Pflichtwege; gleiche Basisstats |
-| **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 25–50 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
-| **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 25–50 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
-| **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 50–100 Min. | Capture über Höhenroute; Drop/Return korrekt |
-| **M3.2 One Flag** | Neutrale Flagge, Runner/Escort/Interception auf vorhandener Basis | M3.1 geprüft | 35–70 Min. | Regulärer Transport und Capture |
-| **M3.3 Objective-Übergabe** | Wege, Rollen und beide Modi unter Konkurrenz prüfen und abstimmen | M3.1–M3.2 | 35–70 Min. | Routentests und echte Spiele beider Modi; breitere Matrix später |
-| **M4.1 Einstieg und Qualifier** | Ein-Klick-Start und Hinweise auf echte Aktionen | M3 abgenommen, M4 freigegeben | 25–50 Min. | Keine künstlich abgeschlossenen Lernschritte |
-| **M4.2 Team und Saison** | Teamgründung, drei Matches, Tabelle und Abschluss | M4.1 | 35–70 Min. | Jedes erspielte Ergebnis zählt genau einmal |
-| **M4.3 Rekrutierung und Saves** | Rekrutierung, versionierte Saves und Reload | M4.2 | 35–70 Min. | Rekrutierung erhalten, CTF-Saves unverändert |
-| **M4.4 Liga-Übergabe** | Einstieg bis Saisonende, Verständlichkeit und Regression | M4.1–M4.3 | 25–50 Min. | Reale Drei-Match-Saison, Reload, Rekrutierung |
+| **M1.1 ✅ Höhenmotor** | Sprung/Fall, Standflächen, E0/E1/E2, Unterseiten und Kopfkontakt | M1 freigegeben | Anteil an ca. 30 Min. M1-Erststand | Auf-/Abstieg und Kopfkontakt mit echter Physik |
+| **M1.2 ✅ Zielwahl und Diagnosefeuer** | 3D-Zielpunkt, Mündungsprüfung, Diagnosewaffe und drei Dummies; kein Waffeninventar | M1.1 | Anteil an ca. 30 Min. M1-Erststand | Treffer auf drei Höhen; Wand blockiert den Schuss |
+| **M1.3 ✅ Navigationsprobe** | Flächenverbindungen und einfacher Bot mit demselben Motor | M1.1; M1.2 für gemeinsame Diagnose | Anteil an ca. 30 Min. M1-Erststand | E0→E1→E2→E0 durch normale Bewegungsbefehle |
+| **M1.4 ✅ Technische Übergabe** | Kamera, Motor, Aim und Navigation zusammen prüfen und gezielt nacharbeiten | M1.1–M1.3 | Anteil an ca. 30 Min. M1-Erststand | Browser-Spielablauf, Aufnahmen; Nutzer-Test separat |
+| **M2.1 Lebenszyklus und Match** | HP/Armor, Schaden, Tod/Respawn, Spawn-Schutz, TDM-Score, Timer und Restart | M1 abgenommen, M2 freigegeben | 10–20 Min. | Echte Zustandsübergänge; pro Leben höchstens ein Kill |
+| **M2.2 Waffen und Ressourcen** | Arc Lash/Pulse, Auswahl, Munition und Pickups; Zielregel festhalten | M2.1 und M1.2 | 15–30 Min. | Unterscheidbare Waffen; keine Aufnahme durch Etagen |
+| **M2.3 Botwahrnehmung und Kampf** | Begrenzte Wahrnehmung, Gedächtnis, Reaktion und Waffenbedienung | M2.2 und M1.3 | 25–50 Min. | Verdeckte Gegner verborgen; keine vorzeitige Reaktion |
+| **M2.4 Teamspiel und Schwierigkeiten** | 2v2, Ressourcenwahl, Easy/Normal/Hard und blockierte Routen | M2.3 | 15–30 Min. | Alle Stufen nutzen Pflichtwege; gleiche Basisstats |
+| **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 10–20 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
+| **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
+| **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
+| **M3.2 One Flag** | Neutrale Flagge, Runner/Escort/Interception auf vorhandener Basis | M3.1 geprüft | 15–30 Min. | Regulärer Transport und Capture |
+| **M3.3 Objective-Übergabe** | Wege, Rollen und beide Modi unter Konkurrenz prüfen und abstimmen | M3.1–M3.2 | 20–40 Min. | Routentests und echte Spiele beider Modi; breitere Matrix später |
+| **M4.1 Einstieg und Qualifier** | Ein-Klick-Start und Hinweise auf echte Aktionen | M3 abgenommen, M4 freigegeben | 10–20 Min. | Keine künstlich abgeschlossenen Lernschritte |
+| **M4.2 Team und Saison** | Teamgründung, drei Matches, Tabelle und Abschluss | M4.1 | 20–40 Min. | Jedes erspielte Ergebnis zählt genau einmal |
+| **M4.3 Rekrutierung und Saves** | Rekrutierung, versionierte Saves und Reload | M4.2 | 20–40 Min. | Rekrutierung erhalten, CTF-Saves unverändert |
+| **M4.4 Liga-Übergabe** | Einstieg bis Saisonende, Verständlichkeit und Regression | M4.1–M4.3 | 10–20 Min. | Reale Drei-Match-Saison, Reload, Rekrutierung |
 
-Summen: M0 **Ist ca. 30 Min.**; M1 **90–180 Min. (1,5–3 h)**; M2 **180–360 Min. (3–6 h)**; M3 und M4 jeweils **120–240 Min. (2–4 h)**. Der Puffer ist enthalten. Persönliche Spieltests: M1 5–10 Min., M2/M3 je ca. 10–15 Min., M4 ca. 10–20 Min.; Wartezeiten auf diese Tests und Freigaben sind keine Agent-Arbeitszeit. Nach jedem Meilenstein Schätzung und beobachtete Dauer vergleichen, keine erfundenen Paket-Istzeiten eintragen.
+Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben); M2 **90–180 Min. (1,5–3 h)**; M3 und M4 jeweils **60–120 Min. (1–2 h)**. M1-Nacharbeit an Kantensprung und Plateau-Lesbarkeit nach der ersten Nutzerprobe ist kein Bestandteil dieser gemeldeten Erstzeiten. Der Puffer ist enthalten. Persönliche Spieltests: M1 5–10 Min., M2/M3 je ca. 10–15 Min., M4 ca. 10–20 Min.; Wartezeiten auf diese Tests und Freigaben sind keine Agent-Arbeitszeit. Nach jedem Meilenstein Schätzung und beobachtete Dauer vergleichen, keine erfundenen Paket-Istzeiten eintragen.
 
 ## Wie die Pakete bearbeitet werden
 
@@ -107,4 +107,4 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand: M0.1–M0.3 und M1.1–M1.4 umgesetzt und technisch geprüft.** [M1-Nachweise](../qa/M1_RESULT.md). Persönlicher Spieltest offen. Vor M2 ausdrücklich auf Nutzerfreigabe warten. Mobile bleibt optional.
+**Aktueller Stand: M0.1–M0.3 und M1.1–M1.4 umgesetzt und technisch geprüft.** [M1-Nachweise](../qa/M1_RESULT.md). Erste M1-Spielrückmeldung eingearbeitet; Bestätigung der Nacharbeit offen. Vor M2 ausdrücklich auf Nutzerfreigabe warten. Mobile bleibt optional.

@@ -28,6 +28,15 @@ export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
       tiles.map.repeat.set(5.5 * s.x / 44, 3.5 * s.z / 28);
       box(c.x, top + 0.006, c.z, s.x - 0.18, 0.012, s.z - 0.18, tiles);
       box(c.x, top - 0.08, c.z + s.z / 2 + 0.006, s.x, 0.05, 0.012, materials.brass);
+      // Continuous side edges and a grounded plinth make the full height legible.
+      const base = c.y - s.y / 2;
+      box(c.x, base + 0.12, c.z + s.z / 2 + 0.006, s.x, 0.24, 0.012, materials.metal);
+      for (const side of [-1, 1]) {
+        box(c.x + side * (s.x / 2 - 0.045), c.y, c.z + s.z / 2 + 0.009,
+          0.09, s.y, 0.018, materials.trim);
+        box(c.x + side * (s.x / 2 + 0.006), base + 0.12, c.z, 0.012, 0.24, s.z, materials.metal);
+        box(c.x + side * (s.x / 2 + 0.006), top - 0.08, c.z, 0.012, 0.05, s.z, materials.brass);
+      }
       const label = labelMesh(shape.level, 4);
       label.position.set(c.x + 1, top + 0.022, c.z + s.z / 2 - 0.7);
       label.rotation.x = -Math.PI / 2; scene.add(label);

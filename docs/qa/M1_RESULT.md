@@ -1,6 +1,6 @@
 # M1 — Höhen, Aim und Navigationsprobe
 
-20. Oktober 2026. **M1.1–M1.4 umgesetzt und technisch geprüft. Persönliches Spielurteil offen. M2 nicht begonnen und nicht freigegeben.**
+20. Oktober 2026. **M1.1–M1.4 umgesetzt und technisch geprüft; erste persönliche Rückmeldung nachgearbeitet. Bestätigung der Nacharbeit offen. M2 nicht begonnen und nicht freigegeben.**
 
 ## Ausprobieren
 
@@ -18,7 +18,7 @@ goldene Testfigur. Neuladen setzt Zähler und Probe zurück.
 
 | Paket | Ergebnis |
 | --- | --- |
-| M1.1 | Echter Sprung/Fall mit V5-Werten (10,8 m/s Impuls, 22,6 m/s² Schwerkraft), E0/E1/E2, Standflächen-IDs, Kopfkontakt unter der E2-Platte. Rückkehr zum Spawn nach Fall über den Außenrand. |
+| M1.1 | Echter Sprung/Fall mit V5-Werten (10,8 m/s Impuls, 22,6 m/s² Schwerkraft), massive E0/E1/E2-Plateaus, Standflächen-IDs; Kopfkontakt in einer separaten Überhang-Testszene. Rückkehr zum Spawn nach Fall über den Außenrand. |
 | M1.2 | Kamera-Ray auf erste physische Oberfläche oder Dummy; keine Bodenebenen-Annahme, kein automatisches Zentrieren. Schulter→Mündung→Ziel prüft die erste Kollision. Diagnosefeuer, Einschlag/Strahl, drei Trefferzähler. |
 | M1.3 | Gerichtete Sprung-/Fallverbindungen in der Arena-Beschreibung. Goldene Figur läuft E0→E1→E2→E0 über dieselben Bewegungsbefehle und denselben Motor. |
 | M1.4 | Integrierter Browser-Spielablauf, gezielte Regression, Screenshots, README und Roadmap aktualisiert. |
@@ -30,7 +30,7 @@ Kampf-KI und Matchsystem gehören zu M2. Mobile ist unverändert optional.
 
 ## Prüfungen
 
-- `npm test`: **10/10** bestanden (sechs bestehende Kernfälle, vier neue Höhen-/Aim-Fälle).
+- `npm test`: nach Nacharbeit **11/11** bestanden, einschließlich des neuen Kantensprung-Regressionstests (Erststand: 10/10).
 - `npm run build`: Typecheck und Produktionsbuild bestanden.
 - `npm run build:test`, `npx playwright test --project=chromium-1366`: **5/5** bestanden,
   keine Retries, keine Flakes, ca. 36 Sekunden. Vier vorhandene Regressionen plus
@@ -50,6 +50,33 @@ Kampf-KI und Matchsystem gehören zu M2. Mobile ist unverändert optional.
   M1-Browserablauf danach erneut bestanden (1/1, ca. 23 Sekunden inklusive Start).
   Die Bilder zeigen diesen finalen Stand; beide Läufe sind im JSON dokumentiert.
 
+## Nacharbeit auf die erste persönliche Spielrückmeldung
+
+Der Nutzer meldete langsames Hochziehen an Plateau-Kanten beim Absprung aus
+Wandnähe und eine schlecht lesbare, scheinbar schwebende E2-Platte.
+
+- **Ursache und Korrektur:** Rapier konnte die aufsteigende Kapsel am Rand bereits
+  als „grounded“ melden. Dadurch wurde ihre vertikale Geschwindigkeit zu früh
+  auf null gesetzt; Vorwärtsbewegung schob sie anschließend langsam hoch.
+  Solange die gewünschte Bewegung aufwärts führt, gilt Kantenkontakt nicht als
+  Landung. Sprungimpuls und Schwerkraft bleiben unverändert.
+- **Gezielter Nachweis:** Der Kerntest springt aus Wandnähe und von der Markierung
+  auf E1 und E2. Er verlangt erhaltene Aufwärtsgeschwindigkeit und Landung innerhalb
+  von 60 Ticks. Der neue Browserfall läuft vom regulären Spawn direkt gegen beide
+  Wände und springt mit echten Tasten hinauf; auch dort ist die Dauer begrenzt.
+  Die frühere reine Prüfung „landet irgendwann“ erkannte dieses Problem nicht.
+- **Lesbarkeit:** E2 ist jetzt ein 4,10 m hoher massiver Körper bis zum Boden;
+  sichtbare Seitenkanten, umlaufender oberer Abschluss und Sockel verdeutlichen
+  seine Höhe. Sichtbare Geometrie und Collider verwenden dieselben Maße.
+  Die alte Platte samt Stützen entfällt. Überhang-/Deckenfreiheit bleibt im
+  separaten Physik-Testlabor geprüft.
+- **Ergebnis:** elf Kernfälle, Typecheck/Build und **2/2 gezielte Browserabläufe**
+  bestanden (ca. 25 Sekunden, Chromium 1366×768, keine Retries). Der zweite
+  Browserablauf prüft weiterhin die komplette Höhen-, Treffer- und Navigationsroute.
+  Der Produktionsbuild wurde außerdem im offenen In-App-Browser neu geladen und
+  mit Tastatur direkt an den Plateauwänden gespielt.
+  [Nacharbeitsbericht als JSON](m1/feedback/browser-results.json).
+
 Umgebung: Windows, Chromium **156.0.8078.4**, **1366×768**, ANGLE/D3D11 auf AMD
 Radeon Graphics. Kein neuer Benchmark und keine erneute vollständige Chrome-/Edge-
 oder Auflösungsmatrix. [Maschinenlesbare Ergebnisse](m1/browser-results.json).
@@ -61,18 +88,20 @@ bereits in M0 bewährte Bewegung ohne Ground-Snap bleibt erhalten.
 
 ## Sichtnachweise
 
-![E1 und Diagnosefeuer](m1/e1-hit.png)
-![E2 erreicht und getroffen](m1/e2-hit.png)
-![Isometrische Kamera](m1/isometric.png)
+Aktueller Stand nach Rückmeldung:
 
-Weitere Nachweise: [verdeckter Schuss](m1/e0-cover.png),
+![Sprung direkt an der Wand und massive Plateaus](m1/feedback/solid-plateaus-straight.png)
+![Isometrische Ansicht mit durchgehenden Plateau-Seiten](m1/feedback/solid-plateaus-isometric.png)
+
+Historische Nachweise der ersten Übergabe: [E1-Treffer](m1/e1-hit.png),
+[E2-Treffer](m1/e2-hit.png), [verdeckter Schuss](m1/e0-cover.png),
 [vollständige Navigationsroute mit Diagnose](m1/route-complete.png).
 
 ## Offene Grenzen und nächster Schritt
 
-Die Arena ist eine kompakte Höhen-/Aim-Übung. Unter der E2-Platte kann die Figur
-von der Platte verdeckt werden; automatische Sichtfreistellung ist noch nicht
-Teil dieser Probe. Weitere Formen, sämtliche Sicht-/Höhenkombinationen,
+Die Arena ist eine kompakte Höhen-/Aim-Übung. E2 besitzt nach Rückmeldung keine
+begehbare Unterseite mehr. Automatische Sichtfreistellung hinter hohen Baukörpern
+ist noch nicht Teil dieser Probe. Weitere Formen, sämtliche Sicht-/Höhenkombinationen,
 Langzeittests und die breite Browsermatrix folgen gezielt nach Spielbewährung.
 Der Rapier-/Three-Build erzeugt weiterhin die bekannte Vite-Warnung zur
 Chunkgröße (ca. 4,9 MB JS / 1,8 MB gzip), ohne Buildfehler.
@@ -80,7 +109,8 @@ Chunkgröße (ca. 4,9 MB JS / 1,8 MB gzip), ohne Buildfehler.
 Bitte 5–10 Minuten Landungen, Zielring und Kameras ausprobieren. Die technische
 Prüfung ersetzt dieses persönliche Spielurteil nicht. **Vor M2 auf Freigabe warten.**
 
-Aufwände wurden auf aktive Agent-Zeit umgestellt: M0 ca. 30 Minuten laut Nutzer;
-M1 konservativer Plan 1,5–3 Stunden, ohne separat durchgängig gemessene Istzeit;
-M2 vorläufig 3–6 Stunden, M3/M4 je 2–4 Stunden. Persönliche Tests und Freigabewartezeit
-stehen separat. Siehe [Roadmap](../planning/MILESTONES_AND_QA.md).
+Aufwände neu kalibriert: M0 und M1 jeweils ca. 30 Minuten bis zur ersten technischen
+Übergabe laut Nutzer. Diese Nacharbeit ist separat vom gemeldeten Erstaufwand.
+M2 vorläufig 1,5–3 Stunden Agent-Zeit, M3/M4 je 1–2 Stunden einschließlich Reserve
+für kleinere Korrekturen. Persönliche Tests und Freigabewartezeit stehen separat.
+Siehe [Roadmap](../planning/MILESTONES_AND_QA.md).

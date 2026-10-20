@@ -8,6 +8,9 @@ import { DiagnosticWeapon, solveAim } from '../src/core/aim';
 import type { Vec3 } from '../src/core/types';
 
 const idle = { x: 0, z: 0, sprint: false };
+// Headroom/stacked-surface coverage stays in a fixture, not a floating gameplay plateau.
+const overhang = { ...M1_ARENA, boxes: M1_ARENA.boxes.map((box) => box.id === 'e2'
+  ? { ...box, center: { x: -6, y: 3.875, z: -9.5 }, size: { x: 8, y: 0.45, z: 5 } } : box) };
 const rayTo = (origin: Vec3, point: Vec3) => {
   const d = Math.hypot(point.x - origin.x, point.y - origin.y, point.z - origin.z);
   return { origin, direction: { x: (point.x - origin.x) / d, y: (point.y - origin.y) / d, z: (point.z - origin.z) / d } };
@@ -32,9 +35,9 @@ test('shared player motor traverses E0→E1→E2→E0 using directed jump/drop l
   } finally { world.dispose(); }
 });
 
-test('E2 slab blocks a head from below, then gravity returns the player to E0', async () => {
+test('a test-only overhang blocks a head from below, then gravity returns the player to E0', async () => {
   const spawn = { x: -7, y: 0.06, z: -9 };
-  const world = await createSpatialWorld({ ...M1_ARENA, spawn });
+  const world = await createSpatialWorld({ ...overhang, spawn });
   try {
     const sim = new Simulation(world, spawn);
     for (let i = 0; i < 15; i++) sim.step(idle);
@@ -47,10 +50,12 @@ test('E2 slab blocks a head from below, then gravity returns the player to E0', 
     }
     assert.ok(ceiling); assert.ok(maximum < 1.87);
     assert.equal(sim.snapshot().surface, 'floor', JSON.stringify(sim.snapshot()));
+    assert.equal(world.raycast({ origin: { x: -7, y: 15, z: -9 }, direction: { x: 0, y: -1, z: 0 } }, 30)?.id, 'e2');
+    assert.equal(world.raycast({ origin: { x: -7, y: 1, z: -9 }, direction: { x: 0, y: -1, z: 0 } }, 30)?.id, 'floor');
   } finally { world.dispose(); }
 });
 
-test('a direct standard jump from E0 cannot reach E2 through its underside', async () => {
+test('a direct standard jump from E0 cannot climb the full-height E2 wall', async () => {
   const world = await createSpatialWorld({ ...M1_ARENA, spawn: { x: -11.5, y: 0.06, z: -9 } });
   try {
     const sim = new Simulation(world, { x: -11.5, y: 0.06, z: -9 });
@@ -61,7 +66,7 @@ test('a direct standard jump from E0 cannot reach E2 through its underside', asy
       maximum = Math.max(maximum, state.position.y);
       assert.notEqual(state.surface, 'e2');
     }
-    assert.ok(maximum > 1.6 && maximum < 2.7, JSON.stringify({ maximum, state: sim.snapshot() }));
+    assert.ok(maximum > 2.4 && maximum < 2.8, JSON.stringify({ maximum, state: sim.snapshot() }));
   } finally { world.dispose(); }
 });
 
@@ -95,7 +100,35 @@ test('3D target selection and muzzle obstruction use the actual first Rapier col
     assert.equal(weapon.hits[target.id], 1, 'cover absorbs the shot');
     const top = world.raycast({ origin: { x: -7, y: 15, z: -9 }, direction: { x: 0, y: -1, z: 0 } }, 30)!;
     assert.equal(top.id, 'e2'); assert.ok(Math.abs(top.point.y - 4.1) < 0.001);
-    const below = world.raycast({ origin: { x: -7, y: 1, z: -9 }, direction: { x: 0, y: -1, z: 0 } }, 30)!;
-    assert.equal(below.id, 'floor');
+    const inside = world.raycast({ origin: { x: -7, y: 1, z: -9 }, direction: { x: 0, y: -1, z: 0 } }, 30)!;
+    assert.equal(inside.id, 'e2', 'the gameplay plateau is solid down to E0');
   } finally { world.dispose(); }
+});
+
+test('jumping against either plateau keeps its upward momentum and lands within one second', async () => {
+  for (const { z, y, surface, stop } of [
+    { z: 0.3, y: 0.06, surface: 'e1', stop: -4 },
+    { z: -1.02, y: 0.06, surface: 'e1', stop: -4 },
+    { z: -4.8, y: 2.11, surface: 'e2', stop: -9 },
+    { z: -6.5, y: 2.11, surface: 'e2', stop: -9 },
+  ]) {
+    const spawn = { x: -7, y, z };
+    const world = await createSpatialWorld({ ...M1_ARENA, spawn });
+    try {
+      const sim = new Simulation(world, spawn);
+      for (let i = 0; i < 15; i++) sim.step(idle);
+      assert.ok(sim.snapshot().grounded, 'begins on its lower floor');
+      let landed = false;
+      for (let tick = 0; tick < 60; tick++) {
+        const before = sim.snapshot();
+        const state = sim.step({ ...idle, z: before.position.z > stop ? -1 : 0, jump: tick === 0 });
+        if (tick > 0 && before.velocity.y > 0.4) {
+          assert.equal(state.grounded, false, 'a rising capsule touching the lip is not a landing');
+          assert.ok(state.velocity.y > 0, `jump was cancelled at ${JSON.stringify(state.position)}`);
+        }
+        if (state.grounded && state.surface === surface) { landed = true; break; }
+      }
+      assert.ok(landed, `one jump must land on ${surface} from z=${z}: ${JSON.stringify(sim.snapshot())}`);
+    } finally { world.dispose(); }
+  }
 });

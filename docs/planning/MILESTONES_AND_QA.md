@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 20. Oktober 2026. **M0 und M1 umgesetzt und technisch geprüft. M2–M5 nicht freigegeben.** Eine gesonderte persönliche Spielbewertung bleibt offen.
+Stand: 20. Oktober 2026. **M0 und M1 umgesetzt und technisch geprüft. Erste M1-Spielrückmeldung erhalten und nachgearbeitet. M2–M5 nicht freigegeben.** Bestätigung der Nacharbeit offen.
 
 ## Aktueller Fortschritt
 
@@ -13,11 +13,15 @@ Stand: 20. Oktober 2026. **M0 und M1 umgesetzt und technisch geprüft. M2–M5 n
 - [x] M1.2: 3D-Zielwahl, Mündungsprüfung und Diagnosefeuer auf drei Dummies.
 - [x] M1.3: Gerichtete Höhenroute und Testfigur mit demselben Motor.
 - [x] M1.4: Gezielter integrierter Browser-Spielablauf und technische Übergabe.
-- [ ] Persönliches M1-Spielurteil und gesonderte M2-Freigabe.
+- [x] Erste persönliche M1-Rückmeldung: Kantensprung und Lesbarkeit von E2.
+- [x] M1-Nacharbeit: Sprungimpuls bei aufsteigendem Kantenkontakt erhalten; E2 als massives Plateau.
+- [ ] Persönliche Bestätigung der Nacharbeit und gesonderte M2-Freigabe.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.
 
 M1-Nachweise: [M1-Ergebnis](../qa/M1_RESULT.md), insgesamt zehn bestandene Kern-/Physiktests und fünf Browserfälle in Chromium 1366×768, darunter ein vollständiger Höhen-/Treffer-/Navigationsablauf mit echten Eingaben. Keine erneute Vollmatrix über alle Browser; keine persönliche Abnahme behauptet.
+
+Nacharbeit auf konkrete Spielrückmeldung: elf Kern-/Physiktests und zwei gezielte Browserabläufe, darunter Sprünge unmittelbar gegen beide Plateauwände. Die erste Übergabe prüfte erfolgreiche Landungen, aber nicht deren Dauer; der neue Regressionstest begrenzt die Landungszeit und erkennt das frühere langsame Hochziehen.
 
 **Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
 
@@ -33,20 +37,20 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 
 ## Aufwand und Reihenfolge
 
-**Geschätzt wird aktive Agent-Arbeitszeit in Minuten/Stunden, keine menschlichen Entwicklertage.** Kalibrierung: M0 dauerte laut Nutzer ungefähr **30 Minuten insgesamt**, einschließlich der damaligen Prüfungen; eine belastbare Zeiterfassung pro Teilpaket existiert nicht. Die früheren Tages-/Wochenschätzungen sind ersetzt. Die folgenden bewusst konservativen Spannen enthalten Implementierung, passende Kern- und Browsertests, normale Korrekturen, Dokumentation, Commit und Push. Sie werden nach jedem Meilenstein mit dem beobachteten Aufwand neu kalibriert; aus M0 allein folgt kein verlässlicher linearer Faktor für Combat, Bots und Liga.
+**Geschätzt wird aktive Agent-Arbeitszeit in Minuten/Stunden, keine menschlichen Entwicklertage.** Neue Kalibrierung: **M0 und M1 jeweils ca. 30 Minuten bis zur ersten technischen Übergabe laut Nutzer**, zusammen ca. eine Stunde. Teilpakete wurden nicht einzeln gemessen. Die vorherige M1-Schätzung von 1,5–3 Stunden lag damit um den Faktor 3–6 zu hoch. Die neue Planung reduziert auch die Folgemeilensteine, behält jedoch Reserve für die komplexeren Kampf-, Bot- und Ligaregeln. Die Spannen enthalten passende Kern-/Browsertests, eine kleinere Korrekturrunde, Dokumentation, Commit und Push. Nacharbeit aufgrund späterer Spielrückmeldungen wird separat vom historischen Erststand dokumentiert; 30 Minuten bedeuten nicht fehlerfrei oder spielerisch abgenommen.
 
 **Separat:** persönliche Spieltests (meist 5–15 Minuten pro Meilenstein), Rückmeldung/Freigabe und deren Wartezeit. Größere Richtungswechsel, zusätzliche Inhalte, neue Assets und Gerätebeschaffung sind nicht enthalten. Die Obergrenze enthält bereits einen Korrekturpuffer; kein weiterer pauschaler 25-Prozent-Aufschlag.
 
 | Meilenstein | Lieferumfang | Aufwand | Sichtbares Gate |
 | --- | --- | --- | --- |
 | **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **Ist: ca. 30 Minuten** (Nutzerangabe) | Browsernachweise vorhanden; persönliches Spielurteil offen |
-| **M1 Höhen und Aim — technisch erledigt** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Plan: 1,5–3 Stunden**; Ist nicht separat durchgängig gemessen | Höhen-/Trefferfälle geprüft; 5–10 Minuten persönlicher Spieltest offen |
-| **M2 erstes Spiel** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **3–6 Stunden** | Vollständige echte Matches; Höhenbots funktionieren; Nutzer bestätigt Movement und Combat |
-| **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **2–4 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
-| **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **2–4 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
+| **M1 Höhen und Aim — technisch erledigt, nachgearbeitet** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Ist Erststand: ca. 30 Minuten** (Nutzerangabe); Nacharbeit separat | Erste Spielrückmeldung eingearbeitet; erneute persönliche Bestätigung offen |
+| **M2 erstes Spiel** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden** | Vollständige echte Matches; Höhenbots funktionieren; Nutzer bestätigt Movement und Combat |
+| **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **1–2 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
+| **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **1–2 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
 | **M5 spätere Produktvalidierung** | Weitere Arenen, zusätzliche Waffen, größere Liga und Distributionsentscheidung nach Kernspielabnahme | **Noch nicht seriös schätzbar** | Eigenständiges Go/No-Go und neuer begrenzter Auftrag |
 
-Planungsbasis ab M0 bis einschließlich M2: **4,5–9 Stunden Agent-Arbeitszeit**, bis einschließlich M4: **8,5–17 Stunden**. **Nach abgeschlossenem M1 verbleiben geschätzt 3–6 Stunden bis M2 beziehungsweise 7–14 Stunden bis M4.** Das sind Bereiche für den begrenzten beschriebenen Umfang, keine Lieferzusage oder Kalendertermine. M2–M4 sind unsicherer als M1 und werden vor ihrer Freigabe anhand des dann vorhandenen Spiels erneut geschätzt. M1 hat die technische Basis bestätigt; seine nicht durchgängig erfasste Istzeit wird nicht als genaue Messung ausgegeben.
+**Ab M1 verbleiben geschätzt 1,5–3 Stunden bis einschließlich M2 beziehungsweise 3,5–7 Stunden bis einschließlich M4.** Mit den gemeldeten Erstständen von M0/M1 zusammen ca. einer Stunde entspricht das **2,5–4** beziehungsweise **4,5–8 Stunden**, zuzüglich separat anfallender weiterer Feedbackrunden. Die Bereiche gelten für den beschriebenen Umfang und sind keine Kalendertermine. Nach M2 erneut anhand der tatsächlichen Umsetzung kalibrieren, statt den Faktor aus zwei kleinen Meilensteinen blind fortzuschreiben.
 
 Bei einem ungelösten Grundproblem wird das Layout vereinfacht oder der laufende Meilenstein geteilt. Es werden nicht gleichzeitig zusätzliche Maps, Waffen oder Menüs begonnen.
 
@@ -68,11 +72,12 @@ Die Pakete Motor → Aim → Traversalprobe → Browserübergabe sind technisch 
 | Fall | Erwartetes Ergebnis |
 | --- | --- |
 | E0→E1→E2 | Bestanden: echte WASD-/Space-Eingaben im Browser; gemeinsamer Motor im Rapier-Kerntest |
-| E0→E2 ohne Zwischenstand | Bestanden: direkter Standardsprung erreicht E2 nicht durch die Unterseite |
+| E0→E2 ohne Zwischenstand | Bestanden: direkter Standardsprung kommt nicht über die massive 4,10-m-Wand |
 | Fall und Standfläche | Bestanden: Testfigur E2→E0, echte Schwerkraft und korrekte Flächen-IDs |
 | Wandkontakt und Sliding | Bestanden: bestehende Rapier- und Browserregression; keine neue Vollmatrix aller Formen |
-| E2-Überhang | Bestanden: Kopfkontakt beendet Aufstieg; Landung auf E0 statt Durchstieg durch E2 |
-| Zwei Flächen über gleichem X/Z | Bestanden: Rapier-Abfragen unterscheiden E2 oben und E0 unter der Platte |
+| Sprung unmittelbar an der Wand | Bestanden: Aufwärtsgeschwindigkeit bleibt erhalten; Landung auf E1/E2 innerhalb eines Sprungs statt langsamen Hochziehens |
+| Überhang im Testlabor | Bestanden: Kopfkontakt beendet Aufstieg; Landung darunter statt Durchstieg. Die Spielarena selbst hat jetzt einen massiven E2-Körper |
+| Zwei Flächen über gleichem X/Z | Bestanden: Rapier-Abfragen unterscheiden obere/untere Fläche in der separaten Überhang-Testszene |
 | Drei Höhenziele | Bestanden: freie Diagnosetreffer an E0/E1/E2, Zielpunkt liegt auf der Oberfläche |
 | Sichtbares Ziel bei verdeckter Mündung | Bestanden: Wand wird zuerst getroffen; Zielzähler bleibt unverändert |
 | Kamera, Eingabe, Fokus und Größe | Bestanden: beide Ansichten, Aim nach Wechsel, Pause/Reset der Eingaben und Resize |
