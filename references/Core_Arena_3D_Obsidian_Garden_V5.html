@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="color-scheme" content="dark">
+  <title>Core Arena — Obsidian Garden | Kameravergleich V5</title>
+  <style>
+    :root { --ink:#edf1f5;--dim:#a5b0bd;--mint:#86c9dc;--cyan:#78c6dc;--amber:#dfac69;--red:#ef8c7a;--glass:rgba(17,23,32,.88);--line:rgba(160,185,210,.20); }
+    * {box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body {margin:0;width:100%;height:100%;overflow:hidden;background:#141a22;color:var(--ink);font-family:Inter,Manrope,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    #viewport {position:fixed;inset:0;z-index:0}
+    canvas {display:block;touch-action:none}
+    #vignette{pointer-events:none;position:fixed;inset:0;background:radial-gradient(ellipse at 50% 43%,transparent 48%,rgba(7,12,20,.46) 100%);z-index:1}
+    #scanlines{pointer-events:none;position:fixed;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 5px,rgba(155,180,199,.010) 6px 7px);z-index:1}
+    #ui{position:fixed;inset:0;z-index:2;pointer-events:none}
+    .glass{background:var(--glass);border:1px solid var(--line);box-shadow:0 20px 55px rgba(0,0,0,.2),inset 0 1px rgba(231,241,255,.045);backdrop-filter:blur(19px);-webkit-backdrop-filter:blur(19px)}
+    .top{position:absolute;top:20px;left:22px;right:22px;display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+    .brand{padding:16px 18px 14px;border-radius:15px;min-width:306px}
+    .eyebrow{font-size:10px;letter-spacing:.22em;font-weight:800;text-transform:uppercase;color:var(--mint)}
+    .brandline{display:flex;align-items:baseline;gap:11px;margin-top:5px}
+    .brandline strong{font-size:22px;letter-spacing:-.045em;font-weight:850;white-space:nowrap}
+    .brandline b{font-weight:700;color:#d3a46b;font-size:11px;letter-spacing:.08em;white-space:nowrap}
+    .sub{font-size:11px;color:var(--dim);line-height:1.48;margin-top:5px}
+    .meters{display:flex;gap:8px}
+    .meter{border-radius:13px;min-width:94px;padding:12px 15px}
+    .meter .label{font-size:9px;letter-spacing:.14em;font-weight:750;color:#aeb9c7;text-transform:uppercase}
+    .meter .value{font-variant-numeric:tabular-nums;font-size:23px;line-height:1.1;letter-spacing:-.05em;font-weight:800;margin-top:4px;color:#eaf0f6}
+    .meter .suffix{font-size:10px;font-weight:650;color:var(--mint);letter-spacing:0}
+    .action-stack{position:absolute;right:22px;top:116px;width:194px;display:flex;flex-direction:column;gap:8px;pointer-events:auto}
+    .action-stack button,.level-buttons button{background:rgba(30,39,50,.94);color:#edf1f5;border:1px solid rgba(158,181,206,.25);border-radius:10px;padding:11px 13px;text-align:left;font:inherit;font-size:11px;font-weight:700;letter-spacing:.015em;cursor:pointer;transition:background .16s,border-color .16s;backdrop-filter:blur(10px)}
+    .action-stack button:hover,.level-buttons button:hover {background:rgba(48,63,80,.96);border-color:rgba(126,199,219,.70)}
+    .action-stack button.active{border-color:rgba(223,169,102,.84);color:#f4c78c}
+    .action-stack small{opacity:.55;float:right}
+    .side{position:absolute;left:22px;bottom:25px;width:320px;padding:17px 18px 16px;border-radius:15px}
+    .side .title{font-size:10px;letter-spacing:.19em;font-weight:800;color:var(--mint);margin-bottom:10px}
+    .kbdline{display:flex;align-items:center;gap:9px;margin-top:7px;font-size:11px;color:#d0d8e2}
+    kbd{display:inline-block;background:#283543;border:1px solid #55697d;border-bottom:2px solid #8292a3;color:#e9f0f6;border-radius:5px;font-size:10px;font-weight:800;min-width:24px;padding:4px 5px;text-align:center;box-shadow:0 1px 4px #0006;white-space:nowrap}
+    .side .hint{color:#aeb9c9;font-size:10px;line-height:1.55;margin-top:12px;padding-top:10px;border-top:1px solid #ffffff18}
+    .bottom-right{position:absolute;right:22px;bottom:25px;width:246px;padding:16px;border-radius:14px;text-align:right}
+    .statusline{display:flex;align-items:center;justify-content:space-between;font-size:11px;padding:5px 0;color:#b4c0cb;gap:12px}
+    .statusline b{font-variant-numeric:tabular-nums;color:#e5eaf0;font-size:12px}
+    .statusline .green{color:#7fe0b3}.statusline .amber{color:#edbf7b}
+    .level-buttons{display:flex;gap:6px;margin-top:11px;pointer-events:auto}
+    .level-buttons button{padding:9px 6px;font-size:10px;flex:1;text-align:center;border-radius:7px}
+    .level-buttons button.current{color:#102331;background:#a1d5e9;border-color:#d1f0fc}
+    .target-panel{position:absolute;left:50%;transform:translateX(-50%);bottom:27px;display:flex;align-items:center;gap:12px;padding:10px 14px;min-width:280px;max-width:370px;border-radius:10px;justify-content:space-between}
+    .target-panel span{font-size:9px;letter-spacing:.16em;color:#d9ad74;font-weight:800;text-transform:uppercase}
+    .target-panel strong{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+    .target-panel strong.blocked{color:#ffb99d}
+    #reticle{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border:1px solid #a6d8ebdb;border-radius:50%;box-shadow:0 0 16px #7dc3e45e,inset 0 0 9px #85cee52b;pointer-events:none;z-index:5;transition:width .06s,height .06s}
+    #reticle:before,#reticle:after{content:"";position:absolute;background:#e5f5ff;opacity:.9}
+    #reticle:before{height:1px;width:42px;left:-7px;top:14px;clip-path:polygon(0 0,7px 0,7px 100%,0 100%,0 0,35px 0,42px 0,42px 100%,35px 100%,35px 0)}
+    #reticle:after{width:3px;height:3px;left:13px;top:13px;border-radius:50%;box-shadow:0 0 10px white}
+    #reticle.enemy{border-color:#ff9faa;box-shadow:0 0 17px #ff577755,inset 0 0 9px #ff678733}
+    #reticle.blocked{border-color:#ffce82;box-shadow:0 0 15px #ecac566c}
+    #toast{position:absolute;top:105px;left:50%;transform:translateX(-50%) translateY(-8px);padding:12px 22px;border-radius:11px;font-size:12px;letter-spacing:.035em;opacity:0;transition:transform .23s,opacity .23s;max-width:440px;text-align:center;pointer-events:none;line-height:1.45}
+    #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    #intro{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);border-radius:13px;padding:15px 19px;min-width:320px;max-width:490px;text-align:center;font-size:11px;line-height:1.6;color:#d8e2ec;transition:opacity 1s,transform 1s}
+    #intro b{color:#efc28a}#intro.fade{opacity:0;transform:translateX(-50%) translateY(8px)}
+    #loading{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;background:radial-gradient(circle at center,#343f4e,#121922 80%);text-align:center;padding:24px}
+    #loading .hex{height:58px;width:58px;border:2px solid #d2a76b;border-radius:15px;transform:rotate(45deg);box-shadow:0 0 45px #d2a76b38;animation:rot 2.3s linear infinite}
+    @keyframes rot {to{transform:rotate(405deg)}}
+    #loading strong{letter-spacing:.18em;font-size:15px}#loading p{max-width:390px;color:#c4d1df;font-size:12px;line-height:1.7}
+    #touchControls{display:none;position:absolute;inset:0;pointer-events:none}
+    #joystick{position:absolute;left:20px;bottom:41px;width:123px;height:123px;background:#2c45596b;border:2px solid #81c5e17a;border-radius:50%;pointer-events:auto;touch-action:none}
+    #joyKnob{position:absolute;width:58px;height:58px;border-radius:50%;background:#77a8bf79;border:2px solid #e0eef7ad;left:31px;top:31px;box-shadow:0 0 24px #83c4e464}
+    .touchButtons{position:absolute;right:20px;bottom:38px;display:flex;gap:9px;pointer-events:auto;align-items:flex-end}
+    .touchButtons button{width:76px;height:76px;border-radius:50%;color:#edf3fa;border:2px solid #8bbfd18c;background:#293b50dd;font-weight:900;font-size:12px;touch-action:none}
+    .touchButtons button.fire{height:92px;width:92px;background:#416d85ed;border-color:#a8d8eda6}
+    #mobileAimHint{position:absolute;bottom:147px;right:18px;font-size:10px;color:#e0eaf5b3;text-align:right}
+    @media (max-width:850px){.top{top:11px;left:11px;right:11px}.brand{padding:11px 12px;min-width:210px}.brandline strong{font-size:17px}.brandline b{font-size:9px}.sub{font-size:9px}.meter{min-width:69px;padding:9px 9px}.meter .value{font-size:19px}.meters{gap:5px}.side{left:12px;bottom:12px;width:260px;padding:11px 13px}.bottom-right{right:12px;bottom:12px;width:206px;padding:10px 11px}.target-panel{display:none}.action-stack{right:12px;top:91px;width:154px}.action-stack button{font-size:10px;padding:10px}}
+    @media (pointer:coarse){#reticle{display:none}#touchControls{display:block}.side{display:none}.bottom-right{right:9px;bottom:178px;width:180px}.action-stack{right:9px;top:90px;width:166px}.action-stack button{padding:8px}.target-panel{display:none}#intro{bottom:15px;min-width:0;max-width:270px;left:50%;font-size:9px;padding:8px 12px}.top .brand{max-width:220px}.top .sub{display:none}.meters .meter:nth-child(2){display:none}}
+    @media (max-height:530px){.side{display:none}.action-stack{top:78px}.bottom-right{bottom:12px}.brand .sub{display:none}.brand{padding:10px}.top{top:9px}#intro{bottom:20px}.action-stack button{padding:7px 9px}}
+    /* Respect narrow mobile viewports: the palette study must not obscure aim or touch controls. */
+    @media (max-width:850px){.brandline b{display:none}.brand{min-width:0;max-width:220px}.top{gap:7px}}
+    @media (max-width:600px){.brand{max-width:178px}.brand .eyebrow{font-size:8px}.meter{min-width:63px;padding:8px}.meters{gap:4px}.top{gap:4px}.action-stack{width:151px;gap:5px}}
+    @media (pointer:coarse) and (max-height:560px){
+      .top{left:10px;right:158px;top:9px}.top .brand{display:none}.top .meters{display:flex}
+      .action-stack{right:7px;top:7px;width:136px;gap:3px}.action-stack button{padding:5px 7px;font-size:9px;border-radius:6px}
+      .bottom-right{left:9px;top:61px;right:auto;bottom:auto;width:178px;padding:7px}
+      .bottom-right .statusline{display:none}.level-buttons{margin-top:0}
+      #intro{display:none}#mobileAimHint{display:none}
+    }
+
+  </style>
+</head>
+<body>
+  <div id="viewport"></div><div id="vignette"></div><div id="scanlines"></div>
+  <div id="ui">
+    <div class="top">
+      <div class="brand glass"><div class="eyebrow">EMFAU WORKS / INTERACTIVE R&amp;D</div><div class="brandline"><strong>CORE ARENA</strong><b>// OBSIDIAN GARDEN</b></div><div class="sub">3D HEIGHT LAB  ·  V5 CAMERA STUDY  ·  CARBON / FOREST</div></div>
+      <div class="meters"><div class="meter glass"><div class="label">TREFFER</div><div class="value" id="hitCount">0<span class="suffix"> / 0</span></div></div><div class="meter glass"><div class="label">DROHNEN</div><div class="value" id="killCount">0<span class="suffix"> K.O.</span></div></div><div class="meter glass"><div class="label">HÖHE</div><div class="value" id="elevation">E0</div></div></div>
+    </div>
+    <div class="action-stack"><button id="cameraBtn">Kamera: gerade <small>V</small></button><button id="moveBtn">Drohnen: statisch <small>B</small></button><button id="collisionBtn">Kollisionen: aus <small>C</small></button><button id="moodBtn">Licht: Klarer Tag <small>L</small></button><button id="resetBtn">Position zurücksetzen <small>R</small></button></div>
+    <div class="side glass"><div class="title">STEUERUNG / DESKTOP</div><div class="kbdline"><kbd>W A S D</kbd><span>Bewegen (bildschirmbezogen)</span></div><div class="kbdline"><kbd>SPACE</kbd><span>Springen · Plattform erklimmen</span></div><div class="kbdline"><kbd>MAUS</kbd><span>Zielen · gedrückt halten = feuern</span></div><div class="kbdline"><kbd>SHIFT</kbd><span>Sprinten</span></div><div class="hint">Sprungweite: <b>E0 → E1 → E2</b>. Ein direkter Sprung von E0 nach E2 ist absichtlich unmöglich. Die geschwungenen Pflanztröge behalten ihre passenden Kollisionsformen. Mit <b>V</b> zwischen gerade ausgerichteter und isometrischer Kamera wechseln; <b>L</b> vergleicht das Licht.</div></div>
+    <div class="bottom-right glass"><div class="statusline"><span>AKTUELLE POSITION</span><b id="locationText">ERDGESCHOSS</b></div><div class="statusline"><span>ZIELHÖHE</span><b id="targetHeight" class="green">E0</b></div><div class="statusline"><span>SCHUSSLINIE</span><b id="lineStatus" class="green">BEREIT</b></div><div class="level-buttons"><button id="tp0">E0 / Start</button><button id="tp1">E1 / Test</button><button id="tp2">E2 / Test</button></div></div>
+    <div class="target-panel glass"><div><span>ANVISIERT</span><div><strong id="targetName">BODEN / E0</strong></div></div><span id="rangeText">— M</span></div>
+    <div id="toast" class="glass"></div>
+    <div id="intro" class="glass"><b>OBSIDIAN GARDEN V5</b> · Die lange Arenakante verläuft jetzt parallel zum Bildschirm. <b>V</b> vergleicht die gerade und isometrische Perspektive. Drei Höhen, unveränderte Spielphysik.</div>
+    <div id="touchControls"><div id="joystick"><div id="joyKnob"></div></div><div id="mobileAimHint">Rechts im Spielfeld ziehen zum Zielen<br>FEUER gedrückt halten zum Schießen</div><div class="touchButtons"><button id="touchJump">SPRUNG</button><button id="touchFire" class="fire">FEUER</button></div></div>
+  </div>
+  <div id="reticle"></div>
+  <div id="loading"><div class="hex"></div><strong>CORE ARENA // OBSIDIAN GARDEN</strong><p id="loadingMessage">Initialisiere die 3D-Arena ...<br>Einmalig wird die freie Three.js-Bibliothek geladen. Danach läuft der Prototyp direkt in dieser HTML-Datei.</p></div>
+  <!-- Classic Three.js distribution works via file:// without a local web server. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.145.0/three.min.js"></script>
+  <script>if(!window.THREE){document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.145.0/build/three.min.js"><\/script>');}</script>
+  <script>
+  (()=>{
+    'use strict';
+    const loading=document.getElementById('loading');
+    if(!window.THREE){
+      document.getElementById('loadingMessage').innerHTML='<b>Three.js konnte nicht geladen werden.</b><br>Bitte mit Internetverbindung erneut öffnen. Es ist kein lokaler Server notwendig; nur die 3D-Bibliothek kommt aus dem Netz.';
+      const spin=document.querySelector('.hex');if(spin)spin.style.animation='none';return;
+    }
+    const T=window.THREE;
+    const $=id=>document.getElementById(id);
+    const ARENA={halfW:33,halfD:22};
+    const R=0.53,GRAV=22.6,JUMP=10.8,MAX_SHOT=65;
+    // Palette discipline: ONLY vegetation is green. Stone, metal, fog and light are deliberately neutral.
+    const scene=new T.Scene();scene.background=new T.Color(0x171c22);scene.fog=new T.FogExp2(0x171c22,.0037);
+    const clock=new T.Clock();
+    let renderer;
+    try { renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'}); }
+    catch(error) {
+      $('loadingMessage').innerHTML='<b>3D-Darstellung nicht verfügbar.</b><br>Bitte Chrome oder Edge mit aktivierter Hardwarebeschleunigung verwenden.<br>Details: '+String(error.message||error);
+      document.querySelector('#loading .hex').style.animation='none';return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.65));renderer.shadowMap.enabled=true;
+    renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.outputEncoding=T.sRGBEncoding;
+    renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.92;
+    renderer.setSize(innerWidth,innerHeight);$('viewport').appendChild(renderer.domElement);
+    const camera=new T.OrthographicCamera(-20,20,12,-12,.1,280);camera.up.set(0,1,0);
+    // The arena's long dimension is world X. Looking along world Z makes its long edges
+    // horizontal in screen space without changing the camera's top-down elevation.
+    const CAM_STRAIGHT=new T.Vector3(0,52,51);
+    const CAM_ISOMETRIC=new T.Vector3(30,52,41);  // original V4 camera pose
+    let cameraIsometric=false;
+    const camOffset=CAM_STRAIGHT.clone();
+    let camFocus=new T.Vector3(-9,1.3,2), lastAim=null, fireHeld=false;
+    const light0=new T.HemisphereLight(0xf5f5f3,0x2b2d30,.72);scene.add(light0);
+    const sun=new T.DirectionalLight(0xfff3e9,1.52);sun.position.set(-33,51,22);sun.castShadow=true;
+    sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-49;sun.shadow.camera.right=49;sun.shadow.camera.top=49;sun.shadow.camera.bottom=-49;
+    sun.shadow.camera.near=1;sun.shadow.camera.far=110;sun.shadow.bias=-.00022;sun.shadow.normalBias=.025;scene.add(sun);
+    const skyFill=new T.DirectionalLight(0xe4e9ed,.27);skyFill.position.set(24,18,-30);scene.add(skyFill);scene.add(new T.AmbientLight(0xffffff,.045));
+    function mat(c,metal=.25,rough=.58,em=0,ei=0){return new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough,emissive:em,emissiveIntensity:ei});}
+    // V4 COLOR CORRECTION: the neutral terrain is lit with restrained key/fill.
+    // Foliage receives baked leaf-surface shading to preserve green pigments under HDR.
+    // Physics, map geometry, game logic and controls are unchanged from V3.
+    function seeded(seed){let n=seed>>>0;return ()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
+    function canvasTexture(canvas,rx=1,ry=1){
+      const t=new T.CanvasTexture(canvas);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(rx,ry);
+      t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());t.encoding=T.sRGBEncoding;return t;
+    }
+    function surfaceCanvas(base,mode,seed){
+      const size=512,c=document.createElement('canvas');c.width=c.height=size;const ctx=c.getContext('2d');const rng=seeded(seed);
+      const im=ctx.createImageData(size,size);const bg=[parseInt(base.slice(1,3),16),parseInt(base.slice(3,5),16),parseInt(base.slice(5,7),16)];
+      for(let i=0;i<im.data.length;i+=4){
+        const v=(rng()-.5)*(mode==='metal'?20:32)+Math.sin(i/4%512*.074)*1.7;
+        im.data[i]=Math.max(0,Math.min(255,bg[0]+v));im.data[i+1]=Math.max(0,Math.min(255,bg[1]+v));
+        im.data[i+2]=Math.max(0,Math.min(255,bg[2]+v));im.data[i+3]=255;
+      }
+      ctx.putImageData(im,0,0);
+      if(mode==='pavers'||mode==='deck'){
+        const n=4,w=size/n;
+        for(let row=-1;row<=n;row++)for(let col=-1;col<=n;col++){
+          const shift=(row%2===0?0:w*.5),x=col*w+shift,y=row*w;
+          const warm=Math.round(7+rng()*20),light=rng()>.72;
+          ctx.fillStyle=light?'rgba(204,212,222,.075)':'rgba(9,13,21,.085)';ctx.fillRect(x+4,y+4,w-8,w-8);
+          ctx.strokeStyle='rgba(7,11,18,.62)';ctx.lineWidth=3.1;ctx.strokeRect(x+1.5,y+1.5,w-3,w-3);
+          ctx.strokeStyle='rgba(226,233,241,.14)';ctx.lineWidth=1.25;
+          ctx.beginPath();ctx.moveTo(x+7,y+w-7);ctx.lineTo(x+7,y+7);ctx.lineTo(x+w-8,y+7);ctx.stroke();
+          ctx.fillStyle=`rgba(209,152,81,${.008+warm/2900})`;ctx.fillRect(x+9,y+w-18,w-18,2);
+          // Thin organic chips keep the grid from looking like a flat UI overlay.
+          if(rng()>.5){ctx.strokeStyle='rgba(10,16,24,.29)';ctx.lineWidth=1;
+            ctx.beginPath();ctx.moveTo(x+14+rng()*32,y+24);ctx.lineTo(x+20+rng()*39,y+29+rng()*18);ctx.stroke();}
+        }
+      }else if(mode==='metal'){
+        for(let j=0;j<3000;j++){const x=rng()*size,y=rng()*size;
+          ctx.strokeStyle=rng()>.5?'rgba(235,242,252,.06)':'rgba(6,12,23,.11)';ctx.lineWidth=.25+rng()*.9;
+          ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+3+rng()*31,y);ctx.stroke();}
+        for(let i=0;i<4;i++){ctx.fillStyle='rgba(8,13,23,.14)';ctx.fillRect(0,i*128,512,2);}
+      }else{
+        for(let j=0;j<42;j++){let x=rng()*size,y=rng()*size;
+          ctx.strokeStyle=rng()>.5?'rgba(226,233,242,.08)':'rgba(11,17,27,.105)';ctx.lineWidth=.5+rng()*2;
+          ctx.beginPath();ctx.moveTo(x,y);ctx.bezierCurveTo(x+12,y+2,x+20,y+10,x+24+rng()*28,y+5+rng()*22);ctx.stroke();}
+      }
+      for(let i=0;i<3000;i++){const x=rng()*size,y=rng()*size;
+        ctx.fillStyle=rng()>.55?'rgba(221,230,242,.09)':'rgba(5,10,17,.13)';ctx.fillRect(x,y,.4+rng()*2,.4+rng()*2);}
+      return c;
+    }
+    // Purposeful separation: dark neutral pavers, lighter graphite decks, silver steel, stone-grey planters.
+    const texPavers=canvasTexture(surfaceCanvas('#30343a','pavers',1145),6,4);
+    const texDeck=canvasTexture(surfaceCanvas('#535b65','deck',8881),2.5,2.4);
+    const texBasalt=canvasTexture(surfaceCanvas('#31363f','basalt',1935),3,2);
+    const texMetal=canvasTexture(surfaceCanvas('#616971','metal',2088),3,2);
+    const texStone=canvasTexture(surfaceCanvas('#697079','basalt',1192),3,2);
+    const texOuter=canvasTexture(surfaceCanvas('#1e232a','basalt',1717),10,7);
+    function textured(map,metal=.06,rough=.89,bump=.065,tint=0xffffff){return new T.MeshStandardMaterial({map,color:tint,metalness:metal,roughness:rough,bumpMap:map,bumpScale:bump});}
+    // Neutral stone and metal never inherit green botanical pigment.
+    // Basic foliage with a baked geometry gradient prevents blown-out, mint-white leaves.
+    function leafMaterial(hex){return new T.MeshBasicMaterial({color:hex,vertexColors:true,side:T.DoubleSide,toneMapped:false});}
+    const M={
+      ground:textured(texPavers,.07,.94,.068),
+      grid:new T.LineBasicMaterial({color:0x84909d,transparent:true,opacity:.07,depthWrite:false}),
+      edge:textured(texBasalt,.21,.82,.075,0xdce0e4),
+      edgeGlow:new T.MeshBasicMaterial({color:0xa47b4d}),
+      platform:textured(texBasalt,.12,.89,.09,0xf2f3f5),
+      platformTop:textured(texDeck,.13,.82,.065,0xf4f4f4),
+      platformTop2:textured(texDeck,.15,.81,.068,0xe1e3e6),
+      trim:mat(0x6a737c,.64,.42),
+      steel:textured(texMetal,.64,.43,.027,0xd5d8da),
+      stone:textured(texStone,.035,.95,.105,0xf3f3f3),
+      rim:mat(0x626e7b,.60,.43),
+      seam:mat(0x161c23,.44,.74),
+      stoneLite:mat(0x687079,.16,.84),
+      brass:mat(0xb08954,.66,.36),
+      brassDark:mat(0x61503c,.65,.59),
+      soil:mat(0x26241e,.02,1.0),
+      led:mat(0xf8dca0,.31,.32,0xdba24d,.48),
+      exterior:textured(texOuter,.09,.95,.06,0xebedef),
+      water:mat(0x172838,.63,.28,0x172e41,.11),
+      plant:mat(0x174b2e,.0,.94),plant2:mat(0x2c813f,.0,.94),
+      leaf0:leafMaterial(0x205b2d),leaf1:leafMaterial(0x2e883e),leaf2:leafMaterial(0x54ad53),
+      glow:new T.MeshBasicMaterial({color:0x85ccea,transparent:true,opacity:.78,depthWrite:false}),
+      orange:new T.MeshBasicMaterial({color:0xf0ac5b,transparent:true,opacity:.92}),
+      hurt:new T.MeshBasicMaterial({color:0xff746e,transparent:true,opacity:.9}),
+      body:mat(0xd8dfe8,.72,.32),bodyDark:mat(0x293b4b,.65,.41),visor:mat(0x78d1f0,.46,.14,0x62b8ed,1.7),
+      glass:new T.MeshStandardMaterial({color:0x8eb4ce,transparent:true,opacity:.13,metalness:.45,roughness:.16,depthWrite:false,side:T.DoubleSide})
+    };
+    function radialTexture(rgb){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');
+      const g=ctx.createRadialGradient(64,64,1,64,64,64);g.addColorStop(0,`rgba(${rgb},.75)`);g.addColorStop(.42,`rgba(${rgb},.37)`);g.addColorStop(1,`rgba(${rgb},0)`);
+      ctx.fillStyle=g;ctx.fillRect(0,0,128,128);return canvasTexture(c);
+    }
+    const texShadow=radialTexture('4,8,14'),texMoss=radialTexture('19,75,34');
+    function decal(x,z,w,d,material,y=.018){const o=new T.Mesh(new T.PlaneGeometry(w,d),material);o.rotation.x=-Math.PI/2;
+      o.position.set(x,y,z);o.renderOrder=1;scene.add(o);return o;}
+    function contactShadow(x,z,w,d,opacity=.65){return decal(x,z,w,d,new T.MeshBasicMaterial({map:texShadow,transparent:true,opacity,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}),.012);}
+    const geom={box:(w,h,d)=>new T.BoxGeometry(w,h,d),orb:(r,seg=14)=>new T.SphereGeometry(r,seg,10),cyl:(a,b,h)=>new T.CylinderGeometry(a,b,h,12),ring:(r,t)=>new T.TorusGeometry(r,t,7,70)};
+    const aimMeshes=[],shootMeshes=[],colliders=[],debugMeshes=[],fx=[],drones=[];
+    const movableLights=[];
+    function addMesh(parent,g,m,x=0,y=0,z=0){const ob=new T.Mesh(g,m);ob.position.set(x,y,z);parent.add(ob);return ob;}
+    function box(parent,w,h,d,x,y,z,m,shadow=true){const o=addMesh(parent,geom.box(w,h,d),m,x,y,z);o.castShadow=shadow;o.receiveShadow=true;return o;}
+    function line(points,color=0x80cbe6,opacity=.6){const o=new T.Line(new T.BufferGeometry().setFromPoints(points),new T.LineBasicMaterial({color,transparent:true,opacity,depthWrite:false}));scene.add(o);return o;}
+    function markShoot(o,aim=true){shootMeshes.push(o);if(aim)aimMeshes.push(o);return o;}
+    function strip(x,z,w,d,y=.07,m=M.edgeGlow){return box(scene,w,.06,d,x,y,z,m,false)}
+    function cylinder(parent,r,h,x,y,z,m){const o=addMesh(parent,geom.cyl(r,r,h),m,x,y,z);o.castShadow=true;o.receiveShadow=true;return o;}
+    // Light architectural shell outside the playable map. Every object here stays BEHIND the hard walls.
+    const outerFloor=addMesh(scene,new T.PlaneGeometry(260,190),M.exterior,0,-2.4,0);outerFloor.rotation.x=-Math.PI/2;outerFloor.receiveShadow=true;
+    const water=addMesh(scene,new T.PlaneGeometry(90,66),M.water,0,-1.65,0);water.rotation.x=-Math.PI/2;water.receiveShadow=true;
+    const backdropRng=seeded(338);
+    for(let i=0;i<80;i++){
+      const a=backdropRng()*Math.PI*2,dist=41+backdropRng()*29;
+      const px=Math.cos(a)*dist*1.3,pz=Math.sin(a)*dist;
+      if(Math.abs(px)<35&&Math.abs(pz)<25)continue;
+      const r=.6+backdropRng()*2.6;
+      const rock=addMesh(scene,new T.DodecahedronGeometry(r,0),i%5===0?M.stone:M.edge,px,-1.8+backdropRng()*.15,pz);
+      rock.rotation.set(backdropRng(),backdropRng()*6,backdropRng());rock.scale.set(1,.65+backdropRng()*.85,1.1);rock.castShadow=false;
+    }
+    // Floor and visible hard boundary. The physics stays exactly as in V1.
+    const ground=addMesh(scene,new T.PlaneGeometry(ARENA.halfW*2,ARENA.halfD*2),M.ground,0,-.09,0);
+    ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;markShoot(ground);
+    // Faint expansion seams: texture carries the detail, no glowing arcade raster.
+    const gridPositions=[];for(let x=-30;x<=30;x+=8){gridPositions.push(x,.007,-21,x,.007,21)}
+    for(let z=-20;z<=20;z+=8){gridPositions.push(-32,.007,z,32,.007,z)}
+    const gridG=new T.BufferGeometry();gridG.setAttribute('position',new T.Float32BufferAttribute(gridPositions,3));
+    scene.add(new T.LineSegments(gridG,M.grid));
+    const mossMat=new T.MeshBasicMaterial({map:texMoss,transparent:true,depthWrite:false,opacity:.23,polygonOffset:true,polygonOffsetFactor:-3});
+    const mossRng=seeded(4180);
+    for(let i=0;i<26;i++){
+      let x=(mossRng()-.5)*62,z=(mossRng()-.5)*40;
+      // Organic staining concentrates near perimeter; never creates cover or shot collision.
+      if(i%2===0){x=(x<0?-1:1)*(26+mossRng()*5)}
+      else{z=(z<0?-1:1)*(17+mossRng()*3.5)}
+      const d=decal(x,z,1+mossRng()*3,.7+mossRng()*2.3,mossMat,.003);d.rotation.z=mossRng()*Math.PI;
+    }
+    const boundaries=[[0,-22.35,67,1],[0,22.35,67,1],[-33.35,0,1,46],[33.35,0,1,46]];
+    for(const [x,z,w,d] of boundaries){
+      const wall=box(scene,w,2.6,d,x,1.22,z,M.edge);markShoot(wall,false);
+      box(scene,w,.19,d+.14,x,2.55,z,M.seam,false);
+      box(scene,w,.08,d+.10,x,2.68,z,M.rim,false);
+      const innerX=w<d?x+(x<0?.50:-.50):x;
+      const innerZ=w>d?z+(z<0?.50:-.50):z;
+      if(w>d){
+        for(let k=-31;k<=31;k+=4.3){
+          box(scene,3.5,1.18,.075,k,.96,innerZ,M.seam,false);
+          box(scene,3.2,1.04,.083,k,.97,innerZ+(z<0?.04:-.04),M.steel,false);
+          box(scene,.13,1.57,.13,k+1.86,1.02,innerZ,M.brassDark,false);
+        }
+      }else{
+        for(let k=-19;k<=19;k+=4.25){
+          box(scene,.075,1.18,3.55,innerX,.96,k,M.seam,false);
+          box(scene,.083,1.04,3.22,innerX+(x<0?.04:-.04),.97,k,M.steel,false);
+          box(scene,.13,1.57,.13,innerX,1.02,k+1.87,M.brassDark,false);
+        }
+      }
+    }
+    // Monumental but clearly non-playable exterior geometry, framed by boundary walls.
+    for(const x of [-38.5,38.5])for(const z of [-26,26]){
+      cylinder(scene,1.5,7.9,x,1.2,z,M.edge);cylinder(scene,1.84,.36,x,5.1,z,M.brassDark);
+      const crown=addMesh(scene,new T.IcosahedronGeometry(2.8,1),M.plant,x,7.3,z);crown.scale.set(1.28,.7,1.12);crown.castShadow=false;
+    }
+    for(const x of [-32,32])for(const z of [-21,21]){
+      cylinder(scene,.42,3.9,x,1.85,z,M.steel);
+      cylinder(scene,.55,.18,x,3.55,z,M.brassDark);
+      const lamp=cylinder(scene,.29,.2,x,3.86,z,M.led);lamp.castShadow=false;
+      const pl=new T.PointLight(0xffc78c,.75,11,2);pl.position.set(x,3.55,z);scene.add(pl);movableLights.push(pl);
+    }
+    // Warning symbols are embedded paint, not phantom collision geometry.
+    for(let x=-27;x<=27;x+=9){strip(x,-20.7,3.3,.095,.017,M.brassDark);strip(x,20.7,3.3,.095,.017,M.brassDark)}
+    for(let z=-16;z<=16;z+=8){strip(-31.7,z,.12,3,.017,M.brassDark);strip(31.7,z,.12,3,.017,M.brassDark)}
+    // Decorative helix inlaid in the metal floor, not a collision area.
+    const helixCenter={x:-15,z:9};
+    for(let i=0;i<3;i++){
+      const points=[];const radius=2.0+i*1.22;
+      for(let j=0;j<=64;j++){const a=j/64*Math.PI*1.85+1.2;points.push(new T.Vector3(helixCenter.x+Math.cos(a)*radius,.032,helixCenter.z+Math.sin(a)*radius));}
+      const ob=new T.Line(new T.BufferGeometry().setFromPoints(points),new T.LineBasicMaterial({color:i===1?0xe0ab67:0x7eb8d2,transparent:true,opacity:.42,depthWrite:false}));scene.add(ob);
+    }
+    // Construct all platform visuals and physics from the SAME layout specification.
+    const platforms=[
+      {id:1,name:'PLATEAU E1',x:-1.8,z:-3.5,w:13.2,d:12.2,top:2.05,color:0x65c7e0},
+      {id:2,name:'PLATEAU E2',x:11.4,z:-5.0,w:10.3,d:9.25,top:4.1,color:0xe5ab66}
+    ];
+    function floorArrow(cx,cz,y,col=0xe3ae68){
+      const vertices=[];
+      for(let n=0;n<3;n++){
+        const px=cx+(n-1)*.59;
+        vertices.push(px-.24,y,cz-.29, px+.18,y,cz, px-.24,y,cz+.29);
+      }
+      const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));g.computeVertexNormals();
+      const o=addMesh(scene,g,new T.MeshBasicMaterial({color:col,transparent:true,opacity:.75,depthWrite:false,side:T.DoubleSide}));
+      return o;
+    }
+    function labelTexture(text,sub,color){
+      const c=document.createElement('canvas');c.width=512;c.height=132;const ctx=c.getContext('2d');
+      ctx.fillStyle='rgba(15,23,33,.52)';ctx.fillRect(0,0,512,132);
+      ctx.strokeStyle='rgba(168,186,204,.54)';ctx.lineWidth=2;ctx.strokeRect(6,6,500,120);
+      ctx.fillStyle=color;ctx.font='bold 45px Arial';ctx.textAlign='center';ctx.fillText(text,256,61);
+      ctx.fillStyle='#d3dee8';ctx.font='20px Arial';ctx.fillText(sub,256,100);
+      const tex=new T.CanvasTexture(c);tex.encoding=T.sRGBEncoding;return tex;
+    }
+    for(const p of platforms){
+      // Geometry and visual surfacing are derived from the SAME gameplay platform data.
+      const main=box(scene,p.w,p.top,p.d,p.x,p.top/2,p.z,M.platform);markShoot(main);
+      const upper=box(scene,p.w-.21,.085,p.d-.21,p.x,p.top+.015,p.z,p.id===2?M.platformTop2:M.platformTop);markShoot(upper);
+      // High-contrast horizontal strata visually communicate whether this is E1 or E2.
+      box(scene,p.w-.06,.18,p.d-.06,p.x,p.top-.22,p.z,M.seam,false);
+      box(scene,p.w-.12,.105,p.d-.12,p.x,p.top-.11,p.z,p.id===2?M.brassDark:M.rim,false);
+      box(scene,p.w-.12,.06,p.d-.12,p.x,p.top-.31,p.z,M.brassDark,false);
+      // Fully detailed facade: all decorative plates lie against the solid existing body.
+      const sW=p.w/6,sD=p.d/5;
+      for(let i=0;i<6;i++)for(const face of [-1,1]){
+        const xx=p.x-p.w/2+sW*(i+.5),zz=p.z+face*(p.d/2+.014);
+        box(scene,sW-.09,Math.max(.35,p.top-.52),.034,xx,(p.top-.35)/2,zz,M.edge,false);
+        box(scene,sW-.24,.075,.055,xx,p.top-.45,zz+face*.03,p.id===2?M.rim:M.brassDark,false);
+        if(i%2===0)box(scene,.05,Math.max(.25,p.top-1),.055,xx,.42+(p.top-1)/2,zz+face*.043,M.brassDark,false);
+      }
+      for(let i=0;i<5;i++)for(const face of [-1,1]){
+        const xx=p.x+face*(p.w/2+.014),zz=p.z-p.d/2+sD*(i+.5);
+        box(scene,.034,Math.max(.35,p.top-.52),sD-.09,xx,(p.top-.35)/2,zz,M.edge,false);
+        box(scene,.055,.075,sD-.25,xx+face*.03,p.top-.45,zz,p.id===2?M.rim:M.brassDark,false);
+      }
+      // Architectural corner bolsters are flush with the collider, not new invisible barriers.
+      for(const sx of [-1,1])for(const sz of [-1,1]){
+        box(scene,.44,p.top-.18,.44,p.x+sx*(p.w/2-.25),p.top/2,p.z+sz*(p.d/2-.25),M.steel,false);
+        box(scene,.56,.16,.56,p.x+sx*(p.w/2-.25),p.top-.16,p.z+sz*(p.d/2-.25),M.brass,false);
+      }
+      // Fine, inset perimeter lines rather than arcade-style neon tubes.
+      for(let side=0;side<4;side++){
+        const isFront=side<2,sz=side===0?-1:1,sx=side===2?-1:1;
+        const edge=isFront?box(scene,p.w-.42,.018,.028,p.x,p.top+.074,p.z+sz*(p.d/2-.35),M.brassDark,false)
+          :box(scene,.028,.018,p.d-.42,p.x+sx*(p.w/2-.35),p.top+.074,p.z,M.brassDark,false);
+      }
+      for(let n=0;n<5;n++){
+        const px=p.x-p.w/2+.85+(p.w-1.7)*n/4;
+        box(scene,.4,.07,.18,px,p.top-.20,p.z+p.d/2+.015,M.orange,false);
+      }
+      // Subtle capture-zone signage and fine etching are visual only.
+      const motif=addMesh(scene,new T.PlaneGeometry(3.3,3.3),
+        new T.MeshBasicMaterial({color:p.id===1?0x70b8d2:0xd7a66d,transparent:true,opacity:.045,depthWrite:false,side:T.DoubleSide}),
+        p.x,p.top+.079,p.z);motif.rotation.x=-Math.PI/2;
+      const ring=addMesh(scene,geom.ring(1.65,.033),new T.MeshBasicMaterial({color:p.id===1?0x6fbed2:0xc8a16a,transparent:true,opacity:.57,depthWrite:false}),p.x,p.top+.094,p.z);ring.rotation.x=Math.PI/2;
+      const tex=labelTexture('SEKTOR 0'+p.id,p.id===1?'OBERE EBENE  /  E1':'HOCHPLATEAU  /  E2',p.id===1?'#a2d9ed':'#ebbf83');
+      const sign=addMesh(scene,new T.PlaneGeometry(3.35,.86),
+        new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:T.DoubleSide}),
+        p.x,p.top+.085,p.z-p.d/2+1.05);sign.rotation.x=-Math.PI/2;
+      colliders.push({type:'rect',x:p.x,z:p.z,w:p.w,d:p.d,top:p.top,kind:'platform',name:p.name});
+      contactShadow(p.x,p.z,p.w+3,p.d+3,.45);
+    }
+    // Launch cues are painted on REAL standing surfaces, never floating in the air.
+    floorArrow(-9.75,-4.5,.025,0xeab368); // E0 -> E1
+    floorArrow(3.35,-5.15,platforms[0].top+.087,0xe6af68); // E1 -> E2
+    // Small warm hazard stripes are surface paint only; architecture and collision stay unchanged.
+    const stencilMat=new T.MeshBasicMaterial({color:0xcf9354,transparent:true,opacity:.64,depthWrite:false,side:T.DoubleSide});
+    function paintStencils(x,z,y,n=5){
+      for(let i=0;i<n;i++){
+        const d=addMesh(scene,new T.PlaneGeometry(.11,.68),stencilMat,x+(i-(n-1)/2)*.29,y,z);
+        d.rotation.set(-Math.PI/2,0,-.38);
+      }
+    }
+    paintStencils(-10.0,-6.0,.026,6);paintStencils(3.45,-6.8,platforms[0].top+.093,5);
+    // Botanical detail is instanced: richly planted but low draw-call cost.
+    const leafPlacements=[[],[],[]],foliageSeed=seeded(947),leafDummy=new T.Object3D();
+    function makeLeafBlade(){
+      const pos=[],uv=[],indices=[],sections=8;
+      for(let j=0;j<=sections;j++){
+        const t=j/sections,width=.37*Math.pow(Math.sin(Math.PI*t),.76);
+        const z=.14+t*1.48,y=.10+Math.sin(t*Math.PI*.78)*.93;
+        for(const a of [-1,0,1]){
+          pos.push(a*width, y+(a===0?.085:0),z+(a===0?.012:0));uv.push((a+1)/2,t);
+        }
+      }
+      for(let j=0;j<sections;j++)for(let side=0;side<2;side++){
+        const a=j*3+side,b=a+3;indices.push(a,b,a+1,b,b+1,a+1);
+      }
+      const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute(pos,3));
+      geo.setAttribute('uv',new T.Float32BufferAttribute(uv,2));
+      const pigments=[];
+      for(let i=0;i<pos.length/3;i++){
+        const row=Math.floor(i/3),side=i%3,t=row/sections;
+        const shade=.72+.19*Math.sin(t*Math.PI)+.07*t+(side===1?.09:side===0?.025:0);
+        pigments.push(shade*.94,shade,shade*.91);
+      }
+      geo.setAttribute('color',new T.Float32BufferAttribute(pigments,3));
+      geo.setIndex(indices);geo.computeVertexNormals();return geo;
+    }
+    function plantAt(pt,height=1.32){
+      const leaves=3+Math.floor(foliageSeed()*4);
+      for(let k=0;k<leaves;k++){
+        const a=foliageSeed()*Math.PI*2,sc=.6+foliageSeed()*.55;
+        leafPlacements[(foliageSeed()*3)|0].push({x:pt.x+(foliageSeed()-.5)*.27,y:height+(foliageSeed()-.5)*.14,
+          z:pt.z+(foliageSeed()-.5)*.27,a,s:sc,tilt:(foliageSeed()-.5)*.5});
+      }
+    }
+    function flushLeaves(){
+      const geo=makeLeafBlade(),mats=[M.leaf0,M.leaf1,M.leaf2];
+      for(let i=0;i<leafPlacements.length;i++){
+        const arr=leafPlacements[i];const mesh=new T.InstancedMesh(geo,mats[i],arr.length);
+        mesh.material.side=T.DoubleSide;mesh.castShadow=false;mesh.receiveShadow=true;mesh.frustumCulled=false;
+        for(let j=0;j<arr.length;j++){
+          const e=arr[j];leafDummy.position.set(e.x,e.y,e.z);leafDummy.rotation.set(e.tilt,e.a,(j%7-3)*.025);
+          leafDummy.scale.set(e.s,e.s*(.8+.25*(j%4)),e.s);leafDummy.updateMatrix();mesh.setMatrixAt(j,leafDummy.matrix);
+        }
+        mesh.instanceMatrix.needsUpdate=true;scene.add(mesh);
+      }
+    }
+    // Rounded planter physics reuses the exact Catmull-Rom centerline of the visible stone basin.
+    function makePlanter(points,name){
+      const segments=Math.max(40,points.length*14);
+      const spline=new T.CatmullRomCurve3(points.map(v=>new T.Vector3(v[0],.73,v[1])),false,'centripetal');
+      const tube=addMesh(scene,new T.TubeGeometry(spline,segments,.71,10,false),M.stone);tube.castShadow=true;tube.receiveShadow=true;markShoot(tube);
+      const soilSpline=new T.CatmullRomCurve3(points.map(v=>new T.Vector3(v[0],1.22,v[1])),false,'centripetal');
+      const soil=addMesh(scene,new T.TubeGeometry(soilSpline,segments,.25,8,false),M.soil);soil.castShadow=false;
+      const rimCurve=new T.CatmullRomCurve3(points.map(v=>new T.Vector3(v[0],1.28,v[1])),false,'centripetal');
+      const rim=addMesh(scene,new T.TubeGeometry(rimCurve,segments,.21,8,false),M.brassDark);rim.castShadow=false;markShoot(rim);
+      const samples=spline.getPoints(28);
+      for(let i=0;i<samples.length-1;i++)colliders.push({type:'capsule',ax:samples[i].x,az:samples[i].z,
+        bx:samples[i+1].x,bz:samples[i+1].z,r:.72,top:1.48,kind:'cover',name});
+      for(let k=0;k<42;k++){
+        const t=(k+.4)/42,pt=spline.getPoint(t);
+        plantAt(pt,1.34);
+        if(k%7===0){
+          const bud=addMesh(scene,new T.IcosahedronGeometry(.16+(k%3)*.028,0),k%2?M.plant2:M.orange,
+            pt.x+(foliageSeed()-.5)*.22,2.04+(k%4)*.11,pt.z+(foliageSeed()-.5)*.22);
+          bud.castShadow=false;
+        }
+        if(k%9===0){
+          const jewel=addMesh(scene,new T.IcosahedronGeometry(.095,0),M.led,pt.x,1.55,pt.z);
+          jewel.castShadow=false;
+        }
+      }
+      for(let k=0;k<7;k++){
+        const pt=spline.getPoint((k+.5)/7);
+        box(scene,.17,.12,.29,pt.x,.89,pt.z,M.brassDark,false).rotation.y=k*.75;
+      }
+      const matDbg=new T.LineBasicMaterial({color:0xff5875,transparent:true,opacity:.92,depthTest:false});
+      const outline=new T.Line(new T.BufferGeometry().setFromPoints(samples.map(v=>new T.Vector3(v.x,1.48,v.z))),matDbg);
+      outline.visible=false;scene.add(outline);debugMeshes.push(outline);
+      for(let i=0;i<4;i++){const pt=spline.getPoint((i+.5)/4);contactShadow(pt.x,pt.z,3.25,2.5,.32);}
+    }
+    makePlanter([[-23,4],[-20,5.3],[-18.9,8.3],[-20,11.5],[-23,12.5]],'RUNDER PFLANZTROG WEST');
+    makePlanter([[19,7],[22,9],[24,12],[25,15]],'RUNDER PFLANZTROG OST');
+    makePlanter([[-13,-13],[-11.5,-15.5],[-8,-16.7],[-5,-16]],'RUNDE DECKUNG SÜD');
+    flushLeaves();
+    function makeCover(x,z,w,d,h,name){
+      const b=box(scene,w,h,d,x,h/2,z,M.steel);markShoot(b);
+      box(scene,w+.13,.13,d+.13,x,h+.035,z,M.stoneLite,false).castShadow=false;
+      box(scene,w+.12,.07,d+.12,x,h+.115,z,M.brassDark,false);
+      for(const sx of [-1,1])for(const sz of [-1,1]){
+        box(scene,.16,h*.65,.16,x+sx*(w/2-.11),h*.41,z+sz*(d/2-.10),M.brass,false);
+      }
+      for(let n=0;n<Math.floor(w/1.1);n++){
+        box(scene,.05,.27,.07,x-w/2+.35+n*1.08,h*.6,z+d/2+.04,M.seam,false);
+      }
+      contactShadow(x,z,w+1.4,d+1.4,.53);
+      colliders.push({type:'rect',x,z,w,d,top:h+.10,kind:'cover',name});
+    }
+    makeCover(-23,-10,5,2,1.32,'DECKUNG WEST');makeCover(21,-14,5,2.8,1.35,'DECKUNG OST');
+    makeCover(-8,16,4,1.8,1.2,'DECKUNG NORD');
+    function makePillar(x,z){
+      const c=cylinder(scene,1.04,5.9,x,2.9,z,M.steel);markShoot(c);
+      for(let i=0;i<9;i++){
+        const a=i*Math.PI*2/9,xx=x+Math.sin(a)*.95,zz=z+Math.cos(a)*.95;
+        const strip=cylinder(scene,.068,5.0,xx,2.84,zz,i%3===0?M.brassDark:M.edge);strip.castShadow=false;
+      }
+      const top=cylinder(scene,1.12,.23,x,5.92,z,M.brassDark);markShoot(top);
+      cylinder(scene,1.08,.16,x,3.5,z,M.rim).castShadow=false;
+      cylinder(scene,1.1,.22,x,.23,z,M.stoneLite).castShadow=false;
+      contactShadow(x,z,3.5,3.5,.75);
+      colliders.push({type:'circle',x,z,r:1.04,top:6.1,kind:'pillar',name:'HOHE SÄULE'});
+    }
+    makePillar(-27,-17);makePillar(27,-17);makePillar(28,17);
+    // Safe standing marker for spawn, has no collision.
+    function discMarker(x,z,rad,col){
+      const ring=addMesh(scene,geom.ring(rad,.06),new T.MeshBasicMaterial({color:col,transparent:true,opacity:.57}),x,.025,z);ring.rotation.x=Math.PI/2;return ring;
+    }
+    discMarker(-16,-1,1.1,0x6bc8e9);
+    // Add a few low atmospheric details without introducing mystery collision.
+    for(let i=0;i<34;i++){
+      const a=i*2.399,r=10+(i%6)*5.0,xx=Math.cos(a)*r,zz=Math.sin(a)*r;
+      if(Math.abs(xx)>30||Math.abs(zz)>20)continue;
+      const l=addMesh(scene,geom.orb(.045,6),M.glow,xx,.16,zz);l.material=new T.MeshBasicMaterial({color:i%3?0x8cb6d0:0xe0ad68,transparent:true,opacity:.55});
+    }
+    // PLAYER: stylized 3D fighter, reusable geometry, no external models needed.
+    const playerGroup=new T.Group();scene.add(playerGroup);
+    const playerTorso=new T.Group();playerGroup.add(playerTorso);
+    const body=addMesh(playerTorso,geom.cyl(.49,.55,1.22),M.body,0,1.04,0);body.castShadow=true;
+    const chest=box(playerTorso,.91,.54,.32,0,1.07,.37,M.bodyDark);
+    const helmet=addMesh(playerTorso,geom.orb(.49),M.body,0,1.83,0);helmet.scale.set(1.02,.89,1.05);helmet.castShadow=true;
+    const visor=addMesh(playerTorso,geom.orb(.37),M.visor,0,1.84,.27);visor.scale.set(1.02,.55,.48);
+    for(const sx of [-1,1]){
+      box(playerTorso,.22,.98,.34,sx*.65,1.18,0,M.bodyDark);
+      box(playerTorso,.27,.48,.3,sx*.28,.3,0,M.body);
+      box(playerTorso,.29,.15,.57,sx*.28,.095,.13,M.bodyDark);
+      const shoulder=addMesh(playerTorso,geom.orb(.26),M.body,sx*.63,1.58,0);shoulder.scale.set(1,.76,1.25);
+    }
+    box(playerTorso,.23,.33,.43,.0,.95,-.66,M.visor);
+    const gun=new T.Group();playerTorso.add(gun);gun.position.set(.44,1.1,.25);
+    box(gun,.21,.19,.85,0,0,.34,M.bodyDark);box(gun,.17,.16,.24,0,0,.83,M.trim);box(gun,.43,.33,.24,0,-.12,.08,M.steel);
+    const jetGlow=addMesh(playerGroup,geom.orb(.26,12),M.visor,0,.26,-.48);jetGlow.scale.set(1,.48,1.45);jetGlow.visible=false;
+    const shadowMat=new T.MeshBasicMaterial({color:0x0a111b,transparent:true,opacity:.40,depthWrite:false});
+    const shadow=addMesh(scene,new T.CircleGeometry(.83,28),shadowMat);shadow.rotation.x=-Math.PI/2;
+    const groundRing=addMesh(scene,geom.ring(.81,.045),new T.MeshBasicMaterial({color:0x79cdeb,transparent:true,opacity:.6}),0,.03,0);groundRing.rotation.x=Math.PI/2;
+    const player={x:-16,z:-1,y:0,vy:0,grounded:true,groundLevel:0,facing:new T.Vector3(0,0,1)};
+    // DRONES: clear hittable meshes at every distinct height.
+    function makeDrone(id,x,z,y,name,color){
+      const group=new T.Group();group.position.set(x,y,z);scene.add(group);
+      const m=mat(color,.72,.18,color,.22);
+      const sphere=addMesh(group,geom.orb(.64,18),m,0,1.22,0);sphere.castShadow=true;
+      const core=addMesh(group,geom.orb(.31,14),M.visor,0,1.22,.49);
+      const ring=addMesh(group,geom.ring(.85,.06),new T.MeshBasicMaterial({color,transparent:true,opacity:.82,side:T.DoubleSide}),0,1.21,0);ring.rotation.y=.2;
+      for(const sx of [-1,1]){
+        const wing=box(group,.8,.12,.29,sx*.8,1.2,0,M.bodyDark);wing.rotation.z=sx*.32;
+        const light=addMesh(group,geom.orb(.12,8),M.orange,sx*1.15,1.22,.07);
+      }
+      const proxy=addMesh(group,geom.orb(.77,12),new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,depthWrite:false,colorWrite:false}),0,1.22,0);
+      const drone={id,x,z,y,name,group,proxy,ring,sphere,core,hp:4,alive:true,respawn:0,phase:id*1.47,offset:0,baseX:x,baseZ:z};
+      proxy.userData.drone=drone;
+      shootMeshes.push(proxy);aimMeshes.push(proxy);drones.push(drone);
+      return drone;
+    }
+    makeDrone(0,19,12,0,'DROHNE / BODEN E0',0xffb66c);
+    makeDrone(1,0,-4,2.05,'DROHNE / PLATEAU E1',0x8befd8);
+    makeDrone(2,11.4,-5,4.1,'DROHNE / PLATEAU E2',0x92bcff);
+    let dronesMoving=false,debugVisible=false;
+    const keys=Object.create(null),pointer={x:innerWidth/2,y:innerHeight/2,hasInput:false};
+    const raycaster=new T.Raycaster(),shotRay=new T.Raycaster();
+    const reticle=$('reticle');const marker=addMesh(scene,geom.ring(.53,.045),M.glow);marker.rotation.x=Math.PI/2;
+    const markerDot=addMesh(scene,geom.orb(.084,9),M.glow);
+    let markerPulse=0, target=null, shots=0,hits=0,kills=0, cooldown=0,toastT=0,moveTime=0;
+    const aimLine=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3()]),new T.LineDashedMaterial({color:0x83c2df,dashSize:.30,gapSize:.20,transparent:true,opacity:.52,depthWrite:false}));scene.add(aimLine);
+    function toast(msg,seconds=2.6){$('toast').innerHTML=msg;$('toast').classList.add('show');toastT=seconds;}
+    function getAimPoint(){
+      const nx=(pointer.x/innerWidth)*2-1,ny=-(pointer.y/innerHeight)*2+1;
+      raycaster.setFromCamera(new T.Vector2(nx,ny),camera);
+      const intersections=raycaster.intersectObjects(aimMeshes,false);
+      let first=null;
+      for(const h of intersections){const d=h.object.userData.drone;if(d&&!d.alive)continue;first=h;break;}
+      if(!first){
+        const plane=new T.Plane(new T.Vector3(0,1,0),0);const p=new T.Vector3();raycaster.ray.intersectPlane(plane,p);
+        return {point:p,drone:null,height:0,name:'AUSSERHALB DER ARENA'};
+      }
+      const d=first.object.userData.drone;
+      if(d&&d.alive){return {point:new T.Vector3(d.group.position.x,d.group.position.y+1.22,d.group.position.z),drone:d,height:d.y,name:d.name};}
+      return {point:first.point.clone(),drone:null,height:first.point.y,name:first.point.y>3.5?'PLATTFORM E2':first.point.y>1.55?'PLATTFORM E1':'BODEN / OBJEKT'};
+    }
+    function muzzlePosition(){return new T.Vector3(player.x,player.y+1.25,player.z).add(player.facing.clone().multiplyScalar(.48));}
+    function rayImpact(origin,point,range=MAX_SHOT){
+      const delta=point.clone().sub(origin);let distance=delta.length();if(distance<.001)return null;
+      const direction=delta.divideScalar(distance);const reach=Math.min(range,Math.max(distance+.18,1));
+      shotRay.set(origin,direction);shotRay.near=.1;shotRay.far=reach;
+      const intersections=shotRay.intersectObjects(shootMeshes,false);
+      for(const impact of intersections){const d=impact.object.userData.drone;if(d&&!d.alive)continue;return {...impact,drone:d||null};}
+      return {point:origin.clone().addScaledVector(direction,Math.min(range,distance)),drone:null,object:null,distance:Math.min(range,distance)};
+    }
+    function setLevelHud(){
+      const level=player.y>3.85?2:player.y>1.82?1:0;
+      $('elevation').textContent='E'+level;
+      $('locationText').textContent=player.grounded?'EBENE '+level:'IN DER LUFT';
+      for(let i=0;i<3;i++)$('tp'+i).classList.toggle('current',level===i&&player.grounded);
+    }
+    function updateAim(){
+      if(!camera)return;
+      const a=getAimPoint();target=a;
+      marker.position.set(a.point.x,a.point.y+.047,a.point.z);markerDot.position.set(a.point.x,a.point.y+.11,a.point.z);
+      marker.visible=markerDot.visible=a.point.x>-33&&a.point.x<33&&a.point.z>-22&&a.point.z<22;
+      marker.scale.setScalar(1+Math.sin(markerPulse*5)*.09);
+      const direction=new T.Vector3(a.point.x-player.x,0,a.point.z-player.z);
+      if(direction.lengthSq()>.01)player.facing.lerp(direction.normalize(),.18).normalize();
+      const origin=muzzlePosition();const impact=rayImpact(origin,a.point);
+      const blocked=!!a.drone&&(!impact||impact.drone!==a.drone);
+      const possible=a.drone&&impact&&impact.drone===a.drone;
+      reticle.className=blocked?'blocked':possible?'enemy':'';
+      $('targetName').textContent=a.name+(blocked?' / VERDECKT':'');$('targetName').className=blocked?'blocked':'';
+      const aimLvl=a.height>=3.55?'E2':a.height>=1.6?'E1':'E0';
+      $('targetHeight').textContent=aimLvl;
+      $('lineStatus').textContent=blocked?'BLOCKIERT':possible?'ZIEL ERFASST':'FREI';
+      $('lineStatus').className=blocked?'amber':'green';
+      $('rangeText').textContent=Math.round(origin.distanceTo(a.point))+' M';
+      aimLine.material.color.setHex(blocked?0xe6bb76:possible?0xe4a4a0:0x83c2df);
+      const end=impact?impact.point:a.point;
+      aimLine.geometry.dispose();aimLine.geometry=new T.BufferGeometry().setFromPoints([origin,end]);aimLine.computeLineDistances();
+      return a;
+    }
+    function addFx(start,end,color,kind='beam'){
+      const material=new T.LineBasicMaterial({color,transparent:true,opacity:1,depthWrite:false});
+      const mesh=new T.Line(new T.BufferGeometry().setFromPoints([start,end]),material);scene.add(mesh);
+      fx.push({kind,mesh,life:.18,max:.18});
+      const spark=addMesh(scene,geom.orb(.19,8),new T.MeshBasicMaterial({color,transparent:true,opacity:.95,depthWrite:false}),end.x,end.y,end.z);
+      fx.push({kind:'spark',mesh:spark,life:.23,max:.23});
+    }
+    function shoot(){
+      if(cooldown>0||!target)return;cooldown=.125;shots++;
+      const origin=muzzlePosition();const imp=rayImpact(origin,target.point);
+      const end=imp?imp.point:target.point;
+      if(imp&&imp.drone){
+        const d=imp.drone;d.hp--;hits++;d.sphere.material.emissiveIntensity=2.4;
+        if(d.hp<=0){d.alive=false;d.group.visible=false;d.respawn=3.1;kills++;toast('ZIEL ELIMINIERT · '+d.name+' <span style="color:#97d5ec">+1</span>',2.0);}
+      }
+      addFx(origin,end,imp&&imp.drone?0xffdab2:0x8ed2ed);
+      $('hitCount').innerHTML=hits+'<span class="suffix"> / '+shots+'</span>';
+      $('killCount').innerHTML=kills+'<span class="suffix"> K.O.</span>';
+    }
+    function closestRectPoint(x,z,c){return{x:Math.min(c.x+c.w/2,Math.max(c.x-c.w/2,x)),z:Math.min(c.z+c.d/2,Math.max(c.z-c.d/2,z))};}
+    function solveRect(c){
+      const n=closestRectPoint(player.x,player.z,c);let dx=player.x-n.x,dz=player.z-n.z,dist=Math.hypot(dx,dz);
+      if(dist>=R)return;
+      if(dist<.000001){
+        const a=player.x-(c.x-c.w/2),b=(c.x+c.w/2)-player.x,cc=player.z-(c.z-c.d/2),d=(c.z+c.d/2)-player.z;
+        const shallow=Math.min(a,b,cc,d);
+        if(shallow===a)player.x=c.x-c.w/2-R-.002;
+        else if(shallow===b)player.x=c.x+c.w/2+R+.002;
+        else if(shallow===cc)player.z=c.z-c.d/2-R-.002;
+        else player.z=c.z+c.d/2+R+.002;
+      }else{const delta=(R-dist+.008)/dist;player.x+=dx*delta;player.z+=dz*delta;}
+    }
+    function solveCircle(c){let dx=player.x-c.x,dz=player.z-c.z,dist=Math.hypot(dx,dz),limit=c.r+R;if(dist>=limit)return;
+      if(dist<.00001){dx=1;dz=0;dist=1;}const k=(limit-dist+.012)/dist;player.x+=dx*k;player.z+=dz*k;}
+    function solveCapsule(c){const sx=c.bx-c.ax,sz=c.bz-c.az,len2=sx*sx+sz*sz;
+      const t=Math.max(0,Math.min(1,((player.x-c.ax)*sx+(player.z-c.az)*sz)/(len2||1)));
+      const cx=c.ax+sx*t,cz=c.az+sz*t;let dx=player.x-cx,dz=player.z-cz,dist=Math.hypot(dx,dz),limit=c.r+R;
+      if(dist>=limit)return;if(dist<.00001){dx=-sz;dz=sx;dist=Math.hypot(dx,dz)||1;}
+      const k=(limit-dist+.008)/dist;player.x+=dx*k;player.z+=dz*k;}
+    function supportLevel(x,z,above){let height=0;
+      for(const p of platforms){if(p.top<=above+.085 && x>p.x-p.w/2+.06&&x<p.x+p.w/2-.06 && z>p.z-p.d/2+.06&&z<p.z+p.d/2-.06){height=Math.max(height,p.top);}}
+      return height;
+    }
+    function resolveCollisions(){
+      player.x=Math.max(-32.65,Math.min(32.65,player.x));player.z=Math.max(-21.65,Math.min(21.65,player.z));
+      for(let pass=0;pass<3;pass++)for(const c of colliders){
+        if(player.y>=c.top-.035)continue;
+        if(c.type==='rect')solveRect(c);else if(c.type==='circle')solveCircle(c);else solveCapsule(c);
+      }
+      player.x=Math.max(-32.65,Math.min(32.65,player.x));player.z=Math.max(-21.65,Math.min(21.65,player.z));
+    }
+    let touchMoveX=0,touchMoveY=0,pendingJump=false;
+    function horizontalDirection(){
+      const wx=(keys['d']?1:0)-(keys['a']?1:0),wy=(keys['w']?1:0)-(keys['s']?1:0);
+      const dx=wx+touchMoveX,dy=wy-touchMoveY;
+      const r=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,0);r.y=0;r.normalize();
+      const f=new T.Vector3();camera.getWorldDirection(f);f.y=0;f.normalize();
+      const v=r.multiplyScalar(dx).addScaledVector(f,dy);
+      return v.lengthSq()>1?v.normalize():v;
+    }
+    function updatePlayer(dt,t){
+      const wantsJump=pendingJump||keys[' '];pendingJump=false;
+      if(wantsJump&&player.grounded){player.grounded=false;player.vy=JUMP;jetGlow.visible=true;}
+      const prevY=player.y;
+      if(!player.grounded){player.vy-=GRAV*dt;player.y+=player.vy*dt;}
+      const v=horizontalDirection();const speed=(keys['shift']?10.8:7.2);
+      player.x+=v.x*speed*dt;player.z+=v.z*speed*dt;resolveCollisions();
+      if(!player.grounded && player.vy<=0){
+        const lvl=supportLevel(player.x,player.z,prevY);
+        if(prevY>=lvl-.03 && player.y<=lvl){player.y=lvl;player.vy=0;player.grounded=true;jetGlow.visible=false;}
+      }
+      if(player.grounded){
+        const lvl=supportLevel(player.x,player.z,player.y);
+        if(lvl<player.y-.075){player.grounded=false;player.vy=-.3;}
+        else {player.y=lvl;player.groundLevel=lvl;}
+      }
+      if(player.y<-.01){player.y=0;player.vy=0;player.grounded=true;jetGlow.visible=false;}
+      if(v.lengthSq()>.05)moveTime+=dt*(keys['shift']?14:10);
+      playerGroup.position.set(player.x,player.y,player.z);
+      playerTorso.rotation.y=Math.atan2(player.facing.x,player.facing.z);
+      playerTorso.position.y=player.grounded?Math.sin(moveTime)*.045:Math.sin(t*13)*.035;
+      jetGlow.scale.y=player.grounded?.1:.5+Math.sin(t*20)*.1;
+      const floor=supportLevel(player.x,player.z,player.y+.04);
+      shadow.position.set(player.x,floor+.045,player.z);shadow.material.opacity=.4*Math.max(.22,1-(player.y-floor)/8);
+      groundRing.position.set(player.x,floor+.049,player.z);groundRing.material.opacity=player.grounded?.72:.22;
+      setLevelHud();
+      if(v.lengthSq()>.01){playerGroup.rotation.y=0;}
+    }
+    function updateDrones(dt,t){
+      for(const d of drones){
+        if(!d.alive){d.respawn-=dt;if(d.respawn<=0){d.alive=true;d.hp=4;d.group.visible=true;d.sphere.material.emissiveIntensity=.22;}continue;}
+        const scale=dronesMoving?1.1:0;
+        d.group.position.x=d.baseX+Math.sin(t*.64+d.phase)*scale;
+        d.group.position.z=d.baseZ+Math.cos(t*.59+d.phase)*scale;
+        d.group.position.y=d.y+Math.sin(t*1.8+d.phase)*.13;
+        d.ring.rotation.y=t*1.6+d.phase;d.ring.rotation.x=Math.sin(t*.6+d.phase)*.3;
+        d.sphere.material.emissiveIntensity=Math.max(.22,d.sphere.material.emissiveIntensity-dt*5);
+      }
+    }
+    function updateFX(dt){for(let i=fx.length-1;i>=0;i--){let f=fx[i];f.life-=dt;
+      if(f.life<=0){scene.remove(f.mesh);f.mesh.geometry.dispose();f.mesh.material.dispose();fx.splice(i,1);continue;}
+      const k=f.life/f.max;f.mesh.material.opacity=k;
+      if(f.kind==='spark')f.mesh.scale.setScalar(1+(1-k)*1.9);
+    }}
+    let collisionGroup=new T.Group();scene.add(collisionGroup);
+    function buildDebug(){const gm=new T.MeshBasicMaterial({color:0xff5a76,transparent:true,opacity:.24,depthTest:false,depthWrite:false,side:T.DoubleSide});
+      const outlineMat=new T.LineBasicMaterial({color:0xff98ad,transparent:true,opacity:.8,depthTest:false});
+      for(const c of colliders){if(c.type==='capsule')continue;
+        const yy=c.top+.09;
+        if(c.type==='circle'){
+          const o=addMesh(collisionGroup,geom.ring(c.r+R,.035),new T.MeshBasicMaterial({color:0xff98ad,transparent:true,opacity:.8,depthTest:false}),c.x,yy,c.z);o.rotation.x=Math.PI/2;
+        }else{
+          const o=box(collisionGroup,c.w,.016,c.d,c.x,yy-.06,c.z,gm,false);
+          const pts=[[-c.w/2,-c.d/2],[c.w/2,-c.d/2],[c.w/2,c.d/2],[-c.w/2,c.d/2],[-c.w/2,-c.d/2]].map(a=>new T.Vector3(c.x+a[0],yy,c.z+a[1]));
+          collisionGroup.add(new T.Line(new T.BufferGeometry().setFromPoints(pts),outlineMat));
+        }
+      }
+      collisionGroup.visible=false;
+    }buildDebug();
+    // World-aligned (long edges horizontal) by default; V restores the original V4 isometric view.
+    // Smooth rotation also keeps movement/aim controls consistent during a camera switch.
+    function cameraPose(dt=1){
+      const follow=new T.Vector3(player.x,player.y*.38+.9,player.z);
+      camFocus.lerp(follow,Math.min(1,dt*4.3));
+      camOffset.lerp(cameraIsometric?CAM_ISOMETRIC:CAM_STRAIGHT,Math.min(1,dt*7));
+      camera.position.copy(camFocus).add(camOffset);camera.lookAt(camFocus);
+      camera.updateMatrixWorld();camera.updateProjectionMatrix();
+    }
+    function resize(){const h=innerWidth<720?38:33;const aspect=innerWidth/Math.max(1,innerHeight);
+      camera.left=-h*aspect/2;camera.right=h*aspect/2;camera.top=h/2;camera.bottom=-h/2;
+      camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);
+      if(!pointer.hasInput){pointer.x=innerWidth*.5;pointer.y=innerHeight*.5;}
+    }
+    addEventListener('resize',resize);resize();cameraPose();
+    function resetPlayer(i=0){
+      if(i===0){player.x=-16;player.z=-1;player.y=0;}
+      else if(i===1){player.x=-1.7;player.z=1.0;player.y=2.05;}
+      else{player.x=11.4;player.z=-1.4;player.y=4.1;}
+      player.vy=0;player.grounded=true;player.groundLevel=player.y;playerGroup.position.set(player.x,player.y,player.z);
+      camFocus.set(player.x,player.y*.38+.9,player.z);cameraPose();toast('TESTPOSITION: E'+i+' · '+(i===0?'BODEN':i===1?'PLATEAU I':'PLATEAU II'),1.55);
+    }
+    function setCamera(){
+      cameraIsometric=!cameraIsometric;
+      $('cameraBtn').innerHTML='Kamera: '+(cameraIsometric?'isometrisch':'gerade')+' <small>V</small>';
+      $('cameraBtn').classList.toggle('active',cameraIsometric);
+      toast(cameraIsometric?'ISOMETRISCH · DIAGONALE ANSICHT':'GERADE · LANGE ARENAKANTE PARALLEL ZUM BILDSCHIRM',2.1);
+    }
+    function setMovement(){dronesMoving=!dronesMoving;$('moveBtn').innerHTML='Drohnen: '+(dronesMoving?'beweglich':'statisch')+' <small>B</small>';
+      $('moveBtn').classList.toggle('active',dronesMoving);
+    }
+    function setCollision(){debugVisible=!debugVisible;collisionGroup.visible=debugVisible;debugMeshes.forEach(m=>m.visible=debugVisible);
+      $('collisionBtn').innerHTML='Kollisionen: '+(debugVisible?'an':'aus')+' <small>C</small>';$('collisionBtn').classList.toggle('active',debugVisible);
+      if(debugVisible)toast('ROTE MARKIERUNGEN = EXAKTE SPIELPHYSIK',2.1);
+    }
+    let dusk=false;
+    function setMood(){
+      dusk=!dusk;scene.background.setHex(dusk?0x111722:0x171c22);scene.fog.color.setHex(dusk?0x111722:0x171c22);
+      light0.color.setHex(dusk?0xd9e2ed:0xf5f5f3);light0.groundColor.setHex(dusk?0x202730:0x2b2d30);
+      light0.intensity=dusk?.57:.72;
+      sun.color.setHex(dusk?0xcbd8ed:0xfff3e9);sun.intensity=dusk?1.08:1.52;
+      skyFill.color.setHex(dusk?0xb3c7e2:0xe4e9ed);skyFill.intensity=dusk?.33:.27;
+      renderer.toneMappingExposure=dusk?.87:.92;
+      const foliageColors=dusk?[0x194a28,0x246f35,0x438d46]:[0x205b2d,0x2e883e,0x54ad53];
+      [M.leaf0,M.leaf1,M.leaf2].forEach((material,i)=>material.color.setHex(foliageColors[i]));
+      $('moodBtn').innerHTML='Licht: '+(dusk?'Blaue Stunde':'Klarer Tag')+' <small>L</small>';
+      $('moodBtn').classList.toggle('active',dusk);
+      toast(dusk?'LICHTSTUDIE 02 · BLAUE STUNDE':'LICHTSTUDIE 01 · KLARER TAG',1.5);
+    }
+    $('moodBtn').onclick=setMood;
+    $('cameraBtn').onclick=setCamera;$('moveBtn').onclick=setMovement;$('collisionBtn').onclick=setCollision;$('resetBtn').onclick=()=>resetPlayer();
+    for(let i=0;i<3;i++)$('tp'+i).onclick=()=>resetPlayer(i);
+    addEventListener('keydown',e=>{
+      const k=e.key.toLowerCase();if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();
+      if(!keys[k]){if(k==='v')setCamera();if(k==='b')setMovement();if(k==='c')setCollision();if(k==='l')setMood();if(k==='r')resetPlayer();}
+      keys[k]=true;
+    });
+    addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=false;});
+    addEventListener('blur',()=>{for(const k in keys)keys[k]=false;fireHeld=false;touchMoveX=0;touchMoveY=0;});
+    const coarse=matchMedia('(pointer:coarse)').matches;
+    renderer.domElement.addEventListener('pointermove',e=>{
+      if(!coarse||e.clientX>innerWidth*.38){pointer.x=e.clientX;pointer.y=e.clientY;pointer.hasInput=true;}
+      if(!coarse){reticle.style.left=pointer.x+'px';reticle.style.top=pointer.y+'px';}
+    });
+    renderer.domElement.addEventListener('pointerdown',e=>{if(e.button===0){fireHeld=true;
+      pointer.x=e.clientX;pointer.y=e.clientY;pointer.hasInput=true;
+    }});
+    addEventListener('pointerup',()=>{fireHeld=false;});
+    addEventListener('contextmenu',e=>e.preventDefault());
+    // Touch: left-hand joystick, right screen aim plus hold-to-fire.
+    const joy=$('joystick'),knob=$('joyKnob');let joyId=null;
+    function setJoy(e){const r=joy.getBoundingClientRect();let dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);const len=Math.hypot(dx,dy),limit=r.width*.33;
+      if(len>limit){dx*=limit/len;dy*=limit/len;}touchMoveX=dx/limit;touchMoveY=dy/limit;knob.style.transform=`translate(${dx}px,${dy}px)`;}
+    joy.addEventListener('pointerdown',e=>{joyId=e.pointerId;joy.setPointerCapture(joyId);setJoy(e);e.preventDefault();});
+    joy.addEventListener('pointermove',e=>{if(e.pointerId===joyId){setJoy(e);e.preventDefault();}});
+    function resetJoy(){joyId=null;touchMoveX=touchMoveY=0;knob.style.transform='';}
+    joy.addEventListener('pointerup',resetJoy);joy.addEventListener('pointercancel',resetJoy);
+    $('touchJump').addEventListener('pointerdown',e=>{e.preventDefault();pendingJump=true;});
+    $('touchFire').addEventListener('pointerdown',e=>{e.preventDefault();fireHeld=true;});
+    $('touchFire').addEventListener('pointerup',()=>fireHeld=false);$('touchFire').addEventListener('pointercancel',()=>fireHeld=false);
+    // Touch aim on right side of canvas selects aim point; shooting remains optional via FIRE.
+    if(coarse){
+      renderer.domElement.addEventListener('pointerdown',e=>{if(e.clientX>innerWidth*.35){pointer.x=e.clientX;pointer.y=e.clientY;pointer.hasInput=true;}});
+      renderer.domElement.addEventListener('pointermove',e=>{if(e.buttons>0&&e.clientX>innerWidth*.35){pointer.x=e.clientX;pointer.y=e.clientY;pointer.hasInput=true;}});
+    }
+    let frameId=0,t=0;
+    function animate(){frameId=requestAnimationFrame(animate);const dt=Math.min(.045,clock.getDelta());t+=dt;markerPulse=t;
+      cooldown=Math.max(0,cooldown-dt);updatePlayer(dt,t);updateDrones(dt,t);cameraPose(dt);updateAim();
+      if(fireHeld)shoot();updateFX(dt);
+      if(toastT>0){toastT-=dt;if(toastT<=0)$('toast').classList.remove('show');}
+      renderer.render(scene,camera);
+    }
+    loading.style.display='none';resetPlayer(0);
+    if(!coarse){reticle.style.left=pointer.x+'px';reticle.style.top=pointer.y+'px';}
+    setTimeout(()=>{$('intro').classList.add('fade');},7500);
+    animate();
+    console.info('[CORE ARENA - OBSIDIAN GARDEN V5] Default straight-on orthographic arena view with long world-X edge horizontal, V toggles original V4 isometric view. Geometry, palette and gameplay preserved.');
+  })();
+  </script>
+</body>
+</html>

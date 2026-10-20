@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-test/
+test-results/
+playwright-report/
+.env
+.env.*
+*.log
+Core_Arena_3D_Agent_Starter/

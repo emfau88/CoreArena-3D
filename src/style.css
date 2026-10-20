@@ -1,0 +1,5 @@
+:root { font-family: "Segoe UI", sans-serif; color: #eef1ed; background: #171b20; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+canvas { display: block; }
+#loading { position: fixed; inset: 0; display: grid; place-content: center; z-index: 5; }
