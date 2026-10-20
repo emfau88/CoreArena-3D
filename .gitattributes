@@ -1,0 +1,6 @@
+* text=auto eol=lf
+references/* -text
+docs/VISION.md -text
+docs/IMPLEMENTATION_PLAN.md -text
+docs/AGENT_START_PROMPT.md -text
+*.png binary
