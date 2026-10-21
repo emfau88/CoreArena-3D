@@ -56,6 +56,11 @@ Gebautes Spiel: http://127.0.0.1:8743/CoreArena-3D/
 WASD bewegt bildschirmbezogen, Shift sprintet, Space springt, V wechselt die Kamera.
 Maus zielt; linke Maustaste tippen/halten feuert. Der Ring zeigt den tatsächlichen
 3D-Zielpunkt (mint: frei, orange: Mündung verdeckt). Treffer werden pro Höhe gezählt.
+Beim Zielen auf Boden derselben Höhe bestimmt der Cursor die **Schussrichtung auf
+Waffenhöhe**. Du kannst vor oder hinter einen Gegner zielen: Wer innerhalb der
+Waffenreichweite in der Flugbahn steht, wird getroffen. Der Cursor begrenzt die
+Flugstrecke nicht. Direktes Zielen auf Gegner oder andere Höhen bleibt räumliches
+3D-Zielen; Wände und Plattformkanten blockieren weiterhin. Das gilt auch für Touch.
 B bzw. „Route zeigen“ startet einmal die goldene Navigationsprobe; Neuladen setzt
 die Übung zurück. Die markierten Absprungstellen führen über E1 und E2. Wer über
 den äußeren Rand fällt, kehrt zum Start zurück.

@@ -255,6 +255,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         read: () => ({
           snapshot: current, paused, camera: view.camera.mode, basis: view.camera.basis(),
           screen: view.projectedPosition(current.position),
+          weaponScreen: view.projectedPosition({ ...current.position, y: current.position.y + 0.25 }),
           rendered: { x: view.actor.position.x, y: view.actor.position.y, z: view.actor.position.z },
           marker: { x: view.marker.position.x, z: view.marker.position.z },
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),

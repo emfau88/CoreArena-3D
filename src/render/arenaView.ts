@@ -74,7 +74,7 @@ export class ArenaView {
       THREE.MathUtils.lerp(previous.position.z, current.position.z, alpha),
     );
     this.actor.position.copy(this.position);
-    this.actor.rotation.y = aim ? Math.atan2(aim.target.point.x - current.position.x, aim.target.point.z - current.position.z) : current.facing;
+    this.actor.rotation.y = aim ? Math.atan2(aim.firePoint.x - current.position.x, aim.firePoint.z - current.position.z) : current.facing;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt);
     this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;

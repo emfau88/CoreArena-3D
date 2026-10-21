@@ -17,9 +17,9 @@ test('Arc is immediate, bounded by distance/cone and blocked by actual 3D cover'
   try {
     const aim = solveAim(world, camera, arena.spawn)!;
     assert.equal(arcHit(world, aim, camera, [target])?.id, target.id);
-    const outside = { ...aim, target: { ...aim.target, point: { x: 4, y: 1.15, z: 2 } } };
+    const outside = { ...aim, firePoint: { x: 4, y: 1.15, z: 2 } };
     assert.equal(arcHit(world, outside, camera, [target]), null);
-    const nearMiss = { ...aim, target: { ...aim.target, point: { x: 4, y: 1.15, z: 0.3 } } };
+    const nearMiss = { ...aim, firePoint: { x: 4, y: 1.15, z: 0.3 } };
     assert.equal(arcHit(world, nearMiss, camera, [target])?.id, target.id);
     const far = solveAim(world, camera, { x: -5, y: 0, z: 0 })!;
     assert.equal(arcHit(world, far, camera, [target]), null);

@@ -74,7 +74,7 @@ export class BotBrain {
       const point = { x: muzzle.x + direction.x * line.distance, y: muzzle.y + direction.y * line.distance, z: muzzle.z + direction.z * line.distance };
       ray = { origin: muzzle, direction };
       // Muzzle stays inside the shooter; the shared weapon does the actual cover/hit queries.
-      aim = { muzzle, target: { id: visible.id, point, normal: { x: 0, y: 1, z: 0 }, distance: line.distance },
+      aim = { muzzle, firePoint: point, target: { id: visible.id, point, normal: { x: 0, y: 1, z: 0 }, distance: line.distance },
         impact: null, end: point, blocked: false };
     }
     return { movement, firing: mode === 'fight' && Math.abs(wrap(desired - this.facing)) < 0.15,

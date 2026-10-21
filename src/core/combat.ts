@@ -26,7 +26,7 @@ const along = (origin: Vec3, direction: Vec3, distance: number): Vec3 => ({
 
 /** Arc assistance uses a bounded 3D cone and two real visibility rays, never a screen-wide nearest enemy. */
 export function arcHit(world: RayWorld, aim: AimSolution, camera: Ray, targets: readonly CombatTarget[]): RayHit | null {
-  const forward = directionTo(aim.muzzle, aim.target.point).direction;
+  const forward = directionTo(aim.muzzle, aim.firePoint).direction;
   let best: { hit: RayHit; dot: number } | null = null;
   for (const target of targets) {
     const line = directionTo(aim.muzzle, target.center);
@@ -74,7 +74,7 @@ export class Combat {
       attacked = true;
       const kind = this.selected;
       this.next[kind] = tick + WEAPONS[kind].cooldown;
-      const forward = directionTo(aim.muzzle, aim.target.point).direction;
+      const forward = directionTo(aim.muzzle, aim.firePoint).direction;
       if (kind === 'arc') {
         const hit = arcHit(world, aim, camera, targets);
         const obstruction = world.raycast({ origin: aim.muzzle, direction: forward }, WEAPONS.arc.range);

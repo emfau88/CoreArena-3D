@@ -76,7 +76,7 @@ export class PracticeView {
       this.reticle.material.color.setHex(aim.blocked ? 0xffaa68 : 0x91e6d4);
       this.gun.position.set((state.position.x + aim.muzzle.x) / 2,
         (state.position.y + 1.15 + aim.muzzle.y) / 2, (state.position.z + aim.muzzle.z) / 2);
-      this.gun.lookAt(aim.target.point.x, aim.target.point.y, aim.target.point.z);
+      this.gun.lookAt(aim.firePoint.x, aim.firePoint.y, aim.firePoint.z);
     }
     const tick = match && match.phase !== 'ready' ? match.tick : state.tick;
     const recent = !!shot && tick - shot.tick >= 0 && tick - shot.tick < 6;

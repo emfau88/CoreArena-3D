@@ -105,6 +105,8 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+Nacharbeit auf Spielrückmeldung vom 21. Oktober 2026: Gleichhohes Boden-Aim lenkt Arc/Pulse jetzt auf Waffenhöhe durch den Cursorstrahl, statt in den Boden. Vor und hinter den Gegner zielen funktioniert entlang der tatsächlichen Trefferbahn; echte 3D-Zielwahl auf andere Höhen bleibt erhalten. Kein Beginn von M2.4. [Prüfung](../qa/DIRECTIONAL_AIM_RESULT.md).
+
 Nach Abschluss von M2.3 verbleiben für **M2.4–M2.6 zusammen 40–80 Minuten** aus dem bestehenden Paketplan. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehört nicht zum ursprünglichen Waffenpaket.
 
 Jedes Paket umfasst seine passenden Tests und einen kurzen Browsernachweis, soweit es sichtbares Spielverhalten verändert. Die abschließenden Prüfblöcke bündeln Regression, längere Simulationen und Spielabnahme; sie verschieben das Testen nicht ans Ende.

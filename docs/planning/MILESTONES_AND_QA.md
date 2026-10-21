@@ -24,6 +24,7 @@ Stand: 21. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 - [x] Separat freigegebener einfacher Mobile-Zugang: Joystick, direktes Touch-Aim/Feuer, Sprung/Sprint, kompakte Anzeige und Querformat. Keine vorgezogene M2.3-Implementierung; echte Smartphone-Abnahme offen.
 - [x] M2.3 durch „go nächster punkt“ freigegeben: Botwahrnehmung und Kampf.
 - [x] M2.3: Spielbares Botduell, begrenzte 3D-Sicht, Erinnerung, Reaktion und gemeinsame Waffen; gezielte Kern- und Browserprüfung bestanden.
+- [x] Spielrückmeldung nach M2.3: Boden-Aim auf derselben Höhe bestimmt die Schussrichtung auf Waffenhöhe; Cursor vor/hinter Gegner trifft entlang der Flugbahn. [Nachweis](../qa/DIRECTIONAL_AIM_RESULT.md).
 - [ ] M2.4–M2.6: Teamspiel/Schwierigkeiten/Routen, Gesamtarena und integrierte Matchabnahme; noch nicht freigegeben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.
