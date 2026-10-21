@@ -1,0 +1,177 @@
+{
+  "startTime": "2026-10-21T12:08:40.609Z",
+  "status": "passed",
+  "durationMs": 20324,
+  "browser": "156.0.8078.4",
+  "viewport": "1366x768",
+  "attacked": {
+    "phase": "running",
+    "tick": 177,
+    "remainingTicks": 7023,
+    "scores": {
+      "blue": 0,
+      "red": 0
+    },
+    "actors": {
+      "player": {
+        "id": "player",
+        "team": "blue",
+        "life": 1,
+        "hp": 80,
+        "armor": 0,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      },
+      "rival": {
+        "id": "rival",
+        "team": "red",
+        "life": 1,
+        "hp": 100,
+        "armor": 50,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      }
+    },
+    "reason": null,
+    "winner": null
+  },
+  "playerRespawn": {
+    "phase": "running",
+    "tick": 612,
+    "remainingTicks": 6588,
+    "scores": {
+      "blue": 0,
+      "red": 1
+    },
+    "actors": {
+      "player": {
+        "id": "player",
+        "team": "blue",
+        "life": 2,
+        "hp": 100,
+        "armor": 0,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 61
+      },
+      "rival": {
+        "id": "rival",
+        "team": "red",
+        "life": 1,
+        "hp": 100,
+        "armor": 50,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      }
+    },
+    "reason": null,
+    "winner": null
+  },
+  "defeated": {
+    "phase": "running",
+    "tick": 165,
+    "remainingTicks": 7035,
+    "scores": {
+      "blue": 1,
+      "red": 0
+    },
+    "actors": {
+      "player": {
+        "id": "player",
+        "team": "blue",
+        "life": 1,
+        "hp": 45,
+        "armor": 0,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      },
+      "rival": {
+        "id": "rival",
+        "team": "red",
+        "life": 1,
+        "hp": 0,
+        "armor": 0,
+        "alive": false,
+        "respawnTicks": 239,
+        "protectionTicks": 0
+      }
+    },
+    "reason": null,
+    "winner": null
+  },
+  "rivalRespawn": {
+    "phase": "running",
+    "tick": 432,
+    "remainingTicks": 6768,
+    "scores": {
+      "blue": 1,
+      "red": 0
+    },
+    "actors": {
+      "player": {
+        "id": "player",
+        "team": "blue",
+        "life": 1,
+        "hp": 10,
+        "armor": 0,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      },
+      "rival": {
+        "id": "rival",
+        "team": "red",
+        "life": 2,
+        "hp": 100,
+        "armor": 0,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 0
+      }
+    },
+    "reason": null,
+    "winner": null
+  },
+  "restarted": {
+    "phase": "running",
+    "tick": 1,
+    "remainingTicks": 7199,
+    "scores": {
+      "blue": 0,
+      "red": 0
+    },
+    "actors": {
+      "player": {
+        "id": "player",
+        "team": "blue",
+        "life": 1,
+        "hp": 100,
+        "armor": 50,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 119
+      },
+      "rival": {
+        "id": "rival",
+        "team": "red",
+        "life": 1,
+        "hp": 100,
+        "armor": 50,
+        "alive": true,
+        "respawnTicks": 0,
+        "protectionTicks": 119
+      }
+    },
+    "reason": null,
+    "winner": null
+  },
+  "errors": [],
+  "regressions": [
+    "M2.2 weapon/height/pickup passed",
+    "mobile touch passed"
+  ]
+}

@@ -1,6 +1,6 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 20. Oktober 2026. **M0, M1, M2.1 und M2.2 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
+Stand: 21. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3 wurde durch „go nächster punkt“ freigegeben. M2.4–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
 
 ## Freigegebener kleiner Mobile-Zusatz
 
@@ -89,7 +89,7 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M1.4 ✅ Technische Übergabe** | Kamera, Motor, Aim und Navigation zusammen prüfen und gezielt nacharbeiten | M1.1–M1.3 | Anteil an ca. 30 Min. M1-Erststand | Browser-Spielablauf, Aufnahmen; Nutzer-Test separat |
 | **M2.1 ✅ Lebenszyklus und Match** | HP/Armor, Schaden, Tod/Respawn, Spawn-Schutz, TDM-Score, Timer und Restart; Trainingsmatch mit vorhandenen Zielen | Erledigt; Nutzer-Spielurteil offen | 10–20 Min. ursprünglicher Planwert; keine separat gemessene Ist-Zeit | 16 Kern-/Physiktests, vollständiger Browsermatch mit 10 Abschüssen, Respawn und Restart; [Nachweis](../qa/M2_1_RESULT.md) |
 | **M2.2 ✅ Waffen und Ressourcen** | Arc Lash/Pulse, Auswahl, Munition und Pickups; Zielregel dokumentiert | Erledigt; Nutzer-Spielurteil offen | 15–30 Min. ursprünglicher Planwert | 21 Kern-/Physiktests und acht Browserfälle einschließlich Waffenwahl, Pulse-Treffern, Fallback und Armor auf E2; [Nachweis](../qa/M2_2_RESULT.md) |
-| **M2.3 Botwahrnehmung und Kampf** | Begrenzte Wahrnehmung, Gedächtnis, Reaktion und Waffenbedienung | M2.2 und M1.3 | 25–50 Min. | Verdeckte Gegner verborgen; keine vorzeitige Reaktion |
+| **M2.3 ✅ Botwahrnehmung und Kampf** | Spielbares 1v1, begrenzte 3D-Sicht, kopierte Erinnerung, Reaktion und gemeinsame Waffenbedienung | Erledigt; Nutzer-Spielurteil offen | 25–50 Min. ursprünglicher Planwert | Verdeckte Gegner verborgen; keine vorzeitige Reaktion; echtes Duell mit Schaden/Kills/Respawns; [Nachweis](../qa/M2_3_RESULT.md) |
 | **M2.4 Teamspiel und Schwierigkeiten** | 2v2, Ressourcenwahl, Easy/Normal/Hard und blockierte Routen | M2.3 | 15–30 Min. | Alle Stufen nutzen Pflichtwege; gleiche Basisstats |
 | **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 10–20 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
 | **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
@@ -105,7 +105,7 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
-Nach Abschluss von M2.2 verbleiben für **M2.3–M2.6 zusammen 65–130 Minuten** aus dem bestehenden Paketplan. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehört nicht zum ursprünglichen Waffenpaket.
+Nach Abschluss von M2.3 verbleiben für **M2.4–M2.6 zusammen 40–80 Minuten** aus dem bestehenden Paketplan. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehört nicht zum ursprünglichen Waffenpaket.
 
 Jedes Paket umfasst seine passenden Tests und einen kurzen Browsernachweis, soweit es sichtbares Spielverhalten verändert. Die abschließenden Prüfblöcke bündeln Regression, längere Simulationen und Spielabnahme; sie verschieben das Testen nicht ans Ende.
 
@@ -115,4 +115,4 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand: M0.1–M0.3, M1.1–M1.4, M2.1 und M2.2 umgesetzt und technisch geprüft; einfacher Touch-Zugang zusätzlich umgesetzt.** [M2.2-Nachweise](../qa/M2_2_RESULT.md). Vor M2.3 auf die nächste Freigabe warten. Weiterer Mobile-Ausbau bleibt optional.
+**Aktueller Stand: M0.1–M0.3, M1.1–M1.4 und M2.1–M2.3 umgesetzt und technisch geprüft; einfacher Touch-Zugang zusätzlich umgesetzt.** [M2.3-Nachweise](../qa/M2_3_RESULT.md). Vor M2.4 auf die nächste Freigabe warten. Weiterer Mobile-Ausbau bleibt optional.

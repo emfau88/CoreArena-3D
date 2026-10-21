@@ -31,6 +31,7 @@ export class PracticeView {
   private readonly targets = new Map<string, THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>>();
   private readonly targetDetails = new Map<string, { hoop: THREE.Mesh<THREE.TorusGeometry, THREE.MeshStandardMaterial>; bars: THREE.Group; hp: THREE.Mesh; armor: THREE.Mesh }>();
   private readonly hazard = new THREE.Group();
+  private readonly targetRoot = new THREE.Group();
   private readonly normal = new THREE.Vector3();
   constructor(scene: THREE.Scene, arena: ArenaDefinition) {
     for (const target of arena.targets ?? []) {
@@ -38,10 +39,10 @@ export class PracticeView {
         new THREE.MeshStandardMaterial({ color: 0xa96253, metalness: 0.55, roughness: 0.35, emissive: 0xffb881, emissiveIntensity: 0 }));
       mesh.position.set(target.center.x, target.center.y, target.center.z);
       mesh.castShadow = true;
-      scene.add(mesh); this.targets.set(target.id, mesh);
+      this.targetRoot.add(mesh); this.targets.set(target.id, mesh);
       const hoop = new THREE.Mesh(new THREE.TorusGeometry(target.radius + 0.14, 0.035, 6, 32),
         new THREE.MeshStandardMaterial({ color: 0xd9bd87, metalness: 0.6, roughness: 0.3 }));
-      hoop.rotation.x = Math.PI / 2; hoop.position.copy(mesh.position); scene.add(hoop);
+      hoop.rotation.x = Math.PI / 2; hoop.position.copy(mesh.position); this.targetRoot.add(hoop);
       const bars = new THREE.Group();
       bars.position.set(target.center.x, target.center.y + 1, target.center.z);
       const bar = (color: number, y: number) => {
@@ -49,10 +50,10 @@ export class PracticeView {
         item.position.y = y; bars.add(item); return item;
       };
       const hp = bar(0xeaa18b, 0); const armor = bar(0x8ddcfa, 0.16);
-      scene.add(bars); this.targetDetails.set(target.id, { hoop, bars, hp, armor });
+      this.targetRoot.add(bars); this.targetDetails.set(target.id, { hoop, bars, hp, armor });
       const label = labelMesh(`${target.level} / ZIEL`, 3.2);
       label.position.set(target.center.x, target.center.y - 1.07, target.center.z + 1.25);
-      label.rotation.x = -Math.PI / 2; scene.add(label);
+      label.rotation.x = -Math.PI / 2; this.targetRoot.add(label);
     }
     this.reticle.renderOrder = this.impact.renderOrder = 20;
     this.tracer.frustumCulled = false;
@@ -63,7 +64,7 @@ export class PracticeView {
     this.hazard.position.set(TRAINING_FIELD.x, 0.035, TRAINING_FIELD.z);
     const fieldLabel = labelMesh('SCHADENSFELD', 3.1); fieldLabel.rotation.x = -Math.PI / 2; fieldLabel.position.z = 2;
     this.hazard.add(field, fieldLabel); scene.add(this.hazard);
-    scene.add(this.reticle, this.impact, this.tracer, this.gun, this.bot.actor);
+    scene.add(this.reticle, this.impact, this.tracer, this.gun, this.bot.actor, this.targetRoot);
   }
   update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number, match?: MatchSnapshot, camera?: THREE.Camera): void {
     this.reticle.visible = this.gun.visible = !!aim;
@@ -88,7 +89,8 @@ export class PracticeView {
       this.impact.position.set(end.x, end.y, end.z);
     }
     const training = match?.phase !== undefined && match.phase !== 'ready';
-    this.hazard.visible = training;
+    this.targetRoot.visible = !match?.actors.rival;
+    this.hazard.visible = training && !match?.actors.rival;
     for (const [id, mesh] of this.targets) {
       const life = training ? match?.actors[id] : undefined;
       const detail = this.targetDetails.get(id)!;

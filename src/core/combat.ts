@@ -44,6 +44,7 @@ export function arcHit(world: RayWorld, aim: AimSolution, camera: Ray, targets: 
 }
 
 export class Combat {
+  constructor(private readonly source = 'player') {}
   private selected: WeaponId = 'arc';
   private ownsPulse = false;
   private ammo = 0;
@@ -79,7 +80,7 @@ export class Combat {
         const obstruction = world.raycast({ origin: aim.muzzle, direction: forward }, WEAPONS.arc.range);
         const end = hit?.point ?? obstruction?.point ?? along(aim.muzzle, forward, WEAPONS.arc.range);
         this.lastArc = { sequence: ++this.sequence, tick, aim: { ...aim, impact: hit ?? obstruction, end } };
-        if (hit) { damage.push({ source: 'player', target: hit.id, amount: WEAPONS.arc.damage }); this.impact = { point: hit.point, tick, id: hit.id }; }
+        if (hit) { damage.push({ source: this.source, target: hit.id, amount: WEAPONS.arc.damage }); this.impact = { point: hit.point, tick, id: hit.id }; }
       } else {
         this.projectiles.push({ id: ++this.sequence, position: aim.muzzle, direction: forward, remaining: WEAPONS.pulse.range });
         this.ammo--;
@@ -92,7 +93,7 @@ export class Combat {
       const hit = world.sweepBall({ origin: projectile.position, direction: projectile.direction }, distance, WEAPONS.pulse.radius);
       if (hit) {
         this.impact = { point: hit.point, tick, id: hit.id };
-        damage.push({ source: 'player', target: hit.id, amount: WEAPONS.pulse.damage });
+        damage.push({ source: this.source, target: hit.id, amount: WEAPONS.pulse.damage });
       } else if (projectile.remaining > distance) flying.push({ ...projectile,
         position: along(projectile.position, projectile.direction, distance), remaining: projectile.remaining - distance });
     }

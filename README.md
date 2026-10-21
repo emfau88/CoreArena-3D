@@ -2,13 +2,13 @@
 
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
 
-**Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Trainingsmatch starten“, am Desktop dann WASD/Shift/Space.
+**Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Botmatch starten“ für das neue 1-gegen-1 oder „Trainingsmatch starten“ für stationäre Ziele; am Desktop dann WASD/Shift/Space.
 Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt Arc Lash.
 [Build & Deployment](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml)
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
 
-Eigenständiges Desktop-Spielprojekt. **M0, M1, M2.1 und M2.2 sind umgesetzt und technisch
-geprüft.** M2.3 und folgende Pakete benötigen die nächste Freigabe.
+Eigenständiges Desktop-Spielprojekt. **M0, M1 und M2.1–M2.3 sind umgesetzt und technisch
+geprüft.** M2.4 und folgende Pakete benötigen die nächste Freigabe.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
@@ -18,7 +18,8 @@ ihren Aufwärtsimpuls; Kantenkontakt beim Aufstieg zählt nicht als Landung.
 Optik und Bewegung orientieren sich an V5. M2.1 ergänzt einen Trainingsmatch mit
 HP/Armor, Tod/Respawn, Spawn-Schutz, Punkten, Timer und Neustart.
 M2.2 ergänzt Arc Lash, Pulse Repeater, Waffenwahl und Pickups.
-Kampfbots folgen in späteren Paketen. Eine einfache mobile Touch-Steuerung ist verfügbar.
+M2.3 ergänzt ein Botduell mit begrenzter Sicht, Gedächtnis und Reaktionszeit.
+Eine einfache mobile Touch-Steuerung ist verfügbar.
 
 ### Einfach mobil spielen
 
@@ -71,6 +72,16 @@ verursacht Schaden zum Ausprobieren des eigenen Lebenszyklus; Umwelttod gibt kei
 Teampunkte. „Neu starten“ bzw. „Noch einmal spielen“ setzt die Runde zurück.
 Dies ist eine Trainingsrunde gegen stationäre Ziele, noch kein 2v2 mit Kampf-Bots.
 
+**„Botmatch starten“:** ein roter beweglicher Gegner mit denselben Lebens-, Bewegungs-
+und Waffenwerten. Er sieht höchstens 18 m weit in einem 140°-Sichtfeld; echte Deckung
+blockiert die Sicht. Vor dem Feuer wartet er 0,4 s, auch nach erneutem Sichtkontakt.
+Er merkt sich einen verlorenen Gegner höchstens 2 s am zuletzt gesehenen Ort und
+feuert ohne Sicht nicht weiter. Zielnachführung erfolgt alle 0,1 s mit begrenztem
+Drehtempo und Zielabweichung. Bereits abgefeuerte Projektile fliegen weiter.
+Beide starten mit Arc Lash; auch der Bot muss Pulse und Munition regulär aufnehmen.
+Der Gegner patrouilliert und verfolgt lokal auf E0. Gezielte Höhenrouten, Umwege bei
+Blockaden, Ressourcenplanung, Teamspiel und Schwierigkeitswahl folgen mit M2.4.
+
 | Waffe | Bedienung und Wirkung |
 | --- | --- |
 | Arc Lash | **1**; unbegrenzt, 35 Schaden, 0,8 s Abstand, 5 m Reichweite; 10° Zielhilfe um den 3D-Zielstrahl, echte Sicht und Deckung |
@@ -98,9 +109,10 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | M1.4 Zusammenspiel/Übergabe | Technisch geprüft; persönliches Spielurteil offen |
 | M2.1 Lebenszyklus und Match | Erledigt; kompletter Trainingsmatch im Browser geprüft |
 | M2.2 Waffen und Ressourcen | Erledigt; beide Waffen, Pickups, Munition und Restart im Browser geprüft |
-| M2.3–M2.6 | Nicht begonnen; nächste Freigabe erforderlich |
+| M2.3 Botwahrnehmung und Kampf | Erledigt; Sicht/Reaktion/Gedächtnis, Waffenregeln und echtes Botduell geprüft |
+| M2.4–M2.6 | Nicht begonnen; nächste Freigabe erforderlich |
 
-[M2.2-Ergebnis und Testnachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
+[M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 
 ```powershell
 npm test

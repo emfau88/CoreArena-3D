@@ -92,6 +92,10 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     return { id: this.names.get(hit.collider.handle)!, point: query.pointAt(hit.timeOfImpact),
       normal: { ...hit.normal }, distance: hit.timeOfImpact };
   }
+  setTargetPosition(id: string, position: Vec3): void {
+    this.targets.get(id)?.setTranslation(position);
+    this.world.step();
+  }
   setTargetEnabled(id: string, enabled: boolean): void {
     const collider = this.targets.get(id);
     if (collider && collider.isEnabled() !== enabled) {
