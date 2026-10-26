@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 21. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. GitHub-Pages-Publikation und einfacher Mobile-Zugang zusätzlich freigegeben.** M2.4–M2.6 und M3–M5 nicht freigegeben.
+Stand: 26. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und ein separater kleiner PvE-Versuch zusätzlich freigegeben.** M2.4–M2.6 und M3–M5 nicht freigegeben.
 
 ## Aktueller Fortschritt
 
@@ -26,6 +26,15 @@ Stand: 21. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 - [x] M2.3: Spielbares Botduell, begrenzte 3D-Sicht, Erinnerung, Reaktion und gemeinsame Waffen; gezielte Kern- und Browserprüfung bestanden.
 - [x] Spielrückmeldung nach M2.3: Boden-Aim auf derselben Höhe bestimmt die Schussrichtung auf Waffenhöhe; Cursor vor/hinter Gegner trifft entlang der Flugbahn. [Nachweis](../qa/DIRECTIONAL_AIM_RESULT.md).
 - [ ] M2.4–M2.6: Teamspiel/Schwierigkeiten/Routen, Gesamtarena und integrierte Matchabnahme; noch nicht freigegeben.
+
+Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
+
+- [x] Vorherigen Stand `24ac358` auf `checkpoint/pre-pve-test-2026-10-26` gesichert und gepusht.
+- [x] PvE-Einstieg mit eigener Begegnung: auftauchender Steinwächter, angekündigte Schockwelle und fest markierter Bodenausbruch.
+- [x] Vorhandene Bewegung, Waffen und Touch wiederverwendet; eigene HP-/Sieg-/Niederlageregeln, Pickups und Neustart.
+- [x] Kernprüfung und echte Browserabläufe einschließlich Sieg, Niederlage, Ausweichen und Rückkehr zur Arena. [Nachweise](../qa/PVE_BASIC_RESULT.md).
+- [ ] Persönliches Spielurteil: Trägt der Kampf als Richtung für kurze PvE-Level?
+- [ ] Erst nach Rückmeldung über weiteren PvE-Ausbau oder Kampagnenplanung entscheiden. Keine Änderung der bisherigen Meilensteinfreigaben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.
 

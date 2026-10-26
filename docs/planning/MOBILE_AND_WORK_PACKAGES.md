@@ -105,6 +105,15 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**Zusatz vom 26. Oktober 2026: kleiner PvE-Versuch ✅ umgesetzt und technisch geprüft.**
+Eine separate Begegnung mit einem Steinwächter, Auftauchen, zwei angekündigten
+Angriffen, Sieg/Niederlage, Pickups und Neustart. Gemeinsame Waffen, Bewegung und
+Touch; keine Kampagnenstruktur, Speicherung oder neue Gegnernavigation.
+Vorheriger Stand auf `checkpoint/pre-pve-test-2026-10-26` gesichert, Umsetzung als
+separater rücknehmbarer Commit. [Browsernachweise](../qa/PVE_BASIC_RESULT.md).
+Keine separat gemessene Ist-Zeit; kein nachträglich erfundener Planwert.
+Als Nächstes zunächst Nutzerurteil zur PvE-Richtung einholen. M2.4 bleibt ungeöffnet.
+
 Nacharbeit auf Spielrückmeldung vom 21. Oktober 2026: Gleichhohes Boden-Aim lenkt Arc/Pulse jetzt auf Waffenhöhe durch den Cursorstrahl, statt in den Boden. Vor und hinter den Gegner zielen funktioniert entlang der tatsächlichen Trefferbahn; echte 3D-Zielwahl auf andere Höhen bleibt erhalten. Kein Beginn von M2.4. [Prüfung](../qa/DIRECTIONAL_AIM_RESULT.md).
 
 Nach Abschluss von M2.3 verbleiben für **M2.4–M2.6 zusammen 40–80 Minuten** aus dem bestehenden Paketplan. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehört nicht zum ursprünglichen Waffenpaket.

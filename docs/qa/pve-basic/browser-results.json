@@ -1,0 +1,253 @@
+{
+  "date": "2026-10-26",
+  "tests": [
+    {
+      "title": "optional PvE: emerge, jump wave, dodge locked eruption, shoot a real victory, restart and return to arena",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 20904,
+      "retry": 0,
+      "observations": [
+        {
+          "name": "pve-playthrough",
+          "data": {
+            "browser": "156.0.8078.4",
+            "dodged": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 552,
+                "position": {
+                  "x": -4.08041524887085,
+                  "y": 0.024975275993347146,
+                  "z": 7.279803276062012
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": 3.141592653589793
+              },
+              "pve": {
+                "tick": 552,
+                "phase": "recovery",
+                "phaseTick": 3,
+                "kind": "eruption",
+                "target": {
+                  "x": -0.00005958825204288587,
+                  "y": -1.7881393449270533e-8,
+                  "z": 7.999954700469971
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 520,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": {
+                  "point": {
+                    "x": 0.000010155098129845328,
+                    "y": 3.1326504096899797,
+                    "z": 0.44211934894313354
+                  },
+                  "tick": 464,
+                  "id": "stone-warden"
+                }
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 730.439833475322,
+                "y": 268.97815149414686
+              }
+            },
+            "won": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 1076,
+                "position": {
+                  "x": 0.11946733295917511,
+                  "y": 0.02330372333526609,
+                  "z": 7.2780656814575195
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": 1.5707963267948966
+              },
+              "pve": {
+                "tick": 1076,
+                "phase": "defeated",
+                "phaseTick": 0,
+                "kind": "eruption",
+                "target": {
+                  "x": -4.080626010894775,
+                  "y": -1.7881393449270533e-8,
+                  "z": 7.279809951782227
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 0,
+                "outcome": "victory",
+                "hitsTaken": 0,
+                "lastHit": -100
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 20,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 682.1705898798092,
+                "y": 269.0281651473627
+              }
+            },
+            "restarted": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 1076,
+                "position": {
+                  "x": 0,
+                  "y": 0.06,
+                  "z": 8
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": false,
+                "surface": null,
+                "ceiling": false,
+                "facing": 1.5707963267948966
+              },
+              "pve": {
+                "tick": 0,
+                "phase": "emerging",
+                "phaseTick": 0,
+                "kind": "wave",
+                "target": {
+                  "x": 0,
+                  "y": 0,
+                  "z": -1
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 600,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 682.2027348254688,
+                "y": 268.74988522084897
+              }
+            },
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "PvE: ignoring telegraphs produces real defeat; pause and retry work",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 14933,
+      "retry": 0,
+      "observations": [
+        {
+          "name": "pve-defeat",
+          "data": {
+            "mode": "pve",
+            "snapshot": {
+              "tick": 783,
+              "position": {
+                "x": 0.0000323578278766945,
+                "y": 0.01997653245925901,
+                "z": 8
+              },
+              "velocity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "grounded": true,
+              "surface": "floor",
+              "ceiling": false,
+              "facing": 0
+            },
+            "pve": {
+              "tick": 783,
+              "phase": "attack",
+              "phaseTick": 54,
+              "kind": "wave",
+              "target": {
+                "x": 0.0000323578278766945,
+                "y": -1.7881393449270533e-8,
+                "z": 8
+              },
+              "waveRadius": 8.48,
+              "hp": 0,
+              "armor": 0,
+              "bossHp": 600,
+              "outcome": "defeat",
+              "hitsTaken": 3,
+              "lastHit": 783
+            },
+            "weapons": {
+              "selected": "pulse",
+              "ownsPulse": true,
+              "ammo": 54,
+              "projectiles": [],
+              "lastArc": null,
+              "impact": null
+            },
+            "paused": false,
+            "monsterScreen": {
+              "x": 683.4996272378229,
+              "y": 263.09055640784425
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "enter, move, shoot the monster and return with touch",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 4749,
+      "retry": 0,
+      "observations": []
+    }
+  ]
+}

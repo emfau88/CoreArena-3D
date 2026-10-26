@@ -33,7 +33,7 @@ export class PracticeView {
   private readonly hazard = new THREE.Group();
   private readonly targetRoot = new THREE.Group();
   private readonly normal = new THREE.Vector3();
-  constructor(scene: THREE.Scene, arena: ArenaDefinition) {
+  constructor(scene: THREE.Scene, arena: ArenaDefinition, private readonly trainingEnabled = true) {
     for (const target of arena.targets ?? []) {
       const mesh = new THREE.Mesh(new THREE.SphereGeometry(target.radius, 16, 12),
         new THREE.MeshStandardMaterial({ color: 0xa96253, metalness: 0.55, roughness: 0.35, emissive: 0xffb881, emissiveIntensity: 0 }));
@@ -90,7 +90,7 @@ export class PracticeView {
     }
     const training = match?.phase !== undefined && match.phase !== 'ready';
     this.targetRoot.visible = !match?.actors.rival;
-    this.hazard.visible = training && !match?.actors.rival;
+    this.hazard.visible = this.trainingEnabled && training && !match?.actors.rival;
     for (const [id, mesh] of this.targets) {
       const life = training ? match?.actors[id] : undefined;
       const detail = this.targetDetails.get(id)!;

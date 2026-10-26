@@ -1,0 +1,68 @@
+# Kleiner PvE-Versuch: Der Steinwächter
+
+26. Oktober 2026. Separat beauftragter, reversibler Spielversuch. **Umgesetzt und
+technisch geprüft; persönliches Spielurteil offen.**
+
+[Direkt spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve).
+
+## Spielbarer Umfang
+
+Eine Begegnung auf einer kleinen Variante der bestehenden Arena. Ein großer
+prozeduraler Steinwächter taucht aus einem Krater mit hochfliegenden Steinen auf.
+Er hebt vor dem Schlag die Arme. Zwei Angriffe wechseln sich ab:
+
+- Schockwelle: sichtbarer Ring breitet sich aus, Springen oder echte Deckung schützt.
+- Bodenausbruch: Warnkreis markiert einmal den Standort; er verfolgt den Spieler
+  nicht. Rechtzeitig hinauslaufen, Springen allein genügt nicht.
+
+600 Monster-HP, Spieler mit 100 HP/50 Armor, Pulse mit 54 Schuss, zwei Munitions-
+und ein Heilpickup. Treffer verwenden den vorhandenen Combat-/Rapier-Pfad.
+Sieg und Niederlage beenden die Begegnung; Neustart setzt sämtliche Ressourcen
+und Projektile zurück. „Zur Arena“ öffnet den normalen Modus. Touch bleibt nutzbar.
+
+## Abgrenzung und Rücknahme
+
+Der vorherige saubere Stand `24ac35885fd202c3e772c4016287408e4a0d7e23` wurde vor
+der Änderung gepusht und zusätzlich auf `checkpoint/pre-pve-test-2026-10-26`
+gesichert. Der Versuch wird als eigener Commit auf `main` veröffentlicht und
+kann mit dessen `git revert` entfernt werden, ohne spätere Arbeit zurückzusetzen.
+
+`?mode=pve` lädt einen eigenen Einstieg mit eigenem numerischen Begegnungszustand.
+ArenaMatch, Botregeln und Waffenwerte bleiben unverändert. Renderer, Eingabe,
+Motor, Waffen und Pickups werden wiederverwendet. Es gibt weder Kampagnenspeicher
+noch Levelkette, Rekrutierung oder Fortschrittsbelohnungen. Das Monster bleibt an
+seinem Krater; Modell, Trefferkörper und Effekte sind bewusst ein erster Versuch.
+Neue Sounds oder ein ausbalanciertes Schwierigkeitsmodell sind nicht enthalten.
+CTF-3.0 wurde nicht verändert; M2.4 wurde nicht begonnen.
+
+## Prüfung
+
+- **32/32 Kern-/Physiktests bestanden**, einschließlich vier neuer Fälle für
+  Warnzeiten, einmaligen Schaden, Sprunghöhe, reale Deckung, fixierte Bodenziele,
+  Sieg/Niederlage und Reset.
+- Typecheck, Testbuild und Produktionsbuild bestanden.
+- **Drei neue sichtbare Chromium-Browserfälle bestanden:** kompletter Sieg durch
+  echte Schüsse mit Sprung, Ausweichen und Munitionsaufnahme; reguläre Niederlage
+  durch drei ignorierte Angriffe mit Pause/Weiter/Retry; Touch-Einstieg, Bewegung,
+  echter Monstertreffer und Rückkehr zur Arena.
+- Bestehendes M2.3-Botduell und vollständige Touch-Regression bestanden.
+- Browsersteuerung ausschließlich durch Maus, Tastatur und Touchereignisse;
+  Diagnose nur lesend, keine injizierten Treffer oder Endergebnisse.
+- Desktop 1366×768, Touch 844×390 in Chromium-Emulation. Kein Nachweis auf einem
+  echten Smartphone und keine Aussage über dessen Leistung.
+
+Im ersten Lauf waren zwei Fehler sichtbar: Dem neuen Pause-Knopf fehlte
+`pointer-events: auto`; außerdem reagierte der Test wegen grober Abfrageintervalle
+zu spät auf den Bodenausbruch. Knopf korrigiert, Testbeobachtung auf 20 ms verkürzt
+und Bewegung vor dem Screenshot gestartet. Die Spiel-Warnzeit wurde nicht für
+den Test verlängert. Anschließend bestanden beide Abläufe ohne automatische Retries.
+
+[Kompakter Browserbericht](pve-basic/browser-results.json)
+
+![Wächter vor dem Schlag](pve-basic/warden-warning.png)
+![Regulär erspielter Sieg](pve-basic/victory.png)
+![Touch im Querformat](pve-basic/mobile.png)
+
+Nächster Schritt ist ein kurzer persönlicher Spieltest: Macht das Ausweichen und
+Gegenfeuern Spaß genug, um diese Richtung weiterzuverfolgen? Weitere Level bleiben
+eine eigene Entscheidung.

@@ -9,7 +9,7 @@ import { buildArena } from './buildArena';
 import { createFighter } from './fighter';
 import type { MatchSnapshot } from '../core/match';
 import type { WeaponSnapshot } from '../core/combat';
-import type { PickupState } from '../core/pickups';
+import type { PickupDefinition, PickupState } from '../core/pickups';
 import { ARENA_PICKUPS } from '../arena/pickups';
 import { CombatView } from './combatView';
 
@@ -28,7 +28,7 @@ export class ArenaView {
   private readonly combat: CombatView;
   private readonly raycaster = new THREE.Raycaster();
 
-  constructor(host: HTMLElement, arena: ArenaDefinition) {
+  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[] } = {}) {
     const touch = matchMedia('(any-pointer: coarse)').matches;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
     this.renderer.shadowMap.enabled = true;
@@ -48,8 +48,8 @@ export class ArenaView {
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
     buildArena(this.scene, arena);
-    this.practice = new PracticeView(this.scene, arena);
-    this.combat = new CombatView(this.scene, ARENA_PICKUPS);
+    this.practice = new PracticeView(this.scene, arena, options.training ?? true);
+    this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS);
     this.scene.add(this.actor);
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
