@@ -1,5 +1,9 @@
 # Drei kleine Adventure-Level – Konzeptbilder
 
+**Überholt:** Vom Nutzer wegen unrealistischen Produktionsniveaus und fehlender
+konkreter Levelübersicht als Planungsgrundlage zurückgewiesen. Maßgeblich ist der
+[konkrete Level-1-Plan](../../planning/LEVEL_1_STONE_ADVENTURE.md).
+
 27. Oktober 2026. Auf Nutzerwunsch drei Mockups für eigene Level pro Boss mit
 Vorhof, Erkundung, weiteren Gegnern und einem abschließenden Bossbereich.
 Erstellt mit dem eingebauten image_gen-Tool. [Vollständige Bildprompts](PROMPTS.md).

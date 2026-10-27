@@ -105,6 +105,11 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, konkreter Level-1-Plan:** Die generierten Mockups wurden vom Nutzer
+als unrealistisch und nicht hilfreich für die Raum-/Begegnungsplanung zurückgewiesen.
+Maßgeblich ist jetzt der [Ablaufplan für den Steinhof](LEVEL_1_STONE_ADVENTURE.md)
+auf vorhandenem Produktionsniveau. Geplant, noch nicht zur Umsetzung freigegeben.
+
 **27. Oktober, Adventure-Konzeptbilder:** Drei [Mockups](../concepts/adventure-levels/README.md)
 für eigenständige Boss-Level mit Vorhof, kleineren Gegnern und Nebenwegen erstellt.
 Nur visuelle Planung; der Adventure-Umbau ist noch nicht umgesetzt oder freigegeben.
