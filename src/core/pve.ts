@@ -10,7 +10,7 @@ export const PVE_RULES = Object.freeze({ bossHp: 600, emergeTicks: 120, waveWarn
 export type EncounterRules = { readonly [K in keyof typeof PVE_RULES]: number };
 export type MonsterKind = 'stone' | 'frost' | 'ember';
 export type MonsterPhase = 'emerging' | 'chasing' | 'melee' | 'warning' | 'attack' | 'recovery' | 'defeated';
-interface MonsterWorld extends RayWorld {
+export interface MonsterWorld extends RayWorld {
   sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly?: boolean): RayHit | null;
 }
 export interface PveSnapshot {
@@ -51,16 +51,19 @@ export class PveEncounter {
     this.state = { ...this.state, armor: Math.max(0, this.state.armor - amount), hp,
       hitsTaken: this.state.hitsTaken + 1, lastHit: this.state.tick, outcome: hp === 0 ? 'defeat' : 'running' };
   }
-  step(player: Vec3, world: MonsterWorld, hits: readonly Damage[] = []): void {
+  step(player: Vec3, world: MonsterWorld, hits: readonly Damage[] = [], options: { active?: boolean; incomingDamage?: number } = {}): void {
     if (this.state.outcome !== 'running') return;
-    this.state = { ...this.state, tick: this.state.tick + 1, phaseTick: this.state.phaseTick + 1, moving: false };
+    const active = options.active ?? true;
+    this.state = { ...this.state, tick: this.state.tick + 1, phaseTick: this.state.phaseTick + (active ? 1 : 0), moving: false };
     if (this.state.phase !== 'emerging') {
       const damage = hits.filter(hit => hit.target === this.monster.id && hit.source === 'player' && Number.isFinite(hit.amount) && hit.amount > 0)
         .reduce((sum, hit) => sum + hit.amount, 0);
       this.state = { ...this.state, bossHp: Math.max(0, this.state.bossHp - damage) };
     }
     if (player.y < -8) this.hurt(1000);
+    if (Number.isFinite(options.incomingDamage) && options.incomingDamage! > 0) this.hurt(options.incomingDamage!);
     if (this.state.hp === 0) return;
+    if (!active) return;
     if (this.state.bossHp === 0) {
       this.state = { ...this.state, phase: 'defeated', phaseTick: 0, outcome: 'victory' }; return;
     }

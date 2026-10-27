@@ -1,7 +1,10 @@
 # L1.1 — Drei große Höfe erkunden
 
 27. Oktober 2026. **Umgesetzt und technisch geprüft; persönliche Abnahme offen.**
-[Adventure starten](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1).
+[Ruhigen Erkundungsstand öffnen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1).
+
+Der normale Adventure-Link enthält inzwischen [L1.2 mit zwei Nahkämpfern und dem
+vorhandenen Boss](L1_2_RESULT.md). Dieser Bericht dokumentiert den früheren Grundrissstand.
 
 Anschließend umgesetzt: [Mobile-Zoom, Sprint während Bewegung, kompakteres HUD und
 kürzere Adventure-Sprünge](MOBILE_POLISH_RESULT.md). Die Aufnahmen unten zeigen die

@@ -17,6 +17,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
   private readonly controller: RAPIER.KinematicCharacterController;
   private readonly names = new Map<number, string>();
   private readonly targets = new Map<string, RAPIER.Collider>();
+  private readonly obstacles = new Map<string, RAPIER.Collider>();
 
   constructor(arena: ArenaDefinition, stepHeight = 0) {
     this.world.timestep = TICK_SECONDS;
@@ -26,6 +27,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
           .setTranslation(center.x, center.y, center.z),
       );
       this.names.set(collider.handle, id);
+      this.obstacles.set(id, collider);
     }
     for (const { id, center, radius } of arena.targets ?? []) {
       const collider = this.world.createCollider(RAPIER.ColliderDesc.ball(radius)
@@ -105,6 +107,10 @@ export class RapierWorld implements SpatialWorld, RayWorld {
       collider.setEnabled(enabled);
       this.world.step();
     }
+  }
+  setObstacleEnabled(id: string, enabled: boolean): void {
+    const collider = this.obstacles.get(id);
+    if (collider && collider.isEnabled() !== enabled) { collider.setEnabled(enabled); this.world.step(); }
   }
   sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly = false): RayHit | null {
     const hit = this.world.castShape(ray.origin, { x: 0, y: 0, z: 0, w: 1 }, ray.direction,

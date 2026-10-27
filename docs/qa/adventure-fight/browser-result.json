@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "startTime": "2026-10-27T21:43:44.794Z",
+    "duration": 106152.21800000001,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "name": "regular adventure: two melee guards, supplies, existing boss, victory and reset",
+      "status": "passed",
+      "durationMs": 29856
+    },
+    {
+      "name": "touch melee kill, menu restart, actual defeat and retry",
+      "status": "passed",
+      "durationMs": 16617
+    },
+    {
+      "name": "walk every room, collect supplies, climb real stairs, aim/fire, pause and restart",
+      "status": "passed",
+      "durationMs": 46602
+    },
+    {
+      "name": "touch joystick reaches weapon and side terrace; jump, camera and restart remain usable",
+      "status": "passed",
+      "durationMs": 10512
+    }
+  ],
+  "victory": {
+    "pve": {
+      "tick": 1640,
+      "phase": "defeated",
+      "phaseTick": 0,
+      "kind": "eruption",
+      "target": {
+        "x": 0.08511659502983093,
+        "y": -1.7881393449270533E-08,
+        "z": -20.908794403076172
+      },
+      "waveRadius": 20,
+      "hp": 36,
+      "armor": 0,
+      "bossHp": 0,
+      "outcome": "victory",
+      "hitsTaken": 4,
+      "lastHit": 1582,
+      "center": {
+        "x": 0.05776703625024555,
+        "y": 1.85,
+        "z": -23.508650553257286
+      },
+      "facing": 0.010519255068881288,
+      "moving": false
+    },
+    "weapons": {
+      "selected": "arc",
+      "ownsPulse": true,
+      "ammo": 0,
+      "projectiles": [],
+      "lastArc": null,
+      "impact": null
+    },
+    "enemies": [
+      {
+        "id": "courtyard-runner",
+        "center": {
+          "x": 1.0295267020675225,
+          "y": 0.85,
+          "z": 25.58670624413705
+        },
+        "hp": 0,
+        "facing": -0.6297539111301909,
+        "phase": "dead",
+        "phaseTick": 1510,
+        "moving": false,
+        "screen": {
+          "x": -733.5057340103067,
+          "y": 376.0312488970684
+        }
+      },
+      {
+        "id": "inner-runner",
+        "center": {
+          "x": 0.5023222977673415,
+          "y": 0.85,
+          "z": 4.832853718128209
+        },
+        "hp": 0,
+        "facing": -0.2778127919779232,
+        "phase": "dead",
+        "phaseTick": 1193,
+        "moving": false,
+        "screen": {
+          "x": -101.00737131289449,
+          "y": 363.01776154603704
+        }
+      }
+    ],
+    "pageErrors": []
+  }
+}

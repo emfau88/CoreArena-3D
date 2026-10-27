@@ -27,7 +27,8 @@ const walkTo = async(page:Page,x:number,z:number) => {
   const p=(await read(page)).snapshot.position;
   expect(Math.hypot(p.x-x,p.z-z),`Route to (${x}, ${z}), actual ${JSON.stringify(p)}`).toBeLessThan(.5);
 };
-const url = './?mode=pve&level=stone&adventure=1';
+// Layout/input regression keeps its quiet comparison route. Combat has a separate real playthrough.
+const url = './?mode=pve&level=stone&adventure=1&explore=1';
 test.use({headless:false});
 test.afterEach(async({page},info)=>{
   if(info.status!==info.expectedStatus && !page.isClosed()) {

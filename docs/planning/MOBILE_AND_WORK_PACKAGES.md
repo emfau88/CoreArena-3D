@@ -15,7 +15,15 @@ Gemeinsame Adventure-Sprungkurve für Desktop/Touch: gemessen 0,72 s und 2,15 m 
 0,98 s und 2,67 m. Alte Arena-/Bosskarten behalten ihre bisherigen Höhenrouten.
 45 Kernprüfungen und drei Browserabläufe bestanden. [Aktueller Nachweis](../qa/MOBILE_POLISH_RESULT.md).
 Persönlicher Handytest steht aus. Beweglicher Joystick, zusätzlicher Zielring und
-Sprungpuffer bleiben spätere Optionen nach diesem Spieltest; L1.2 bleibt ungeöffnet.
+Sprungpuffer bleiben spätere Optionen nach diesem Spieltest.
+
+**27. Oktober, reduziertes L1.2 ✅ umgesetzt und technisch geprüft:** Auf direkten
+Nutzerwunsch nur zwei Steinläufer mit normalen Nahkampfschlägen (je einer im ersten
+und zweiten Hof) und der vorhandene Steinwächter im dritten. Gemeinsame HP/Rüstung,
+Bossauftauchen, Sieg/Tod/Neustart und Weiter-Button zur Kristallkluft. 47 Kerntests,
+vier Browserfälle einschließlich Touch bestanden. [Nachweis](../qa/L1_2_RESULT.md).
+Der Sieben-Gegner-/Werferplan ist überholt. L1.3/L1.4 bleiben optionale Folgearbeiten,
+jeweils grob 30–60 Minuten aktive Agent-Zeit nach Spieltest und Freigabe.
 
 Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 
@@ -127,8 +135,9 @@ Kamera, drei erreichbare erhöhte Flächen, alle Vorratsorte und Einmal-Pickups 
 und Touch-Eingaben. [Ergebnis und aktuelle Map](../qa/L1_1_RESULT.md).
 Beobachtete Bearbeitungszeit bis zur technischen Prüfung etwa 35 Minuten inklusive
 Grundrisswechsel; Dokumentation/Commit/Veröffentlichung anschließend. Keine getrennt
-gemessene reine Coding-Zeit. Für L1.2–L1.4 verbleiben vorläufig 2,5–5 Stunden;
-deren bisherige Einzelspannen bleiben bestehen. Vor L1.2 auf Freigabe warten.
+gemessene reine Coding-Zeit. Die damalige Restschätzung von 2,5–5 Stunden für
+L1.2–L1.4 wurde durch die anschließende ausdrückliche Umfangsreduktion ersetzt;
+maßgeblich ist der aktuelle Levelplan oben.
 
 **27. Oktober, Umsetzungsplan für Adventure-Level 1:** Nach positiver Rückmeldung
 zum neuen Mockup vier [konkrete Pakete L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)

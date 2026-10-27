@@ -73,7 +73,7 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     box(0, -0.05, side * 15, 49, 0.2, 2, theme === 'ember' ? lava : dark);
   }
   for (const shape of arena.boxes) {
-    if (options.adventure && ['dormant-warden', 'north-gate'].includes(shape.id)) continue;
+    if (options.adventure && ['dormant-warden', 'north-gate', 'boss-entry-gate'].includes(shape.id)) continue;
     const { center: c, size: s } = shape;
     const mesh = box(c.x, c.y, c.z, s.x, s.y, s.z, materials[shape.material]); mesh.name = shape.id;
     if (shape.material === 'floor') {

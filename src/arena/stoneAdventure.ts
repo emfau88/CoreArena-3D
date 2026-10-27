@@ -1,6 +1,7 @@
 import type { ArenaBox, ArenaDefinition } from './arena';
 import type { PickupDefinition } from '../core/pickups';
 import type { Vec3 } from '../core/types';
+import { MONSTER } from '../core/pve';
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.
 export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;
@@ -70,3 +71,15 @@ export const STONE_ADVENTURE_PICKUPS: readonly PickupDefinition[] = [
   loot('boss-ammo-east','ammo',13,-20,18,'floor-boss'),
   loot('boss-health','health',-12,-23,35,'boss-health-plateau',1.1),
 ];
+
+export const ADVENTURE_BOSS = { ...MONSTER, center: {x:0,y:1.85,z:-29} };
+export const ADVENTURE_RUNNERS = [
+  { id:'courtyard-runner', center:{x:2,y:.85,z:24}, radius:.7, level:'L1', floor:'floor-entry',
+    zone:{left:-15,right:15,back:16,front:29} },
+  { id:'inner-runner', center:{x:2,y:.85,z:-1}, radius:.7, level:'L1', floor:'floor-middle',
+    zone:{left:-17,right:17,back:-12,front:12} },
+] as const;
+export const STONE_ADVENTURE_COMBAT: ArenaDefinition = { ...STONE_ADVENTURE,
+  boxes:[...STONE_ADVENTURE.boxes,block('boss-entry-gate',0,-18,10,2.8,.4)],
+  targets:[ADVENTURE_BOSS,...ADVENTURE_RUNNERS],
+};

@@ -146,3 +146,7 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 .touch-mode #app[data-adventure] #resume { width: 100%; min-height: 46px; color: #b5efd6; border-color: #9be8ca66; }
 .touch-mode #adventure-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
 .touch-mode #adventure-settings > button { position: static; min-height: 44px; padding: 8px; font-size: 11px; border: 1px solid #bad9d533; background: #233640; text-shadow: none; }
+#adventure-boss { position:fixed; top:92px; left:50%; transform:translateX(-50%); width:310px; font-size:10px; color:#ead4a5; }
+#adventure-boss > span { float:right; }
+#adventure-boss #pve-telegraph { font-size:10px; }
+.touch-mode #adventure-boss { top:66px; width:240px; }

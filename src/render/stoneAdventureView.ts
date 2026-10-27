@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
 import { buildCampaignArena } from './campaignArena';
 
-/** Quiet landmarks for the walkable layout; no boss/encounter simulation yet. */
+/** Shared landmarks; named groups let the encounter switch the sleeping figure and gate. */
 export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition): void {
   buildCampaignArena(scene, arena, 'stone', { adventure: true });
   const rock = new THREE.MeshStandardMaterial({ color: 0x586155, flatShading: true, roughness: .9 });
@@ -16,8 +16,9 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition):
   ring(0, -29, 3.1, gold); ring(0, -17.2, .9, gold);
   ring(0, -14, .65, new THREE.MeshStandardMaterial({ color: 0x89b9a6, roughness: .7 }));
   // The dormant figure sits on a solid low foundation with matching collision.
+  const dormant = new THREE.Group(); dormant.name = 'adventure-dormant'; scene.add(dormant);
   const foundation = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.15, 2.6), dark);
-  foundation.position.set(0, .575, -29); foundation.castShadow = foundation.receiveShadow = true; scene.add(foundation);
+  foundation.position.set(0, .575, -29); foundation.castShadow = foundation.receiveShadow = true; dormant.add(foundation);
   const chunkGeometry = new THREE.IcosahedronGeometry(1, 0);
   for (let i = 0; i < 7; i++) {
     const mesh = new THREE.Mesh(chunkGeometry, i === 6 ? core : rock);
@@ -25,7 +26,7 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition):
     mesh.position.set(i === 6 ? 0 : Math.sin(angle)*.65, i === 6 ? 1.4 : .8 + i%3*.3,
       -29 + (i === 6 ? .95 : Math.cos(angle)*.65));
     mesh.scale.setScalar(i === 6 ? .23 : .85); mesh.rotation.set(i*.2, angle, .1*i);
-    mesh.castShadow = mesh.receiveShadow = true; scene.add(mesh);
+    mesh.castShadow = mesh.receiveShadow = true; dormant.add(mesh);
   }
   // Solid backing means the closed gate's collision is visible even between bars.
   const backing = new THREE.Mesh(new THREE.BoxGeometry(10, 2.8, .4), dark);
@@ -37,5 +38,11 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition):
   for (const y of [.5, 2.5]) {
     const rail = new THREE.Mesh(new THREE.BoxGeometry(9.5, .13, .12), gold);
     rail.position.set(0, y, -41.76); scene.add(rail);
+  }
+  const entry = new THREE.Group(); entry.name='adventure-entry-gate'; entry.visible=false; scene.add(entry);
+  const door = new THREE.Mesh(new THREE.BoxGeometry(10,2.8,.4),dark);
+  door.position.set(0,1.4,-18); door.castShadow=door.receiveShadow=true; entry.add(door);
+  for(let x=-4.5;x<=4.6;x+=.6) {
+    const bar=new THREE.Mesh(new THREE.BoxGeometry(.12,2.5,.5),gold); bar.position.set(x,1.4,-18); entry.add(bar);
   }
 }

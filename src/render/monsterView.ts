@@ -20,7 +20,7 @@ export class MonsterView {
   private previousHp = PVE_RULES.bossHp as number;
   private flash = 0;
   private deathTime = 0;
-  constructor(scene: THREE.Scene, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES, private readonly monster = MONSTER) {
+  constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES, private readonly monster = MONSTER) {
     this.meleeArc = new THREE.Mesh(new THREE.RingGeometry(rules.meleeRange - 0.12, rules.meleeRange, 32, 1,
       Math.PI / 2 - 1.05, 2.1), new THREE.MeshBasicMaterial({ color: 0xff9b73, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false }));
     this.meleeArc.rotation.x = Math.PI / 2;

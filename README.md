@@ -2,13 +2,18 @@
 
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
 
-**Neu: [Adventure-Level 1 erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
+**Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
 Vorratsorten. Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
-L1.1 ist umgesetzt und technisch geprüft. Noch ein ruhiger Erkundungsstand:
-kleine Gegner folgen in L1.2, Bossaktivierung und Levelabschluss in L1.3 nach Freigabe.
-[Map, Aufnahmen und Browserprüfung](docs/qa/L1_1_RESULT.md).
+**L1.2 in kleiner Fassung umgesetzt:** ein Steinläufer mit Nahkampfschlag im ersten
+Hof, einer im zweiten, danach der bekannte Steinwächter im dritten. Beide Läufer
+besiegen und den Wächterhof betreten, um ihn zu wecken. Pulse liegt am ersten
+Durchgang; Vorräte auf der Seitenterrasse helfen vor dem Boss. Sieg, Niederlage und
+Neustart sind spielbar. Nach dem Sieg führt „Weiter“ zur bestehenden Kristallkluft.
+[Spielaufnahmen und Browserprüfung](docs/qa/L1_2_RESULT.md).
+Zum ruhigen Vergleich: [ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1).
+Checkpoint und weiterer Feinschliff bleiben optionale nächste Schritte.
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera

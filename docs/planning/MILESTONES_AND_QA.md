@@ -1,21 +1,22 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und PvE-Erweiterungen zusätzlich freigegeben.** L1.2–L1.4, M2.4–M2.6 und M3–M5 nicht freigegeben.
+Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.** L1.2 auf Nutzerwunsch auf zwei Nahkämpfer plus vorhandenen Boss verkleinert. L1.3/L1.4 sind optional und nicht freigegeben; M2.4–M2.6 und M3–M5 bleiben ebenfalls ohne Freigabe.
 
 ## Aktueller Fortschritt
 
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
-- [x] [Konkreter Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt: Start, feste Waffen-/Lootorte, fünf Pflichtgegner, zwei optionale Gegner, bewusster Bossstart und Ausgang.
+- [x] [Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt und anschließend verkleinert: feste Waffen-/Lootorte, zwei Nahkämpfer und vorhandener Boss. Die früher sieben kleinen Gegner sind verworfen.
 - [x] [Level-1-Mockup und Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt. Der erste begehbare Grundriss wurde während L1.1 als zu eng/verwinkelt zurückgewiesen; die Skizze ist für den aktuellen Aufbau überholt.
-- [x] Nutzer bestätigt die Richtung des neuen Mockups; [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) erstellt. Vorläufig 3–6 Stunden aktive Agent-Arbeit mit Prüfungen; erster begehbarer Stand nach L1.1 (30–60 Min.).
+- [x] [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) aktualisiert: L1.2 liefert bereits den kleinen vollständigen Kampfablauf. Altes Gesamtbudget 3–6 Stunden überholt; optionale L1.3/L1.4 jeweils grob 30–60 Minuten aktive Agent-Arbeit, falls später gewünscht.
 - [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
 - [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
 - [x] L1.1-Kameranacharbeit: Adventure standardmäßig von links nach rechts; V/Ansicht schaltet zusätzlich auf den bisherigen geraden oder isometrischen Blick. Desktop-/Touch-Weg und Schussrichtung geprüft.
 - [x] Mobile-Feinschliff freigegeben und technisch geprüft: 15 % Zoom, Sprint per zweitem Finger bei gehaltenem Joystick, kompaktes Adventure-HUD mit Menü und Kameravorlauf. Adventure-Sprung auf beiden Geräten von 0,98 auf 0,72 s verkürzt; Pflichtplateaus erreichbar. 45 Kerntests, drei Browserfälle. [Nachweise](../qa/MOBILE_POLISH_RESULT.md).
 - [ ] Persönlicher Handytest für Zoom, Sprint und neues Sprunggefühl.
-- [ ] L1.2: Zwei Gegnertypen, feste Gruppen und Anreise-Kämpfe; noch nicht freigegeben.
-- [ ] L1.3: Ziele, Checkpoint, bewusster Bossstart und physischer Ausgang; noch nicht freigegeben.
-- [ ] L1.4: Bossdruck, zweite Phase, gezielte Feinarbeit und Gesamtspieltest; noch nicht freigegeben.
+- [x] L1.2 in kleiner Fassung ausdrücklich freigegeben und umgesetzt: je ein Steinläufer im ersten/zweiten Hof, bestehender Steinwächter im dritten, gemeinsame HP/Rüstung, Sieg/Tod/Neustart und Weiter-Button. 47 Kerntests und vier Browserfälle bestanden. [Nachweise](../qa/L1_2_RESULT.md).
+- [ ] Persönlicher Spieltest des kleinen Kampfablaufs und seiner Schwierigkeit.
+- [ ] L1.3 optional: Checkpoint und begehbarer Ausgang; erst nach Bedarf und Freigabe.
+- [ ] L1.4 optional: Tempo, Schaden, Angriffspausen und Lesbarkeit anhand des Spieltests abstimmen. Zusätzliche Bossphase/Sturmangriff sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.
