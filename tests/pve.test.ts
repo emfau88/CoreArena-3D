@@ -67,7 +67,7 @@ test('eruption locks its ground warning; walking away avoids it, staying or jump
   const world = await createSpatialWorld(PVE_ARENA);
   try {
     for (const dodge of [false, true]) {
-      const boss = new PveEncounter(); const start = { x: 0, y: 1.3, z: 8 };
+      const boss = new PveEncounter({ ...PVE_RULES, meleeRange: 0 }); const start = { x: 0, y: 1.3, z: 8 };
       while (!(boss.snapshot().kind === 'eruption' && boss.snapshot().phase === 'warning')) boss.step(start, world);
       const target = { ...boss.snapshot().target };
       assert.ok(Math.abs(target.y) < 0.001);

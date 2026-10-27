@@ -5,7 +5,7 @@ import { labelMesh } from './practiceView';
 import { createPickupModel } from './gear';
 
 const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e };
-const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT +25', armor: 'RÜSTUNG +50' };
+const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG' };
 export class CombatView {
   private readonly root = new THREE.Group();
   private readonly pickups = new Map<string, { gem: THREE.Group; ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>; remaining: number; flash: number }>();
@@ -20,7 +20,8 @@ export class CombatView {
       const gem = createPickupModel(item.kind);
       const base = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 0.66, 0.08, 8), new THREE.MeshStandardMaterial({ color: 0x1d2a35, roughness: 0.5, metalness: 0.7 }));
       gem.position.y = 0.55;
-      const label = labelMesh(LABELS[item.kind], 2.4); label.rotation.x = -Math.PI / 2; label.position.z = 0.95;
+      const text = LABELS[item.kind] + (item.kind === 'health' || item.kind === 'armor' ? ` +${item.amount}` : '');
+      const label = labelMesh(text, 2.4); label.rotation.x = -Math.PI / 2; label.position.z = 0.95;
       group.add(base, ring, gem, label); this.root.add(group); this.pickups.set(item.id, { gem, ring, remaining: item.amount, flash: -100 });
     }
     const geometry = new THREE.CapsuleGeometry(0.065, 0.22, 3, 6); geometry.rotateX(Math.PI / 2);

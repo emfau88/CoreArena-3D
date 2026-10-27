@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import type { PveSnapshot } from '../../src/core/pve';
 import type { Snapshot } from '../../src/core/types';
 import type { WeaponSnapshot } from '../../src/core/combat';
+import { collectPulse, walkTo } from './pveControls';
 
 interface State { level: string; pve: PveSnapshot; snapshot: Snapshot; weapons: WeaponSnapshot; monsterScreen: { x: number; y: number } }
 const read = (page: Page): Promise<State> => page.evaluate(() => (window as unknown as { __coreArena: { read(): State } }).__coreArena.read());
@@ -16,15 +17,12 @@ test('three real boss victories progress through the complete mini campaign', as
     await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
     await expect.poll(async () => (await read(page)).level).toBe(level);
     await expect(page.locator('#pve-next')).toBeHidden();
+    await collectPulse(page, level);
+    await walkTo(page, 0, 6.5);
     await expect.poll(async () => (await read(page)).pve.phase, { intervals: [20] }).toBe('chasing');
     let state = await read(page); await page.mouse.move(state.monsterScreen.x, state.monsterScreen.y); await page.mouse.down();
     const fireUntil = Date.now() + 1000;
     while (Date.now() < fireUntil) { state = await read(page); await page.mouse.move(state.monsterScreen.x, state.monsterScreen.y); await page.waitForTimeout(40); }
-    await page.keyboard.down('KeyA');
-    await expect.poll(async () => (await read(page)).snapshot.position.x, { intervals: [20] }).toBeLessThan(-4);
-    await page.keyboard.up('KeyA'); await page.keyboard.down('KeyW');
-    await expect.poll(async () => (await read(page)).snapshot.position.z, { intervals: [20] }).toBeLessThan(7.3);
-    await page.keyboard.up('KeyW');
     const deadline = Date.now() + 35_000; let jumped = -1, dodged = -1, captured = false;
     state = await read(page);
     while (state.pve.outcome === 'running' && Date.now() < deadline) {
@@ -37,8 +35,8 @@ test('three real boss victories progress through the complete mini campaign', as
       if (level !== 'ember' && state.pve.kind === 'wave' && state.pve.phase === 'attack' && state.pve.waveRadius >= distance - 2.5 && jumped !== phaseId) {
         await page.keyboard.press('Space'); jumped = phaseId;
       }
-      if (state.pve.phase === 'warning' && dodged !== phaseId && (state.pve.kind === 'eruption' || level === 'ember')) {
-        const key = state.snapshot.position.x > 5 ? 'KeyA' : 'KeyD';
+      if (dodged !== phaseId && (state.pve.phase === 'melee' || state.pve.phase === 'warning' && (state.pve.kind === 'eruption' || level === 'ember'))) {
+        const key = state.snapshot.position.x > 0 ? 'KeyA' : 'KeyD';
         const startX = state.snapshot.position.x; await page.keyboard.down(key);
         await page.waitForFunction(x => { const s = (window as unknown as { __coreArena: { read(): State } }).__coreArena.read();
           return s.pve.outcome !== 'running' || Math.abs(s.snapshot.position.x - x) > 4.4; }, startX);

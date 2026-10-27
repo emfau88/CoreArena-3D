@@ -41,8 +41,20 @@ sich durch Einleitung, Siegesgeschichte und „Weiter“ zu einem abgeschlossene
 
 Alle Gegner kommen aus dem Boden, verfolgen dich zwischen ihren angekündigten
 Angriffen und markieren zusätzliche Bodenausbrüche. Diese Kreise rechtzeitig verlassen.
-Jede Karte beginnt mit frischen HP, Armor und Pulse. Energiezellen liegen links/rechts,
-das Medkit hinter dem Start. Ein Leben pro Versuch, beliebig neu versuchen.
+Zusätzlich greifen sie in der Nähe regelmäßig normal an: Faustschlag, Spinnenbiss
+oder Glutwurm-Vorstoß. Die kurze Vorbereitung und der kleine Frontbogen kündigen
+den Treffer an. Abstand, seitliches Ausweichen, ausreichend hohe Sprünge oder echte
+Deckung schützen; bloßes Stehenbleiben im Nahkampf kostet Leben.
+Jede Karte beginnt mit frischen HP/Armor und **Arc Lash**. **Pulse aufnehmen und mit 2
+oder dem Waffenbutton auswählen.** Waffen und Vorräte liegen je Karte unterschiedlich:
+
+| Karte / Aufbau | Pulse | Weitere Vorräte |
+| --- | --- | --- |
+| Steinhof: offener Hof mit Säulen und östlicher Stufenterrasse | Links vom Start | Munition im Osten, Medkit auf der niedrigen Westmauer |
+| Kristallkluft: langer Eisrücken und versetzte Plattformen | Rechts vorne | Munition hinter dem westlichen Eisrücken, Medkit auf dem südlichen Eissockel |
+| Glutschmiede: breite Ofenblöcke und Gassen | Rechts hinten | Munition vor dem Westofen, Medkit auf der östlichen Schlackebühne |
+
+Rüstung liegt an weiteren eigenen Positionen. Ein Leben pro Versuch, beliebig neu versuchen.
 Nach dem dritten Sieg ist die Mini-Geschichte abgeschlossen. Die Karten sind über
 die Links auch einzeln testbar; kein Save oder Freischaltsystem nötig.
 
@@ -59,6 +71,7 @@ aufbauenden Commits in umgekehrter Reihenfolge zurücknehmen.
 [Kampagne und visuelle Überarbeitung](docs/qa/MINI_CAMPAIGN_RESULT.md),
 [Vollbild, integriertes HUD und hellere Glutschmiede](docs/qa/IMMERSIVE_HUD_RESULT.md),
 [Kartendetails und lesbare Plattformen](docs/qa/CAMPAIGN_SCENERY_RESULT.md),
+[Normale Bossangriffe und neue Kartenwege](docs/qa/BOSS_BASICS_RESULT.md),
 [ursprünglicher PvE-Versuch](docs/qa/PVE_BASIC_RESULT.md).
 
 ### Einfach mobil spielen

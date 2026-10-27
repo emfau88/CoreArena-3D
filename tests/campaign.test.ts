@@ -15,7 +15,8 @@ test('three distinct encounters form a finite campaign with a safe default', () 
 test('frost shards can be sidestepped or jumped; ember breath requires leaving its cone', async () => {
   for (const id of ['frost', 'ember']) for (const defense of ['none', 'jump', 'side']) {
     const level = campaignLevel(id); const world = await createSpatialWorld(level.arena);
-    const boss = new PveEncounter(level.rules, level.monster, level.kind);
+    // Isolate the spell geometry; basic attacks have their own real-world tests.
+    const boss = new PveEncounter({ ...level.rules, meleeRange: 0 }, level.monster, level.kind);
     try {
       while (boss.snapshot().phase !== 'warning') boss.step(level.arena.spawn, world);
       const center = boss.snapshot().center;

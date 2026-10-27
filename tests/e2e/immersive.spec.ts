@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { collectPulse } from './pveControls';
 
 test.use({ headless: false });
 
@@ -31,6 +32,7 @@ test.describe('landscape forge', () => {
   test.use({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
   test('touch controls and slim HUD keep the arena usable', async ({ page }, info) => {
     await page.goto('./?mode=pve&level=ember'); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
+    await collectPulse(page, 'ember');
     await page.waitForFunction(() => (window as unknown as { __coreArena: { read(): { pve: { phase: string } } } }).__coreArena.read().pve.phase === 'warning');
     const target = await page.evaluate(() => (window as unknown as { __coreArena: { read(): { monsterScreen: { x: number; y: number } } } }).__coreArena.read().monsterScreen);
     await page.touchscreen.tap(target.x, target.y);

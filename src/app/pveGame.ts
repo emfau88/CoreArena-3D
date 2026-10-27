@@ -45,9 +45,9 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
         <small>${level.hint}</small>
         <button id="pve-restart" type="button">Neu versuchen</button> <button id="pve-return" type="button">Zur Arena</button>
       </div>
-      <aside id="campaign-story"><b>DIE DREI SIEGEL · ${chapter}/3</b><p>${level.intro}</p></aside>
-      <div id="weapon-panel">${weaponHud(true) }<small>Pulse zum Start · Munition links und rechts</small><small>Nach dem Angriff: Zeit zum Gegenfeuer.</small></div>
-      <div id="life-panel">${lifeHud}<p id="life-status">Ein Leben · Ein Monster</p><small>Heilung hinter dir. Bleib in Bewegung.</small></div>
+      <aside id="campaign-story"><b>DIE DREI SIEGEL · ${chapter}/3</b><p>${level.intro}</p><p>${level.supplies}</p></aside>
+      <div id="weapon-panel">${weaponHud(true) }<small>Arc zum Start · Pulse in der Arena finden</small><small>Nach dem Angriff: Zeit zum Gegenfeuer.</small></div>
+      <div id="life-panel">${lifeHud}<p id="life-status">Ein Leben · Ein Monster</p><small>Heilung auf den niedrigen Plattformen. Bleib in Bewegung.</small></div>
       <footer><span><kbd>W A S D</kbd> Bewegen</span><span><kbd>SHIFT</kbd> Sprint</span><span><kbd>SPACE</kbd> Springen</span>
         <button id="camera-toggle" type="button"><kbd>V</kbd> Ansicht wechseln</button><button id="pve-pause" type="button">Pause</button></footer>
     </div>
@@ -77,7 +77,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   }, options);
   for (const id of ['pve-return', 'pve-exit']) element(id).addEventListener('click', () => location.assign(location.pathname), options);
   function restart() {
-    encounter.reset(); combat.reset(); combat.addAmmo(54, true); combat.select('pulse'); pickups.reset();
+    encounter.reset(); combat.reset(); pickups.reset();
     current = simulation.reset(); previous = current; aim = null; world.setTargetEnabled(level.monster.id, false);
     world.setTargetPosition(level.monster.id, encounter.snapshot().center);
     element('match-result').hidden = true; view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
@@ -98,7 +98,8 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       if (after.center !== before.center) world.setTargetPosition(level.monster.id, after.center);
       world.setTargetEnabled(level.monster.id, after.phase !== 'emerging' && after.outcome === 'running');
       if (after.outcome === 'running') pickups.step(after.tick, current, world, (kind, amount) =>
-        kind === 'ammo' ? combat.addAmmo(amount) : encounter.restore(amount));
+        kind === 'ammo' ? combat.addAmmo(amount) : kind === 'pulse' ? combat.addAmmo(amount, true)
+          : kind === 'armor' ? encounter.restoreArmor(amount) : encounter.restore(amount));
       else { input.clear(); combat.clearEffects(); aim = null; previous = current; }
     });
     const state = encounter.snapshot(); const weapons = combat.snapshot();
@@ -111,7 +112,9 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       element('ammo-count').textContent = `${weapons.ammo} / 54`;
       for (const id of ['arc', 'pulse']) element(`weapon-${id}`).setAttribute('aria-pressed', String(weapons.selected === id));
       (element('weapon-pulse') as HTMLButtonElement).disabled = weapons.ammo === 0;
-      const messages = { emerging: 'Der Boden bricht auf …', chasing: 'Er verfolgt dich · Bleib in Bewegung!', warning: state.kind === 'wave' ? 'SCHOCKWELLE · Sprung vorbereiten!' : 'BODENAUSBRUCH · Kreis verlassen!',
+      const messages = { emerging: 'Der Boden bricht auf …', chasing: 'Er verfolgt dich · Bleib in Bewegung!',
+        melee: state.phaseTick < level.rules.meleeWarning ? (level.kind === 'stone' ? 'FAUSTSCHLAG · Abstand oder ausweichen!' : level.kind === 'frost' ? 'BISS · Abstand oder ausweichen!' : 'VORSTOSS · Abstand oder ausweichen!') : 'Nahkampfangriff!',
+        warning: state.kind === 'wave' ? 'SCHOCKWELLE · Sprung vorbereiten!' : 'BODENAUSBRUCH · Kreis verlassen!',
         attack: state.kind === 'wave' ? 'JETZT SPRINGEN oder Deckung suchen!' : 'Einschlag!', recovery: 'Kurze Pause · Gegenfeuer!', defeated: 'Siegel gebrochen.' };
       if (level.kind !== 'stone' && state.kind === 'wave') {
         messages.warning = level.kind === 'frost' ? 'EISSPLITTER · Fächer ausweichen!' : 'FEUERATEM · Seitlich raus oder Deckung!';

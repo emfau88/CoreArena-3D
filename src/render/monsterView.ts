@@ -10,6 +10,7 @@ export class MonsterView {
   private readonly limbs: THREE.Group[] = [];
   private readonly shards = new THREE.Group();
   private readonly attackFan = new THREE.Group();
+  private readonly meleeArc: THREE.Mesh;
   private readonly coreMaterial = new THREE.MeshStandardMaterial({ color: 0xffcf75, emissive: 0xff732c, emissiveIntensity: 2.4, roughness: 0.25 });
   private readonly warningMaterial = new THREE.MeshBasicMaterial({ color: 0xffb84f, transparent: true, opacity: 0.7, side: THREE.DoubleSide, depthWrite: false });
   private readonly warning = new THREE.Mesh(new THREE.RingGeometry(0.88, 1, 64), this.warningMaterial);
@@ -20,6 +21,10 @@ export class MonsterView {
   private flash = 0;
   private deathTime = 0;
   constructor(scene: THREE.Scene, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES, private readonly monster = MONSTER) {
+    this.meleeArc = new THREE.Mesh(new THREE.RingGeometry(rules.meleeRange - 0.12, rules.meleeRange, 32, 1,
+      Math.PI / 2 - 1.05, 2.1), new THREE.MeshBasicMaterial({ color: 0xff9b73, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false }));
+    this.meleeArc.rotation.x = Math.PI / 2;
+    scene.add(this.meleeArc);
     this.previousHp = rules.bossHp;
     const rock = new THREE.MeshStandardMaterial({ color: 0x343b40, roughness: 0.8, metalness: 0.3, flatShading: true });
     const edge = new THREE.MeshStandardMaterial({ color: 0x727c76, roughness: 0.7, metalness: 0.2, flatShading: true });
@@ -142,12 +147,23 @@ export class MonsterView {
     this.deathTime = state.outcome === 'victory' ? Math.min(1, this.deathTime + dt) : 0;
     this.body.position.y = -4.6 * (1 - emergence) - this.deathTime * 4.4 + Math.abs(stride) * 0.09;
     this.body.rotation.z = Math.sin(state.tick / 18) * 0.018 + this.deathTime * 0.18 + stride * 0.035;
+    const melee = state.phase === 'melee' && state.outcome === 'running';
+    const preparation = melee ? Math.min(1, state.phaseTick / this.rules.meleeWarning) : 0;
+    const strike = melee && state.phaseTick >= this.rules.meleeWarning
+      ? Math.max(0, 1 - (state.phaseTick - this.rules.meleeWarning) / this.rules.meleeRecovery) : 0;
+    this.body.rotation.x = melee ? (strike ? strike * 0.22 : -preparation * 0.12) : 0;
+    this.body.position.z = melee ? (strike ? strike * 0.55 : -preparation * 0.18) : 0;
+    this.meleeArc.visible = melee;
+    this.meleeArc.position.set(state.center.x, 0.07, state.center.z);
+    this.meleeArc.rotation.set(Math.PI / 2, 0, -state.facing);
+    (this.meleeArc.material as THREE.MeshBasicMaterial).opacity = strike ? 0.9 * strike : 0.25 + preparation * 0.45;
     this.body.visible = emergence > 0.12 && this.deathTime < 1;
     const windup = state.phase === 'warning' ? state.phaseTick / (state.kind === 'wave' ? this.rules.waveWarning : this.rules.eruptionWarning) : 0;
     this.arms.forEach((arm, index) => {
       arm.rotation.x = state.phase === 'attack' ? -0.3 * Math.max(0, 1 - state.phaseTick / 15) : -windup * 2.1;
       arm.rotation.z = (index === 0 ? 1 : -1) * (state.phase === 'recovery' ? 0.12 : windup * 0.2);
       arm.rotation.x += stride * (index === 0 ? 0.14 : -0.14);
+      if (melee && index === 0) arm.rotation.x = strike ? -1.5 * strike : preparation * 0.8;
     });
     this.debris.forEach((rock, i) => {
       rock.position.y = 0.15 + (state.phase === 'emerging' ? Math.sin(emergence * Math.PI) * (1 + i % 4 * 0.4) : 0);

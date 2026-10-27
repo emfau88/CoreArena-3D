@@ -105,6 +105,12 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Bosskampf und Kartenwege:** Separat beauftragte normale Nahkampfangriffe
+für alle drei Bosse sowie unterschiedliche Innenaufbauten und Pickup-Positionen
+umgesetzt. Arc bleibt Startwaffe, Pulse wird pro Karte an eigener Position gesammelt;
+Heilung belohnt Sprünge auf niedrige Flächen. [Abnahme und QA](../qa/BOSS_BASICS_RESULT.md).
+Keine Freigabe oder Vorwegnahme von M2.4; persönliche Spielbalance-Abnahme offen.
+
 **27. Oktober, Kartengestaltung ✅ umgesetzt und technisch geprüft:** Thematische
 Details und dezente Animation auf allen drei PvE-Karten. Nach direkter Rückmeldung
 Moos/Frost ins feste Bodenmaterial eingearbeitet und Plattformoberseiten freigeräumt,
