@@ -23,6 +23,14 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
   const landing = new THREE.MeshStandardMaterial({ color: theme === 'stone' ? 0xb8ae8b : theme === 'frost' ? 0xb5dbe2 : 0xb9b4aa,
     roughness: 0.83, metalness: theme === 'ember' ? 0.2 : 0.02 });
   const edge = new THREE.MeshStandardMaterial({ color: theme === 'stone' ? 0xd8cdab : theme === 'frost' ? 0xe4f5f5 : 0xd2c9b5, roughness: 0.7 });
+  // Vertical walls need their own readable material: the old dark grain map made
+  // them blend into the floor, leaving the bright top looking like a floating tile.
+  const wallFront = new THREE.MeshStandardMaterial({
+    color: theme === 'stone' ? 0xa99b83 : theme === 'frost' ? 0x79afbf : 0x958a7c,
+    roughness: 0.9, emissive: theme === 'frost' ? 0x18303b : 0x30291f, emissiveIntensity: 0.25,
+  });
+  const wallSide = wallFront.clone(); wallSide.color.multiplyScalar(0.77);
+  const wallBase = new THREE.MeshStandardMaterial({ color: theme === 'stone' ? 0x706855 : theme === 'frost' ? 0x467789 : 0x625e58, roughness: 1 });
   let lava: THREE.Material = glow;
   if (theme === 'ember') {
     const canvas = document.createElement('canvas'); canvas.width = canvas.height = 128;
@@ -38,7 +46,7 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     lava = new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: 0xff802d, emissiveIntensity: 0.7, roughness: 0.7 });
   }
   const unit = new THREE.BoxGeometry(1, 1, 1);
-  const box = (x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.Material) => {
+  const box = (x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.Material | THREE.Material[]) => {
     const mesh = new THREE.Mesh(unit, material); mesh.position.set(x, y, z); mesh.scale.set(w, h, d);
     mesh.castShadow = mesh.receiveShadow = true; scene.add(mesh); return mesh;
   };
@@ -67,6 +75,7 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     const mesh = box(c.x, c.y, c.z, s.x, s.y, s.z, materials[shape.material]); mesh.name = shape.id;
     if (shape.id === 'floor') { mesh.castShadow = false; continue; }
     if (['north', 'south', 'east', 'west'].includes(shape.id)) continue;
+    mesh.material = [wallSide, wallSide, landing, wallBase, wallFront, wallFront];
     const top = c.y + s.y / 2;
     // Clean landing surface, bright coping and darker vertical faces communicate height.
     box(c.x, top + 0.012, c.z, s.x, 0.024, s.z, landing);
@@ -74,10 +83,21 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
       box(c.x, top + 0.026, c.z + side * (s.z / 2 - 0.035), s.x, 0.035, 0.07, edge);
       box(c.x + side * (s.x / 2 - 0.035), top + 0.026, c.z, 0.07, 0.035, s.z, edge);
       box(c.x, top - 0.12, c.z + side * (s.z / 2 + 0.008), s.x, 0.12, 0.016, dark);
+      // Continuous base and corner piers connect the landing to its actual ground footprint.
+      const baseHeight = Math.min(0.16, top * 0.2);
+      box(c.x, baseHeight / 2, c.z + side * (s.z / 2 + 0.012), s.x, baseHeight, 0.024, wallBase);
+      box(c.x + side * (s.x / 2 + 0.012), baseHeight / 2, c.z, 0.024, baseHeight, s.z, wallBase);
+      for (const end of [-1, 1]) {
+        box(c.x + end * (s.x / 2 - 0.06), top / 2, c.z + side * (s.z / 2 + 0.015), 0.12, top, 0.03, edge);
+        box(c.x + side * (s.x / 2 + 0.015), top / 2, c.z + end * (s.z / 2 - 0.06), 0.03, top, 0.12, edge);
+      }
     }
     if (theme === 'stone') {
       // Broken stone courses, aged caps and moss growing over the solid ruins.
-      for (let y = 0.4; y < top; y += 0.65) box(c.x, y, c.z + s.z / 2 + 0.008, s.x, 0.025, 0.012, dark);
+      for (let y = 0.45; y < top - 0.15; y += 0.65) for (const side of [-1, 1]) {
+        box(c.x, y, c.z + side * (s.z / 2 + 0.008), s.x - 0.24, 0.018, 0.016, wallBase);
+        box(c.x + side * (s.x / 2 + 0.008), y, c.z, 0.016, 0.018, s.z - 0.24, wallBase);
+      }
     } else if (theme === 'frost') {
       for (let i = 0; i < 3; i++) {
         const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.18 + i % 2 * 0.05, 0.5 + i % 3 * 0.15, 5), materials.stone);

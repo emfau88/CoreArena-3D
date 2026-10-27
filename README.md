@@ -9,6 +9,8 @@ den Kampf im Mittelpunkt. Die Glutschmiede hat hellere Flächen und klarere Deck
 Die Kampagnenkarten ergänzen Efeu und Mauerreliefs, Eiszapfen und Frost sowie
 Ofengitter und Metallbeschläge. Moos/Frost sind in die Bodentextur eingearbeitet;
 helle, freie Plattformoberseiten machen die erhöhten Flächen erkennbar.
+Die Plateauwände haben eigene, vom Boden abgesetzte Materialien sowie durchgehende
+Eckkanten und Sockel, damit die Höhe bis zum Boden sichtbar bleibt.
 Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt Arc Lash.
 [Build & Deployment](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml)
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.

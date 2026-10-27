@@ -105,6 +105,11 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Plateauwände ✅ umgesetzt und technisch geprüft:** Auf erneute
+Lesbarkeitsrückmeldung eigene hellere Wandmaterialien, unterschiedliche Front-/Seiten-
+tönung, durchgehende Ecken und Sockel ergänzt. Beide Perspektiven aller drei Karten
+gesichtet; drei Browserfälle bestanden. [Nachweise](../qa/PLATEAU_WALLS_RESULT.md).
+
 **27. Oktober, Steinhof-Qualitätsrunde ✅ umgesetzt und technisch geprüft:** Nach
 Freigabe des vorgeschlagenen kleinen Qualitätspakets: synthetische erste Tonfassung
 und Trefferreaktionen, abgestimmte Faustbewegung, Umwege um Deckung und klarer
