@@ -4,6 +4,8 @@ Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 
 ## Aktueller Fortschritt
 
+- [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt: je Boss ein eigener Ort mit Vorhof, Erkundung und kleineren Gegnern. Konzeptphase; noch keine Umsetzung dieser Level.
+
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.
 - [x] M0.3: V5-Materialprobe, Figur/Vegetation, Diagnose, Browsernachweise und lokale Übergabe.

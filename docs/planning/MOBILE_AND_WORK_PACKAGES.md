@@ -105,6 +105,10 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Adventure-Konzeptbilder:** Drei [Mockups](../concepts/adventure-levels/README.md)
+für eigenständige Boss-Level mit Vorhof, kleineren Gegnern und Nebenwegen erstellt.
+Nur visuelle Planung; der Adventure-Umbau ist noch nicht umgesetzt oder freigegeben.
+
 **27. Oktober, Plateauwände ✅ umgesetzt und technisch geprüft:** Auf erneute
 Lesbarkeitsrückmeldung eigene hellere Wandmaterialien, unterschiedliche Front-/Seiten-
 tönung, durchgehende Ecken und Sockel ergänzt. Beide Perspektiven aller drei Karten
