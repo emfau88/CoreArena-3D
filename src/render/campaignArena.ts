@@ -8,10 +8,14 @@ import { addGarden } from './garden';
 export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind): void {
   const palette = theme === 'stone' ? { floor: 0xb3ac8d, wall: 0xa7a58b, glow: 0xcce69a, dark: 0x1b2925, sky: 0xeaf4ce }
     : theme === 'frost' ? { floor: 0xb4dfef, wall: 0x79adc6, glow: 0x75edff, dark: 0x0c2339, sky: 0xc5e9ff }
-      : { floor: 0x77747b, wall: 0x625c65, glow: 0xff812c, dark: 0x251b24, sky: 0xffc197 };
+      : { floor: 0xc4bdba, wall: 0xb5acaa, glow: 0xff812c, dark: 0x30333c, sky: 0xffecd9 };
   const materials = createMaterials();
   materials.floor.color.setHex(palette.floor); materials.stone.color.setHex(palette.wall);
-  materials.metal.color.setHex(palette.wall).multiplyScalar(0.4);
+  materials.metal.color.setHex(palette.wall).multiplyScalar(theme === 'ember' ? 0.78 : 0.4);
+  if (theme === 'ember') {
+    materials.floor.emissive.setHex(0x3b2920); materials.floor.emissiveIntensity = 0.22;
+    materials.stone.roughness = 0.7; materials.metal.roughness = 0.58;
+  }
   if (theme === 'frost') { materials.floor.roughness = 0.32; materials.stone.roughness = 0.4; materials.stone.metalness = 0.25; }
   const glow = new THREE.MeshStandardMaterial({ color: palette.glow, emissive: palette.glow, emissiveIntensity: 1.2, roughness: 0.45 });
   const dark = new THREE.MeshStandardMaterial({ color: palette.dark, roughness: 0.9 });
@@ -40,9 +44,15 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
   };
   scene.background = new THREE.Color(palette.dark);
   scene.traverse(object => {
-    if (object instanceof THREE.HemisphereLight) { object.color.setHex(palette.sky); object.groundColor.setHex(palette.dark); }
+    if (object instanceof THREE.HemisphereLight) {
+      object.color.setHex(palette.sky); object.groundColor.setHex(palette.dark);
+      if (theme === 'ember') object.intensity = 2.5;
+    }
     if (object instanceof THREE.DirectionalLight) object.color.setHex(palette.sky);
   });
+  if (theme === 'ember') {
+    const fill = new THREE.DirectionalLight(0xc2d5f1, 1.7); fill.position.set(12, 22, -18); scene.add(fill);
+  }
   // Border beds sit outside the enclosing walls, so decorative terrain is unreachable.
   for (const side of [-1, 1]) {
     box(side * 23.2, -0.05, 0, 2.5, 0.2, 30, theme === 'ember' ? lava : dark);
@@ -66,6 +76,9 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
         crystal.rotation.z = Math.sin(i) * 0.4; crystal.castShadow = true; scene.add(crystal);
       }
     } else {
+      // Bright coping outlines the actual cover boundary against the dark forge.
+      box(c.x, top + 0.04, c.z + s.z / 2 - 0.04, s.x, 0.08, 0.09, materials.stone);
+      for (const side of [-1, 1]) box(c.x + side * (s.x / 2 - 0.04), top + 0.04, c.z, 0.09, 0.08, s.z, materials.stone);
       for (const side of [-1, 1]) {
         box(c.x + side * (s.x / 2 - 0.12), top / 2, c.z + s.z / 2 + 0.012, 0.24, top, 0.03, materials.metal);
         box(c.x + side * s.x * 0.3, top * 0.6, c.z + s.z / 2 + 0.04, 0.08, top * 0.55, 0.04, glow);

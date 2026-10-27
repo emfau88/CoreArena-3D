@@ -24,6 +24,9 @@ export class ArenaView {
   private readonly debug = new THREE.LineSegments(this.debugGeometry,
     new THREE.LineBasicMaterial({ vertexColors: true, depthTest: false, transparent: true, opacity: 0.8 }));
   private readonly position = new THREE.Vector3();
+  private readonly vitals = new THREE.Group();
+  private readonly health = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.07), new THREE.MeshBasicMaterial({ color: 0x9be8ca }));
+  private readonly armor = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.035), new THREE.MeshBasicMaterial({ color: 0xe5c48b }));
   private readonly practice: PracticeView;
   private readonly combat: CombatView;
   private readonly raycaster = new THREE.Raycaster();
@@ -52,6 +55,11 @@ export class ArenaView {
     this.practice = new PracticeView(this.scene, arena, options.training ?? true);
     this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS);
     this.scene.add(this.actor);
+    const vitalBack = new THREE.Mesh(new THREE.PlaneGeometry(1.52, 0.24),
+      new THREE.MeshBasicMaterial({ color: 0x0b131a, transparent: true, opacity: 0.75, depthWrite: false }));
+    vitalBack.position.z = -0.005;
+    this.health.position.y = 0.04; this.armor.position.y = -0.045;
+    this.vitals.add(vitalBack, this.health, this.armor); this.scene.add(this.vitals);
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
     this.marker.rotation.x = -Math.PI / 2;
@@ -82,6 +90,14 @@ export class ArenaView {
     this.actor.visible = this.marker.visible = life?.alive ?? true;
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt);
+    this.vitals.visible = !!life?.alive;
+    if (life) {
+      this.vitals.position.copy(this.position).add(new THREE.Vector3(0, 2.15, 0));
+      this.vitals.quaternion.copy(this.camera.camera.quaternion);
+      this.health.scale.x = life.hp / 100; this.health.position.x = -(1 - life.hp / 100) * 0.7;
+      this.armor.scale.x = life.armor / 100; this.armor.position.x = -(1 - life.armor / 100) * 0.7;
+      this.health.material.color.setHex(life.hp <= 30 ? 0xff967f : 0x9be8ca);
+    }
     this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera, weapons?.selected);
     this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups);
     this.renderer.render(this.scene, this.camera.camera);

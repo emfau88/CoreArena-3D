@@ -5,19 +5,20 @@ import type { CameraBasis } from '../input/movement';
 export class ArenaCamera {
   readonly camera = new THREE.OrthographicCamera(-20, 20, 15, -15, 0.1, 180);
   private readonly focus = new THREE.Vector3();
-  private readonly offset = new THREE.Vector3(0, 52, 51);
+  private readonly offset = new THREE.Vector3(0, 58, 42);
   private readonly forward = new THREE.Vector3();
   private readonly right = new THREE.Vector3();
   mode: 'straight' | 'isometric' = 'straight';
   constructor() { this.place(); }
   toggle(): void {
     this.mode = this.mode === 'straight' ? 'isometric' : 'straight';
-    if (this.mode === 'straight') this.offset.set(0, 52, 51);
-    else this.offset.set(30, 52, 41);
+    if (this.mode === 'straight') this.offset.set(0, 58, 42);
+    else this.offset.set(26, 58, 36);
     this.place();
   }
   resize(width: number, height: number): void {
-    const viewHeight = 28;
+    // A closer, steeper view fills the viewport, including ultrawide/landscape phones.
+    const viewHeight = Math.min(21, 40 * height / width);
     this.camera.left = -viewHeight * width / height / 2;
     this.camera.right = -this.camera.left;
     this.camera.top = viewHeight / 2;

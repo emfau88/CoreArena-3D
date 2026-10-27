@@ -3,6 +3,9 @@
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
 
 **Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Botmatch starten“ für das neue 1-gegen-1 oder „Trainingsmatch starten“ für stationäre Ziele; am Desktop dann WASD/Shift/Space.
+**F** oder „Vollbild“ wechselt in echtes Browser-Vollbild. Die nähere Kamera füllt
+die Spielfläche; schlanke HUD-Anzeigen und HP/Rüstung direkt über der Figur halten
+den Kampf im Mittelpunkt. Die Glutschmiede hat hellere Flächen und klarere Deckungskanten.
 Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt Arc Lash.
 [Build & Deployment](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml)
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
@@ -51,6 +54,7 @@ gesichert. Der Verfolgungsstand vor der Kampagne ist `95cb572`. Erweiterungen we
 als eigene Commits gespeichert; für eine vollständige PvE-Rücknahme die aufeinander
 aufbauenden Commits in umgekehrter Reihenfolge zurücknehmen.
 [Kampagne und visuelle Überarbeitung](docs/qa/MINI_CAMPAIGN_RESULT.md),
+[Vollbild, integriertes HUD und hellere Glutschmiede](docs/qa/IMMERSIVE_HUD_RESULT.md),
 [ursprünglicher PvE-Versuch](docs/qa/PVE_BASIC_RESULT.md).
 
 ### Einfach mobil spielen

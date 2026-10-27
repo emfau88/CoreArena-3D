@@ -1,4 +1,5 @@
 import { startGame } from './app/game';
+import { installDisplayControls } from './app/hud';
 import './style.css';
 import './hud.css';
 
@@ -6,7 +7,8 @@ const host = document.querySelector<HTMLElement>('#app')!;
 const game = new URLSearchParams(location.search).get('mode') === 'pve'
   ? import('./app/pveGame').then(({ startPve }) => startPve(host)) : startGame(host);
 game.then((dispose) => {
-  if (import.meta.hot) import.meta.hot.dispose(dispose);
+  const disposeDisplay = installDisplayControls(host);
+  if (import.meta.hot) import.meta.hot.dispose(() => { disposeDisplay(); dispose(); });
 }).catch((error: unknown) => {
   console.error(error);
   const loading = document.querySelector('#loading');

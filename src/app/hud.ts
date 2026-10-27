@@ -15,3 +15,25 @@ export const lifeHud = `<div class="vitals-heading"><span class="vitals-cross">�
   <div class="vitals-numbers"><span><span id="hp-value">100</span><small> HP</small></span><span class="armor"><span id="armor-value">50</span><small> RÜSTUNG</small></span></div>
   <progress id="hp-bar" max="100" value="100" aria-label="Lebenspunkte"></progress>
   <progress id="armor-bar" max="100" value="50" aria-label="Rüstung"></progress>`;
+
+export function installDisplayControls(host: HTMLElement): () => void {
+  const button = document.createElement('button'); button.id = 'fullscreen-toggle'; button.type = 'button';
+  const abort = new AbortController(), options = { signal: abort.signal };
+  const label = () => { button.textContent = document.fullscreenElement ? '⛶ Fenster' : '⛶ Vollbild';
+    button.setAttribute('aria-label', document.fullscreenElement ? 'Vollbild verlassen' : 'Vollbild aktivieren'); };
+  const toggle = async () => {
+    try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); }
+    catch { button.textContent = 'Vollbild nicht verfügbar'; }
+  };
+  button.title = 'Vollbild umschalten (F)'; label(); host.append(button);
+  button.addEventListener('click', () => { void toggle(); }, options);
+  document.addEventListener('fullscreenchange', label, options);
+  window.addEventListener('keydown', event => {
+    if (event.code === 'KeyF' && !event.repeat && !event.ctrlKey && !event.altKey && !event.metaKey
+      && !(event.target instanceof HTMLInputElement) && !(event.target instanceof HTMLTextAreaElement)) {
+      event.preventDefault(); void toggle();
+    }
+  }, options);
+  if (!document.fullscreenEnabled) button.hidden = true;
+  return () => { abort.abort(); button.remove(); };
+}

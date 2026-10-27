@@ -105,6 +105,13 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, visuelle Nacharbeit ✅ umgesetzt und technisch geprüft:** Spielfläche
+durch nähere Kamera stärker ausgefüllt, natives Vollbild per F/Button, HUD ohne große
+Kartenflächen, HP/Rüstung über der Spielfigur. Glutschmiede mit helleren Materialien,
+Fülllicht und deutlicheren Deckungskanten. Vier echte Browserfälle bestanden, darunter
+alle drei Kampagnensiege und Touch; persönliche Bewertung offen.
+[Aufnahmen und QA](../qa/IMMERSIVE_HUD_RESULT.md).
+
 **27. Oktober 2026:** Verfolgung des Steinwächters umgesetzt: langsame Schritte,
 lokales Ausweichen vor Hindernissen, Stillstand für Warnung/Angriff, bewegter
 Trefferkörper und Reset. Kernprüfung und vier PvE-Browserfälle bestanden.
