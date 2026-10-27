@@ -6,6 +6,10 @@ am 27. Oktober; anschließend Verfolgung beauftragt.
 
 [Direkt spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve).
 
+Dieser Bericht dokumentiert den ursprünglichen Einzelversuch und die Verfolgung.
+Der anschließend am 27. Oktober beauftragte Ausbau auf drei Karten und das neue HUD
+sind im [Kampagnenbericht](MINI_CAMPAIGN_RESULT.md) dokumentiert.
+
 ## Spielbarer Umfang
 
 Eine Begegnung auf einer kleinen Variante der bestehenden Arena. Ein großer

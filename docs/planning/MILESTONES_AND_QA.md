@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 26. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und ein separater kleiner PvE-Versuch zusätzlich freigegeben.** M2.4–M2.6 und M3–M5 nicht freigegeben.
+Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und ein separater kleiner PvE-Versuch zusätzlich freigegeben.** M2.4–M2.6 und M3–M5 nicht freigegeben.
 
 ## Aktueller Fortschritt
 
@@ -35,7 +35,11 @@ Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 - [x] Kernprüfung und echte Browserabläufe einschließlich Sieg, Niederlage, Ausweichen und Rückkehr zur Arena. [Nachweise](../qa/PVE_BASIC_RESULT.md).
 - [ ] Persönliches Spielurteil: Trägt der Kampf als Richtung für kurze PvE-Level?
 - [x] 27. Oktober: Positive Rückmeldung zu Auftauchen und Steinmonster; Verfolgung ergänzt, Angriffe bleiben angekündigt und ortsfest.
-- [ ] Neu freigegeben: drei thematische Karten mit unterschiedlichen Gegnern als kleine zusammenhängende Kampagne.
+- [x] Drei thematische Karten mit unterschiedlichen Gegnern als kleine zusammenhängende Kampagne umgesetzt: Steinhof/Steinwächter, Kristallkluft/Frostspinne, Glutschmiede/Glutwurm.
+- [x] Einleitungen, echte Sieg-Übergänge und Kampagnenabschluss; frische Ressourcen je Karte, einzelne Karten direkt testbar.
+- [x] Zusätzlich freigegebene visuelle Überarbeitung: eigene Pickup-/Waffenmodelle, unterschiedliche Schusseffekte und kompakteres HUD mit HP-/Armor-/Bossbalken umgesetzt.
+- [x] Mini-Kampagne und Darstellung technisch geprüft: 37 Kerntests, drei echte Boss-Siege mit Übergängen/Abschluss sowie sechs weitere Browserfälle. [Nachweis](../qa/MINI_CAMPAIGN_RESULT.md).
+- [ ] Persönliche Spielabnahme der drei Karten und der neuen Darstellung.
 - [ ] Erst nach Rückmeldung über weiteren PvE-Ausbau oder Kampagnenplanung entscheiden. Keine Änderung der bisherigen Meilensteinfreigaben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.

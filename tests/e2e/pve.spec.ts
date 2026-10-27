@@ -42,7 +42,7 @@ test('optional PvE: emerge, jump wave, dodge locked eruption, shoot a real victo
   test.setTimeout(65_000);
   const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('./'); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
-  await page.getByRole('button', { name: 'PvE-Versuch: Steinwächter', exact: true }).click();
+  await page.locator('#pve-start').click();
   await expect(page).toHaveURL(/mode=pve/); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
   await expect.poll(async () => (await read(page)).pve.tick).toBeGreaterThan(45);
   await page.screenshot({ path: info.outputPath('emergence.png') });

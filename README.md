@@ -21,21 +21,37 @@ M2.2 ergänzt Arc Lash, Pulse Repeater, Waffenwahl und Pickups.
 M2.3 ergänzt ein Botduell mit begrenzter Sicht, Gedächtnis und Reaktionszeit.
 Eine einfache mobile Touch-Steuerung ist verfügbar.
 
-### Kleiner PvE-Versuch: Der Steinwächter
+### Mini-Kampagne: Die drei Siegel
 
-**[PvE direkt spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve)** oder
-„PvE-Versuch: Steinwächter“ im Spiel wählen. Ein großes Steinmonster bricht aus dem
-Boden. Seine Schockwelle überspringen oder hinter Deckung stehen; beim markierten
-Bodenausbruch den Kreis verlassen. Pulse ist sofort verfügbar, Munition liegt links
-und rechts, Heilung hinter dem Start. Ein Leben, Sieg oder Niederlage, beliebig neu versuchen.
-Maus/Tastatur und die vorhandene Touch-Steuerung funktionieren.
+**[Kampagne starten](https://emfau88.github.io/CoreArena-3D/?mode=pve)** oder
+„Mini-Kampagne: Die drei Siegel“ im Spiel wählen. Drei kurze Begegnungen verbinden
+sich durch Einleitung, Siegesgeschichte und „Weiter“ zu einem abgeschlossenen Versuch:
 
-Dies ist **eine einzelne Testbegegnung**, noch keine Kampagne. „Zur Arena“ bringt dich
-zum bisherigen Spiel zurück. Keine gespeicherten Fortschritte oder Änderungen an
-den Botmatch-Regeln. Der Stand davor ist auf
+| Karte | Gegner | Angriff und Gegenmittel |
+| --- | --- | --- |
+| [Verfallener Steinhof](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone) | Steinwächter | Schockwelle überspringen oder Deckung nutzen |
+| [Kristallkluft](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=frost) | Frostspinne | Drei Eissplitter: seitlich ausweichen oder springen |
+| [Glutschmiede](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=ember) | Glutwurm | Feueratem: aus dem Fächer oder hinter Deckung; Springen schützt nicht |
+
+Alle Gegner kommen aus dem Boden, verfolgen dich zwischen ihren angekündigten
+Angriffen und markieren zusätzliche Bodenausbrüche. Diese Kreise rechtzeitig verlassen.
+Jede Karte beginnt mit frischen HP, Armor und Pulse. Energiezellen liegen links/rechts,
+das Medkit hinter dem Start. Ein Leben pro Versuch, beliebig neu versuchen.
+Nach dem dritten Sieg ist die Mini-Geschichte abgeschlossen. Die Karten sind über
+die Links auch einzeln testbar; kein Save oder Freischaltsystem nötig.
+
+Neues HUD mit Waffen-Silhouetten, separaten HP-/Rüstungsbalken und Bossanzeige.
+Pickups haben eigene Modelle: Medkit, Energiezellen, Rüstungsschild und Pulse-Gewehr.
+Arc Lash zeigt einen violetten Energieblitz; Pulse feuert sichtbare blaue Geschosse
+mit Leuchtspur. Kampfwerte und Trefferregeln bleiben gleich. Desktop und Touch.
+
+„Zur Arena“ bringt dich zum bisherigen Spiel zurück. Der Stand vor dem PvE ist auf
 [`checkpoint/pre-pve-test-2026-10-26`](https://github.com/emfau88/CoreArena-3D/tree/checkpoint/pre-pve-test-2026-10-26)
-gesichert; der separate PvE-Commit lässt sich zurücknehmen.
-[Umfang und Browsernachweise](docs/qa/PVE_BASIC_RESULT.md).
+gesichert. Der Verfolgungsstand vor der Kampagne ist `95cb572`. Erweiterungen werden
+als eigene Commits gespeichert; für eine vollständige PvE-Rücknahme die aufeinander
+aufbauenden Commits in umgekehrter Reihenfolge zurücknehmen.
+[Kampagne und visuelle Überarbeitung](docs/qa/MINI_CAMPAIGN_RESULT.md),
+[ursprünglicher PvE-Versuch](docs/qa/PVE_BASIC_RESULT.md).
 
 ### Einfach mobil spielen
 
@@ -131,7 +147,7 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | M2.1 Lebenszyklus und Match | Erledigt; kompletter Trainingsmatch im Browser geprüft |
 | M2.2 Waffen und Ressourcen | Erledigt; beide Waffen, Pickups, Munition und Restart im Browser geprüft |
 | M2.3 Botwahrnehmung und Kampf | Erledigt; Sicht/Reaktion/Gedächtnis, Waffenregeln und echtes Botduell geprüft |
-| Separater PvE-Versuch | Erledigt; ein Steinwächter, zwei Angriffe, Sieg/Niederlage, Restart und Touch geprüft |
+| Separater PvE-Ausbau | Technisch geprüft: drei Karten, eigene Gegner, Mini-Geschichte, Verfolgung und neues Kampf-HUD |
 | M2.4–M2.6 | Nicht begonnen; nächste Freigabe erforderlich |
 
 [M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).

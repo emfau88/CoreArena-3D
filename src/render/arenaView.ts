@@ -28,7 +28,8 @@ export class ArenaView {
   private readonly combat: CombatView;
   private readonly raycaster = new THREE.Raycaster();
 
-  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[] } = {}) {
+  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[];
+    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void } = {}) {
     const touch = matchMedia('(any-pointer: coarse)').matches;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
     this.renderer.shadowMap.enabled = true;
@@ -47,7 +48,7 @@ export class ArenaView {
     Object.assign(sun.shadow.camera, { left: -32, right: 32, top: 25, bottom: -25, near: 1, far: 100 });
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
-    buildArena(this.scene, arena);
+    (options.build ?? buildArena)(this.scene, arena);
     this.practice = new PracticeView(this.scene, arena, options.training ?? true);
     this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS);
     this.scene.add(this.actor);
@@ -81,7 +82,7 @@ export class ArenaView {
     this.actor.visible = this.marker.visible = life?.alive ?? true;
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt);
-    this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera);
+    this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera, weapons?.selected);
     this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups);
     this.renderer.render(this.scene, this.camera.camera);
   }

@@ -109,7 +109,10 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 lokales Ausweichen vor Hindernissen, Stillstand für Warnung/Angriff, bewegter
 Trefferkörper und Reset. Kernprüfung und vier PvE-Browserfälle bestanden.
 Anschließend separat freigegeben: drei thematische Karten mit jeweils eigenem
-Gegner und einfacher Mini-Kampagnenfolge; derzeit in Arbeit.
+Gegner und einfacher Mini-Kampagnenfolge, nun umgesetzt. Zusätzlich beauftragt und
+umgesetzt: eigene Waffen-/Pickupmodelle, Arc-/Pulse-Effekte und übersichtlicheres
+Kampf-HUD einschließlich Touch. [Ergebnis und QA](../qa/MINI_CAMPAIGN_RESULT.md).
+Das ersetzt keine M2.4-Freigabe; persönliche Abnahme dieser Zusatzpakete steht aus.
 
 **Zusatz vom 26. Oktober 2026: kleiner PvE-Versuch ✅ umgesetzt und technisch geprüft.**
 Eine separate Begegnung mit einem Steinwächter, Auftauchen, zwei angekündigten

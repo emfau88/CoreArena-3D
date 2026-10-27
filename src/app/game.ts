@@ -1,3 +1,4 @@
+import { weaponHud, lifeHud } from './hud';
 import { M1_ARENA } from '../arena/arena';
 import { FixedClock } from '../core/fixedClock';
 import { Simulation } from '../core/simulation';
@@ -56,14 +57,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <div id="match-panel"><div class="eyebrow" id="match-mode">10 ABSCHÜSSE / 2 MINUTEN</div>
       <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
       <button id="bot-start" type="button">Botmatch starten</button>
-      <button id="pve-start" type="button">PvE-Versuch: Steinwächter</button>
+      <button id="pve-start" type="button">Mini-Kampagne: Die drei Siegel</button>
       <button id="match-start" type="button">Trainingsmatch starten</button><button id="match-restart" type="button" hidden>Neu starten</button>
       <small id="match-hint">1 gegen 1 mit Bot oder Training mit drei stationären Zielen.</small></div>
-      <div id="weapon-panel" hidden><div class="weapon-buttons"><button id="weapon-arc" type="button" aria-pressed="true"><kbd>1</kbd> Arc Lash <b>∞</b></button>
-      <button id="weapon-pulse" type="button" aria-pressed="false"><kbd>2</kbd> Pulse <b id="ammo-count">—</b></button></div>
+      <div id="weapon-panel" hidden>${weaponHud(false) }
       <small id="weapon-hint">Arc Lash · 5 m · enger Zielkegel</small><small>1 / 2 oder Mausrad · Pulse-Pickup hinter dem Start</small></div>
-      <div id="life-panel" hidden><div><span id="hp-value">100</span> HP <span class="armor"><span id="armor-value">50</span> ARMOR</span></div>
-      <progress id="hp-bar" max="100" value="100" aria-label="Lebenspunkte"></progress><p id="life-status"></p>
+      <div id="life-panel" hidden>${lifeHud}<p id="life-status"></p>
       <small id="life-hint">Orange Fläche links: Schaden testen.<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.</small></div>
       <div class="location"><span class="eyebrow">01 / OBSIDIAN GARDEN</span>
       <p>Hoch hinaus.</p><small>Folge den Sprungmarkierungen zu E1 und E2.</small>
@@ -223,6 +222,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       element('match-time').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
       element('hp-value').textContent = String(player.hp); element('armor-value').textContent = String(player.armor);
       (element('hp-bar') as HTMLProgressElement).value = player.hp;
+      (element('armor-bar') as HTMLProgressElement).value = player.armor;
+      element('life-panel').dataset.low = String(player.hp > 0 && player.hp <= 30);
       element('life-status').textContent = !player.alive ? `Eliminiert · Respawn in ${(player.respawnTicks / 60).toFixed(1)} s`
         : player.protectionTicks > 0 ? `Spawn-Schutz · ${(player.protectionTicks / 60).toFixed(1)} s` : 'Bereit';
       element('match-result').hidden = state.phase !== 'ended';

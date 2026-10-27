@@ -1,5 +1,6 @@
 import { startGame } from './app/game';
 import './style.css';
+import './hud.css';
 
 const host = document.querySelector<HTMLElement>('#app')!;
 const game = new URLSearchParams(location.search).get('mode') === 'pve'

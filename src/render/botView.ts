@@ -4,6 +4,7 @@ import { CombatView } from './combatView';
 import type { Snapshot } from '../core/types';
 import type { Life } from '../core/match';
 import type { WeaponSnapshot } from '../core/combat';
+import { createWeaponModel } from './gear';
 
 export class BotView {
   private readonly fighter = createFighter(0xd66e5c);
@@ -14,14 +15,15 @@ export class BotView {
   private readonly traceGeometry = new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
   private readonly trace = new THREE.Line(this.traceGeometry, new THREE.LineBasicMaterial({ color: 0xffa383 }));
   private readonly effects: CombatView;
+  private readonly guns = { arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse') };
   constructor(scene: THREE.Scene) {
-    const gun = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.14, 0.65), new THREE.MeshStandardMaterial({ color: 0x424e55, metalness: 0.7, roughness: 0.35 }));
-    gun.position.set(0.25, 1.1, 0.4); this.fighter.actor.add(gun);
+    for (const gun of Object.values(this.guns)) { gun.position.set(0.25, 1.1, 0.4); this.fighter.actor.add(gun); }
     this.ring.rotation.x = -Math.PI / 2; this.armor.position.y = 0.16; this.bars.add(this.hp, this.armor);
     this.trace.frustumCulled = false;
     scene.add(this.fighter.actor, this.ring, this.bars, this.trace); this.effects = new CombatView(scene, []);
   }
   update(state: Snapshot | null, life: Life | undefined, weapons: WeaponSnapshot, tick: number, dt: number, camera: THREE.Camera): void {
+    this.guns.arc.visible = weapons.selected === 'arc'; this.guns.pulse.visible = weapons.selected === 'pulse';
     this.fighter.actor.visible = this.ring.visible = this.bars.visible = !!state && !!life?.alive;
     this.effects.update(!!state, tick, weapons);
     const shot = weapons.lastArc;

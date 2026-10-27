@@ -5,6 +5,8 @@ import type { Snapshot } from '../core/types';
 import { createFighter } from './fighter';
 import type { MatchSnapshot } from '../core/match';
 import { TRAINING_FIELD } from '../arena/training';
+import { createWeaponModel } from './gear';
+import type { WeaponId } from '../core/combat';
 
 export function labelMesh(text: string, width = 3): THREE.Mesh {
   const canvas = document.createElement('canvas');
@@ -23,10 +25,10 @@ export class PracticeView {
   private readonly impact = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6),
     new THREE.MeshBasicMaterial({ color: 0xf9ba6e, depthTest: false }));
   private readonly tracerGeometry = new THREE.BufferGeometry().setAttribute('position',
-    new THREE.BufferAttribute(new Float32Array(6), 3));
-  private readonly tracer = new THREE.Line(this.tracerGeometry, new THREE.LineBasicMaterial({ color: 0xb6fff1 }));
-  private readonly gun = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.14, 0.65),
-    new THREE.MeshStandardMaterial({ color: 0x424e55, metalness: 0.7, roughness: 0.35 }));
+    new THREE.BufferAttribute(new Float32Array(27), 3));
+  private readonly tracer = new THREE.Line(this.tracerGeometry, new THREE.LineBasicMaterial({ color: 0xd6a6ff }));
+  private readonly gun = new THREE.Group();
+  private readonly weapons = { arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse') };
   private readonly bot = createFighter(0xd7b779);
   private readonly targets = new Map<string, THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>>();
   private readonly targetDetails = new Map<string, { hoop: THREE.Mesh<THREE.TorusGeometry, THREE.MeshStandardMaterial>; bars: THREE.Group; hp: THREE.Mesh; armor: THREE.Mesh }>();
@@ -34,6 +36,7 @@ export class PracticeView {
   private readonly targetRoot = new THREE.Group();
   private readonly normal = new THREE.Vector3();
   constructor(scene: THREE.Scene, arena: ArenaDefinition, private readonly trainingEnabled = true) {
+    this.gun.add(this.weapons.arc, this.weapons.pulse);
     for (const target of arena.targets ?? []) {
       const mesh = new THREE.Mesh(new THREE.SphereGeometry(target.radius, 16, 12),
         new THREE.MeshStandardMaterial({ color: 0xa96253, metalness: 0.55, roughness: 0.35, emissive: 0xffb881, emissiveIntensity: 0 }));
@@ -66,7 +69,8 @@ export class PracticeView {
     this.hazard.add(field, fieldLabel); scene.add(this.hazard);
     scene.add(this.reticle, this.impact, this.tracer, this.gun, this.bot.actor, this.targetRoot);
   }
-  update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number, match?: MatchSnapshot, camera?: THREE.Camera): void {
+  update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number, match?: MatchSnapshot, camera?: THREE.Camera, selected: WeaponId = 'arc'): void {
+    this.weapons.arc.visible = selected === 'arc'; this.weapons.pulse.visible = selected === 'pulse';
     this.reticle.visible = this.gun.visible = !!aim;
     if (aim) {
       this.reticle.position.set(aim.target.point.x, aim.target.point.y, aim.target.point.z);
@@ -84,7 +88,11 @@ export class PracticeView {
     if (shot && recent) {
       const { muzzle, end } = shot.aim;
       const points = this.tracerGeometry.getAttribute('position') as THREE.BufferAttribute;
-      points.setXYZ(0, muzzle.x, muzzle.y, muzzle.z); points.setXYZ(1, end.x, end.y, end.z);
+      for (let i = 0; i < 9; i++) {
+        const t = i / 8, jitter = i === 0 || i === 8 ? 0 : Math.sin(i * 13 + tick * 3) * 0.12;
+        points.setXYZ(i, muzzle.x + (end.x - muzzle.x) * t + jitter,
+          muzzle.y + (end.y - muzzle.y) * t + jitter * 0.5, muzzle.z + (end.z - muzzle.z) * t - jitter);
+      }
       points.needsUpdate = true;
       this.impact.position.set(end.x, end.y, end.z);
     }
