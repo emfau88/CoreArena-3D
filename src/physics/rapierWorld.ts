@@ -103,9 +103,10 @@ export class RapierWorld implements SpatialWorld, RayWorld {
       this.world.step();
     }
   }
-  sweepBall(ray: Ray, distance: number, radius: number): RayHit | null {
+  sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly = false): RayHit | null {
     const hit = this.world.castShape(ray.origin, { x: 0, y: 0, z: 0, w: 1 }, ray.direction,
-      new RAPIER.Ball(radius), 0, distance, true, undefined, undefined, this.collider);
+      new RAPIER.Ball(radius), 0, distance, true,
+      surfacesOnly ? RAPIER.QueryFilterFlags.EXCLUDE_SENSORS : undefined, undefined, this.collider);
     if (!hit) return null;
     return { id: this.names.get(hit.collider.handle)!, distance: hit.time_of_impact,
       point: { x: ray.origin.x + ray.direction.x * hit.time_of_impact,

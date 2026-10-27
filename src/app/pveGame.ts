@@ -73,6 +73,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   function restart() {
     encounter.reset(); combat.reset(); combat.addAmmo(54, true); combat.select('pulse'); pickups.reset();
     current = simulation.reset(); previous = current; aim = null; world.setTargetEnabled(MONSTER.id, false);
+    world.setTargetPosition(MONSTER.id, encounter.snapshot().center);
     element('match-result').hidden = true; view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   }
   for (const id of ['pve-restart', 'pve-again']) element(id).addEventListener('click', restart, options);
@@ -85,9 +86,10 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       previous = current; current = simulation.step(input.command(view.camera.basis()));
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       aim = ray ? solveAim(world, ray, current.position) : null;
-      const attack = combat.step(before.tick + 1, input.fire(), aim, ray, world, before.phase === 'emerging' ? [] : [MONSTER]);
+      const attack = combat.step(before.tick + 1, input.fire(), aim, ray, world, before.phase === 'emerging' ? [] : [{ ...MONSTER, center: before.center }]);
       encounter.step(current.position, world, attack.damage);
       const after = encounter.snapshot();
+      if (after.center !== before.center) world.setTargetPosition(MONSTER.id, after.center);
       world.setTargetEnabled(MONSTER.id, after.phase !== 'emerging' && after.outcome === 'running');
       if (after.outcome === 'running') pickups.step(after.tick, current, world, (kind, amount) =>
         kind === 'ammo' ? combat.addAmmo(amount) : encounter.restore(amount));
@@ -101,7 +103,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       element('ammo-count').textContent = `${weapons.ammo} / 54`;
       for (const id of ['arc', 'pulse']) element(`weapon-${id}`).setAttribute('aria-pressed', String(weapons.selected === id));
       (element('weapon-pulse') as HTMLButtonElement).disabled = weapons.ammo === 0;
-      const messages = { emerging: 'Der Boden bricht auf …', warning: state.kind === 'wave' ? 'SCHOCKWELLE · Sprung vorbereiten!' : 'BODENAUSBRUCH · Kreis verlassen!',
+      const messages = { emerging: 'Der Boden bricht auf …', chasing: 'Er verfolgt dich · Bleib in Bewegung!', warning: state.kind === 'wave' ? 'SCHOCKWELLE · Sprung vorbereiten!' : 'BODENAUSBRUCH · Kreis verlassen!',
         attack: state.kind === 'wave' ? 'JETZT SPRINGEN oder Deckung suchen!' : 'Einschlag!', recovery: 'Er erschöpft sich · Gegenfeuer!', defeated: 'Der Wächter fällt.' };
       element('pve-telegraph').textContent = messages[state.phase];
       element('life-status').textContent = state.tick - state.lastHit < 50 ? 'Getroffen! Achte auf die Warnung.' : 'Ein Leben · Ein Monster';
@@ -117,7 +119,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true,
     value: Object.freeze({ read: () => ({ mode: 'pve', snapshot: current, pve: encounter.snapshot(), weapons: combat.snapshot(),
       pickups: pickups.snapshot(), paused, aim, camera: view.camera.mode,
-      monsterScreen: view.projectedPosition({ ...MONSTER.center, y: MONSTER.center.y - 0.9 }),
+      monsterScreen: view.projectedPosition({ ...encounter.snapshot().center, y: encounter.snapshot().center.y - 0.9 }),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio() } }) }) });
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
   restart(); frameId = requestAnimationFrame(frame);

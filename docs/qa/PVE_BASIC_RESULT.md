@@ -1,7 +1,8 @@
 # Kleiner PvE-Versuch: Der Steinwächter
 
 26. Oktober 2026. Separat beauftragter, reversibler Spielversuch. **Umgesetzt und
-technisch geprüft; persönliches Spielurteil offen.**
+technisch geprüft.** Positive Nutzerrückmeldung zu Auftauchen und Steinmonster
+am 27. Oktober; anschließend Verfolgung beauftragt.
 
 [Direkt spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve).
 
@@ -30,12 +31,34 @@ kann mit dessen `git revert` entfernt werden, ohne spätere Arbeit zurückzusetz
 `?mode=pve` lädt einen eigenen Einstieg mit eigenem numerischen Begegnungszustand.
 ArenaMatch, Botregeln und Waffenwerte bleiben unverändert. Renderer, Eingabe,
 Motor, Waffen und Pickups werden wiederverwendet. Es gibt weder Kampagnenspeicher
-noch Levelkette, Rekrutierung oder Fortschrittsbelohnungen. Das Monster bleibt an
-seinem Krater; Modell, Trefferkörper und Effekte sind bewusst ein erster Versuch.
+noch Levelkette, Rekrutierung oder Fortschrittsbelohnungen. In der Grundversion
+blieb das Monster am Krater; seit 27. Oktober verfolgt es den Spieler.
 Neue Sounds oder ein ausbalanciertes Schwierigkeitsmodell sind nicht enthalten.
 CTF-3.0 wurde nicht verändert; M2.4 wurde nicht begonnen.
 
-## Prüfung
+## Erweiterung vom 27. Oktober: Verfolgung
+
+Nach dem Auftauchen und jeder Erholung verfolgt der Wächter den Spieler für bis
+zu zwei Sekunden mit 2,6 m/s. Er hält 3,6 m Abstand. Während Warnung, Schlag und
+Erholung steht er still; Welle und Trefferkörper folgen seiner tatsächlichen
+Position. Der Krater bleibt zurück. Schritte, Armschwung und Drehung machen die
+Bewegung sichtbar. Neustart setzt auch Position und Trefferkörper zurück.
+
+Rapier prüft einen Körper-Sweep gegen feste Geometrie; Bodenproben verhindern
+das Verlassen der Arena. Einfache lokale Ausweichrichtungen, keine vollständige
+Wegplanung oder Kletterfähigkeit. **34 Kerntests und vier PvE-Browserfälle grün**:
+bewegtes Ziel tatsächlich getroffen, Richtungswechsel, Pause/Reset, Sieg,
+Niederlage und Touch. Produktions-/Testbuild bestanden.
+
+Beim zusätzlich ausgeführten Botduell scheiterte der erste Lauf: Der Spieler
+starb vor dem erwarteten eigenen Abschuss. Dieser Befund bleibt im
+[Browserbericht](pve-pursuit/browser-results.json) erhalten.
+Der isolierte Wiederholungslauf bestand unverändert in 18,9 Sekunden. Damit ist
+dieser Bot-Test als instabil dokumentiert, nicht als fehlerfreier Erstlauf.
+
+![Verfolgung mit zurückbleibendem Krater](pve-pursuit/pursuit.png)
+
+## Prüfung der Grundversion vom 26. Oktober
 
 - **32/32 Kern-/Physiktests bestanden**, einschließlich vier neuer Fälle für
   Warnzeiten, einmaligen Schaden, Sprunghöhe, reale Deckung, fixierte Bodenziele,

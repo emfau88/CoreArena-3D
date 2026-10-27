@@ -34,6 +34,8 @@ Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 - [x] Vorhandene Bewegung, Waffen und Touch wiederverwendet; eigene HP-/Sieg-/Niederlageregeln, Pickups und Neustart.
 - [x] Kernprüfung und echte Browserabläufe einschließlich Sieg, Niederlage, Ausweichen und Rückkehr zur Arena. [Nachweise](../qa/PVE_BASIC_RESULT.md).
 - [ ] Persönliches Spielurteil: Trägt der Kampf als Richtung für kurze PvE-Level?
+- [x] 27. Oktober: Positive Rückmeldung zu Auftauchen und Steinmonster; Verfolgung ergänzt, Angriffe bleiben angekündigt und ortsfest.
+- [ ] Neu freigegeben: drei thematische Karten mit unterschiedlichen Gegnern als kleine zusammenhängende Kampagne.
 - [ ] Erst nach Rückmeldung über weiteren PvE-Ausbau oder Kampagnenplanung entscheiden. Keine Änderung der bisherigen Meilensteinfreigaben.
 
 Nachweise: [M0-Ergebnis](../qa/M0_RESULT.md), sechs bestandene Kern-/Physiktests und 24 bestandene Browserfälle. Eine Neuinstallationsprüfung aus einem frischen Checkout wurde nicht zusätzlich durchgeführt; Installation und Build im Arbeitsverzeichnis sind geprüft.

@@ -1,0 +1,566 @@
+{
+  "date": "2026-10-27",
+  "tests": [
+    {
+      "title": "bot duel: real enemy damage, player respawn, moving target hit, rival respawn and clean restart",
+      "project": "chromium-1366",
+      "status": "failed",
+      "durationMs": 34417,
+      "errors": [
+        {
+          "location": {
+            "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\m2-3.spec.ts",
+            "column": 58,
+            "line": 43
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n\n  41 |     await page.waitForTimeout(70); state = await read(page);\n  42 |   }\n> 43 |   await page.mouse.up(); expect(state.match.scores.blue).toBe(1);\n     |                                                          ^\n  44 |   expect(state.match.actors.rival!.alive).toBe(false);\n  45 |   await page.screenshot({ path: info.outputPath('bot-defeated.png') });\n  46 |   await expect.poll(async () => (await read(page)).match.actors.rival!.life).toBe(2);\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\m2-3.spec.ts:43:58"
+        }
+      ],
+      "observations": []
+    },
+    {
+      "title": "warden follows a moving player, can be hit while walking and holds position during warnings",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 6796,
+      "errors": [],
+      "observations": [
+        {
+          "name": "pursuit",
+          "data": {
+            "approach": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 134,
+                "position": {
+                  "x": 0.0000323578278766945,
+                  "y": 0.028309857845306374,
+                  "z": 8
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": 0
+              },
+              "pve": {
+                "tick": 134,
+                "phase": "chasing",
+                "phaseTick": 14,
+                "kind": "wave",
+                "target": {
+                  "x": 0,
+                  "y": 0,
+                  "z": -1
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 600,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": 0.000002181157286489014,
+                  "y": 1.85,
+                  "z": -0.3933333333372547
+                },
+                "facing": 0.00000359531420850612,
+                "moving": true
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 683.4996870950959,
+                "y": 274.9717021386251
+              }
+            },
+            "walking": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 193,
+                "position": {
+                  "x": -4.437648296356201,
+                  "y": 0.026473379135131814,
+                  "z": 7.999853610992432
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": -1.5707963267948966
+              },
+              "pve": {
+                "tick": 193,
+                "phase": "chasing",
+                "phaseTick": 73,
+                "kind": "wave",
+                "target": {
+                  "x": 0,
+                  "y": 0,
+                  "z": -1
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 590,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": -0.8571545254174024,
+                  "y": 1.85,
+                  "z": 1.9671677155525191
+                },
+                "facing": -0.5356379878000141,
+                "moving": true
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 53,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": {
+                  "point": {
+                    "x": -1.1096109399101008,
+                    "y": 2.960100485566666,
+                    "z": 3.401641371796072
+                  },
+                  "tick": 191,
+                  "id": "stone-warden"
+                }
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 707.902409553201,
+                "y": 321.19566927511664
+              }
+            },
+            "warning": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 242,
+                "position": {
+                  "x": -4.437660217285156,
+                  "y": 0.021609580516815163,
+                  "z": 7.999922752380371
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": -1.5707963267948966
+              },
+              "pve": {
+                "tick": 242,
+                "phase": "warning",
+                "phaseTick": 2,
+                "kind": "wave",
+                "target": {
+                  "x": -4.437660217285156,
+                  "y": -1.7881393449270533e-8,
+                  "z": 7.999922752380371
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 590,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": -1.8966425666993467,
+                  "y": 1.85,
+                  "z": 3.71858877375943
+                },
+                "facing": -0.535634314294388,
+                "moving": false
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 53,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": {
+                  "point": {
+                    "x": -1.1096109399101008,
+                    "y": 2.960100485566666,
+                    "z": 3.401641371796072
+                  },
+                  "tick": 191,
+                  "id": "stone-warden"
+                }
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 682.5813355731076,
+                "y": 355.49204449060846
+              }
+            },
+            "restarted": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 261,
+                "position": {
+                  "x": 0,
+                  "y": 0.053722178936004616,
+                  "z": 8
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": -1.5707963267948966
+              },
+              "pve": {
+                "tick": 1,
+                "phase": "emerging",
+                "phaseTick": 1,
+                "kind": "wave",
+                "target": {
+                  "x": 0,
+                  "y": 0,
+                  "z": -1
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 600,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": 0,
+                  "y": 1.85,
+                  "z": -1
+                },
+                "facing": 0,
+                "moving": false
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 728.6111599875404,
+                "y": 263.0911175556185
+              }
+            },
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "optional PvE: emerge, jump wave, dodge locked eruption, shoot a real victory, restart and return to arena",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 27239,
+      "errors": [],
+      "observations": [
+        {
+          "name": "pve-playthrough",
+          "data": {
+            "browser": "156.0.8078.4",
+            "dodged": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 796,
+                "position": {
+                  "x": -4.080204963684082,
+                  "y": 0.029970204830169656,
+                  "z": 7.280032157897949
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": 3.141592653589793
+              },
+              "pve": {
+                "tick": 796,
+                "phase": "recovery",
+                "phaseTick": 7,
+                "kind": "eruption",
+                "target": {
+                  "x": -0.00017983696307055652,
+                  "y": -1.7881393449270533e-8,
+                  "z": 7.999954700469971
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 580,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": 0.000008248791732497547,
+                  "y": 1.85,
+                  "z": 4.3999547053833385
+                },
+                "facing": -0.00005224604302461724,
+                "moving": false
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": {
+                  "point": {
+                    "x": -0.00002150582110223402,
+                    "y": 2.9258912970665825,
+                    "z": 5.802297561786101
+                  },
+                  "tick": 556,
+                  "id": "stone-warden"
+                }
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 730.4484034334224,
+                "y": 374.72590877469037
+              }
+            },
+            "won": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 1373,
+                "position": {
+                  "x": -4.08033561706543,
+                  "y": 0.02994558811187742,
+                  "z": 7.280120372772217
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": true,
+                "surface": "floor",
+                "ceiling": false,
+                "facing": 3.141592653589793
+              },
+              "pve": {
+                "tick": 1373,
+                "phase": "defeated",
+                "phaseTick": 0,
+                "kind": "eruption",
+                "target": {
+                  "x": -4.080204963684082,
+                  "y": -1.7881393449270533e-8,
+                  "z": 7.280032157897949
+                },
+                "waveRadius": 20,
+                "hp": 90,
+                "armor": 0,
+                "bossHp": 0,
+                "outcome": "victory",
+                "hitsTaken": 1,
+                "lastHit": 1098,
+                "center": {
+                  "x": -1.139224615309007,
+                  "y": 1.85,
+                  "z": 5.204098678437755
+                },
+                "facing": -0.9561462330043321,
+                "moving": false
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 21,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 699.2581951733737,
+                "y": 390.50187980985135
+              }
+            },
+            "restarted": {
+              "mode": "pve",
+              "snapshot": {
+                "tick": 1373,
+                "position": {
+                  "x": 0,
+                  "y": 0.06,
+                  "z": 8
+                },
+                "velocity": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "grounded": false,
+                "surface": null,
+                "ceiling": false,
+                "facing": 3.141592653589793
+              },
+              "pve": {
+                "tick": 0,
+                "phase": "emerging",
+                "phaseTick": 0,
+                "kind": "wave",
+                "target": {
+                  "x": 0,
+                  "y": 0,
+                  "z": -1
+                },
+                "waveRadius": 2,
+                "hp": 100,
+                "armor": 50,
+                "bossHp": 600,
+                "outcome": "running",
+                "hitsTaken": 0,
+                "lastHit": -100,
+                "center": {
+                  "x": 0,
+                  "y": 1.85,
+                  "z": -1
+                },
+                "facing": 0,
+                "moving": false
+              },
+              "weapons": {
+                "selected": "pulse",
+                "ownsPulse": true,
+                "ammo": 54,
+                "projectiles": [],
+                "lastArc": null,
+                "impact": null
+              },
+              "paused": false,
+              "monsterScreen": {
+                "x": 727.3714644068908,
+                "y": 268.6165199057326
+              }
+            },
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "PvE: ignoring telegraphs produces real defeat; pause and retry work",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 21385,
+      "errors": [],
+      "observations": [
+        {
+          "name": "pve-defeat",
+          "data": {
+            "mode": "pve",
+            "snapshot": {
+              "tick": 1098,
+              "position": {
+                "x": 0.0000323578278766945,
+                "y": 0.01997653245925901,
+                "z": 8
+              },
+              "velocity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "grounded": true,
+              "surface": "floor",
+              "ceiling": false,
+              "facing": 0
+            },
+            "pve": {
+              "tick": 1098,
+              "phase": "attack",
+              "phaseTick": 9,
+              "kind": "wave",
+              "target": {
+                "x": 0.0000323578278766945,
+                "y": -1.7881393449270533e-8,
+                "z": 8
+              },
+              "waveRadius": 3.08,
+              "hp": 0,
+              "armor": 0,
+              "bossHp": 600,
+              "outcome": "defeat",
+              "hitsTaken": 3,
+              "lastHit": 1098,
+              "center": {
+                "x": 0.00001941469672610039,
+                "y": 1.85,
+                "z": 4.400000000023267
+              },
+              "facing": 0.000003595314208506109,
+              "moving": false
+            },
+            "weapons": {
+              "selected": "pulse",
+              "ownsPulse": true,
+              "ammo": 54,
+              "projectiles": [],
+              "lastArc": null,
+              "impact": null
+            },
+            "paused": false,
+            "monsterScreen": {
+              "x": 683.5001597552188,
+              "y": 368.83501014324037
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "enter, move, shoot the monster and return with touch",
+      "project": "chromium-1366",
+      "status": "passed",
+      "durationMs": 7337,
+      "errors": [],
+      "observations": []
+    }
+  ],
+  "botRepeat": {
+    "status": "passed",
+    "expected": 1,
+    "unexpected": 0
+  }
+}

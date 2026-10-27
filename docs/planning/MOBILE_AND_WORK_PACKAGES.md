@@ -105,6 +105,12 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober 2026:** Verfolgung des Steinwächters umgesetzt: langsame Schritte,
+lokales Ausweichen vor Hindernissen, Stillstand für Warnung/Angriff, bewegter
+Trefferkörper und Reset. Kernprüfung und vier PvE-Browserfälle bestanden.
+Anschließend separat freigegeben: drei thematische Karten mit jeweils eigenem
+Gegner und einfacher Mini-Kampagnenfolge; derzeit in Arbeit.
+
 **Zusatz vom 26. Oktober 2026: kleiner PvE-Versuch ✅ umgesetzt und technisch geprüft.**
 Eine separate Begegnung mit einem Steinwächter, Auftauchen, zwei angekündigten
 Angriffen, Sieg/Niederlage, Pickups und Neustart. Gemeinsame Waffen, Bewegung und
