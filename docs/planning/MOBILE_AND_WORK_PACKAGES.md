@@ -105,6 +105,13 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Kartengestaltung ✅ umgesetzt und technisch geprüft:** Thematische
+Details und dezente Animation auf allen drei PvE-Karten. Nach direkter Rückmeldung
+Moos/Frost ins feste Bodenmaterial eingearbeitet und Plattformoberseiten freigeräumt,
+aufgehellt sowie mit klaren Kanten versehen. Vier Browserfälle bestanden, darunter
+ein tatsächlicher Sprung auf die dekorierte Plattform und die komplette Kampagne.
+[Ergebnis](../qa/CAMPAIGN_SCENERY_RESULT.md). Persönliche Sichtabnahme offen.
+
 **27. Oktober, visuelle Nacharbeit ✅ umgesetzt und technisch geprüft:** Spielfläche
 durch nähere Kamera stärker ausgefüllt, natives Vollbild per F/Button, HUD ohne große
 Kartenflächen, HP/Rüstung über der Spielfigur. Glutschmiede mit helleren Materialien,

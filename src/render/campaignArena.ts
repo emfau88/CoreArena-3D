@@ -3,9 +3,10 @@ import type { ArenaDefinition } from '../arena/arena';
 import type { MonsterKind } from '../core/pve';
 import { createMaterials } from './materials';
 import { addGarden } from './garden';
+import { addCampaignDetails } from './campaignDetails';
 
 /** The same arena boxes remain the visible and physical cover boundaries. */
-export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind): void {
+export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind): (dt: number) => void {
   const palette = theme === 'stone' ? { floor: 0xb3ac8d, wall: 0xa7a58b, glow: 0xcce69a, dark: 0x1b2925, sky: 0xeaf4ce }
     : theme === 'frost' ? { floor: 0xb4dfef, wall: 0x79adc6, glow: 0x75edff, dark: 0x0c2339, sky: 0xc5e9ff }
       : { floor: 0xc4bdba, wall: 0xb5acaa, glow: 0xff812c, dark: 0x30333c, sky: 0xffecd9 };
@@ -19,6 +20,9 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
   if (theme === 'frost') { materials.floor.roughness = 0.32; materials.stone.roughness = 0.4; materials.stone.metalness = 0.25; }
   const glow = new THREE.MeshStandardMaterial({ color: palette.glow, emissive: palette.glow, emissiveIntensity: 1.2, roughness: 0.45 });
   const dark = new THREE.MeshStandardMaterial({ color: palette.dark, roughness: 0.9 });
+  const landing = new THREE.MeshStandardMaterial({ color: theme === 'stone' ? 0xb8ae8b : theme === 'frost' ? 0xb5dbe2 : 0xb9b4aa,
+    roughness: 0.83, metalness: theme === 'ember' ? 0.2 : 0.02 });
+  const edge = new THREE.MeshStandardMaterial({ color: theme === 'stone' ? 0xd8cdab : theme === 'frost' ? 0xe4f5f5 : 0xd2c9b5, roughness: 0.7 });
   let lava: THREE.Material = glow;
   if (theme === 'ember') {
     const canvas = document.createElement('canvas'); canvas.width = canvas.height = 128;
@@ -64,15 +68,20 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     if (shape.id === 'floor') { mesh.castShadow = false; continue; }
     if (['north', 'south', 'east', 'west'].includes(shape.id)) continue;
     const top = c.y + s.y / 2;
+    // Clean landing surface, bright coping and darker vertical faces communicate height.
+    box(c.x, top + 0.012, c.z, s.x, 0.024, s.z, landing);
+    for (const side of [-1, 1]) {
+      box(c.x, top + 0.026, c.z + side * (s.z / 2 - 0.035), s.x, 0.035, 0.07, edge);
+      box(c.x + side * (s.x / 2 - 0.035), top + 0.026, c.z, 0.07, 0.035, s.z, edge);
+      box(c.x, top - 0.12, c.z + side * (s.z / 2 + 0.008), s.x, 0.12, 0.016, dark);
+    }
     if (theme === 'stone') {
       // Broken stone courses, aged caps and moss growing over the solid ruins.
       for (let y = 0.4; y < top; y += 0.65) box(c.x, y, c.z + s.z / 2 + 0.008, s.x, 0.025, 0.012, dark);
-      box(c.x, top + 0.03, c.z, s.x * 0.98, 0.06, s.z * 0.98, materials.stone);
     } else if (theme === 'frost') {
-      box(c.x, top + 0.025, c.z, s.x * 0.97, 0.05, s.z * 0.97, materials.floor);
-      for (let i = 0; i < 5; i++) {
-        const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.3 + i % 2 * 0.15, 0.8 + i % 3 * 0.45, 5), i % 2 ? glow : materials.stone);
-        crystal.position.set(c.x + Math.sin(i * 2) * s.x * 0.3, top + 0.4, c.z + Math.cos(i * 2) * s.z * 0.3);
+      for (let i = 0; i < 3; i++) {
+        const crystal = new THREE.Mesh(new THREE.ConeGeometry(0.18 + i % 2 * 0.05, 0.5 + i % 3 * 0.15, 5), materials.stone);
+        crystal.position.set(c.x + (i - 1) * s.x * 0.27, top + 0.22, c.z - s.z / 2 + 0.25);
         crystal.rotation.z = Math.sin(i) * 0.4; crystal.castShadow = true; scene.add(crystal);
       }
     } else {
@@ -83,11 +92,12 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
         box(c.x + side * (s.x / 2 - 0.12), top / 2, c.z + s.z / 2 + 0.012, 0.24, top, 0.03, materials.metal);
         box(c.x + side * s.x * 0.3, top * 0.6, c.z + s.z / 2 + 0.04, 0.08, top * 0.55, 0.04, glow);
       }
-      box(c.x, top + 0.025, c.z, s.x, 0.05, s.z, materials.metal);
     }
   }
   if (theme === 'stone') {
-    addGarden(scene, arena);
+    // Vegetation hugs the back edge; most of each platform stays visibly walkable.
+    addGarden(scene, { ...arena, boxes: arena.boxes.filter(b => b.planted).map(b => ({ ...b,
+      center: { ...b.center, z: b.center.z - b.size.z / 2 + 0.25 }, size: { ...b.size, z: 0.5 } })) });
     ring(0, -1, 5.2, 0.07, materials.brass); ring(0, -1, 5.65, 0.04, materials.brass);
     for (let i = 0; i < 12; i++) {
       const a = i * Math.PI / 6;
@@ -123,4 +133,5 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     }
     ring(0, -1, 5.2, 0.18, materials.metal); ring(0, -1, 5.5, 0.045, materials.brass);
   }
+  return addCampaignDetails(scene, arena, theme);
 }

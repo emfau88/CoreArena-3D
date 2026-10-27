@@ -40,6 +40,7 @@ Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 - [x] Zusätzlich freigegebene visuelle Überarbeitung: eigene Pickup-/Waffenmodelle, unterschiedliche Schusseffekte und kompakteres HUD mit HP-/Armor-/Bossbalken umgesetzt.
 - [x] Mini-Kampagne und Darstellung technisch geprüft: 37 Kerntests, drei echte Boss-Siege mit Übergängen/Abschluss sowie sechs weitere Browserfälle. [Nachweis](../qa/MINI_CAMPAIGN_RESULT.md).
 - [ ] Persönliche Spielabnahme der drei Karten und der neuen Darstellung.
+- [x] Kartendetails ergänzt: Efeu/Reliefs, Eiszapfen/Frost, Ofengitter/Beschläge und dezente Umgebungsanimation. Rückmeldung zu schwebend wirkenden Bodenflecken und schlecht lesbaren Höhen eingearbeitet: Details direkt im Bodenmaterial, klare freie Oberseiten und Kanten. Vier Browserfälle mit echtem Plattformsprung, drei Boss-Siegen, Vollbild und Touch bestanden. [Nachweise](../qa/CAMPAIGN_SCENERY_RESULT.md).
 - [x] Nacharbeit auf HUD-/Lava-Rückmeldung: nähere Kamera, echtes Vollbild per F/Button, schlanke Anzeigen und HP/Rüstung über der Figur; Glutschmiede deutlich aufgehellt. Vier Browserfälle einschließlich kompletter Kampagne, Vollbild und Touch bestanden. [Nachweis](../qa/IMMERSIVE_HUD_RESULT.md).
 - [ ] Erst nach Rückmeldung über weiteren PvE-Ausbau oder Kampagnenplanung entscheiden. Keine Änderung der bisherigen Meilensteinfreigaben.
 

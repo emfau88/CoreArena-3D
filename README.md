@@ -6,6 +6,9 @@
 **F** oder „Vollbild“ wechselt in echtes Browser-Vollbild. Die nähere Kamera füllt
 die Spielfläche; schlanke HUD-Anzeigen und HP/Rüstung direkt über der Figur halten
 den Kampf im Mittelpunkt. Die Glutschmiede hat hellere Flächen und klarere Deckungskanten.
+Die Kampagnenkarten ergänzen Efeu und Mauerreliefs, Eiszapfen und Frost sowie
+Ofengitter und Metallbeschläge. Moos/Frost sind in die Bodentextur eingearbeitet;
+helle, freie Plattformoberseiten machen die erhöhten Flächen erkennbar.
 Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt Arc Lash.
 [Build & Deployment](https://github.com/emfau88/CoreArena-3D/actions/workflows/pages.yml)
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
@@ -55,6 +58,7 @@ als eigene Commits gespeichert; für eine vollständige PvE-Rücknahme die aufei
 aufbauenden Commits in umgekehrter Reihenfolge zurücknehmen.
 [Kampagne und visuelle Überarbeitung](docs/qa/MINI_CAMPAIGN_RESULT.md),
 [Vollbild, integriertes HUD und hellere Glutschmiede](docs/qa/IMMERSIVE_HUD_RESULT.md),
+[Kartendetails und lesbare Plattformen](docs/qa/CAMPAIGN_SCENERY_RESULT.md),
 [ursprünglicher PvE-Versuch](docs/qa/PVE_BASIC_RESULT.md).
 
 ### Einfach mobil spielen
