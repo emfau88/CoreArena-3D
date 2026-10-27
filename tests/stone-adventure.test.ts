@@ -54,13 +54,21 @@ test('adventure pickups preserve partial contents, remain consumed and reset onl
 
 test('adventure camera follows the whole level and snaps to spawn without changing the arena default', () => {
   const camera = new ArenaCamera(); camera.resize(1366,768);
-  const start = STONE_ADVENTURE.spawn; camera.trackPlayer(start);
+  const start = STONE_ADVENTURE.spawn; camera.trackPlayer(start,1.2,'side');
+  assert.equal(camera.mode,'side');
+  const startScreen = new THREE.Vector3(start.x,0,start.z).project(camera.camera);
+  const aheadScreen = new THREE.Vector3(start.x,0,start.z-10).project(camera.camera);
+  assert.ok(aheadScreen.x > startScreen.x && Math.abs(aheadScreen.y-startScreen.y)<.001,'northward route goes right on screen');
+  assert.ok(camera.basis().right.z < -.99,'D/right joystick advances along the route');
   assert.ok(Math.abs(new THREE.Vector3(start.x,0,start.z).project(camera.camera).x)<.001);
   for(let i=0;i<180;i++) camera.follow({x:0,y:0,z:-40},1/60);
   assert.ok(Math.abs(new THREE.Vector3(0,0,-40).project(camera.camera).y)<.001);
   camera.toggle(); camera.snap(start);
+  assert.equal(camera.mode,'straight');
   const p = new THREE.Vector3(start.x,0,start.z).project(camera.camera);
   assert.ok(Math.hypot(p.x,p.y)<.001);
+  camera.toggle(); assert.equal(camera.mode,'isometric');
+  camera.toggle(); assert.equal(camera.mode,'side');
   const old = new ArenaCamera(); old.snap({x:10,y:0,z:0});
   assert.ok(Math.abs(old.camera.position.x-4.2)<.001);
 });

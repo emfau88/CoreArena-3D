@@ -12,7 +12,7 @@ const walkTo = async(page:Page,x:number,z:number) => {
   for(const [axis,target] of [['z',z],['x',x]] as const) for(let correction=0;correction<10;correction++) {
     const delta=target-(await read(page)).snapshot.position[axis];
     if(Math.abs(delta)<.25) break;
-    const direction=Math.sign(delta), key=axis==='x' ? direction>0?'KeyD':'KeyA' : direction>0?'KeyS':'KeyW';
+    const direction=Math.sign(delta), key=axis==='x' ? direction>0?'KeyS':'KeyW' : direction>0?'KeyA':'KeyD';
     if(Math.abs(delta)<1.2) await page.keyboard.press(key,{delay:Math.min(85,Math.abs(delta)/7.2*800)});
     else {
       await page.keyboard.down(key);
@@ -41,12 +41,14 @@ test('walk every room, collect supplies, climb real stairs, aim/fire, pause and 
   const errors:string[]=[]; page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   expect((await read(page)).mode).toBe('adventure');
+  expect((await read(page)).camera).toBe('side');
   await page.screenshot({path:info.outputPath('arrival.png')});
   await page.evaluate(()=>(window as unknown as {__coreArena:{overview():void}}).__coreArena.overview());
   await page.screenshot({path:info.outputPath('level-overview.png')}); await page.locator('#pve-restart').click();
   await walkTo(page,0,26); await walkTo(page,0,18.5); await walkTo(page,-3,18.5);
   await expect.poll(async()=>(await read(page)).weapons.ownsPulse).toBe(true);
   await page.keyboard.press('Digit2'); await page.mouse.move(1100,400); await page.mouse.down();
+  await expect.poll(async()=> (await read(page)).weapons.projectiles.some(p=>p.direction.z<-.5)).toBe(true);
   await expect.poll(async()=>(await read(page)).weapons.ammo).toBeLessThan(40); await page.mouse.up();
   await walkTo(page,0,18.5); await walkTo(page,0,8); await walkTo(page,0,2); await walkTo(page,-10,2);
   await expect.poll(async()=>(await read(page)).snapshot.surface).toBe('side-terrace');
@@ -55,6 +57,7 @@ test('walk every room, collect supplies, climb real stairs, aim/fire, pause and 
   await walkTo(page,-9,-.4);
   expect((await read(page)).pickups.find(p=>p.id==='side-ammo')!.remaining).toBeLessThan(27);
   await page.screenshot({path:info.outputPath('side-terrace.png')});
+  await page.keyboard.press('KeyV'); expect((await read(page)).camera).toBe('straight');
   await page.keyboard.press('KeyV'); await page.screenshot({path:info.outputPath('side-terrace-isometric.png')});
   // Physically move using the rotated camera basis, then return for the route.
   const rotated = await read(page); await page.keyboard.down('KeyD'); await page.waitForTimeout(200); await page.keyboard.up('KeyD');
@@ -67,7 +70,8 @@ test('walk every room, collect supplies, climb real stairs, aim/fire, pause and 
   await walkTo(page,11,-1); await walkTo(page,0,-1); await walkTo(page,0,-14); await walkTo(page,0,-19);
   await walkTo(page,13,-19); await walkTo(page,13,-20); await walkTo(page,0,-20); await walkTo(page,0,-23); await walkTo(page,-12,-23);
   await expect.poll(async()=>(await read(page)).snapshot.surface).toBe('boss-health-plateau');
-  await page.keyboard.press('KeyV'); await page.screenshot({path:info.outputPath('warden-court-isometric.png')}); await page.keyboard.press('KeyV');
+  await page.keyboard.press('KeyV'); await page.keyboard.press('KeyV');
+  await page.screenshot({path:info.outputPath('warden-court-isometric.png')}); await page.keyboard.press('KeyV');
   await walkTo(page,0,-23); await walkTo(page,0,-19); await walkTo(page,-16,-19); await walkTo(page,-16,-37);
   await walkTo(page,-13,-37); await walkTo(page,0,-38.5); await walkTo(page,0,-40);
   await expect(page.locator('#room-name')).toHaveText('Nordtor');
@@ -102,7 +106,7 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
       for(const [axis,target] of [['z',z],['x',x]] as const) {
         const current=(await read(page)).snapshot.position[axis]; if(Math.abs(current-target)<.2) continue;
         const sign=target>current?1:-1;
-        await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:center.x+(axis==='x'?42*sign:0),y:center.y+(axis==='z'?42*sign:0)}]});
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:center.x+(axis==='z'?-42*sign:0),y:center.y+(axis==='x'?42*sign:0)}]});
         try {await page.waitForFunction(({axis,target,sign})=>{
           const s=(window as unknown as {__coreArena:{read():State}}).__coreArena.read();
           return (s.snapshot.position[axis]-target)*sign>=-.12;
@@ -118,6 +122,7 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
     await go(0,18.5); await go(0,8); await go(0,2); await go(-10,2);
     await expect.poll(async()=>(await read(page)).snapshot.surface).toBe('side-terrace');
     await page.locator('#touch-jump').tap(); await expect.poll(async()=>(await read(page)).snapshot.position.y,{intervals:[20]}).toBeGreaterThan(1.6);
+    await page.locator('#touch-camera').tap(); expect((await read(page)).camera).toBe('straight');
     await page.locator('#touch-camera').tap(); expect((await read(page)).camera).toBe('isometric');
     await page.screenshot({path:info.outputPath('mobile-terrace.png')});
     await page.locator('#pve-restart').tap(); await expect.poll(async()=>(await read(page)).section).toBe('A');

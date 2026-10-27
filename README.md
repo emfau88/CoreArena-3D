@@ -4,7 +4,9 @@
 
 **Neu: [Adventure-Level 1 erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
-Vorratsorten. L1.1 ist umgesetzt und technisch geprüft. Noch ein ruhiger Erkundungsstand:
+Vorratsorten. Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
+wechselt zwischen seitlicher, gerader und isometrischer Kamera.
+L1.1 ist umgesetzt und technisch geprüft. Noch ein ruhiger Erkundungsstand:
 kleine Gegner folgen in L1.2, Bossaktivierung und Levelabschluss in L1.3 nach Freigabe.
 [Map, Aufnahmen und Browserprüfung](docs/qa/L1_1_RESULT.md).
 

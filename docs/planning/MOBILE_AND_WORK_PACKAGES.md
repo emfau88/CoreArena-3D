@@ -105,6 +105,11 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, L1.1-Kamera nach Nutzerwunsch:** Standardblick seitlich, sodass die
+drei Höfe von links nach rechts durchlaufen werden. V/Touch-Ansicht behält die beiden
+anderen Perspektiven als Wahlmöglichkeiten. Richtungsbezogene Bewegung und Aim geprüft;
+keine Erweiterung des L1.1-Umfangs und keine Freigabe für L1.2.
+
 **27. Oktober, L1.1 ✅ umgesetzt und technisch geprüft:** Nach Freigabe begehbares
 Adventure-Level gebaut. Direkte Rückmeldung „zu eng/verwinkelt“ während der Arbeit
 eingearbeitet: drei große Höfe, kurze 10-m-Verbindungen und weniger verdeckende Wände.

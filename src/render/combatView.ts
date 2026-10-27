@@ -8,7 +8,7 @@ const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4b
 const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG' };
 export class CombatView {
   private readonly root = new THREE.Group();
-  private readonly pickups = new Map<string, { gem: THREE.Group; ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>; remaining: number; flash: number }>();
+  private readonly pickups = new Map<string, { group: THREE.Group; gem: THREE.Group; ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>; remaining: number; flash: number }>();
   private readonly bolts: THREE.Mesh[] = [];
   private readonly impact = new THREE.Mesh(new THREE.SphereGeometry(0.16, 8, 6), new THREE.MeshBasicMaterial({ color: 0xa1dcff }));
   constructor(scene: THREE.Scene, definitions: readonly PickupDefinition[]) {
@@ -22,7 +22,7 @@ export class CombatView {
       gem.position.y = 0.55;
       const text = LABELS[item.kind] + (item.kind === 'health' || item.kind === 'armor' ? ` +${item.amount}` : '');
       const label = labelMesh(text, 2.4); label.rotation.x = -Math.PI / 2; label.position.z = 0.95;
-      group.add(base, ring, gem, label); this.root.add(group); this.pickups.set(item.id, { gem, ring, remaining: item.amount, flash: -100 });
+      group.add(base, ring, gem, label); this.root.add(group); this.pickups.set(item.id, { group, gem, ring, remaining: item.amount, flash: -100 });
     }
     const geometry = new THREE.CapsuleGeometry(0.065, 0.22, 3, 6); geometry.rotateX(Math.PI / 2);
     const material = new THREE.MeshBasicMaterial({ color: 0xe7fbff });
@@ -38,11 +38,13 @@ export class CombatView {
     }
     this.root.add(this.impact); scene.add(this.root); this.root.visible = false;
   }
-  update(active: boolean, tick: number, weapons?: WeaponSnapshot, pickups: readonly PickupState[] = []): void {
+  update(active: boolean, tick: number, weapons?: WeaponSnapshot, pickups: readonly PickupState[] = [], sideView = false): void {
     this.root.visible = active;
     if (!active || !weapons) return;
     for (const item of pickups) {
       const visual = this.pickups.get(item.id)!;
+      // Keep pickup lettering horizontal when the adventure camera looks along X.
+      visual.group.rotation.y = sideView ? Math.PI / 2 : 0;
       if (item.remaining < visual.remaining) visual.flash = tick;
       visual.remaining = item.remaining;
       visual.gem.visible = item.remaining > 0; visual.gem.rotation.y = Math.sin(tick / 110) * 0.35;

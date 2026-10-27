@@ -30,6 +30,28 @@ Auffüllung oder Levelabschluss**. Dafür gelten L1.2/L1.3 und ihre nächsten Fr
 
 ## Prüfung
 
+### Kameranacharbeit: Standard von links nach rechts
+
+Auf anschließenden Nutzerwunsch startet Adventure nun mit seitlichem Blick. Der
+Weg zum Nordtor verläuft auf dem Bildschirm nach rechts; D/rechter Joystick bewegt
+entsprechend vorwärts durch die Höfe. V/Ansicht wechselt seitlich → bisher gerade →
+isometrisch → seitlich. Ein Neustart behält die selbst gewählte Perspektive bei.
+Pickup-Beschriftungen werden in der seitlichen Ansicht mitgedreht, damit sie lesbar
+bleiben. Geometrie und Vorratspositionen sind unverändert.
+
+Sechs gezielte Kern-/Kameratests bestanden (`tests/core.test.ts` und
+`tests/stone-adventure.test.ts`). Der bestehende Desktop-/Touch-Durchlauf wurde auf
+die seitliche Startkamera angepasst; beim Desktop-Feuern wird auch die tatsächliche
+Projektilrichtung nach rechts geprüft. **2/2 Browserfälle ohne Retry bestanden**,
+Test- und Produktionsbuild grün. [Laufstatistik](stone-adventure/horizontal-browser-results.json).
+Die nachfolgende ursprüngliche L1.1-Prüfung bleibt als historischer Nachweis erhalten.
+
+![Standardansicht von links nach rechts](stone-adventure/horizontal-arrival.png)
+
+![Die drei Höfe in horizontaler Übersicht](stone-adventure/horizontal-overview.png)
+
+### Ursprüngliche L1.1-Übergabe
+
 `npm run build`: TypeScript und Produktionsbuild bestanden. Bestehende Warnung zum
 großen Three-/Rapier-Hauptbundle bleibt; keine neue Optimierungsbaustelle eröffnet.
 

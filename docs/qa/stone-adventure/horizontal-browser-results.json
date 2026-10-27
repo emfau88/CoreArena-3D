@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "startTime": "2026-10-27T20:53:57.135Z",
+    "duration": 63225.25,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "walk every room, collect supplies, climb real stairs, aim/fire, pause and restart",
+      "ok": true,
+      "project": "chromium-1366",
+      "durationMs": 48632,
+      "status": "passed"
+    },
+    {
+      "title": "touch joystick reaches weapon and side terrace; jump, camera and restart remain usable",
+      "ok": true,
+      "project": "chromium-1366",
+      "durationMs": 10483,
+      "status": "passed"
+    }
+  ]
+}

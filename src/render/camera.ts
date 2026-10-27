@@ -8,19 +8,22 @@ export class ArenaCamera {
   private readonly offset = new THREE.Vector3(0, 58, 42);
   private readonly forward = new THREE.Vector3();
   private readonly right = new THREE.Vector3();
-  mode: 'straight' | 'isometric' = 'straight';
+  mode: 'side' | 'straight' | 'isometric' = 'straight';
+  private horizontalView = false;
   private followFactor = 0.42;
   private viewScale = 1;
   constructor() { this.place(); }
-  trackPlayer(position: Vec3, viewScale = 1): void { this.followFactor = 1; this.viewScale = viewScale; this.snap(position); }
+  trackPlayer(position: Vec3, viewScale = 1, initialView: 'straight' | 'side' = 'straight'): void {
+    this.followFactor = 1; this.viewScale = viewScale;
+    this.horizontalView = initialView === 'side'; this.mode = initialView; this.snap(position);
+  }
   snap(position: Vec3): void {
     this.focus.set(position.x * this.followFactor, 0, position.z * this.followFactor);
     this.place();
   }
   toggle(): void {
-    this.mode = this.mode === 'straight' ? 'isometric' : 'straight';
-    if (this.mode === 'straight') this.offset.set(0, 58, 42);
-    else this.offset.set(26, 58, 36);
+    this.mode = this.mode === 'side' ? 'straight' : this.mode === 'straight' ? 'isometric'
+      : this.horizontalView ? 'side' : 'straight';
     this.place();
   }
   resize(width: number, height: number): void {
@@ -45,6 +48,9 @@ export class ArenaCamera {
     return { right: { ...this.right }, forward: { ...this.forward } };
   }
   private place(): void {
+    if (this.mode === 'side') this.offset.set(42, 58, 0);
+    else if (this.mode === 'straight') this.offset.set(0, 58, 42);
+    else this.offset.set(26, 58, 36);
     this.camera.position.copy(this.focus).add(this.offset);
     this.camera.lookAt(this.focus);
     this.camera.updateMatrixWorld();

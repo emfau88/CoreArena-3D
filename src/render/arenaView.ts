@@ -102,7 +102,7 @@ export class ArenaView {
       this.health.material.color.setHex(life.hp <= 30 ? 0xff967f : 0x9be8ca);
     }
     this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera, weapons?.selected);
-    this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups);
+    this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups, this.camera.mode === 'side');
     this.animateEnvironment?.(dt);
     this.renderer.render(this.scene, this.camera.camera);
   }

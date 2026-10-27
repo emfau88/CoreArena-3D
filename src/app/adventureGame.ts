@@ -13,7 +13,7 @@ import { lifeHud, weaponHud } from './hud';
 import { StoneFeedback } from './stoneFeedback';
 
 const hints: Record<string, string> = {
-  A: 'Durch den offenen Ruinenhof nach Norden.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
+  A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
   C: 'Pulse aufnehmen · weiter zum inneren Hof.', D: 'Vorräte sichern. Die breite Treppe führt zurück in den Hof.',
   E: 'Der Nordweg führt zum Siegelplatz.', F: 'Hinter diesem Durchgang liegt der Wächterhof.',
   G: 'Der Wächter ruht. Erkunde den Hof und die seitlichen Vorräte.', H: 'Das Nordtor zur Kristallkluft ist versiegelt.',
@@ -27,7 +27,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     build: buildStoneAdventure, shadowSpan: 58 }); }
   catch (error) { world.dispose(); throw error; }
   view.renderer.domElement.setAttribute('aria-label', 'Der verwitterte Hof – Erkundung');
-  view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2); view.resize();
+  view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
   const simulation = new Simulation(world, STONE_ADVENTURE.spawn), combat = new Combat();
   const pickups = new Pickups(STONE_ADVENTURE_PICKUPS, false), clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
@@ -118,7 +118,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     // Documentation capture only; walkthrough tests still use normal player inputs.
     overview: () => {
       setPaused(true); el('pause').hidden = true; overview = true; view.camera.snap({ x: 0, y: 0, z: -2 });
-      const camera = view.camera.camera, halfHeight = 37;
+      const camera = view.camera.camera, halfHeight = view.camera.mode === 'side' ? Math.max(22,45*innerHeight/innerWidth) : 37;
       camera.top = halfHeight; camera.bottom = -halfHeight;
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },

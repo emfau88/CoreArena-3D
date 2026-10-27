@@ -18,7 +18,9 @@ Die Höfe verbinden kurze, gerade, 10 m breite Durchgänge. A–H bezeichnen Ort
 innerhalb dieser drei Höfe, keine acht getrennten Räume. Niedrige Umfassungsmauern,
 wenige Deckungen, breite Treppen und ein freier Hauptweg halten die Karte übersichtlich.
 Die Kamera folgt dem Spieler und zeigt 20 % mehr Umgebung als in den bisherigen Arenen;
-die Gesamtübersicht ist eine Dokumentationsansicht, nicht die normale Spielkamera.
+der Standardblick führt den Hauptweg von links nach rechts. V/Ansicht wechselt zwischen
+seitlichem, bisherigem geradem und isometrischem Blick. Die Gesamtübersicht ist eine
+Dokumentationsansicht, nicht die normale Spielkamera.
 Maximal drei normale Gegner gleichzeitig aktiv. Erstbesuch als Ziel etwa 3–5 Minuten,
 kein zugesicherter Wert; nach spielbarem Durchlauf prüfen.
 

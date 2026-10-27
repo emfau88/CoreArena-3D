@@ -10,6 +10,7 @@ Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1 umgesetzt und 
 - [x] Nutzer bestätigt die Richtung des neuen Mockups; [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) erstellt. Vorläufig 3–6 Stunden aktive Agent-Arbeit mit Prüfungen; erster begehbarer Stand nach L1.1 (30–60 Min.).
 - [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
 - [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
+- [x] L1.1-Kameranacharbeit: Adventure standardmäßig von links nach rechts; V/Ansicht schaltet zusätzlich auf den bisherigen geraden oder isometrischen Blick. Desktop-/Touch-Weg und Schussrichtung geprüft.
 - [ ] L1.2: Zwei Gegnertypen, feste Gruppen und Anreise-Kämpfe; noch nicht freigegeben.
 - [ ] L1.3: Ziele, Checkpoint, bewusster Bossstart und physischer Ausgang; noch nicht freigegeben.
 - [ ] L1.4: Bossdruck, zweite Phase, gezielte Feinarbeit und Gesamtspieltest; noch nicht freigegeben.
