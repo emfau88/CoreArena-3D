@@ -3,6 +3,8 @@
 Stand: 27. Oktober 2026. **Visuelle Planung, kein implementiertes Level.**
 
 Grundlage ist der [konkrete Ablaufplan](../../planning/LEVEL_1_STONE_ADVENTURE.md).
+Der dazugehörige [Umsetzungsplan L1.1–L1.4](../../planning/LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)
+gliedert die Arbeit in begehbare Map, kleine Gegner, Levelablauf und Boss-Abstimmung.
 Diese Ansichten ersetzen die früheren, vom Nutzer als zu aufwendig zurückgewiesenen
 Adventure-Konzeptbilder. Die Freigabe umfasst die Visualisierung, noch keinen Spielumbau.
 

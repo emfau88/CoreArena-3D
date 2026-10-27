@@ -7,7 +7,11 @@ Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Konkreter Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt: Start, feste Waffen-/Lootorte, fünf Pflichtgegner, zwei optionale Gegner, bewusster Bossstart und Ausgang.
 - [x] [Level-1-Mockup und genaue Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt: tatsächlicher Spiel-Screenshot als Stilreferenz, Raumfolge A–H, Gegnerzahlen, Waffen, Vorräte und Höhen sichtbar. Skizze ist für Durchgänge maßgeblich; Mockup bleibt eine Illustration.
-- [ ] Adventure-Level 1 umsetzen: aktuelle Freigabe umfasst Plan und Visualisierung.
+- [x] Nutzer bestätigt die Richtung des neuen Mockups; [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) erstellt. Vorläufig 3–6 Stunden aktive Agent-Arbeit mit Prüfungen; erster begehbarer Stand nach L1.1 (30–60 Min.).
+- [ ] L1.1: Map, Kamera, Stufen und einmalige Ressourcen; noch nicht freigegeben.
+- [ ] L1.2: Zwei Gegnertypen, feste Gruppen und Anreise-Kämpfe; noch nicht freigegeben.
+- [ ] L1.3: Ziele, Checkpoint, bewusster Bossstart und physischer Ausgang; noch nicht freigegeben.
+- [ ] L1.4: Bossdruck, zweite Phase, gezielte Feinarbeit und Gesamtspieltest; noch nicht freigegeben.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.

@@ -1,6 +1,6 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 21. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3 wurde durch „go nächster punkt“ freigegeben. M2.4–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
+Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3 wurde durch „go nächster punkt“ freigegeben. M2.4–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
 
 ## Freigegebener kleiner Mobile-Zusatz
 
@@ -104,6 +104,13 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben); M2 **90–180 Min. (1,5–3 h)**; M3 und M4 jeweils **60–120 Min. (1–2 h)**. M1-Nacharbeit an Kantensprung und Plateau-Lesbarkeit nach der ersten Nutzerprobe ist kein Bestandteil dieser gemeldeten Erstzeiten. Der Puffer ist enthalten. Persönliche Spieltests: M1 5–10 Min., M2/M3 je ca. 10–15 Min., M4 ca. 10–20 Min.; Wartezeiten auf diese Tests und Freigaben sind keine Agent-Arbeitszeit. Nach jedem Meilenstein Schätzung und beobachtete Dauer vergleichen, keine erfundenen Paket-Istzeiten eintragen.
 
 ## Wie die Pakete bearbeitet werden
+
+**27. Oktober, Umsetzungsplan für Adventure-Level 1:** Nach positiver Rückmeldung
+zum neuen Mockup vier [konkrete Pakete L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)
+geplant: Map → Gegner → vollständiger Ablauf → Boss/Abstimmung. Insgesamt vorläufig
+3–6 Stunden aktive Agent-Arbeit mit passenden Prüfungen, erster begehbarer Stand in
+30–60 Minuten. Separat von M2.4; Planung fertig, Umsetzungspakete noch nicht freigegeben.
+Aufwand nach jedem Paket aktualisieren.
 
 **27. Oktober, Level-1-Visualisierung:** [Neues Mockup und genaue Map-Skizze](../concepts/level-1-layout-v1/README.md)
 zum konkreten Ablaufplan erstellt. Tatsächliche Spieloptik als Referenz, Raumfolge,
