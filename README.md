@@ -55,6 +55,15 @@ oder dem Waffenbutton auswählen.** Waffen und Vorräte liegen je Karte untersch
 | Glutschmiede: breite Ofenblöcke und Gassen | Rechts hinten | Munition vor dem Westofen, Medkit auf der östlichen Schlackebühne |
 
 Rüstung liegt an weiteren eigenen Positionen. Ein Leben pro Versuch, beliebig neu versuchen.
+
+**Steinhof-Qualitätsrunde:** Der Wächter findet Wege um Deckungen und holt für seinen
+Faustschlag sichtbar aus; die Faust erreicht den Kontaktpunkt zum Schadenszeitpunkt.
+Treffer erhalten kurze Rückmeldung, eigener Schaden einen dezenten Randimpuls.
+Eine erste synthetische Tonfassung unterscheidet Waffen, Treffer, Schritte, Landung,
+Bossangriffe und Pickups. Ton startet nach der ersten Tastatur-/Touch-/Mauseingabe;
+„Ton an/aus“ schaltet ihn stumm. Zwei niedrige Stufen und eingelegte Wegsteine führen
+zur Heilung auf der Westmauer. Diese Qualitätsrunde gilt zunächst für den Steinhof.
+[Umfang und Prüfung](docs/qa/STONE_QUALITY_RESULT.md).
 Nach dem dritten Sieg ist die Mini-Geschichte abgeschlossen. Die Karten sind über
 die Links auch einzeln testbar; kein Save oder Freischaltsystem nötig.
 

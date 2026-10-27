@@ -24,7 +24,8 @@ export interface PveSnapshot {
 /** One isolated encounter. No campaign save, TDM score or respawn rule is changed. */
 export class PveEncounter {
   private state: PveSnapshot;
-  constructor(readonly rules: EncounterRules = PVE_RULES, readonly monster = MONSTER, readonly kind: MonsterKind = 'stone') {
+  constructor(readonly rules: EncounterRules = PVE_RULES, readonly monster = MONSTER, readonly kind: MonsterKind = 'stone',
+    private readonly steering?: (from: Vec3, player: Vec3) => Vec3) {
     this.state = this.fresh();
   }
   private attackHit = false;
@@ -129,8 +130,11 @@ export class PveEncounter {
     const dx = player.x - s.center.x, dz = player.z - s.center.z;
     const distance = Math.hypot(dx, dz);
     if (distance <= this.rules.stopDistance) return;
-    const angle = Math.atan2(dx, dz);
-    const step = Math.min(this.rules.chaseSpeed * TICK_SECONDS, distance - this.rules.stopDistance);
+    const waypoint = this.steering?.(s.center, player) ?? player;
+    const remaining = Math.hypot(waypoint.x - s.center.x, waypoint.z - s.center.z);
+    if (remaining < 0.02) return;
+    const angle = Math.atan2(waypoint.x - s.center.x, waypoint.z - s.center.z);
+    const step = Math.min(this.rules.chaseSpeed * TICK_SECONDS, distance - this.rules.stopDistance, remaining);
     // Small local steering: test the whole body against actual arena colliders.
     // No teleporting, climbing or full navigation system for this experiment.
     for (const offset of [0, Math.PI / 4, -Math.PI / 4, Math.PI / 2, -Math.PI / 2]) {

@@ -12,6 +12,8 @@ import type { MatchSnapshot } from '../core/match';
 import { DesktopInput } from '../input/desktopInput';
 import { ArenaView } from '../render/arenaView';
 import { MonsterView } from '../render/monsterView';
+import { BossNavigation } from '../core/bossNavigation';
+import { StoneFeedback } from './stoneFeedback';
 
 // Presentation adapter only: the experiment never advances or changes ArenaMatch.
 function viewState(state: PveSnapshot): MatchSnapshot {
@@ -31,7 +33,10 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   catch (error) { world.dispose(); throw error; }
   const monsterView = new MonsterView(view.scene, level.kind, level.rules, level.monster);
   const simulation = new Simulation(world, level.arena.spawn);
-  const encounter = new PveEncounter(level.rules, level.monster, level.kind); const combat = new Combat(); const pickups = new Pickups(level.pickups);
+  const navigation = level.kind === 'stone' ? new BossNavigation(level.arena, level.rules.movementRadius) : null;
+  const feedback = level.kind === 'stone' ? new StoneFeedback(host) : null;
+  const encounter = new PveEncounter(level.rules, level.monster, level.kind, navigation ? (from, player) => navigation.steer(from, player) : undefined);
+  const combat = new Combat(); const pickups = new Pickups(level.pickups);
   const clock = new FixedClock(); const abort = new AbortController(); const options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current;
   let paused = false, aim: AimSolution | null = null, frameId = 0, lastTime = performance.now(), lastHud = 0;
@@ -62,6 +67,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
   const setPaused = (value: boolean) => {
     paused = value || input.touchEnabled && innerHeight > innerWidth;
+    feedback?.pause(paused);
     input.clear(); clock.reset(); previous = current; lastTime = performance.now(); element('pause').hidden = !paused;
   };
   window.addEventListener('blur', () => setPaused(true), options);
@@ -77,7 +83,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
   }, options);
   for (const id of ['pve-return', 'pve-exit']) element(id).addEventListener('click', () => location.assign(location.pathname), options);
   function restart() {
-    encounter.reset(); combat.reset(); pickups.reset();
+    encounter.reset(); combat.reset(); pickups.reset(); navigation?.reset(); feedback?.reset();
     current = simulation.reset(); previous = current; aim = null; world.setTargetEnabled(level.monster.id, false);
     world.setTargetPosition(level.monster.id, encounter.snapshot().center);
     element('match-result').hidden = true; view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
@@ -92,14 +98,28 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       previous = current; current = simulation.step(input.command(view.camera.basis()));
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       aim = ray ? solveAim(world, ray, current.position) : null;
+      const selected = combat.snapshot().selected;
       const attack = combat.step(before.tick + 1, input.fire(), aim, ray, world, before.phase === 'emerging' ? [] : [{ ...level.monster, center: before.center }]);
       encounter.step(current.position, world, attack.damage);
       const after = encounter.snapshot();
+      if (feedback) {
+        if (attack.attacked) feedback.play(selected);
+        if (after.bossHp < before.bossHp) { feedback.play('hit', (after.center.x - current.position.x) / 15); feedback.bossHit(before.bossHp - after.bossHp, after.tick); }
+        if (after.hitsTaken > before.hitsTaken) { feedback.play('hurt'); feedback.playerHit(after.tick); }
+        if (current.grounded && !previous.grounded) feedback.play('land');
+        else if (previous.grounded && !current.grounded && current.velocity.y > 0) feedback.play('jump');
+        else if (current.grounded && Math.hypot(current.velocity.x, current.velocity.z) > 1 && after.tick % 22 === 0) feedback.play('step');
+        if (after.phase === 'melee' && before.phase !== 'melee') feedback.play('windup');
+        if (after.phase === 'melee' && after.phaseTick === level.rules.meleeWarning || after.phase === 'attack' && before.phase !== 'attack') feedback.play('slam');
+        if (after.outcome === 'victory') feedback.play('victory');
+      }
       if (after.center !== before.center) world.setTargetPosition(level.monster.id, after.center);
       world.setTargetEnabled(level.monster.id, after.phase !== 'emerging' && after.outcome === 'running');
-      if (after.outcome === 'running') pickups.step(after.tick, current, world, (kind, amount) =>
-        kind === 'ammo' ? combat.addAmmo(amount) : kind === 'pulse' ? combat.addAmmo(amount, true)
-          : kind === 'armor' ? encounter.restoreArmor(amount) : encounter.restore(amount));
+      if (after.outcome === 'running') pickups.step(after.tick, current, world, (kind, amount) => {
+        const accepted = kind === 'ammo' ? combat.addAmmo(amount) : kind === 'pulse' ? combat.addAmmo(amount, true)
+          : kind === 'armor' ? encounter.restoreArmor(amount) : encounter.restore(amount);
+        if (accepted) feedback?.play('pickup'); return accepted;
+      });
       else { input.clear(); combat.clearEffects(); aim = null; previous = current; }
     });
     const state = encounter.snapshot(); const weapons = combat.snapshot();
@@ -123,25 +143,27 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       element('pve-telegraph').textContent = messages[state.phase];
       element('campaign-story').hidden = state.tick > 480;
       element('pve-next').hidden = state.outcome !== 'victory';
-      element('life-status').textContent = state.tick - state.lastHit < 50 ? 'Getroffen! Achte auf die Warnung.' : 'Ein Leben · Ein Monster';
+      element('life-status').textContent = state.tick - state.lastHit < 50 ? 'Getroffen! Achte auf die Warnung.'
+        : level.kind === 'stone' && state.hp < 70 ? 'Heilung: Westmauer · links über die Stufen' : 'Ein Leben · Ein Monster';
       element('match-result').hidden = state.outcome === 'running';
       element('result-title').textContent = state.outcome === 'victory' ? (level.kind === 'stone' ? 'Wächter bezwungen.' : nextLevel ? 'Siegel gebrochen.' : 'Der Kern ist still.') : `${level.enemy} bleibt.`;
       element('result-detail').textContent = `${(state.tick / 60).toFixed(1)} Sekunden · ${state.hitsTaken} Treffer eingesteckt. ${state.outcome === 'victory' ? level.victory : level.hint}`;
       lastHud = now;
     }
     monsterView.update(state, paused ? 0 : Math.min(elapsed, 0.05));
+    feedback?.draw(state.tick, view.projectedPosition(state.center));
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, weapons.lastArc, null, viewState(state), weapons, pickups.snapshot());
     frameId = requestAnimationFrame(frame);
   }
   if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true,
     value: Object.freeze({ read: () => ({ mode: 'pve', level: level.id, snapshot: current, pve: encounter.snapshot(), weapons: combat.snapshot(),
-      pickups: pickups.snapshot(), paused, aim, camera: view.camera.mode,
+      pickups: pickups.snapshot(), paused, aim, camera: view.camera.mode, feedback: feedback?.diagnostics(),
       monsterScreen: view.projectedPosition({ ...encounter.snapshot().center, y: encounter.snapshot().center.y - 0.9 }),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio() } }) }) });
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
   restart(); frameId = requestAnimationFrame(frame);
   return () => {
-    cancelAnimationFrame(frameId); abort.abort(); input.dispose(); world.dispose(); view.dispose();
+    cancelAnimationFrame(frameId); abort.abort(); feedback?.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud, #pause, #match-result').forEach(item => item.remove());
     Reflect.deleteProperty(window, '__coreArena');
   };

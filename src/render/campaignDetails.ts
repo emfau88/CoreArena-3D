@@ -55,6 +55,13 @@ export function addCampaignDetails(scene: THREE.Scene, arena: ArenaDefinition, t
       ctx.fillStyle = '#d2b582a0'; ctx.beginPath(); ctx.arc(x + dx, z + dz, 0.065, 0, Math.PI * 2); ctx.fill();
     }
   }
+  if (stone) {
+    // Worn inlaid waystones lead from the weapon towards the west healing steps.
+    ctx.strokeStyle = '#b5b69865'; ctx.fillStyle = '#858d6228'; ctx.lineWidth = 0.045;
+    for (let x = -5.5; x >= -13; x -= 1.25) {
+      ctx.fillRect(x - 0.3, 7.85, 0.6, 0.7); ctx.strokeRect(x - 0.3, 7.85, 0.6, 0.7);
+    }
+  }
   const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4;
   floor.material = floor.material.clone(); floor.material.map = texture;
 

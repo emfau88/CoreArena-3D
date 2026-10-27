@@ -163,8 +163,23 @@ export class MonsterView {
       arm.rotation.x = state.phase === 'attack' ? -0.3 * Math.max(0, 1 - state.phaseTick / 15) : -windup * 2.1;
       arm.rotation.z = (index === 0 ? 1 : -1) * (state.phase === 'recovery' ? 0.12 : windup * 0.2);
       arm.rotation.x += stride * (index === 0 ? 0.14 : -0.14);
-      if (melee && index === 0) arm.rotation.x = strike ? -1.5 * strike : preparation * 0.8;
+      if (this.kind === 'stone') {
+        arm.position.set(index === 0 ? -1.55 : 1.55, 2.55, 0);
+        if (melee && index === 0) {
+          // The fist extends during the final seven windup ticks and reaches its
+          // low, forward contact pose on exactly the simulation's damage tick.
+          const extension = Math.min(1, Math.max(0, (state.phaseTick - this.rules.meleeWarning + 7) / 7))
+            * Math.pow(1 - Math.max(0, state.phaseTick - this.rules.meleeWarning) / this.rules.meleeRecovery, 2);
+          arm.rotation.x = preparation * 0.8 - (preparation * 0.8 + 1.25) * extension;
+          arm.rotation.z = 0;
+          arm.position.set(-1.55 + extension * 1.1, 2.55 + preparation * 0.25 - extension * 1.7, extension * 1.4);
+        }
+      }
     });
+    if (this.kind === 'stone') {
+      this.body.position.z -= this.flash * 0.8;
+      this.body.rotation.z += this.flash * 0.7;
+    }
     this.debris.forEach((rock, i) => {
       rock.position.y = 0.15 + (state.phase === 'emerging' ? Math.sin(emergence * Math.PI) * (1 + i % 4 * 0.4) : 0);
     });

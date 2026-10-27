@@ -105,6 +105,13 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Steinhof-Qualitätsrunde ✅ umgesetzt und technisch geprüft:** Nach
+Freigabe des vorgeschlagenen kleinen Qualitätspakets: synthetische erste Tonfassung
+und Trefferreaktionen, abgestimmte Faustbewegung, Umwege um Deckung und klarer
+Heilungsweg über niedrige Stufen. 41 Kern-/Physiktests, sieben echte Browserfälle.
+Persönliche Klang- und Spielabnahme offen; keine automatische Ausweitung auf die
+anderen Karten. [Nachweise](../qa/STONE_QUALITY_RESULT.md).
+
 **27. Oktober, Bosskampf und Kartenwege:** Separat beauftragte normale Nahkampfangriffe
 für alle drei Bosse sowie unterschiedliche Innenaufbauten und Pickup-Positionen
 umgesetzt. Arc bleibt Startwaffe, Pulse wird pro Karte an eigener Position gesammelt;
