@@ -105,6 +105,11 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, Level-1-Visualisierung:** [Neues Mockup und genaue Map-Skizze](../concepts/level-1-layout-v1/README.md)
+zum konkreten Ablaufplan erstellt. Tatsächliche Spieloptik als Referenz, Raumfolge,
+Gegner und Fundorte in der Skizze geprüft. Die Freigabe umfasst weiterhin nur Planung
+und Visualisierung; der Adventure-Level ist noch nicht umgesetzt.
+
 **27. Oktober, konkreter Level-1-Plan:** Die generierten Mockups wurden vom Nutzer
 als unrealistisch und nicht hilfreich für die Raum-/Begegnungsplanung zurückgewiesen.
 Maßgeblich ist jetzt der [Ablaufplan für den Steinhof](LEVEL_1_STONE_ADVENTURE.md)

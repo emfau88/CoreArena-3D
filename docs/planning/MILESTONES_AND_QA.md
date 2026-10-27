@@ -6,7 +6,8 @@ Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Konkreter Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt: Start, feste Waffen-/Lootorte, fünf Pflichtgegner, zwei optionale Gegner, bewusster Bossstart und Ausgang.
-- [ ] Adventure-Level 1 umsetzen: aktuelle Freigabe umfasst nur den Plan.
+- [x] [Level-1-Mockup und genaue Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt: tatsächlicher Spiel-Screenshot als Stilreferenz, Raumfolge A–H, Gegnerzahlen, Waffen, Vorräte und Höhen sichtbar. Skizze ist für Durchgänge maßgeblich; Mockup bleibt eine Illustration.
+- [ ] Adventure-Level 1 umsetzen: aktuelle Freigabe umfasst Plan und Visualisierung.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.

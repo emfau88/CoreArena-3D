@@ -3,6 +3,9 @@
 Status: konkreter Entwurf zur Besprechung, noch nicht zur Implementierung freigegeben.
 Stand: 27. Oktober 2026. Ersetzt die generierten Mockups als Planungsgrundlage.
 
+Ergänzt durch ein [Mockup auf vorhandenem Grafikniveau und die genaue Map-Skizze](../concepts/level-1-layout-v1/README.md).
+Die Skizze konkretisiert diesen Plan; das generierte Bild ist eine optische Orientierung.
+
 ## Rahmen
 
 Vorhandene stilisierte Figuren, massive Quader/Mauern, lesbare Plateaus, wenige
