@@ -131,3 +131,18 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 .touch-mode #adventure-actions button { min-height: 40px; font-size: 10px; }
 .touch-mode .adventure-hud #campaign-story { display: none; }
 @media (max-width: 1100px) and (pointer: fine) { #adventure-location { top: 100px; left: 24px; transform: none; text-align: left; width: 300px; } }
+
+#adventure-settings { display: none; }
+.touch-mode #app[data-adventure] #touch-camera,
+.touch-mode #app[data-adventure] #touch-hint,
+.touch-mode #app[data-adventure] #life-status { display: none; }
+.touch-mode #app[data-adventure] #life-panel { bottom: max(14px, env(safe-area-inset-bottom)); width: 140px; left: 50%; }
+.touch-mode #app[data-adventure] #touch-sprint { min-width: 82px; min-height: 56px; }
+.touch-mode #touch-sprint[aria-pressed="true"] { background: #53482ee8; border-color: #efcf88; box-shadow: inset 0 0 0 1px #efcf8844; }
+.touch-mode #app[data-adventure] #adventure-actions { top: max(10px, env(safe-area-inset-top)); right: max(12px, env(safe-area-inset-right)); }
+.touch-mode #app[data-adventure] #adventure-actions button { min-width: 60px; min-height: 44px; }
+.touch-mode #app[data-adventure] #pause > div { width: min(360px, calc(100vw - 40px)); padding: 18px; border: 1px solid #bad9d544; border-radius: 10px; background: #101e29f2; }
+.touch-mode #app[data-adventure] #pause h2 { margin: 8px 0 15px; font-size: 22px; }
+.touch-mode #app[data-adventure] #resume { width: 100%; min-height: 46px; color: #b5efd6; border-color: #9be8ca66; }
+.touch-mode #adventure-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.touch-mode #adventure-settings > button { position: static; min-height: 44px; padding: 8px; font-size: 11px; border: 1px solid #bad9d533; background: #233640; text-shadow: none; }

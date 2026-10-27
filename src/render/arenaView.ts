@@ -75,7 +75,7 @@ export class ArenaView {
   }
   resize(): void {
     this.renderer.setSize(innerWidth, innerHeight);
-    this.camera.resize(innerWidth, innerHeight);
+    this.camera.resize(innerWidth, innerHeight, matchMedia('(any-pointer: coarse)').matches || document.documentElement.classList.contains('touch-mode'));
   }
   draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
     aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot,
@@ -92,7 +92,7 @@ export class ArenaView {
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
     this.actor.visible = this.marker.visible = life?.alive ?? true;
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
-    this.camera.follow(this.position, dt);
+    this.camera.follow(this.position, dt, current.velocity);
     this.vitals.visible = !!life?.alive;
     if (life) {
       this.vitals.position.copy(this.position).add(new THREE.Vector3(0, 2.15, 0));

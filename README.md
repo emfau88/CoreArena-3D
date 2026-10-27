@@ -10,6 +10,11 @@ L1.1 ist umgesetzt und technisch geprüft. Noch ein ruhiger Erkundungsstand:
 kleine Gegner folgen in L1.2, Bossaktivierung und Levelabschluss in L1.3 nach Freigabe.
 [Map, Aufnahmen und Browserprüfung](docs/qa/L1_1_RESULT.md).
 
+**Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
+Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera
+zeigt etwas mehr in Laufrichtung. Kürzere Adventure-Sprünge gelten für Desktop und
+Touch gleichermaßen. [Änderungen und Prüfung](docs/qa/MOBILE_POLISH_RESULT.md).
+
 **Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Botmatch starten“ für das neue 1-gegen-1 oder „Trainingsmatch starten“ für stationäre Ziele; am Desktop dann WASD/Shift/Space.
 **F** oder „Vollbild“ wechselt in echtes Browser-Vollbild. Die nähere Kamera füllt
 die Spielfläche; schlanke HUD-Anzeigen und HP/Rüstung direkt über der Figur halten

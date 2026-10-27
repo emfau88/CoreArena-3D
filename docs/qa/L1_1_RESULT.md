@@ -3,6 +3,10 @@
 27. Oktober 2026. **Umgesetzt und technisch geprüft; persönliche Abnahme offen.**
 [Adventure starten](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1).
 
+Anschließend umgesetzt: [Mobile-Zoom, Sprint während Bewegung, kompakteres HUD und
+kürzere Adventure-Sprünge](MOBILE_POLISH_RESULT.md). Die Aufnahmen unten zeigen die
+vorherigen L1.1-Zwischenstände; aktuelle Touch-Aufnahmen stehen im verlinkten Bericht.
+
 ## Ergebnis
 
 Der erste, verwinkelte Grundriss wurde auf direkte Nutzerrückmeldung während der

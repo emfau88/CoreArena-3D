@@ -6,7 +6,16 @@ Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprü
 
 Auf ausdrücklichen Wunsch „so simpel wie möglich“: linker analoger Joystick, direkter Touch-Zielpunkt auf der Arena mit Halten/Tippen zum Feuern, Sprungtaste, Sprint-Umschalter, Kamera und bestehende Waffenbuttons. Getrennte Finger-IDs für Bewegung und Aim, Aufräumen bei Abbruch/Fokus/Drehung/Respawn/Restart. Kompaktes Querformat-HUD und Hinweis/Pause im Hochformat. Gemeinsamer Spielkern; mobile Render-DPR auf 1, Schattenmap auf 1024 begrenzt.
 
-Das ist ein enger spielbarer Zusatz, keine vollständige Umsetzung des unten beschriebenen größeren T0-Gerätevergleichs. Echte Android-/iPhone-Tests, alternatives Touch-Aim und Langzeit-/Wärmemessungen bleiben offen. [Aktueller Nachweis](../qa/MOBILE_BASIC_RESULT.md). Die folgenden Vorschläge bleiben historische Planung für einen späteren Ausbau.
+Das ist ein enger spielbarer Zusatz, keine vollständige Umsetzung des unten beschriebenen größeren T0-Gerätevergleichs. Echte Android-/iPhone-Tests, alternatives Touch-Aim und Langzeit-/Wärmemessungen bleiben offen. [Basisnachweis](../qa/MOBILE_BASIC_RESULT.md). Die folgenden Vorschläge bleiben historische Planung für einen späteren Ausbau.
+
+**27. Oktober: freigegebener Feinschliff ✅ technisch erledigt.** Mobile-Darstellung
+15 % größer, Sprint direkt beim Fingerdruck auch mit gehaltenem Joystick. Adventure:
+kleiner Kameravorlauf, aufgeräumtes HUD mit Kamera/Ton/Vollbild/Neustart im Pausenmenü.
+Gemeinsame Adventure-Sprungkurve für Desktop/Touch: gemessen 0,72 s und 2,15 m statt
+0,98 s und 2,67 m. Alte Arena-/Bosskarten behalten ihre bisherigen Höhenrouten.
+45 Kernprüfungen und drei Browserabläufe bestanden. [Aktueller Nachweis](../qa/MOBILE_POLISH_RESULT.md).
+Persönlicher Handytest steht aus. Beweglicher Joystick, zusätzlicher Zielring und
+Sprungpuffer bleiben spätere Optionen nach diesem Spieltest; L1.2 bleibt ungeöffnet.
 
 Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 

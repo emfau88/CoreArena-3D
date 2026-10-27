@@ -4,7 +4,7 @@ import type { WeaponSnapshot } from '../../src/core/combat';
 import type { PickupState } from '../../src/core/pickups';
 
 interface State { mode:string; snapshot:Snapshot; weapons:WeaponSnapshot; pickups:PickupState[]; armor:number; paused:boolean;
-  camera:string; section:string; playerScreen:{x:number;y:number}; viewport:{width:number;height:number;dpr:number}; renderCalls:number }
+  camera:string; section:string; playerScreen:{x:number;y:number}; viewport:{width:number;height:number;dpr:number;viewHeight:number}; renderCalls:number }
 const read = (page:Page):Promise<State> => page.evaluate(() => (window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const walkTo = async(page:Page,x:number,z:number) => {
   // Real input with small corrections, like a player stopping at a pickup.
@@ -102,6 +102,33 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
     const cdp=await context.newCDPSession(page);
     const box=(await page.locator('#touch-stick').boundingBox())!;
     const center={x:box.x+box.width/2,y:box.y+box.height/2};
+    const initial=await read(page);
+    expect(initial.viewport.viewHeight).toBeCloseTo(Math.min(21,40*initial.viewport.height/initial.viewport.width)*1.2/1.15,3);
+    await expect(page.locator('#touch-camera')).toBeHidden();
+    await expect(page.locator('#stone-sound')).toBeHidden();
+    await expect(page.locator('#pve-restart')).toBeHidden();
+    const stickFinger={id:1,x:center.x+42,y:center.y};
+    const sprintBox=(await page.locator('#touch-sprint').boundingBox())!;
+    const sprintFinger={id:2,x:sprintBox.x+sprintBox.width/2,y:sprintBox.y+sprintBox.height/2};
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[stickFinger]});
+    await expect.poll(async()=>-(await read(page)).snapshot.velocity.z).toBeCloseTo(7.2,1);
+    const walking=await read(page);
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[stickFinger,sprintFinger]});
+    await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed','true');
+    await expect.poll(async()=>-(await read(page)).snapshot.velocity.z).toBeCloseTo(10.8,1);
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[sprintFinger]});
+    await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed','true');
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[stickFinger,sprintFinger]});
+    await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed','false');
+    await expect.poll(async()=>-(await read(page)).snapshot.velocity.z).toBeCloseTo(7.2,1);
+    expect((await read(page)).snapshot.position.z).toBeLessThan(walking.snapshot.position.z);
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await page.locator('#pve-pause').tap();
+    await expect(page.locator('#adventure-settings #stone-sound')).toBeVisible();
+    await page.screenshot({path:info.outputPath('mobile-menu.png')});
+    await page.locator('#pve-restart').tap();
+    await expect.poll(async()=>(await read(page)).section).toBe('A');
+    await page.screenshot({path:info.outputPath('mobile-start.png')});
     const go=async(x:number,z:number)=>{
       for(const [axis,target] of [['z',z],['x',x]] as const) {
         const current=(await read(page)).snapshot.position[axis]; if(Math.abs(current-target)<.2) continue;
@@ -122,9 +149,15 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
     await go(0,18.5); await go(0,8); await go(0,2); await go(-10,2);
     await expect.poll(async()=>(await read(page)).snapshot.surface).toBe('side-terrace');
     await page.locator('#touch-jump').tap(); await expect.poll(async()=>(await read(page)).snapshot.position.y,{intervals:[20]}).toBeGreaterThan(1.6);
-    await page.locator('#touch-camera').tap(); expect((await read(page)).camera).toBe('straight');
-    await page.locator('#touch-camera').tap(); expect((await read(page)).camera).toBe('isometric');
+    await expect.poll(async()=>(await read(page)).snapshot.grounded).toBe(true);
+    await page.screenshot({path:info.outputPath('mobile-terrace-side.png')});
+    await page.locator('#pve-pause').tap();
+    await page.locator('#camera-toggle').tap(); expect((await read(page)).camera).toBe('straight');
+    await page.locator('#camera-toggle').tap(); expect((await read(page)).camera).toBe('isometric');
+    await page.locator('#stone-sound').tap(); await expect(page.locator('#stone-sound')).toHaveAttribute('aria-pressed','false');
+    await page.locator('#resume').tap();
     await page.screenshot({path:info.outputPath('mobile-terrace.png')});
+    await page.locator('#pve-pause').tap();
     await page.locator('#pve-restart').tap(); await expect.poll(async()=>(await read(page)).section).toBe('A');
     expect((await read(page)).viewport.dpr).toBe(1); expect(errors).toEqual([]);
   } finally {await context.close();}

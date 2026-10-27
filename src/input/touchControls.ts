@@ -19,7 +19,7 @@ export class TouchControls {
     this.root = document.createElement('div'); this.root.id = 'touch-controls';
     this.root.innerHTML = `<div id="touch-stick" aria-label="Bewegungsjoystick"><span></span><small>BEWEGEN</small></div>
       <div id="touch-actions"><button id="touch-camera" type="button" aria-label="Kamera wechseln">Ansicht</button>
-      <button id="touch-sprint" type="button" aria-pressed="false">Sprint</button><button id="touch-jump" type="button">Sprung</button></div>
+      <button id="touch-sprint" type="button" aria-pressed="false">Sprint aus</button><button id="touch-jump" type="button">Sprung</button></div>
       <div id="touch-hint">Arena berühren &amp; halten: zielen und feuern</div>
       <div id="rotate-device"><div>Bitte ins Querformat drehen.<small>Links bewegen · Arena berühren zum Feuern</small></div></div>`;
     canvas.parentElement!.append(this.root);
@@ -57,9 +57,13 @@ export class TouchControls {
     this.root.querySelector('#touch-jump')!.addEventListener('pointerdown', (event) => {
       event.preventDefault(); this.jumpPending = true;
     }, options);
-    this.sprintButton.addEventListener('click', () => {
-      this.sprint = !this.sprint; this.sprintButton.setAttribute('aria-pressed', String(this.sprint));
+    const toggleSprint = () => { this.sprint = !this.sprint; this.sprintLabel(); };
+    this.sprintButton.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+      // Secondary touch pointers may not synthesize click while the joystick is held.
+      event.preventDefault(); toggleSprint();
     }, options);
+    this.sprintButton.addEventListener('click', (event) => { if (event.detail === 0) toggleSprint(); }, options);
     this.root.querySelector('#touch-camera')!.addEventListener('click', onCamera, options);
     window.addEventListener('resize', () => this.clear(), options);
   }
@@ -73,6 +77,10 @@ export class TouchControls {
     this.knob.style.transform = `translate(${dx * scale}px, ${dy * scale}px)`;
   }
   private aim(event: PointerEvent): void { Object.assign(this.pointer, { x: event.clientX, y: event.clientY, active: true }); }
+  private sprintLabel(): void {
+    this.sprintButton.setAttribute('aria-pressed', String(this.sprint));
+    this.sprintButton.textContent = this.sprint ? 'Sprint an' : 'Sprint aus';
+  }
   jump(): boolean { const jump = this.jumpPending; this.jumpPending = false; return jump; }
   fire(): boolean {
     const fire = this.aimId !== null || this.firePending;
@@ -83,7 +91,7 @@ export class TouchControls {
   clear(): void {
     this.moveId = this.aimId = null; this.x = this.up = 0;
     this.jumpPending = this.firePending = this.sprint = this.pointer.active = false;
-    this.knob.style.transform = ''; this.sprintButton.setAttribute('aria-pressed', 'false');
+    this.knob.style.transform = ''; this.sprintLabel();
   }
   dispose(): void { this.abort.abort(); this.root.remove(); }
 }

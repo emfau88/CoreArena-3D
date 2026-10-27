@@ -21,6 +21,10 @@ Die Kamera folgt dem Spieler und zeigt 20 % mehr Umgebung als in den bisherigen 
 der Standardblick führt den Hauptweg von links nach rechts. V/Ansicht wechselt zwischen
 seitlichem, bisherigem geradem und isometrischem Blick. Die Gesamtübersicht ist eine
 Dokumentationsansicht, nicht die normale Spielkamera.
+Mobile zeigt die Welt seit dem freigegebenen Feinschliff 15 % größer und mit leichtem
+Kameravorlauf. Kamera/Ton/Vollbild/Neustart liegen dort unter „Menü“. Die gemeinsame
+Adventure-Sprungkurve für Maus/Tastatur und Touch landet auf gleicher Ebene nach
+ca. 0,72 s bei ca. 2,15 m Höhe; Treppen und vorgesehene Plateaus bleiben erreichbar.
 Maximal drei normale Gegner gleichzeitig aktiv. Erstbesuch als Ziel etwa 3–5 Minuten,
 kein zugesicherter Wert; nach spielbarem Durchlauf prüfen.
 

@@ -2,6 +2,9 @@ import type { ArenaBox, ArenaDefinition } from './arena';
 import type { PickupDefinition } from '../core/pickups';
 import type { Vec3 } from '../core/types';
 
+// Shared by desktop and touch; the old arena keeps its existing height routes.
+export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;
+
 interface Room { id: string; name: string; left: number; right: number; back: number; front: number }
 // A-H are places within three generous courts, not eight walled rooms.
 // The user rejected the first narrow, winding footprint during L1.1.

@@ -1,0 +1,33 @@
+{
+  "stats": {
+    "startTime": "2026-10-27T21:27:55.944Z",
+    "duration": 64175.149,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "touch joystick, independent aim finger, jump, orientation reset and restart",
+      "ok": true,
+      "project": "chromium-1366",
+      "durationMs": 4542,
+      "status": "passed"
+    },
+    {
+      "title": "walk every room, collect supplies, climb real stairs, aim/fire, pause and restart",
+      "ok": true,
+      "project": "chromium-1366",
+      "durationMs": 46330,
+      "status": "passed"
+    },
+    {
+      "title": "touch joystick reaches weapon and side terrace; jump, camera and restart remain usable",
+      "ok": true,
+      "project": "chromium-1366",
+      "durationMs": 10578,
+      "status": "passed"
+    }
+  ]
+}

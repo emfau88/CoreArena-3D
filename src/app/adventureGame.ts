@@ -1,4 +1,4 @@
-import { STONE_ADVENTURE, STONE_ADVENTURE_PICKUPS, stoneRoomAt } from '../arena/stoneAdventure';
+import { STONE_ADVENTURE, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
 import { buildStoneAdventure } from '../render/stoneAdventureView';
 import { ArenaView } from '../render/arenaView';
 import { createSpatialWorld } from '../physics/rapierWorld';
@@ -28,11 +28,12 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   catch (error) { world.dispose(); throw error; }
   view.renderer.domElement.setAttribute('aria-label', 'Der verwitterte Hof – Erkundung');
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
-  const simulation = new Simulation(world, STONE_ADVENTURE.spawn), combat = new Combat();
+  const simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP), combat = new Combat();
   const pickups = new Pickups(STONE_ADVENTURE_PICKUPS, false), clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
   let hp = 100, armor = 50, paused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0, startTick = 0;
+  host.dataset.adventure = 'true';
   host.insertAdjacentHTML('beforeend', `<div id="hud" class="pve-hud adventure-hud">
     <header><div class="brand"><div class="brand-mark">C</div><div><span class="eyebrow">CORE ARENA · DIE DREI SIEGEL</span>
     <h1>Der verwitterte Hof</h1></div></div><span class="phase"><i></i>ERKUNDUNG</span></header>
@@ -46,11 +47,23 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     <footer><span><kbd>WASD</kbd> Bewegen</span><span><kbd>SHIFT</kbd> Sprint</span><span><kbd>SPACE</kbd> Springen</span>
     <button id="camera-toggle" type="button"><kbd>V</kbd> Ansicht wechseln</button></footer>
     </div><div id="pause" hidden><div><span class="eyebrow">PAUSE</span><h2>Der Hof wartet.</h2>
-    <button id="resume" type="button">Weiter</button></div></div>`);
+    <button id="resume" type="button">Weiter</button><div id="adventure-settings"></div></div></div>`);
   const el = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
   const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused) { if (id === 'cycle') combat.cycle(); else combat.select(id); } };
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
   const feedback = new StoneFeedback(host);
+  let touchMenuReady = false;
+  const arrangeTouchMenu = () => {
+    if (touchMenuReady || !input.touchEnabled) return;
+    // Move the existing controls so sound/fullscreen state and their listeners stay shared.
+    for (const id of ['camera-toggle','stone-sound','pve-restart','fullscreen-toggle']) {
+      const button = host.querySelector<HTMLElement>(`#${id}`);
+      if (button) el('adventure-settings').append(button);
+    }
+    el('pve-pause').textContent = 'Menü';
+    // Display controls are installed by main.ts after startAdventure resolves.
+    touchMenuReady = !!host.querySelector('#fullscreen-toggle'); view.resize();
+  };
   const setPaused = (value: boolean) => {
     paused = value || input.touchEnabled && innerHeight > innerWidth;
     input.clear(); clock.reset(); previous = current; lastTime = performance.now();
@@ -72,6 +85,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   el('camera-toggle').addEventListener('click', () => view.camera.toggle(), options);
   for (const id of ['arc', 'pulse'] as const) el(`weapon-${id}`).addEventListener('click', () => chooseWeapon(id), options);
   function frame(now: number) {
+    arrangeTouchMenu();
     const elapsed = Math.max(0, (now-lastTime)/1000); lastTime = now;
     let alpha = 1;
     if (!paused) alpha = clock.advance(elapsed, () => {
@@ -96,6 +110,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     if (now-lastHud > 70) {
       const room = stoneRoomAt(current.position);
       if (room) { el('room-name').textContent = room.name; el('room-hint').textContent = hints[room.id]!; }
+      if (input.touchEnabled) el('camera-toggle').textContent = `Ansicht: ${{side:'seitlich',straight:'gerade',isometric:'isometrisch'}[view.camera.mode]}`;
       el('campaign-story').hidden = current.tick-startTick > 540;
       el('hp-value').textContent = String(hp); el('armor-value').textContent = String(armor);
       (el('hp-bar') as HTMLProgressElement).value = hp; (el('armor-bar') as HTMLProgressElement).value = armor;
@@ -114,7 +129,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     read: () => ({ mode: 'adventure', level: 'stone', snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       hp, armor, paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),
-      viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio() }, renderCalls: view.renderer.info.render.calls }),
+      viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Documentation capture only; walkthrough tests still use normal player inputs.
     overview: () => {
       setPaused(true); el('pause').hidden = true; overview = true; view.camera.snap({ x: 0, y: 0, z: -2 });
@@ -128,5 +143,6 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   return () => {
     cancelAnimationFrame(frameId); abort.abort(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud,#pause').forEach(node => node.remove()); Reflect.deleteProperty(window,'__coreArena');
+    delete host.dataset.adventure;
   };
 }

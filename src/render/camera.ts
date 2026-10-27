@@ -12,6 +12,7 @@ export class ArenaCamera {
   private horizontalView = false;
   private followFactor = 0.42;
   private viewScale = 1;
+  private mobile = false;
   constructor() { this.place(); }
   trackPlayer(position: Vec3, viewScale = 1, initialView: 'straight' | 'side' = 'straight'): void {
     this.followFactor = 1; this.viewScale = viewScale;
@@ -26,19 +27,21 @@ export class ArenaCamera {
       : this.horizontalView ? 'side' : 'straight';
     this.place();
   }
-  resize(width: number, height: number): void {
+  resize(width: number, height: number, mobile = false): void {
+    this.mobile = mobile;
     // A closer, steeper view fills the viewport, including ultrawide/landscape phones.
-    const viewHeight = Math.min(21, 40 * height / width) * this.viewScale;
+    const viewHeight = Math.min(21, 40 * height / width) * this.viewScale / (mobile ? 1.15 : 1);
     this.camera.left = -viewHeight * width / height / 2;
     this.camera.right = -this.camera.left;
     this.camera.top = viewHeight / 2;
     this.camera.bottom = -this.camera.top;
     this.camera.updateProjectionMatrix();
   }
-  follow(position: Vec3, dt: number): void {
+  follow(position: Vec3, dt: number, velocity?: Vec3): void {
     const blend = 1 - Math.exp(-5 * dt);
-    this.focus.x += (position.x * this.followFactor - this.focus.x) * blend;
-    this.focus.z += (position.z * this.followFactor - this.focus.z) * blend;
+    const lead = this.mobile && this.followFactor === 1 ? .35 : 0;
+    this.focus.x += (position.x * this.followFactor + (velocity?.x ?? 0) * lead - this.focus.x) * blend;
+    this.focus.z += (position.z * this.followFactor + (velocity?.z ?? 0) * lead - this.focus.z) * blend;
     this.place();
   }
   basis(): CameraBasis {

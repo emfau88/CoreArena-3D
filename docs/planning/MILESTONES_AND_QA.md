@@ -11,6 +11,8 @@ Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1 umgesetzt und 
 - [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
 - [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
 - [x] L1.1-Kameranacharbeit: Adventure standardmäßig von links nach rechts; V/Ansicht schaltet zusätzlich auf den bisherigen geraden oder isometrischen Blick. Desktop-/Touch-Weg und Schussrichtung geprüft.
+- [x] Mobile-Feinschliff freigegeben und technisch geprüft: 15 % Zoom, Sprint per zweitem Finger bei gehaltenem Joystick, kompaktes Adventure-HUD mit Menü und Kameravorlauf. Adventure-Sprung auf beiden Geräten von 0,98 auf 0,72 s verkürzt; Pflichtplateaus erreichbar. 45 Kerntests, drei Browserfälle. [Nachweise](../qa/MOBILE_POLISH_RESULT.md).
+- [ ] Persönlicher Handytest für Zoom, Sprint und neues Sprunggefühl.
 - [ ] L1.2: Zwei Gegnertypen, feste Gruppen und Anreise-Kämpfe; noch nicht freigegeben.
 - [ ] L1.3: Ziele, Checkpoint, bewusster Bossstart und physischer Ausgang; noch nicht freigegeben.
 - [ ] L1.4: Bossdruck, zweite Phase, gezielte Feinarbeit und Gesamtspieltest; noch nicht freigegeben.

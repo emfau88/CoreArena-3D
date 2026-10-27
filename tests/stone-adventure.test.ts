@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { STONE_ADVENTURE, STONE_ADVENTURE_PICKUPS, stoneRoomAt } from '../src/arena/stoneAdventure';
+import { STONE_ADVENTURE, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../src/arena/stoneAdventure';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import { Simulation } from '../src/core/simulation';
 import { Pickups } from '../src/core/pickups';
@@ -10,7 +10,7 @@ import * as THREE from 'three';
 test('the real adventure motor traverses the main route, side stairs and all three raised landings', async () => {
   const world = await createSpatialWorld(STONE_ADVENTURE, { stepHeight: .32 });
   try {
-    const sim = new Simulation(world, STONE_ADVENTURE.spawn), visited = new Set<string>();
+    const sim = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP), visited = new Set<string>();
     const go = (x: number, z: number) => {
       for (let i = 0; i < 420; i++) {
         const s = sim.snapshot(), dx = x-s.position.x, dz = z-s.position.z, distance = Math.hypot(dx,dz);
@@ -69,6 +69,42 @@ test('adventure camera follows the whole level and snaps to spawn without changi
   assert.ok(Math.hypot(p.x,p.y)<.001);
   camera.toggle(); assert.equal(camera.mode,'isometric');
   camera.toggle(); assert.equal(camera.mode,'side');
+  camera.resize(844,390); const desktopHeight = camera.camera.top-camera.camera.bottom;
+  camera.resize(844,390,true);
+  assert.ok(Math.abs(desktopHeight/(camera.camera.top-camera.camera.bottom)-1.15)<.001);
+  camera.snap(start);
+  for(let i=0;i<120;i++) camera.follow(start,1/60,{x:0,y:0,z:-7.2});
+  assert.ok(new THREE.Vector3(start.x,0,start.z).project(camera.camera).x<-.05,'mobile camera leaves space ahead');
+  camera.resize(844,390,false); camera.snap(start);
+  for(let i=0;i<120;i++) camera.follow(start,1/60,{x:0,y:0,z:-7.2});
+  assert.ok(Math.abs(new THREE.Vector3(start.x,0,start.z).project(camera.camera).x)<.001,'desktop camera keeps its framing');
   const old = new ArenaCamera(); old.snap({x:10,y:0,z:0});
   assert.ok(Math.abs(old.camera.position.x-4.2)<.001);
+});
+
+test('adventure jump lands in about 0.7 seconds and still clears the side terrace', async (t) => {
+  const world = await createSpatialWorld(STONE_ADVENTURE,{stepHeight:.32});
+  try {
+    const flight = (profile?: typeof STONE_ADVENTURE_JUMP) => {
+      const sim = new Simulation(world,STONE_ADVENTURE.spawn,profile); sim.reset();
+      for(let i=0;i<12;i++) sim.step({x:0,z:0,sprint:false});
+      const ground = sim.snapshot().position.y;
+      let s = sim.step({x:0,z:0,sprint:false,jump:true}), ticks = 1, height = 0;
+      while(!s.grounded && ticks<120) {
+        height = Math.max(height,s.position.y-ground);
+        s = sim.step({x:0,z:0,sprint:false}); ticks++;
+      }
+      assert.ok(s.grounded); return {seconds:ticks/60,height};
+    };
+    const before = flight(), after = flight(STONE_ADVENTURE_JUMP);
+    assert.ok(after.seconds>=.65 && after.seconds<=.76);
+    assert.ok(after.height>=1.9 && after.height<=2.3);
+    assert.ok(after.seconds<before.seconds*.8 && after.height<before.height*.85);
+    const sim = new Simulation(world,{x:-11.5,y:.06,z:8},STONE_ADVENTURE_JUMP); sim.reset();
+    for(let i=0;i<12;i++) sim.step({x:0,z:0,sprint:false});
+    sim.step({x:0,z:-1,sprint:false,jump:true});
+    for(let i=0;i<60 && !sim.snapshot().grounded;i++) sim.step({x:0,z:-1,sprint:false});
+    assert.equal(sim.snapshot().surface,'side-terrace');
+    t.diagnostic(JSON.stringify({before,after,landing:sim.snapshot().surface}));
+  } finally { world.dispose(); }
 });
