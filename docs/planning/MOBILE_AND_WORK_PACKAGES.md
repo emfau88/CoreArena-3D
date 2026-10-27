@@ -105,6 +105,17 @@ Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben);
 
 ## Wie die Pakete bearbeitet werden
 
+**27. Oktober, L1.1 ✅ umgesetzt und technisch geprüft:** Nach Freigabe begehbares
+Adventure-Level gebaut. Direkte Rückmeldung „zu eng/verwinkelt“ während der Arbeit
+eingearbeitet: drei große Höfe, kurze 10-m-Verbindungen und weniger verdeckende Wände.
+Kamera, drei erreichbare erhöhte Flächen, alle Vorratsorte und Einmal-Pickups stehen.
+44 Kerntests und drei Browserfälle bestanden, einschließlich echtem Desktop-Durchlauf
+und Touch-Eingaben. [Ergebnis und aktuelle Map](../qa/L1_1_RESULT.md).
+Beobachtete Bearbeitungszeit bis zur technischen Prüfung etwa 35 Minuten inklusive
+Grundrisswechsel; Dokumentation/Commit/Veröffentlichung anschließend. Keine getrennt
+gemessene reine Coding-Zeit. Für L1.2–L1.4 verbleiben vorläufig 2,5–5 Stunden;
+deren bisherige Einzelspannen bleiben bestehen. Vor L1.2 auf Freigabe warten.
+
 **27. Oktober, Umsetzungsplan für Adventure-Level 1:** Nach positiver Rückmeldung
 zum neuen Mockup vier [konkrete Pakete L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)
 geplant: Map → Gegner → vollständiger Ablauf → Boss/Abstimmung. Insgesamt vorläufig

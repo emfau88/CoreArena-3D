@@ -1,14 +1,15 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und ein separater kleiner PvE-Versuch zusätzlich freigegeben.** M2.4–M2.6 und M3–M5 nicht freigegeben.
+Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1 umgesetzt und technisch geprüft. GitHub-Pages-Publikation, einfacher Mobile-Zugang und PvE-Erweiterungen zusätzlich freigegeben.** L1.2–L1.4, M2.4–M2.6 und M3–M5 nicht freigegeben.
 
 ## Aktueller Fortschritt
 
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Konkreter Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt: Start, feste Waffen-/Lootorte, fünf Pflichtgegner, zwei optionale Gegner, bewusster Bossstart und Ausgang.
-- [x] [Level-1-Mockup und genaue Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt: tatsächlicher Spiel-Screenshot als Stilreferenz, Raumfolge A–H, Gegnerzahlen, Waffen, Vorräte und Höhen sichtbar. Skizze ist für Durchgänge maßgeblich; Mockup bleibt eine Illustration.
+- [x] [Level-1-Mockup und Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt. Der erste begehbare Grundriss wurde während L1.1 als zu eng/verwinkelt zurückgewiesen; die Skizze ist für den aktuellen Aufbau überholt.
 - [x] Nutzer bestätigt die Richtung des neuen Mockups; [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) erstellt. Vorläufig 3–6 Stunden aktive Agent-Arbeit mit Prüfungen; erster begehbarer Stand nach L1.1 (30–60 Min.).
-- [ ] L1.1: Map, Kamera, Stufen und einmalige Ressourcen; noch nicht freigegeben.
+- [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
+- [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
 - [ ] L1.2: Zwei Gegnertypen, feste Gruppen und Anreise-Kämpfe; noch nicht freigegeben.
 - [ ] L1.3: Ziele, Checkpoint, bewusster Bossstart und physischer Ausgang; noch nicht freigegeben.
 - [ ] L1.4: Bossdruck, zweite Phase, gezielte Feinarbeit und Gesamtspieltest; noch nicht freigegeben.

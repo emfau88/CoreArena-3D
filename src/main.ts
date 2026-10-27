@@ -4,8 +4,10 @@ import './style.css';
 import './hud.css';
 
 const host = document.querySelector<HTMLElement>('#app')!;
-const game = new URLSearchParams(location.search).get('mode') === 'pve'
-  ? import('./app/pveGame').then(({ startPve }) => startPve(host)) : startGame(host);
+const params = new URLSearchParams(location.search);
+const adventure = params.get('mode') === 'pve' && params.get('adventure') === '1' && (params.get('level') ?? 'stone') === 'stone';
+const game = adventure ? import('./app/adventureGame').then(({ startAdventure }) => startAdventure(host))
+  : params.get('mode') === 'pve' ? import('./app/pveGame').then(({ startPve }) => startPve(host)) : startGame(host);
 game.then((dispose) => {
   const disposeDisplay = installDisplayControls(host);
   if (import.meta.hot) import.meta.hot.dispose(() => { disposeDisplay(); dispose(); });

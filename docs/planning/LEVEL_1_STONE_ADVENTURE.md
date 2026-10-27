@@ -1,18 +1,24 @@
 # Level 1: Der verwitterte Hof
 
-Status: Richtung von Plan und neuer Visualisierung vom Nutzer positiv bestätigt;
-Umsetzungsplan erstellt, noch keine Implementierung freigegeben.
-Stand: 27. Oktober 2026. Ersetzt die früheren Adventure-Konzeptbilder als Planungsgrundlage.
+Status: **L1.1 freigegeben, umgesetzt und technisch geprüft.** L1.2–L1.4 geplant,
+noch nicht freigegeben. Persönliche Abnahme des neuen Grundrisses steht aus.
+Stand: 27. Oktober 2026.
 
-Ergänzt durch ein [Mockup auf vorhandenem Grafikniveau und die genaue Map-Skizze](../concepts/level-1-layout-v1/README.md).
-Die Skizze konkretisiert diesen Plan; das generierte Bild ist eine optische Orientierung.
+Die [frühere Map-Skizze](../concepts/level-1-layout-v1/README.md) ist überholt:
+Der Nutzer fand den ersten Aufbau zu eng, verwinkelt und schlecht sichtbar.
+Maßgeblich sind jetzt **drei große offene Höfe** und die [echten L1.1-Spielaufnahmen](../qa/L1_1_RESULT.md).
 
 ## Rahmen
 
 Vorhandene stilisierte Figuren, massive Quader/Mauern, lesbare Plateaus, wenige
 Pflanzen und bestehendes HUD weiterverwenden. Keine neue Grafikqualität voraussetzen.
-Ein zusammenhängendes längliches Level, ungefähr 44 × 48 Spielmeter. Die Kamera
-folgt dem Spieler durch die Abschnitte; nicht das gesamte Level gleichzeitig anzeigen.
+Ein zusammenhängendes längliches Level, insgesamt ungefähr 36 × 80 Spielmeter:
+Ankunft/Ruinenhof 32 × 22 m, innerer Hof 36 × 24 m, Wächterhof 36 × 26 m.
+Die Höfe verbinden kurze, gerade, 10 m breite Durchgänge. A–H bezeichnen Orte
+innerhalb dieser drei Höfe, keine acht getrennten Räume. Niedrige Umfassungsmauern,
+wenige Deckungen, breite Treppen und ein freier Hauptweg halten die Karte übersichtlich.
+Die Kamera folgt dem Spieler und zeigt 20 % mehr Umgebung als in den bisherigen Arenen;
+die Gesamtübersicht ist eine Dokumentationsansicht, nicht die normale Spielkamera.
 Maximal drei normale Gegner gleichzeitig aktiv. Erstbesuch als Ziel etwa 3–5 Minuten,
 kein zugesicherter Wert; nach spielbarem Durchlauf prüfen.
 
@@ -21,21 +27,23 @@ die Kraft des verschlossenen Nordtors. Das Siegel im Hof weckt ihn.
 
 ## Fester Ablauf und Fundorte
 
-Koordinaten sind Entwurfsanker, keine freigegebenen Collidermaße. Norden = negatives Z.
+Geometrie und Fundorte entsprechen L1.1. Gegner und Fortschrittsregeln der Tabelle
+sind weiterhin geplant für L1.2–L1.4. Norden = negatives Z.
 
 | Abschnitt | Lage | Gegner | Waffen/Vorräte | Ablauf |
 | --- | --- | --- | --- | --- |
-| A · Ankunft | Süden, ungefähr (0, 20) | 0 | Start: Arc Lash, 100 HP, 50 Rüstung | Sicherer kleiner Vorhof. Durch den Torbogen sind Ruinen und das entfernte verschlossene Nordtor erkennbar. Auftrag: „Erreiche das Siegel im inneren Hof.“ |
-| B · Ruinenpassage | Südwesten, ungefähr (-9, 13) | 2 Steinläufer | Keine Pflichtaufnahme | Zwei getrennt erkennbare Nahkämpfer hinter niedriger Deckung. Spieler übt Arc, Bewegung und Ausweichen. Kein geschlossener Kampfraum; Rückzug in den Vorhof möglich. |
-| C · Waffennische | Westen, ungefähr (-12, 6) | 0 | Pulse Repeater mit 54 Schuss | Sichtbar direkt am Hauptweg, nach der ersten Begegnung. Hinweis: „2 / Waffenbutton: Pulse“. Keine Suche hinter unsichtbarer Wand. |
-| D · Seitenterrasse, optional | Westlicher Abzweig ab C, ungefähr (-17, 0), Höhe 1,1 m | 2 Steinläufer | Medkit +35, Rüstung +30, Munition +27 | Kurzer Erkundungsweg über sichtbare niedrige Stufen. Gegner und Versorgung vom Abzweig erkennbar. Rückweg führt zur Waffennische. Vorräte helfen beim folgenden Haupthof. |
-| E · Innerer Hof | Mitte, ungefähr (2, 2) | 2 Steinläufer + 1 Steinwerfer | Munition +27 hinter einer seitlichen Deckung | Nahkämpfer stehen am vorderen und seitlichen Zugang. Der Werfer steht auf einem niedrigen, erreichbaren Sockel am hinteren Rand. Deckung blockiert seine langsamen Projektile. Drei Gegner, keine Wellen. |
-| F · Siegelvorraum | Vor dem Bossbereich, ungefähr (0, -6) | 0 | Ruhepunkt: 100 HP, 50 Rüstung, Pulse auf 54 Schuss auffüllen | Nach den fünf Pflichtgegnern zugänglich. Klare Vorbereitungspause und Checkpoint. Die zwei optionalen Gegner blockieren den Fortschritt nicht. |
-| G · Wächterhof | Norden, Boss ungefähr (0, -14), Fläche ca. 22 × 14 m | 1 Steinwächter | Zwei getrennte Munitionslager mit je +18, ein Medkit +35 am seitlichen niedrigen Plateau | Boss erscheint erst nach bewusster Aktivierung des Siegels mit E oder Touch-Button. Kurzes Beben, Auftauchen, Beginn des Kampfes. |
-| H · Nordtor | Hinter dem Boss, ungefähr (0, -23) | 0 | Keine Pflichtaufnahme | Nach Sieg öffnet sich das Tor. Erst tatsächliches Durchgehen wechselt zur Kristallkluft. Der Sieg lässt Zeit zum Orientieren. |
+| A · Ankunft | Süden, Spawn (0, 33), im ersten Hof | 0 | Start: Arc Lash, 100 HP, 50 Rüstung | Sicherer Start mit freiem Blick in den Ruinenhof. |
+| B · Ruinenhof | Erstes großes Feld, um (0, 24), insgesamt 32 × 22 m mit A/C | 2 Steinläufer | Keine Pflichtaufnahme | Zwei getrennt erkennbare Nahkämpfer bei niedriger Deckung. Rückzug nach A möglich. |
+| C · Waffenfund | (-3, 18,5), beim Norddurchgang des ersten Hofs | 0 | Pulse Repeater mit 54 Schuss | Sichtbar am Hauptweg; keine separate Nische oder Raumwand. |
+| D · Seitenterrasse, optional | Links im inneren Hof, Mitte (-11,5, 2), 9 × 8 m, Höhe 1,1 m | 2 Steinläufer | Medkit +35 bei (-13,5; 4), Rüstung +30 bei (-13,5; 0), Munition +27 bei (-9; -0,4) | Breite Osttreppe. Optionaler Abstecher vom inneren Hof; Rückkehr direkt nach E. Aktivierung der Gruppen D/E in L1.2 so staffeln, dass nicht alle fünf gleichzeitig angreifen. |
+| E · Innerer Hof | Mitte (0, 0), 36 × 24 m | 2 Steinläufer + 1 Steinwerfer | Munition +27 bei (11; 6,5) | Viel freie Bewegungsfläche. Werfer auf erreichbarem 0,8-m-Sockel bei (11; -7), zwei seitliche Deckungen. Drei Pflichtgegner, keine Wellen. |
+| F · Siegelplatz | Verbindung bei (0, -14), Siegel bei (0, -17,2) | 0 | Geplant: Ruhepunkt mit 100 HP, 50 Rüstung, 54 Pulse-Schuss | Nach fünf Pflichtgegnern zugänglich; Checkpoint und bewusstes Aktivieren folgen in L1.3. Kein zusätzlicher kleiner Raum. |
+| G · Wächterhof | Mitte/Boss (0, -29), 36 × 26 m | 1 Steinwächter | Munition +18 bei (-13; -37) und (13; -20); Medkit +35 auf 1,1-m-Plateau bei (-12; -23) | In L1.1 ruhender Steinkörper. Später bewusster Bossstart mit E/Touch, Beben und Auftauchen. |
+| H · Nordtor | Zugang bei (0, -40), Tor bei Z = -42 | 0 | Keine Pflichtaufnahme | L1.1 geschlossen. Später nach Sieg öffnen; erst tatsächliches Durchgehen wechselt zur Kristallkluft. |
 
 Hauptweg: **A → B → C → E → F → G → H**.
-Optionaler Abzweig: **C → D → C**.
+Optionaler Abzweig: **E → D → E**. A/B/C liegen im ersten Hof, D/E im zweiten,
+G/H im dritten. F liegt an der Verbindung zum dritten Hof.
 
 Gesamt: **5 normale Pflichtgegner, 2 optionale Gegner, 1 Boss**. Keine zufälligen
 Spawns und keine Verstärkungen im Bosskampf für diese erste Fassung.
@@ -78,7 +86,7 @@ Dauerfeuer und dauerhaftes Rückwärtslaufen sollen keine verlässliche Gewinnst
 
 ## Wiederholen und Ressourcen
 
-Vor Erreichen von F führt Tod zum Levelanfang. Ab F führt Tod in den Siegelvorraum,
+Vor Erreichen von F führt Tod zum Levelanfang. Ab F führt Tod zum Siegelplatz,
 mit 100 HP, 50 Rüstung und 54 Pulse-Schuss. Der Boss und seine drei Vorräte werden
 zurückgesetzt; die bereits geschaffte Anreise muss nicht wiederholt werden.
 Checkpoint zunächst nur für die laufende Sitzung, ohne neues Save-System.
@@ -92,7 +100,7 @@ M2.4 und die weitere Arena-/Liga-Roadmap bleiben separat.
 
 | Paket | Sichtbares Ergebnis | Aktive Agent-Zeit, vorläufig | Status |
 | --- | --- | --- | --- |
-| **L1.1 · Map begehen** | Räume A–H, Nebenweg, Stufen, Kamera und alle Fundorte | 30–60 Min. | Geplant |
+| **L1.1 · Map begehen** | Drei große Höfe mit Orten A–H, Terrasse, Stufen, Kamera und Fundorten | Plan 30–60 Min.; ca. 35 Min. bis technische Prüfung inklusive Grundrisswechsel, Übergabe anschließend | **Umgesetzt und technisch geprüft** |
 | **L1.2 · Anreise bekämpfen** | Zwei kleine Gegnertypen, fünf Pflichtgegner und zwei optionale Gegner | 60–120 Min. | Geplant |
 | **L1.3 · Level abschließen** | Ziele, Siegel, Checkpoint, vorhandener Bosskampf und tatsächlicher Ausgang | 45–90 Min. | Geplant |
 | **L1.4 · Boss und Spielgefühl abstimmen** | Sturmangriff, zweite Phase, Lesbarkeit/Balance und kompletter Spieltest | 45–90 Min. | Geplant |
@@ -104,11 +112,13 @@ Erster begehbarer Zwischenstand nach L1.1; vollständiger Ablauf nach L1.3.
 Die beobachteten ca. 30 Minuten für M0 und M1 dienen als Orientierung. Mehrere Gegner,
 Sitzungsfortschritt und Bossphasen begründen mehr Zeit als reine Darstellungsänderungen.
 Nach jedem Paket beobachtete Dauer vermerken und verbleibende Schätzungen anpassen.
+Nach L1.1 verbleiben vorläufig **2,5–5 Stunden** für L1.2–L1.4. Die technische Prüfung
+lag im Planbereich; noch keine Grundlage, Gegner-/Fortschrittspakete weiter zu kürzen.
 
-### L1.1 · Räume, Kamera und Ressourcen
+### L1.1 · Räume, Kamera und Ressourcen — technisch abgeschlossen
 
-- Grundriss A–H gemäß Skizze aus vorhandenen Bausteinen aufbauen, inklusive Abzweig
-  C–D–C. Ca. 44 × 48 m als Ausgangspunkt; massive Wände, Stufen und echte Deckung.
+- Drei offene Höfe aus vorhandenen Bausteinen, insgesamt ca. 36 × 80 m, Orte A–H
+  und optionaler Abstecher E–D–E. Der verwinkelte Erstgrundriss wurde ersetzt.
 - Breite Durchgänge und sichtbare Landeflächen in beiden Kameraansichten herstellen.
   Verdeckende Mauern zuerst niedriger setzen oder versetzen. Vorhandene Materialien
   und sparsame Vegetation verwenden, keine zusätzliche Grafikentwicklung.
@@ -121,10 +131,12 @@ Nach jedem Paket beobachtete Dauer vermerken und verbleibende Schätzungen anpas
   URL-Schalter reicht. Alter Steinhof bleibt vergleichbar. Boss und Siegel sind hier
   ruhende Markierungen; Kampf-/Fortschrittssperren folgen in L1.3.
 
-**Abnahme:** Vom normalen Spawn durch alle Abschnitte laufen, Pulse aufnehmen,
+**Technische Abnahme bestanden:** Vom normalen Spawn durch alle Abschnitte laufen, Pulse aufnehmen,
 Nebenweg und Boss-Heilplateau über Stufen erreichen und zurückkehren. Kein Hängen,
 keine schwebenden Auflagen, Spieler bleibt im Bild. Desktop in beiden Ansichten plus
 kurzer Touch-Durchlauf im Querformat; Übersicht und normale Spielperspektive dokumentieren.
+[44 Kerntests, drei Browserfälle und Aufnahmen](../qa/L1_1_RESULT.md).
+L1.1 enthält noch keine Angriffe, Fortschrittssperren, Checkpoint-Auffüllung oder Siegelinteraktion.
 
 ### L1.2 · Kleine Gegner und feste Begegnungen
 
@@ -145,7 +157,7 @@ kurzer Touch-Durchlauf im Querformat; Übersicht und normale Spielperspektive do
   gelten durchgehend; mehrere lebende Trefferziele an Arc/Pulse anbinden. Tote Gegner
   entfernen ihren Trefferkörper und lösen keinen Level-Sieg aus.
 
-**Abnahme:** B regulär besiegen → Pulse → D → E; anschließend direkte Route C → E.
+**Abnahme:** B regulär besiegen → Pulse → E mit Abstecher D; außerdem direkte Route ohne D.
 Deckung gegen Würfe, erreichbarer Werfer, Rückzug, Gruppenaktivierung und Schüsse vor/
 hinter Gegnern auf gleicher Ebene prüfen. Tod startet hier noch das ganze Level neu.
 Gezielte Kerntests für Aktivierung, Tod, Schadenszuordnung und Projektilblockade.
@@ -198,7 +210,7 @@ Steinhof regulärer Einstieg werden; bis dahin bleibt der Vergleichslink bestehe
 
 | Bereich | Konkreter Ansatz |
 | --- | --- |
-| Geometrie/Rendering | Leveldaten neben `src/arena/campaign.ts`; Quader, Materialien, Pickups und Licht aus `src/render/campaignArena.ts` weiterverwenden. Skizze bestimmt Wege; das Mockup bestimmt keine Collider. |
+| Geometrie/Rendering | `src/arena/stoneAdventure.ts` definiert die drei Höfe; gemeinsame Quader, Materialien, Pickups und Licht weiterverwendet. Statische Mauerteile werden zusammengefasst gezeichnet. Aktuelle Leveldaten/Spielaufnahmen ersetzen die alte Skizze. |
 | Bewegung/Kampf | `Simulation`, Rapier, Aim und `Combat` weiterverwenden. Die Physikwelt kann bereits mehrere Zielkörper registrieren und aktivieren; feste Gegner beim Levelstart anlegen. |
 | Levelablauf | Kleiner Adventure-Zustand im `src/core`-Bereich mit Abschnitten, Pflichtgegnern, Checkpoint und Toren. App verbindet Eingabe, Physik und Darstellung. Kein allgemeines Quest-/ECS-Framework. |
 | Spielerleben/Boss | Heute enthält `PveEncounter` Spielerleben, Boss und Sieg zusammen. Ab L1.2 eine gemeinsame Zuständigkeit für HP/Rüstung über alle Adventure-Begegnungen; Bossereignisse daran anbinden, keine konkurrierenden HP-Stände. Alte PvE-Aufrufer kompatibel halten. |
@@ -206,16 +218,16 @@ Steinhof regulärer Einstieg werden; bis dahin bleibt der Vergleichslink bestehe
 | Tore | Darstellung und echter Collider wechseln gemeinsam; Navigation berücksichtigt geschlossene Durchgänge. |
 | Eingabe/HUD | Desktop/Touch beibehalten, eine gemeinsame Interaktionsaktion E/Touch ergänzen. Kurze Ziele während der Anreise, Bossanzeige erst im Kampf. |
 
-Unmittelbar relevante Prüfpunkte sind **Kamera/Sicht in schmalen Räumen**,
+Unmittelbar relevante Prüfpunkte sind **Kamera/Sicht in den großen Höfen**,
 **Gegnerbewegung an Deckung/Stufen** und **Tod/Checkpoint-Zustände**. Sie werden im
 jeweiligen Paket geprüft. Größere Eventualitätenlisten und Optimierungen für noch
 nicht gebaute Level sind kein eigener Vorlauf.
 
 ## Umfang, Freigabe und Übergabe
 
-Dieser Auftrag erstellt den Umsetzungsplan. **Noch kein Paket ist zur Implementierung
-freigegeben.** Nächster abgegrenzter Auftrag ist **L1.1**; die übrigen Pakete folgen nach
-ihrer Freigabe. Eine spätere ausdrückliche Freigabe mehrerer oder aller Pakete gilt
+**L1.1 wurde durch „ok go L1.1“ freigegeben und ist technisch abgeschlossen.**
+Nächster abgegrenzter Auftrag ist **L1.2**; dafür zunächst auf Freigabe warten.
+Eine spätere ausdrückliche Freigabe mehrerer oder aller Pakete gilt
 entsprechend, ohne für jeden Unterpunkt erneut nachzufragen.
 
 Jedes freigegebene Paket liefert einen begehbaren/spielbaren Stand, passende Kernchecks

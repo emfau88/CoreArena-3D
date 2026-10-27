@@ -32,7 +32,7 @@ export class ArenaView {
   private readonly raycaster = new THREE.Raycaster();
   private readonly animateEnvironment: ((dt: number) => void) | void;
 
-  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[];
+  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number;
     build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void) } = {}) {
     const touch = matchMedia('(any-pointer: coarse)').matches;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
@@ -50,6 +50,8 @@ export class ArenaView {
     sun.castShadow = true;
     sun.shadow.mapSize.set(touch ? 1024 : 2048, touch ? 1024 : 2048);
     Object.assign(sun.shadow.camera, { left: -32, right: 32, top: 25, bottom: -25, near: 1, far: 100 });
+    if (options.shadowSpan) Object.assign(sun.shadow.camera, { left: -options.shadowSpan, right: options.shadowSpan,
+      top: options.shadowSpan, bottom: -options.shadowSpan });
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
     this.animateEnvironment = (options.build ?? buildArena)(this.scene, arena);

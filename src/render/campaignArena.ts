@@ -6,7 +6,8 @@ import { addGarden } from './garden';
 import { addCampaignDetails } from './campaignDetails';
 
 /** The same arena boxes remain the visible and physical cover boundaries. */
-export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind): (dt: number) => void {
+export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind,
+  options: { adventure?: boolean } = {}): (dt: number) => void {
   const palette = theme === 'stone' ? { floor: 0xb3ac8d, wall: 0xa7a58b, glow: 0xcce69a, dark: 0x1b2925, sky: 0xeaf4ce }
     : theme === 'frost' ? { floor: 0xb4dfef, wall: 0x79adc6, glow: 0x75edff, dark: 0x0c2339, sky: 0xc5e9ff }
       : { floor: 0xc4bdba, wall: 0xb5acaa, glow: 0xff812c, dark: 0x30333c, sky: 0xffecd9 };
@@ -46,9 +47,10 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     lava = new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: 0xff802d, emissiveIntensity: 0.7, roughness: 0.7 });
   }
   const unit = new THREE.BoxGeometry(1, 1, 1);
+  const masonry: THREE.Mesh[] = [];
   const box = (x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.Material | THREE.Material[]) => {
     const mesh = new THREE.Mesh(unit, material); mesh.position.set(x, y, z); mesh.scale.set(w, h, d);
-    mesh.castShadow = mesh.receiveShadow = true; scene.add(mesh); return mesh;
+    mesh.castShadow = mesh.receiveShadow = true; scene.add(mesh); masonry.push(mesh); return mesh;
   };
   const ring = (x: number, z: number, radius: number, width: number, material: THREE.Material) => {
     const mesh = new THREE.Mesh(new THREE.RingGeometry(radius - width, radius, 64), material);
@@ -66,14 +68,24 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     const fill = new THREE.DirectionalLight(0xc2d5f1, 1.7); fill.position.set(12, 22, -18); scene.add(fill);
   }
   // Border beds sit outside the enclosing walls, so decorative terrain is unreachable.
-  for (const side of [-1, 1]) {
+  if (!options.adventure) for (const side of [-1, 1]) {
     box(side * 23.2, -0.05, 0, 2.5, 0.2, 30, theme === 'ember' ? lava : dark);
     box(0, -0.05, side * 15, 49, 0.2, 2, theme === 'ember' ? lava : dark);
   }
   for (const shape of arena.boxes) {
+    if (options.adventure && ['dormant-warden', 'north-gate'].includes(shape.id)) continue;
     const { center: c, size: s } = shape;
     const mesh = box(c.x, c.y, c.z, s.x, s.y, s.z, materials[shape.material]); mesh.name = shape.id;
-    if (shape.id === 'floor') { mesh.castShadow = false; continue; }
+    if (shape.material === 'floor') {
+      mesh.castShadow = false;
+      if (options.adventure) {
+        // Consistent world-aligned two-metre pavers, including overlapping doorway floors.
+        const floor = materials.floor.clone(), map = materials.floor.map!.clone();
+        map.repeat.set(s.x / 8, s.z / 8); map.offset.set((c.x-s.x/2)/8, -(c.z+s.z/2)/8);
+        floor.map = floor.bumpMap = map; mesh.material = floor;
+      }
+      continue;
+    }
     if (['north', 'south', 'east', 'west'].includes(shape.id)) continue;
     mesh.material = [wallSide, wallSide, landing, wallBase, wallFront, wallFront];
     const top = c.y + s.y / 2;
@@ -118,6 +130,21 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     // Vegetation hugs the back edge; most of each platform stays visibly walkable.
     addGarden(scene, { ...arena, boxes: arena.boxes.filter(b => b.planted).map(b => ({ ...b,
       center: { ...b.center, z: b.center.z - b.size.z / 2 + 0.25 }, size: { ...b.size, z: 0.5 } })) });
+    if (options.adventure) {
+      // Many adjoining rooms add hundreds of coping/corner pieces. Draw equal
+      // static masonry together so it costs a few material passes, not one per brick.
+      const batches = new Map<string, THREE.Mesh[]>();
+      for (const mesh of masonry.filter(m => !m.name.startsWith('floor-'))) {
+        const key = (Array.isArray(mesh.material) ? mesh.material : [mesh.material]).map(m => m.uuid).join(':');
+        const batch = batches.get(key) ?? []; batch.push(mesh); batches.set(key,batch);
+      }
+      for (const meshes of batches.values()) {
+        const batch = new THREE.InstancedMesh(unit, meshes[0]!.material, meshes.length);
+        meshes.forEach((mesh,i) => { mesh.updateMatrix(); batch.setMatrixAt(i,mesh.matrix); scene.remove(mesh); });
+        batch.castShadow = batch.receiveShadow = true; batch.computeBoundingSphere(); scene.add(batch);
+      }
+      return () => {};
+    }
     ring(0, -1, 5.2, 0.07, materials.brass); ring(0, -1, 5.65, 0.04, materials.brass);
     for (let i = 0; i < 12; i++) {
       const a = i * Math.PI / 6;

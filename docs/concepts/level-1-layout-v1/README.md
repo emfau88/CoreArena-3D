@@ -1,12 +1,18 @@
 # Level 1: Mockup und Map-Skizze
 
-Stand: 27. Oktober 2026. **Visuelle Planung, kein implementiertes Level.**
+Stand: 27. Oktober 2026. **Historischer Entwurf; Grundriss während L1.1 verworfen.**
+
+Der erste begehbare Aufbau war dem Nutzer zu eng, verwinkelt und schlecht sichtbar.
+Die Umsetzung verwendet jetzt **drei große offene Höfe** mit breiten Verbindungen.
+[Aktuelle echte Spielaufnahmen und Übersicht](../../qa/L1_1_RESULT.md).
+Die folgenden Bilder bleiben als Verlauf erhalten und sind **kein aktueller Bauplan**.
 
 Grundlage ist der [konkrete Ablaufplan](../../planning/LEVEL_1_STONE_ADVENTURE.md).
 Der dazugehörige [Umsetzungsplan L1.1–L1.4](../../planning/LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)
 gliedert die Arbeit in begehbare Map, kleine Gegner, Levelablauf und Boss-Abstimmung.
 Diese Ansichten ersetzen die früheren, vom Nutzer als zu aufwendig zurückgewiesenen
-Adventure-Konzeptbilder. Die Freigabe umfasst die Visualisierung, noch keinen Spielumbau.
+Adventure-Konzeptbilder. Diese Aussagen beschreiben den damaligen Planungsstand;
+L1.1 wurde inzwischen freigegeben und mit dem vereinfachten Grundriss umgesetzt.
 
 ## Mockup auf vorhandenem Grafikniveau
 

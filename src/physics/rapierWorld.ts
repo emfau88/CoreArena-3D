@@ -4,10 +4,10 @@ import { CAPSULE, CAPSULE_CENTER, TICK_SECONDS } from '../core/types';
 import type { MotionResult, Ray, RayHit, RayWorld, SpatialWorld, Vec3 } from '../core/types';
 
 let ready: Promise<void> | undefined;
-export async function createSpatialWorld(arena: ArenaDefinition): Promise<RapierWorld> {
+export async function createSpatialWorld(arena: ArenaDefinition, options: { stepHeight?: number } = {}): Promise<RapierWorld> {
   ready ??= RAPIER.init();
   await ready;
-  return new RapierWorld(arena);
+  return new RapierWorld(arena, options.stepHeight);
 }
 
 export class RapierWorld implements SpatialWorld, RayWorld {
@@ -18,7 +18,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
   private readonly names = new Map<number, string>();
   private readonly targets = new Map<string, RAPIER.Collider>();
 
-  constructor(arena: ArenaDefinition) {
+  constructor(arena: ArenaDefinition, stepHeight = 0) {
     this.world.timestep = TICK_SECONDS;
     for (const { id, size, center } of arena.boxes) {
       const collider = this.world.createCollider(
@@ -45,6 +45,9 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     // No ground snapping: ledges and undersides must be resolved by actual collision.
     this.controller.setNormalNudgeFactor(0.01);
     this.controller.disableAutostep();
+    // Only the adventure's shallow, explicit stair treads opt in. Full ledges
+    // still require a real jump; all existing arenas retain their old motor.
+    if (stepHeight > 0) this.controller.enableAutostep(stepHeight, 0.2, false);
     this.controller.disableSnapToGround();
     this.controller.setSlideEnabled(true);
     this.world.step();
