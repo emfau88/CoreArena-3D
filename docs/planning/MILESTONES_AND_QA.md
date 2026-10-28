@@ -1,13 +1,18 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.** L1.2 auf Nutzerwunsch auf zwei Nahkämpfer plus vorhandenen Boss verkleinert. L1.3/L1.4 sind optional und nicht freigegeben; M2.4–M2.6 und M3–M5 bleiben ebenfalls ohne Freigabe.
+Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.**
+Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
+mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3, L1.4a/b und L1.5 sind
+dafür geplant, noch nicht zur Implementierung freigegeben. Arena-Teamspiel/Liga
+(M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
+die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 ## Aktueller Fortschritt
 
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt und anschließend verkleinert: feste Waffen-/Lootorte, zwei Nahkämpfer und vorhandener Boss. Die früher sieben kleinen Gegner sind verworfen.
 - [x] [Level-1-Mockup und Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt. Der erste begehbare Grundriss wurde während L1.1 als zu eng/verwinkelt zurückgewiesen; die Skizze ist für den aktuellen Aufbau überholt.
-- [x] [Umsetzungsplan L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete) aktualisiert: L1.2 liefert bereits den kleinen vollständigen Kampfablauf. Altes Gesamtbudget 3–6 Stunden überholt; optionale L1.3/L1.4 jeweils grob 30–60 Minuten aktive Agent-Arbeit, falls später gewünscht.
+- [x] Roadmap am 28. Oktober am aktuellen Qualitätsziel ausgerichtet: vollständiger Levelabschluss, ein gestalteter Probehof, Übertragung von Material/Deko/Licht und abschließende Spielabnahme. [Pakete und Spannen](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vom-spielbaren-kern-zum-fertigen-testlevel); grob 2,5–5 Stunden aktive Agent-Arbeit für den verbleibenden Qualitätsausbau. Noch keine Implementierung dieses Ausbaus.
 - [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
 - [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
 - [x] L1.1-Kameranacharbeit: Adventure standardmäßig von links nach rechts; V/Ansicht schaltet zusätzlich auf den bisherigen geraden oder isometrischen Blick. Desktop-/Touch-Weg und Schussrichtung geprüft.
@@ -15,8 +20,10 @@ Stand: 27. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt
 - [ ] Persönlicher Handytest für Zoom, Sprint und neues Sprunggefühl.
 - [x] L1.2 in kleiner Fassung ausdrücklich freigegeben und umgesetzt: je ein Steinläufer im ersten/zweiten Hof, bestehender Steinwächter im dritten, gemeinsame HP/Rüstung, Sieg/Tod/Neustart und Weiter-Button. 47 Kerntests und vier Browserfälle bestanden. [Nachweise](../qa/L1_2_RESULT.md).
 - [ ] Persönlicher Spieltest des kleinen Kampfablaufs und seiner Schwierigkeit.
-- [ ] L1.3 optional: Checkpoint und begehbarer Ausgang; erst nach Bedarf und Freigabe.
-- [ ] L1.4 optional: Tempo, Schaden, Angriffspausen und Lesbarkeit anhand des Spieltests abstimmen. Zusätzliche Bossphase/Sturmangriff sind kein Pflichtprogramm.
+- [ ] L1.3: Verständlicher Einstieg, Checkpoint vor dem Boss, echtes Nordtor und Levelabschluss.
+- [ ] L1.4a: Ersten Hof als spielbare Material-/Gestaltungsprobe ausarbeiten, Sichtung vor Übertragung.
+- [ ] L1.4b: Zusammenpassende Pflanzen/Felsen/Ruinenteile, Oberflächen und Licht auf alle drei Höfe übertragen.
+- [ ] L1.5: Bestehenden Kampf abstimmen, vollständigen Ablauf und Leistung prüfen, persönliche Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.
@@ -74,7 +81,11 @@ M2.2-Nachweise: [Ergebnis](../qa/M2_2_RESULT.md), 21 bestandene Kern-/Physiktest
 
 **Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
 
-Das erste Produktziel ist ein verlässlich spielbares 2v2-TDM auf einer guten Höhenarena. Jeder Meilenstein endet mit einem sichtbaren Ergebnis und einer gesonderten Freigabe. Eine M0-Freigabe autorisiert keine automatische Weiterarbeit bis M4.
+Das ursprüngliche erste Produktziel war ein verlässlich spielbares 2v2-TDM auf einer
+Höhenarena. Seit der Zielklärung vom 28. Oktober hat das vollständige Stein-Adventure
+Vorrang. Die folgenden M-Meilensteine dokumentieren die Arena-/Liga-Perspektive für
+später; sie sind keine aktuelle Pflichtreihenfolge. Jeder freigegebene Schritt endet
+weiterhin mit einem sichtbaren Ergebnis und passender Prüfung.
 
 Die konkrete Reihenfolge der Arbeitspakete M0.1 bis M4.4 und die Einschätzung einer optionalen Mobile-Erweiterung stehen in [MOBILE_AND_WORK_PACKAGES.md](MOBILE_AND_WORK_PACKAGES.md). Die dortigen Pakete unterteilen die folgenden Aufwandsspannen; sie erweitern den Desktop-Umfang nicht. Ein Touch-Versuch wäre ein separat freizugebender Zusatz.
 

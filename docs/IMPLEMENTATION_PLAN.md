@@ -1,5 +1,11 @@
 # CORE ARENA 3D — Technischer Ansatz und Gates
 
+**Einordnung vom 28.10.2026:** Dieses Starterdokument beschreibt die ursprüngliche
+Arena-Planung. Der aktuelle Stand und die nächsten Schritte zum hochwertigen ersten
+Adventure-Testlevel stehen in [MILESTONES_AND_QA](planning/MILESTONES_AND_QA.md) und
+im [Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md). L1.1/L1.2 sind umgesetzt; die
+folgenden alten Phasen sind keine Aufforderung, das Fundament erneut aufzubauen.
+
 **Ziel:** Statt Mega-Rewrite ein separat überprüfbarer 3D-Vertical-Slice. CTF-3.0 bleibt unverändert. Alle Implementierungsschritte erst nach expliziter Freigabe des ersten Audit-Plans.
 
 ## Vorentscheidungen

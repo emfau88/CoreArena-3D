@@ -13,7 +13,10 @@ Durchgang; Vorräte auf der Seitenterrasse helfen vor dem Boss. Sieg, Niederlage
 Neustart sind spielbar. Nach dem Sieg führt „Weiter“ zur bestehenden Kristallkluft.
 [Spielaufnahmen und Browserprüfung](docs/qa/L1_2_RESULT.md).
 Zum ruhigen Vergleich: [ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1).
-Checkpoint und weiterer Feinschliff bleiben optionale nächste Schritte.
+**Aktuelles Ziel:** Dieses Stein-Level als erstes hochwertiges Testlevel fertigstellen:
+klarer Abschluss mit Checkpoint/Ausgang, bessere Materialien, passende Pflanzen/Felsen
+und Beleuchtung sowie abgestimmter Kampf. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+Dieser Ausbau ist geplant; L1.1/L1.2 bilden den bereits spielbaren Stand.
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera

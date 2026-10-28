@@ -1,6 +1,10 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 27. Oktober 2026. **M0, M1 und M2.1–M2.3 umgesetzt und technisch geprüft. Einfacher mobiler Basiszugang zusätzlich freigegeben und umgesetzt.** M2.3 wurde durch „go nächster punkt“ freigegeben. M2.4–M2.6 und M3–M4 bleiben ohne Umsetzungsfreigabe. Desktop bleibt das erste Qualitätsziel.
+Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.**
+Aktuelles Ziel ist das [hochwertige erste Adventure-Testlevel](LEVEL_1_STONE_ADVENTURE.md).
+Abschluss, Gestaltung und Spielabnahme sind als L1.3–L1.5 geplant. Die untenstehende
+M-Paketfolge bleibt die spätere Arena-/Liga-Perspektive. Desktop bleibt das erste
+Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testlevels.
 
 ## Freigegebener kleiner Mobile-Zusatz
 
@@ -22,8 +26,9 @@ Nutzerwunsch nur zwei Steinläufer mit normalen Nahkampfschlägen (je einer im e
 und zweiten Hof) und der vorhandene Steinwächter im dritten. Gemeinsame HP/Rüstung,
 Bossauftauchen, Sieg/Tod/Neustart und Weiter-Button zur Kristallkluft. 47 Kerntests,
 vier Browserfälle einschließlich Touch bestanden. [Nachweis](../qa/L1_2_RESULT.md).
-Der Sieben-Gegner-/Werferplan ist überholt. L1.3/L1.4 bleiben optionale Folgearbeiten,
-jeweils grob 30–60 Minuten aktive Agent-Zeit nach Spieltest und Freigabe.
+Der Sieben-Gegner-/Werferplan ist überholt. Die anschließende Zielklärung vom
+28. Oktober plant L1.3–L1.5 einschließlich eigener Gestaltungspakete; maßgeblich sind
+deren aktuelle Umfangs-/Zeitschätzungen im Levelplan. Noch keine Umsetzungsfreigabe.
 
 Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 
@@ -140,8 +145,9 @@ L1.2–L1.4 wurde durch die anschließende ausdrückliche Umfangsreduktion erset
 maßgeblich ist der aktuelle Levelplan oben.
 
 **27. Oktober, Umsetzungsplan für Adventure-Level 1:** Nach positiver Rückmeldung
-zum neuen Mockup vier [konkrete Pakete L1.1–L1.4](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vier-spielbare-arbeitspakete)
-geplant: Map → Gegner → vollständiger Ablauf → Boss/Abstimmung. Insgesamt vorläufig
+zum neuen Mockup zunächst vier Pakete L1.1–L1.4 geplant (inzwischen durch den
+[aktuellen Levelplan](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vom-spielbaren-kern-zum-fertigen-testlevel) ersetzt).
+Damals: Map → Gegner → vollständiger Ablauf → Boss/Abstimmung. Insgesamt vorläufig
 3–6 Stunden aktive Agent-Arbeit mit passenden Prüfungen, erster begehbarer Stand in
 30–60 Minuten. Separat von M2.4; Planung fertig, Umsetzungspakete noch nicht freigegeben.
 Aufwand nach jedem Paket aktualisieren.

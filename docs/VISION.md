@@ -1,6 +1,14 @@
 # CORE ARENA 3D — Produktvision
 
-**Status:** Produktbrief für neues 3D-Experiment; Stand 20.10.2026. Verbindlich für den ersten Agentenplan. Nicht automatisch als Auftrag für einen Full Rewrite zu lesen.
+**Aktuelle Priorität, 28.10.2026:** Zuerst ein vollständig spielbares, hochwertiges
+Adventure-Testlevel mit drei offenen Höfen, zwei kleinen Nahkämpfern und dem
+vorhandenen Steinwächter fertigstellen. Abschluss, Materialien, Dekoration, Licht
+und Spielgefühl sind im [Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md) konkretisiert.
+Die Arena-/Liga-Vision unten bleibt langfristige Perspektive; 2v2-TDM ist derzeit
+nicht das erste Abnahmeziel. Desktop zuerst, vorhandene mobile Bedienung erhalten.
+
+**Historischer Produktbrief:** Stand 20.10.2026, Grundlage des ersten Agentenplans.
+Nicht automatisch als Auftrag für einen Full Rewrite zu lesen.
 
 ## 1. Das Spiel in einem Absatz
 

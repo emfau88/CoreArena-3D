@@ -1,10 +1,13 @@
 # Level 1: Der verwitterte Hof
 
-Stand: 27. Oktober 2026. **L1.1 und das verkleinerte L1.2 umgesetzt und technisch
+Stand: 28. Oktober 2026. **L1.1 und das verkleinerte L1.2 umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
 Der frühere Plan mit sieben kleinen Gegnern, Steinwerfer und zusätzlichen Bossphasen
-ist damit überholt. L1.3/L1.4 sind optionale Folgearbeiten nach persönlichem Spieltest.
+ist damit überholt. Aktuelles Nutzerziel: **ein vollständig spielbares, hochwertig
+ausgearbeitetes erstes Testlevel**. Dafür werden Abschluss, Gestaltung und Spielabnahme
+jetzt als konkrete nächste Pakete eingeplant. Diese Planaktualisierung ist noch keine
+Umsetzungsfreigabe für L1.3 ff.; die Änderung vom 28. Oktober betrifft nur Dokumentation.
 
 [Spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)
 · [Ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1)
@@ -80,24 +83,29 @@ und ohne Rüstung. Stehendes, präzises Dauerfeuer konnte den Boss noch besiegen
 Das belegt den funktionierenden Ablauf, keine fertige Herausforderung. Zusätzliche
 Bossphasen oder pauschal mehr Gegner sind nicht Teil dieses Auftrags.
 
-## Umsetzungsplan: vier spielbare Arbeitspakete
+## Umsetzungsplan: vom spielbaren Kern zum fertigen Testlevel
 
-Die IDs bleiben zur Nachverfolgung bestehen; Inhalt und Reihenfolge wurden vereinfacht.
-L1.2 enthält jetzt bereits den kleinen vollständigen Kampfablauf. Das alte Gesamtbudget
-von 3–6 Stunden und die verbleibenden 2,5–5 Stunden sind für diesen Umfang **überholt**.
+L1.1/L1.2 bleiben erledigt. Der vorige Plan vom 27. Oktober reichte für einen kleinen
+Kampfversuch. Das ausdrücklich gewünschte Qualitätsziel vom 28. Oktober braucht
+zusätzlich einen fertigen Abschluss und einen eigenen Gestaltungsschritt. L1.4 wird
+dafür in eine sichtbare Stilprobe und ihre Übertragung unterteilt; L1.5 bündelt die
+abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten.
 
 | Paket | Ergebnis | Status / weitere aktive Agent-Zeit |
 | --- | --- | --- |
 | **L1.1 · Map begehen** | Drei Höfe, Kamera, Treppen, Terrassen und feste Vorräte | **Erledigt**; technische Erstprüfung nach ca. 35 Min. inklusive Grundrisswechsel, spätere Nacharbeiten separat |
 | **L1.2 · Kleiner Kampfablauf** | Ein Läufer pro erstem/zweitem Hof, vorhandener Boss im dritten, gemeinsame HP, Sieg/Tod/Neustart | **Erledigt**; 47 Kerntests und vier Browserfälle bestanden |
-| **L1.3 · Reise abrunden, optional** | Bei Bedarf Ruhe-/Checkpoint vor dem Boss und tatsächlich begehbarer Ausgang statt Weiter-Button; knappe Storyhinweise | **Nicht freigegeben**; grob 30–60 Min. einschließlich gezielter Prüfung |
-| **L1.4 · Spielgefühl abstimmen, optional** | Nach konkretem Spielurteil Schaden, Tempo und Angriffspausen abstimmen; nötige Lesbarkeitskorrekturen | **Nicht freigegeben**; grob 30–60 Min. einschließlich gezielter Prüfung |
+| **L1.3 · Level vollständig abschließen** | Einstieg aus dem Spielmenü mit kurzem Auftrag; einmaliger Ruhe-/Checkpoint vor dem Boss; nach Sieg echtes Nordtor öffnen, hinauslaufen und Levelabschluss mit Wiederholen/Rückkehr anzeigen | **Geplant, nicht umgesetzt**; 30–60 Min. |
+| **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgenutzte Kanten, Pflanzengruppe, Felsgruppe und eine Fackel; Screenshot aus normaler Kamera und kurzer Weg-/Sprungtest | **Geplant, nicht umgesetzt**; 30–60 Min. |
+| **L1.4b · Drei Höfe fertig gestalten** | Bewährte Materialien überall übernehmen; abgestimmtes kleines Dekoset, Licht und Umgebung; pro Hof ein eigener Blickfang und erkennbare Funktion | **Nach Sichtung der Stilprobe**; 45–90 Min. |
+| **L1.5 · Kampf und Testlevel abnehmen** | Bestehende Angriffe abstimmen, sinnvolles Ausweichen, Treffer-/Tod-/Siegfeedback, kompletter Desktop-/Touch-Durchlauf und Laufzeitprüfung | **Geplant, nicht umgesetzt**; 30–60 Min. |
 
-Für den aktuell angefragten kleinen Versuch ist kein weiteres Paket erforderlich.
-Falls beide optionalen Pakete gewünscht werden: konservativ zusammen **1–2 Stunden
-aktive Agent-Arbeit**, Rückmeldungen und Hosting-Wartezeit zusätzlich. Umfang vorher
-anhand des Spieltests festlegen. Die Erfahrungswerte von etwa 30 Minuten für M0/M1
-bleiben die Orientierung; keine Schätzung in menschlichen Arbeitstagen.
+Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Als Planungsrahmen
+für diese Qualitätsfassung **rund 2,5–5 Stunden aktive Agent-Arbeit**, keine menschlichen
+Arbeitstage und keine Qualitäts-/Liefergarantie. Stilprobe und Rückmeldung entscheiden
+über die tatsächliche Gestaltung; Warten auf Rückmeldung/Hosting kommt hinzu.
+Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
+nicht für die jetzt zusätzlich gewünschte Material-, Modell- und Lichtüberarbeitung.
 
 ### L1.2 – erledigt
 
@@ -113,6 +121,64 @@ bleiben die Orientierung; keine Schätzung in menschlichen Arbeitstagen.
 Nicht mehr als Pflicht vorgesehen: Steinwerfer, sieben kleine Gegner, zweite Bossphase
 und Sturmangriff. Diese Ideen sind verworfen bzw. nur bei späterem ausdrücklichem
 Wunsch wieder zu planen. Die separate Arena-/Liga-Roadmap M2.4 ff. bleibt bestehen.
+
+## Gestaltung: verwitterter Garten einer alten Wächteranlage
+
+Stilisierte, ausgearbeitete 3D-Ruine mit warmgrauem Stein, gedecktem Grün und wenigen
+bernsteinfarbenen Lichtquellen. Die großen Räume und klaren Laufwege bleiben bestehen.
+Der aktuelle Grundriss wird gestaltet, nicht erneut verengt oder mit Zufallsdeko gefüllt.
+
+| Bereich | Geplante Verbesserung | Lesbarkeit |
+| --- | --- | --- |
+| Boden | Weniger dominante Fugen, gebrochene Steinplatten, leichte Farb-/Rauheitswechsel, abgenutzter Hauptweg; Moos nur in Fugen und geschützten Randzonen | Ruhige Kampfflächen; keine schwebenden Farbflächen oder konkurrierenden Bodenwarnungen |
+| Wände/Plateaus | Eigene vertikale Steinstruktur, große erkennbare Quader, kleine abgeschrägte Kanten, wenige Ausbrüche, Sockel mit Kontaktschatten | Helle Oberseite, klar abgesetzte Wand und sichtbarer Bodenkontakt; Sprungkante bleibt durchgehend |
+| Pflanzen | Ausgearbeitete Farn-, Gras-, Efeu- und Buschformen in kleinen Gruppen; unterschiedliche Größen und dezente Bewegung | Ursprung sitzt in Erde/Fugen, Efeu folgt der Wand; Landeflächen und Gegner bleiben sichtbar |
+| Felsen/Ruinen | Zwei bis drei passende Felsformen, einzelne Bruchsteinhaufen und ein gebrochener Pfeiler | Felsen in Boden einbetten; große Hindernisse bekommen passende Kollision, Kleindeko sitzt abseits der Route |
+| Licht/Fackeln | Lesbares Tages-/Umgebungslicht, warme Fackeln oder Feuerschalen an Durchgängen, leichter Flammeneffekt, sparsame Glut | Kein dunkler Gesamtfilter; wenige lokale Lichtquellen, keine dynamischen Schatten für jede Fackel |
+| Übergänge/Umgebung | Erde am Mauersockel, wurzelnde Pflanzen, Steinbruch an beschädigten Wänden, Felsen und Grün außerhalb der niedrigen Umfassung | Dekoration verbindet die Flächen; Umgebung verdeckt keine Spielfläche |
+
+Die Grafik soll aus einem abgestimmten Satz von etwa 8–12 wiederverwendbaren Bauteilen
+entstehen. Für Pflanzen und markante Felsen sind ausgearbeitete 3D-Modelle vorgesehen;
+für Boden/Wände ein kleines zusammenpassendes Materialset mit Farb-, Relief- und
+Rauheitsinformationen. Auswahl und Aufbereitung erfolgen zunächst nur für den Probehof.
+Bestehende Three/Rapier-Basis reicht dafür aus; kein Enginewechsel erforderlich.
+
+Als mögliche Materialquelle wurde [Poly Haven](https://polyhaven.com/license) geprüft:
+Die angebotenen Assets stehen unter CC0. Konkrete Assets wurden noch nicht ausgewählt
+oder heruntergeladen. Reale Steinoberflächen müssten farblich und im Detailgrad an
+unsere Figuren angepasst werden. Kein unkontrollierter Mix verschiedener Stile.
+
+### Drei Höfe mit erkennbarer Identität
+
+- **Ankunft/Ruinenhof:** teilweise überwachsen, Rest eines Torbogens außerhalb des
+  Laufwegs, stillgelegter Wachplatz bei der Pulse-Waffe. Der Blick führt zum Durchgang.
+- **Innerer Hof:** offener ehemaliger Garten mit einem trockenen Brunnen/Becken als
+  Randmotiv; Vorratsterrasse als sichtbarer Entdeckungsort. Keine zusätzliche Raumwand.
+- **Wächterhof:** strenger, älter und monumentaler; vorhandener Siegelkreis, zwei
+  Feuerschalen am Zugang, beschädigte Säulen am Rand und klar erkennbares Nordtor.
+
+Diese Blickfänge ersetzen oder gestalten passende Randbauteile; sie werden nicht in
+die freien Kampfflächen oder auf die vorgesehenen Sprung-/Landestellen gesetzt.
+
+## Wann das erste hochwertige Testlevel fertig ist
+
+- Einstieg aus dem Spielmenü, kurzer Auftrag, zwei kleine Gegner, Waffenfund und optionaler
+  Vorratsabstecher führen verständlich zum vorhandenen Boss.
+- Ein Sitzungs-Checkpoint spart nach einem Boss-Tod die komplette Anreise; ein
+  vollständiger Neustart bleibt möglich. Speichern über Browserneustart ist nicht nötig.
+- Nach Sieg öffnet das echte Nordtor; Durchgehen schließt das Level nachvollziehbar ab.
+  Die alte Kristallkluft ist danach nur ein optionaler Weiter-Link.
+- Boden, Wände, Plateaus und Dekoration wirken zusammengehörig und fest verankert.
+  Gegner, Warnflächen, Pickups und Sprungkanten sind in normaler Spielansicht erkennbar.
+- Bossangriffe verlangen nachvollziehbare Reaktion; Ausweichen funktioniert. Keine
+  zusätzlichen Gegnertypen oder Bossphasen als Voraussetzung.
+- Regulärer Sieg, Tod vor/nach Checkpoint, Restart und Ausgang werden mit echten
+  Browser-Eingaben geprüft. Desktop bleibt Qualitätsziel; Touch im Querformat spielbar.
+- Leistung nach dem Dekopaket messen: Ziel stabile 60 FPS auf dem Testdesktop,
+  mindestens 30 FPS auf einem benannten Testhandy. Diese Werte sind Zielwerte, bisher
+  kein Gerätenachweis. Sichtbare Ruckler und Ladeprobleme gehören zur Abnahme.
+- Persönliche Sicht-/Spielabnahme separat dokumentieren; ein bestandener automatischer
+  Durchlauf allein bestätigt keine hochwertige Gestaltung oder gute Schwierigkeit.
 
 ## Technische Basis und Prüfung
 
