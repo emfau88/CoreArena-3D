@@ -22,11 +22,14 @@ danach eine optionale Fortsetzung. [Prüfung und Aufnahmen](docs/qa/L1_3_RESULT.
 
 **L1.4a: erster Hof gestaltet.** Verwittertes Steinpflaster, strukturierte Mauern,
 helle abgeschrägte Deckungskanten, detaillierte Farne, bemooste Felsen und eine
-animierte Fackel. Der erste Hof ist die Stilprobe; die beiden folgenden behalten
-bis zur Sichtung ihren bisherigen Look. [Vorher/Nachher und Browserprüfung](docs/qa/L1_4A_RESULT.md)
+animierte Fackel. [Ursprüngliche Stilprobe: Vorher/Nachher](docs/qa/L1_4A_RESULT.md)
 · [Assetquellen / CC0](public/assets/courtyard/CREDITS.md).
-Als Nächstes nach Freigabe: Gestaltung auf die weiteren Höfe übertragen (L1.4b),
-danach Kampf und Testlevel abnehmen (L1.5). [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+**L1.4b – Materialübertragung:** Steinboden jetzt in allen drei Höfen, Verbindungen
+und am Ausgang; passende Wände, Treppen und Terrassen. Solide Eckpfeiler schließen
+die Maueranschlüsse, zusätzliche Pflanzen stehen auch innerhalb der Spielfläche.
+[Aktuelle Bilder und Prüfung](docs/qa/L1_4B_MATERIALS_RESULT.md).
+Besondere Blickfänge/Lichtgestaltung und die abschließende Kampf-/Leistungsabnahme
+bleiben offen. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera

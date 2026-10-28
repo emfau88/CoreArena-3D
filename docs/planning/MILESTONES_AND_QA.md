@@ -3,8 +3,9 @@
 Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
-freigegebene Stilprobe L1.4a sind umgesetzt. L1.4b und L1.5 sind geplant, noch nicht
-zur Implementierung freigegeben. Arena-Teamspiel/Liga
+freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
+Innenpflanzen und Mauerecken aus L1.4b freigegeben und übertragen. Weitere Blickfänge/
+Lichtgestaltung und L1.5 bleiben offen. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
@@ -23,8 +24,9 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [ ] Persönlicher Spieltest des kleinen Kampfablaufs und seiner Schwierigkeit.
 - [x] L1.3 freigegeben und umgesetzt: Adventure im Spielmenü, kurzer Auftrag, einmaliger Sitzungs-Checkpoint, Boss-Retry mit erhaltenem Anreisefortschritt, öffnendes Nordtor und Abschluss erst nach Durchgehen. 48 Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_3_RESULT.md).
 - [x] L1.4a: Erster Hof mit echten Steinmaterialien, lesbaren Mauer-/Deckungskanten, Farnen, Felsgruppen und einer Fackel gestaltet. Vier Browserfälle bestanden: Vergleichskameras, beide Deckungssprünge, vollständiger Desktopkampf und mobile Wegprüfung. [Vorher/Nachher und Nachweise](../qa/L1_4A_RESULT.md).
-- [ ] Persönliche Sichtung der L1.4a-Stilprobe vor Übertragung; verbleibende L1.4b/L1.5 grob 1,5–3 Stunden aktive Agent-Arbeit.
-- [ ] L1.4b: Zusammenpassende Pflanzen/Felsen/Ruinenteile, Oberflächen und Licht auf alle drei Höfe übertragen.
+- [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
+- [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
+- [ ] Persönliche Sichtung; weitere hofeigene Blickfänge/Ruinenteile/Lichtgestaltung aus L1.4b bleiben offen. Übrige Gestaltung plus L1.5 grob 1–2 Stunden aktive Agent-Arbeit.
 - [ ] L1.5: Bestehenden Kampf abstimmen, vollständigen Ablauf und Leistung prüfen, persönliche Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.

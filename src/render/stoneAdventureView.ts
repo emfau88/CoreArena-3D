@@ -1,11 +1,16 @@
 import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
-import { buildCampaignArena } from './campaignArena';
-import { buildCourtyardLook, isFirstCourt, type CourtyardAssets } from './courtyardLook';
+import { buildCourtyardLook, type CourtyardAssets } from './courtyardLook';
 
 /** Shared landmarks; named groups let the encounter switch the sleeping figure and gate. */
 export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition, assets: CourtyardAssets): (dt: number) => void {
-  buildCampaignArena(scene, arena, 'stone', { adventure: true, skipShape: isFirstCourt });
+  scene.background = new THREE.Color(0x1b2925);
+  scene.traverse(object=>{
+    if(object instanceof THREE.HemisphereLight) {
+      object.color.setHex(0xeaf4ce);object.groundColor.setHex(0x1b2925);
+    }
+    if(object instanceof THREE.DirectionalLight) object.color.setHex(0xeaf4ce);
+  });
   const animateCourt = buildCourtyardLook(scene, arena, assets);
   const rock = new THREE.MeshStandardMaterial({ color: 0x586155, flatShading: true, roughness: .9 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x1c2825, roughness: .95 });

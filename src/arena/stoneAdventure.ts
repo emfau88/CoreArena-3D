@@ -29,7 +29,7 @@ const floor = (id: string, x: number, z: number, w: number, d: number): ArenaBox
 
 // 32x22 m, 36x24 m and 36x26 m courts. Connections are ten metres wide
 // and only four metres long; the central route has no corners or slalom cover.
-export const STONE_ADVENTURE: ArenaDefinition = {
+const stoneLayout: ArenaDefinition = {
   spawn: { x: 0, y: .06, z: 33 },
   boxes: [
     floor('floor-entry',0,27,32,22), floor('floor-middle',0,0,36,24), floor('floor-boss',0,-29,36,26),
@@ -63,6 +63,21 @@ export const STONE_ADVENTURE: ArenaDefinition = {
     { ...block('north-gate',0,-42,10,2.8,.4), material:'metal' },
   ],
 };
+
+// Shared corner posts close the joints between perpendicular walls of different
+// heights. Their visible footprint is also solid, including at corridor mouths.
+const wallEnds = new Map<string, { x:number; z:number; height:number }>();
+for(const wall of stoneLayout.boxes.filter(b=>b.material==='stone' && Math.min(b.size.x,b.size.z)===.5)) {
+  const alongX=wall.size.x>wall.size.z;
+  for(const sign of [-1,1]) {
+    const x=wall.center.x+(alongX?sign*wall.size.x/2:0);
+    const z=wall.center.z+(alongX?0:sign*wall.size.z/2),key=`${x}:${z}`;
+    wallEnds.set(key,{x,z,height:Math.max(wallEnds.get(key)?.height??0,wall.center.y+wall.size.y/2)});
+  }
+}
+export const STONE_ADVENTURE: ArenaDefinition = { ...stoneLayout, boxes:[...stoneLayout.boxes,
+  ...[...wallEnds.values()].map(({x,z,height},i)=>block(`wall-joint-${i}`,x,z,.78,height+.14,.78)),
+] };
 const loot = (id: string, kind: PickupDefinition['kind'], x: number, z: number, amount: number,
   surface: string, y = 0): PickupDefinition => ({ id, kind, position: { x,y,z }, surface, amount });
 export const STONE_ADVENTURE_PICKUPS: readonly PickupDefinition[] = [

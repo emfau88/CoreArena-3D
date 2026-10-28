@@ -5,7 +5,6 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { ArenaDefinition } from '../arena/arena';
 
 const assetRoot = `${import.meta.env.BASE_URL}assets/courtyard/`;
-export const isFirstCourt = (id: string): boolean => id === 'floor-entry' || id.startsWith('entry-');
 interface Surface { map: THREE.Texture; normalMap: THREE.Texture; roughnessMap: THREE.Texture }
 export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[] }
 
@@ -49,7 +48,7 @@ export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
   return { floor, wall, ferns: meshes(fernFile.scene, true), rocks: meshes(rockFile.scene, false) };
 }
 
-/** A contained first-court art pass; the arena definition remains the collision authority. */
+/** Shared materials for all three courts; arena boxes remain the collision authority. */
 export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, assets: CourtyardAssets): (dt: number) => void {
   const floor = new THREE.MeshStandardMaterial({ ...assets.floor, color: 0xc7cbd2, roughness: .95, normalScale: new THREE.Vector2(.55,.55) });
   const wall = new THREE.MeshStandardMaterial({ ...assets.wall, color: 0xe6e7df, roughness: 1, normalScale: new THREE.Vector2(.55,.55),
@@ -72,23 +71,26 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     geometry.translate(x,y,z);
     const group=batches.get(material)??[];group.push(geometry);batches.set(material,group);
   };
-  for(const shape of arena.boxes.filter(shape=>isFirstCourt(shape.id))) {
+  for(const shape of arena.boxes) {
+    if(['dormant-warden','north-gate','boss-entry-gate'].includes(shape.id)) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
-    if(shape.material==='floor') { box(c.x,c.y,c.z,s.x,s.y,s.z,floor,0,4); continue; }
+    if(shape.material==='floor') {
+      // Physics floors overlap at doorways. Clip only the visible overlap; world
+      // UVs keep the paving continuous through every court, link and exit.
+      const exit=shape.id==='floor-exit',link=shape.id.startsWith('floor-link-');
+      box(c.x,c.y,c.z-(exit ? .5 : 0),s.x,s.y,exit ? s.z-1 : link ? 4 : s.z,floor,0,4);continue;
+    }
     box(c.x,c.y-.055,c.z,s.x,s.y-.11,s.z,wall);
     // A grounded darker foot and pale stone cap make the actual height readable.
     box(c.x,.055,c.z,s.x+.035,.11,s.z+.035,base,.015);
-    if(shape.planted) {
+    if(Math.min(s.x,s.z)>.5) {
+      // One continuous cap, including every corner; no crossing trim strips.
       box(c.x,top-.055,c.z,s.x,.11,s.z,cap,.025,3);
-      for(const side of [-1,1]) {
-        box(c.x,top-.015,c.z+side*(s.z/2-.065),s.x,.08,.13,cap);
-        box(c.x+side*(s.x/2-.065),top-.015,c.z,.13,.08,s.z,cap);
-      }
     } else {
       const alongX=s.x>s.z,length=alongX?s.x:s.z,count=Math.ceil(length/1.55),step=length/count;
       for(let i=0;i<count;i++) {
         const offset=-length/2+(i+.5)*step;
-        box(c.x+(alongX?offset:0),top-.025,c.z+(alongX?0:offset),
+        box(c.x+(alongX?offset:0),top-.065,c.z+(alongX?0:offset),
           alongX?step-.025:s.x+.055,.13,alongX?s.z+.055:step-.025,cap,.035,3);
       }
     }
@@ -96,6 +98,10 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   // Grounded exterior beds: large decorative rocks never become invisible walk-through obstacles.
   for(const side of [-1,1]) box(side*17.15,-.14,27,2.3,.22,22.7,earth,.05);
   box(0,-.14,39.1,36.6,.22,2.2,earth,.05);
+  for(const side of [-1,1]) {
+    box(side*19.05,-.14,0,2.1,.22,24.8,earth,.05);
+    box(side*19.05,-.14,-29,2.1,.22,26.8,earth,.05);
+  }
   for(const [material,geometries] of batches) {
     const geometry=mergeGeometries(geometries),mesh=new THREE.Mesh(geometry,material);
     geometries.forEach(g=>g.dispose());mesh.castShadow=material!==floor && material!==earth;mesh.receiveShadow=true;
@@ -104,14 +110,35 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   const place = (source:THREE.Mesh,x:number,y:number,z:number,scale:number,turn:number) => {
     const mesh=source.clone();mesh.position.set(x,y,z);mesh.scale.setScalar(scale);mesh.rotation.y=turn;scene.add(mesh);
   };
-  // Ferns grow from mortar at the back corners, keeping both landing centres clear.
-  const plants = [
-    [-8.9,1.16,24.35,1.65],[-7.6,1.16,24.25,1.1],[8.9,1.16,21.3,1.6],[7.8,1.16,21.3,1.05],
+  // Back edges of cover plus small, passable clusters INSIDE the courts. No fern
+  // covers a pickup, stair approach, central route or the boss's seal circle.
+  const plants: Array<[number,number,number,number]> = [
+    ...arena.boxes.filter(b=>b.planted).flatMap(b=>[
+      [b.center.x-b.size.x*.3,b.center.y+b.size.y/2-.025,b.center.z-b.size.z/2+.3,1.6],
+      [b.center.x+b.size.x*.15,b.center.y+b.size.y/2-.025,b.center.z-b.size.z/2+.22,1.05],
+    ] as Array<[number,number,number,number]>),
+    [-12.7,-.025,32,2.2],[-11.6,-.025,32.6,1.45],[-10.2,-.025,25.2,1.8],
+    [12.7,-.025,29.5,2],[13.5,-.025,28.5,1.35],[11.6,-.025,18.5,1.9],
+    [-14,-.025,9,2.3],[-12.8,-.025,9.6,1.4],[12.6,-.025,9.2,2.1],
+    [-9.5,1.075,5.15,1.5],[-7.9,-.025,-6,1.8],[-15.2,-.025,-8.7,2.2],
+    [-14.2,-.025,-9.3,1.4],[15.2,-.025,-8.5,1.9],
+    [-15.5,-.025,-18.4,2.1],[-14.2,-.025,-18.9,1.35],[-15.6,-.025,-32.5,2.2],
+    [15.2,-.025,-29.7,2.1],[14.2,-.025,-30.6,1.4],[11.3,-.025,-39,2],
+    [-10.5,-.025,-39.2,1.8],[-13.8,1.075,-24.7,1.35],
     [-17.1,-.04,36,2.5],[-17.3,-.04,34.5,1.8],[-17,-.04,27,2.2],[-17.5,-.04,20,2.5],
     [17.2,-.04,33,2.2],[17.1,-.04,31.7,1.6],[17.3,-.04,23.7,2.3],[17.1,-.04,18,1.8],
     [-12,-.04,39,2.4],[-10.8,-.04,39.5,1.7],[9.5,-.04,39.2,2.1],
   ];
-  plants.forEach(([x,y,z,s],i)=>place(assets.ferns[i%assets.ferns.length]!,x!,y!,z!,s!,i*2.4));
+  // Many clumps still cost four plant draw calls, one per shared model variant.
+  assets.ferns.forEach((source,variant)=>{
+    const instances=plants.map((plant,i)=>({plant,i})).filter(({i})=>i%assets.ferns.length===variant);
+    const mesh=new THREE.InstancedMesh(source.geometry,source.material,instances.length),transform=new THREE.Object3D();
+    instances.forEach(({plant:[x,y,z,s],i},index)=>{
+      transform.position.set(x,y,z);transform.scale.setScalar(s);transform.rotation.y=i*2.4;transform.updateMatrix();
+      mesh.setMatrixAt(index,transform.matrix);
+    });
+    mesh.castShadow=mesh.receiveShadow=true;mesh.computeBoundingSphere();scene.add(mesh);
+  });
   const rocks = [[-17.2,31.5,1.1],[-17.2,30,.65],[-17.1,17.3,.9],[17.2,36,1.1],[17.2,35,.6],
     [17.3,26.5,1.1],[-13.5,39.1,.85],[8,39.2,1]];
   rocks.forEach(([x,z,s],i)=>place(assets.rocks[[0,2,4][i%3]!]!,x!,-.16,z!,s!,i*1.9));

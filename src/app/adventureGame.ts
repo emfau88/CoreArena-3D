@@ -211,9 +211,9 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.
-    courtView: (mode:'side'|'isometric'='side') => {
+    courtView: (mode:'side'|'straight'|'isometric'='side',z=27) => {
       setPaused(true); el('pause').hidden=true; overview=true;
-      view.camera.mode=mode; view.camera.snap({x:0,y:0,z:27});
+      view.camera.mode=mode; view.camera.snap({x:0,y:0,z});
       const camera=view.camera.camera,halfHeight=mode==='side'?13.5:16;
       camera.top=halfHeight;camera.bottom=-halfHeight;
       camera.left=-halfHeight*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();

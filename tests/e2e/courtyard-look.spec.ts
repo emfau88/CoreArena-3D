@@ -1,16 +1,16 @@
 import { test,expect } from '@playwright/test';
 
 test.use({headless:false});
-test('first court: fixed side and isometric comparison cameras',async({page},info)=>{
+test('all courts: fixed side, straight and isometric inspection cameras',async({page},info)=>{
   const errors:string[]=[]; page.on('pageerror',e=>errors.push(e.message));
   page.on('response',r=>{if(r.status()>=400) errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('./?mode=pve&level=stone&adventure=1&explore=1');
   await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   await page.waitForTimeout(700);
-  for(const mode of ['side','isometric'] as const) {
-    await page.evaluate(mode=>(window as unknown as {__coreArena:{courtView(mode:string):void}}).__coreArena.courtView(mode),mode);
+  for(const [name,z] of [['entry',27],['middle',0],['boss',-29]] as const) for(const mode of ['side','straight','isometric'] as const) {
+    await page.evaluate(({mode,z})=>(window as unknown as {__coreArena:{courtView(mode:string,z:number):void}}).__coreArena.courtView(mode,z),{mode,z});
     await page.mouse.move(1,1);await page.waitForTimeout(150);
-    await page.screenshot({path:info.outputPath(`court-${mode}.png`)});
+    await page.screenshot({path:info.outputPath(`${name}-${mode}.png`)});
   }
   expect(errors).toEqual([]);
 });

@@ -8,12 +8,15 @@ ist damit überholt. Aktuelles Nutzerziel: **ein vollständig spielbares, hochwe
 ausgearbeitetes erstes Testlevel**. Dafür werden Abschluss, Gestaltung und Spielabnahme
 als konkrete Pakete eingeplant. Mit „ok go“ wurde anschließend L1.3 freigegeben und
 umgesetzt. Anschließend wurde L1.4a mit gewünschten Vorher/Nachher-Bildern freigegeben
-und umgesetzt. L1.4b und L1.5 sind weiterhin geplant, nicht freigegeben.
+und umgesetzt. Nach der Rückmeldung wurde der Material-/Ecken-/Pflanzenschritt von
+L1.4b freigegeben und umgesetzt: Boden auf der ganzen Map, Pflanzen auch innen,
+saubere Maueranschlüsse. Weitere Blickfänge/Lichtgestaltung und L1.5 bleiben offen.
 
 [Spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)
 · [Ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1)
 · [Aktuelle L1.3-Prüfung und Spielaufnahmen](../qa/L1_3_RESULT.md)
 · [L1.4a: Vergleichsbilder und Prüfung](../qa/L1_4A_RESULT.md)
+· [L1.4b: Materialien auf der ganzen Map](../qa/L1_4B_MATERIALS_RESULT.md)
 
 ## Rahmen und Richtung
 
@@ -105,11 +108,11 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.2 · Kleiner Kampfablauf** | Ein Läufer pro erstem/zweitem Hof, vorhandener Boss im dritten, gemeinsame HP, Sieg/Tod/Neustart | **Erledigt**; 47 Kerntests und vier Browserfälle bestanden |
 | **L1.3 · Level vollständig abschließen** | Einstieg aus dem Spielmenü mit kurzem Auftrag; einmaliger Ruhe-/Checkpoint vor dem Boss; nach Sieg echtes Nordtor öffnen, hinauslaufen und Levelabschluss mit Wiederholen/Rückkehr anzeigen | **Erledigt**; 48 Kerntests und fünf Browserfälle bestanden |
 | **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
-| **L1.4b · Drei Höfe fertig gestalten** | Bewährte Materialien überall übernehmen; abgestimmtes kleines Dekoset, Licht und Umgebung; pro Hof ein eigener Blickfang und erkennbare Funktion | **Nach Sichtung der Stilprobe**; 45–90 Min. |
+| **L1.4b · Drei Höfe gestalten** | Materialien überall übernehmen, Innenpflanzen und saubere Mauerecken; weitere Blickfänge/Lichtgestaltung separat | **Material-/Ecken-/Pflanzenschritt erledigt**; weitere Blickfänge/Licht noch offen, ggf. 30–60 Min. |
 | **L1.5 · Kampf und Testlevel abnehmen** | Bestehende Angriffe abstimmen, sinnvolles Ausweichen, Treffer-/Tod-/Siegfeedback, kompletter Desktop-/Touch-Durchlauf und Laufzeitprüfung | **Geplant, nicht umgesetzt**; 30–60 Min. |
 
 Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Als Planungsrahmen
-für die verbleibenden L1.4b und L1.5 **rund 1,5–3 Stunden aktive Agent-Arbeit**, keine menschlichen
+für die übrige Gestaltung in L1.4b und L1.5 **rund 1–2 Stunden aktive Agent-Arbeit**, keine menschlichen
 Arbeitstage und keine Qualitäts-/Liefergarantie. Stilprobe und Rückmeldung entscheiden
 über die tatsächliche Gestaltung; Warten auf Rückmeldung/Hosting kommt hinzu.
 Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
@@ -138,7 +141,7 @@ Wunsch wieder zu planen. Die separate Arena-/Liga-Roadmap M2.4 ff. bleibt besteh
 - [x] Sichtbar öffnendes Nordtor mit passender Kollision und begehbarem Ausgang.
 - [x] Abschluss erst nach Durchgehen; Wiederholen, Spielmenü und optionale Kristallkluft.
 - [x] Regulärer Desktop- und Touch-Durchlauf einschließlich Boss-Tod, Retry, Sieg und Ausgang.
-- [ ] Persönliche Spielabnahme; Übertragung der Gestaltung auf weitere Höfe in L1.4b noch offen.
+- [ ] Persönliche Spielabnahme; weitere Blickfänge/Lichtgestaltung und L1.5 noch offen.
 
 ## L1.4a – erster Hof als Stilprobe erledigt
 
@@ -151,10 +154,31 @@ Wunsch wieder zu planen. Die separate Arena-/Liga-Roadmap M2.4 ff. bleibt besteh
   zusätzliche dynamische Schattenquelle.
 - [x] Vorher/Nachher aus identischen seitlichen/isometrischen Vergleichskameras,
   reale Sprünge auf beide Deckungen, Desktop-Komplettkampf und mobile Wegprüfung.
-- [ ] Persönliche Sichtung vor Übertragung auf den inneren Hof und Wächterhof.
+- [x] Persönliche Rückmeldung: Boden auf die ganze Map übertragen, Pflanzen auch
+  innerhalb der Spielfläche und geschlossene Mauerecken gewünscht.
 
 [Ergebnis, Grenzen und Bilder](../qa/L1_4A_RESULT.md). Grundriss, Gegneranzahl,
-Kampfwerte und Kollisionsdefinition bleiben unverändert. Kein Vorziehen von L1.4b.
+Kampfwerte und Kollisionsdefinition blieben in L1.4a unverändert. Die anschließende
+gezielte Übertragung und die neuen soliden Eckpfeiler sind unten dokumentiert.
+
+## L1.4b – freigegebener Material-/Ecken-/Pflanzenschritt erledigt
+
+- [x] Einheitlicher, maßstäblicher Steinboden in allen drei Höfen, beiden Verbindungen
+  und am Ausgang; überlappende Bodenränder nur in der Darstellung bündig geschnitten.
+- [x] Passende Materialien auf allen Mauern, Deckungen, Treppen und Terrassen;
+  durchgehende Abdeckplatten statt überkreuzter Randstücke.
+- [x] Kleine massive Eckpfeiler schließen sämtliche Mauerenden/-anschlüsse und
+  Höhenwechsel. Ihre Geometrie und Kollision stammen aus derselben Mapdefinition.
+- [x] Zusätzliche Farngruppen innerhalb jedes Hofs und an Deckungen, frei von
+  Waffen-/Vorratsorten, Treppenaufgängen und dem zentralen Siegelkreis.
+- [x] Neun Kameraaufnahmen, Sprünge auf beide Einstiegsdeckungen, kompletter Weg
+  über Terrassen/Treppen, Desktop-Komplettkampf und mobile Bedienung geprüft.
+- [ ] Persönliche Sichtung des übertragenen Looks.
+- [ ] Weitere hofeigene Blickfänge/Ruinenteile und zusätzliche Lichtgestaltung.
+  Dieser Rest war nicht Teil des konkreten Boden-/Pflanzen-/Eckenauftrags.
+
+[Bilder und technische Prüfung](../qa/L1_4B_MATERIALS_RESULT.md). Keine weiteren
+Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
 
 ## Gestaltung: verwitterter Garten einer alten Wächteranlage
 
