@@ -15,6 +15,13 @@ h1 { font-size: 17px; font-weight: 500; letter-spacing: -.025em; }
 #match-panel { top: 112px; right: 24px; width: 282px; background: var(--hud-panel); border-color: var(--hud-line); border-radius: 8px; box-shadow: 0 8px 30px #0003; }
 #match-panel button { font-size: 11px; margin: 3px 0; padding: 9px 12px; }
 #pve-start { border-color: #d3b37c77; color: var(--gold); width: 100%; }
+#match-panel #adventure-start { width:100%; border-color:#9be8ca88; color:var(--mint); padding:12px; margin-bottom:12px; }
+#adventure-home { margin-top:12px; width:100%; }
+#result-home { display:block; margin:12px auto 0; }
+#app[data-adventure] #match-result > div { max-height:calc(100dvh - 24px); overflow:auto; box-sizing:border-box; }
+.touch-mode #app[data-adventure] #match-result > div { padding:18px 24px; }
+.touch-mode #app[data-adventure] #match-result h2 { margin:8px 0; font-size:24px; }
+.touch-mode #app[data-adventure] #match-result p { margin:8px 0 16px; }
 .pve-hud #match-panel { top: 18px; left: 50%; right: auto; transform: translateX(-50%); width: 380px; padding: 6px 12px; text-align: left; background: none; border: 0; box-shadow: none; }
 .pve-hud #match-panel .eyebrow { color: #efe1c5; letter-spacing: .1em; font-size: 11px; }
 #pve-health-label { position: absolute; top: -4px; right: 12px; font-size: 9px; color: #d1c9b7; }

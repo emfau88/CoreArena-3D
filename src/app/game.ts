@@ -54,7 +54,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <header><div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div>
       <span class="eyebrow">CORE ARENA</span><h1>Obsidian Garden</h1></div></div>
       <span class="phase"><i></i>TRAININGSARENA</span></header>
-      <div id="match-panel"><div class="eyebrow" id="match-mode">10 ABSCHÜSSE / 2 MINUTEN</div>
+      <div id="match-panel"><button id="adventure-start" type="button">Adventure: Der verwitterte Hof</button>
+      <div class="eyebrow" id="match-mode">10 ABSCHÜSSE / 2 MINUTEN</div>
       <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
       <button id="bot-start" type="button">Botmatch starten</button>
       <button id="pve-start" type="button">Mini-Kampagne: Die drei Siegel</button>
@@ -147,6 +148,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   }
   element('bot-start').addEventListener('click', () => restartMatch(true), options);
   element('pve-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve`), options);
+  element('adventure-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve&level=stone&adventure=1`), options);
   element('match-start').addEventListener('click', () => restartMatch(false), options);
   for (const id of ['match-restart', 'result-restart']) element(id).addEventListener('click', () => restartMatch(), options);
 

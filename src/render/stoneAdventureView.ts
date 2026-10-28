@@ -11,10 +11,12 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition):
   const core = new THREE.MeshStandardMaterial({ color: 0xe1bf77, emissive: 0xbc772c, emissiveIntensity: .3 });
   const ring = (x: number, z: number, radius: number, material: THREE.Material) => {
     const mesh = new THREE.Mesh(new THREE.RingGeometry(radius-.045, radius, 48), material);
-    mesh.rotation.x = -Math.PI/2; mesh.position.set(x, .012, z); scene.add(mesh);
+    mesh.rotation.x = -Math.PI/2; mesh.position.set(x, .012, z); scene.add(mesh); return mesh;
   };
   ring(0, -29, 3.1, gold); ring(0, -17.2, .9, gold);
-  ring(0, -14, .65, new THREE.MeshStandardMaterial({ color: 0x89b9a6, roughness: .7 }));
+  ring(0, -14, .65, new THREE.MeshStandardMaterial({ color: 0x89b9a6, emissive:0x89b9a6, emissiveIntensity:0, roughness: .7 })).name='adventure-checkpoint';
+  const exitMarker=ring(0,-46,.85,new THREE.MeshBasicMaterial({color:0x9be8ca}));
+  exitMarker.name='adventure-exit-beacon'; exitMarker.visible=false;
   // The dormant figure sits on a solid low foundation with matching collision.
   const dormant = new THREE.Group(); dormant.name = 'adventure-dormant'; scene.add(dormant);
   const foundation = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.15, 2.6), dark);
@@ -29,15 +31,19 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition):
     mesh.castShadow = mesh.receiveShadow = true; dormant.add(mesh);
   }
   // Solid backing means the closed gate's collision is visible even between bars.
-  const backing = new THREE.Mesh(new THREE.BoxGeometry(10, 2.8, .4), dark);
-  backing.position.set(0, 1.4, -42); backing.castShadow = backing.receiveShadow = true; scene.add(backing);
-  for (let x = -4.5; x <= 4.6; x += .6) {
-    const bar = new THREE.Mesh(new THREE.BoxGeometry(.12, 2.4, .1), gold);
-    bar.position.set(x, 1.4, -41.78); scene.add(bar);
-  }
-  for (const y of [.5, 2.5]) {
-    const rail = new THREE.Mesh(new THREE.BoxGeometry(9.5, .13, .12), gold);
-    rail.position.set(0, y, -41.76); scene.add(rail);
+  const exitGate=new THREE.Group(); exitGate.name='adventure-exit-gate'; scene.add(exitGate);
+  for(const side of [-1,1]) {
+    const leaf=new THREE.Group(); exitGate.add(leaf);
+    const backing = new THREE.Mesh(new THREE.BoxGeometry(5, 2.8, .4), dark);
+    backing.position.set(side*2.5,1.4,-42); backing.castShadow=backing.receiveShadow=true; leaf.add(backing);
+    for(let i=0;i<8;i++) {
+      const bar=new THREE.Mesh(new THREE.BoxGeometry(.12,2.4,.1),gold);
+      bar.position.set(side*(.3+i*.6),1.4,-41.78); leaf.add(bar);
+    }
+    for(const y of [.5,2.5]) {
+      const rail=new THREE.Mesh(new THREE.BoxGeometry(4.8,.13,.12),gold);
+      rail.position.set(side*2.5,y,-41.76); leaf.add(rail);
+    }
   }
   const entry = new THREE.Group(); entry.name='adventure-entry-gate'; entry.visible=false; scene.add(entry);
   const door = new THREE.Mesh(new THREE.BoxGeometry(10,2.8,.4),dark);

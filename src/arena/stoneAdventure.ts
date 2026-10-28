@@ -5,6 +5,7 @@ import { MONSTER } from '../core/pve';
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.
 export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;
+export const ADVENTURE_CHECKPOINT = { x:0, y:.06, z:-14 } as const;
 
 interface Room { id: string; name: string; left: number; right: number; back: number; front: number }
 // A-H are places within three generous courts, not eight walled rooms.
@@ -33,6 +34,9 @@ export const STONE_ADVENTURE: ArenaDefinition = {
   boxes: [
     floor('floor-entry',0,27,32,22), floor('floor-middle',0,0,36,24), floor('floor-boss',0,-29,36,26),
     floor('floor-link-south',0,14,10,4.2), floor('floor-link-north',0,-14,10,4.2),
+    floor('floor-exit',0,-45,10,8),
+    block('exit-west',-5,-45.5,.5,1.3,7), block('exit-east',5,-45.5,.5,1.3,7),
+    block('exit-north',0,-49,10,1.3,.5),
     block('entry-south',0,38,32,.9,.5),
     block('entry-west',-16,27,.5,1.3,22), block('entry-east',16,27,.5,1.3,22),
     block('entry-north-west',-10.5,16,11,1.3,.5), block('entry-north-east',10.5,16,11,1.3,.5),
@@ -71,6 +75,7 @@ export const STONE_ADVENTURE_PICKUPS: readonly PickupDefinition[] = [
   loot('boss-ammo-east','ammo',13,-20,18,'floor-boss'),
   loot('boss-health','health',-12,-23,35,'boss-health-plateau',1.1),
 ];
+export const ADVENTURE_BOSS_PICKUPS = STONE_ADVENTURE_PICKUPS.filter(p=>p.id.startsWith('boss-')).map(p=>p.id);
 
 export const ADVENTURE_BOSS = { ...MONSTER, center: {x:0,y:1.85,z:-29} };
 export const ADVENTURE_RUNNERS = [

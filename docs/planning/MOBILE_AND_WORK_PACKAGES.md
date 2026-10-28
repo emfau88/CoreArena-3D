@@ -1,12 +1,17 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.**
+Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.3 umgesetzt und technisch geprüft.**
 Aktuelles Ziel ist das [hochwertige erste Adventure-Testlevel](LEVEL_1_STONE_ADVENTURE.md).
-Abschluss, Gestaltung und Spielabnahme sind als L1.3–L1.5 geplant. Die untenstehende
+L1.3 schließt den Levelablauf ab; Gestaltung und Spielabnahme folgen als L1.4a/b und L1.5. Die untenstehende
 M-Paketfolge bleibt die spätere Arena-/Liga-Perspektive. Desktop bleibt das erste
 Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testlevels.
 
 ## Freigegebener kleiner Mobile-Zusatz
+
+**28. Oktober, L1.3 ✅:** Einstieg aus dem Spielmenü, Sitzungs-Checkpoint, Boss-Retry,
+physisch geöffnetes Nordtor und tatsächlicher Levelabschluss mit Desktop und Touch
+geprüft. Die zwei kleinen Gegner bleiben die einzigen Anreisegegner. 48 Kerntests,
+fünf Browserfälle bestanden. [Nachweise](../qa/L1_3_RESULT.md). L1.4a/b noch nicht freigegeben.
 
 Auf ausdrücklichen Wunsch „so simpel wie möglich“: linker analoger Joystick, direkter Touch-Zielpunkt auf der Arena mit Halten/Tippen zum Feuern, Sprungtaste, Sprint-Umschalter, Kamera und bestehende Waffenbuttons. Getrennte Finger-IDs für Bewegung und Aim, Aufräumen bei Abbruch/Fokus/Drehung/Respawn/Restart. Kompaktes Querformat-HUD und Hinweis/Pause im Hochformat. Gemeinsamer Spielkern; mobile Render-DPR auf 1, Schattenmap auf 1024 begrenzt.
 
@@ -28,7 +33,8 @@ Bossauftauchen, Sieg/Tod/Neustart und Weiter-Button zur Kristallkluft. 47 Kernte
 vier Browserfälle einschließlich Touch bestanden. [Nachweis](../qa/L1_2_RESULT.md).
 Der Sieben-Gegner-/Werferplan ist überholt. Die anschließende Zielklärung vom
 28. Oktober plant L1.3–L1.5 einschließlich eigener Gestaltungspakete; maßgeblich sind
-deren aktuelle Umfangs-/Zeitschätzungen im Levelplan. Noch keine Umsetzungsfreigabe.
+deren aktuelle Umfangs-/Zeitschätzungen im Levelplan. L1.3 wurde anschließend freigegeben
+und abgeschlossen; die Gestaltungspakete bleiben offen.
 
 Nachweise: [M0_RESULT.md](../qa/M0_RESULT.md). Nach aktuellem Nutzerfeedback haben schnelle spielbare Zwischenstände Vorrang; zusätzliche Randfallmatrizen folgen erst nach Bewährung des Spielgefühls.
 

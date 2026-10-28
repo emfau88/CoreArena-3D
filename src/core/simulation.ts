@@ -39,9 +39,9 @@ export class Simulation {
     return this.state;
   }
   snapshot(): Snapshot { return this.state; }
-  reset(): Snapshot {
-    this.world.reset(this.spawn);
-    this.state = this.freeze({ ...this.state, position: this.spawn, velocity: { x: 0, y: 0, z: 0 },
+  reset(position: Vec3 = this.spawn): Snapshot {
+    this.world.reset(position);
+    this.state = this.freeze({ ...this.state, position, velocity: { x: 0, y: 0, z: 0 },
       grounded: false, surface: null, ceiling: false });
     return this.state;
   }

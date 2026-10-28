@@ -9,7 +9,10 @@ export class Pickups {
   private items: PickupState[];
   constructor(private readonly definitions: readonly PickupDefinition[], private readonly respawn = true) { this.items = this.fresh(); }
   private fresh(): PickupState[] { return this.definitions.map((item) => ({ ...item, remaining: item.amount, respawnAt: 0 })); }
-  reset(): void { this.items = this.fresh(); }
+  reset(ids?: readonly string[]): void {
+    const fresh = this.fresh();
+    this.items = ids ? this.items.map((item,i) => ids.includes(item.id) ? fresh[i]! : item) : fresh;
+  }
   snapshot(): readonly PickupState[] { return this.items; }
   step(tick: number, player: Snapshot | null, world: RayWorld, take: (kind: PickupKind, amount: number) => number): void {
     this.items = this.items.map((old) => {

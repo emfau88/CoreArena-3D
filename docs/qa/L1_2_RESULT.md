@@ -1,5 +1,8 @@
 # L1.2 — Zwei Steinläufer und der vorhandene Wächter
 
+Historischer Kampfstand: [L1.3](L1_3_RESULT.md) ergänzt inzwischen Checkpoint,
+Spielmenü-Einstieg und den tatsächlich begehbaren Ausgang. Der Ablauf unten dokumentiert L1.2.
+
 27. Oktober 2026. **Umgesetzt und technisch geprüft.** Persönliches Urteil zum
 Spielgefühl und ein echter Smartphone-Test stehen aus.
 

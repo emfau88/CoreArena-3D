@@ -4,19 +4,25 @@
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
-Vorratsorten. Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
+Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
+Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
 **L1.2 in kleiner Fassung umgesetzt:** ein Steinläufer mit Nahkampfschlag im ersten
 Hof, einer im zweiten, danach der bekannte Steinwächter im dritten. Beide Läufer
 besiegen und den Wächterhof betreten, um ihn zu wecken. Pulse liegt am ersten
 Durchgang; Vorräte auf der Seitenterrasse helfen vor dem Boss. Sieg, Niederlage und
-Neustart sind spielbar. Nach dem Sieg führt „Weiter“ zur bestehenden Kristallkluft.
+Neustart sind spielbar.
 [Spielaufnahmen und Browserprüfung](docs/qa/L1_2_RESULT.md).
 Zum ruhigen Vergleich: [ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1).
-**Aktuelles Ziel:** Dieses Stein-Level als erstes hochwertiges Testlevel fertigstellen:
-klarer Abschluss mit Checkpoint/Ausgang, bessere Materialien, passende Pflanzen/Felsen
-und Beleuchtung sowie abgestimmter Kampf. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
-Dieser Ausbau ist geplant; L1.1/L1.2 bilden den bereits spielbaren Stand.
+**L1.3 ergänzt den vollständigen Ablauf:** Nach beiden Läufern sichert der Siegelplatz
+einen Checkpoint mit aufgefüllten Vorräten. Nach Boss-Tod dort erneut versuchen;
+„Level neu starten“ setzt alles zurück. Nach Sieg öffnet sich das Nordtor: hindurchlaufen,
+Level abschließen, wiederholen oder ins Spielmenü zurückkehren. Kristallkluft bleibt
+danach eine optionale Fortsetzung. [Prüfung und Aufnahmen](docs/qa/L1_3_RESULT.md).
+
+**Als Nächstes geplant:** bessere Materialien, passende Pflanzen/Felsen, Beleuchtung
+und abgestimmter Kampf für das hochwertige Testlevel. L1.1–L1.3 sind spielbar;
+die Gestaltung folgt in L1.4a/b. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera

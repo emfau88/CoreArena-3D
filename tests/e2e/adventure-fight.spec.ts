@@ -4,7 +4,7 @@ import type { Snapshot } from '../../src/core/types';
 import type { WeaponSnapshot } from '../../src/core/combat';
 import type { RunnerState } from '../../src/core/stoneRunner';
 
-interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;weapons:WeaponSnapshot;
+interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoint:boolean;completed:boolean;weapons:WeaponSnapshot;
   enemies:(RunnerState & {screen:{x:number;y:number}})[];monsterScreen:{x:number;y:number};hp:number;armor:number }
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url='./?mode=pve&level=stone&adventure=1';
@@ -38,9 +38,11 @@ async function fireAt(page:Page,index:number|'boss') {
     throw new Error('Enemy survived real fire');
   } finally {await page.mouse.up();}
 }
-test('regular adventure: two melee guards, supplies, existing boss, victory and reset',async({page},info)=>{
-  test.setTimeout(150_000); const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(url); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+test('menu entry, two guards, checkpoint death and retry, boss victory, physical exit and full reset',async({page},info)=>{
+  test.setTimeout(180_000); const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('./'); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+  await page.screenshot({path:info.outputPath('menu.png')}); await page.locator('#adventure-start').click();
+  await expect(page).toHaveURL(/adventure=1/); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   expect((await read(page)).enemies).toHaveLength(2); expect((await read(page)).bossActive).toBe(false);
   await walk(page,0,27); await page.screenshot({path:info.outputPath('runner.png')}); await fireAt(page,0);
   await walk(page,0,18.5); await walk(page,-3,18.5); await page.locator('#weapon-pulse').click();
@@ -48,19 +50,40 @@ test('regular adventure: two melee guards, supplies, existing boss, victory and 
   await walk(page,0,8); await walk(page,11,8); await walk(page,11,6.5);
   expect((await read(page)).weapons.ammo).toBe(54);
   await walk(page,0,6.5); await walk(page,0,-14); expect((await read(page)).bossActive).toBe(false);
+  expect((await read(page)).checkpoint).toBe(true); expect((await read(page)).armor).toBe(50);
+  await page.screenshot({path:info.outputPath('checkpoint.png')});
   await walk(page,0,-21); expect((await read(page)).bossActive).toBe(true);
+  // First attempt: real boss attacks kill the stationary player, then use the checkpoint button.
+  await expect.poll(async()=>(await read(page)).pve.outcome,{timeout:35000}).toBe('defeat');
+  await expect(page.locator('#pve-again')).toHaveText('Am Ruhepunkt versuchen');
+  await page.screenshot({path:info.outputPath('checkpoint-defeat.png')});
+  await page.locator('#pve-again').click();
+  const retry=await read(page); expect(retry.snapshot.position.z).toBeCloseTo(-14,1);
+  expect(retry.enemies.every(e=>e.hp===0)).toBe(true); expect(retry.hp).toBe(100);expect(retry.armor).toBe(50);
+  expect(retry.weapons.ammo).toBe(54);expect(retry.bossActive).toBe(false);expect(retry.pve.bossHp).toBe(600);
+  await walk(page,0,-21);
   await page.screenshot({path:info.outputPath('boss-emergence.png')});
   await expect.poll(async()=>(await read(page)).pve.phase,{timeout:5000}).not.toBe('emerging');
   await page.screenshot({path:info.outputPath('boss.png')});
   await fireAt(page,'boss');
-  await expect(page.locator('#result-title')).toHaveText('Wächter bezwungen.');
+  await expect(page.locator('#match-result')).toBeHidden();
+  await expect(page.locator('#room-name')).toHaveText('Das Nordtor ist offen');
   const won=await read(page); expect(won.pve.bossHp).toBe(0);expect(won.enemies.every(e=>e.hp===0)).toBe(true);
-  await page.screenshot({path:info.outputPath('victory.png')});
+  expect(won.completed).toBe(false);
+  await walk(page,0,-40); await page.screenshot({path:info.outputPath('open-gate.png')});
+  await page.keyboard.down('KeyD');
+  try { await expect(page.locator('#match-result')).toBeVisible(); } finally { await page.keyboard.up('KeyD'); }
+  expect((await read(page)).snapshot.position.z).toBeLessThan(-45);expect((await read(page)).completed).toBe(true);
+  await expect(page.locator('#result-title')).toHaveText('Der verwitterte Hof ist frei.');
+  await page.screenshot({path:info.outputPath('completion.png')});
   await page.locator('#pve-again').click();
   await expect.poll(async()=>(await read(page)).enemies.every(e=>e.hp===70)).toBe(true);
   expect((await read(page)).bossActive).toBe(false);expect((await read(page)).hp).toBe(100);
   expect((await read(page)).weapons.ownsPulse).toBe(false);expect(errors).toEqual([]);
-  await info.attach('actual-victory',{body:JSON.stringify({won,errors}),contentType:'application/json'});
+  expect((await read(page)).checkpoint).toBe(false);
+  await page.locator('#pve-pause').click(); await page.locator('#adventure-home').click();
+  await expect(page.locator('#adventure-start')).toBeVisible();
+  await info.attach('actual-victory',{body:JSON.stringify({retry,won,errors}),contentType:'application/json'});
 });
 
 test('touch melee kill, menu restart, actual defeat and retry',async({browser},info)=>{
@@ -68,7 +91,9 @@ test('touch melee kill, menu restart, actual defeat and retry',async({browser},i
   const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true,isMobile:true,deviceScaleFactor:2});
   const page=await context.newPage(),errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   try {
-    await page.goto(url); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+    await page.goto('./'); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+    await page.locator('#adventure-start').tap(); await expect(page).toHaveURL(/adventure=1/);
+    await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
     const cdp=await context.newCDPSession(page);
     const approach=async()=>{
       const box=(await page.locator('#touch-stick').boundingBox())!;
@@ -92,6 +117,62 @@ test('touch melee kill, menu restart, actual defeat and retry',async({browser},i
     await page.screenshot({path:info.outputPath('defeat.png')});
     await page.locator('#pve-again').tap();expect((await read(page)).hp).toBe(100);
     expect((await read(page)).armor).toBe(50);expect((await read(page)).enemies[0]!.hp).toBe(70);
+    expect(errors).toEqual([]);
+  } finally {await context.close();}
+});
+
+test('touch full level: checkpoint retry, boss, walking through exit and returning to menu',async({browser},info)=>{
+  test.setTimeout(180_000);
+  const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true,isMobile:true,deviceScaleFactor:2});
+  const page=await context.newPage(),errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  try {
+    await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+    const cdp=await context.newCDPSession(page);
+    const release=()=>cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    const move=async(x:number,z:number)=>{
+      for(const [axis,target] of [['z',z],['x',x]] as const) for(let i=0;i<10;i++) {
+        const delta=target-(await read(page)).snapshot.position[axis];if(Math.abs(delta)<.3) break;
+        const direction=Math.sign(delta),box=(await page.locator('#touch-stick').boundingBox())!;
+        const point={id:1,x:box.x+box.width/2+(axis==='z'?-direction*42:0),y:box.y+box.height/2+(axis==='x'?direction*42:0)};
+        await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});
+        try { await page.waitForFunction(({axis,target,direction})=>
+          ((window as unknown as {__coreArena:{read():State}}).__coreArena.read().snapshot.position[axis]-target)*direction>=-.2,
+          {axis,target,direction},{timeout:10000}); } finally {await release();}
+      }
+      const p=(await read(page)).snapshot.position;expect(Math.hypot(p.x-x,p.z-z)).toBeLessThan(.6);
+    };
+    const fire=async(index:number|'boss')=>{
+      const initial=await read(page),point=index==='boss'?initial.monsterScreen:initial.enemies[index]!.screen;
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,...point}]});
+      try {
+        for(let i=0;i<400;i++) {
+          const s=await read(page);expect(s.pve.outcome).not.toBe('defeat');
+          if(index==='boss'?s.pve.bossHp===0:s.enemies[index]!.hp===0) return;
+          const p=index==='boss'?s.monsterScreen:s.enemies[index]!.screen;
+          await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,...p}]});await page.waitForTimeout(50);
+        }
+        throw new Error('Enemy survived touch fire');
+      } finally {await release();}
+    };
+    await move(0,27);await fire(0);await move(0,18.5);await move(-3,18.5);await page.locator('#weapon-pulse').tap();
+    await move(0,18.5);await move(0,7);await fire(1);await move(0,-14);
+    expect((await read(page)).checkpoint).toBe(true);
+    await page.screenshot({path:info.outputPath('mobile-checkpoint.png')});
+    await move(0,-21);
+    await expect.poll(async()=>(await read(page)).pve.outcome,{timeout:35000}).toBe('defeat');
+    await page.screenshot({path:info.outputPath('mobile-retry.png')});
+    await page.locator('#pve-again').tap();
+    const retry=await read(page);expect(retry.snapshot.position.z).toBeCloseTo(-14,1);
+    expect(retry.hp).toBe(100);expect(retry.weapons.ammo).toBe(54);expect(retry.enemies.every(e=>e.hp===0)).toBe(true);
+    await move(0,-21);await expect.poll(async()=>(await read(page)).pve.phase,{timeout:5000}).not.toBe('emerging');
+    await fire('boss');await expect(page.locator('#match-result')).toBeHidden();await move(0,-40);
+    await page.screenshot({path:info.outputPath('mobile-open-gate.png')});
+    const box=(await page.locator('#touch-stick').boundingBox())!;
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2+42,y:box.y+box.height/2}]});
+    try {await expect(page.locator('#match-result')).toBeVisible();} finally {await release();}
+    expect((await read(page)).completed).toBe(true);expect((await read(page)).snapshot.position.z).toBeLessThan(-45);
+    await page.screenshot({path:info.outputPath('mobile-completion.png')});
+    await page.locator('#result-home').tap();await expect(page.locator('#adventure-start')).toBeVisible();
     expect(errors).toEqual([]);
   } finally {await context.close();}
 });

@@ -1,0 +1,27 @@
+{
+  "stats": {
+    "startTime": "2026-10-28T19:42:50.753Z",
+    "duration": 117112.40999999999,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "name": "touch full level: checkpoint retry, boss, walking through exit and returning to menu",
+      "status": "passed",
+      "durationMs": 49495
+    },
+    {
+      "name": "walk every room, collect supplies, climb real stairs, aim/fire, pause and restart",
+      "status": "passed",
+      "durationMs": 49500
+    },
+    {
+      "name": "touch joystick reaches weapon and side terrace; jump, camera and restart remain usable",
+      "status": "passed",
+      "durationMs": 12523
+    }
+  ]
+}

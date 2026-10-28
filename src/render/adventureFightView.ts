@@ -57,6 +57,7 @@ export class AdventureFightView {
   private readonly bossRoot=new THREE.Group();
   private readonly boss:MonsterView;
   private readonly runners:RunnerView[];
+  private exitOpening=0;
   constructor(private readonly scene:THREE.Scene) {
     scene.add(this.root); this.root.add(this.bossRoot);
     this.boss=new MonsterView(this.bossRoot,'stone',PVE_RULES,ADVENTURE_BOSS);
@@ -67,6 +68,13 @@ export class AdventureFightView {
     this.bossRoot.visible=state.bossActive;
     this.scene.getObjectByName('adventure-dormant')!.visible=!state.bossActive;
     this.scene.getObjectByName('adventure-entry-gate')!.visible=state.bossActive && state.pve.outcome==='running';
+    const exitOpen=state.pve.outcome==='victory';
+    this.exitOpening=exitOpen ? Math.min(1,this.exitOpening+dt*1.5) : 0;
+    const slide=this.exitOpening*this.exitOpening*(3-2*this.exitOpening)*5.1;
+    this.scene.getObjectByName('adventure-exit-gate')!.children.forEach((leaf,i)=>leaf.position.x=(i?1:-1)*slide);
+    this.scene.getObjectByName('adventure-exit-beacon')!.visible=exitOpen;
+    const checkpoint=this.scene.getObjectByName('adventure-checkpoint') as THREE.Mesh<THREE.RingGeometry,THREE.MeshStandardMaterial>;
+    checkpoint.material.emissiveIntensity=state.checkpoint?.8:0;
     this.boss.update(state.pve,dt);
     this.runners.forEach((v,i)=>v.update(state.runners[i]!,camera,dt));
   }

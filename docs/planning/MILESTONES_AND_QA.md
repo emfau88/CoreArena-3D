@@ -1,9 +1,9 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1/L1.2 umgesetzt und technisch geprüft.**
+Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.3 umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
-mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3, L1.4a/b und L1.5 sind
-dafür geplant, noch nicht zur Implementierung freigegeben. Arena-Teamspiel/Liga
+mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 ist nach „ok go“ umgesetzt;
+L1.4a/b und L1.5 sind geplant, noch nicht zur Implementierung freigegeben. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
@@ -12,7 +12,7 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt und anschließend verkleinert: feste Waffen-/Lootorte, zwei Nahkämpfer und vorhandener Boss. Die früher sieben kleinen Gegner sind verworfen.
 - [x] [Level-1-Mockup und Map-Skizze](../concepts/level-1-layout-v1/README.md) erstellt. Der erste begehbare Grundriss wurde während L1.1 als zu eng/verwinkelt zurückgewiesen; die Skizze ist für den aktuellen Aufbau überholt.
-- [x] Roadmap am 28. Oktober am aktuellen Qualitätsziel ausgerichtet: vollständiger Levelabschluss, ein gestalteter Probehof, Übertragung von Material/Deko/Licht und abschließende Spielabnahme. [Pakete und Spannen](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vom-spielbaren-kern-zum-fertigen-testlevel); grob 2,5–5 Stunden aktive Agent-Arbeit für den verbleibenden Qualitätsausbau. Noch keine Implementierung dieses Ausbaus.
+- [x] Roadmap am 28. Oktober am aktuellen Qualitätsziel ausgerichtet: vollständiger Levelabschluss, ein gestalteter Probehof, Übertragung von Material/Deko/Licht und abschließende Spielabnahme. [Pakete und Spannen](LEVEL_1_STONE_ADVENTURE.md#umsetzungsplan-vom-spielbaren-kern-zum-fertigen-testlevel); nach L1.3 grob 2–4 Stunden aktive Agent-Arbeit für Gestaltung und Spielabstimmung.
 - [x] L1.1 freigegeben, umgesetzt und technisch geprüft: drei große Höfe (32×22, 36×24, 36×26 m), 10 m breite Verbindungen, niedrige Wände, mitgeführte Kamera, Stufen und einmalige Ressourcen. 44 Kerntests und drei Browserfälle bestanden. [Nachweise](../qa/L1_1_RESULT.md).
 - [ ] Persönliche Abnahme des vergrößerten, vereinfachten L1.1-Grundrisses.
 - [x] L1.1-Kameranacharbeit: Adventure standardmäßig von links nach rechts; V/Ansicht schaltet zusätzlich auf den bisherigen geraden oder isometrischen Blick. Desktop-/Touch-Weg und Schussrichtung geprüft.
@@ -20,7 +20,7 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [ ] Persönlicher Handytest für Zoom, Sprint und neues Sprunggefühl.
 - [x] L1.2 in kleiner Fassung ausdrücklich freigegeben und umgesetzt: je ein Steinläufer im ersten/zweiten Hof, bestehender Steinwächter im dritten, gemeinsame HP/Rüstung, Sieg/Tod/Neustart und Weiter-Button. 47 Kerntests und vier Browserfälle bestanden. [Nachweise](../qa/L1_2_RESULT.md).
 - [ ] Persönlicher Spieltest des kleinen Kampfablaufs und seiner Schwierigkeit.
-- [ ] L1.3: Verständlicher Einstieg, Checkpoint vor dem Boss, echtes Nordtor und Levelabschluss.
+- [x] L1.3 freigegeben und umgesetzt: Adventure im Spielmenü, kurzer Auftrag, einmaliger Sitzungs-Checkpoint, Boss-Retry mit erhaltenem Anreisefortschritt, öffnendes Nordtor und Abschluss erst nach Durchgehen. 48 Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_3_RESULT.md).
 - [ ] L1.4a: Ersten Hof als spielbare Material-/Gestaltungsprobe ausarbeiten, Sichtung vor Übertragung.
 - [ ] L1.4b: Zusammenpassende Pflanzen/Felsen/Ruinenteile, Oberflächen und Licht auf alle drei Höfe übertragen.
 - [ ] L1.5: Bestehenden Kampf abstimmen, vollständigen Ablauf und Leistung prüfen, persönliche Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.

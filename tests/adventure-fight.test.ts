@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, STONE_ADVENTURE_COMBAT } from '../src/arena/stoneAdventure';
+import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, ADVENTURE_CHECKPOINT, STONE_ADVENTURE_COMBAT } from '../src/arena/stoneAdventure';
 import { StoneRunner, RUNNER_RULES } from '../src/core/stoneRunner';
 import { AdventureFight } from '../src/core/adventureFight';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
+import type { Snapshot } from '../src/core/types';
 
 test('small guard telegraphs one melee hit, respects dodge/height/cover, and stays dead',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);
@@ -25,6 +26,50 @@ test('small guard telegraphs one melee hit, respects dodge/height/cover, and sta
     assert.equal(runner.snapshot().phase,'dead');
     for(let i=0;i<120;i++) assert.equal(runner.step(player,world,[]),0);
     assert.equal(runner.snapshot().hp,0);
+  } finally {world.dispose();}
+});
+
+test('checkpoint supplies only once; retry keeps cleared approach and spent loot, restores boss supplies; only leaving completes the level',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),fight=new AdventureFight();
+  const player={x:0,y:.02,z:-14};
+  const consume=(id:string)=>{
+    const item=fight.pickups.snapshot().find(p=>p.id===id)!;
+    fight.pickups.step(1,{position:item.position,grounded:true,surface:item.surface} as Snapshot,world,(_kind,n)=>n);
+  };
+  try {
+    fight.step(player,world,[]); assert.equal(fight.checkpoint,false);
+    fight.step({x:0,y:0,z:33},world,ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70})));
+    fight.life.step(player,world,[],{active:false,incomingDamage:80});
+    consume('adventure-pulse'); consume('boss-ammo-east');
+    fight.combat.addAmmo(9,true);
+    fight.step(player,world,[]);
+    assert.equal(fight.checkpoint,true); assert.equal(fight.bossActive,false);
+    assert.equal(fight.life.snapshot().hp,100); assert.equal(fight.life.snapshot().armor,50);
+    assert.equal(fight.combat.snapshot().ammo,54);
+    fight.combat.reset(); fight.combat.addAmmo(2,true);
+    fight.life.step(player,world,[],{active:false,incomingDamage:10});
+    fight.step(player,world,[]);
+    assert.equal(fight.life.snapshot().armor,40); assert.equal(fight.combat.snapshot().ammo,2);
+    fight.step({...player,z:-21},world,[]); assert.equal(fight.bossActive,true);
+    fight.step({...player,y:-9},world,[]); assert.equal(fight.life.snapshot().outcome,'defeat');
+    assert.deepEqual(fight.retry(),ADVENTURE_CHECKPOINT);
+    assert.equal(fight.bossActive,false); assert.equal(fight.checkpoint,true);
+    assert.equal(fight.life.snapshot().hp,100); assert.equal(fight.life.snapshot().armor,50);
+    assert.equal(fight.life.snapshot().bossHp,600); assert.equal(fight.life.snapshot().phaseTick,0);
+    assert.equal(fight.combat.snapshot().ammo,54); assert.equal(fight.combat.snapshot().selected,'pulse');
+    assert.ok(fight.runners.every(r=>r.snapshot().hp===0));
+    assert.equal(fight.pickups.snapshot().find(p=>p.id==='adventure-pulse')!.remaining,0);
+    assert.equal(fight.pickups.snapshot().find(p=>p.id==='boss-ammo-east')!.remaining,18);
+    world.setObstacleEnabled('dormant-warden',false);
+    for(let i=0;i<121;i++) fight.step({...player,z:-21},world,[]);
+    fight.step({...player,z:-21},world,[{source:'player',target:ADVENTURE_BOSS.id,amount:600}]);
+    assert.equal(fight.life.snapshot().outcome,'victory'); assert.equal(fight.completed,false);
+    fight.step({...player,z:-44},world,[]); assert.equal(fight.completed,false);
+    fight.step({...player,z:-46,y:2},world,[]); assert.equal(fight.completed,false);
+    fight.step({...player,z:-46},world,[]); assert.equal(fight.completed,true);
+    fight.reset(); assert.equal(fight.completed,false); assert.equal(fight.checkpoint,false);
+    assert.ok(fight.runners.every(r=>r.snapshot().hp===70));
+    assert.equal(fight.pickups.snapshot().find(p=>p.id==='adventure-pulse')!.remaining,54);
   } finally {world.dispose();}
 });
 
