@@ -3,6 +3,7 @@ import { AdventureFight } from '../core/adventureFight';
 import { AdventureFightView } from '../render/adventureFightView';
 import { PVE_RULES } from '../core/pve';
 import { buildStoneAdventure } from '../render/stoneAdventureView';
+import { loadCourtyardAssets } from '../render/courtyardLook';
 import { ArenaView } from '../render/arenaView';
 import { createSpatialWorld } from '../physics/rapierWorld';
 import { Simulation } from '../core/simulation';
@@ -25,10 +26,11 @@ const hints: Record<string, string> = {
 /** Small adventure slice: two melee guards, then the existing stone boss. */
 export async function startAdventure(host: HTMLElement): Promise<() => void> {
   const exploration = new URLSearchParams(location.search).get('explore') === '1';
+  const courtyardAssets = await loadCourtyardAssets();
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
   try { view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
-    build: buildStoneAdventure, shadowSpan: 58 }); }
+    build: (scene,arena) => buildStoneAdventure(scene,arena,courtyardAssets), shadowSpan: 58 }); }
   catch (error) { world.dispose(); throw error; }
   view.renderer.domElement.setAttribute('aria-label', `Der verwitterte Hof – ${exploration ? 'Erkundung' : 'Adventure'}`);
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
@@ -208,6 +210,14 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
+    // Fixed documentation cameras only; no player/health/weapon mutation.
+    courtView: (mode:'side'|'isometric'='side') => {
+      setPaused(true); el('pause').hidden=true; overview=true;
+      view.camera.mode=mode; view.camera.snap({x:0,y:0,z:27});
+      const camera=view.camera.camera,halfHeight=mode==='side'?13.5:16;
+      camera.top=halfHeight;camera.bottom=-halfHeight;
+      camera.left=-halfHeight*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
+    },
     // Documentation capture only; walkthrough tests still use normal player inputs.
     overview: () => {
       setPaused(true); el('pause').hidden = true; overview = true; view.camera.snap({ x: 0, y: 0, z: -2 });

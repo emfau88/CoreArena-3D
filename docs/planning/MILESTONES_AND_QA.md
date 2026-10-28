@@ -1,9 +1,10 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.3 umgesetzt und technisch geprüft.**
+Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
-mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 ist nach „ok go“ umgesetzt;
-L1.4a/b und L1.5 sind geplant, noch nicht zur Implementierung freigegeben. Arena-Teamspiel/Liga
+mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
+freigegebene Stilprobe L1.4a sind umgesetzt. L1.4b und L1.5 sind geplant, noch nicht
+zur Implementierung freigegeben. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
@@ -21,7 +22,8 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [x] L1.2 in kleiner Fassung ausdrücklich freigegeben und umgesetzt: je ein Steinläufer im ersten/zweiten Hof, bestehender Steinwächter im dritten, gemeinsame HP/Rüstung, Sieg/Tod/Neustart und Weiter-Button. 47 Kerntests und vier Browserfälle bestanden. [Nachweise](../qa/L1_2_RESULT.md).
 - [ ] Persönlicher Spieltest des kleinen Kampfablaufs und seiner Schwierigkeit.
 - [x] L1.3 freigegeben und umgesetzt: Adventure im Spielmenü, kurzer Auftrag, einmaliger Sitzungs-Checkpoint, Boss-Retry mit erhaltenem Anreisefortschritt, öffnendes Nordtor und Abschluss erst nach Durchgehen. 48 Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_3_RESULT.md).
-- [ ] L1.4a: Ersten Hof als spielbare Material-/Gestaltungsprobe ausarbeiten, Sichtung vor Übertragung.
+- [x] L1.4a: Erster Hof mit echten Steinmaterialien, lesbaren Mauer-/Deckungskanten, Farnen, Felsgruppen und einer Fackel gestaltet. Vier Browserfälle bestanden: Vergleichskameras, beide Deckungssprünge, vollständiger Desktopkampf und mobile Wegprüfung. [Vorher/Nachher und Nachweise](../qa/L1_4A_RESULT.md).
+- [ ] Persönliche Sichtung der L1.4a-Stilprobe vor Übertragung; verbleibende L1.4b/L1.5 grob 1,5–3 Stunden aktive Agent-Arbeit.
 - [ ] L1.4b: Zusammenpassende Pflanzen/Felsen/Ruinenteile, Oberflächen und Licht auf alle drei Höfe übertragen.
 - [ ] L1.5: Bestehenden Kampf abstimmen, vollständigen Ablauf und Leistung prüfen, persönliche Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 

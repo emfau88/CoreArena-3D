@@ -1,0 +1,385 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/courtyard-look.spec.ts",
+      "tests/e2e/adventure-fight.spec.ts",
+      "tests/e2e/stone-adventure.spec.ts",
+      "--grep",
+      "first court|menu entry|touch joystick",
+      "--project=chromium-1366",
+      "--trace=off"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge-1366",
+        "name": "edge-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "edge-1920",
+        "name": "edge-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "adventure-fight.spec.ts",
+      "file": "adventure-fight.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "menu entry, two guards, checkpoint death and retry, boss victory, physical exit and full reset",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 54253,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T20:01:24.810Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-victory",
+                      "contentType": "application/json",
+                      "body": "eyJyZXRyeSI6eyJtb2RlIjoiYWR2ZW50dXJlIiwibGV2ZWwiOiJzdG9uZSIsInNuYXBzaG90Ijp7InRpY2siOjE4NzQsInBvc2l0aW9uIjp7IngiOjAsInkiOjAuMDYsInoiOi0xNH0sInZlbG9jaXR5Ijp7IngiOjAsInkiOjAsInoiOjB9LCJncm91bmRlZCI6ZmFsc2UsInN1cmZhY2UiOm51bGwsImNlaWxpbmciOmZhbHNlLCJmYWNpbmciOjMuMTQxNTkyNjUzNTg5NzkzfSwid2VhcG9ucyI6eyJzZWxlY3RlZCI6InB1bHNlIiwib3duc1B1bHNlIjp0cnVlLCJhbW1vIjo1NCwicHJvamVjdGlsZXMiOltdLCJsYXN0QXJjIjpudWxsLCJpbXBhY3QiOm51bGx9LCJwaWNrdXBzIjpbeyJpZCI6ImFkdmVudHVyZS1wdWxzZSIsImtpbmQiOiJwdWxzZSIsInBvc2l0aW9uIjp7IngiOi0zLCJ5IjowLCJ6IjoxOC41fSwic3VyZmFjZSI6ImZsb29yLWVudHJ5IiwiYW1vdW50Ijo1NCwicmVtYWluaW5nIjowLCJyZXNwYXduQXQiOjB9LHsiaWQiOiJzaWRlLWhlYWx0aCIsImtpbmQiOiJoZWFsdGgiLCJwb3NpdGlvbiI6eyJ4IjotMTMuNSwieSI6MS4xLCJ6Ijo0fSwic3VyZmFjZSI6InNpZGUtdGVycmFjZSIsImFtb3VudCI6MzUsInJlbWFpbmluZyI6MzUsInJlc3Bhd25BdCI6MH0seyJpZCI6InNpZGUtYXJtb3IiLCJraW5kIjoiYXJtb3IiLCJwb3NpdGlvbiI6eyJ4IjotMTMuNSwieSI6MS4xLCJ6IjowfSwic3VyZmFjZSI6InNpZGUtdGVycmFjZSIsImFtb3VudCI6MzAsInJlbWFpbmluZyI6MzAsInJlc3Bhd25BdCI6MH0seyJpZCI6InNpZGUtYW1tbyIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6LTksInkiOjEuMSwieiI6LTAuNH0sInN1cmZhY2UiOiJzaWRlLXRlcnJhY2UiLCJhbW91bnQiOjI3LCJyZW1haW5pbmciOjI3LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJjb3VydC1hbW1vIiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjoxMSwieSI6MCwieiI6Ni41fSwic3VyZmFjZSI6ImZsb29yLW1pZGRsZSIsImFtb3VudCI6MjcsInJlbWFpbmluZyI6MjAsInJlc3Bhd25BdCI6MH0seyJpZCI6ImJvc3MtYW1tby13ZXN0Iiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjotMTMsInkiOjAsInoiOi0zN30sInN1cmZhY2UiOiJmbG9vci1ib3NzIiwiYW1vdW50IjoxOCwicmVtYWluaW5nIjoxOCwicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1hbW1vLWVhc3QiLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOjEzLCJ5IjowLCJ6IjotMjB9LCJzdXJmYWNlIjoiZmxvb3ItYm9zcyIsImFtb3VudCI6MTgsInJlbWFpbmluZyI6MTgsInJlc3Bhd25BdCI6MH0seyJpZCI6ImJvc3MtaGVhbHRoIiwia2luZCI6ImhlYWx0aCIsInBvc2l0aW9uIjp7IngiOi0xMiwieSI6MS4xLCJ6IjotMjN9LCJzdXJmYWNlIjoiYm9zcy1oZWFsdGgtcGxhdGVhdSIsImFtb3VudCI6MzUsInJlbWFpbmluZyI6MzUsInJlc3Bhd25BdCI6MH1dLCJocCI6MTAwLCJhcm1vciI6NTAsInB2ZSI6eyJ0aWNrIjowLCJwaGFzZSI6ImVtZXJnaW5nIiwicGhhc2VUaWNrIjowLCJraW5kIjoid2F2ZSIsInRhcmdldCI6eyJ4IjowLCJ5IjowLCJ6IjotMjl9LCJ3YXZlUmFkaXVzIjoyLCJocCI6MTAwLCJhcm1vciI6NTAsImJvc3NIcCI6NjAwLCJvdXRjb21lIjoicnVubmluZyIsImhpdHNUYWtlbiI6MCwibGFzdEhpdCI6LTEwMCwiY2VudGVyIjp7IngiOjAsInkiOjEuODUsInoiOi0yOX0sImZhY2luZyI6MCwibW92aW5nIjpmYWxzZX0sImJvc3NBY3RpdmUiOmZhbHNlLCJjaGVja3BvaW50Ijp0cnVlLCJjb21wbGV0ZWQiOmZhbHNlLCJlbmVtaWVzIjpbeyJpZCI6ImNvdXJ0eWFyZC1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MS4wMjk1MjY3MDIwNjc1MjI1LCJ5IjowLjg1LCJ6IjoyNS41ODY3MDYyNDQxMzcwNX0sImhwIjowLCJmYWNpbmciOi0wLjYyOTc1MzkxMTEzMDE5MDksInBoYXNlIjoiZGVhZCIsInBoYXNlVGljayI6MTc0MSwibW92aW5nIjpmYWxzZSwic2NyZWVuIjp7IngiOi01MjIuOTUxOTk5ODIxMzIsInkiOjM3OC4xMzIyNjI3MDQ1MTkwNn19LHsiaWQiOiJpbm5lci1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MC42MDQ4MzQwOTQ2MTg2MzU4LCJ5IjowLjg1LCJ6Ijo0LjgwNDI0MTQ0Mjc5MjIzOTV9LCJocCI6MCwiZmFjaW5nIjotMC4yNTk2ODY2NDc5Nzk4OTg0LCJwaGFzZSI6ImRlYWQiLCJwaGFzZVRpY2siOjE0MjIsIm1vdmluZyI6ZmFsc2UsInNjcmVlbiI6eyJ4IjoxMTAuNDE4MzU2MDI5MTg4NDksInkiOjM2Ny42NDkxNzE0NTkzOTAyM319XSwibW9uc3RlclNjcmVlbiI6eyJ4IjoxMTQwLjY0Mjg1NzE0Mjg1NjcsInkiOjM1MC45MzIwMTgyMTAxMDUzNX0sInBhdXNlZCI6ZmFsc2UsIm92ZXJ2aWV3IjpmYWxzZSwiY2FtZXJhIjoic2lkZSIsInNlY3Rpb24iOiJGIiwicGxheWVyU2NyZWVuIjp7IngiOjY4My40OTk5OTk5OTk5OTk1LCJ5IjozNjYuODQwMzk4NjM4NzU3M30sImZlZWRiYWNrIjp7InN0YXRlIjoicnVubmluZyIsIm11dGVkIjpmYWxzZSwicGxheWVkIjo2OSwicGVhayI6MC4xMzAxODU4NDI1MTQwMzgwOX0sInZpZXdwb3J0Ijp7IndpZHRoIjoxMzY3LCJoZWlnaHQiOjc2OCwiZHByIjowLjk5OTk5OTk3NjE0NzQ3MTIsInZpZXdIZWlnaHQiOjI1LjJ9LCJyZW5kZXJDYWxscyI6MjE2fSwid29uIjp7Im1vZGUiOiJhZHZlbnR1cmUiLCJsZXZlbCI6InN0b25lIiwic25hcHNob3QiOnsidGljayI6MjY2MywicG9zaXRpb24iOnsieCI6LTAuMDAwMDMyMTk4NTI4MDYwNjg5NTcsInkiOjAuMDIzMzAyMTczNjE0NTAxOTMsInoiOi0yMS4wNzkzNjg1OTEzMDg1OTR9LCJ2ZWxvY2l0eSI6eyJ4IjowLCJ5IjowLCJ6IjowfSwiZ3JvdW5kZWQiOnRydWUsInN1cmZhY2UiOiJmbG9vci1ib3NzIiwiY2VpbGluZyI6ZmFsc2UsImZhY2luZyI6My4xNDE1OTI2NTM1ODk3OTN9LCJ3ZWFwb25zIjp7InNlbGVjdGVkIjoiYXJjIiwib3duc1B1bHNlIjp0cnVlLCJhbW1vIjowLCJwcm9qZWN0aWxlcyI6W10sImxhc3RBcmMiOm51bGwsImltcGFjdCI6bnVsbH0sInBpY2t1cHMiOlt7ImlkIjoiYWR2ZW50dXJlLXB1bHNlIiwia2luZCI6InB1bHNlIiwicG9zaXRpb24iOnsieCI6LTMsInkiOjAsInoiOjE4LjV9LCJzdXJmYWNlIjoiZmxvb3ItZW50cnkiLCJhbW91bnQiOjU0LCJyZW1haW5pbmciOjAsInJlc3Bhd25BdCI6MH0seyJpZCI6InNpZGUtaGVhbHRoIiwia2luZCI6ImhlYWx0aCIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjR9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hcm1vciIsImtpbmQiOiJhcm1vciIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjB9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozMCwicmVtYWluaW5nIjozMCwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hbW1vIiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjotOSwieSI6MS4xLCJ6IjotMC40fSwic3VyZmFjZSI6InNpZGUtdGVycmFjZSIsImFtb3VudCI6MjcsInJlbWFpbmluZyI6MjcsInJlc3Bhd25BdCI6MH0seyJpZCI6ImNvdXJ0LWFtbW8iLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOjExLCJ5IjowLCJ6Ijo2LjV9LCJzdXJmYWNlIjoiZmxvb3ItbWlkZGxlIiwiYW1vdW50IjoyNywicmVtYWluaW5nIjoyMCwicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1hbW1vLXdlc3QiLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOi0xMywieSI6MCwieiI6LTM3fSwic3VyZmFjZSI6ImZsb29yLWJvc3MiLCJhbW91bnQiOjE4LCJyZW1haW5pbmciOjE4LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWFtbW8tZWFzdCIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6MTMsInkiOjAsInoiOi0yMH0sInN1cmZhY2UiOiJmbG9vci1ib3NzIiwiYW1vdW50IjoxOCwicmVtYWluaW5nIjoxOCwicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1oZWFsdGgiLCJraW5kIjoiaGVhbHRoIiwicG9zaXRpb24iOnsieCI6LTEyLCJ5IjoxLjEsInoiOi0yM30sInN1cmZhY2UiOiJib3NzLWhlYWx0aC1wbGF0ZWF1IiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfV0sImhwIjo1MCwiYXJtb3IiOjAsInB2ZSI6eyJ0aWNrIjo3ODQsInBoYXNlIjoiZGVmZWF0ZWQiLCJwaGFzZVRpY2siOjAsImtpbmQiOiJlcnVwdGlvbiIsInRhcmdldCI6eyJ4IjotMC4wMDAwMzIxOTg1MjgwNjA2ODk1NywieSI6LTEuNzg4MTM5MzQ0OTI3MDUzM2UtOCwieiI6LTIxLjA3OTM2ODU5MTMwODU5NH0sIndhdmVSYWRpdXMiOjIwLCJocCI6NTAsImFybW9yIjowLCJib3NzSHAiOjAsIm91dGNvbWUiOiJ2aWN0b3J5IiwiaGl0c1Rha2VuIjozLCJsYXN0SGl0Ijo3MjMsImNlbnRlciI6eyJ4IjotMC4wMDAwMjE2MjkxNDY4Mjg2Mjg0MywieSI6MS44NSwieiI6LTIzLjY3OTM2ODU5MTI4NzExMn0sImZhY2luZyI6LTAuMDAwMDA0MDY1MTQ2NjI3NzI3MDE5NSwibW92aW5nIjpmYWxzZX0sImJvc3NBY3RpdmUiOnRydWUsImNoZWNrcG9pbnQiOnRydWUsImNvbXBsZXRlZCI6ZmFsc2UsImVuZW1pZXMiOlt7ImlkIjoiY291cnR5YXJkLXJ1bm5lciIsImNlbnRlciI6eyJ4IjoxLjAyOTUyNjcwMjA2NzUyMjUsInkiOjAuODUsInoiOjI1LjU4NjcwNjI0NDEzNzA1fSwiaHAiOjAsImZhY2luZyI6LTAuNjI5NzUzOTExMTMwMTkwOSwicGhhc2UiOiJkZWFkIiwicGhhc2VUaWNrIjoyNTI1LCJtb3ZpbmciOmZhbHNlLCJzY3JlZW4iOnsieCI6LTczOC43MDQxODU0NjEyLCJ5IjozNzguMTMzMDU3NDkxMzg3OX19LHsiaWQiOiJpbm5lci1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MC42MDQ4MzQwOTQ2MTg2MzU4LCJ5IjowLjg1LCJ6Ijo0LjgwNDI0MTQ0Mjc5MjIzOTV9LCJocCI6MCwiZmFjaW5nIjotMC4yNTk2ODY2NDc5Nzk4OTg0LCJwaGFzZSI6ImRlYWQiLCJwaGFzZVRpY2siOjIyMDYsIm1vdmluZyI6ZmFsc2UsInNjcmVlbiI6eyJ4IjotMTA1LjMzMzgyOTYxMDY5MTY1LCJ5IjozNjcuNjQ5OTY2MjQ2MjU5fX1dLCJtb25zdGVyU2NyZWVuIjp7IngiOjc2Mi43MzgwOTUyMzc0NDA5LCJ5IjozNTAuOTMyMjc5MTA0MTg3M30sInBhdXNlZCI6ZmFsc2UsIm92ZXJ2aWV3IjpmYWxzZSwiY2FtZXJhIjoic2lkZSIsInNlY3Rpb24iOiJHIiwicGxheWVyU2NyZWVuIjp7IngiOjY4My41MDAwMDAwMDAwMDA1LCJ5IjozNjcuNDk2MzU3MDQ2NjczMjd9LCJmZWVkYmFjayI6eyJzdGF0ZSI6InJ1bm5pbmciLCJtdXRlZCI6ZmFsc2UsInBsYXllZCI6MTk0LCJwZWFrIjowLjEzMDE4NTg0MjUxNDAzODA5fSwidmlld3BvcnQiOnsid2lkdGgiOjEzNjcsImhlaWdodCI6NzY4LCJkcHIiOjAuOTk5OTk5OTc2MTQ3NDcxMiwidmlld0hlaWdodCI6MjUuMn0sInJlbmRlckNhbGxzIjoyNjV9LCJlcnJvcnMiOltdfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3c5e03c33d71f13d5808-e41d070acb55953d7bfb",
+          "file": "adventure-fight.spec.ts",
+          "line": 41,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "courtyard-look.spec.ts",
+      "file": "courtyard-look.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "first court: fixed side and isometric comparison cameras",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3196,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T20:02:19.398Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "af9da360db51ab472ea0-1544d450bb3bc8bd7337",
+          "file": "courtyard-look.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "first court: real movement, landing on both decorated covers and weapon pickup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11196,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T20:02:22.607Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "court-state",
+                      "contentType": "application/json",
+                      "body": "eyJtb2RlIjoiYWR2ZW50dXJlIiwibGV2ZWwiOiJzdG9uZSIsInNuYXBzaG90Ijp7InRpY2siOjU1OSwicG9zaXRpb24iOnsieCI6LTIuOTI4NDE2OTY3MzkxOTY3OCwieSI6MC4wMjMyODY2NzY0MDY4NjAzMywieiI6MTguNjAxMDI2NTM1MDM0MTh9LCJ2ZWxvY2l0eSI6eyJ4IjowLCJ5IjowLCJ6IjowfSwiZ3JvdW5kZWQiOnRydWUsInN1cmZhY2UiOiJmbG9vci1lbnRyeSIsImNlaWxpbmciOmZhbHNlLCJmYWNpbmciOi0xLjU3MDc5NjMyNjc5NDg5N30sIndlYXBvbnMiOnsic2VsZWN0ZWQiOiJhcmMiLCJvd25zUHVsc2UiOnRydWUsImFtbW8iOjU0LCJwcm9qZWN0aWxlcyI6W10sImxhc3RBcmMiOm51bGwsImltcGFjdCI6bnVsbH0sInBpY2t1cHMiOlt7ImlkIjoiYWR2ZW50dXJlLXB1bHNlIiwia2luZCI6InB1bHNlIiwicG9zaXRpb24iOnsieCI6LTMsInkiOjAsInoiOjE4LjV9LCJzdXJmYWNlIjoiZmxvb3ItZW50cnkiLCJhbW91bnQiOjU0LCJyZW1haW5pbmciOjAsInJlc3Bhd25BdCI6MH0seyJpZCI6InNpZGUtaGVhbHRoIiwia2luZCI6ImhlYWx0aCIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjR9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hcm1vciIsImtpbmQiOiJhcm1vciIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjB9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozMCwicmVtYWluaW5nIjozMCwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hbW1vIiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjotOSwieSI6MS4xLCJ6IjotMC40fSwic3VyZmFjZSI6InNpZGUtdGVycmFjZSIsImFtb3VudCI6MjcsInJlbWFpbmluZyI6MjcsInJlc3Bhd25BdCI6MH0seyJpZCI6ImNvdXJ0LWFtbW8iLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOjExLCJ5IjowLCJ6Ijo2LjV9LCJzdXJmYWNlIjoiZmxvb3ItbWlkZGxlIiwiYW1vdW50IjoyNywicmVtYWluaW5nIjoyNywicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1hbW1vLXdlc3QiLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOi0xMywieSI6MCwieiI6LTM3fSwic3VyZmFjZSI6ImZsb29yLWJvc3MiLCJhbW91bnQiOjE4LCJyZW1haW5pbmciOjE4LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWFtbW8tZWFzdCIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6MTMsInkiOjAsInoiOi0yMH0sInN1cmZhY2UiOiJmbG9vci1ib3NzIiwiYW1vdW50IjoxOCwicmVtYWluaW5nIjoxOCwicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1oZWFsdGgiLCJraW5kIjoiaGVhbHRoIiwicG9zaXRpb24iOnsieCI6LTEyLCJ5IjoxLjEsInoiOi0yM30sInN1cmZhY2UiOiJib3NzLWhlYWx0aC1wbGF0ZWF1IiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfV0sImhwIjoxMDAsImFybW9yIjo1MCwicHZlIjp7InRpY2siOjAsInBoYXNlIjoiZW1lcmdpbmciLCJwaGFzZVRpY2siOjAsImtpbmQiOiJ3YXZlIiwidGFyZ2V0Ijp7IngiOjAsInkiOjAsInoiOi0yOX0sIndhdmVSYWRpdXMiOjIsImhwIjoxMDAsImFybW9yIjo1MCwiYm9zc0hwIjo2MDAsIm91dGNvbWUiOiJydW5uaW5nIiwiaGl0c1Rha2VuIjowLCJsYXN0SGl0IjotMTAwLCJjZW50ZXIiOnsieCI6MCwieSI6MS44NSwieiI6LTI5fSwiZmFjaW5nIjowLCJtb3ZpbmciOmZhbHNlfSwiYm9zc0FjdGl2ZSI6ZmFsc2UsImNoZWNrcG9pbnQiOmZhbHNlLCJjb21wbGV0ZWQiOmZhbHNlLCJlbmVtaWVzIjpbeyJpZCI6ImNvdXJ0eWFyZC1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MiwieSI6MC44NSwieiI6MjR9LCJocCI6NzAsImZhY2luZyI6MCwicGhhc2UiOiJpZGxlIiwicGhhc2VUaWNrIjowLCJtb3ZpbmciOmZhbHNlLCJzY3JlZW4iOnsieCI6NTE4Ljk2NTMzNjgwMzc3OTMsInkiOjQ1OS42MDU3NjczNzAxNTM0NH19LHsiaWQiOiJpbm5lci1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MiwieSI6MC44NSwieiI6LTF9LCJocCI6NzAsImZhY2luZyI6MCwicGhhc2UiOiJpZGxlIiwicGhhc2VUaWNrIjowLCJtb3ZpbmciOmZhbHNlLCJzY3JlZW4iOnsieCI6MTI4MC44NzAwOTg3MDg1NDEzLCJ5Ijo0NTkuNjA1NzY3MzcwMTUzNH19XSwibW9uc3RlclNjcmVlbiI6eyJ4IjoyMTM0LjIwMzQzMjA0MTg3NDcsInkiOjQwOC40NTA0MDgxNTMzNTQwM30sInBhdXNlZCI6ZmFsc2UsIm92ZXJ2aWV3IjpmYWxzZSwiY2FtZXJhIjoic2lkZSIsInNlY3Rpb24iOiJDIiwicGxheWVyU2NyZWVuIjp7IngiOjY4My41MDU0ODA0OTc5NzU4LCJ5IjozNTIuNzMwMTI0OTA3ODU5MX0sImZlZWRiYWNrIjp7InN0YXRlIjoicnVubmluZyIsIm11dGVkIjpmYWxzZSwicGxheWVkIjoyNCwicGVhayI6MC4wNDkyMDcyODEzMjEyODcxNTV9LCJ2aWV3cG9ydCI6eyJ3aWR0aCI6MTM2NywiaGVpZ2h0Ijo3NjgsImRwciI6MC45OTk5OTk5NzYxNDc0NzEyLCJ2aWV3SGVpZ2h0IjoyNS4yfSwicmVuZGVyQ2FsbHMiOjE5N30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "af9da360db51ab472ea0-e3f09f5011ec187d6767",
+          "file": "courtyard-look.spec.ts",
+          "line": 18,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "stone-adventure.spec.ts",
+      "file": "stone-adventure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "touch joystick reaches weapon and side terrace; jump, camera and restart remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12360,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T20:02:33.841Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "touch-weapon-position",
+                      "contentType": "application/json",
+                      "body": "eyJtb2RlIjoiYWR2ZW50dXJlIiwibGV2ZWwiOiJzdG9uZSIsInNuYXBzaG90Ijp7InRpY2siOjE5OCwicG9zaXRpb24iOnsieCI6LTIuODgwMDg1NDY4MjkyMjM2MywieSI6MC4wMjE5NTgzODY4OTgwNDA3NSwieiI6MTguNTU4NzAyNDY4ODcyMDd9LCJ2ZWxvY2l0eSI6eyJ4IjotNy4xOTk5OTMxMzM1NDQ5MjIsInkiOjAsInoiOjB9LCJncm91bmRlZCI6dHJ1ZSwic3VyZmFjZSI6ImZsb29yLWVudHJ5IiwiY2VpbGluZyI6ZmFsc2UsImZhY2luZyI6LTEuNTcwNzk2MzI2Nzk0ODk3fSwid2VhcG9ucyI6eyJzZWxlY3RlZCI6ImFyYyIsIm93bnNQdWxzZSI6dHJ1ZSwiYW1tbyI6NTQsInByb2plY3RpbGVzIjpbXSwibGFzdEFyYyI6bnVsbCwiaW1wYWN0IjpudWxsfSwicGlja3VwcyI6W3siaWQiOiJhZHZlbnR1cmUtcHVsc2UiLCJraW5kIjoicHVsc2UiLCJwb3NpdGlvbiI6eyJ4IjotMywieSI6MCwieiI6MTguNX0sInN1cmZhY2UiOiJmbG9vci1lbnRyeSIsImFtb3VudCI6NTQsInJlbWFpbmluZyI6MCwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1oZWFsdGgiLCJraW5kIjoiaGVhbHRoIiwicG9zaXRpb24iOnsieCI6LTEzLjUsInkiOjEuMSwieiI6NH0sInN1cmZhY2UiOiJzaWRlLXRlcnJhY2UiLCJhbW91bnQiOjM1LCJyZW1haW5pbmciOjM1LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJzaWRlLWFybW9yIiwia2luZCI6ImFybW9yIiwicG9zaXRpb24iOnsieCI6LTEzLjUsInkiOjEuMSwieiI6MH0sInN1cmZhY2UiOiJzaWRlLXRlcnJhY2UiLCJhbW91bnQiOjMwLCJyZW1haW5pbmciOjMwLCJyZXNwYXduQXQiOjB9LHsiaWQiOiJzaWRlLWFtbW8iLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOi05LCJ5IjoxLjEsInoiOi0wLjR9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjoyNywicmVtYWluaW5nIjoyNywicmVzcGF3bkF0IjowfSx7ImlkIjoiY291cnQtYW1tbyIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6MTEsInkiOjAsInoiOjYuNX0sInN1cmZhY2UiOiJmbG9vci1taWRkbGUiLCJhbW91bnQiOjI3LCJyZW1haW5pbmciOjI3LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWFtbW8td2VzdCIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6LTEzLCJ5IjowLCJ6IjotMzd9LCJzdXJmYWNlIjoiZmxvb3ItYm9zcyIsImFtb3VudCI6MTgsInJlbWFpbmluZyI6MTgsInJlc3Bhd25BdCI6MH0seyJpZCI6ImJvc3MtYW1tby1lYXN0Iiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjoxMywieSI6MCwieiI6LTIwfSwic3VyZmFjZSI6ImZsb29yLWJvc3MiLCJhbW91bnQiOjE4LCJyZW1haW5pbmciOjE4LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWhlYWx0aCIsImtpbmQiOiJoZWFsdGgiLCJwb3NpdGlvbiI6eyJ4IjotMTIsInkiOjEuMSwieiI6LTIzfSwic3VyZmFjZSI6ImJvc3MtaGVhbHRoLXBsYXRlYXUiLCJhbW91bnQiOjM1LCJyZW1haW5pbmciOjM1LCJyZXNwYXduQXQiOjB9XSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJwdmUiOnsidGljayI6MCwicGhhc2UiOiJlbWVyZ2luZyIsInBoYXNlVGljayI6MCwia2luZCI6IndhdmUiLCJ0YXJnZXQiOnsieCI6MCwieSI6MCwieiI6LTI5fSwid2F2ZVJhZGl1cyI6MiwiaHAiOjEwMCwiYXJtb3IiOjUwLCJib3NzSHAiOjYwMCwib3V0Y29tZSI6InJ1bm5pbmciLCJoaXRzVGFrZW4iOjAsImxhc3RIaXQiOi0xMDAsImNlbnRlciI6eyJ4IjowLCJ5IjoxLjg1LCJ6IjotMjl9LCJmYWNpbmciOjAsIm1vdmluZyI6ZmFsc2V9LCJib3NzQWN0aXZlIjpmYWxzZSwiY2hlY2twb2ludCI6ZmFsc2UsImNvbXBsZXRlZCI6ZmFsc2UsImVuZW1pZXMiOlt7ImlkIjoiY291cnR5YXJkLXJ1bm5lciIsImNlbnRlciI6eyJ4IjoyLCJ5IjowLjg1LCJ6IjoyNH0sImhwIjo3MCwiZmFjaW5nIjowLCJwaGFzZSI6ImlkbGUiLCJwaGFzZVRpY2siOjAsIm1vdmluZyI6ZmFsc2UsInNjcmVlbiI6eyJ4IjozMDkuNDM1MDY5OTkxNzkwMSwieSI6MjY5LjcyMDk3MTYzNzUzMTF9fSx7ImlkIjoiaW5uZXItcnVubmVyIiwiY2VudGVyIjp7IngiOjIsInkiOjAuODUsInoiOi0xfSwiaHAiOjcwLCJmYWNpbmciOjAsInBoYXNlIjoiaWRsZSIsInBoYXNlVGljayI6MCwibW92aW5nIjpmYWxzZSwic2NyZWVuIjp7IngiOjgxNC45NTU5MDMzMjUxMjMyLCJ5IjoyNjkuNzIwOTcxNjM3NTMxfX1dLCJtb25zdGVyU2NyZWVuIjp7IngiOjEzODEuMTM5MjM2NjU4NDU2NCwieSI6MjM1Ljc3OTU5MDYyMjgwNjU1fSwicGF1c2VkIjpmYWxzZSwib3ZlcnZpZXciOmZhbHNlLCJjYW1lcmEiOiJzaWRlIiwic2VjdGlvbiI6IkMiLCJwbGF5ZXJTY3JlZW4iOnsieCI6NDE5LjQ2MjY0MDQ4NTgwNjA1LCJ5IjoxOTkuNjE2NzEyNTAyMTc0Nzh9LCJmZWVkYmFjayI6eyJzdGF0ZSI6InJ1bm5pbmciLCJtdXRlZCI6ZmFsc2UsInBsYXllZCI6MTAsInBlYWsiOjAuMDUzMjI1OTY4MDMzMDc1MzN9LCJ2aWV3cG9ydCI6eyJ3aWR0aCI6ODQ0LCJoZWlnaHQiOjM5MSwiZHByIjoxLCJ2aWV3SGVpZ2h0IjoxOS4zMzY0OTI4OTA5OTUyNjN9LCJyZW5kZXJDYWxscyI6MTc4fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "44fd7d5611add84b9bb4-7b0fa98116e17eacb6e9",
+          "file": "stone-adventure.spec.ts",
+          "line": 97,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-28T20:01:22.974Z",
+    "duration": 84083.141,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

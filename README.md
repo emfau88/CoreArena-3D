@@ -20,9 +20,13 @@ einen Checkpoint mit aufgefüllten Vorräten. Nach Boss-Tod dort erneut versuche
 Level abschließen, wiederholen oder ins Spielmenü zurückkehren. Kristallkluft bleibt
 danach eine optionale Fortsetzung. [Prüfung und Aufnahmen](docs/qa/L1_3_RESULT.md).
 
-**Als Nächstes geplant:** bessere Materialien, passende Pflanzen/Felsen, Beleuchtung
-und abgestimmter Kampf für das hochwertige Testlevel. L1.1–L1.3 sind spielbar;
-die Gestaltung folgt in L1.4a/b. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+**L1.4a: erster Hof gestaltet.** Verwittertes Steinpflaster, strukturierte Mauern,
+helle abgeschrägte Deckungskanten, detaillierte Farne, bemooste Felsen und eine
+animierte Fackel. Der erste Hof ist die Stilprobe; die beiden folgenden behalten
+bis zur Sichtung ihren bisherigen Look. [Vorher/Nachher und Browserprüfung](docs/qa/L1_4A_RESULT.md)
+· [Assetquellen / CC0](public/assets/courtyard/CREDITS.md).
+Als Nächstes nach Freigabe: Gestaltung auf die weiteren Höfe übertragen (L1.4b),
+danach Kampf und Testlevel abnehmen (L1.5). [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera

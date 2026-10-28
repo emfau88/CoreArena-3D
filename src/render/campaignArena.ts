@@ -7,7 +7,7 @@ import { addCampaignDetails } from './campaignDetails';
 
 /** The same arena boxes remain the visible and physical cover boundaries. */
 export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, theme: MonsterKind,
-  options: { adventure?: boolean } = {}): (dt: number) => void {
+  options: { adventure?: boolean; skipShape?: (id: string) => boolean } = {}): (dt: number) => void {
   const palette = theme === 'stone' ? { floor: 0xb3ac8d, wall: 0xa7a58b, glow: 0xcce69a, dark: 0x1b2925, sky: 0xeaf4ce }
     : theme === 'frost' ? { floor: 0xb4dfef, wall: 0x79adc6, glow: 0x75edff, dark: 0x0c2339, sky: 0xc5e9ff }
       : { floor: 0xc4bdba, wall: 0xb5acaa, glow: 0xff812c, dark: 0x30333c, sky: 0xffecd9 };
@@ -73,6 +73,7 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
     box(0, -0.05, side * 15, 49, 0.2, 2, theme === 'ember' ? lava : dark);
   }
   for (const shape of arena.boxes) {
+    if (options.skipShape?.(shape.id)) continue;
     if (options.adventure && ['dormant-warden', 'north-gate', 'boss-entry-gate'].includes(shape.id)) continue;
     const { center: c, size: s } = shape;
     const mesh = box(c.x, c.y, c.z, s.x, s.y, s.z, materials[shape.material]); mesh.name = shape.id;
@@ -128,7 +129,7 @@ export function buildCampaignArena(scene: THREE.Scene, arena: ArenaDefinition, t
   }
   if (theme === 'stone') {
     // Vegetation hugs the back edge; most of each platform stays visibly walkable.
-    addGarden(scene, { ...arena, boxes: arena.boxes.filter(b => b.planted).map(b => ({ ...b,
+    addGarden(scene, { ...arena, boxes: arena.boxes.filter(b => b.planted && !options.skipShape?.(b.id)).map(b => ({ ...b,
       center: { ...b.center, z: b.center.z - b.size.z / 2 + 0.25 }, size: { ...b.size, z: 0.5 } })) });
     if (options.adventure) {
       // Many adjoining rooms add hundreds of coping/corner pieces. Draw equal

@@ -1,17 +1,19 @@
 # Level 1: Der verwitterte Hof
 
-Stand: 28. Oktober 2026. **L1.1, das verkleinerte L1.2 und L1.3 umgesetzt und technisch
+Stand: 28. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3 und L1.4a umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
 Der frühere Plan mit sieben kleinen Gegnern, Steinwerfer und zusätzlichen Bossphasen
 ist damit überholt. Aktuelles Nutzerziel: **ein vollständig spielbares, hochwertig
 ausgearbeitetes erstes Testlevel**. Dafür werden Abschluss, Gestaltung und Spielabnahme
 als konkrete Pakete eingeplant. Mit „ok go“ wurde anschließend L1.3 freigegeben und
-umgesetzt. L1.4a/b und L1.5 sind weiterhin geplant, nicht freigegeben.
+umgesetzt. Anschließend wurde L1.4a mit gewünschten Vorher/Nachher-Bildern freigegeben
+und umgesetzt. L1.4b und L1.5 sind weiterhin geplant, nicht freigegeben.
 
 [Spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)
 · [Ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1)
 · [Aktuelle L1.3-Prüfung und Spielaufnahmen](../qa/L1_3_RESULT.md)
+· [L1.4a: Vergleichsbilder und Prüfung](../qa/L1_4A_RESULT.md)
 
 ## Rahmen und Richtung
 
@@ -102,12 +104,12 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.1 · Map begehen** | Drei Höfe, Kamera, Treppen, Terrassen und feste Vorräte | **Erledigt**; technische Erstprüfung nach ca. 35 Min. inklusive Grundrisswechsel, spätere Nacharbeiten separat |
 | **L1.2 · Kleiner Kampfablauf** | Ein Läufer pro erstem/zweitem Hof, vorhandener Boss im dritten, gemeinsame HP, Sieg/Tod/Neustart | **Erledigt**; 47 Kerntests und vier Browserfälle bestanden |
 | **L1.3 · Level vollständig abschließen** | Einstieg aus dem Spielmenü mit kurzem Auftrag; einmaliger Ruhe-/Checkpoint vor dem Boss; nach Sieg echtes Nordtor öffnen, hinauslaufen und Levelabschluss mit Wiederholen/Rückkehr anzeigen | **Erledigt**; 48 Kerntests und fünf Browserfälle bestanden |
-| **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgenutzte Kanten, Pflanzengruppe, Felsgruppe und eine Fackel; Screenshot aus normaler Kamera und kurzer Weg-/Sprungtest | **Geplant, nicht umgesetzt**; 30–60 Min. |
+| **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
 | **L1.4b · Drei Höfe fertig gestalten** | Bewährte Materialien überall übernehmen; abgestimmtes kleines Dekoset, Licht und Umgebung; pro Hof ein eigener Blickfang und erkennbare Funktion | **Nach Sichtung der Stilprobe**; 45–90 Min. |
 | **L1.5 · Kampf und Testlevel abnehmen** | Bestehende Angriffe abstimmen, sinnvolles Ausweichen, Treffer-/Tod-/Siegfeedback, kompletter Desktop-/Touch-Durchlauf und Laufzeitprüfung | **Geplant, nicht umgesetzt**; 30–60 Min. |
 
 Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Als Planungsrahmen
-für die verbleibenden L1.4a/b und L1.5 **rund 2–4 Stunden aktive Agent-Arbeit**, keine menschlichen
+für die verbleibenden L1.4b und L1.5 **rund 1,5–3 Stunden aktive Agent-Arbeit**, keine menschlichen
 Arbeitstage und keine Qualitäts-/Liefergarantie. Stilprobe und Rückmeldung entscheiden
 über die tatsächliche Gestaltung; Warten auf Rückmeldung/Hosting kommt hinzu.
 Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
@@ -136,7 +138,23 @@ Wunsch wieder zu planen. Die separate Arena-/Liga-Roadmap M2.4 ff. bleibt besteh
 - [x] Sichtbar öffnendes Nordtor mit passender Kollision und begehbarem Ausgang.
 - [x] Abschluss erst nach Durchgehen; Wiederholen, Spielmenü und optionale Kristallkluft.
 - [x] Regulärer Desktop- und Touch-Durchlauf einschließlich Boss-Tod, Retry, Sieg und Ausgang.
-- [ ] Persönliche Spielabnahme; Material-/Deko-/Lichtüberarbeitung in L1.4a/b noch offen.
+- [ ] Persönliche Spielabnahme; Übertragung der Gestaltung auf weitere Höfe in L1.4b noch offen.
+
+## L1.4a – erster Hof als Stilprobe erledigt
+
+- [x] Lokal eingebundene 1K-Steinmaterialien mit Farb-, Normalen- und Rauheitskarten.
+- [x] Maßstäbliche Mauerfugen, helle Steinkappen mit kleinen Fasen, dunklerer Sockel;
+  beide vorhandenen Deckungen bleiben an ihren ursprünglichen Orten begehbar.
+- [x] Vier Farnvarianten, drei bemooste Felsvarianten; größere Deko außerhalb der
+  Umfassungsmauern, Pflanzen nur an den hinteren Deckungskanten.
+- [x] Eine kleine Fackel am ersten Durchgang, Flackern und lokales warmes Licht ohne
+  zusätzliche dynamische Schattenquelle.
+- [x] Vorher/Nachher aus identischen seitlichen/isometrischen Vergleichskameras,
+  reale Sprünge auf beide Deckungen, Desktop-Komplettkampf und mobile Wegprüfung.
+- [ ] Persönliche Sichtung vor Übertragung auf den inneren Hof und Wächterhof.
+
+[Ergebnis, Grenzen und Bilder](../qa/L1_4A_RESULT.md). Grundriss, Gegneranzahl,
+Kampfwerte und Kollisionsdefinition bleiben unverändert. Kein Vorziehen von L1.4b.
 
 ## Gestaltung: verwitterter Garten einer alten Wächteranlage
 
@@ -159,10 +177,12 @@ für Boden/Wände ein kleines zusammenpassendes Materialset mit Farb-, Relief- u
 Rauheitsinformationen. Auswahl und Aufbereitung erfolgen zunächst nur für den Probehof.
 Bestehende Three/Rapier-Basis reicht dafür aus; kein Enginewechsel erforderlich.
 
-Als mögliche Materialquelle wurde [Poly Haven](https://polyhaven.com/license) geprüft:
-Die angebotenen Assets stehen unter CC0. Konkrete Assets wurden noch nicht ausgewählt
-oder heruntergeladen. Reale Steinoberflächen müssten farblich und im Detailgrad an
-unsere Figuren angepasst werden. Kein unkontrollierter Mix verschiedener Stile.
+Für L1.4a wurden vier [Poly-Haven-Assets](../../public/assets/courtyard/CREDITS.md)
+unter CC0 lokal eingebunden: Rock Tile Floor, Stone Wall 02, Fern 02 und Rock Moss
+Set 01. 1K-Texturen, insgesamt rund 7,5 MiB; Farne mit expliziter Blattmaske.
+Farbgebung, Reliefstärke und Platzierung sind im Renderer an die Spielansicht
+angepasst. Größere Pflanzenvielfalt, Ruinenteile und weitere Lichtpunkte folgen
+erst im freigegebenen Gestaltungspaket.
 
 ### Drei Höfe mit erkennbarer Identität
 
