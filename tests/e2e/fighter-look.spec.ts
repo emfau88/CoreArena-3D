@@ -36,14 +36,15 @@ test('KayKit walking in eight directions never accumulates a body spin',async({p
 test('KayKit character walks, sprints, jumps, aims and collects a disappearing particle pickup',async({page},info)=>{
   test.setTimeout(60_000);
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  page.on('console',msg=>{if(msg.text().includes('THREE.PropertyBinding'))errors.push(msg.text());});
+  page.on('console',msg=>{if(msg.type()==='error'||msg.text().includes('THREE.PropertyBinding'))errors.push(msg.text());});
   page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('./?mode=pve&level=stone&adventure=1&explore=1');
   await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
-  type State={snapshot:{position:{x:number;y:number;z:number};grounded:boolean};fighter:{model:string;lower:string;upper:string;time:number;bones:number;leg:number[]};
+  type State={snapshot:{position:{x:number;y:number;z:number};grounded:boolean};fighter:{model:string;style:string;lower:string;upper:string;time:number;bones:number;leg:number[]};
     weapons:{ownsPulse:boolean};pickupVisuals:{id:string;visible:boolean;particles:boolean}[]};
   const read=()=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
   expect((await read()).fighter.model).toBe('kaykit-mannequin-medium');expect((await read()).fighter.bones).toBeGreaterThan(15);
+  expect((await read()).fighter.style).toBe('ruins-courier');
   await page.mouse.move(1000,400);
   await page.screenshot({path:info.outputPath('arrival.png')});
   await page.keyboard.down('KeyD');

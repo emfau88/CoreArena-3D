@@ -39,3 +39,9 @@ our existing CC0 Poly Haven Rock Tile Floor surfaces, a slightly wider silhouett
 bone-attached shoulder/forearm plates, fists, amber eyes/core and small moss patches.
 The original model file remains intact. Source punch maximum extension at 0.5s
 is mapped to the simulation damage frame; no independent animation event deals damage.
+
+Player-only silhouette/palette adaptation in `src/render/courierLook.ts`: wider,
+flatter head, fuller lower torso and larger boots, applied to cloned bind-pose
+vertices with original bone weights. Material shader remaps painted atlas regions
+to ivory/coral/graphite while preserving existing dark details. No additional
+bitmap assets; source GLB and other character instances remain intact.

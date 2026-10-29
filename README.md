@@ -7,6 +7,10 @@
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
+**Spieler-Look: erste Ruinenkurier-Variante.** Flacherer, breiterer Kopf, kompakterer
+Körper und kräftigere Stiefel; warmer Elfenbeinhelm, koralloranger Anzug und Graphitdetails.
+[Aktuelle Spielaufnahmen und Browserprüfung](docs/qa/PLAYER_COURIER_RESULT.md).
+
 **29. Oktober: Schnellere Bossangriffe und steinerne Wächterpuppen.** Der Boss holt
 für Faustschläge nur noch 0,35 s aus und verfolgt schneller. Die beiden kleinen
 Gegner nutzen nun das KayKit-Skelett mit eigener Steinoptik und Nahkampfanimationen.

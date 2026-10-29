@@ -205,6 +205,9 @@ Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
 - [x] KayKit-Skelett für beide Steinläufer mit eigener Steinoptik und Nahkampfanimationen wiederverwendet.
 - [x] Vorgeschlagene Bossabstimmung umgesetzt; aktive Desktop-/Touch-Kämpfe geprüft.
 - [x] Rückmeldung zur Lesbarkeit: kühler blaugrauer Stein und helle Kanten ersetzen die Boden-Farbzeichnung auf den Gegnern.
+- [x] Eigener Spieler als erste Ruinenkurier-Variante: flacherer/breiterer Kopf,
+  kompakter Körper, kräftigere Stiefel, Elfenbein/Korallorange/Graphit. Animationen,
+  Kampf/Retry und Touch im Browser geprüft. [Aufnahmen](../qa/PLAYER_COURIER_RESULT.md).
 - [ ] Persönliches Urteil zur Figur und ihren Bewegungen.
 - [x] Nachbesserung zur Nutzerrückmeldung: aufaddierte Hüft-/Brustdrehung beim
   Gehen behoben; eigener Browser-Regressionsfall für acht Laufrichtungen und Pause.

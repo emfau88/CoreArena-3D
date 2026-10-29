@@ -12,6 +12,11 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, Spieler-Look: erste Ruinenkurier-Form mit flacherem/breiterem Kopf,
+  kompakterem Körper, kräftigeren Stiefeln und Elfenbein/Korallorange/Graphit.
+  Vier Browserfälle inklusive Kampf/Retry und Touch bestanden. [Nachweise](../qa/PLAYER_COURIER_RESULT.md).
+- [ ] Persönliche Sichtung der Spielerform und Farbaufteilung.
+
 - [x] 29. Oktober, L1.5a: vorgeschlagene Bosszeiten und Verfolgung umgesetzt; beide kleinen Gegner als geriggte KayKit-Wächterpuppen mit Steinoberfläche, Platten, Fäusten, Augen/Kern und Moos. Synchroner Nahkampf und Desktop-/Touch-Ablauf geprüft. [Nachweise und Balancegrenze](../qa/BOSS_AND_GUARDS_RESULT.md).
 
 - [x] 29. Oktober, KayKit-Nachbesserung: ungewolltes Drehen beim Gehen reproduziert und behoben; begrenzte Taillendrehung baut jedes Bild auf der unveränderten Animationspose auf. Browser-Regressionsprüfung für acht Laufrichtungen und Pause ergänzt. [Ursache und Prüfung](../qa/KAYKIT_PRESENTATION_RESULT.md#nachbesserung-ungewolltes-drehen-beim-laufen-29-oktober).

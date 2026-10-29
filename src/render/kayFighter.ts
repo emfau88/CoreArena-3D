@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import type { WeaponId } from '../core/combat';
 import type { Vec3 } from '../core/types';
+import { applyCourierLook } from './courierLook';
 
 export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number }
 let template: THREE.Group | undefined;
@@ -61,6 +62,8 @@ export function kayClip(body:THREE.Object3D,name:string):THREE.AnimationClip {
 export function createKayFighter(color:number) {
   if(!template) return null;
   const {actor,body,visual,scale}=createKayRig(color);
+  const courier=color===0xc7c9c3;
+  if(courier)applyCourierLook(body);
   const mixer=new THREE.AnimationMixer(body),axis=new THREE.Vector3(0,1,0),yaw=new THREE.Quaternion();
   const hips=body.getObjectByName('hips')!,chest=body.getObjectByName('chest')!;
   const animatedPose=[hips,chest].map(bone=>({bone,rotation:bone.quaternion.clone()}));
@@ -125,7 +128,7 @@ export function createKayFighter(color:number) {
       visual.scale.set(scale*(1+landing*.07),scale*(1-landing*.09),scale*(1+landing*.07));
       visual.position.z=-recoil*.055;
     },
-    diagnostics:()=>({model:'kaykit-mannequin-medium',lower:lowerState,upper:upperState,time:mixer.time,legYaw,
+    diagnostics:()=>({model:'kaykit-mannequin-medium',style:courier?'ruins-courier':'mannequin',lower:lowerState,upper:upperState,time:mixer.time,legYaw,
       deathAge:deadAge,bones:body.getObjectsByProperty('type','Bone').length,
       hips:hips.quaternion.toArray(),chest:chest.quaternion.toArray(),
       leg:body.getObjectByName('lowerlegl')?.quaternion.toArray(),scale:visual.scale.toArray()}),

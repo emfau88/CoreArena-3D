@@ -216,7 +216,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
     },
     fighterView:()=>{
-      setPaused(true);el('pause').hidden=true;overview=true;view.camera.mode='isometric';view.camera.snap(current.position);
+      setPaused(true);el('pause').hidden=true;overview=true;view.camera.snap(current.position);
       const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
     },
     courtView: (mode:'side'|'straight'|'isometric'='side',z=27) => {
