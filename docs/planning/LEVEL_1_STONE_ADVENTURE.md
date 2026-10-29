@@ -194,6 +194,8 @@ Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
   Partikel ersetzt; Aufnahmeimpuls und Verschwinden verbrauchter Adventure-Items.
 - [x] Desktop-/Touch-Spielabläufe und Darstellungszustände im Browser geprüft.
 - [ ] Persönliches Urteil zur Figur und ihren Bewegungen.
+- [x] Nachbesserung zur Nutzerrückmeldung: aufaddierte Hüft-/Brustdrehung beim
+  Gehen behoben; eigener Browser-Regressionsfall für acht Laufrichtungen und Pause.
 
 [Quelle, Aufnahmen und Prüfung](../qa/KAYKIT_PRESENTATION_RESULT.md). Dieser kleine
 Präsentationsschritt ersetzt nicht die abschließende Kampf-/Leistungsabnahme L1.5.

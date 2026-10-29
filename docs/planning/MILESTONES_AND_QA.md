@@ -11,6 +11,8 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, KayKit-Nachbesserung: ungewolltes Drehen beim Gehen reproduziert und behoben; begrenzte Taillendrehung baut jedes Bild auf der unveränderten Animationspose auf. Browser-Regressionsprüfung für acht Laufrichtungen und Pause ergänzt. [Ursache und Prüfung](../qa/KAYKIT_PRESENTATION_RESULT.md#nachbesserung-ungewolltes-drehen-beim-laufen-29-oktober).
+
 - [x] 29. Oktober, Zusatzfreigabe KayKit/Pickups: geriggtes Mannequin aus dem kostenlosen Animationspaket, Lauf-/Sprint-/Sprung-/Waffen-/Treffer-/Todesanimationen, Leuchtringe und Partikel statt schwarzer Sockel. Vollständige Desktop-/Touch-Spielabläufe und neuer Präsentationsfall geprüft. [Nachweise](../qa/KAYKIT_PRESENTATION_RESULT.md).
 - [ ] Persönliche Abnahme der Figur/Animationen und neuen Pickup-Präsentation.
 

@@ -34,7 +34,27 @@ dateien erkannt. Deren Tracks werden nun ausgeschlossen; alle vorhandenen Knoche
 werden regulär animiert. Der abschließende neue Präsentationstest meldet keine
 PropertyBinding-Warnungen, fehlenden Assets oder JavaScript-Seitenfehler.
 
-## Pickups
+## Nachbesserung: ungewolltes Drehen beim Laufen, 29. Oktober
+
+Nutzerrückmeldung bestätigt: Die zusätzliche Hüftdrehung summierte sich pro Bild.
+Der Three-Animationsmixer schreibt unveränderte Tracks nicht erneut; gerade die
+Hüftrotation von `Walking_A` ist konstant. Deshalb blieb die vorherige manuelle
+Drehung erhalten. Hüfte und Brust bekommen jetzt vor dem Animationsschritt ihre
+zuletzt gespeicherte, unveränderte Clip-Pose zurück. Erst danach wird die begrenzte
+Taillendrehung einmal angewendet. Das gilt auch bei Pause, Tod und Wiederbelebung.
+
+Der neue Browser-Regressionsfall fährt acht Laufrichtungen mit unabhängiger Maus-
+Zielrichtung ab und prüft die tatsächlichen Knochenrotationen sowie Stillstand in
+Pause. Nach dem Fix bestanden. Vor dem Fix schlug er schon beim ersten Geradeauslaufen fehl (1,90 rad
+statt höchstens 0,76 rad). Die bisherigen Prüfungen auf wechselnde Beinknochen
+hatten diese unerwünschte Körperrotation nicht erkannt.
+
+Zusätzlich erneut geprüft: Präsentationsablauf mit Sprint/Sprung/Arc/Pulse und
+Pickups, vollständiger Desktopkampf einschließlich Tod/Retry/Exit sowie Touch-
+Joystick/Sprint/Sprung/Kamera. Test- und Produktionsbuild einschließlich TypeScript
+erfolgreich. Keine Änderungen an Steuerung, Kamera, Karte oder Spielbalance.
+
+## Pickup-Darstellung
 
 - Die geschlossenen dunklen Zylindersockel sind entfernt.
 - Vier dünne Leuchtsegmente lassen den Boden zwischen sich sichtbar.

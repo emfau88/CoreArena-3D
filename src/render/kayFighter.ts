@@ -39,6 +39,11 @@ export function createKayFighter(color:number) {
   });
   const mixer=new THREE.AnimationMixer(body),axis=new THREE.Vector3(0,1,0),yaw=new THREE.Quaternion();
   const hips=body.getObjectByName('hips')!,chest=body.getObjectByName('chest')!;
+  const animatedPose=[hips,chest].map(bone=>({bone,rotation:bone.quaternion.clone()}));
+  const updateAnimation=(dt:number)=>{
+    mixer.update(dt);
+    for(const pose of animatedPose)pose.rotation.copy(pose.bone.quaternion);
+  };
   const upper=/^(chest|head|upperarm|lowerarm|wrist|hand)/;
   const action=(name:string,part:'full'|'lower'|'upper'='full',once=false)=>{
     const source=clips.find(clip=>clip.name===name);
@@ -65,6 +70,9 @@ export function createKayFighter(color:number) {
     actor,
     get deathVisible(){return !alive && deadAge<1.5;},
     animate(speed:number,dt:number,motion?:FighterMotion) {
+      // The mixer skips writes for constant tracks (Walking_A hips). Restore its
+      // last unmodified pose so waist offsets never accumulate, even while paused.
+      for(const pose of animatedPose)pose.bone.quaternion.copy(pose.rotation);
       const state=motion??{grounded:true,verticalSpeed:0,velocity:{x:0,y:0,z:speed},facing:0,weapon:'arc' as const,shot:false,alive:true};
       if(state.alive!==alive) {
         alive=state.alive;deadAge=0;
@@ -72,7 +80,7 @@ export function createKayFighter(color:number) {
         else {death.stop();activeLower.reset().play();activeUpper=aiming[state.weapon];activeUpper.reset().play();
           upperAge=0;landing=recoil=0;previousHp=state.hp??100;}
       }
-      if(!alive){deadAge+=dt;mixer.update(dt);return;}
+      if(!alive){deadAge+=dt;updateAnimation(dt);return;}
       const nextLower=!state.grounded?'jump':speed>8?'run':speed>.2?'walk':'idle';
       switchAction(activeLower,lower[nextLower]);activeLower=lower[nextLower];lowerState=nextLower;
       const targetYaw=speed>.2?THREE.MathUtils.euclideanModulo(Math.atan2(state.velocity.x,state.velocity.z)-state.facing+Math.PI,Math.PI*2)-Math.PI:0;
@@ -89,7 +97,7 @@ export function createKayFighter(color:number) {
       if(!wasGrounded && state.grounded)landing=1;
       wasGrounded=state.grounded;previousHp=state.hp??100;
       recoil=Math.max(0,recoil-dt*9);landing=Math.max(0,landing-dt*7);
-      mixer.update(dt);
+      updateAnimation(dt);
       // Small waist turn keeps legs responsive while shoulders continue aiming.
       yaw.setFromAxisAngle(axis,legYaw);hips.quaternion.premultiply(yaw);
       yaw.setFromAxisAngle(axis,-legYaw);chest.quaternion.premultiply(yaw);
@@ -98,6 +106,7 @@ export function createKayFighter(color:number) {
     },
     diagnostics:()=>({model:'kaykit-mannequin-medium',lower:lowerState,upper:upperState,time:mixer.time,legYaw,
       deathAge:deadAge,bones:body.getObjectsByProperty('type','Bone').length,
+      hips:hips.quaternion.toArray(),chest:chest.quaternion.toArray(),
       leg:body.getObjectByName('lowerlegl')?.quaternion.toArray(),scale:visual.scale.toArray()}),
   };
 }

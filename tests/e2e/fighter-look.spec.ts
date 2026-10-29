@@ -1,5 +1,38 @@
 import { test,expect } from '@playwright/test';
 test.use({headless:false});
+
+test('KayKit walking in eight directions never accumulates a body spin',async({page},info)=>{
+  test.setTimeout(60_000);
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('./?mode=pve&level=stone&adventure=1&explore=1');
+  await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+  type State={fighter:{lower:string;hips:number[];chest:number[];legYaw:number};camera:string;paused:boolean};
+  const read=()=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
+  const samples:State[]=[];
+  // Opposite pairs stay in the open arrival area. Aim independently of movement.
+  await page.mouse.move(1100,570);
+  for(const keys of [['KeyD'],['KeyA'],['KeyW'],['KeyS'],['KeyD','KeyW'],['KeyA','KeyS'],['KeyD','KeyS'],['KeyA','KeyW']]){
+    for(const key of keys)await page.keyboard.down(key);
+    await expect.poll(async()=>(await read()).fighter.lower).toBe('walk');
+    for(let i=0;i<12;i++){
+      await page.waitForTimeout(90);
+      const state=await read();samples.push(state);
+      // Walking_A has a constant neutral hips rotation; only the bounded .7rad waist offset may turn it.
+      const angle=2*Math.acos(Math.min(1,Math.abs(state.fighter.hips[3]!)));
+      expect(angle,`body rotated beyond its waist range while holding ${keys.join('+')}`).toBeLessThan(.76);
+    }
+    for(const key of keys)await page.keyboard.up(key);
+  }
+  await expect.poll(async()=>(await read()).fighter.lower).toBe('idle');
+  await page.locator('#pve-pause').click();await expect.poll(async()=>(await read()).paused).toBe(true);
+  const paused=await read();await page.waitForTimeout(350);
+  expect((await read()).fighter.hips).toEqual(paused.fighter.hips);
+  expect((await read()).fighter.chest).toEqual(paused.fighter.chest);
+  await page.locator('#resume').click();
+  expect((await read()).camera).toBe('side');expect(errors).toEqual([]);
+  await info.attach('rotation-samples',{body:JSON.stringify(samples),contentType:'application/json'});
+});
+
 test('KayKit character walks, sprints, jumps, aims and collects a disappearing particle pickup',async({page},info)=>{
   test.setTimeout(60_000);
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
