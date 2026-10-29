@@ -1,5 +1,56 @@
 # Level 1: Der verwitterte Hof
 
+## Kompakter nächster Ausbau: „Der verstummte Außenposten“
+
+**Planungsstand 29. Oktober 2026: Planung beauftragt, Umsetzung noch nicht
+freigegeben.** Arbeitstitel für die neue Inszenierung; der aktuelle Spieltitel
+und die unten dokumentierten Spielregeln bleiben bis zur Umsetzung bestehen.
+
+Ziel: Ein zusammenhängender kleiner Auftrag mit erkennbarem Anfang, Entdeckung,
+Bedrohung und sichtbarem Abschluss. Grundlage bleiben die drei großen Höfe,
+Links-nach-rechts-Kamera, zwei Steinläufer, Steinwächter und die beiden Waffen.
+
+**Geplanter Ablauf:** Ankunft an beschädigter Drohne → erster Läufer → Pulse-Fund
+→ zweiter Läufer / optionale Wartungsterrasse → Konsole aktivieren → Checkpoint
+→ angekündigtes Erwachen des Bosses → Steinkern bergen → Relais versorgen →
+durch das geöffnete Ausgangstor gehen.
+
+| Paket | Konkretes Ergebnis | Fertig, wenn … | Aktive Agentzeit |
+| --- | --- | --- | --- |
+| **L1.6a · Auftrag spielbar machen** | Beschädigter Hover-Bot am Start und kurzer Auftrag; vorhandene Konsole im zweiten Hof wird bedienbar; sie aktiviert nach beiden Läufern den Zugang zum Boss. Nach Boss-Sieg versorgt der vorhandene Steinkern ein Hexwars-Relais am Ausgang, dessen Aktivierung das Nordtor öffnet. Lichtreaktionen und höchstens vier kurze Textmeldungen begleiten den Ablauf. | Ganze Kette mit Maus/Tastatur und Touch durchspielbar; aktuelles Ziel jederzeit klar, Interaktion nur in Reichweite. Boss-Retry erhält aktivierte Konsole/Anreisefortschritt, kompletter Neustart setzt alles zurück. | **45–75 Min.** |
+| **L1.6b · Kampf spannend und fair machen** | Kurzer angekündigter Vorwärtsschritt beim Faustschlag, erkennbare Erholung und bessere Folge der vorhandenen Spezialangriffe; Trefferanimation und Sound schärfen. Abstimmung auf Auto-Arc, Pulse und reduzierten Sprint. | Stationäres Dauerfeuer gewinnt den definierten Bossvergleich auf offenem Boden/Plateau nicht; aktives Ausweichen ermöglicht Sieg. Vorwärtsschritt respektiert Wände und Trefferzone, Warnung und tatsächlicher Schaden stimmen überein; auf Touch geprüft. | **30–60 Min.** |
+| **L1.6c · Drei erkennbare Orte gestalten** | Ankunft als Ladestation, zweiter Hof als überwucherter Wartungsbereich, Boss-Hof als massive Relaisanlage. Pulse als Waffenstation inszenieren; Terrasse mit vorhandenen Vorräten und kurzer Entdeckung. Kabel, Pflanzen, Licht und Schäden gezielt platzieren; Schläge/Staub kündigen den Boss an. | Jeder Hof hat einen klaren Blickfang; Hauptweg, Sprungflächen und Gegner bleiben aus Spielkamera und im mobilen Querformat lesbar. Vergleichsaufnahmen und tatsächlicher Wegtest vorhanden. | **30–60 Min.** |
+| **L1.5b · Gesamtabnahme** | Einstieg bis Ausgang mit Tod/Retry/Neustart spielen; Schwierigkeit und Lade-/Laufzeit mit den tatsächlich platzierten Assets prüfen; letzte gezielte Korrekturen. | Desktop- und emulierter Touch-Durchlauf bestanden, keine Fortschrittsblockade oder Ladefehler; persönlicher Handytest und Spielurteil separat dokumentiert. | **20–40 Min.** |
+
+- [ ] L1.6a: Auftrag, Konsole und Relaisabschluss.
+- [ ] L1.6b: Bossdruck und Kampfgefühl.
+- [ ] L1.6c: Ortsidentität und Erkundung.
+- [ ] L1.5b: Technische Gesamtabnahme und persönliche Rückmeldung.
+
+**Reihenfolge:** zuerst nur L1.6a umsetzen und spielbar zeigen; danach Kampf und
+Gestaltung paketweise. Die einfache Platzierung von Drohne/Relais und deren
+Lichtreaktion gehören bereits zu L1.6a; L1.6c verfeinert die Umgebung.
+Gesamt grob **2–4 Stunden aktive Agent-Arbeit**, inklusive gezielter Tests,
+Roadmap und Commit/Push je Paket; Rückmeldungen, Deployment-Wartezeit und echter
+Handytest separat. Schätzungen nach jedem Paket anhand der tatsächlichen Arbeit
+nachführen. Kein Anspruch, die Spielzeit durch längere Wege oder zusätzliche HP
+zu strecken.
+
+Die geplante Relaiskette ändert bewusst den bisherigen Abschluss: Der Steinkern
+wird vom optionalen Fund zum Missionsgegenstand, und das Nordtor öffnet erst nach
+Relaisaktivierung. Nach dem Boss-Sieg öffnet die Rückzugssperre weiterhin.
+Die einzige neue Bedienung ist „Interagieren“ (E am Desktop, kontextabhängige Taste
+auf Touch); Kampf- und Bewegungsfinger bleiben unabhängig. Der Erkundungsmodus
+bleibt zum freien Prüfen der ganzen Karte verwendbar.
+
+Der Ausbau verwendet vorhandene kostenlose Assets und einen kleinen festen
+Missionszustand. Mech-/Railgun-Gegner, weitere Räume, zusätzliche Gegnerwellen,
+Inventar und allgemeines Quest-System bleiben spätere Aufgaben. Nur tatsächlich
+platzierte Modelle werden vom Spiel geladen. Die neue Paketfolge erweitert die
+bisherige Roadmap; L1.5b wird bei Freigabe dahinter eingeordnet, nicht doppelt gerechnet.
+
+## Bereits umgesetzter Stand
+
 Stand: 29. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3 und L1.4a umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
@@ -130,12 +181,14 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
 | **L1.4b · Drei Höfe gestalten** | Materialien, Innenpflanzen, saubere Mauerecken; kostenlose AssetQuest-Pflanzen und Retro-Tech-Konsolen | **Freigegebene Schritte umgesetzt und geprüft**; persönliche Sichtung offen. Weitere Ruinen/Lichter optional nach Rückmeldung |
 | **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
-| **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen**; 30–60 Min., echte Handyprüfung separat |
+| **L1.6a–c · Adventure-Inszenierung** | Auftrag/Konsole/Relaisabschluss, Bossdruck, drei erkennbare Orte; siehe kompakten Ausbau oben | **Geplant, noch nicht freigegeben**; 105–195 Min. |
+| **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung; bei Freigabe nach L1.6a–c | **Offen**; 20–40 Min. nach den paketweisen Tests, echte Handyprüfung separat |
 
-Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Nach der kostenlosen
-Ausstattungsrunde bleiben für L1.5b **30–60 Minuten aktive Agent-Arbeit**, keine
-menschlichen Arbeitstage und keine Qualitäts-/Liefergarantie. Weitere gewünschte
-Gestaltungsänderungen werden separat abgegrenzt; Warten auf Rückmeldung/Hosting kommt hinzu.
+Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Die bisherige
+Restschätzung von **30–60 Minuten** betraf allein die Abnahme des vorhandenen
+Levels. Für die neu geplante Inszenierung samt anschließender Abnahme gelten
+nun die **2–4 Stunden aktive Agent-Arbeit** aus dem kompakten Ausbau oben.
+Warten auf Rückmeldung/Hosting und echte Handyprüfung kommen separat hinzu.
 Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
 nicht für die jetzt zusätzlich gewünschte Material-, Modell- und Lichtüberarbeitung.
 

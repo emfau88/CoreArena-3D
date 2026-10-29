@@ -8,6 +8,12 @@ Spielabnahme bleiben offen. Die untenstehende
 M-Paketfolge bleibt die spätere Arena-/Liga-Perspektive. Desktop bleibt das erste
 Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testlevels.
 
+**Nächster geplanter Ausbau:** [L1.6a–c](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten)
+ergänzt Auftrag/Konsole/Relaisabschluss, Bossdruck und Ortsgestaltung; noch nicht
+zur Umsetzung freigegeben. Die neue Interaktion erhält eine kontextabhängige
+Touch-Taste. Abschluss, Retry und Kampf werden auch im Querformat geprüft;
+L1.5b bleibt die abschließende Abnahme nach diesen Paketen.
+
 ## Freigegebener kleiner Mobile-Zusatz
 
 **29. Oktober, L1.5a:** Schnellere Boss-Faustschläge und KayKit-Wächterpuppen gelten

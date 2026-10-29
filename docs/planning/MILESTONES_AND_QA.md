@@ -11,7 +11,19 @@ Bosstempo und KayKit-Wächterpuppen. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
+**Neu geplant, noch nicht zur Umsetzung freigegeben:** L1.6a–c geben dem bestehenden
+Level einen zusammenhängenden Auftrag, mehr Bossdruck und drei erkennbare Orte.
+Bei Freigabe folgen zuerst Auftrag/Konsole/Relaisabschluss (L1.6a), dann Kampf
+(L1.6b), Gestaltung (L1.6c) und abschließend die bestehende Abnahme L1.5b.
+Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
+
 ## Aktueller Fortschritt
+
+- [x] Kompakter Adventure-Ausbauplan erstellt und mit der Roadmap abgeglichen.
+- [ ] L1.6a: Auftrag, Konsole, Steinkern als Missionsgegenstand und Relaisabschluss.
+- [ ] L1.6b: Bedrohlicher, fair ausweichbarer Boss und präziseres Trefferfeedback.
+- [ ] L1.6c: Ladestation, Wartungsbereich und Relaisanlage optisch unterscheiden.
+  Alle drei Pakete sind geplant, noch nicht implementiert oder freigegeben.
 
 - [x] 29. Oktober, Tempo/Zoom/Startwaffe: Sprint um 15 % reduziert, mobile Darstellung
   nochmals rund 26 % größer; Arc Lash mit automatischer Zielwahl, fünf Strahlen,
@@ -69,8 +81,8 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
 - [ ] Persönliche Sichtung von L1.4b einschließlich der neuen Pflanzen/Konsolen;
-  weitere Ruinenteile/Lichtgestaltung erst nach Rückmeldung. L1.5b bleibt der nächste
-  Abnahmeschritt (30–60 Minuten aktive Agent-Arbeit; echter Handytest separat).
+  weiterer Ausbau ist jetzt als L1.6a–c geplant. Bei Freigabe folgt L1.5b danach
+  (20–40 Minuten nach den Paketprüfungen; echter Handytest separat).
 - [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
