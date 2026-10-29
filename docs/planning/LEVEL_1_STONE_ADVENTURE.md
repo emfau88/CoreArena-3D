@@ -1,6 +1,6 @@
 # Level 1: Der verwitterte Hof
 
-Stand: 28. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3 und L1.4a umgesetzt und technisch
+Stand: 29. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3 und L1.4a umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
 Der frühere Plan mit sieben kleinen Gegnern, Steinwerfer und zusätzlichen Bossphasen
@@ -11,6 +11,8 @@ umgesetzt. Anschließend wurde L1.4a mit gewünschten Vorher/Nachher-Bildern fre
 und umgesetzt. Nach der Rückmeldung wurde der Material-/Ecken-/Pflanzenschritt von
 L1.4b freigegeben und umgesetzt: Boden auf der ganzen Map, Pflanzen auch innen,
 saubere Maueranschlüsse. Weitere Blickfänge/Lichtgestaltung und L1.5 bleiben offen.
+Der zusätzlich freigegebene KayKit-/Pickup-Schritt vom 29. Oktober ist ebenfalls
+umgesetzt: geriggte Figur mit Animationen und Energie-Pickups statt schwarzer Sockel.
 
 [Spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)
 · [Ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1)
@@ -181,6 +183,20 @@ gezielte Übertragung und die neuen soliden Eckpfeiler sind unten dokumentiert.
 Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
 
 ## Gestaltung: verwitterter Garten einer alten Wächteranlage
+
+### Zusätzlich freigegeben: Figur und Pickup-Präsentation, 29. Oktober
+
+- [x] Kostenlose KayKit-Mannequin-Grundlage samt passenden Animationen eingebunden;
+  großes Gesicht/Kopf, kurzer Körper und vorhandene Bewegungs-/Waffensteuerung.
+- [x] Lauf/Sprint, Sprung, Landestauchung, Waffenhaltung, Schuss, Treffer und Tod;
+  Bewegung und Zielrichtung werden bei der Darstellung getrennt berücksichtigt.
+- [x] Schwarze Pickup-Sockel durch unterbrochene Leuchtringe und aufsteigende
+  Partikel ersetzt; Aufnahmeimpuls und Verschwinden verbrauchter Adventure-Items.
+- [x] Desktop-/Touch-Spielabläufe und Darstellungszustände im Browser geprüft.
+- [ ] Persönliches Urteil zur Figur und ihren Bewegungen.
+
+[Quelle, Aufnahmen und Prüfung](../qa/KAYKIT_PRESENTATION_RESULT.md). Dieser kleine
+Präsentationsschritt ersetzt nicht die abschließende Kampf-/Leistungsabnahme L1.5.
 
 Stilisierte, ausgearbeitete 3D-Ruine mit warmgrauem Stein, gedecktem Grün und wenigen
 bernsteinfarbenen Lichtquellen. Die großen Räume und klaren Laufwege bleiben bestehen.

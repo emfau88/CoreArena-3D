@@ -7,6 +7,12 @@
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
+**29. Oktober: KayKit-Figur und Energie-Pickups.** Gedrungenes, geriggtes Mannequin
+mit Lauf-/Sprint-/Sprung-, Ziel-, Schuss-, Treffer- und Todesanimationen.
+Unterbrochene Leuchtringe und aufsteigende Partikel ersetzen die schwarzen
+Pickup-Sockel; verbrauchte Adventure-Fundstellen verschwinden nach einem Lichtimpuls.
+[Bilder und Browserprüfung](docs/qa/KAYKIT_PRESENTATION_RESULT.md)
+· [Modell-/Animationsquelle, CC0](public/assets/kaykit/CREDITS.md).
 **L1.2 in kleiner Fassung umgesetzt:** ein Steinläufer mit Nahkampfschlag im ersten
 Hof, einer im zweiten, danach der bekannte Steinwächter im dritten. Beide Läufer
 besiegen und den Wächterhof betreten, um ihn zu wecken. Pulse liegt am ersten

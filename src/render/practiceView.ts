@@ -113,7 +113,8 @@ export class PracticeView {
     if (bot) {
       this.bot.actor.position.set(bot.position.x, bot.position.y, bot.position.z);
       this.bot.actor.rotation.y = bot.facing;
-      this.bot.animate(Math.hypot(bot.velocity.x, bot.velocity.z), dt);
+      this.bot.animate(Math.hypot(bot.velocity.x, bot.velocity.z), dt,{grounded:bot.grounded,
+        verticalSpeed:bot.velocity.y,velocity:bot.velocity,facing:bot.facing,weapon:'arc',shot:false,alive:true});
     }
   }
 }

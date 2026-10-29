@@ -208,9 +208,13 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
-      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),
+      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),pickupVisuals:view.pickupDiagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.
+    fighterView:()=>{
+      setPaused(true);el('pause').hidden=true;overview=true;view.camera.mode='isometric';view.camera.snap(current.position);
+      const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
+    },
     courtView: (mode:'side'|'straight'|'isometric'='side',z=27) => {
       setPaused(true); el('pause').hidden=true; overview=true;
       view.camera.mode=mode; view.camera.snap({x:0,y:0,z});

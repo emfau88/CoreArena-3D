@@ -1,6 +1,6 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
+Stand: 29. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
 Aktuelles Ziel ist das [hochwertige erste Adventure-Testlevel](LEVEL_1_STONE_ADVENTURE.md).
 L1.3 schließt den Levelablauf ab; L1.4a gestaltet den ersten Hof. Der Material-/Ecken-/
 Pflanzenschritt von L1.4b ist auf die ganze Map übertragen; weitere Blickfänge und
@@ -9,6 +9,12 @@ M-Paketfolge bleibt die spätere Arena-/Liga-Perspektive. Desktop bleibt das ers
 Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testlevels.
 
 ## Freigegebener kleiner Mobile-Zusatz
+
+**29. Oktober, KayKit-/Pickup-Präsentation ✅:** Geriggtes Mannequin mit vorhandener
+Touch-Steuerung, fertigen Animationen und kleinen Partikeleffekten. Vier lokale GLBs
+fügen rund 2,82 MiB Download hinzu; zwölf instanzierte Funken je Pickup, keine neuen
+Licht-/Schattenquellen. Vollständiger Touch-Abschluss und Joystick-/Sprint-/Menüablauf
+im Browser geprüft. [Aufnahmen und Grenzen](../qa/KAYKIT_PRESENTATION_RESULT.md).
 
 **28. Oktober, L1.3 ✅:** Einstieg aus dem Spielmenü, Sitzungs-Checkpoint, Boss-Retry,
 physisch geöffnetes Nordtor und tatsächlicher Levelabschluss mit Desktop und Touch

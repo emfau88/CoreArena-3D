@@ -31,6 +31,10 @@ export class ArenaView {
   private readonly combat: CombatView;
   private readonly raycaster = new THREE.Raycaster();
   private readonly animateEnvironment: ((dt: number) => void) | void;
+  private lastAmmo=0;
+  private lastArcTick=-1;
+  fighterDiagnostics(){return this.fighter.diagnostics();}
+  pickupDiagnostics(){return this.combat.diagnostics();}
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number;
     build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void) } = {}) {
@@ -87,10 +91,15 @@ export class ArenaView {
     );
     this.actor.position.copy(this.position);
     this.actor.rotation.y = aim ? Math.atan2(aim.firePoint.x - current.position.x, aim.firePoint.z - current.position.z) : current.facing;
-    this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt);
-    this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
-    this.actor.visible = this.marker.visible = life?.alive ?? true;
+    const arcTick=weapons?.lastArc?.tick??-1;
+    const fired=weapons?.selected==='pulse'?weapons.ammo<this.lastAmmo:arcTick>this.lastArcTick;
+    this.lastAmmo=weapons?.ammo??0;this.lastArcTick=arcTick;
+    this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt,{grounded:current.grounded,
+      verticalSpeed:current.velocity.y,velocity:current.velocity,facing:this.actor.rotation.y,weapon:weapons?.selected??'arc',shot:fired,
+      alive:life?.alive??true,hp:life?.hp});
+    this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
+    this.marker.visible = life?.alive ?? true;this.actor.visible=this.marker.visible||this.fighter.deathVisible;
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt, current.velocity);
     this.vitals.visible = !!life?.alive;

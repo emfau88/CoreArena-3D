@@ -1,6 +1,8 @@
 import * as THREE from 'three';
+import { createKayFighter, type FighterMotion } from './kayFighter';
 
 export function createFighter(color = 0xc7c9c3) {
+  const kaykit=createKayFighter(color);if(kaykit)return kaykit;
   const actor = new THREE.Group();
   const armor = new THREE.MeshStandardMaterial({ color, roughness: 0.48, metalness: 0.45 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x343b42, roughness: 0.65, metalness: 0.3 });
@@ -26,7 +28,9 @@ export function createFighter(color = 0xc7c9c3) {
   let phase = 0;
   return {
     actor,
-    animate(speed: number, dt: number) {
+    deathVisible:false,
+    diagnostics:()=>({model:'primitive'}),
+    animate(speed: number, dt: number, _motion?:FighterMotion) {
       phase += speed * dt * 2.2;
       const amount = Math.min(speed / 7.2, 1) * 0.45;
       legs.forEach((leg, i) => { leg.rotation.x = Math.sin(phase + i * Math.PI) * amount; });

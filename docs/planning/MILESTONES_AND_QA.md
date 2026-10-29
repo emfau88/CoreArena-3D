@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 28. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
+Stand: 29. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
@@ -10,6 +10,9 @@ Lichtgestaltung und L1.5 bleiben offen. Arena-Teamspiel/Liga
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 ## Aktueller Fortschritt
+
+- [x] 29. Oktober, Zusatzfreigabe KayKit/Pickups: geriggtes Mannequin aus dem kostenlosen Animationspaket, Lauf-/Sprint-/Sprung-/Waffen-/Treffer-/Todesanimationen, Leuchtringe und Partikel statt schwarzer Sockel. Vollständige Desktop-/Touch-Spielabläufe und neuer Präsentationsfall geprüft. [Nachweise](../qa/KAYKIT_PRESENTATION_RESULT.md).
+- [ ] Persönliche Abnahme der Figur/Animationen und neuen Pickup-Präsentation.
 
 - [x] Drei [Adventure-Level-Mockups](../concepts/adventure-levels/README.md) erstellt. Nutzerfeedback: unrealistisches Produktionsniveau und zu wenig konkrete Übersicht; als Planungsgrundlage verworfen.
 - [x] [Ablaufplan für Level 1](LEVEL_1_STONE_ADVENTURE.md) erstellt und anschließend verkleinert: feste Waffen-/Lootorte, zwei Nahkämpfer und vorhandener Boss. Die früher sieben kleinen Gegner sind verworfen.
