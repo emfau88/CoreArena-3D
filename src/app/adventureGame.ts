@@ -1,7 +1,7 @@
-import { STONE_ADVENTURE, STONE_ADVENTURE_COMBAT, ADVENTURE_BOSS, ADVENTURE_RUNNERS, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
+import { loadMeleeAssets } from '../render/kayFighter';
+import { STONE_ADVENTURE, STONE_ADVENTURE_COMBAT, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_RUNNERS, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
 import { AdventureFight } from '../core/adventureFight';
 import { AdventureFightView } from '../render/adventureFightView';
-import { PVE_RULES } from '../core/pve';
 import { buildStoneAdventure } from '../render/stoneAdventureView';
 import { loadCourtyardAssets } from '../render/courtyardLook';
 import { ArenaView } from '../render/arenaView';
@@ -26,7 +26,7 @@ const hints: Record<string, string> = {
 /** Small adventure slice: two melee guards, then the existing stone boss. */
 export async function startAdventure(host: HTMLElement): Promise<() => void> {
   const exploration = new URLSearchParams(location.search).get('explore') === '1';
-  const courtyardAssets = await loadCourtyardAssets();
+  const [courtyardAssets] = await Promise.all([loadCourtyardAssets(),loadMeleeAssets()]);
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
   try { view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
@@ -35,7 +35,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   view.renderer.domElement.setAttribute('aria-label', `Der verwitterte Hof – ${exploration ? 'Erkundung' : 'Adventure'}`);
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
   const simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
-  const fight = new AdventureFight(), fightView = new AdventureFightView(view.scene);
+  const fight = new AdventureFight(), fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
   const {combat,pickups}=fight, clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
@@ -136,7 +136,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       if(damage>0) { feedback.play('hit'); feedback.bossHit(damage,current.tick); }
       if(after.runners.some((r,i)=>r.hp<before.runners[i]!.hp)) feedback.play('hit');
       if(after.pve.phase==='melee' && before.pve.phase!=='melee') feedback.play('windup');
-      if(after.pve.phase==='melee' && after.pve.phaseTick===PVE_RULES.meleeWarning
+      if(after.pve.phase==='melee' && after.pve.phaseTick===ADVENTURE_BOSS_RULES.meleeWarning
         || after.pve.phase==='attack' && before.pve.phase!=='attack') feedback.play('slam');
       if(after.pve.outcome==='victory' && before.pve.outcome!=='victory') feedback.play('victory');
       if(after.checkpoint && !before.checkpoint) feedback.play('pickup');
@@ -208,9 +208,13 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
-      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),pickupVisuals:view.pickupDiagnostics(),
+      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.
+    guardView:(index=0)=>{
+      setPaused(true);el('pause').hidden=true;overview=true;view.camera.snap(fight.runners[index]!.snapshot().center);
+      const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
+    },
     fighterView:()=>{
       setPaused(true);el('pause').hidden=true;overview=true;view.camera.mode='isometric';view.camera.snap(current.position);
       const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();

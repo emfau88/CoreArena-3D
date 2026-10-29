@@ -9,6 +9,14 @@ interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoin
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url='./?mode=pve&level=stone&adventure=1';
 test.use({headless:false});
+// Real inputs only: jump over a close swing/wave, walk out of the locked eruption.
+function bossDodge(s:State){
+  const p=s.snapshot.position,b=s.pve,distance=Math.hypot(p.x-b.center.x,p.z-b.center.z);
+  const eruption=b.kind==='eruption'&&(b.phase==='warning'||b.phase==='attack')&&Math.hypot(p.x-b.target.x,p.z-b.target.z)<3.8;
+  return {x:eruption?(b.target.x>0?-1:1):0,
+    jump:s.snapshot.grounded&&(b.phase==='melee'&&b.phaseTick<12||b.kind==='wave'&&(
+      b.phase==='warning'&&b.phaseTick>=84&&distance<5||b.phase==='attack'&&distance>b.waveRadius&&distance-b.waveRadius<2.8))};
+}
 async function walk(page:Page,x:number,z:number) {
   for(const [axis,target] of [['z',z],['x',x]] as const) for(let i=0;i<12;i++) {
     const delta=target-(await read(page)).snapshot.position[axis]; if(Math.abs(delta)<.3) break;
@@ -33,10 +41,16 @@ async function fireAt(page:Page,index:number|'boss') {
       const s=await read(page); if(s.pve.outcome==='defeat') throw new Error('Player defeated during regular combat');
       if(index==='boss' ? s.pve.bossHp===0 : s.enemies[index]!.hp===0) return;
       const point=index==='boss'?s.monsterScreen:s.enemies[index]!.screen;
+      if(index==='boss'){
+        const dodge=bossDodge(s);
+        for(const [key,direction] of [['KeyS',1],['KeyW',-1]] as const)
+          if(dodge.x===direction)await page.keyboard.down(key);else await page.keyboard.up(key);
+        if(dodge.jump)await page.keyboard.press('Space');
+      }
       await page.mouse.move(point.x,point.y); await page.waitForTimeout(50);
     }
     throw new Error('Enemy survived real fire');
-  } finally {await page.mouse.up();}
+  } finally {await page.mouse.up();await page.keyboard.up('KeyS');await page.keyboard.up('KeyW');}
 }
 test('menu entry, two guards, checkpoint death and retry, boss victory, physical exit and full reset',async({page},info)=>{
   test.setTimeout(180_000); const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
@@ -143,13 +157,23 @@ test('touch full level: checkpoint retry, boss, walking through exit and returni
     };
     const fire=async(index:number|'boss')=>{
       const initial=await read(page),point=index==='boss'?initial.monsterScreen:initial.enemies[index]!.screen;
+      const stick=(await page.locator('#touch-stick').boundingBox())!,jump=(await page.locator('#touch-jump').boundingBox())!;
+      let previousIds='2';
       await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,...point}]});
       try {
         for(let i=0;i<400;i++) {
           const s=await read(page);expect(s.pve.outcome).not.toBe('defeat');
           if(index==='boss'?s.pve.bossHp===0:s.enemies[index]!.hp===0) return;
           const p=index==='boss'?s.monsterScreen:s.enemies[index]!.screen;
-          await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,...p}]});await page.waitForTimeout(50);
+          const dodge=index==='boss'?bossDodge(s):{x:0,jump:false};
+          const points=[{id:2,...p}];
+          if(dodge.x)points.push({id:1,x:stick.x+stick.width/2,y:stick.y+stick.height/2+dodge.x*42});
+          if(dodge.jump)points.push({id:3,x:jump.x+jump.width/2,y:jump.y+jump.height/2});
+          const ids=points.map(p=>p.id).sort().join('');
+          if(ids!==previousIds){
+            await release();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points});previousIds=ids;
+          }else await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:points});
+          await page.waitForTimeout(50);
         }
         throw new Error('Enemy survived touch fire');
       } finally {await release();}

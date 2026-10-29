@@ -8,6 +8,7 @@ export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocit
 let template: THREE.Group | undefined;
 let clips: THREE.AnimationClip[] = [];
 let loading: Promise<void> | undefined;
+let meleeLoading: Promise<void> | undefined;
 
 /** The free official animation pack includes this rigged mannequin, too. */
 export function loadFighterAssets(): Promise<void> {
@@ -18,11 +19,20 @@ export function loadFighterAssets(): Promise<void> {
   })();
 }
 
-export function createKayFighter(color:number) {
-  if(!template) return null;
+export function loadMeleeAssets():Promise<void> {
+  return meleeLoading??=(async()=>{
+    await loadFighterAssets();
+    const set=await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/kaykit/Melee.glb`);
+    clips.push(...set.animations);
+  })();
+}
+
+/** Independent skeleton and owned resources for each player or guard. */
+export function createKayRig(color:number,height=1.78) {
+  if(!template)throw new Error('KayKit assets must be loaded before creating a character');
   const actor=new THREE.Group(),body=clone(template),visual=new THREE.Group();
   actor.name='kaykit-fighter';visual.add(body);actor.add(visual);
-  const bounds=new THREE.Box3().setFromObject(body),scale=1.78/bounds.getSize(new THREE.Vector3()).y;
+  const bounds=new THREE.Box3().setFromObject(body),scale=height/bounds.getSize(new THREE.Vector3()).y;
   visual.scale.setScalar(scale);body.position.y=-bounds.min.y;
   const materials=new Map<THREE.Material,THREE.MeshStandardMaterial>();
   body.traverse(object=>{
@@ -37,6 +47,20 @@ export function createKayFighter(color:number) {
     }
     object.material=materials.get(source)!;object.geometry=object.geometry.clone();
   });
+  return {actor,body,visual,scale};
+}
+
+export function kayClip(body:THREE.Object3D,name:string):THREE.AnimationClip {
+  const source=clips.find(clip=>clip.name===name);
+  if(!source)throw new Error(`Missing KayKit animation: ${name}`);
+  // Animation sets include optional weapon-slot markers absent from the mannequin.
+  return new THREE.AnimationClip(name,source.duration,source.tracks.filter(track=>
+    body.getObjectByName(track.name.slice(0,track.name.lastIndexOf('.')))));
+}
+
+export function createKayFighter(color:number) {
+  if(!template) return null;
+  const {actor,body,visual,scale}=createKayRig(color);
   const mixer=new THREE.AnimationMixer(body),axis=new THREE.Vector3(0,1,0),yaw=new THREE.Quaternion();
   const hips=body.getObjectByName('hips')!,chest=body.getObjectByName('chest')!;
   const animatedPose=[hips,chest].map(bone=>({bone,rotation:bone.quaternion.clone()}));
@@ -46,11 +70,8 @@ export function createKayFighter(color:number) {
   };
   const upper=/^(chest|head|upperarm|lowerarm|wrist|hand)/;
   const action=(name:string,part:'full'|'lower'|'upper'='full',once=false)=>{
-    const source=clips.find(clip=>clip.name===name);
-    if(!source) throw new Error(`Missing KayKit animation: ${name}`);
-    // Animation sets include optional weapon-slot markers absent from the mannequin.
-    const tracks=source.tracks.filter(track=>body.getObjectByName(track.name.slice(0,track.name.lastIndexOf('.')))
-      && (part==='full'||(part==='upper')===upper.test(track.name)));
+    const source=kayClip(body,name);
+    const tracks=source.tracks.filter(track=>part==='full'||(part==='upper')===upper.test(track.name));
     const clip=new THREE.AnimationClip(`${name}-${part}`,source.duration,tracks);
     const result=mixer.clipAction(clip);if(once) {result.setLoop(THREE.LoopOnce,1);result.clampWhenFinished=true;}
     return result;

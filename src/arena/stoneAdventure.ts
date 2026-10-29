@@ -1,7 +1,11 @@
 import type { ArenaBox, ArenaDefinition } from './arena';
 import type { PickupDefinition } from '../core/pickups';
 import type { Vec3 } from '../core/types';
-import { MONSTER } from '../core/pve';
+import { MONSTER, PVE_RULES } from '../core/pve';
+
+// Adventure balance only; simulation, attack animation and feedback share these timings.
+export const ADVENTURE_BOSS_RULES = Object.freeze({ ...PVE_RULES,
+  meleeWarning:21, meleeRecovery:15, meleeCooldown:39, recoveryTicks:48, chaseSpeed:3.1 });
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.
 export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;

@@ -1,4 +1,4 @@
-# KayKit player model and animations
+# KayKit player/guard model and animations
 
 Author: **Kay Lousberg**, https://kaylousberg.com/.
 
@@ -20,9 +20,12 @@ Downloaded archive SHA-256:
 | `General.glb` | `Animations/gltf/Rig_Medium/Rig_Medium_General.glb` |
 | `Movement.glb` | `Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb` |
 | `Ranged.glb` | `Animations/gltf/Rig_Medium/Rig_Medium_CombatRanged.glb` |
+| `Melee.glb` | `Animations/gltf/Rig_Medium/Rig_Medium_CombatMelee.glb` |
 
-These four self-contained GLBs are unchanged, apart from three filenames being
-shortened. Textures are embedded. Total binary payload: 2,952,760 bytes (2.82 MiB).
+These five self-contained GLBs are unchanged, apart from four filenames being
+shortened. Textures are embedded. Total binary payload: 3,952,176 bytes (3.77 MiB).
+`Melee.glb` (999,416 bytes) is loaded only when entering the Adventure. It was
+extracted on 2026-10-29 from the same official free archive and verified hash above.
 No runtime external asset requests or new package dependencies are required.
 
 Project-owned integration in `src/render/kayFighter.ts`: cloning the skeleton,
@@ -30,3 +33,9 @@ scaling to the existing player's height, rougher materials, animation selection
 and blending, upper/lower-body masks, small directional waist turn, recoil and
 landing squash. Optional hand-slot marker tracks absent from the mannequin are
 excluded. The player's actual movement and damage remain simulation-controlled.
+
+Guard-specific adaptation in `src/render/kayGuard.ts`: stone materials/UVs using
+our existing CC0 Poly Haven Rock Tile Floor surfaces, a slightly wider silhouette,
+bone-attached shoulder/forearm plates, fists, amber eyes/core and small moss patches.
+The original model file remains intact. Source punch maximum extension at 0.5s
+is mapped to the simulation damage frame; no independent animation event deals damage.

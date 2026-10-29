@@ -10,6 +10,10 @@ Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testleve
 
 ## Freigegebener kleiner Mobile-Zusatz
 
+**29. Oktober, L1.5a:** Schnellere Boss-Faustschläge und KayKit-Wächterpuppen gelten
+auch auf Touch. Ein zusätzliches Nahkampf-GLB (0,95 MiB) nur beim Adventure-Einstieg.
+[Abstimmung, Browserprüfung und Grenzen](../qa/BOSS_AND_GUARDS_RESULT.md).
+
 **29. Oktober, KayKit-/Pickup-Präsentation ✅:** Geriggtes Mannequin mit vorhandener
 Touch-Steuerung, fertigen Animationen und kleinen Partikeleffekten. Vier lokale GLBs
 fügen rund 2,82 MiB Download hinzu; zwölf instanzierte Funken je Pickup, keine neuen

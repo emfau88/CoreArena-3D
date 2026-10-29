@@ -5,11 +5,14 @@ Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Ste
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
 Innenpflanzen und Mauerecken aus L1.4b freigegeben und übertragen. Weitere Blickfänge/
-Lichtgestaltung und L1.5 bleiben offen. Arena-Teamspiel/Liga
+Lichtgestaltung und die abschließende Abnahme L1.5b bleiben offen. L1.5a ergänzt
+Bosstempo und KayKit-Wächterpuppen. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 ## Aktueller Fortschritt
+
+- [x] 29. Oktober, L1.5a: vorgeschlagene Bosszeiten und Verfolgung umgesetzt; beide kleinen Gegner als geriggte KayKit-Wächterpuppen mit Steinoberfläche, Platten, Fäusten, Augen/Kern und Moos. Synchroner Nahkampf und Desktop-/Touch-Ablauf geprüft. [Nachweise und Balancegrenze](../qa/BOSS_AND_GUARDS_RESULT.md).
 
 - [x] 29. Oktober, KayKit-Nachbesserung: ungewolltes Drehen beim Gehen reproduziert und behoben; begrenzte Taillendrehung baut jedes Bild auf der unveränderten Animationspose auf. Browser-Regressionsprüfung für acht Laufrichtungen und Pause ergänzt. [Ursache und Prüfung](../qa/KAYKIT_PRESENTATION_RESULT.md#nachbesserung-ungewolltes-drehen-beim-laufen-29-oktober).
 
@@ -32,7 +35,7 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
 - [ ] Persönliche Sichtung; weitere hofeigene Blickfänge/Ruinenteile/Lichtgestaltung aus L1.4b bleiben offen. Übrige Gestaltung plus L1.5 grob 1–2 Stunden aktive Agent-Arbeit.
-- [ ] L1.5: Bestehenden Kampf abstimmen, vollständigen Ablauf und Leistung prüfen, persönliche Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
+- [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.

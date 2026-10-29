@@ -1,7 +1,7 @@
-import { ADVENTURE_BOSS, ADVENTURE_RUNNERS, ADVENTURE_CHECKPOINT, ADVENTURE_BOSS_PICKUPS,
+import { ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_RUNNERS, ADVENTURE_CHECKPOINT, ADVENTURE_BOSS_PICKUPS,
   STONE_ADVENTURE_COMBAT, STONE_ADVENTURE_PICKUPS } from '../arena/stoneAdventure';
 import { BossNavigation } from './bossNavigation';
-import { PveEncounter, PVE_RULES, type MonsterWorld } from './pve';
+import { PveEncounter, type MonsterWorld } from './pve';
 import { StoneRunner } from './stoneRunner';
 import { Combat, WEAPONS } from './combat';
 import { Pickups } from './pickups';
@@ -16,9 +16,9 @@ function navigationFor(floorId:string,radius:number):BossNavigation {
   return new BossNavigation({...STONE_ADVENTURE_COMBAT,boxes:[{...floor,id:'floor'},...boxes]},radius);
 }
 export class AdventureFight {
-  private readonly bossNavigation=navigationFor('floor-boss',PVE_RULES.movementRadius);
+  private readonly bossNavigation=navigationFor('floor-boss',ADVENTURE_BOSS_RULES.movementRadius);
   private readonly runnerNavigation=ADVENTURE_RUNNERS.map(d=>navigationFor(d.floor,.65));
-  readonly life=new PveEncounter(PVE_RULES,ADVENTURE_BOSS,'stone',(from,player)=>this.bossNavigation.steer(from,player));
+  readonly life=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,'stone',(from,player)=>this.bossNavigation.steer(from,player));
   readonly runners=ADVENTURE_RUNNERS.map((d,i)=>new StoneRunner(d,(from,player)=>this.runnerNavigation[i]!.steer(from,player)));
   readonly combat=new Combat();
   readonly pickups=new Pickups(STONE_ADVENTURE_PICKUPS,false);

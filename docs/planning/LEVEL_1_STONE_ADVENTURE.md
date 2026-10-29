@@ -10,7 +10,8 @@ als konkrete Pakete eingeplant. Mit „ok go“ wurde anschließend L1.3 freigeg
 umgesetzt. Anschließend wurde L1.4a mit gewünschten Vorher/Nachher-Bildern freigegeben
 und umgesetzt. Nach der Rückmeldung wurde der Material-/Ecken-/Pflanzenschritt von
 L1.4b freigegeben und umgesetzt: Boden auf der ganzen Map, Pflanzen auch innen,
-saubere Maueranschlüsse. Weitere Blickfänge/Lichtgestaltung und L1.5 bleiben offen.
+saubere Maueranschlüsse. L1.5a ergänzt nun Bosstempo und KayKit-Wächterpuppen.
+Weitere Blickfänge/Lichtgestaltung und die abschließende Abnahme L1.5b bleiben offen.
 Der zusätzlich freigegebene KayKit-/Pickup-Schritt vom 29. Oktober ist ebenfalls
 umgesetzt: geriggte Figur mit Animationen und Energie-Pickups statt schwarzer Sockel.
 
@@ -60,8 +61,10 @@ Höfen; wer zurückweicht, zieht keine Gegnergruppe durch das ganze Level hinter
 
 ## Der kleine Gegner
 
-Ein einziger Typ: **Steinläufer**, aus kleinen kantigen Steinformen, mit Armen,
-Beinen, leuchtendem Kern und einer kurzen HP-Leiste. Sichtbar kleiner als der Boss.
+Ein einziger Typ: **Steinläufer als KayKit-Wächterpuppe**. Dasselbe geriggte Mannequin
+wie beim Spieler, mit eigenem Skelett, blaugrauem Stein, hellen Schulterplatten,
+kräftigen Fäusten, bernsteinfarbenen Augen/Kern und etwas Moos. Lauf-, Faustschlag-,
+Treffer- und Todesanimationen; kurze HP-Leiste, sichtbar kleiner als der Boss.
 
 - 70 HP, 3,2 m/s, normaler Nahkampfschlag mit 14 Schaden und 1,8 m Reichweite.
 - 0,4 s sichtbares Ausholen mit Bodenbogen, danach 0,7 s Erholung.
@@ -76,6 +79,10 @@ Beinen, leuchtendem Kern und einer kurzen HP-Leiste. Sichtbar kleiner als der Bo
 
 Auftauchen aus dem Boden, Verfolgung, Faustschlag, Schockwelle und Bodenausbruch
 werden einschließlich Animationen und Navigation wiederverwendet. 600 HP wie zuvor.
+Die freigegebene Abstimmung vom 29. Oktober gilt nur für dieses Adventure:
+0,35 s Ausholen, 0,25 s Schlag-Erholung, 0,65 s zusätzliche Schlagpause;
+0,8 s Erholung nach Spezialangriffen und 3,1 m/s Verfolgung. Schaden unverändert.
+Simulation, Schlaganimation und Treffer-Sound verwenden dieselben Zeiten.
 Während des Auftauchens ist der Boss noch nicht angreifbar. Der ruhende Steinkörper
 weicht beim Erwachen dem beweglichen Boss; der Eingang bekommt sichtbar echte Kollision.
 
@@ -91,8 +98,9 @@ Beim Boss-Sieg bleiben Bewegung und Kamera aktiv. Das Nordtor öffnet sichtbar u
 physisch; erst tatsächliches Durchgehen schließt das Level ab. Die bisherige Kristallkluft
 steht danach als optionaler Button bereit und beginnt mit ihrer eigenen Ausrüstung.
 
-**Balance bleibt vorläufig:** Der frühere L1.2-Browserdurchlauf gewann mit 36 HP
-und ohne Rüstung. Stehendes, präzises Dauerfeuer konnte den Boss noch besiegen.
+**Balance bleibt vorläufig:** Auch nach der freigegebenen Tempoabstimmung gewann
+ein stationärer, präzise zielender Pulse-/Arc-Vergleichslauf mit 30 HP ohne Rüstung.
+Die Empfehlung „Stehenbleiben verliert immer“ ist mit diesen Werten noch nicht erfüllt.
 Das belegt den funktionierenden Ablauf, keine fertige Herausforderung. Zusätzliche
 Bossphasen oder pauschal mehr Gegner sind nicht Teil dieses Auftrags.
 
@@ -111,7 +119,8 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.3 · Level vollständig abschließen** | Einstieg aus dem Spielmenü mit kurzem Auftrag; einmaliger Ruhe-/Checkpoint vor dem Boss; nach Sieg echtes Nordtor öffnen, hinauslaufen und Levelabschluss mit Wiederholen/Rückkehr anzeigen | **Erledigt**; 48 Kerntests und fünf Browserfälle bestanden |
 | **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
 | **L1.4b · Drei Höfe gestalten** | Materialien überall übernehmen, Innenpflanzen und saubere Mauerecken; weitere Blickfänge/Lichtgestaltung separat | **Material-/Ecken-/Pflanzenschritt erledigt**; weitere Blickfänge/Licht noch offen, ggf. 30–60 Min. |
-| **L1.5 · Kampf und Testlevel abnehmen** | Bestehende Angriffe abstimmen, sinnvolles Ausweichen, Treffer-/Tod-/Siegfeedback, kompletter Desktop-/Touch-Durchlauf und Laufzeitprüfung | **Geplant, nicht umgesetzt**; 30–60 Min. |
+| **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
+| **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen**; 30–60 Min., echte Handyprüfung separat |
 
 Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Als Planungsrahmen
 für die übrige Gestaltung in L1.4b und L1.5 **rund 1–2 Stunden aktive Agent-Arbeit**, keine menschlichen
@@ -193,6 +202,9 @@ Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
 - [x] Schwarze Pickup-Sockel durch unterbrochene Leuchtringe und aufsteigende
   Partikel ersetzt; Aufnahmeimpuls und Verschwinden verbrauchter Adventure-Items.
 - [x] Desktop-/Touch-Spielabläufe und Darstellungszustände im Browser geprüft.
+- [x] KayKit-Skelett für beide Steinläufer mit eigener Steinoptik und Nahkampfanimationen wiederverwendet.
+- [x] Vorgeschlagene Bossabstimmung umgesetzt; aktive Desktop-/Touch-Kämpfe geprüft.
+- [x] Rückmeldung zur Lesbarkeit: kühler blaugrauer Stein und helle Kanten ersetzen die Boden-Farbzeichnung auf den Gegnern.
 - [ ] Persönliches Urteil zur Figur und ihren Bewegungen.
 - [x] Nachbesserung zur Nutzerrückmeldung: aufaddierte Hüft-/Brustdrehung beim
   Gehen behoben; eigener Browser-Regressionsfall für acht Laufrichtungen und Pause.

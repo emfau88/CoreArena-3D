@@ -1,10 +1,47 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, ADVENTURE_CHECKPOINT, STONE_ADVENTURE_COMBAT } from '../src/arena/stoneAdventure';
+import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_CHECKPOINT, STONE_ADVENTURE_COMBAT } from '../src/arena/stoneAdventure';
+import { PveEncounter } from '../src/core/pve';
 import { StoneRunner, RUNNER_RULES } from '../src/core/stoneRunner';
 import { AdventureFight } from '../src/core/adventureFight';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import type { Snapshot } from '../src/core/types';
+
+test('adventure boss strikes after 0.35s, repeats after 1.25s and still respects locked dodges and height',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);
+  world.setObstacleEnabled('dormant-warden',false);
+  try {
+    for(const defense of ['stay','distance','behind','height']){
+      const boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS);
+      const player={x:0,y:.02,z:-26};
+      for(let i=0;i<120;i++)boss.step(player,world);
+      boss.step(player,world);assert.equal(boss.snapshot().phase,'melee');
+      const facing=boss.snapshot().facing;
+      const target=defense==='distance'?{...player,x:6}:defense==='behind'?{...player,z:-32}:
+        defense==='height'?{...player,y:2}:player;
+      for(let i=0;i<20;i++)boss.step(target,world);
+      assert.equal(boss.snapshot().hitsTaken,0);assert.equal(boss.snapshot().facing,facing);
+      boss.step(target,world);assert.equal(boss.snapshot().hitsTaken,defense==='stay'?1:0);
+      if(defense==='stay'){
+        const first=boss.snapshot().lastHit;
+        for(let i=0;i<74;i++)boss.step(player,world);
+        assert.equal(boss.snapshot().hitsTaken,1);
+        boss.step(player,world);assert.equal(boss.snapshot().lastHit-first,75);
+        assert.equal(boss.snapshot().hitsTaken,2);assert.equal(boss.snapshot().armor,10);
+      }
+    }
+    const boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS),far={x:0,y:.02,z:-21};
+    for(let i=0;i<120;i++)boss.step(far,world);
+    const start=boss.snapshot().center.z;
+    for(let i=0;i<60;i++)boss.step(far,world);
+    assert.ok(Math.abs(boss.snapshot().center.z-start-3.1)<.01);
+    for(let i=0;i<600 && boss.snapshot().phase!=='recovery';i++)boss.step(far,world);
+    assert.equal(boss.snapshot().phase,'recovery');
+    for(let i=0;i<47;i++)boss.step(far,world);
+    assert.equal(boss.snapshot().phase,'recovery');boss.step(far,world);
+    assert.equal(boss.snapshot().phase,'chasing');
+  }finally{world.dispose();}
+});
 
 test('small guard telegraphs one melee hit, respects dodge/height/cover, and stays dead',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);

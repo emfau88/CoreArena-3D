@@ -7,7 +7,12 @@
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
-**29. Oktober: KayKit-Figur und Energie-Pickups.** Gedrungenes, geriggtes Mannequin
+**29. Oktober: Schnellere Bossangriffe und steinerne Wächterpuppen.** Der Boss holt
+für Faustschläge nur noch 0,35 s aus und verfolgt schneller. Die beiden kleinen
+Gegner nutzen nun das KayKit-Skelett mit eigener Steinoptik und Nahkampfanimationen.
+[Bilder, Tests und aktuelle Balancegrenze](docs/qa/BOSS_AND_GUARDS_RESULT.md).
+
+**KayKit-Figur und Energie-Pickups.** Gedrungenes, geriggtes Mannequin
 mit Lauf-/Sprint-/Sprung-, Ziel-, Schuss-, Treffer- und Todesanimationen.
 Unterbrochene Leuchtringe und aufsteigende Partikel ersetzen die schwarzen
 Pickup-Sockel; verbrauchte Adventure-Fundstellen verschwinden nach einem Lichtimpuls.
