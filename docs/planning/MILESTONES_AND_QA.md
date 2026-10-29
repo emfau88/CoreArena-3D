@@ -31,6 +31,11 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
   `codex/lane-wars` gefunden; tatsächliche GLB-Clips geprüft. [Kandidaten und
   Missionsideen](HEXWARS_ASSET_CANDIDATES.md) bleiben Vorschläge, ohne Änderung
   am freigegebenen L1-Umfang.
+- [x] Anschließend freigegebener Hexwars-Import: zehn GLBs (Mech, Railgun/LOD,
+  Hover-Bot, HQ, Fabrik/Module, Relais), sechs Blender-Quellen und Herkunftsbelege
+  im Repository abgelegt. 25 Quelldateien per Hash geprüft, GLB-Inhalte/Animationen
+  ausgelesen; Produktionsbuild bestanden. [Assetbestand](../../public/assets/hexwars/README.md).
+  Platzierung und Gegneranbindung sind noch offen und kein neuer Pflichtpunkt für L1.
 - [x] 29. Oktober, Kampf-Nachbesserung: Eingangssperre am tatsächlichen Durchgang,
   seitliches Umgehen/Überspringen abgesichert, texturierte Boss-Austrittsstelle,
   gezielte Bodenausbrüche auf Plateaus, sammelbarer Steinkern und Beschuss-Aggro

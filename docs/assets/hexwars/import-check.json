@@ -1,0 +1,223 @@
+{
+  "commit": "777d4298569df9925915e5395968dffea83dd10f",
+  "files": [
+    {
+      "path": "art/hexwars/factory-source.blend",
+      "bytes": 525604,
+      "sha256": "8398712b732dc33f703e73c1f132d20ddf73b6ebe46ce1a556ae1ec5fa6460fd"
+    },
+    {
+      "path": "art/hexwars/hoverbot.blend",
+      "bytes": 2652736,
+      "sha256": "e12b4c8d89ac68cafbb0d6a8e8f765a9000bbbedb73df0ffdb0e7014a5ca84f2"
+    },
+    {
+      "path": "art/hexwars/hq.blend",
+      "bytes": 3578875,
+      "sha256": "914aa932852da1d2bd3637405f7bf5e8905040c4d7050bfd8075aadae50941de"
+    },
+    {
+      "path": "art/hexwars/mech-rig.blend",
+      "bytes": 3571197,
+      "sha256": "5a2f4353cd18a7086f30618e0de416dbf567c153e21a7c5b5b44174e08dd0e63"
+    },
+    {
+      "path": "art/hexwars/railgun-animated.blend",
+      "bytes": 952845,
+      "sha256": "f81480ceaf73b5d2881d527b8f6e1c432b79cd1b893a67ad5bbaf2b6311f0ede"
+    },
+    {
+      "path": "art/hexwars/relay.blend",
+      "bytes": 3361451,
+      "sha256": "2eeda61e21457e8f4128213feb9c60d4200058284eb0bb1b4c15c272078b23c1"
+    },
+    {
+      "path": "docs/assets/hexwars/source/ASSET_LICENSES.md",
+      "bytes": 9661,
+      "sha256": "d4d083a13e549763964bcc8c82f6b8f9455fb91c8561fae2576806290d258f45"
+    },
+    {
+      "path": "docs/assets/hexwars/source/FACTORY_MODEL.md",
+      "bytes": 7442,
+      "sha256": "f75921861707329b4094f8c7e586f5896507d41063dc79dec99cc4a8efd2f977"
+    },
+    {
+      "path": "docs/assets/hexwars/source/MECH_ANIMATION.md",
+      "bytes": 10674,
+      "sha256": "dc0330d318ffc191f92ed5d5e1d145bcffc0ee1f32c8bb9f2f5d68cf2ae34e7f"
+    },
+    {
+      "path": "docs/assets/hexwars/source/RAILGUN_ANIMATION.md",
+      "bytes": 9398,
+      "sha256": "024db6ddaf5b8d1c0d119a5c5b23bf505baefa9dcc3210829fe14e19a8ec4220"
+    },
+    {
+      "path": "docs/assets/hexwars/source/RAILGUN_MODEL.md",
+      "bytes": 3915,
+      "sha256": "f7ea265878279ce0e29366f0e08f7c8e38552114181e883a473c37d6154e6def"
+    },
+    {
+      "path": "docs/assets/hexwars/source/SUPPLIED_ASSETS.md",
+      "bytes": 9193,
+      "sha256": "9a75fcde7e4d56c3181aeddd8ccff8114aa29cb881fcfa1397e8d2320fa153fc"
+    },
+    {
+      "path": "public/assets/hexwars/factory-preview/factory.glb",
+      "bytes": 785380,
+      "sha256": "f5a43df51019c0d1ae0a5d1f373d1ca2f93f96e757c1ed008ebdab8c799cfa8b",
+      "meshes": 13,
+      "textures": 1,
+      "animations": [
+        {
+          "name": "Door_Open",
+          "channels": 4,
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "path": "public/assets/hexwars/factory-preview/manifest.json",
+      "bytes": 1343,
+      "sha256": "0ce580b7a1d3a84927c9310e12c24e339a7938ff8d786a9a055c76d88e294207"
+    },
+    {
+      "path": "public/assets/hexwars/factory-preview/module-drone.glb",
+      "bytes": 99264,
+      "sha256": "ed8180a0c46ac4290e940153e7ff0279153fcbbe612b1b4492c4119662487540",
+      "meshes": 4,
+      "textures": 1,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/factory-preview/module-mech.glb",
+      "bytes": 47512,
+      "sha256": "50d26bf1958ba9b2beff2e4dac98d042bf048af3b287c2b94bbc74ec2da04c26",
+      "meshes": 3,
+      "textures": 1,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/factory-preview/module-rail.glb",
+      "bytes": 65588,
+      "sha256": "734cee8987979730b05df0bab067102a78af720b2ad68e2b6c41d719d0ea528a",
+      "meshes": 4,
+      "textures": 1,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/hoverbot.glb",
+      "bytes": 2570764,
+      "sha256": "de2db19ba485d878b386704b81701540ab890171d9a261ee2923943a77a68907",
+      "meshes": 2,
+      "textures": 3,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/hq.glb",
+      "bytes": 3293600,
+      "sha256": "63b2043cbbe631fdac6999144a024962daac8367af60bc4c4185ea88d73a7a70",
+      "meshes": 2,
+      "textures": 3,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/mech-animated/mech-rigged.glb",
+      "bytes": 3439748,
+      "sha256": "792ba8303b3d3f8461e04bcedd1b9e7a9077e3f558e62c58a7ad97eb487053c7",
+      "meshes": 13,
+      "textures": 3,
+      "animations": [
+        {
+          "name": "Walk",
+          "channels": 10,
+          "duration": 1
+        },
+        {
+          "name": "Death",
+          "channels": 12,
+          "duration": 1.2
+        },
+        {
+          "name": "Idle",
+          "channels": 2,
+          "duration": 3
+        },
+        {
+          "name": "Attack",
+          "channels": 3,
+          "duration": 0.45
+        },
+        {
+          "name": "Hit",
+          "channels": 1,
+          "duration": 0.3
+        }
+      ]
+    },
+    {
+      "path": "public/assets/hexwars/mech-animated/rig.json",
+      "bytes": 1733,
+      "sha256": "ba39bc3b4516bf02091ed9133c2bac0b6ab5905ae527de5d0679186754c3d3bd"
+    },
+    {
+      "path": "public/assets/hexwars/railgun-animated/manifest.json",
+      "bytes": 350,
+      "sha256": "2049e4e26d7d575037b8443f265682cd716497dc3f189181f70894e2c7c0d8e4"
+    },
+    {
+      "path": "public/assets/hexwars/railgun-animated/railgun-lod.glb",
+      "bytes": 947792,
+      "sha256": "97090f3c5b06e2143a8c1b411e5ab62dbacb92396b58aba542fbc6d0d18f1e38",
+      "meshes": 16,
+      "textures": 3,
+      "animations": []
+    },
+    {
+      "path": "public/assets/hexwars/railgun-animated/railgun.glb",
+      "bytes": 2015016,
+      "sha256": "d38ccb1879b5a2189938d940f5fae60be2f6c9f4815f59f5508f7318be5bb66d",
+      "meshes": 16,
+      "textures": 3,
+      "animations": [
+        {
+          "name": "Walk",
+          "channels": 13,
+          "duration": 1
+        },
+        {
+          "name": "Hit",
+          "channels": 2,
+          "duration": 0.3
+        },
+        {
+          "name": "Death",
+          "channels": 16,
+          "duration": 1.2
+        },
+        {
+          "name": "Idle",
+          "channels": 2,
+          "duration": 3
+        },
+        {
+          "name": "Attack",
+          "channels": 3,
+          "duration": 0.45
+        },
+        {
+          "name": "Charge",
+          "channels": 2,
+          "duration": 0.35
+        }
+      ]
+    },
+    {
+      "path": "public/assets/hexwars/relay.glb",
+      "bytes": 3253504,
+      "sha256": "8e4d075daa5a237cb7d53bfe5174625182b775ac95ea4cb28a1f974afdd8d25c",
+      "meshes": 4,
+      "textures": 3,
+      "animations": []
+    }
+  ]
+}

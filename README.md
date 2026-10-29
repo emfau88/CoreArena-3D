@@ -12,6 +12,10 @@ in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
 Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.
 [Vorher/Nachher und Browserprüfung](docs/qa/FREE_DECORATION_RESULT.md).
 
+**Hexwars-Assetbestand übernommen:** animierter Mech und Railgun, Hover-Bot,
+HQ, Fabrik mit Modulen und Relais samt Blender-Quellen. Für spätere Missionen
+verfügbar, noch nicht im Level platziert. [Dateien und Animationen](public/assets/hexwars/README.md).
+
 **Spieler-Look: erste Ruinenkurier-Variante.** Flacherer, breiterer Kopf, kompakterer
 Körper und kräftigere Stiefel; warmer Elfenbeinhelm, koralloranger Anzug und Graphitdetails.
 [Aktuelle Spielaufnahmen und Browserprüfung](docs/qa/PLAYER_COURIER_RESULT.md).

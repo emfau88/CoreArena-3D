@@ -1,0 +1,158 @@
+{
+  "repository": "https://github.com/emfau88/hexwars",
+  "branch": "codex/lane-wars",
+  "commit": "777d4298569df9925915e5395968dffea83dd10f",
+  "importedAt": "2026-10-29",
+  "files": [
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/factory-preview/factory.glb",
+      "path": "public/assets/hexwars/factory-preview/factory.glb",
+      "bytes": 785380,
+      "gitBlob": "c18960c6a2f27a1d2cb201dcad516fee651433c3"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/factory-preview/manifest.json",
+      "path": "public/assets/hexwars/factory-preview/manifest.json",
+      "bytes": 1343,
+      "gitBlob": "0ca0de4460cb7ccdcfee7ada1dc6d6ec6275c4af"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/factory-preview/module-drone.glb",
+      "path": "public/assets/hexwars/factory-preview/module-drone.glb",
+      "bytes": 99264,
+      "gitBlob": "8964ecac0535f3bfb8df8e1d405110b4053d8c60"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/factory-preview/module-mech.glb",
+      "path": "public/assets/hexwars/factory-preview/module-mech.glb",
+      "bytes": 47512,
+      "gitBlob": "aea8abfa1773e71b3de5617a0902ef7bdff9932b"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/factory-preview/module-rail.glb",
+      "path": "public/assets/hexwars/factory-preview/module-rail.glb",
+      "bytes": 65588,
+      "gitBlob": "8fd45695a9485f941615d4c8b5978623cf563faa"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/hoverbot.glb",
+      "path": "public/assets/hexwars/hoverbot.glb",
+      "bytes": 2570764,
+      "gitBlob": "5e3332e2f31896ef8f8fd93b117347270d206963"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/hq.glb",
+      "path": "public/assets/hexwars/hq.glb",
+      "bytes": 3293600,
+      "gitBlob": "e02cc8f0225afcbccf3c54dd930a4c5022226990"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/mech-animated/mech-rigged.glb",
+      "path": "public/assets/hexwars/mech-animated/mech-rigged.glb",
+      "bytes": 3439748,
+      "gitBlob": "260d07626ff89fac00a53dc43f703f0fc29875f0"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/mech-animated/rig.json",
+      "path": "public/assets/hexwars/mech-animated/rig.json",
+      "bytes": 1733,
+      "gitBlob": "cd976f8e4f208085e0323c1e1965f646f1bf6ba4"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/railgun-animated/manifest.json",
+      "path": "public/assets/hexwars/railgun-animated/manifest.json",
+      "bytes": 350,
+      "gitBlob": "ab23b50d454b5f0475dd4a2e8149977693224329"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/railgun-animated/railgun-lod.glb",
+      "path": "public/assets/hexwars/railgun-animated/railgun-lod.glb",
+      "bytes": 947792,
+      "gitBlob": "ccc67cda43dc7eba6ac01dc01f08988424252fb3"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/public/models/railgun-animated/railgun.glb",
+      "path": "public/assets/hexwars/railgun-animated/railgun.glb",
+      "bytes": 2015016,
+      "gitBlob": "20f023e5c86ecf73d390ea128093a419b88fd176"
+    },
+    {
+      "source": "experiments/hexfront-3d/public/assets/supplied/relay.glb",
+      "path": "public/assets/hexwars/relay.glb",
+      "bytes": 3253504,
+      "gitBlob": "2dd28df4a4af997ae3c9ff2663ff6747dfb97d05"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/art/mech-animation/mech-rig.blend",
+      "path": "art/hexwars/mech-rig.blend",
+      "bytes": 3571197,
+      "gitBlob": "69f3f1116d3239361fe05c2d8c3eaa96b13e989b"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/art/railgun-animation/railgun-animated.blend",
+      "path": "art/hexwars/railgun-animated.blend",
+      "bytes": 952845,
+      "gitBlob": "c427153e5c8542f6df7851af6b149f4599b9fa28"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/art/factory-v1/factory-source.blend",
+      "path": "art/hexwars/factory-source.blend",
+      "bytes": 525604,
+      "gitBlob": "2781af9f0c91c9ce9754e49a6ce578d164c09ea6"
+    },
+    {
+      "source": "experiments/hexfront-3d/scripts/supplied-hoverbot.blend",
+      "path": "art/hexwars/hoverbot.blend",
+      "bytes": 2652736,
+      "gitBlob": "4850a2e239ce913b72fd86f17fd42b4c721554a1"
+    },
+    {
+      "source": "experiments/hexfront-3d/scripts/supplied-hq.blend",
+      "path": "art/hexwars/hq.blend",
+      "bytes": 3578875,
+      "gitBlob": "1851d0c650817ac72d724f6a2fc90a8fa22c78ad"
+    },
+    {
+      "source": "experiments/hexfront-3d/scripts/supplied-relay.blend",
+      "path": "art/hexwars/relay.blend",
+      "bytes": 3361451,
+      "gitBlob": "399a0a687841a0ffd97f7486159bea7a9e70c431"
+    },
+    {
+      "source": "experiments/hexfront-3d/ASSET_LICENSES.md",
+      "path": "docs/assets/hexwars/source/ASSET_LICENSES.md",
+      "bytes": 9661,
+      "gitBlob": "d7eb3d33c7a9657e1ec302b2bb5bd8486e42ad5c"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/docs/reference/SUPPLIED_ASSETS.md",
+      "path": "docs/assets/hexwars/source/SUPPLIED_ASSETS.md",
+      "bytes": 9193,
+      "gitBlob": "5617c9ba250936fe4e7926abc11bd87d5421cb90"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/docs/mech-animation/REPORT.md",
+      "path": "docs/assets/hexwars/source/MECH_ANIMATION.md",
+      "bytes": 10674,
+      "gitBlob": "a448ecd82b0effb8374628ca0a957300ce568644"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/docs/railgun-animation/REPORT.md",
+      "path": "docs/assets/hexwars/source/RAILGUN_ANIMATION.md",
+      "bytes": 9398,
+      "gitBlob": "3a0b2fa827165e16fef46a347e53dec046b0c800"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/docs/factory-model/REVIEW.md",
+      "path": "docs/assets/hexwars/source/FACTORY_MODEL.md",
+      "bytes": 7442,
+      "gitBlob": "059bbbcebba583cd5e7f9aa4acf61c431cc6206b"
+    },
+    {
+      "source": "experiments/hexfront-lane-wars/docs/railgun-model/REVIEW.md",
+      "path": "docs/assets/hexwars/source/RAILGUN_MODEL.md",
+      "bytes": 3915,
+      "gitBlob": "460331529f38200be24b77ae5009aa43196cbd47"
+    }
+  ]
+}

@@ -1,8 +1,12 @@
 # Hexwars-Assets für die Kampagne
 
-Recherche vom 29. Oktober 2026. **Ideen und geprüfte Kandidaten, noch kein
-freigegebener Levelumbau oder Assetimport.** Das erste Stein-Testlevel bleibt
-das aktuelle Produktziel.
+Stand 29. Oktober 2026. **Assetimport anschließend freigegeben und erledigt:**
+animierter Mech, animierte Railgun mit LOD, Hover-Bot, HQ, Fabrik mit drei Modulen
+und Relais liegen nun in `public/assets/hexwars/`; sechs Blender-Quellen in
+`art/hexwars/`. [Bestand, Animationen und Herkunft](../../public/assets/hexwars/README.md).
+25 Quelldateien bytegleich übernommen und geprüft. Der Produktionsbuild besteht;
+die Modelle sind noch nicht im Level platziert. Die folgenden Missionsideen
+bleiben Vorschläge. Das erste Stein-Testlevel bleibt das aktuelle Produktziel.
 
 ## Richtiger Referenzstand
 
