@@ -3,6 +3,7 @@ import type { PickupDefinition } from '../core/pickups';
 import type { Vec3 } from '../core/types';
 import { MONSTER, PVE_RULES } from '../core/pve';
 import { STONE_CONSOLES, CONSOLE_FOOTPRINT } from './stoneDressing';
+import { ADVENTURE_MISSION } from './adventureMission';
 
 // Adventure balance only; simulation, attack animation and feedback share these timings.
 export const ADVENTURE_BOSS_RULES = Object.freeze({ ...PVE_RULES,
@@ -84,6 +85,7 @@ for(const wall of stoneLayout.boxes.filter(b=>b.material==='stone' && Math.min(b
 export const STONE_ADVENTURE: ArenaDefinition = { ...stoneLayout, boxes:[...stoneLayout.boxes,
   ...[...wallEnds.values()].map(({x,z,height},i)=>block(`wall-joint-${i}`,x,z,.78,height+.14,.78)),
   ...STONE_CONSOLES.map(({id,x,z})=>block(id,x,z,CONSOLE_FOOTPRINT.x,CONSOLE_FOOTPRINT.y,CONSOLE_FOOTPRINT.z)),
+  ...[ADVENTURE_MISSION.drone,ADVENTURE_MISSION.relay].map(({id,x,z,width,height,depth})=>block(id,x,z,width,height,depth)),
 ] };
 const loot = (id: string, kind: PickupDefinition['kind'], x: number, z: number, amount: number,
   surface: string, y = 0): PickupDefinition => ({ id, kind, position: { x,y,z }, surface, amount });

@@ -27,7 +27,7 @@ test('the real adventure motor traverses the main route, side stairs and all thr
     assert.equal(sim.snapshot().surface,'thrower-plinth');
     for (const [x,z] of [[11,-1],[0,-1],[0,-14],[0,-19],[13,-19],[13,-20],[0,-20],[0,-23],[-12,-23]] as const) go(x,z);
     assert.equal(sim.snapshot().surface,'boss-health-plateau');
-    for (const [x,z] of [[0,-23],[0,-19],[-16,-19],[-16,-37],[-13,-37],[0,-38.5],[0,-40]] as const) go(x,z);
+    for (const [x,z] of [[0,-23],[0,-19],[-16,-19],[-16,-37],[-13,-37],[0,-37],[0,-40]] as const) go(x,z);
     assert.deepEqual([...visited].sort(),['A','B','C','D','E','F','G','H']);
     for (let i=0;i<120;i++) sim.step({ x:0,z:-1,sprint:true });
     assert.ok(sim.snapshot().position.z > -42,'closed north gate blocks physical movement');

@@ -67,7 +67,7 @@ test('small guard telegraphs one melee hit, respects dodge/height/cover, and sta
   } finally {world.dispose();}
 });
 
-test('checkpoint supplies only once; retry keeps cleared approach and spent loot, restores boss supplies; only leaving completes the level',async()=>{
+test('mission console, checkpoint retry, required core and relay, physical exit and full reset',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),fight=new AdventureFight();
   const player={x:0,y:.02,z:-14};
   const consume=(id:string)=>{
@@ -76,7 +76,15 @@ test('checkpoint supplies only once; retry keeps cleared approach and spent loot
   };
   try {
     fight.step(player,world,[]); assert.equal(fight.checkpoint,false);
+    assert.equal(fight.snapshot().entryClosed,true);
+    const consolePoint={x:-1,y:.02,z:-8};
+    fight.interact(consolePoint,world);assert.equal(fight.consoleActive,false,'guards still secure the console');
     fight.step({x:0,y:0,z:33},world,ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70})));
+    fight.step(player,world,[]);assert.equal(fight.checkpoint,false,'clearing guards alone does not power the station');
+    fight.interact(player,world);assert.equal(fight.consoleActive,false,'out of range');
+    fight.interact({...consolePoint,y:1.1},world);assert.equal(fight.consoleActive,false,'different height');
+    fight.interact(consolePoint,world);assert.equal(fight.consoleActive,true);
+    assert.equal(fight.snapshot().entryClosed,false);
     fight.life.step(player,world,[],{active:false,incomingDamage:80});
     consume('adventure-pulse'); consume('boss-ammo-east');
     fight.combat.addAmmo(9,true);
@@ -92,6 +100,7 @@ test('checkpoint supplies only once; retry keeps cleared approach and spent loot
     fight.step({...player,y:-9},world,[]); assert.equal(fight.life.snapshot().outcome,'defeat');
     assert.deepEqual(fight.retry(),ADVENTURE_CHECKPOINT);
     assert.equal(fight.bossActive,false); assert.equal(fight.checkpoint,true);
+    assert.equal(fight.consoleActive,true);assert.equal(fight.relayActive,false);
     assert.equal(fight.life.snapshot().hp,100); assert.equal(fight.life.snapshot().armor,50);
     assert.equal(fight.life.snapshot().bossHp,600); assert.equal(fight.life.snapshot().phaseTick,0);
     assert.equal(fight.combat.snapshot().ammo,54); assert.equal(fight.combat.snapshot().selected,'pulse');
@@ -103,13 +112,21 @@ test('checkpoint supplies only once; retry keeps cleared approach and spent loot
     fight.step({...player,z:-21},world,[{source:'player',target:ADVENTURE_BOSS.id,amount:600}]);
     assert.equal(fight.life.snapshot().outcome,'victory'); assert.equal(fight.completed,false);
     const core=fight.snapshot().core!; assert.ok(core);assert.equal(core.collected,false);
+    const relayPoint={x:-.8,y:.02,z:-39};
+    fight.interact(relayPoint,world);assert.equal(fight.relayActive,false,'relay requires the core');
+    fight.step({...player,z:-46},world,[]);assert.equal(fight.completed,false,'victory alone cannot complete');
     fight.step({...core.position,y:1.1},world,[]);assert.equal(fight.snapshot().core!.collected,false);
     fight.step(core.position,world,[]);assert.equal(fight.snapshot().core!.collected,true);
+    fight.step({...player,z:-46},world,[]);assert.equal(fight.completed,false,'collected core alone cannot complete');
+    fight.interact(player,world);assert.equal(fight.relayActive,false);
+    fight.interact(relayPoint,world);assert.equal(fight.relayActive,true);
+    fight.interact(relayPoint,world);assert.equal(fight.relayActive,true,'interaction is idempotent');
     fight.step(core.position,world,[]);assert.equal(fight.snapshot().core!.collected,true);
     fight.step({...player,z:-44},world,[]); assert.equal(fight.completed,false);
     fight.step({...player,z:-46,y:2},world,[]); assert.equal(fight.completed,false);
     fight.step({...player,z:-46},world,[]); assert.equal(fight.completed,true);
     fight.reset(); assert.equal(fight.completed,false); assert.equal(fight.checkpoint,false);
+    assert.equal(fight.consoleActive,false);assert.equal(fight.relayActive,false);assert.equal(fight.snapshot().entryClosed,true);
     assert.equal(fight.snapshot().core,null);
     assert.ok(fight.runners.every(r=>r.snapshot().hp===70));
     assert.equal(fight.pickups.snapshot().find(p=>p.id==='adventure-pulse')!.remaining,54);
@@ -181,7 +198,7 @@ test('distant player damage wakes a guard, pursues into arrival and lands melee;
   }finally{world.dispose();}
 });
 
-test('two guards share player life with the dormant boss; clearing them and entering wakes the boss, reset restores all',async()=>{
+test('two guards share life with the dormant boss; console then entering wakes it, reset restores all',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),fight=new AdventureFight();
   try {
     const player={x:2,y:.02,z:25.5};
@@ -193,6 +210,7 @@ test('two guards share player life with the dormant boss; clearing them and ente
     const hits=ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70}));
     fight.step(player,world,hits); assert.equal(fight.bossActive,false);
     assert.equal(fight.targets().length,0);
+    fight.interact({x:-1,y:.02,z:-8},world);
     fight.step({x:0,y:.02,z:-21},world,[]); assert.equal(fight.bossActive,true);
     world.setObstacleEnabled('dormant-warden',false);
     for(let i=0;i<120;i++) fight.step({x:0,y:.02,z:-21},world,[]);
@@ -202,4 +220,18 @@ test('two guards share player life with the dormant boss; clearing them and ente
     fight.reset(); assert.equal(fight.bossActive,false); assert.equal(fight.life.snapshot().armor,50);
     assert.ok(fight.runners.every(r=>r.snapshot().hp===70));
   } finally {world.dispose();}
+});
+
+test('mission interaction respects physical cover and a pre-checkpoint death resets the console',async()=>{
+  const wall={id:'interaction-cover',center:{x:-1.8,y:1,z:-8},size:{x:.2,y:2,z:3},material:'stone' as const};
+  const world=await createSpatialWorld({...STONE_ADVENTURE_COMBAT,boxes:[...STONE_ADVENTURE_COMBAT.boxes,wall]}),fight=new AdventureFight();
+  try {
+    fight.step({x:0,y:.02,z:33},world,ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70})));
+    fight.interact({x:-1,y:.02,z:-8},world);assert.equal(fight.consoleActive,false);
+    world.setObstacleEnabled(wall.id,false);
+    fight.interact({x:-1,y:.02,z:-8},world);assert.equal(fight.consoleActive,true);
+    fight.step({x:0,y:-9,z:-8},world,[]);assert.equal(fight.life.snapshot().outcome,'defeat');
+    fight.retry();assert.equal(fight.consoleActive,false);assert.equal(fight.checkpoint,false);
+    assert.ok(fight.runners.every(r=>r.snapshot().hp===70));
+  }finally{world.dispose();}
 });

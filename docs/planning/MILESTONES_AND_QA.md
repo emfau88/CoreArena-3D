@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 29. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
+Stand: 30. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
@@ -11,11 +11,11 @@ Bosstempo und KayKit-Wächterpuppen. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
-**Neu geplant, noch nicht zur Umsetzung freigegeben:** L1.6a–c geben dem bestehenden
-Level einen zusammenhängenden Auftrag, mehr Bossdruck und drei erkennbare Orte.
-Bei Freigabe folgen zuerst Auftrag/Konsole/Relaisabschluss (L1.6a), dann Kampf
-(L1.6b), Gestaltung (L1.6c) und abschließend die bestehende Abnahme L1.5b.
-Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
+**Nur L1.6a wurde freigegeben und umgesetzt:** Auftrag, Konsole und Relaisabschluss.
+[Umfang und Prüfungen](../qa/ADVENTURE_MISSION_RESULT.md).
+Kampf (L1.6b), Ortsgestaltung/Erkundung (L1.6c) und Gesamtabnahme (L1.5b)
+bleiben offen und benötigen eine eigene Freigabe. Verbleibender Planrahmen:
+**80–145 Minuten aktive Agent-Arbeit**; [kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
 
 ## Aktueller Fortschritt
 
@@ -25,10 +25,11 @@ Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_AD
   Mobile, Asseteinsatz und konkrete Prüfkriterien. Reine Dokumentation;
   Umfang und Freigabestatus von L1.6a–c bleiben unverändert.
 - [x] Kompakter Adventure-Ausbauplan erstellt und mit der Roadmap abgeglichen.
-- [ ] L1.6a: Auftrag, Konsole, Steinkern als Missionsgegenstand und Relaisabschluss.
+- [x] L1.6a: Auftrag, Konsole, Steinkern als Missionsgegenstand und Relaisabschluss;
+  vollständiger Desktop- und emulierter Touch-Ablauf technisch geprüft.
 - [ ] L1.6b: Bedrohlicher, fair ausweichbarer Boss und präziseres Trefferfeedback.
 - [ ] L1.6c: Ladestation, Wartungsbereich und Relaisanlage optisch unterscheiden.
-  Alle drei Pakete sind geplant, noch nicht implementiert oder freigegeben.
+  L1.6b/c und die Gesamtabnahme L1.5b sind weiterhin nicht freigegeben.
 
 - [x] 29. Oktober, Tempo/Zoom/Startwaffe: Sprint um 15 % reduziert, mobile Darstellung
   nochmals rund 26 % größer; Arc Lash mit automatischer Zielwahl, fünf Strahlen,
@@ -52,7 +53,8 @@ Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_AD
   Hover-Bot, HQ, Fabrik/Module, Relais), sechs Blender-Quellen und Herkunftsbelege
   im Repository abgelegt. 25 Quelldateien per Hash geprüft, GLB-Inhalte/Animationen
   ausgelesen; Produktionsbuild bestanden. [Assetbestand](../../public/assets/hexwars/README.md).
-  Platzierung und Gegneranbindung sind noch offen und kein neuer Pflichtpunkt für L1.
+  L1.6a verwendet inzwischen Hover-Bot und Relais als statische Missionsobjekte.
+  Weitere Platzierungen und Gegneranbindung bleiben offen.
 - [x] 29. Oktober, Kampf-Nachbesserung: Eingangssperre am tatsächlichen Durchgang,
   seitliches Umgehen/Überspringen abgesichert, texturierte Boss-Austrittsstelle,
   gezielte Bodenausbrüche auf Plateaus, sammelbarer Steinkern und Beschuss-Aggro
@@ -86,8 +88,8 @@ Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_AD
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
 - [ ] Persönliche Sichtung von L1.4b einschließlich der neuen Pflanzen/Konsolen;
-  weiterer Ausbau ist jetzt als L1.6a–c geplant. Bei Freigabe folgt L1.5b danach
-  (20–40 Minuten nach den Paketprüfungen; echter Handytest separat).
+  L1.6a ist inzwischen umgesetzt. L1.6b/c und danach L1.5b benötigen jeweils
+  eine Freigabe (L1.5b: 20–35 Minuten; echter Handytest separat).
 - [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.

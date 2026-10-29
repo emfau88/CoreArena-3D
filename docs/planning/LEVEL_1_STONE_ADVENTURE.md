@@ -2,9 +2,9 @@
 
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
 
-**Planungsstand 29. Oktober 2026: Planung beauftragt, Umsetzung noch nicht
-freigegeben.** Arbeitstitel für die neue Inszenierung; der aktuelle Spieltitel
-und die unten dokumentierten Spielregeln bleiben bis zur Umsetzung bestehen.
+**Stand 30. Oktober 2026: Nur L1.6a freigegeben, umgesetzt und technisch geprüft.**
+Die vollständige Missionskette ist spielbar; [Ergebnis und Browsernachweise](../qa/ADVENTURE_MISSION_RESULT.md).
+L1.6b, L1.6c und L1.5b bleiben offen und benötigen jeweils eine neue Freigabe.
 
 Die [ausführliche Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md) dokumentiert
 sechs Vergleichsspiele, Quellen und konkrete Empfehlungen für diesen Ausbau.
@@ -14,34 +14,31 @@ Ziel: Ein zusammenhängender kleiner Auftrag mit erkennbarem Anfang, Entdeckung,
 Bedrohung und sichtbarem Abschluss. Grundlage bleiben die drei großen Höfe,
 Links-nach-rechts-Kamera, zwei Steinläufer, Steinwächter und die beiden Waffen.
 
-**Geplanter Ablauf:** Ankunft an beschädigter Drohne → erster Läufer → Pulse-Fund
+**Spielbarer Ablauf:** Ankunft an beschädigter Drohne → erster Läufer → Pulse-Fund
 → zweiter Läufer / optionale Wartungsterrasse → Konsole aktivieren → Checkpoint
 → angekündigtes Erwachen des Bosses → Steinkern bergen → Relais versorgen →
 durch das geöffnete Ausgangstor gehen.
 
 | Paket | Konkretes Ergebnis | Fertig, wenn … | Aktive Agentzeit |
 | --- | --- | --- | --- |
-| **L1.6a · Auftrag spielbar machen** | Beschädigter Hover-Bot am Start und kurzer Auftrag; vorhandene Konsole im zweiten Hof wird bedienbar; sie aktiviert nach beiden Läufern den Zugang zum Boss. Nach Boss-Sieg versorgt der vorhandene Steinkern ein Hexwars-Relais am Ausgang, dessen Aktivierung das Nordtor öffnet. Lichtreaktionen und höchstens vier kurze Textmeldungen begleiten den Ablauf. | Ganze Kette mit Maus/Tastatur und Touch durchspielbar; aktuelles Ziel jederzeit klar, Interaktion nur in Reichweite. Boss-Retry erhält aktivierte Konsole/Anreisefortschritt, kompletter Neustart setzt alles zurück. | **45–75 Min.** |
-| **L1.6b · Kampf spannend und fair machen** | Kurzer angekündigter Vorwärtsschritt beim Faustschlag, erkennbare Erholung und bessere Folge der vorhandenen Spezialangriffe; Trefferanimation und Sound schärfen. Abstimmung auf Auto-Arc, Pulse und reduzierten Sprint. | Stationäres Dauerfeuer gewinnt den definierten Bossvergleich auf offenem Boden/Plateau nicht; aktives Ausweichen ermöglicht Sieg. Vorwärtsschritt respektiert Wände und Trefferzone, Warnung und tatsächlicher Schaden stimmen überein; auf Touch geprüft. | **30–60 Min.** |
-| **L1.6c · Drei erkennbare Orte gestalten** | Ankunft als Ladestation, zweiter Hof als überwucherter Wartungsbereich, Boss-Hof als massive Relaisanlage. Pulse als Waffenstation inszenieren; Terrasse mit vorhandenen Vorräten und kurzer Entdeckung. Kabel, Pflanzen, Licht und Schäden gezielt platzieren; Schläge/Staub kündigen den Boss an. | Jeder Hof hat einen klaren Blickfang; Hauptweg, Sprungflächen und Gegner bleiben aus Spielkamera und im mobilen Querformat lesbar. Vergleichsaufnahmen und tatsächlicher Wegtest vorhanden. | **30–60 Min.** |
-| **L1.5b · Gesamtabnahme** | Einstieg bis Ausgang mit Tod/Retry/Neustart spielen; Schwierigkeit und Lade-/Laufzeit mit den tatsächlich platzierten Assets prüfen; letzte gezielte Korrekturen. | Desktop- und emulierter Touch-Durchlauf bestanden, keine Fortschrittsblockade oder Ladefehler; persönlicher Handytest und Spielurteil separat dokumentiert. | **20–40 Min.** |
+| **L1.6a · Auftrag spielbar machen — erledigt** | Beschädigte Drohne, bedienbare Wartungskonsole, Bossfreigabe, erforderlicher Steinkern und Relais am Ausgang; Lichtreaktionen, Ton und vier kurze Meldungen. | Ganze Kette mit Maus/Tastatur und emuliertem Touch geprüft; Interaktion nur in Reichweite, auf Bodenhöhe und mit freier Sicht. Boss-Retry erhält aktivierte Konsole, Neustart setzt alles zurück. | Keine Restarbeit dieses Bulks; keine separat gemessene Istzeit |
+| **L1.6b · Kampf spannend und fair machen — offen** | Vergleich mit aktuellem Auto-Arc und Pulse; nur bei belegtem Bedarf vorhandene Angriffe, Warnung/Erholung und Trefferfeedback gezielt abstimmen. Kein pauschaler HP-Zuschlag. | Gleiche Startwerte für stationäres Feuer und bewusstes Ausweichen dokumentiert; aktives Spielen hat einen klaren Vorteil, Warnung und Trefferzone stimmen auch auf Touch überein. | **30–60 Min.** |
+| **L1.6c · Drei erkennbare Orte gestalten — offen** | Ladestation, Wartungsbereich und Relaisanlage mit vorhandener Ausstattung ausarbeiten; Pulse-Fund lesbarer inszenieren, eine kleine Erkundungsentdeckung ergänzen. Drohne, Konsole, Relais und Leitungen aus L1.6a nicht erneut bauen. | Jeder Hof hat einen Blickfang; Hauptweg, Höhen und Gegner bleiben mobil lesbar. Der Abstecher lohnt sich auch angesichts der Checkpoint-Auffüllung. Vergleichsaufnahmen und Wegtest vorhanden. | **30–50 Min.** |
+| **L1.5b · Gesamtabnahme — offen** | Nach den freigegebenen Ausbauten den gesamten Ablauf, Schwierigkeit und Lade-/Laufzeit prüfen; gezielte Restkorrekturen. | Desktop-/Touch-Durchlauf und technische Prüfung dokumentiert; persönlicher Handytest und Spielurteil separat. | **20–35 Min.** |
 
-- [ ] L1.6a: Auftrag, Konsole und Relaisabschluss.
+- [x] L1.6a: Auftrag, Konsole und Relaisabschluss.
 - [ ] L1.6b: Bossdruck und Kampfgefühl.
 - [ ] L1.6c: Ortsidentität und Erkundung.
 - [ ] L1.5b: Technische Gesamtabnahme und persönliche Rückmeldung.
 
-**Reihenfolge:** zuerst nur L1.6a umsetzen und spielbar zeigen; danach Kampf und
-Gestaltung paketweise. Die einfache Platzierung von Drohne/Relais und deren
-Lichtreaktion gehören bereits zu L1.6a; L1.6c verfeinert die Umgebung.
-Gesamt grob **2–4 Stunden aktive Agent-Arbeit**, inklusive gezielter Tests,
-Roadmap und Commit/Push je Paket; Rückmeldungen, Deployment-Wartezeit und echter
-Handytest separat. Schätzungen nach jedem Paket anhand der tatsächlichen Arbeit
-nachführen. Kein Anspruch, die Spielzeit durch längere Wege oder zusätzliche HP
-zu strecken.
+**Reihenfolge:** L1.6a ist erledigt. Danach nur mit eigener Freigabe Kampfvergleich/
+gezielte Abstimmung (L1.6b), Ortsgestaltung/Erkundung (L1.6c), Gesamtabnahme (L1.5b).
+Restplan **80–145 Minuten aktive Agent-Arbeit**, inklusive passender Tests,
+Dokumentation und Commit/Push. Rückmeldung, Deployment-Wartezeit und echter
+Handytest separat. Dies ist keine Freigabe der Restpakete.
 
-Die geplante Relaiskette ändert bewusst den bisherigen Abschluss: Der Steinkern
-wird vom optionalen Fund zum Missionsgegenstand, und das Nordtor öffnet erst nach
+Die umgesetzte Relaiskette ändert den bisherigen Abschluss: Der Steinkern
+ist jetzt Missionsgegenstand, und das Nordtor öffnet erst nach
 Relaisaktivierung. Nach dem Boss-Sieg öffnet die Rückzugssperre weiterhin.
 Die einzige neue Bedienung ist „Interagieren“ (E am Desktop, kontextabhängige Taste
 auf Touch); Kampf- und Bewegungsfinger bleiben unabhängig. Der Erkundungsmodus
@@ -55,7 +52,7 @@ bisherige Roadmap; L1.5b wird bei Freigabe dahinter eingeordnet, nicht doppelt g
 
 ## Bereits umgesetzter Stand
 
-Stand: 29. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3 und L1.4a umgesetzt und technisch
+Stand: 30. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3, L1.4a und L1.6a umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
 Der frühere Plan mit sieben kleinen Gegnern, Steinwerfer und zusätzlichen Bossphasen
@@ -70,8 +67,9 @@ Die kostenlose AssetQuest-/Retro-Tech-Runde ergänzt jetzt Pflanzen und vier
 Konsolen in allen drei Höfen. Weitere Lichtgestaltung ist optional, die
 abschließende Abnahme L1.5b bleibt offen.
 Die Kampf-Nachbesserung vom 29. Oktober korrigiert die Eingangssperre, ergänzt
-Plateau-Druck durch Bodenausbrüche, Beschuss-Aggro und einen optionalen Steinkern
-als Boss-Trophäe. [Details und Browsernachweise](../qa/ENCOUNTER_FIXES_RESULT.md).
+Plateau-Druck durch Bodenausbrüche, Beschuss-Aggro und einen damals optionalen
+Steinkern als Boss-Trophäe. Seit L1.6a ist er für das Relais erforderlich.
+[Historische Details und Browsernachweise](../qa/ENCOUNTER_FIXES_RESULT.md).
 Der zusätzlich freigegebene KayKit-/Pickup-Schritt vom 29. Oktober ist ebenfalls
 umgesetzt: geriggte Figur mit Animationen und Energie-Pickups statt schwarzer Sockel.
 
@@ -100,9 +98,11 @@ maßgeblich. [Umsetzung und Prüfung](../qa/SPRINT_ARC_MOBILE_RESULT.md).
 Die gemeinsame Adventure-Sprungkurve für Desktop/Touch landet auf gleicher Ebene
 nach ca. 0,72 s bei ca. 2,15 m Höhe; Treppen und Plateaus bleiben erreichbar.
 
-Geschichte: Zwei Steinläufer halten das Siegel der Höfe. Hinter ihnen bewacht der
-Steinwächter den Weg zur Kristallkluft. Erst beide Läufer besiegen, dann den letzten
-Hof betreten und den Wächter wecken. Kurze Ziele im HUD begleiten diesen Ablauf.
+Geschichte: Der Ruinenkurier findet einen verstummten Außenposten. Nach beiden
+Steinläufern stellt die Wartungskonsole die Verbindung zum letzten Hof her.
+Der fehlende Relaiskern steckt im Steinwächter. Kern bergen, Relais einschalten
+und den Außenposten durch das geöffnete Tor verlassen. Kurze HUD-Ziele begleiten
+jeden tatsächlichen Missionszustand.
 
 ## Spielbarer Ablauf und Fundorte
 
@@ -110,14 +110,14 @@ Koordinaten als (X; Z), Norden = negatives Z. Grundriss und Vorräte stammen aus
 
 | Ort | Gegner | Waffen/Vorräte | Ablauf |
 | --- | --- | --- | --- |
-| A · Ankunft, (0; 33) | Keine | Arc Lash, 100 HP, 50 Rüstung | Sicherer Start im ersten Hof. |
+| A · Ankunft, (0; 33) | Keine | Arc Lash, 100 HP, 50 Rüstung | Beschädigte Drohne bei (-3; 34), kurzer Auftrag; sicherer Start. |
 | B · Ruinenhof | **Ein Steinläufer bei (2; 24)** | Keine Pflichtaufnahme | Er nähert sich beim Betreten des Hofs. Rückzug zum Start möglich. |
 | C · Waffenfund, (-3; 18,5) | Keine | Pulse Repeater mit 54 Schuss | Sichtbar am Hauptweg vor dem breiten Durchgang. |
 | D · Seitenterrasse, optional | **Keine zusätzlichen Gegner** | Medkit +35 bei (-13,5; 4), Rüstung +30 bei (-13,5; 0), Munition +27 bei (-9; -0,4) | Breite Treppe zur 1,1 m hohen Terrasse. Vorräte mitnehmen und nach E zurückkehren. |
-| E · Innerer Hof | **Ein Steinläufer bei (2; -1)** | Munition +27 bei (11; 6,5) | Viel Platz zum Ausweichen. Der ehemalige Werfersockel bleibt eine freie erhöhte Fläche. |
-| F · Siegelplatz, (0; -14) | Keine | Einmalig 100 HP, mindestens 50 Rüstung, Pulse mit 54 Schuss | Nach beiden Läufern wird der Sitzungs-Checkpoint gesichert. Bereits gesammelte Rüstung über 50 bleibt erhalten. Zurücklaufen füllt nicht erneut auf. |
-| G · Wächterhof, (0; -29) | **Der vorhandene Steinwächter** | Munition +18 bei (-13; -37) und (13; -20); Medkit +35 auf Plateau bei (-12; -23) | Nach beiden Läufern löst das Betreten hinter Z = -20,5 das Auftauchen aus. Eingang schließt während des Kampfes. |
-| H · Nordtor, Z = -42 | Keine | Keine | Nach Sieg schieben sich beide Torhälften auf. Durchgehen und hinter Z = -45 ankommen beendet das Level. Danach Wiederholen, Spielmenü oder optional die bisherige Kristallkluft wählen. |
+| E · Innerer Hof | **Ein Steinläufer bei (2; -1)** | Munition +27 bei (11; 6,5) | Konsole bei (-3; -8) nach beiden Läufern mit E/Touch bedienen. Lichtleitung und Bosszugang werden aktiv. |
+| F · Siegelplatz, (0; -14) | Keine | Einmalig 100 HP, mindestens 50 Rüstung, Pulse mit 54 Schuss | Nach beiden Läufern und Konsole wird der Sitzungs-Checkpoint gesichert. Rüstung über 50 bleibt erhalten; kein wiederholtes Auffüllen. |
+| G · Wächterhof, (0; -29) | **Der vorhandene Steinwächter** | Munition +18 bei (-13; -37) und (13; -20); Medkit +35 auf Plateau bei (-12; -23) | Nach Freigabe löst Betreten hinter Z = -20,5 das Auftauchen aus. Eingang schließt während des Kampfes; Sieg lässt den Steinkern fallen. |
+| H · Relais (-3; -39), Nordtor Z = -42 | Keine | Steinkern als Missionsgegenstand | Kern bergen und am Relais mit E/Touch einsetzen. Erst dann öffnen die Torhälften; hinter Z = -45 endet das Level. Danach Wiederholen, Spielmenü oder optional Kristallkluft. |
 
 Hauptweg **A → B → C → E → F → G**; optional **E → D → E**.
 Gesamt **zwei kleine Gegner plus ein Boss**, feste Positionen, keine Zufallsspawns,
@@ -156,18 +156,19 @@ unbegrenzt. Der einmalige Ruhepunkt vor dem Boss füllt Leben, Mindestrüstung u
 auf. Vor diesem Punkt startet Tod das Level neu; danach bringt „Am Ruhepunkt versuchen“
 den Spieler mit 100 HP, 50 Rüstung und 54 Pulse-Schuss zum Siegelplatz zurück. Der Boss
 und seine drei Vorräte werden zurückgesetzt, die besiegten Läufer und verbrauchten
-Anreise-Vorräte bleiben erhalten. „Level neu starten“ setzt dagegen immer alles zurück.
+Anreise-Vorräte und die aktivierte Konsole bleiben erhalten. Kern und Relais
+werden beim Boss-Retry zurückgesetzt. „Level neu starten“ setzt immer alles zurück.
 Der Checkpoint gilt nur für die laufende Sitzung; Reload oder Spielmenü verlassen ihn.
 
-Beim Boss-Sieg bleiben Bewegung und Kamera aktiv. Das Nordtor öffnet sichtbar und
-physisch; erst tatsächliches Durchgehen schließt das Level ab. Die bisherige Kristallkluft
+Beim Boss-Sieg bleiben Bewegung und Kamera aktiv; die Rückzugssperre öffnet.
+Der Spieler muss den Steinkern bergen und am Relais einsetzen. Dadurch öffnet
+das Nordtor sichtbar und physisch; erst Durchgehen schließt das Level ab. Die bisherige Kristallkluft
 steht danach als optionaler Button bereit und beginnt mit ihrer eigenen Ausrüstung.
 
-**Balance bleibt vorläufig:** Auch nach der freigegebenen Tempoabstimmung gewann
-ein stationärer, präzise zielender Pulse-/Arc-Vergleichslauf mit 30 HP ohne Rüstung.
-Die Empfehlung „Stehenbleiben verliert immer“ ist mit diesen Werten noch nicht erfüllt.
-Das belegt den funktionierenden Ablauf, keine fertige Herausforderung. Zusätzliche
-Bossphasen oder pauschal mehr Gegner sind nicht Teil dieses Auftrags.
+**Balance bleibt vorläufig:** Der frühere stationäre Pulse-/Arc-Sieg mit 30 HP
+stammt aus der Zeit vor der Auto-Arc-Änderung und ist kein aktueller Messwert.
+L1.6a verändert keine Kampfwerte. Vergleich und gegebenenfalls gezielte Abstimmung
+gehören zum separat freizugebenden L1.6b; zusätzliche Bossphasen und Gegner nicht.
 
 ## Umsetzungsplan: vom spielbaren Kern zum fertigen Testlevel
 
@@ -185,16 +186,13 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
 | **L1.4b · Drei Höfe gestalten** | Materialien, Innenpflanzen, saubere Mauerecken; kostenlose AssetQuest-Pflanzen und Retro-Tech-Konsolen | **Freigegebene Schritte umgesetzt und geprüft**; persönliche Sichtung offen. Weitere Ruinen/Lichter optional nach Rückmeldung |
 | **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
-| **L1.6a–c · Adventure-Inszenierung** | Auftrag/Konsole/Relaisabschluss, Bossdruck, drei erkennbare Orte; siehe kompakten Ausbau oben | **Geplant, noch nicht freigegeben**; 105–195 Min. |
-| **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung; bei Freigabe nach L1.6a–c | **Offen**; 20–40 Min. nach den paketweisen Tests, echte Handyprüfung separat |
+| **L1.6a · Missionskette** | Auftrag, Konsole, Steinkern und Relaisabschluss | **Umgesetzt und technisch geprüft**; [Nachweis](../qa/ADVENTURE_MISSION_RESULT.md) |
+| **L1.6b/c · Kampf und Ortsgestaltung** | Gezielte Abstimmung nach Vergleich; drei erkennbare Orte und lohnender Abstecher | **Offen, nicht freigegeben**; zusammen 60–110 Min. |
+| **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen, nicht freigegeben**; 20–35 Min., echte Handyprüfung separat |
 
-Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Die bisherige
-Restschätzung von **30–60 Minuten** betraf allein die Abnahme des vorhandenen
-Levels. Für die neu geplante Inszenierung samt anschließender Abnahme gelten
-nun die **2–4 Stunden aktive Agent-Arbeit** aus dem kompakten Ausbau oben.
+Die verbleibenden **80–145 Minuten** entsprechen dem kompakten Ausbau oben.
+Frühere Gesamtschätzungen enthielten L1.6a und sind keine zusätzliche Restarbeit.
 Warten auf Rückmeldung/Hosting und echte Handyprüfung kommen separat hinzu.
-Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
-nicht für die jetzt zusätzlich gewünschte Material-, Modell- und Lichtüberarbeitung.
 
 ### L1.2 – erledigt
 

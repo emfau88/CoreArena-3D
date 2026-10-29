@@ -76,8 +76,8 @@ export class AdventureFightView {
     this.root.visible=!exploration;
     this.bossRoot.visible=state.bossActive;
     this.scene.getObjectByName('adventure-dormant')!.visible=!state.bossActive;
-    this.scene.getObjectByName('adventure-entry-gate')!.visible=state.bossActive && state.pve.outcome==='running';
-    const exitOpen=state.pve.outcome==='victory';
+    this.scene.getObjectByName('adventure-entry-gate')!.visible=!exploration && state.entryClosed;
+    const exitOpen=exploration || state.relayActive;
     this.exitOpening=exitOpen ? Math.min(1,this.exitOpening+dt*1.5) : 0;
     const slide=this.exitOpening*this.exitOpening*(3-2*this.exitOpening)*5.1;
     this.scene.getObjectByName('adventure-exit-gate')!.children.forEach((leaf,i)=>leaf.position.x=(i?1:-1)*slide);

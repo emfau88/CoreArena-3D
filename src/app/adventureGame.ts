@@ -15,6 +15,7 @@ import type { MatchSnapshot } from '../core/match';
 import { DesktopInput } from '../input/desktopInput';
 import { lifeHud, weaponHud } from './hud';
 import { StoneFeedback } from './stoneFeedback';
+import { AdventureMissionView, loadMissionAssets } from '../render/adventureMissionView';
 
 const hints: Record<string, string> = {
   A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
@@ -26,7 +27,7 @@ const hints: Record<string, string> = {
 /** Small adventure slice: two melee guards, then the existing stone boss. */
 export async function startAdventure(host: HTMLElement): Promise<() => void> {
   const exploration = new URLSearchParams(location.search).get('explore') === '1';
-  const [courtyardAssets] = await Promise.all([loadCourtyardAssets(),loadMeleeAssets()]);
+  const [courtyardAssets,missionAssets] = await Promise.all([loadCourtyardAssets(),loadMissionAssets(),loadMeleeAssets()]);
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
   try { view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
@@ -36,19 +37,21 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
   const simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
   const fight = new AdventureFight(), fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
+  const missionView = new AdventureMissionView(view.scene,missionAssets);
   const {combat,pickups}=fight, clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
-  let paused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0, startTick = 0;
+  let paused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0;
+  let interactPending=false, messageUntil=0, bossIntroduced=false;
   host.dataset.adventure = 'true';
   host.insertAdjacentHTML('beforeend', `<div id="hud" class="pve-hud adventure-hud">
     <header><div class="brand"><div class="brand-mark">C</div><div><span class="eyebrow">CORE ARENA · DIE DREI SIEGEL</span>
-    <h1>Der verwitterte Hof</h1></div></div><span class="phase"><i></i>${exploration ? 'ERKUNDUNG' : 'DAS STEINSIEGEL'}</span></header>
+    <h1>Der verwitterte Hof</h1></div></div><span class="phase"><i></i>${exploration ? 'ERKUNDUNG' : 'DER VERSTUMMTE AUSSENPOSTEN'}</span></header>
     <div id="adventure-location"><b id="room-name">Ankunft</b><p id="room-hint">${hints.A}</p></div>
     <div id="adventure-boss" hidden><b>DER STEINWÄCHTER</b><span id="boss-hp-value">600</span>
     <progress id="boss-hp" max="600" value="600" aria-label="Steinwächter-Lebenspunkte"></progress><p id="pve-telegraph"></p></div>
-    <aside id="campaign-story"><b>DAS VERSIEGELTE NORDTOR</b><p>Hinter den Ruinen liegt die Kristallkluft.
-    Zwei Steinläufer halten das Siegel. Befreie die Höfe und stelle dich ihrem Wächter.</p></aside>
+    <aside id="campaign-story" aria-live="polite"><b>LIEFERDROHNE · STATUSMELDUNG</b><p id="mission-message"></p></aside>
+    <button id="mission-interact" type="button" hidden></button>
     <div id="weapon-panel">${weaponHud()}<small>Arc zum Start · Pulse am Norddurchgang</small></div>
     <div id="life-panel">${lifeHud}<p id="life-status">Der Hof liegt still.</p></div>
     <div id="adventure-actions"><button id="pve-restart" type="button">Level neu starten</button>
@@ -65,6 +68,19 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused && fight.life.snapshot().outcome==='running') { if (id === 'cycle') combat.cycle(); else combat.select(id); } };
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
   const feedback = new StoneFeedback(host);
+  const announce = (text:string,ticks=360) => { el('mission-message').textContent=text; messageUntil=current.tick+ticks; };
+  const requestInteraction = () => { if(!paused && !exploration) interactPending=true; };
+  window.addEventListener('keydown',event=>{
+    if(event.code==='KeyE' && !event.repeat && !event.ctrlKey && !event.altKey && !event.metaKey) {
+      event.preventDefault();requestInteraction();
+    }
+  },options);
+  el('mission-interact').addEventListener('pointerdown',event=>{
+    if(event.button!==0)return;
+    // A new interaction finger never takes ownership of movement or firing.
+    event.preventDefault();requestInteraction();
+  },options);
+  el('mission-interact').addEventListener('click',event=>{if(event.detail===0)requestInteraction();},options);
   let touchMenuReady = false;
   const arrangeTouchMenu = () => {
     if (touchMenuReady || !input.touchEnabled) return;
@@ -79,7 +95,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   };
   const setPaused = (value: boolean) => {
     paused = value || input.touchEnabled && innerHeight > innerWidth;
-    input.clear(); clock.reset(); previous = current; lastTime = performance.now();
+    input.clear(); interactPending=false; clock.reset(); previous = current; lastTime = performance.now();
     feedback.pause(paused); el('pause').hidden = !paused;
   };
   const syncWorld = () => {
@@ -88,18 +104,24 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     world.setTargetPosition(ADVENTURE_BOSS.id,state.pve.center);
     world.setTargetEnabled(ADVENTURE_BOSS.id,!exploration && state.bossActive && state.pve.phase!=='emerging' && state.pve.outcome==='running');
     world.setObstacleEnabled('dormant-warden',!state.bossActive);
-    world.setObstacleEnabled('boss-entry-gate',state.bossActive && state.pve.outcome==='running');
-    world.setObstacleEnabled('north-gate',state.pve.outcome!=='victory');
+    world.setObstacleEnabled('boss-entry-gate',!exploration && state.entryClosed);
+    world.setObstacleEnabled('north-gate',!exploration && !state.relayActive);
   };
   const placePlayer = (position:Vec3) => {
     feedback.reset(); overview = false; syncWorld();
     current = simulation.reset(position); previous = current; aim = null;
-    startTick = current.tick;
+    messageUntil=0;
     el('match-result').hidden=true;
     view.resize(); view.camera.snap(current.position); view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   };
-  const restart = () => { fight.reset(); placePlayer(STONE_ADVENTURE.spawn); };
-  const retry = () => placePlayer(fight.retry());
+  const restart = () => {
+    fight.reset();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
+    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.',540);
+  };
+  const retry = () => {
+    if(!fight.checkpoint || fight.life.snapshot().outcome!=='defeat') restart();
+    else placePlayer(fight.retry());
+  };
   window.addEventListener('blur', () => setPaused(true), options);
   window.addEventListener('focus', () => setPaused(document.hidden), options);
   document.addEventListener('visibilitychange', () => setPaused(document.hidden || !document.hasFocus()), options);
@@ -129,8 +151,21 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       const selected = combat.snapshot().selected;
       const attack=combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets(), current.position);
       if(attack.attacked) feedback.play(selected);
-      if(!exploration) fight.step(current.position,world,attack.damage);
+      if(!exploration) {
+        if(interactPending) fight.interact(current.position,world);
+        fight.step(current.position,world,attack.damage);
+      }
+      interactPending=false;
       const after=fight.snapshot(); syncWorld();
+      if(after.consoleActive && !before.consoleActive) {
+        feedback.play('console');announce('Verbindung steht. Dem Relais fehlt sein Kern. Das Signal kommt aus dem Wächterhof.');
+      }
+      if(after.bossActive && !before.bossActive && !bossIntroduced) {
+        bossIntroduced=true;announce('Der Kern läuft. Leider hat er Beine.',180);
+      }
+      if(after.relayActive && !before.relayActive) {
+        feedback.play('relay');announce('Außenposten online. Lieferung abgeschlossen. Dieses Mal fast ohne Zwischenfall.');
+      }
       if(after.pve.hitsTaken>before.pve.hitsTaken) { feedback.play('hurt'); feedback.playerHit(current.tick); }
       const damage=before.pve.bossHp-after.pve.bossHp;
       if(damage>0) { feedback.play('hit'); feedback.bossHit(damage,current.tick); }
@@ -162,33 +197,38 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       if (room) { el('room-name').textContent = room.name; el('room-hint').textContent = hints[room.id]!; }
       const guards=state.runners.filter(r=>r.hp>0).length;
       if(!exploration) {
-        if(room?.id==='A') el('room-hint').textContent='Öffne den Weg zur Kristallkluft. Befreie die Höfe und bezwinge ihren Wächter.';
-        if(room?.id==='B') el('room-hint').textContent=state.runners[0]!.hp>0?'Ein Steinläufer bewacht den Durchgang. Weiche seinem Schlag aus.':'Erster Hof frei · Pulse am Durchgang aufnehmen.';
-        if(room?.id==='E') el('room-hint').textContent=state.runners[1]!.hp>0?'Der zweite Steinläufer hält das Siegel.':'Innerer Hof frei · Sichere die Vorräte auf der Terrasse.';
-        if(room && ['F','G','H'].includes(room.id)) el('room-hint').textContent=guards ? `Noch ${guards} Steinläufer halten das Siegel. Befreie die beiden Höfe.` : state.bossActive?'Das Tor ist versiegelt. Bezwinge den Wächter!':'Betritt den Wächterhof. Das Siegel erwacht.';
-        if(room?.id==='F' && state.checkpoint && !state.bossActive) el('room-hint').textContent='Ruhepunkt gesichert · Vorräte aufgefüllt. Betritt den Wächterhof, wenn du bereit bist.';
+        let objective=guards ? `Anlage reaktivieren · ${guards}/2 Steinläufer sichern die Wartungskonsole im zweiten Hof.` : 'Wartungskonsole im zweiten Hof starten · goldene Markierung.';
+        if(!state.consoleActive && !state.runners[0]!.hp && !weapons.ownsPulse && room && ['B','C'].includes(room.id))
+          objective='Pulse am Durchgang aufnehmen · danach zur Wartungskonsole.';
+        if(state.consoleActive) objective=state.bossActive?'Steinkern bergen · Bezwinge den Wächter!':
+          state.checkpoint?'Ruhepunkt gesichert · Betritt den freigegebenen Wächterhof.':'Verbindung steht · Folge der leuchtenden Leitung zum Ruhepunkt.';
         if(state.pve.outcome==='victory') {
-          el('room-name').textContent='Das Nordtor ist offen';
-          el('room-hint').textContent=state.core?.collected?'Steinkern geborgen · Verlasse den Hof durch das Nordtor.':
-            'Der Wächter hat einen Steinkern hinterlassen. Sammle ihn ein und folge dem Nordtor.';
+          el('room-name').textContent=state.relayActive?'Außenposten online':'Relaisanlage';
+          objective=state.relayActive?'Nordtor offen · Verlasse den Außenposten.':state.core?.collected?
+            'Steinkern geborgen · Am Relais vor dem Nordtor einsetzen.':'Steinkern beim besiegten Wächter einsammeln · Das Relais braucht seine Energie.';
         }
+        el('room-hint').textContent=objective;
       }
+      const interaction=exploration?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
+      button.hidden=paused || !interaction;
+      button.disabled=!interaction?.enabled;
+      button.textContent=interaction?`${interaction.enabled && !input.touchEnabled?'E · ':''}${interaction.label}`:'';
       el('adventure-boss').hidden=!state.bossActive || state.pve.outcome==='victory';
       el('boss-hp-value').textContent=String(state.pve.bossHp); (el('boss-hp') as HTMLProgressElement).value=state.pve.bossHp;
       const messages={emerging:'Der Boden bricht auf …',chasing:'Er verfolgt dich · Bleib in Bewegung!',melee:'FAUSTSCHLAG · Abstand halten!',
         warning:state.pve.kind==='wave'?'SCHOCKWELLE · Sprung vorbereiten!':'BODENAUSBRUCH · Kreis verlassen!',
         attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'Gegenfeuer!',defeated:'Steinsiegel gebrochen.'};
       el('pve-telegraph').textContent=messages[state.pve.phase];
-      el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?'Steinsiegel gebrochen · Ausgang offen':
-        state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:'Weiter zum Siegelplatz.';
+      el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?state.relayActive?'Relais online · Ausgang offen':'Steinsiegel gebrochen · Relais versorgen':
+        state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:state.consoleActive?'Weiter zum Ruhepunkt.':'Wartungskonsole starten.';
       el('match-result').hidden=state.pve.outcome!=='defeat' && !state.completed;
       el('result-title').textContent=state.completed?'Der verwitterte Hof ist frei.':'Der Hof bleibt bewacht.';
-      el('result-detail').textContent=state.completed?`Du hast das Steinsiegel gebrochen${state.core?.collected?' und seinen Steinkern geborgen':''}. Dein Weg zur Kristallkluft ist frei.`:
-        state.checkpoint?'Der Ruhepunkt ist gesichert. Kehre mit frischen Vorräten zum Siegelplatz zurück. Die beiden Höfe bleiben befreit.':'Nutze die Vorräte und weiche den angekündigten Schlägen aus.';
+      el('result-detail').textContent=state.completed?'Steinkern eingesetzt, Relais online. Der Außenposten arbeitet wieder. Dein Weg zur Kristallkluft ist frei.':
+        state.checkpoint?'Kehre mit frischen Vorräten zum Ruhepunkt zurück. Die Konsole bleibt aktiv und die beiden Höfe bleiben befreit.':'Nutze die Vorräte und weiche den angekündigten Schlägen aus.';
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';
       el('pve-next').hidden=!state.completed;
       if (input.touchEnabled) el('camera-toggle').textContent = `Ansicht: ${{side:'seitlich',straight:'gerade',isometric:'isometrisch'}[view.camera.mode]}`;
-      el('campaign-story').hidden = state.checkpoint || current.tick-startTick > 540;
+      el('campaign-story').hidden = exploration || paused || state.completed || state.pve.outcome==='defeat' || current.tick>=messageUntil;
       el('hp-value').textContent = String(hp); el('armor-value').textContent = String(armor);
       (el('hp-bar') as HTMLProgressElement).value = hp; (el('armor-bar') as HTMLProgressElement).value = armor;
       el('ammo-count').textContent = weapons.ownsPulse ? `${weapons.ammo} / 54` : '—';
@@ -199,6 +239,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     const life: MatchSnapshot = { phase: state.pve.outcome==='defeat' || state.completed?'ended':'running', tick: current.tick, remainingTicks: 0, scores: { blue: 0, red: 0 },
       winner: null, reason: null, actors: { player: { id: 'player', team: 'blue', hp, armor, life: 1, alive: hp>0, respawnTicks: 0, protectionTicks: 0 } } };
     fightView.update(state,view.camera.camera,paused?0:Math.min(elapsed,.05),exploration);
+    missionView.update(state,paused?0:Math.min(elapsed,.05));
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
     view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot());
     frameId = requestAnimationFrame(frame);
@@ -207,6 +248,8 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     read: () => ({ mode: 'adventure', level: 'stone', snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
       checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
+      mission:{consoleActive:fight.consoleActive,relayActive:fight.relayActive,entryClosed:fight.snapshot().entryClosed,
+        interaction:fight.interaction(current.position,world)},
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,

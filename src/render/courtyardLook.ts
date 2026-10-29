@@ -75,7 +75,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     const group=batches.get(material)??[];group.push(geometry);batches.set(material,group);
   };
   for(const shape of arena.boxes) {
-    if(['dormant-warden','north-gate','boss-entry-gate'].includes(shape.id)) continue;
+    if(['dormant-warden','north-gate','boss-entry-gate','mission-drone','mission-relay'].includes(shape.id)) continue;
     if(STONE_CONSOLES.some(station=>station.id===shape.id)) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
     if(shape.material==='floor') {

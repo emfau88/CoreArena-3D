@@ -74,7 +74,7 @@ test('walk every room, collect supplies, climb real stairs, aim/fire, pause and 
   await page.keyboard.press('KeyV'); await page.keyboard.press('KeyV');
   await page.screenshot({path:info.outputPath('warden-court-isometric.png')}); await page.keyboard.press('KeyV');
   await walkTo(page,0,-23); await walkTo(page,0,-19); await walkTo(page,-16,-19); await walkTo(page,-16,-37);
-  await walkTo(page,-13,-37); await walkTo(page,0,-38.5); await walkTo(page,0,-40);
+  await walkTo(page,-13,-37); await walkTo(page,0,-37); await walkTo(page,0,-40);
   await expect(page.locator('#room-name')).toHaveText('Nordtor');
   const end = await read(page); expect(end.playerScreen.x).toBeGreaterThan(200); expect(end.playerScreen.x).toBeLessThan(end.viewport.width-200);
   expect(end.playerScreen.y).toBeGreaterThan(100); expect(end.playerScreen.y).toBeLessThan(end.viewport.height-120);

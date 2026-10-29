@@ -2,6 +2,12 @@
 
 Recherche- und Designstand: **29. Oktober 2026**. Projektbasis: `bb8975d`.
 
+**Statusnachtrag 30. Oktober:** Die nachfolgende Analyse beschreibt den Stand
+vor L1.6a. Nur Auftrag/Konsole/Steinkern/Relais wurden inzwischen freigegeben und
+umgesetzt; [aktueller Nachweis](../qa/ADVENTURE_MISSION_RESULT.md). L1.6b/c und
+L1.5b bleiben offen. Aussagen über optionalen Steinkern und fehlende Missionskette
+im historischen Ausgangsstand sind damit überholt; Empfehlungen sind keine Freigabe.
+
 Dieses Dokument sammelt die Erkenntnisse hinter dem geplanten Adventure-Ausbau.
 Es ist eine ausführliche Referenz, keine zusätzliche Aufgabenliste und keine
 Umsetzungsfreigabe. Maßgeblich für die nächsten Arbeitspakete bleibt der
@@ -755,21 +761,21 @@ bildet keine gemessene Erfolgswahrscheinlichkeit ab.
 - [x] Vorbilder recherchiert, Quellen und eigene Ableitungen getrennt dokumentiert.
 - [x] Empfehlungen auf vorhandene Karte, Waffen, Gegner und Assets bezogen.
 - [x] Bezug zum kompakten Umsetzungsplan hergestellt.
-- [ ] L1.6a: Auftrag/Konsole/Kern/Relais umsetzen — noch nicht freigegeben.
+- [x] L1.6a: Auftrag/Konsole/Kern/Relais — am 30. Oktober freigegeben und umgesetzt.
 - [ ] L1.6b: Kampf und Bossdruck abstimmen — noch nicht freigegeben.
 - [ ] L1.6c: Orte und Erkundung ausarbeiten — noch nicht freigegeben.
 - [ ] L1.5b: Abschließende technische und persönliche Spielabnahme.
 
-Der [kompakte Levelplan](LEVEL_1_STONE_ADVENTURE.md) bleibt die maßgebliche
-Umfangs- und Aufwandsschätzung: grob 2–4 Stunden aktive Agent-Arbeit für die
+Der [kompakte Levelplan](LEVEL_1_STONE_ADVENTURE.md) bleibt maßgeblich.
+Ursprüngliche Umfangs- und Aufwandsschätzung vor L1.6a: grob 2–4 Stunden aktive Agent-Arbeit für die
 geplanten Pakete einschließlich gezielter Tests und Dokumentation. Die Länge
 dieses Referenzdokuments begründet keinen zusätzlichen Entwicklungsumfang.
 
 Ein allgemeines Quest-System, neues Inventar, vertonte Dialogproduktion,
 persistente Charakterentwicklung, Mech-Gegner, weitere Räume oder zusätzliche
 Gegnerwellen sind mögliche spätere Richtungen. Keine davon muss für das erste
-Testlevel vorgezogen werden. Der nächste sinnvolle Implementierungsschritt
-bleibt nach Freigabe **nur L1.6a**.
+Testlevel vorgezogen werden. **L1.6a ist inzwischen umgesetzt.** Weitere Umsetzung
+wartet auf eine neue Freigabe; maßgeblich bleibt der aktuelle Levelplan.
 
 ## 16. Wie wir Wirkung prüfen und weitere Inspiration sammeln
 

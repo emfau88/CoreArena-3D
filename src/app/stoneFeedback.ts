@@ -1,9 +1,10 @@
-type Cue = 'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory';
+type Cue = 'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay';
 const tones: Record<Cue, [number, number, number, number]> = {
   pulse: [480, 120, 0.09, 0.1], arc: [180, 85, 0.6, 0.13], hit: [240, 80, 0.07, 0.08],
   hurt: [95, 40, 0.22, 0.18], step: [80, 45, 0.055, 0.035], land: [100, 35, 0.16, 0.12],
   jump: [180, 300, 0.08, 0.055], windup: [80, 165, 0.28, 0.11], slam: [110, 28, 0.28, 0.21],
   pickup: [520, 920, 0.18, 0.1], victory: [350, 700, 0.45, 0.12],
+  console: [220, 660, .4, .1], relay: [100, 800, 1.1, .12],
 };
 
 /** Lightweight synthesized first sound pass. No autoplay, downloads, or gameplay timing changes. */

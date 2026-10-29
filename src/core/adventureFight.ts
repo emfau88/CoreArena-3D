@@ -3,10 +3,13 @@ import { ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_RUNNERS, ADVENTURE_CHEC
 import { BossNavigation } from './bossNavigation';
 import { PveEncounter, type MonsterWorld } from './pve';
 import { StoneRunner } from './stoneRunner';
-import { Combat, WEAPONS } from './combat';
+import { Combat, WEAPONS, directionTo } from './combat';
 import { Pickups } from './pickups';
 import type { Damage } from './match';
 import type { Vec3 } from './types';
+import { ADVENTURE_MISSION } from '../arena/adventureMission';
+
+export interface MissionInteraction { kind:'console'|'relay'; enabled:boolean; label:string }
 
 function navigationFor(floorId:string,radius:number):BossNavigation {
   const floor=STONE_ADVENTURE_COMBAT.boxes.find(b=>b.id===floorId)!;
@@ -25,20 +28,45 @@ export class AdventureFight {
   bossActive=false;
   checkpoint=false;
   completed=false;
+  consoleActive=false;
+  relayActive=false;
   private core:{position:Vec3;collected:boolean}|null=null;
   reset():void { this.life.reset(); this.runners.forEach(r=>r.reset()); this.bossNavigation.reset();
     this.runnerNavigation.forEach(n=>n.reset()); this.bossActive=this.checkpoint=this.completed=false;
+    this.consoleActive=this.relayActive=false;
     this.core=null; this.combat.reset(); this.pickups.reset(); }
   /** Retry preserves the cleared approach, but never carries boss damage/effects into a new attempt. */
   retry():Vec3 {
     if(!this.checkpoint || this.life.snapshot().outcome!=='defeat') { this.reset(); return STONE_ADVENTURE_COMBAT.spawn; }
-    this.life.reset(); this.bossNavigation.reset(); this.bossActive=false; this.core=null;
+    this.life.reset(); this.bossNavigation.reset(); this.bossActive=false; this.core=null; this.relayActive=false;
     this.combat.reset(); this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true); this.combat.select('pulse');
     this.pickups.reset(ADVENTURE_BOSS_PICKUPS);
     return ADVENTURE_CHECKPOINT;
   }
   snapshot() { return {bossActive:this.bossActive,checkpoint:this.checkpoint,completed:this.completed,core:this.core,
+    consoleActive:this.consoleActive,relayActive:this.relayActive,entryClosed:!this.consoleActive || this.bossActive && this.life.snapshot().outcome==='running',
     pve:this.life.snapshot(),runners:this.runners.map(r=>r.snapshot())}; }
+  interaction(player:Vec3,world:MonsterWorld):MissionInteraction|null {
+    if(this.completed || this.life.snapshot().outcome==='defeat' || Math.abs(player.y)>.4) return null;
+    for(const kind of ['console','relay'] as const) {
+      const object=ADVENTURE_MISSION[kind];
+      if(Math.hypot(player.x-object.x,player.z-object.z)>object.reach) continue;
+      const origin={...player,y:player.y+.9},line=directionTo(origin,{x:object.x,y:1.1,z:object.z});
+      const obstruction=world.raycast({origin,direction:line.direction},line.distance,true);
+      if(obstruction && obstruction.id!==object.id) continue;
+      if(kind==='console') return {kind,enabled:!this.consoleActive && this.runners.every(r=>r.snapshot().hp===0),
+        label:this.consoleActive?'Verbindung steht':this.runners.some(r=>r.snapshot().hp>0)?'Erst beide Steinläufer ausschalten':'Konsole starten'};
+      return {kind,enabled:!!this.core?.collected && !this.relayActive,
+        label:this.relayActive?'Relais online':this.core?.collected?'Steinkern einsetzen':'Relais · Steinkern fehlt'};
+    }
+    return null;
+  }
+  interact(player:Vec3,world:MonsterWorld):void {
+    const action=this.interaction(player,world);
+    if(!action?.enabled) return;
+    if(action.kind==='console') this.consoleActive=true;
+    else this.relayActive=true;
+  }
   targets() {
     const small=this.runners.flatMap((r,i)=>r.snapshot().hp>0 ? [{...ADVENTURE_RUNNERS[i]!,center:r.snapshot().center}] : []);
     const boss=this.life.snapshot();
@@ -47,16 +75,16 @@ export class AdventureFight {
   step(player:Vec3,world:MonsterWorld,hits:readonly Damage[]):void {
     if(this.core && !this.core.collected && Math.hypot(player.x-this.core.position.x,player.z-this.core.position.z)<1.35
       && Math.abs(player.y-this.core.position.y)<.4) this.core={...this.core,collected:true};
-    if(this.life.snapshot().outcome==='victory' && player.z< -45 && Math.abs(player.x)<4.5 && player.y>-.2 && player.y<.4) this.completed=true;
+    if(this.relayActive && this.life.snapshot().outcome==='victory' && player.z< -45 && Math.abs(player.x)<4.5 && player.y>-.2 && player.y<.4) this.completed=true;
     if(this.life.snapshot().outcome!=='running') return;
     const damage=this.runners.reduce((sum,r)=>sum+r.step(player,world,hits),0);
     const cleared=this.runners.every(r=>!r.snapshot().hp);
     // One-time relief on reaching the seal; returning here never becomes a healing loop.
-    if(!this.checkpoint && cleared && player.z< -12.5 && player.z> -41 && Math.abs(player.x)<15 && player.y>-.2 && player.y<.4) {
+    if(!this.checkpoint && this.consoleActive && cleared && player.z< -12.5 && player.z> -41 && Math.abs(player.x)<15 && player.y>-.2 && player.y<.4) {
       this.checkpoint=true; this.life.restore(100); this.life.restoreArmor(Math.max(0,50-this.life.snapshot().armor));
       this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true);
     }
-    // The two visible guards release the seal. Crossing into the final court wakes the existing boss.
+    // The powered console releases the seal. Entering still wakes the existing boss.
     if(!this.bossActive && this.checkpoint && cleared && player.z< -20.5 && player.z> -41 && Math.abs(player.x)<15) this.bossActive=true;
     this.life.step(player,world,hits,{active:this.bossActive,incomingDamage:damage});
     if(this.life.snapshot().outcome==='victory') {

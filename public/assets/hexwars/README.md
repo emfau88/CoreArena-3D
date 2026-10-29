@@ -1,8 +1,9 @@
 # Hexwars-Modellbestand
 
-Am 29. Oktober 2026 auf Nutzerwunsch übernommen. Verfügbare Originalmodelle für
-spätere Kampagnen-/Missionsarbeit; aktuell lädt und platziert das Spiel diese
-Dateien noch nicht.
+Am 29. Oktober 2026 auf Nutzerwunsch übernommen. Seit L1.6a (30. Oktober) lädt
+das Adventure `hoverbot.glb` als beschädigte Startdrohne und `relay.glb` als
+Missionsziel. Die übrigen Modelle bleiben unplatzierter Assetbestand.
+Die GLBs und das Quellprojekt Hexwars bleiben unverändert.
 
 Quelle: [emfau88/hexwars, codex/lane-wars](https://github.com/emfau88/hexwars/tree/777d4298569df9925915e5395968dffea83dd10f/experiments/hexfront-lane-wars),
 festgehalten bei Commit `777d4298569df9925915e5395968dffea83dd10f`.
@@ -30,8 +31,9 @@ Mech und Railgun verwenden starre mechanische Baugruppen, keine Hautverformung.
 glTF: Y oben, Front −Z. `rig.json` und die ursprünglichen Manifeste bleiben
 unverändert erhalten; ihre Quellpfade und historischen Statusangaben beziehen
 sich auf Hexwars. Für CoreArena sind Maßstab, Collider, KI und Animationsereignisse
-erst beim tatsächlichen Einbau abzustimmen. Aktueller Spielstand und Ladezeit
-werden durch den bloßen Bestand nicht verändert.
+erst beim tatsächlichen Einbau abzustimmen. L1.6a verwendet nur die zwei statischen
+Missionsmodelle mit eigenen CoreArena-Positionen, Maßstäben und Kollisionskörpern;
+zusammen 5.824.268 zusätzliche Ladebytes, ausschließlich im Adventure.
 
 ## Herkunft und Prüfung
 
@@ -41,5 +43,6 @@ werden durch den bloßen Bestand nicht verändert.
 - [Archivierte Quellberichte](../../../docs/assets/hexwars/source/ASSET_LICENSES.md)
 
 Geprüft: 25 Dateien gegen Git-Blob-Hashes und Größen, GLB-2-Header, eingebettete
-Puffer/Texturen, Meshes und Animationskanäle/-dauer. Keine neue Laufzeitintegration
-oder Browser-Spielprüfung dieser Modelle in CoreArena behauptet.
+Puffer/Texturen, Meshes und Animationskanäle/-dauer. Diese ursprüngliche Prüfung
+betraf nur den Import. Die spätere Integration von Hover-Bot und Relais ist
+im [L1.6a-Ergebnis](../../../docs/qa/ADVENTURE_MISSION_RESULT.md) dokumentiert.

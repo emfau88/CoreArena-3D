@@ -7,14 +7,20 @@
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
+**L1.6a · Der verstummte Außenposten:** Auftrag an der beschädigten Drohne,
+nach beiden Läufern die Wartungskonsole starten, den Boss besiegen, seinen
+Steinkern bergen und am Relais einsetzen. Erst dann öffnet sich das Ausgangstor.
+Bedienen in Reichweite mit **E** oder der eingeblendeten **Touch-Taste**.
+[Missionsablauf und Prüfergebnis](docs/qa/ADVENTURE_MISSION_RESULT.md).
 **Kostenlose Ausstattung ergänzt:** AssetQuest-Pflanzen, Birken und Pilzgruppen
 in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
 Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.
 [Vorher/Nachher und Browserprüfung](docs/qa/FREE_DECORATION_RESULT.md).
 
 **Hexwars-Assetbestand übernommen:** animierter Mech und Railgun, Hover-Bot,
-HQ, Fabrik mit Modulen und Relais samt Blender-Quellen. Für spätere Missionen
-verfügbar, noch nicht im Level platziert. [Dateien und Animationen](public/assets/hexwars/README.md).
+HQ, Fabrik mit Modulen und Relais samt Blender-Quellen. Hover-Bot und Relais
+werden in L1.6a als Missionsobjekte verwendet; die übrigen Modelle bleiben
+Assetbestand. [Dateien und Animationen](public/assets/hexwars/README.md).
 
 **Spieler-Look: erste Ruinenkurier-Variante.** Flacherer, breiterer Kopf, kompakterer
 Körper und kräftigere Stiefel; warmer Elfenbeinhelm, koralloranger Anzug und Graphitdetails.
@@ -38,14 +44,16 @@ Pickup-Sockel; verbrauchte Adventure-Fundstellen verschwinden nach einem Lichtim
 · [Modell-/Animationsquelle, CC0](public/assets/kaykit/CREDITS.md).
 **L1.2 in kleiner Fassung umgesetzt:** ein Steinläufer mit Nahkampfschlag im ersten
 Hof, einer im zweiten, danach der bekannte Steinwächter im dritten. Beide Läufer
-besiegen und den Wächterhof betreten, um ihn zu wecken. Pulse liegt am ersten
+besiegen, die Wartungskonsole starten und den Wächterhof betreten, um ihn zu wecken. Pulse liegt am ersten
 Durchgang; Vorräte auf der Seitenterrasse helfen vor dem Boss. Sieg, Niederlage und
 Neustart sind spielbar.
 [Spielaufnahmen und Browserprüfung](docs/qa/L1_2_RESULT.md).
 Zum ruhigen Vergleich: [ohne Gegner erkunden](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1&explore=1).
-**L1.3 ergänzt den vollständigen Ablauf:** Nach beiden Läufern sichert der Siegelplatz
-einen Checkpoint mit aufgefüllten Vorräten. Nach Boss-Tod dort erneut versuchen;
-„Level neu starten“ setzt alles zurück. Nach Sieg öffnet sich das Nordtor: hindurchlaufen,
+**L1.3 ergänzt den vollständigen Ablauf:** Nach beiden Läufern und (seit L1.6a)
+aktivierter Konsole sichert der Siegelplatz einen Checkpoint mit aufgefüllten Vorräten.
+Nach Spieler-Tod dort erneut versuchen; die Konsole bleibt aktiv.
+„Level neu starten“ setzt alles zurück. Seit L1.6a öffnet das Relais mit dem
+geborgenen Steinkern das Nordtor: hindurchlaufen,
 Level abschließen, wiederholen oder ins Spielmenü zurückkehren. Kristallkluft bleibt
 danach eine optionale Fortsetzung. [Prüfung und Aufnahmen](docs/qa/L1_3_RESULT.md).
 
