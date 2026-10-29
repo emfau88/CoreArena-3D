@@ -20,7 +20,8 @@ export class MonsterView {
   private previousHp = PVE_RULES.bossHp as number;
   private flash = 0;
   private deathTime = 0;
-  constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES, private readonly monster = MONSTER) {
+  constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES,
+    private readonly monster = MONSTER, groundSurface?:Pick<THREE.MeshStandardMaterialParameters,'map'|'normalMap'|'roughnessMap'>) {
     this.meleeArc = new THREE.Mesh(new THREE.RingGeometry(rules.meleeRange - 0.12, rules.meleeRange, 32, 1,
       Math.PI / 2 - 1.05, 2.1), new THREE.MeshBasicMaterial({ color: 0xff9b73, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false }));
     this.meleeArc.rotation.x = Math.PI / 2;
@@ -89,9 +90,26 @@ export class MonsterView {
         horn.position.set(side * 0.8, 3.8, 0.1); horn.rotation.z = -side * 0.45; this.body.add(horn);
       }
     }
-    const crater = new THREE.Mesh(new THREE.CircleGeometry(2.75, 48), new THREE.MeshStandardMaterial({ color: 0x101315, roughness: 1 }));
+    // A fractured stone seal sits flush with the floor; no opaque black disc.
+    const craterGeometry=new THREE.CircleGeometry(2.75,36);
+    const uv=craterGeometry.getAttribute('uv');
+    for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*1.4,uv.getY(i)*1.4);
+    const crater = new THREE.Mesh(craterGeometry, new THREE.MeshStandardMaterial({ ...groundSurface,
+      color:groundSurface?0xb9b5a6:kind==='stone'?0x706c61:0x101315,roughness:1,normalScale:new THREE.Vector2(.35,.35),
+      emissive:0x7c613e,emissiveIntensity:kind==='stone'?.12:0 }));
     const ground = new THREE.Group(); ground.position.set(this.monster.center.x, 0, this.monster.center.z);
     crater.rotation.x = -Math.PI / 2; crater.position.y = 0.025; ground.add(crater);
+    crater.receiveShadow=true;
+    const crackPoints:THREE.Vector3[]=[];
+    for(let i=0;kind==='stone'&&i<12;i++){
+      const a=i*Math.PI/6,r=.4+(i%3)*.17,b=a+.12;
+      const inner=new THREE.Vector3(Math.cos(a)*r,.032,Math.sin(a)*r);
+      const bend=new THREE.Vector3(Math.cos(b)*1.6,.032,Math.sin(b)*1.6);
+      const outer=new THREE.Vector3(Math.cos(a)*2.7,.032,Math.sin(a)*2.7);
+      crackPoints.push(inner,bend,bend,outer);
+    }
+    ground.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(crackPoints),
+      new THREE.LineBasicMaterial({color:0xd0ac73,transparent:true,opacity:.7})));
     for (let i = 0; i < 18; i++) {
       const angle = i * Math.PI * 2 / 18;
       const stone = chunk(ground, 0.18 + (i % 4) * 0.08, Math.cos(angle) * 2.65, 0.15, Math.sin(angle) * 2.65, edge);

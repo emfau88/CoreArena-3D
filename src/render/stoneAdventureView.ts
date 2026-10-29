@@ -53,10 +53,27 @@ export function buildStoneAdventure(scene: THREE.Scene, arena: ArenaDefinition, 
     }
   }
   const entry = new THREE.Group(); entry.name='adventure-entry-gate'; entry.visible=false; scene.add(entry);
-  const door = new THREE.Mesh(new THREE.BoxGeometry(10,2.8,.4),dark);
-  door.position.set(0,1.4,-18); door.castShadow=door.receiveShadow=true; entry.add(door);
+  const barrier=arena.boxes.find(b=>b.id==='boss-entry-gate');
+  const gateZ=barrier?.center.z??-16,gateHeight=barrier?.size.y??4.4;
+  const door = new THREE.Mesh(new THREE.BoxGeometry(10,gateHeight,.4),dark);
+  door.position.set(0,gateHeight/2,gateZ); door.castShadow=door.receiveShadow=true; entry.add(door);
   for(let x=-4.5;x<=4.6;x+=.6) {
-    const bar=new THREE.Mesh(new THREE.BoxGeometry(.12,2.5,.5),gold); bar.position.set(x,1.4,-18); entry.add(bar);
+    const bar=new THREE.Mesh(new THREE.BoxGeometry(.12,gateHeight-.3,.5),gold); bar.position.set(x,gateHeight/2,gateZ); entry.add(bar);
+  }
+  const seal=new THREE.MeshBasicMaterial({color:0xf3bd67,transparent:true,opacity:.14,depthWrite:false,side:THREE.DoubleSide});
+  const sealEdge=new THREE.MeshBasicMaterial({color:0xeac28b,transparent:true,opacity:.65,depthWrite:false});
+  const wingWidth=((barrier?.size.x??37)-10)/2;
+  for(const side of [-1,1]) {
+    const wing=new THREE.Mesh(new THREE.PlaneGeometry(wingWidth,gateHeight-.85),seal);
+    wing.position.set(side*(5+wingWidth/2),(gateHeight+.85)/2,gateZ);entry.add(wing);
+    for(const y of [.87,gateHeight]) {
+      const line=new THREE.Mesh(new THREE.BoxGeometry(wingWidth,.045,.045),sealEdge);
+      line.position.set(wing.position.x,y,gateZ);entry.add(line);
+    }
+    for(let x=5.1;x<5+wingWidth;x+=1.5){
+      const rune=new THREE.Mesh(new THREE.OctahedronGeometry(.11),sealEdge);
+      rune.scale.set(.6,2,1);rune.position.set(side*x,1.65,gateZ);entry.add(rune);
+    }
   }
   return animateCourt;
 }

@@ -140,6 +140,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
         || after.pve.phase==='attack' && before.pve.phase!=='attack') feedback.play('slam');
       if(after.pve.outcome==='victory' && before.pve.outcome!=='victory') feedback.play('victory');
       if(after.checkpoint && !before.checkpoint) feedback.play('pickup');
+      if(after.core?.collected && !before.core?.collected) feedback.play('pickup');
       if (current.grounded && !previous.grounded) feedback.play('land');
       else if (previous.grounded && !current.grounded && current.velocity.y > 0) feedback.play('jump');
       else if (current.grounded && Math.hypot(current.velocity.x,current.velocity.z) > 1 && current.tick%22 === 0) feedback.play('step');
@@ -168,7 +169,8 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
         if(room?.id==='F' && state.checkpoint && !state.bossActive) el('room-hint').textContent='Ruhepunkt gesichert · Vorräte aufgefüllt. Betritt den Wächterhof, wenn du bereit bist.';
         if(state.pve.outcome==='victory') {
           el('room-name').textContent='Das Nordtor ist offen';
-          el('room-hint').textContent='Folge dem Weg durch das Tor und verlasse den Hof.';
+          el('room-hint').textContent=state.core?.collected?'Steinkern geborgen · Verlasse den Hof durch das Nordtor.':
+            'Der Wächter hat einen Steinkern hinterlassen. Sammle ihn ein und folge dem Nordtor.';
         }
       }
       el('adventure-boss').hidden=!state.bossActive || state.pve.outcome==='victory';
@@ -181,7 +183,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
         state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:'Weiter zum Siegelplatz.';
       el('match-result').hidden=state.pve.outcome!=='defeat' && !state.completed;
       el('result-title').textContent=state.completed?'Der verwitterte Hof ist frei.':'Der Hof bleibt bewacht.';
-      el('result-detail').textContent=state.completed?'Du hast das Steinsiegel gebrochen und den Hof verlassen. Dein Weg zur Kristallkluft ist frei.':
+      el('result-detail').textContent=state.completed?`Du hast das Steinsiegel gebrochen${state.core?.collected?' und seinen Steinkern geborgen':''}. Dein Weg zur Kristallkluft ist frei.`:
         state.checkpoint?'Der Ruhepunkt ist gesichert. Kehre mit frischen Vorräten zum Siegelplatz zurück. Die beiden Höfe bleiben befreit.':'Nutze die Vorräte und weiche den angekündigten Schlägen aus.';
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';
       el('pve-next').hidden=!state.completed;
@@ -204,7 +206,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true, value: Object.freeze({
     read: () => ({ mode: 'adventure', level: 'stone', snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
-      checkpoint:fight.checkpoint, completed:fight.completed,
+      checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,

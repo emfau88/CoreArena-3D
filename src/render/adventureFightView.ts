@@ -38,13 +38,41 @@ export class AdventureFightView {
   private readonly boss:MonsterView;
   private readonly runners:RunnerView[];
   private exitOpening=0;
+  private readonly core=new THREE.Group();
+  private readonly coreGem=new THREE.Group();
+  private readonly motes:THREE.Mesh[]=[];
+  private time=0;
   constructor(private readonly scene:THREE.Scene,stone:CourtyardAssets['floor']) {
     scene.add(this.root); this.root.add(this.bossRoot);
-    this.boss=new MonsterView(this.bossRoot,'stone',ADVENTURE_BOSS_RULES,ADVENTURE_BOSS);
+    this.boss=new MonsterView(this.bossRoot,'stone',ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,stone);
     this.runners=[new RunnerView(this.root,stone),new RunnerView(this.root,stone)];
+    this.core.name='adventure-boss-drop';this.root.add(this.core);this.core.add(this.coreGem);
+    const gold=new THREE.MeshStandardMaterial({color:0xffd88a,emissive:0xffae46,emissiveIntensity:1.3,roughness:.4});
+    const shell=new THREE.MeshStandardMaterial({color:0x7a8c86,roughness:.85});
+    const gem=new THREE.Mesh(new THREE.OctahedronGeometry(.32),gold);gem.scale.y=1.4;this.coreGem.add(gem);
+    for(let i=0;i<4;i++){
+      const shard=new THREE.Mesh(new THREE.IcosahedronGeometry(.15),shell),a=i*Math.PI/2;
+      shard.position.set(Math.cos(a)*.36,-.12,Math.sin(a)*.36);this.coreGem.add(shard);
+    }
+    const ring=new THREE.Mesh(new THREE.RingGeometry(.62,.68,40),
+      new THREE.MeshBasicMaterial({color:0xf6cc82,transparent:true,opacity:.65,side:THREE.DoubleSide,depthWrite:false}));
+    ring.rotation.x=-Math.PI/2;ring.position.y=.035;this.core.add(ring);
+    for(let i=0;i<10;i++){
+      const mote=new THREE.Mesh(new THREE.OctahedronGeometry(.035),gold);this.motes.push(mote);this.core.add(mote);
+    }
   }
   guardDiagnostics(){return this.runners.map(r=>r.diagnostics());}
   update(state:AdventureFightState,camera:THREE.Camera,dt:number,exploration=false):void {
+    this.time+=dt;
+    this.core.visible=!!state.core&&!state.core.collected;
+    if(state.core){
+      const p=state.core.position;this.core.position.set(p.x,p.y,p.z);
+      this.coreGem.position.y=.85+Math.sin(this.time*2.5)*.08;this.coreGem.rotation.y=this.time*.7;
+      this.motes.forEach((m,i)=>{
+        const a=i*2.4+this.time*.25;
+        m.position.set(Math.cos(a)*.55,(this.time*.45+i*.13)%1.6,Math.sin(a)*.55);
+      });
+    }
     this.root.visible=!exploration;
     this.bossRoot.visible=state.bossActive;
     this.scene.getObjectByName('adventure-dormant')!.visible=!state.bossActive;

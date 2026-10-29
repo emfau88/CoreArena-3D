@@ -12,6 +12,11 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, Kampf-Nachbesserung: Eingangssperre am tatsächlichen Durchgang,
+  seitliches Umgehen/Überspringen abgesichert, texturierte Boss-Austrittsstelle,
+  gezielte Bodenausbrüche auf Plateaus, sammelbarer Steinkern und Beschuss-Aggro
+  der kleinen Wächter. [Änderungen und Prüfungen](../qa/ENCOUNTER_FIXES_RESULT.md).
+  Die abschließende persönliche Schwierigkeitsabnahme L1.5b bleibt offen.
 - [x] 29. Oktober, Spieler-Look: erste Ruinenkurier-Form mit flacherem/breiterem Kopf,
   kompakterem Körper, kräftigeren Stiefeln und Elfenbein/Korallorange/Graphit.
   Vier Browserfälle inklusive Kampf/Retry und Touch bestanden. [Nachweise](../qa/PLAYER_COURIER_RESULT.md).

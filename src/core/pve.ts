@@ -6,7 +6,8 @@ export const MONSTER = { id: 'stone-warden', center: { x: 0, y: 1.85, z: -1 }, r
 export const PVE_RULES = Object.freeze({ bossHp: 600, emergeTicks: 120, waveWarning: 90, eruptionWarning: 75,
   waveTicks: 150, eruptionTicks: 24, recoveryTicks: 90, waveSpeed: 0.12, waveDamage: 60, eruptionDamage: 65, eruptionRadius: 2.6,
   chaseTicks: 120, chaseSpeed: 2.6, stopDistance: 2.6, movementRadius: 1.7,
-  meleeRange: 3.6, meleeWarning: 36, meleeRecovery: 24, meleeCooldown: 90, meleeDamage: 20 });
+  meleeRange: 3.6, meleeWarning: 36, meleeRecovery: 24, meleeCooldown: 90, meleeDamage: 20,
+  elevatedChaseTicks: 0 });
 export type EncounterRules = { readonly [K in keyof typeof PVE_RULES]: number };
 export type MonsterKind = 'stone' | 'frost' | 'ember';
 export type MonsterPhase = 'emerging' | 'chasing' | 'melee' | 'warning' | 'attack' | 'recovery' | 'defeated';
@@ -72,7 +73,17 @@ export class PveEncounter {
     else if (s.phase === 'chasing') {
       this.chase(player, world);
       this.chaseElapsed++;
-      if (this.chaseElapsed >= this.rules.chaseTicks) { this.chaseElapsed = 0; this.warning(player, world); }
+      // A supported high surface gets an eruption, not an ineffective ground wave.
+      // Ordinary jumps do not trigger this; keep the warning locked and dodgeable.
+      const support = this.rules.elevatedChaseTicks > 0 ? world.raycast({
+        origin: { ...player, y: player.y + .1 }, direction: { x:0, y:-1, z:0 },
+      }, .3, true) : null;
+      const elevated = support !== null && support.point.y > s.center.y - this.monster.center.y + .65;
+      if (this.chaseElapsed >= (elevated ? this.rules.elevatedChaseTicks : this.rules.chaseTicks)) {
+        this.chaseElapsed = 0;
+        if (elevated) this.state = { ...this.state, kind:'eruption' };
+        this.warning(player, world);
+      }
       else if (s.tick >= this.nextMelee && this.meleeCanReach(player, world, false)) {
         this.state = { ...this.state, phase: 'melee', phaseTick: 0, moving: false,
           facing: Math.atan2(player.x - this.state.center.x, player.z - this.state.center.z) };

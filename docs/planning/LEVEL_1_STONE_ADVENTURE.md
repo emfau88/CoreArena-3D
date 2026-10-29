@@ -12,6 +12,9 @@ und umgesetzt. Nach der Rückmeldung wurde der Material-/Ecken-/Pflanzenschritt 
 L1.4b freigegeben und umgesetzt: Boden auf der ganzen Map, Pflanzen auch innen,
 saubere Maueranschlüsse. L1.5a ergänzt nun Bosstempo und KayKit-Wächterpuppen.
 Weitere Blickfänge/Lichtgestaltung und die abschließende Abnahme L1.5b bleiben offen.
+Die Kampf-Nachbesserung vom 29. Oktober korrigiert die Eingangssperre, ergänzt
+Plateau-Druck durch Bodenausbrüche, Beschuss-Aggro und einen optionalen Steinkern
+als Boss-Trophäe. [Details und Browsernachweise](../qa/ENCOUNTER_FIXES_RESULT.md).
 Der zusätzlich freigegebene KayKit-/Pickup-Schritt vom 29. Oktober ist ebenfalls
 umgesetzt: geriggte Figur mit Animationen und Energie-Pickups statt schwarzer Sockel.
 

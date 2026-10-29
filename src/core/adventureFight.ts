@@ -25,18 +25,19 @@ export class AdventureFight {
   bossActive=false;
   checkpoint=false;
   completed=false;
+  private core:{position:Vec3;collected:boolean}|null=null;
   reset():void { this.life.reset(); this.runners.forEach(r=>r.reset()); this.bossNavigation.reset();
     this.runnerNavigation.forEach(n=>n.reset()); this.bossActive=this.checkpoint=this.completed=false;
-    this.combat.reset(); this.pickups.reset(); }
+    this.core=null; this.combat.reset(); this.pickups.reset(); }
   /** Retry preserves the cleared approach, but never carries boss damage/effects into a new attempt. */
   retry():Vec3 {
     if(!this.checkpoint || this.life.snapshot().outcome!=='defeat') { this.reset(); return STONE_ADVENTURE_COMBAT.spawn; }
-    this.life.reset(); this.bossNavigation.reset(); this.bossActive=false;
+    this.life.reset(); this.bossNavigation.reset(); this.bossActive=false; this.core=null;
     this.combat.reset(); this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true); this.combat.select('pulse');
     this.pickups.reset(ADVENTURE_BOSS_PICKUPS);
     return ADVENTURE_CHECKPOINT;
   }
-  snapshot() { return {bossActive:this.bossActive,checkpoint:this.checkpoint,completed:this.completed,
+  snapshot() { return {bossActive:this.bossActive,checkpoint:this.checkpoint,completed:this.completed,core:this.core,
     pve:this.life.snapshot(),runners:this.runners.map(r=>r.snapshot())}; }
   targets() {
     const small=this.runners.flatMap((r,i)=>r.snapshot().hp>0 ? [{...ADVENTURE_RUNNERS[i]!,center:r.snapshot().center}] : []);
@@ -44,6 +45,8 @@ export class AdventureFight {
     return [...small,...(this.bossActive && boss.phase!=='emerging' && boss.outcome==='running' ? [{...ADVENTURE_BOSS,center:boss.center}] : [])];
   }
   step(player:Vec3,world:MonsterWorld,hits:readonly Damage[]):void {
+    if(this.core && !this.core.collected && Math.hypot(player.x-this.core.position.x,player.z-this.core.position.z)<1.35
+      && Math.abs(player.y-this.core.position.y)<.4) this.core={...this.core,collected:true};
     if(this.life.snapshot().outcome==='victory' && player.z< -45 && Math.abs(player.x)<4.5 && player.y>-.2 && player.y<.4) this.completed=true;
     if(this.life.snapshot().outcome!=='running') return;
     const damage=this.runners.reduce((sum,r)=>sum+r.step(player,world,hits),0);
@@ -56,6 +59,10 @@ export class AdventureFight {
     // The two visible guards release the seal. Crossing into the final court wakes the existing boss.
     if(!this.bossActive && this.checkpoint && cleared && player.z< -20.5 && player.z> -41 && Math.abs(player.x)<15) this.bossActive=true;
     this.life.step(player,world,hits,{active:this.bossActive,incomingDamage:damage});
+    if(this.life.snapshot().outcome==='victory') {
+      const center=this.life.snapshot().center;
+      this.core={position:{x:center.x,y:0,z:center.z},collected:false};
+    }
   }
 }
 export type AdventureFightState=ReturnType<AdventureFight['snapshot']>;

@@ -11,6 +11,11 @@ wechselt zwischen seitlicher, gerader und isometrischer Kamera.
 Körper und kräftigere Stiefel; warmer Elfenbeinhelm, koralloranger Anzug und Graphitdetails.
 [Aktuelle Spielaufnahmen und Browserprüfung](docs/qa/PLAYER_COURIER_RESULT.md).
 
+**Kampf-Nachbesserung:** Boss-Eingang korrekt versiegelt, hellere texturierte
+Austrittsstelle, gezielte Bodenausbrüche gegen Plateau-Camping und ein sammelbarer
+Steinkern. Kleine Wächter reagieren auch auf Beschuss von außerhalb ihres
+Aktivierungsbereichs. [Änderungen und Tests](docs/qa/ENCOUNTER_FIXES_RESULT.md).
+
 **29. Oktober: Schnellere Bossangriffe und steinerne Wächterpuppen.** Der Boss holt
 für Faustschläge nur noch 0,35 s aus und verfolgt schneller. Die beiden kleinen
 Gegner nutzen nun das KayKit-Skelett mit eigener Steinoptik und Nahkampfanimationen.

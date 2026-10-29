@@ -5,6 +5,7 @@ import type { WeaponSnapshot } from '../../src/core/combat';
 import type { RunnerState } from '../../src/core/stoneRunner';
 
 interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoint:boolean;completed:boolean;weapons:WeaponSnapshot;
+  core:{position:{x:number;y:number;z:number};collected:boolean}|null;
   enemies:(RunnerState & {screen:{x:number;y:number}})[];monsterScreen:{x:number;y:number};hp:number;armor:number }
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url='./?mode=pve&level=stone&adventure=1';
@@ -84,6 +85,12 @@ test('menu entry, two guards, checkpoint death and retry, boss victory, physical
   await expect(page.locator('#room-name')).toHaveText('Das Nordtor ist offen');
   const won=await read(page); expect(won.pve.bossHp).toBe(0);expect(won.enemies.every(e=>e.hp===0)).toBe(true);
   expect(won.completed).toBe(false);
+  expect(won.core?.collected).toBe(false);
+  await page.waitForTimeout(1100); // Let the defeated body settle so the drop is visible.
+  await page.screenshot({path:info.outputPath('boss-core-drop.png')});
+  await walk(page,won.core!.position.x,won.core!.position.z);
+  expect((await read(page)).core?.collected).toBe(true);
+  await expect(page.locator('#room-hint')).toContainText('Steinkern geborgen');
   await walk(page,0,-40); await page.screenshot({path:info.outputPath('open-gate.png')});
   await page.keyboard.down('KeyD');
   try { await expect(page.locator('#match-result')).toBeVisible(); } finally { await page.keyboard.up('KeyD'); }
@@ -95,9 +102,51 @@ test('menu entry, two guards, checkpoint death and retry, boss victory, physical
   expect((await read(page)).bossActive).toBe(false);expect((await read(page)).hp).toBe(100);
   expect((await read(page)).weapons.ownsPulse).toBe(false);expect(errors).toEqual([]);
   expect((await read(page)).checkpoint).toBe(false);
+  expect((await read(page)).core).toBeNull();
   await page.locator('#pve-pause').click(); await page.locator('#adventure-home').click();
   await expect(page.locator('#adventure-start')).toBeVisible();
   await info.attach('actual-victory',{body:JSON.stringify({retry,won,errors}),contentType:'application/json'});
+});
+
+test('distant shot wakes guard, entry seal blocks retreat, platform eruption hits and can be dodged',async({page},info)=>{
+  test.setTimeout(120_000);const errors:string[]=[];
+  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+  await walk(page,0,27);await fireAt(page,0);
+  await walk(page,0,18.5);await walk(page,-3,18.5);await page.locator('#weapon-pulse').click();
+  await walk(page,0,18.5);await walk(page,0,12.5);
+  const asleep=await read(page);expect(asleep.enemies[1]!.phase).toBe('idle');
+  await page.mouse.click(asleep.enemies[1]!.screen.x,asleep.enemies[1]!.screen.y);
+  await expect.poll(async()=>(await read(page)).enemies[1]!.hp).toBeLessThan(70);
+  await expect.poll(async()=>(await read(page)).enemies[1]!.center.z).toBeGreaterThan(3);
+  await page.screenshot({path:info.outputPath('guard-alert.png')});await fireAt(page,1);
+  await walk(page,0,-14);await walk(page,0,-21);
+  await page.keyboard.down('KeyA');await page.keyboard.press('Space');
+  await page.waitForTimeout(800);await page.keyboard.up('KeyA');
+  expect((await read(page)).snapshot.position.z).toBeLessThan(-16.45);
+  await page.screenshot({path:info.outputPath('closed-threshold.png')});
+  // Walk the actual stairs onto the healing plateau; no position/HP mutation.
+  await walk(page,0,-23);await walk(page,-12,-23);
+  expect((await read(page)).snapshot.surface).toBe('boss-health-plateau');
+  await page.waitForFunction(()=>{
+    const s=(window as unknown as {__coreArena:{read():State}}).__coreArena.read();
+    return s.pve.phase==='warning'&&s.pve.kind==='eruption'&&s.pve.target.y>1;
+  });
+  const before=await read(page);
+  await expect(page.locator('#pve-telegraph')).toHaveText('BODENAUSBRUCH · Kreis verlassen!');
+  await page.screenshot({path:info.outputPath('plateau-warning.png')});
+  await expect.poll(async()=>(await read(page)).pve.hitsTaken).toBeGreaterThan(before.pve.hitsTaken);
+  const hit=await read(page);
+  await page.waitForFunction(()=>{
+    const s=(window as unknown as {__coreArena:{read():State}}).__coreArena.read();
+    return s.pve.phase==='warning'&&s.pve.kind==='eruption';
+  });
+  // Leave the locked circle to the right, down the same stairs.
+  await page.keyboard.press('KeyS',{delay:750});
+  await page.waitForTimeout(700);
+  const dodged=await read(page);expect(dodged.pve.hitsTaken).toBe(hit.pve.hitsTaken);
+  expect(errors).toEqual([]);
+  await info.attach('encounter-checks',{body:JSON.stringify({asleep,before,hit,dodged,errors}),contentType:'application/json'});
 });
 
 test('touch melee kill, menu restart, actual defeat and retry',async({browser},info)=>{

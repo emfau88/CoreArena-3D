@@ -5,7 +5,8 @@ import { MONSTER, PVE_RULES } from '../core/pve';
 
 // Adventure balance only; simulation, attack animation and feedback share these timings.
 export const ADVENTURE_BOSS_RULES = Object.freeze({ ...PVE_RULES,
-  meleeWarning:21, meleeRecovery:15, meleeCooldown:39, recoveryTicks:48, chaseSpeed:3.1 });
+  meleeWarning:21, meleeRecovery:15, meleeCooldown:39, recoveryTicks:48, chaseSpeed:3.1,
+  elevatedChaseTicks:60 });
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.
 export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;
@@ -99,11 +100,12 @@ export const ADVENTURE_BOSS_PICKUPS = STONE_ADVENTURE_PICKUPS.filter(p=>p.id.sta
 export const ADVENTURE_BOSS = { ...MONSTER, center: {x:0,y:1.85,z:-29} };
 export const ADVENTURE_RUNNERS = [
   { id:'courtyard-runner', center:{x:2,y:.85,z:24}, radius:.7, level:'L1', floor:'floor-entry',
-    zone:{left:-15,right:15,back:16,front:29} },
+    zone:{left:-15,right:15,back:16,front:29}, territory:{left:-15,right:15,back:17,front:37} },
   { id:'inner-runner', center:{x:2,y:.85,z:-1}, radius:.7, level:'L1', floor:'floor-middle',
     zone:{left:-17,right:17,back:-12,front:12} },
 ] as const;
 export const STONE_ADVENTURE_COMBAT: ArenaDefinition = { ...STONE_ADVENTURE,
-  boxes:[...STONE_ADVENTURE.boxes,block('boss-entry-gate',0,-18,10,2.8,.4)],
+  // At the actual threshold. The visible seal continues above the low side walls.
+  boxes:[...STONE_ADVENTURE.boxes,block('boss-entry-gate',0,-16,37,4.4,.4)],
   targets:[ADVENTURE_BOSS,...ADVENTURE_RUNNERS],
 };

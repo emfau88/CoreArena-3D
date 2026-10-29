@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_CHECKPOINT, STONE_ADVENTURE_COMBAT } from '../src/arena/stoneAdventure';
+import { ADVENTURE_RUNNERS, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_CHECKPOINT, STONE_ADVENTURE_COMBAT, STONE_ADVENTURE_JUMP } from '../src/arena/stoneAdventure';
+import { Simulation } from '../src/core/simulation';
 import { PveEncounter } from '../src/core/pve';
 import { StoneRunner, RUNNER_RULES } from '../src/core/stoneRunner';
 import { AdventureFight } from '../src/core/adventureFight';
@@ -101,13 +102,83 @@ test('checkpoint supplies only once; retry keeps cleared approach and spent loot
     for(let i=0;i<121;i++) fight.step({...player,z:-21},world,[]);
     fight.step({...player,z:-21},world,[{source:'player',target:ADVENTURE_BOSS.id,amount:600}]);
     assert.equal(fight.life.snapshot().outcome,'victory'); assert.equal(fight.completed,false);
+    const core=fight.snapshot().core!; assert.ok(core);assert.equal(core.collected,false);
+    fight.step({...core.position,y:1.1},world,[]);assert.equal(fight.snapshot().core!.collected,false);
+    fight.step(core.position,world,[]);assert.equal(fight.snapshot().core!.collected,true);
+    fight.step(core.position,world,[]);assert.equal(fight.snapshot().core!.collected,true);
     fight.step({...player,z:-44},world,[]); assert.equal(fight.completed,false);
     fight.step({...player,z:-46,y:2},world,[]); assert.equal(fight.completed,false);
     fight.step({...player,z:-46},world,[]); assert.equal(fight.completed,true);
     fight.reset(); assert.equal(fight.completed,false); assert.equal(fight.checkpoint,false);
+    assert.equal(fight.snapshot().core,null);
     assert.ok(fight.runners.every(r=>r.snapshot().hp===70));
     assert.equal(fight.pickups.snapshot().find(p=>p.id==='adventure-pulse')!.remaining,54);
   } finally {world.dispose();}
+});
+
+test('closed boss threshold blocks walking, side bypass and jumps from the adjoining walls; opens on release',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),sim=new Simulation(world,STONE_ADVENTURE_COMBAT.spawn,STONE_ADVENTURE_JUMP);
+  try {
+    for(const x of [0,4.6,-4.6,5.8,-5.8,11.5,-11.5,17.9,-17.9]){
+      for(const jump of [false,true]){
+        // Include a jump from the wall top, higher than a jump from the floor.
+        sim.reset({x,y:Math.abs(x)>5?1.02:.03,z:Math.abs(x)>5?-16.8:-18});
+        for(let i=0;i<25;i++)sim.step({x:0,z:0,jump:false,sprint:false});
+        let furthest=-Infinity;
+        for(let i=0;i<90;i++) {
+          const s=sim.step({x:0,z:1,jump:jump&&i%40===0,sprint:true});furthest=Math.max(furthest,s.position.z);
+        }
+        assert.ok(furthest<-16.45,`escaped at x=${x}, jump=${jump}: z=${furthest}`);
+      }
+    }
+    world.setObstacleEnabled('boss-entry-gate',false);sim.reset({x:0,y:.03,z:-18});
+    for(let i=0;i<45;i++)sim.step({x:0,z:1,jump:false,sprint:false});
+    assert.ok(sim.snapshot().position.z>-14);
+  }finally{world.dispose();}
+});
+
+test('supported plateaus provoke locked, dodgeable eruptions; a jump does not',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);
+  world.setObstacleEnabled('dormant-warden',false);
+  try{
+    for(const escape of [false,true]){
+      const boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS),player={x:-12,y:1.12,z:-23};
+      for(let i=0;i<180;i++)boss.step(player,world);
+      const warning=boss.snapshot();assert.equal(warning.phase,'warning');assert.equal(warning.kind,'eruption');
+      assert.ok(Math.abs(warning.target.y-1.1)<.02);
+      const destination=escape?{...player,x:-6}:player;
+      for(let i=0;i<75;i++)boss.step(destination,world);
+      assert.deepEqual(boss.snapshot().target,warning.target);
+      assert.equal(boss.snapshot().hitsTaken,0);boss.step(destination,world);
+      assert.equal(boss.snapshot().hitsTaken,escape?0:1);
+      if(!escape){
+        const first=boss.snapshot().lastHit;
+        for(let i=0;i<207;i++)boss.step(player,world);
+        assert.equal(boss.snapshot().hitsTaken,2);assert.equal(boss.snapshot().lastHit-first,207);
+      }
+    }
+    const boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS);
+    for(let i=0;i<180;i++)boss.step({x:0,y:2,z:-21},world);
+    assert.equal(boss.snapshot().phase,'chasing');assert.equal(boss.snapshot().kind,'wave');
+  }finally{world.dispose();}
+});
+
+test('distant player damage wakes a guard, pursues into arrival and lands melee; reset clears alert',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),fight=new AdventureFight(),player={x:2,y:.02,z:33};
+  try {
+    const guard=fight.runners[0]!;
+    for(let i=0;i<30;i++)guard.step(player,world,[]);
+    assert.equal(guard.snapshot().phase,'idle');
+    guard.step(player,world,[{source:'player',target:guard.definition.id,amount:1}]);
+    assert.equal(guard.snapshot().phase,'chasing');
+    let damage=0;
+    for(let i=0;i<240;i++)damage+=guard.step(player,world,[]);
+    assert.ok(guard.snapshot().center.z>29);assert.ok(damage>=14);
+    guard.reset();guard.step(player,world,[]);assert.equal(guard.snapshot().phase,'idle');
+    const far={x:-14,y:.02,z:36};
+    guard.step(far,world,[{source:'player',target:guard.definition.id,amount:1}]);
+    assert.equal(guard.snapshot().moving,true);
+  }finally{world.dispose();}
 });
 
 test('two guards share player life with the dormant boss; clearing them and entering wakes the boss, reset restores all',async()=>{
