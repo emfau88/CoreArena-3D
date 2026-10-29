@@ -12,6 +12,10 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 
 ## Aktueller Fortschritt
 
+- [x] Hexwars-Assetrecherche: animierter Mech und vierbeinige Railgun im Branch
+  `codex/lane-wars` gefunden; tatsächliche GLB-Clips geprüft. [Kandidaten und
+  Missionsideen](HEXWARS_ASSET_CANDIDATES.md) bleiben Vorschläge, ohne Änderung
+  am freigegebenen L1-Umfang.
 - [x] 29. Oktober, Kampf-Nachbesserung: Eingangssperre am tatsächlichen Durchgang,
   seitliches Umgehen/Überspringen abgesichert, texturierte Boss-Austrittsstelle,
   gezielte Bodenausbrüche auf Plateaus, sammelbarer Steinkern und Beschuss-Aggro
