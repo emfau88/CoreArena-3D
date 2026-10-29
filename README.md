@@ -277,6 +277,8 @@ erst nach Bewährung des Spielgefühls. Weiterer Mobile-Ausbau bleibt optional.
 
 ## Planung und Referenz
 
+- [Adventure-Shooter: Vorbilder, Erkenntnisse und Empfehlungen](docs/planning/ADVENTURE_SHOOTER_REFERENCES.md)
+- [Erstes Testlevel: aktueller Stand und kompakter Ausbauplan](docs/planning/LEVEL_1_STONE_ADVENTURE.md)
 - [Architektur](docs/planning/ARCHITECTURE_DECISION.md)
 - [M0-Auftrag](docs/planning/M0_IMPLEMENTATION_BRIEF.md)
 - [Meilensteine und QA](docs/planning/MILESTONES_AND_QA.md)

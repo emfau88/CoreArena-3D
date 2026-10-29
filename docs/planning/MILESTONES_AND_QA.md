@@ -19,6 +19,11 @@ Gesamt grob 2–4 Stunden aktive Agent-Arbeit; [kompakter Plan](LEVEL_1_STONE_AD
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, [Adventure-Shooter-Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md)
+  dokumentiert: Darksiders Genesis, Bastion, The Ascent, RUINER sowie Hades und
+  Alienation; belegte Eigenschaften, eigene Ableitungen für Level/Kampf/Gestaltung,
+  Mobile, Asseteinsatz und konkrete Prüfkriterien. Reine Dokumentation;
+  Umfang und Freigabestatus von L1.6a–c bleiben unverändert.
 - [x] Kompakter Adventure-Ausbauplan erstellt und mit der Roadmap abgeglichen.
 - [ ] L1.6a: Auftrag, Konsole, Steinkern als Missionsgegenstand und Relaisabschluss.
 - [ ] L1.6b: Bedrohlicher, fair ausweichbarer Boss und präziseres Trefferfeedback.

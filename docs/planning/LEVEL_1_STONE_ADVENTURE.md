@@ -6,6 +6,10 @@
 freigegeben.** Arbeitstitel für die neue Inszenierung; der aktuelle Spieltitel
 und die unten dokumentierten Spielregeln bleiben bis zur Umsetzung bestehen.
 
+Die [ausführliche Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md) dokumentiert
+sechs Vergleichsspiele, Quellen und konkrete Empfehlungen für diesen Ausbau.
+Sie vertieft die Begründung; Umfang und Paketfolge bleiben hier festgelegt.
+
 Ziel: Ein zusammenhängender kleiner Auftrag mit erkennbarem Anfang, Entdeckung,
 Bedrohung und sichtbarem Abschluss. Grundlage bleiben die drei großen Höfe,
 Links-nach-rechts-Kamera, zwei Steinläufer, Steinwächter und die beiden Waffen.
