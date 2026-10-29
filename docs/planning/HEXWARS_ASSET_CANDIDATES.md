@@ -50,6 +50,13 @@ Dies sind Vorschläge, keine zusätzlichen Pflichtpunkte für die L1-Abnahme.
 
 ## Weitere passende Quellen
 
+**Nachtrag 29. Oktober:** Die folgenden großen Standardpakete wurden vom Nutzer
+als zu verbreitet zurückgewiesen. Für die erste zusätzliche Ausstattung sind
+stattdessen die kostenlosen Beispiele von AssetQuest Forest Kit und FlakDeau
+Retro Tech freigegeben und eingebaut. Keine kostenpflichtigen Assets kaufen.
+[Umfang, Lizenzen und Vergleichsbilder](../qa/FREE_DECORATION_RESULT.md).
+Die folgende Liste bleibt nur als historische Recherche erhalten.
+
 - [KayKit Dungeon Pack](https://kaylousberg.itch.io/kaykit-dungeon-pack):
   modulare Ruinenteile, Türen, Treppen und Ausstattung; CC0, kostenloser Grundumfang.
 - [KayKit Forest Nature](https://kaylousberg.itch.io/kaykit-forest):

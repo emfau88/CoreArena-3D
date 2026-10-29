@@ -12,6 +12,7 @@ test('all courts: fixed side, straight and isometric inspection cameras',async({
     await page.mouse.move(1,1);await page.waitForTimeout(150);
     await page.screenshot({path:info.outputPath(`${name}-${mode}.png`)});
   }
+  await info.attach('render-state',{body:JSON.stringify(await page.evaluate(()=>(window as unknown as {__coreArena:{read():unknown}}).__coreArena.read())),contentType:'application/json'});
   expect(errors).toEqual([]);
 });
 

@@ -4,14 +4,22 @@ Stand: 29. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgese
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
-Innenpflanzen und Mauerecken aus L1.4b freigegeben und übertragen. Weitere Blickfänge/
-Lichtgestaltung und die abschließende Abnahme L1.5b bleiben offen. L1.5a ergänzt
+Innenpflanzen und Mauerecken aus L1.4b freigegeben und übertragen. Die anschließend
+freigegebene kostenlose AssetQuest-/Retro-Tech-Ausstattung ist umgesetzt; weitere
+Lichtgestaltung bleibt optional, die abschließende Abnahme L1.5b offen. L1.5a ergänzt
 Bosstempo und KayKit-Wächterpuppen. Arena-Teamspiel/Liga
 (M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
 die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, kostenlose Ausstattung: acht Modelle aus der freien AssetQuest-Demo,
+  vier Konsolen aus zwei Retro-Tech-Demomodellen, Bodenverankerung und freie
+  Lauf-/Sprungrouten in allen drei Höfen. 11 relevante Kerntests und fünf Browserfälle
+  bestanden, einschließlich Desktop-Levelabschluss und Touch-Route.
+  [Vorher/Nachher und Nachweise](../qa/FREE_DECORATION_RESULT.md).
+- [ ] Persönliche Sichtung der kostenlosen Ausstattung. Keine kostenpflichtigen
+  Assets kaufen; die Vollversionen sind nicht Teil dieser Änderung.
 - [x] Hexwars-Assetrecherche: animierter Mech und vierbeinige Railgun im Branch
   `codex/lane-wars` gefunden; tatsächliche GLB-Clips geprüft. [Kandidaten und
   Missionsideen](HEXWARS_ASSET_CANDIDATES.md) bleiben Vorschläge, ohne Änderung
@@ -48,7 +56,9 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 - [x] L1.4a: Erster Hof mit echten Steinmaterialien, lesbaren Mauer-/Deckungskanten, Farnen, Felsgruppen und einer Fackel gestaltet. Vier Browserfälle bestanden: Vergleichskameras, beide Deckungssprünge, vollständiger Desktopkampf und mobile Wegprüfung. [Vorher/Nachher und Nachweise](../qa/L1_4A_RESULT.md).
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
-- [ ] Persönliche Sichtung; weitere hofeigene Blickfänge/Ruinenteile/Lichtgestaltung aus L1.4b bleiben offen. Übrige Gestaltung plus L1.5 grob 1–2 Stunden aktive Agent-Arbeit.
+- [ ] Persönliche Sichtung von L1.4b einschließlich der neuen Pflanzen/Konsolen;
+  weitere Ruinenteile/Lichtgestaltung erst nach Rückmeldung. L1.5b bleibt der nächste
+  Abnahmeschritt (30–60 Minuten aktive Agent-Arbeit; echter Handytest separat).
 - [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.

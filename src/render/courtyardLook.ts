@@ -3,12 +3,14 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { ArenaDefinition } from '../arena/arena';
+import { STONE_CONSOLES } from '../arena/stoneDressing';
+import { buildCourtyardDressing, loadDressingAssets, type DressingAssets } from './courtyardDressing';
 
 const assetRoot = `${import.meta.env.BASE_URL}assets/courtyard/`;
 interface Surface { map: THREE.Texture; normalMap: THREE.Texture; roughnessMap: THREE.Texture }
-export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[] }
+export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[]; dressing:DressingAssets }
 
-/** Local CC0 assets, loaded only by the adventure. See public/assets/courtyard/CREDITS.md. */
+/** Local assets loaded only by the adventure; source/licence records live beside each pack. */
 export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
   const textures = new THREE.TextureLoader(), models = new GLTFLoader();
   const surface = async (folder: string): Promise<Surface> => {
@@ -20,11 +22,12 @@ export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
     map!.colorSpace = THREE.SRGBColorSpace;
     return { map: map!, normalMap: normalMap!, roughnessMap: roughnessMap! };
   };
-  const [floor, wall, fernFile, rockFile, alpha] = await Promise.all([
+  const [floor, wall, fernFile, rockFile, alpha, dressing] = await Promise.all([
     surface('rock_tile_floor'), surface('stone_wall_02'),
     models.loadAsync(`${assetRoot}fern_02/fern_02.gltf`),
     models.loadAsync(`${assetRoot}rock_moss_set_01/rock_moss_set_01.gltf`),
     textures.loadAsync(`${assetRoot}fern_02/textures/fern_02_alpha_1k.png`),
+    loadDressingAssets(),
   ]);
   // The source glTF references JPEG base colour; its separate leaf mask is essential.
   alpha.flipY = false; alpha.anisotropy = 4;
@@ -45,7 +48,7 @@ export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
     });
     return result;
   };
-  return { floor, wall, ferns: meshes(fernFile.scene, true), rocks: meshes(rockFile.scene, false) };
+  return { floor, wall, ferns: meshes(fernFile.scene, true), rocks: meshes(rockFile.scene, false), dressing };
 }
 
 /** Shared materials for all three courts; arena boxes remain the collision authority. */
@@ -73,6 +76,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   };
   for(const shape of arena.boxes) {
     if(['dormant-warden','north-gate','boss-entry-gate'].includes(shape.id)) continue;
+    if(STONE_CONSOLES.some(station=>station.id===shape.id)) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
     if(shape.material==='floor') {
       // Physics floors overlap at doorways. Clip only the visible overlap; world
@@ -153,8 +157,9 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   const heart=new THREE.Mesh(new THREE.SphereGeometry(1,8,6),new THREE.MeshBasicMaterial({color:0xffe7a0}));
   heart.position.set(.025,1.01,.02);heart.scale.set(.1,.23,.1);torch.add(heart);
   const light=new THREE.PointLight(0xffb55d,8,6,2);light.position.y=1.15;torch.add(light);
+  const animateDressing=buildCourtyardDressing(scene,assets.dressing);
   let elapsed=0;
-  return dt=>{ elapsed+=dt;flame.scale.y=.36+Math.sin(elapsed*9)*.045;
+  return dt=>{ animateDressing(dt);elapsed+=dt;flame.scale.y=.36+Math.sin(elapsed*9)*.045;
     flame.position.x=Math.sin(elapsed*7)*.035;heart.scale.y=.23+Math.sin(elapsed*13)*.025;
     light.intensity=8+Math.sin(elapsed*9)*.6; };
 }

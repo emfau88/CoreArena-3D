@@ -11,7 +11,9 @@ umgesetzt. Anschließend wurde L1.4a mit gewünschten Vorher/Nachher-Bildern fre
 und umgesetzt. Nach der Rückmeldung wurde der Material-/Ecken-/Pflanzenschritt von
 L1.4b freigegeben und umgesetzt: Boden auf der ganzen Map, Pflanzen auch innen,
 saubere Maueranschlüsse. L1.5a ergänzt nun Bosstempo und KayKit-Wächterpuppen.
-Weitere Blickfänge/Lichtgestaltung und die abschließende Abnahme L1.5b bleiben offen.
+Die kostenlose AssetQuest-/Retro-Tech-Runde ergänzt jetzt Pflanzen und vier
+Konsolen in allen drei Höfen. Weitere Lichtgestaltung ist optional, die
+abschließende Abnahme L1.5b bleibt offen.
 Die Kampf-Nachbesserung vom 29. Oktober korrigiert die Eingangssperre, ergänzt
 Plateau-Druck durch Bodenausbrüche, Beschuss-Aggro und einen optionalen Steinkern
 als Boss-Trophäe. [Details und Browsernachweise](../qa/ENCOUNTER_FIXES_RESULT.md).
@@ -23,6 +25,7 @@ umgesetzt: geriggte Figur mit Animationen und Energie-Pickups statt schwarzer So
 · [Aktuelle L1.3-Prüfung und Spielaufnahmen](../qa/L1_3_RESULT.md)
 · [L1.4a: Vergleichsbilder und Prüfung](../qa/L1_4A_RESULT.md)
 · [L1.4b: Materialien auf der ganzen Map](../qa/L1_4B_MATERIALS_RESULT.md)
+· [Kostenlose Ausstattung: Vorher/Nachher](../qa/FREE_DECORATION_RESULT.md)
 
 ## Rahmen und Richtung
 
@@ -121,14 +124,14 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.2 · Kleiner Kampfablauf** | Ein Läufer pro erstem/zweitem Hof, vorhandener Boss im dritten, gemeinsame HP, Sieg/Tod/Neustart | **Erledigt**; 47 Kerntests und vier Browserfälle bestanden |
 | **L1.3 · Level vollständig abschließen** | Einstieg aus dem Spielmenü mit kurzem Auftrag; einmaliger Ruhe-/Checkpoint vor dem Boss; nach Sieg echtes Nordtor öffnen, hinauslaufen und Levelabschluss mit Wiederholen/Rückkehr anzeigen | **Erledigt**; 48 Kerntests und fünf Browserfälle bestanden |
 | **L1.4a · Einen Hof sichtbar aufwerten** | Erster Hof als spielbare Stilprobe: Boden, Plateauwand, abgeschrägte Kanten, Farne, bemooste Felsen und eine Fackel; gleiche Vergleichskameras vor/nachher und echter Weg-/Sprungtest | **Erledigt**; vier Browserfälle bestanden, persönliche Sichtung offen |
-| **L1.4b · Drei Höfe gestalten** | Materialien überall übernehmen, Innenpflanzen und saubere Mauerecken; weitere Blickfänge/Lichtgestaltung separat | **Material-/Ecken-/Pflanzenschritt erledigt**; weitere Blickfänge/Licht noch offen, ggf. 30–60 Min. |
+| **L1.4b · Drei Höfe gestalten** | Materialien, Innenpflanzen, saubere Mauerecken; kostenlose AssetQuest-Pflanzen und Retro-Tech-Konsolen | **Freigegebene Schritte umgesetzt und geprüft**; persönliche Sichtung offen. Weitere Ruinen/Lichter optional nach Rückmeldung |
 | **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
 | **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen**; 30–60 Min., echte Handyprüfung separat |
 
-Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Als Planungsrahmen
-für die übrige Gestaltung in L1.4b und L1.5 **rund 1–2 Stunden aktive Agent-Arbeit**, keine menschlichen
-Arbeitstage und keine Qualitäts-/Liefergarantie. Stilprobe und Rückmeldung entscheiden
-über die tatsächliche Gestaltung; Warten auf Rückmeldung/Hosting kommt hinzu.
+Die Spannen enthalten gezielte Tests, Roadmap und Commit/Push. Nach der kostenlosen
+Ausstattungsrunde bleiben für L1.5b **30–60 Minuten aktive Agent-Arbeit**, keine
+menschlichen Arbeitstage und keine Qualitäts-/Liefergarantie. Weitere gewünschte
+Gestaltungsänderungen werden separat abgegrenzt; Warten auf Rückmeldung/Hosting kommt hinzu.
 Die frühere Restschätzung von 1–2 Stunden galt nur für Abschluss und einfache Balance,
 nicht für die jetzt zusätzlich gewünschte Material-, Modell- und Lichtüberarbeitung.
 
@@ -195,6 +198,18 @@ gezielte Übertragung und die neuen soliden Eckpfeiler sind unten dokumentiert.
 Gegner, Waffen oder Balanceänderungen. L1.5 wird damit nicht vorweggenommen.
 
 ## Gestaltung: verwitterter Garten einer alten Wächteranlage
+
+### Kostenlose Ausstattung umgesetzt, 29. Oktober
+
+- [x] AssetQuest-Demo: Birken, Brombeerbüsche, Farne, Gras, Waldmeister, zwei
+  Pilzgruppen und Baumstumpf. Kleine Gruppen auch innerhalb der Höfe; höhere Bäume
+  auf den bestehenden äußeren Erdstreifen, mit freier Sicht auf Treppen und Gegner.
+- [x] Retro-Tech-Demo: zwei Konsolentypen auf vier niedrigen Stationen mit passender
+  Kollision und Statuslichtern; Ankunft, innerer Hof und zweimal am Boss-Ausgang.
+- [x] Ausschließlich kostenlose Downloadbeispiele; kein Kauf der Vollpakete.
+- [x] Identische Vergleichskameras, vollständiger Desktopkampf, Sprünge, alle
+  Vorratswege und Touch im Browser geprüft. [Ergebnis](../qa/FREE_DECORATION_RESULT.md).
+- [ ] Persönliche Sichtung; keine neuen Quest-/Interaktionspflichten an den Konsolen.
 
 ### Zusätzlich freigegeben: Figur und Pickup-Präsentation, 29. Oktober
 

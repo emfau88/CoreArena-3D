@@ -7,6 +7,11 @@
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
 wechselt zwischen seitlicher, gerader und isometrischer Kamera.
+**Kostenlose Ausstattung ergänzt:** AssetQuest-Pflanzen, Birken und Pilzgruppen
+in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
+Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.
+[Vorher/Nachher und Browserprüfung](docs/qa/FREE_DECORATION_RESULT.md).
+
 **Spieler-Look: erste Ruinenkurier-Variante.** Flacherer, breiterer Kopf, kompakterer
 Körper und kräftigere Stiefel; warmer Elfenbeinhelm, koralloranger Anzug und Graphitdetails.
 [Aktuelle Spielaufnahmen und Browserprüfung](docs/qa/PLAYER_COURIER_RESULT.md).
@@ -48,8 +53,9 @@ animierte Fackel. [Ursprüngliche Stilprobe: Vorher/Nachher](docs/qa/L1_4A_RESUL
 und am Ausgang; passende Wände, Treppen und Terrassen. Solide Eckpfeiler schließen
 die Maueranschlüsse, zusätzliche Pflanzen stehen auch innerhalb der Spielfläche.
 [Aktuelle Bilder und Prüfung](docs/qa/L1_4B_MATERIALS_RESULT.md).
-Besondere Blickfänge/Lichtgestaltung und die abschließende Kampf-/Leistungsabnahme
-bleiben offen. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+Die kostenlose Pflanzen-/Konsolenrunde ergänzt nun die drei Höfe. Weitere
+Lichtgestaltung ist optional; die abschließende Kampf-/Leistungsabnahme bleibt
+offen. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 
 **Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera
