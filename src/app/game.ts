@@ -178,7 +178,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         if (before.phase === 'ready') weapon.step(current.tick, canPlay && firing, aim);
         const attack = before.phase === 'running' ? combat.step(before.tick + 1, canPlay && firing, aim, cameraRay, world,
           botMode ? before.actors.rival!.alive ? [{ ...BOT_TARGET, center: actorCenter(rival.snapshot().position) }] : []
-            : (M1_ARENA.targets ?? []).filter((target) => before.actors[target.id]!.alive)) : { attacked: false, damage: [] };
+            : (M1_ARENA.targets ?? []).filter((target) => before.actors[target.id]!.alive), current.position) : { attacked: false, damage: [] };
         const damage = [...attack.damage, ...botAttack.damage];
         if (current.position.y < -8) damage.push({ target: 'player', amount: 1000 });
         if (!botMode && inTrainingField(current.position) && (before.tick + 1) % TRAINING_FIELD.intervalTicks === 0)

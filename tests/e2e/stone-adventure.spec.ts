@@ -104,7 +104,7 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
     const box=(await page.locator('#touch-stick').boundingBox())!;
     const center={x:box.x+box.width/2,y:box.y+box.height/2};
     const initial=await read(page);
-    expect(initial.viewport.viewHeight).toBeCloseTo(Math.min(21,40*initial.viewport.height/initial.viewport.width)*1.2/1.15,3);
+    expect(initial.viewport.viewHeight).toBeCloseTo(Math.min(21,40*initial.viewport.height/initial.viewport.width)*1.2/1.45,3);
     await expect(page.locator('#touch-camera')).toBeHidden();
     await expect(page.locator('#stone-sound')).toBeHidden();
     await expect(page.locator('#pve-restart')).toBeHidden();
@@ -116,7 +116,7 @@ test('touch joystick reaches weapon and side terrace; jump, camera and restart r
     const walking=await read(page);
     await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[stickFinger,sprintFinger]});
     await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed','true');
-    await expect.poll(async()=>-(await read(page)).snapshot.velocity.z).toBeCloseTo(10.8,1);
+    await expect.poll(async()=>-(await read(page)).snapshot.velocity.z).toBeCloseTo(9.18,1);
     await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[sprintFinger]});
     await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed','true');
     await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[stickFinger,sprintFinger]});

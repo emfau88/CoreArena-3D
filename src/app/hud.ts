@@ -6,7 +6,7 @@ const icon = (kind: 'arc' | 'pulse') => `<svg viewBox="0 0 96 36" aria-hidden="t
 
 export function weaponHud(pulse = false): string {
   return `<div class="weapon-buttons">
-    <button id="weapon-arc" type="button" aria-pressed="${!pulse}"><kbd>1</kbd><span class="weapon-icon">${icon('arc')}</span><span class="weapon-name">Arc Lash</span><span class="weapon-type">ENERGIEBOGEN</span><b>∞</b></button>
+    <button id="weapon-arc" type="button" aria-pressed="${!pulse}" title="Automatischer Energiefächer · kurze Reichweite · halten für weitere Salven"><kbd>1</kbd><span class="weapon-icon">${icon('arc')}</span><span class="weapon-name">Arc Lash</span><span class="weapon-type">AUTO-FÄCHER</span><b>∞</b></button>
     <button id="weapon-pulse" type="button" aria-pressed="${pulse}"><kbd>2</kbd><span class="weapon-icon">${icon('pulse')}</span><span class="weapon-name">Pulse</span><span class="weapon-type">REPEATER</span><b id="ammo-count">${pulse ? '54 / 54' : '—'}</b></button>
   </div>`;
 }

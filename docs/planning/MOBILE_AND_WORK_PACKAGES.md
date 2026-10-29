@@ -41,7 +41,13 @@ Auf ausdrücklichen Wunsch „so simpel wie möglich“: linker analoger Joystic
 
 Das ist ein enger spielbarer Zusatz, keine vollständige Umsetzung des unten beschriebenen größeren T0-Gerätevergleichs. Echte Android-/iPhone-Tests, alternatives Touch-Aim und Langzeit-/Wärmemessungen bleiben offen. [Basisnachweis](../qa/MOBILE_BASIC_RESULT.md). Die folgenden Vorschläge bleiben historische Planung für einen späteren Ausbau.
 
-**27. Oktober: freigegebener Feinschliff ✅ technisch erledigt.** Mobile-Darstellung
+**29. Oktober: weitere Abstimmung ✅ technisch erledigt.** Zoomfaktor von 1,15 auf
+1,45 erhöht (rund 26 % größere Darstellung gegenüber dem vorherigen Stand), Sprint
+auf 9,18 m/s reduziert. Arc Lash erfasst beim Tippen automatisch ein freies Ziel
+innerhalb von 5 m und führt die volle 0,6-s-Salve aus; Halten wiederholt sie.
+[Prüfung und aktuelle Bilder](../qa/SPRINT_ARC_MOBILE_RESULT.md). Echter Handytest offen.
+
+**27. Oktober: vorheriger Feinschliff ✅ technisch erledigt.** Mobile-Darstellung
 15 % größer, Sprint direkt beim Fingerdruck auch mit gehaltenem Joystick. Adventure:
 kleiner Kameravorlauf, aufgeräumtes HUD mit Kamera/Ton/Vollbild/Neustart im Pausenmenü.
 Gemeinsame Adventure-Sprungkurve für Desktop/Touch: gemessen 0,72 s und 2,15 m statt

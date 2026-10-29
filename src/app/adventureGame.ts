@@ -127,7 +127,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       aim = ray ? solveAim(world, ray, current.position) : null;
       const selected = combat.snapshot().selected;
-      const attack=combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets());
+      const attack=combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets(), current.position);
       if(attack.attacked) feedback.play(selected);
       if(!exploration) fight.step(current.position,world,attack.damage);
       const after=fight.snapshot(); syncWorld();
@@ -210,7 +210,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
-      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),
+      playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),arcVisual:view.arcDiagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.
     guardView:(index=0)=>{

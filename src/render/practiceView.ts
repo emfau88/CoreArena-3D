@@ -84,8 +84,9 @@ export class PracticeView {
     }
     const tick = match && match.phase !== 'ready' ? match.tick : state.tick;
     const recent = !!shot && tick - shot.tick >= 0 && tick - shot.tick < 6;
-    this.tracer.visible = this.impact.visible = recent;
-    if (shot && recent) {
+    const diagnostic=recent && !!shot && !('beams' in shot);
+    this.tracer.visible = this.impact.visible = diagnostic;
+    if (shot && diagnostic) {
       const { muzzle, end } = shot.aim;
       const points = this.tracerGeometry.getAttribute('position') as THREE.BufferAttribute;
       for (let i = 0; i < 9; i++) {

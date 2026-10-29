@@ -57,7 +57,13 @@ Die kostenlose Pflanzen-/Konsolenrunde ergänzt nun die drei Höfe. Weitere
 Lichtgestaltung ist optional; die abschließende Kampf-/Leistungsabnahme bleibt
 offen. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 
-**Mobile-Feinschliff:** 15 % größere Darstellung, Sprint an/aus auch bei gehaltenem
+**Bewegung und Startwaffe aktualisiert:** Sprint 15 % langsamer (9,18 statt 10,8 m/s).
+Arc Lash sucht beim Aktivieren automatisch ein freies Ziel innerhalb von 5 m und
+brutzelt 0,6 s mit fünf Strahlen in einem 60°-Fächer. Tippen startet eine volle Salve,
+Halten wiederholt sie; mehrere Gegner im Fächer können getroffen werden.
+[Spielaufnahmen und Tests](docs/qa/SPRINT_ARC_MOBILE_RESULT.md).
+
+**Mobile-Feinschliff:** Darstellung nochmals rund 26 % größer als bisher, Sprint an/aus auch bei gehaltenem
 Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; die Kamera
 zeigt etwas mehr in Laufrichtung. Kürzere Adventure-Sprünge gelten für Desktop und
 Touch gleichermaßen. [Änderungen und Prüfung](docs/qa/MOBILE_POLISH_RESULT.md).
@@ -213,7 +219,7 @@ Blockaden, Ressourcenplanung, Teamspiel und Schwierigkeitswahl folgen mit M2.4.
 
 | Waffe | Bedienung und Wirkung |
 | --- | --- |
-| Arc Lash | **1**; unbegrenzt, 35 Schaden, 0,8 s Abstand, 5 m Reichweite; 10° Zielhilfe um den 3D-Zielstrahl, echte Sicht und Deckung |
+| Arc Lash | **1**; unbegrenzt, automatische Zielwahl in 5 m, fünf Strahlen im 60°-Fächer; 35 Schaden pro getroffenem Gegner verteilt auf 0,6 s, neue Salve alle 0,8 s; Wände blockieren |
 | Pulse Repeater | **2** nach Waffenpickup; 10 Schaden, 10 Ticks (~0,167 s) Abstand, sichtbare Projektile mit 30 m/s und 32 m Reichweite; maximal 54 Schuss |
 
 Mausrad über der Arena wechselt verfügbare Waffen. Leere Pulse fällt auf Arc Lash

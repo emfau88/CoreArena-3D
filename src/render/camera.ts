@@ -30,7 +30,7 @@ export class ArenaCamera {
   resize(width: number, height: number, mobile = false): void {
     this.mobile = mobile;
     // A closer, steeper view fills the viewport, including ultrawide/landscape phones.
-    const viewHeight = Math.min(21, 40 * height / width) * this.viewScale / (mobile ? 1.15 : 1);
+    const viewHeight = Math.min(21, 40 * height / width) * this.viewScale / (mobile ? 1.45 : 1);
     this.camera.left = -viewHeight * width / height / 2;
     this.camera.right = -this.camera.left;
     this.camera.top = viewHeight / 2;

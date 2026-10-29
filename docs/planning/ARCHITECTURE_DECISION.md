@@ -161,7 +161,18 @@ Der separat freigegebene M2.1-Stand nutzte einen Trainingsmatch mit drei station
 
 `core/combat.ts` führt Auswahl, unabhängige Cooldowns, Pulse-Munition und Projektile. `core/pickups.ts` prüft tatsächliche Standfläche, Höhe, Abstand und freie Verbindung zur Ressource. `render/combatView.ts` stellt wiederverwendete Projektilmeshes und Pickup-Symbole dar. Der freie M1-Übungsmodus behält seine Diagnosewaffe; Trainingsmatches benutzen ausschließlich Arc Lash und Pulse.
 
-Arc Lash: 35 Schaden, 48 Ticks Cooldown (0,8 s), 5 m Reichweite, unbegrenzt. Der 10°-Kegel um den tatsächlichen Mündungs-/Mauszielstrahl muss die Zielkugel schneiden; der Kugelradius wird berücksichtigt, damit ein direkt anvisierter sichtbarer Rand nicht verfehlt wird. Nur lebende Ziele mit freiem Kamera→Ziel- und Mündung→Ziel-Strahl kommen infrage. Priorität: kleinster Winkel zur Kugelmitte, bei Gleichstand geringste Distanz. Das sichtbare Mausfadenkreuz springt nicht zum Gegner. Der kurze Arc-Strahl zeigt den tatsächlichen Treffer. Kein Schaden außerhalb der Reichweite oder durch Deckung.
+Arc Lash, aktualisiert auf Nutzerwunsch am 29. Oktober: 35 Schaden pro getroffenem
+Gegner, 48 Ticks Cooldown (0,8 s), 5 m Reichweite, unbegrenzt. Ein Tippen startet
+36 Ticks (0,6 s) elektrische Salve; Halten wiederholt sie. Der Kern wählt unabhängig
+vom Mausziel das nächste lebende Ziel mit freiem 3D-Strahl vom Spieler und hält
+dieses Ziel während der Salve, solange es erreichbar bleibt. Fünf Strahlen bilden
+einen 60°-Fächer; bis zu zwei zusätzliche Ziele darin erhalten geführte Zweige.
+Jeder Strahl endet an seiner ersten tatsächlichen Kollision. Schaden entsteht bei
+Salvenalter 0/8/16/24/32, jeweils 7 pro getroffenem Gegner; mehrere Strahlen stapeln
+den Schaden nicht. Bewegung und Deckung werden fortlaufend neu geprüft.
+Waffenwechsel, Tod und Reset brechen die Salve ab. `render/arcView.ts` zeichnet die
+Strahlen aus dem gemeinsamen Snapshot; Pulse behält manuelles Zielen und Projektile.
+Damit ersetzt die Freigabe die ursprüngliche Entscheidung für nur 10° Mauszielhilfe.
 
 Pulse: 10 Schaden, 10 Ticks Cooldown (~0,167 s), 54 Schuss Maximum. 30 m/s schnelle Projektile mit 8 cm Radius fliegen maximal 32 m; Rapier prüft den gesamten Tickweg als Kugel-Sweep und beendet das Projektil beim ersten Treffer. Keine Hitscan-Vorwegnahme. Schäden und Identitäten orientieren sich am CTF-Katalog des Auditcommits; Meterwerte sind neue 3D-Trainingswerte, keine blind umgerechneten Pixelwerte. Beide Waffen halten ihren eigenen Cooldown beim Wechsel. Leere Pulse fällt auf Arc zurück; Aufnehmen schaltet nicht um.
 

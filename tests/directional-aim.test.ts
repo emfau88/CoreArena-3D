@@ -33,7 +33,7 @@ test('aiming before or behind an enemy shoots through it on E0/E1/E2 in both cam
   }
 });
 
-test('directional ground aim still respects walls and does not pull lateral shots onto enemies', async () => {
+test('both weapons respect walls; only Arc acquires targets away from the cursor', async () => {
   for (const wall of [false, true]) {
     const foot = { x: 0, y: 0.03, z: 0 };
     const target = { id: 'enemy', center: { x: 4, y: 1.1, z: 0 }, radius: 0.6, level: 'test' };
@@ -46,9 +46,10 @@ test('directional ground aim still respects walls and does not pull lateral shot
       assert.equal(aim.target.id, 'floor'); assert.equal(aim.blocked, wall);
       for (const kind of ['arc', 'pulse'] as WeaponId[]) {
         const combat = new Combat(); if (kind === 'pulse') { combat.addAmmo(1, true); combat.select('pulse'); }
-        const damage = combat.step(1, true, aim, ray, world, [target]).damage;
-        for (let tick = 2; tick < 24; tick++) damage.push(...combat.step(tick, false, null, null, world, [target]).damage);
-        assert.ok(damage.every(hit => hit.target !== target.id));
+        const damage = combat.step(1, true, aim, ray, world, [target], foot).damage;
+        for (let tick = 2; tick < 37; tick++) damage.push(...combat.step(tick, false, null, null, world, [target], foot).damage);
+        if(kind==='arc' && !wall) assert.equal(damage.reduce((sum,hit)=>sum+(hit.target===target.id?hit.amount:0),0),35);
+        else assert.ok(damage.every(hit => hit.target !== target.id));
         if (wall && kind === 'pulse') assert.equal(damage[0]?.target, 'wall');
       }
     } finally { world.dispose(); }

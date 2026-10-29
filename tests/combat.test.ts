@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Combat, WEAPONS, arcHit, directionTo } from '../src/core/combat';
+import { Combat, WEAPONS, directionTo } from '../src/core/combat';
 import { solveAim } from '../src/core/aim';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import { Pickups, PICKUP_RESPAWN_TICKS } from '../src/core/pickups';
@@ -12,26 +12,67 @@ const target = { id: 'dummy-test', center: { x: 4, y: 1.15, z: 0 }, radius: 0.6,
 const arena: ArenaDefinition = { spawn: { x: 0, y: 0.03, z: 0 }, boxes: [], targets: [target] };
 const camera = { origin: { x: 4, y: 12, z: 6 }, direction: directionTo({ x: 4, y: 12, z: 6 }, target.center).direction };
 
-test('Arc is immediate, bounded by distance/cone and blocked by actual 3D cover', async () => {
+test('Arc finds a target behind the cursor, crackles for 36 ticks and deals 35 total damage without duplicate beam hits', async () => {
   const world = await createSpatialWorld(arena);
   try {
     const aim = solveAim(world, camera, arena.spawn)!;
-    assert.equal(arcHit(world, aim, camera, [target])?.id, target.id);
-    const outside = { ...aim, firePoint: { x: 4, y: 1.15, z: 2 } };
-    assert.equal(arcHit(world, outside, camera, [target]), null);
-    const nearMiss = { ...aim, firePoint: { x: 4, y: 1.15, z: 0.3 } };
-    assert.equal(arcHit(world, nearMiss, camera, [target])?.id, target.id);
-    const far = solveAim(world, camera, { x: -5, y: 0, z: 0 })!;
-    assert.equal(arcHit(world, far, camera, [target]), null);
     const combat = new Combat();
-    assert.equal(combat.step(1, true, aim, camera, world, [target]).damage[0]?.amount, 35);
-    combat.addAmmo(54, true); combat.select('pulse'); combat.select('arc');
-    assert.equal(combat.step(2, true, aim, camera, world, [target]).attacked, false);
-    assert.equal(combat.step(49, true, aim, camera, world, [target]).attacked, true);
+    const away={...aim,firePoint:{x:-4,y:1.15,z:0}};
+    const first=combat.step(1,true,away,camera,world,[target],arena.spawn);
+    assert.equal(first.damage[0]?.amount,7);assert.equal(first.attacked,true);
+    assert.equal(combat.snapshot().lastArc!.beams.length,5);
+    assert.deepEqual(combat.snapshot().lastArc!.targetIds,[target.id]);
+    let total=first.damage[0]!.amount;
+    for(let tick=2;tick<=36;tick++) {
+      const next=combat.step(tick,false,null,null,world,[target],arena.spawn);
+      total+=next.damage.reduce((sum,d)=>sum+d.amount,0);
+      assert.equal(next.attacked,false);assert.ok(combat.snapshot().lastArc);
+    }
+    assert.equal(total,35);
+    assert.equal(combat.step(37,true,away,camera,world,[target],arena.spawn).attacked,false);
+    assert.equal(combat.snapshot().lastArc,null);
+    assert.equal(combat.step(49,true,away,camera,world,[target],arena.spawn).attacked,true);
   } finally { world.dispose(); }
-  const blocked = await createSpatialWorld({ ...arena, boxes: [{ id: 'cover', center: { x: 2, y: 1, z: 0 }, size: { x: 0.05, y: 2, z: 2 }, material: 'stone' }] });
-  try { assert.equal(arcHit(blocked, solveAim(blocked, camera, arena.spawn)!, camera, [target]), null); }
-  finally { blocked.dispose(); }
+});
+
+test('Arc fan hits separate nearby targets, keeps a 60-degree sector and needs no ground cursor hit',async()=>{
+  const nearby={...target,id:'nearby',center:{x:3.8,y:1.15,z:1.7}};
+  const behind={...target,id:'behind',center:{x:-4.5,y:1.15,z:0}};
+  const targets=[target,nearby,behind];const world=await createSpatialWorld({...arena,targets});
+  try {
+    const combat=new Combat();
+    const hit=combat.step(1,true,null,null,world,targets,arena.spawn);
+    assert.deepEqual(hit.damage.map(d=>d.target).sort(),[target.id,nearby.id].sort());
+    const beams=combat.snapshot().lastArc!.beams;
+    assert.ok(beams[0]!.end.z-beams[4]!.end.z>2,'fan stays visibly wide');
+    assert.ok(beams.every(b=>Math.hypot(b.end.x,b.end.y-1.18,b.end.z)<=5.001));
+    combat.reset();
+    const far={...target,center:{x:5.7,y:1.15,z:0}};world.setTargetPosition(target.id,far.center);
+    world.setTargetEnabled(nearby.id,false);world.setTargetEnabled(behind.id,false);
+    assert.deepEqual(combat.step(1,true,null,null,world,[far],arena.spawn).damage,[]);
+  } finally {world.dispose();}
+});
+
+test('Arc follows the shooter and moving targets, loses damage behind cover and cancels on switch/reset',async()=>{
+  const world=await createSpatialWorld({...arena,boxes:[{id:'cover',center:{x:2,y:1,z:0},size:{x:.05,y:3,z:4},material:'stone'}]});
+  try {
+    world.setObstacleEnabled('cover',false);
+    const combat=new Combat();
+    assert.equal(combat.step(1,true,null,null,world,[target],arena.spawn).damage.length,1);
+    const moved={...target,center:{x:4,y:1.15,z:1}};world.setTargetPosition(target.id,moved.center);
+    combat.step(2,false,null,null,world,[moved],{x:0,y:.03,z:.3});
+    assert.deepEqual(combat.snapshot().lastArc!.aim.firePoint,moved.center);
+    assert.ok(combat.snapshot().lastArc!.aim.muzzle.z>.3);
+    world.setObstacleEnabled('cover',true);
+    for(let tick=3;tick<=36;tick++) assert.deepEqual(combat.step(tick,false,null,null,world,[moved],arena.spawn).damage,[]);
+    combat.reset();
+    assert.deepEqual(combat.step(1,true,null,null,world,[moved],arena.spawn).damage,[],'cannot acquire through cover');
+    world.setObstacleEnabled('cover',false);combat.reset();
+    combat.step(1,true,null,null,world,[moved],arena.spawn);
+    combat.addAmmo(54,true);combat.select('pulse');assert.equal(combat.snapshot().lastArc,null);
+    assert.deepEqual(combat.step(9,false,null,null,world,[moved],arena.spawn).damage,[]);
+    combat.reset();assert.equal(combat.snapshot().lastArc,null);
+  } finally {world.dispose();}
 });
 
 test('Pulse travels before damage; its swept radius catches thin cover and each hit consumes the projectile', async () => {

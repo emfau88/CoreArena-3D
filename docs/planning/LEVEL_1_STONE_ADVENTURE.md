@@ -37,7 +37,11 @@ innerhalb dieser Höfe, keine acht Räume. Die frühere enge
 
 Die vorhandene stilisierte Grafik, Waffen, Pickups und Steuerung bleiben die Basis.
 Standardblick von links nach rechts; V/Ansicht wechselt auf gerade oder isometrische
-Kamera. Mobile: 15 % größere Darstellung, leichter Kameravorlauf und kompaktes Menü.
+Kamera. Mobile: Zoomfaktor 1,45 (nochmals rund 26 % größere Darstellung als beim
+bisherigen Faktor 1,15), leichter Kameravorlauf und kompaktes Menü. Sprint wurde
+auf Wunsch um 15 % auf 9,18 m/s reduziert. Arc Lash startet nun eine automatische
+0,6-s-Salve mit fünf Strahlen im 60°-Fächer; Sicht, Deckung und 5-m-Reichweite bleiben
+maßgeblich. [Umsetzung und Prüfung](../qa/SPRINT_ARC_MOBILE_RESULT.md).
 Die gemeinsame Adventure-Sprungkurve für Desktop/Touch landet auf gleicher Ebene
 nach ca. 0,72 s bei ca. 2,15 m Höhe; Treppen und Plateaus bleiben erreichbar.
 

@@ -4,11 +4,14 @@ import type { PickupDefinition, PickupState } from '../core/pickups';
 import { labelMesh } from './practiceView';
 import { createPickupModel } from './gear';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { ArcView } from './arcView';
 
 const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e };
 const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG' };
 export class CombatView {
   private readonly root = new THREE.Group();
+  private readonly arc = new ArcView(this.root);
+  arcDiagnostics(){return this.arc.diagnostics();}
   private readonly pickups = new Map<string, { group: THREE.Group; gem: THREE.Group; label:THREE.Mesh;
     ring: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>; particles:THREE.InstancedMesh; remaining: number; flash: number }>();
   private readonly particleTransform=new THREE.Object3D();
@@ -52,6 +55,7 @@ export class CombatView {
   update(active: boolean, tick: number, weapons?: WeaponSnapshot, pickups: readonly PickupState[] = [], sideView = false): void {
     this.root.visible = active;
     if (!active || !weapons) return;
+    this.arc.update(tick,weapons.lastArc);
     for (const item of pickups) {
       const visual = this.pickups.get(item.id)!;
       if(tick<this.lastTick)visual.flash=-100;

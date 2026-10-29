@@ -31,7 +31,7 @@ export class CombatBot {
     if (visible) this.weapons.select(inventory.ownsPulse && inventory.ammo > 0 && directionTo(own.position, visible.center).distance > 4.4 ? 'pulse' : 'arc');
     this.decision = this.brain.step(tick, own, visible, this.weapons.snapshot());
     const attack = this.weapons.step(tick, this.decision.firing, this.decision.aim, this.decision.ray,
-      this.world, visible ? [visible] : []);
+      this.world, visible ? [visible] : [], own.position);
     this.simulation.step(this.decision.movement);
     if (this.snapshot().position.y < -8) attack.damage.push({ target: 'rival', amount: 1000 });
     return attack;

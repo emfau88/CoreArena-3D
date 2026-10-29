@@ -25,7 +25,7 @@ export interface Snapshot {
 }
 export const TICK_SECONDS = 1 / 60;
 export const WALK_SPEED = 7.2;
-export const SPRINT_SPEED = 10.8;
+export const SPRINT_SPEED = 9.18;
 export const JUMP_SPEED = 10.8;
 export const GRAVITY = 22.6;
 export const CAPSULE = { radius: 0.45, halfHeight: 0.45, offset: 0.02 } as const;

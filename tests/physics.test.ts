@@ -74,9 +74,12 @@ test('real physics travel is independent of render rate, sprint and diagonal are
     try {
       for (let tick = 0; tick < 1 / TICK_SECONDS; tick++) simulation.step({ x: 1, z: 1, sprint });
       const p = simulation.snapshot().position;
-      assert.ok(Math.abs(Math.hypot(p.x, p.z) - (sprint ? 10.8 : 7.2)) < 0.005,
+      const speed = sprint ? 9.18 : 7.2;
+      // Rapier can spend one fixed step resolving a diagonal resting floor contact.
+      assert.ok(Math.abs(Math.hypot(p.x, p.z) - speed) < speed * TICK_SECONDS + 0.005,
         `${sprint ? 'sprint' : 'walk'} diagonal: ${JSON.stringify(p)}, distance=${Math.hypot(p.x, p.z)}`);
       const snapshot = simulation.snapshot();
+      assert.ok(Math.abs(Math.hypot(snapshot.velocity.x, snapshot.velocity.z) - speed) < 0.01);
       assert.ok(Object.isFrozen(snapshot) && Object.isFrozen(snapshot.position));
     } finally { world.dispose(); }
   }

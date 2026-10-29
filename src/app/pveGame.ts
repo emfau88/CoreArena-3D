@@ -99,7 +99,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       aim = ray ? solveAim(world, ray, current.position) : null;
       const selected = combat.snapshot().selected;
-      const attack = combat.step(before.tick + 1, input.fire(), aim, ray, world, before.phase === 'emerging' ? [] : [{ ...level.monster, center: before.center }]);
+      const attack = combat.step(before.tick + 1, input.fire(), aim, ray, world, before.phase === 'emerging' ? [] : [{ ...level.monster, center: before.center }], current.position);
       encounter.step(current.position, world, attack.damage);
       const after = encounter.snapshot();
       if (feedback) {

@@ -13,6 +13,13 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 
 ## Aktueller Fortschritt
 
+- [x] 29. Oktober, Tempo/Zoom/Startwaffe: Sprint um 15 % reduziert, mobile Darstellung
+  nochmals rund 26 % größer; Arc Lash mit automatischer Zielwahl, fünf Strahlen,
+  60°-Fächer und 0,6-s-Salve. 54 Kerntests und vier Browserfälle bestanden,
+  einschließlich Desktop-Levelabschluss und echter Touch-Eingaben im emulierten
+  Querformat. [Nachweise](../qa/SPRINT_ARC_MOBILE_RESULT.md).
+- [ ] Persönlicher Handytest der näheren Ansicht und des neuen Arc-Spielgefühls.
+
 - [x] 29. Oktober, kostenlose Ausstattung: acht Modelle aus der freien AssetQuest-Demo,
   vier Konsolen aus zwei Retro-Tech-Demomodellen, Bodenverankerung und freie
   Lauf-/Sprungrouten in allen drei Höfen. 11 relevante Kerntests und fünf Browserfälle

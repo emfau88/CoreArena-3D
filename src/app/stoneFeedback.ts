@@ -1,6 +1,6 @@
 type Cue = 'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory';
 const tones: Record<Cue, [number, number, number, number]> = {
-  pulse: [480, 120, 0.09, 0.1], arc: [180, 45, 0.18, 0.15], hit: [240, 80, 0.07, 0.08],
+  pulse: [480, 120, 0.09, 0.1], arc: [180, 85, 0.6, 0.13], hit: [240, 80, 0.07, 0.08],
   hurt: [95, 40, 0.22, 0.18], step: [80, 45, 0.055, 0.035], land: [100, 35, 0.16, 0.12],
   jump: [180, 300, 0.08, 0.055], windup: [80, 165, 0.28, 0.11], slam: [110, 28, 0.28, 0.21],
   pickup: [520, 920, 0.18, 0.1], victory: [350, 700, 0.45, 0.12],
@@ -61,7 +61,8 @@ export class StoneFeedback {
     oscillator.frequency.setValueAtTime(start, now); oscillator.frequency.exponentialRampToValueAtTime(end, now + duration);
     oscillator.connect(gain); gain.connect(stereo); stereo.connect(this.master!);
     const noise = ctx.createBufferSource(), filter = ctx.createBiquadFilter(); noise.buffer = this.noise;
-    filter.type = 'lowpass'; filter.frequency.value = cue === 'pulse' ? 2200 : cue === 'hit' ? 1500 : 450;
+    noise.loop=cue==='arc';
+    filter.type = 'lowpass'; filter.frequency.value = cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450;
     noise.connect(filter); filter.connect(gain);
     this.voices++; this.played++;
     oscillator.onended = () => { oscillator.disconnect(); noise.disconnect(); filter.disconnect(); gain.disconnect(); stereo.disconnect(); this.voices--; };

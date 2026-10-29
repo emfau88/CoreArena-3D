@@ -71,7 +71,7 @@ test('adventure camera follows the whole level and snaps to spawn without changi
   camera.toggle(); assert.equal(camera.mode,'side');
   camera.resize(844,390); const desktopHeight = camera.camera.top-camera.camera.bottom;
   camera.resize(844,390,true);
-  assert.ok(Math.abs(desktopHeight/(camera.camera.top-camera.camera.bottom)-1.15)<.001);
+  assert.ok(Math.abs(desktopHeight/(camera.camera.top-camera.camera.bottom)-1.45)<.001);
   camera.snap(start);
   for(let i=0;i<120;i++) camera.follow(start,1/60,{x:0,y:0,z:-7.2});
   assert.ok(new THREE.Vector3(start.x,0,start.z).project(camera.camera).x<-.05,'mobile camera leaves space ahead');

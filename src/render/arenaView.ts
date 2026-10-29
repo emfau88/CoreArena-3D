@@ -35,6 +35,7 @@ export class ArenaView {
   private lastArcTick=-1;
   fighterDiagnostics(){return this.fighter.diagnostics();}
   pickupDiagnostics(){return this.combat.diagnostics();}
+  arcDiagnostics(){return this.combat.arcDiagnostics();}
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number;
     build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void) } = {}) {
@@ -90,6 +91,7 @@ export class ArenaView {
       THREE.MathUtils.lerp(previous.position.z, current.position.z, alpha),
     );
     this.actor.position.copy(this.position);
+    if(weapons?.selected==='arc' && weapons.lastArc) aim=weapons.lastArc.aim;
     this.actor.rotation.y = aim ? Math.atan2(aim.firePoint.x - current.position.x, aim.firePoint.z - current.position.z) : current.facing;
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
     const arcTick=weapons?.lastArc?.tick??-1;
