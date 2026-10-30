@@ -77,6 +77,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   for(const shape of arena.boxes) {
     if(['dormant-warden','north-gate','boss-entry-gate','mission-drone','mission-relay'].includes(shape.id)) continue;
     if(STONE_CONSOLES.some(station=>station.id===shape.id)) continue;
+    if(shape.id.startsWith('outpost-')) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
     if(shape.material==='floor') {
       // Physics floors overlap at doorways. Clip only the visible overlap; world

@@ -6,7 +6,9 @@ Recherche- und Designstand: **29. Oktober 2026**. Projektbasis: `bb8975d`.
 vor L1.6a/b. Auftrag/Konsole/Steinkern/Relais wurden inzwischen freigegeben und
 umgesetzt; [Missionsnachweis](../qa/ADVENTURE_MISSION_RESULT.md). Danach wurde
 L1.6b separat freigegeben und anhand aktueller Waffenvergleiche abgestimmt;
-[Bossvergleich](../qa/BOSS_PRESSURE_RESULT.md). L1.6c und L1.5b bleiben offen.
+[Bossvergleich](../qa/BOSS_PRESSURE_RESULT.md). Anschließend wurde L1.6c separat
+freigegeben und umgesetzt: [Ortsgestaltung und Wartungsreserve](../qa/OUTPOST_PLACES_RESULT.md).
+L1.5b bleibt offen.
 Historische Aussagen zur fehlenden Missionskette, zum optionalen Kern und zu
 alten Kampfwerten sind überholt; Empfehlungen sind keine Freigabe.
 
@@ -765,7 +767,7 @@ bildet keine gemessene Erfolgswahrscheinlichkeit ab.
 - [x] Bezug zum kompakten Umsetzungsplan hergestellt.
 - [x] L1.6a: Auftrag/Konsole/Kern/Relais — am 30. Oktober freigegeben und umgesetzt.
 - [x] L1.6b: Kampf und Bossdruck — am 30. Oktober separat freigegeben und umgesetzt.
-- [ ] L1.6c: Orte und Erkundung ausarbeiten — noch nicht freigegeben.
+- [x] L1.6c: Orte und Erkundung — am 30. Oktober separat freigegeben und umgesetzt.
 - [ ] L1.5b: Abschließende technische und persönliche Spielabnahme.
 
 Der [kompakte Levelplan](LEVEL_1_STONE_ADVENTURE.md) bleibt maßgeblich.
@@ -776,7 +778,7 @@ dieses Referenzdokuments begründet keinen zusätzlichen Entwicklungsumfang.
 Ein allgemeines Quest-System, neues Inventar, vertonte Dialogproduktion,
 persistente Charakterentwicklung, Mech-Gegner, weitere Räume oder zusätzliche
 Gegnerwellen sind mögliche spätere Richtungen. Keine davon muss für das erste
-Testlevel vorgezogen werden. **L1.6a/b sind inzwischen umgesetzt.** Weitere Umsetzung
+Testlevel vorgezogen werden. **L1.6a–c sind inzwischen umgesetzt.** Weitere Umsetzung
 wartet auf eine neue Freigabe; maßgeblich bleibt der aktuelle Levelplan.
 
 ## 16. Wie wir Wirkung prüfen und weitere Inspiration sammeln

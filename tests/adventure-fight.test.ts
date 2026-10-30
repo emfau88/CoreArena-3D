@@ -7,6 +7,46 @@ import { StoneRunner, RUNNER_RULES } from '../src/core/stoneRunner';
 import { AdventureFight } from '../src/core/adventureFight';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import type { Snapshot } from '../src/core/types';
+import { ADVENTURE_MISSION } from '../src/arena/adventureMission';
+
+test('optional maintenance reserve survives refill and boss retry, is height-gated and resets with a new run',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),fight=new AdventureFight();
+  const point={x:-12.5,y:1.12,z:2};
+  try{
+    fight.interact({...point,y:.02},world);assert.equal(fight.reserveRecovered,false);
+    fight.interact({...point,x:0},world);assert.equal(fight.reserveRecovered,false);
+    assert.equal(fight.interaction(point,world)?.kind,'reserve');
+    fight.interact(point,world);assert.equal(fight.reserveRecovered,true);
+    assert.equal(fight.life.snapshot().armor,50,'reward is applied at the checkpoint');
+    assert.equal(fight.interaction(point,world)?.enabled,false);
+    fight.step({x:0,y:.02,z:33},world,ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70})));
+    fight.interact({x:-1,y:.02,z:-8},world);
+    fight.step(ADVENTURE_CHECKPOINT,world,[]);assert.equal(fight.life.snapshot().armor,75);
+    fight.life.step(ADVENTURE_CHECKPOINT,world,[],{active:false,incomingDamage:10});
+    fight.interact(point,world);fight.step(ADVENTURE_CHECKPOINT,world,[]);
+    assert.equal(fight.life.snapshot().armor,65,'no repeated collection or refill loop');
+    fight.step({x:0,y:-9,z:-21},world,[]);fight.retry();
+    assert.equal(fight.reserveRecovered,true);assert.equal(fight.life.snapshot().armor,75);
+    assert.equal(fight.life.snapshot().hp,100);assert.equal(fight.combat.snapshot().ammo,54);
+    fight.reset();assert.equal(fight.reserveRecovered,false);assert.equal(fight.life.snapshot().armor,50);
+    fight.interact(point,world);fight.step({x:0,y:-9,z:2},world,[]);fight.retry();
+    assert.equal(fight.reserveRecovered,false,'death before checkpoint starts a fresh run');
+  }finally{world.dispose();}
+});
+
+test('reserve cannot be operated through cover; a late find raises checkpoint armor only once',async()=>{
+  const barrier={id:'reserve-test-cover',center:{x:-13.5,y:1.8,z:2},size:{x:.2,y:1.4,z:3},material:'metal' as const};
+  const world=await createSpatialWorld({...STONE_ADVENTURE_COMBAT,boxes:[...STONE_ADVENTURE_COMBAT.boxes,barrier]}),fight=new AdventureFight();
+  try{
+    const point={x:-12.5,y:1.12,z:2};fight.interact(point,world);assert.equal(fight.reserveRecovered,false);
+    world.setObstacleEnabled(barrier.id,false);
+    fight.step({x:0,y:.02,z:33},world,ADVENTURE_RUNNERS.map(r=>({source:'player',target:r.id,amount:70})));
+    fight.interact({x:-1,y:.02,z:-8},world);fight.step(ADVENTURE_CHECKPOINT,world,[]);
+    fight.interact(point,world);assert.equal(fight.life.snapshot().armor,ADVENTURE_MISSION.reserve.armor);
+    fight.life.step(point,world,[],{active:false,incomingDamage:10});fight.interact(point,world);
+    assert.equal(fight.life.snapshot().armor,65);
+  }finally{world.dispose();}
+});
 
 test('adventure boss warns for 0.5s, hits for 30, repeats after 1.4s and respects locked dodges and height',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);

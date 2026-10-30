@@ -2,10 +2,11 @@
 
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
 
-**Stand 30. Oktober 2026: L1.6a und anschließend L1.6b freigegeben und umgesetzt.**
+**Stand 30. Oktober 2026: L1.6a, L1.6b und anschließend L1.6c freigegeben und umgesetzt.**
 Die vollständige Missionskette ist spielbar; [Ergebnis und Browsernachweise](../qa/ADVENTURE_MISSION_RESULT.md).
 [L1.6b: aktueller Bossvergleich und Prüfungen](../qa/BOSS_PRESSURE_RESULT.md).
-L1.6c und L1.5b bleiben offen und benötigen jeweils eine neue Freigabe.
+[L1.6c: Ortsgestaltung und Wartungsreserve](../qa/OUTPOST_PLACES_RESULT.md).
+L1.5b bleibt offen und benötigt eine neue Freigabe.
 
 Die [ausführliche Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md) dokumentiert
 sechs Vergleichsspiele, Quellen und konkrete Empfehlungen für diesen Ausbau.
@@ -24,17 +25,17 @@ durch das geöffnete Ausgangstor gehen.
 | --- | --- | --- | --- |
 | **L1.6a · Auftrag spielbar machen — erledigt** | Beschädigte Drohne, bedienbare Wartungskonsole, Bossfreigabe, erforderlicher Steinkern und Relais am Ausgang; Lichtreaktionen, Ton und vier kurze Meldungen. | Ganze Kette mit Maus/Tastatur und emuliertem Touch geprüft; Interaktion nur in Reichweite, auf Bodenhöhe und mit freier Sicht. Boss-Retry erhält aktivierte Konsole, Neustart setzt alles zurück. | Keine Restarbeit dieses Bulks; keine separat gemessene Istzeit |
 | **L1.6b · Kampf spannend und fair machen — umgesetzt** | Aktueller Waffenvergleich; Faust: 0,5 s Vorwarnung und 30 Schaden; Schockwelle schneller bei gleicher Reichweite. Angriffsfläche, Warnklänge und Erholung deutlicher. | Dokumentierte stationäre und aktive Versuche mit gleichen Startwerten; Abstand/Höhe/Deckung bleiben wirksam. [Prüfstand](../qa/BOSS_PRESSURE_RESULT.md). | Keine geplante Restarbeit dieses Bulks; persönliche Spielrückmeldung separat |
-| **L1.6c · Drei erkennbare Orte gestalten — offen** | Ladestation, Wartungsbereich und Relaisanlage mit vorhandener Ausstattung ausarbeiten; Pulse-Fund lesbarer inszenieren, eine kleine Erkundungsentdeckung ergänzen. Drohne, Konsole, Relais und Leitungen aus L1.6a nicht erneut bauen. | Jeder Hof hat einen Blickfang; Hauptweg, Höhen und Gegner bleiben mobil lesbar. Der Abstecher lohnt sich auch angesichts der Checkpoint-Auffüllung. Vergleichsaufnahmen und Wegtest vorhanden. | **30–50 Min.** |
+| **L1.6c · Drei erkennbare Orte gestalten — umgesetzt** | Ladebuchten/Fracht/Waffenausgabe, Drohnen-Reparaturplatz und Relaisversorgung; optionale Wartungsreserve auf der bestehenden Terrasse. | Bestehender Hauptweg und Terrasse begehbar; Vergleichsbilder und Desktop-/Touch-Durchläufe. Reserve sichert mindestens 75 Rüstung am Checkpoint und 75 beim Boss-Retry. [Nachweis](../qa/OUTPOST_PLACES_RESULT.md). | Keine geplante Restarbeit dieses Bulks; persönliche Sichtung separat |
 | **L1.5b · Gesamtabnahme — offen** | Nach den freigegebenen Ausbauten den gesamten Ablauf, Schwierigkeit und Lade-/Laufzeit prüfen; gezielte Restkorrekturen. | Desktop-/Touch-Durchlauf und technische Prüfung dokumentiert; persönlicher Handytest und Spielurteil separat. | **20–35 Min.** |
 
 - [x] L1.6a: Auftrag, Konsole und Relaisabschluss.
 - [x] L1.6b: Bossvergleich, gezielte Abstimmung und Kampflesbarkeit.
-- [ ] L1.6c: Ortsidentität und Erkundung.
+- [x] L1.6c: Ortsidentität und Erkundung.
 - [ ] L1.5b: Technische Gesamtabnahme und persönliche Rückmeldung.
 
-**Reihenfolge:** L1.6a und L1.6b sind umgesetzt. Danach nur mit eigener Freigabe
-Ortsgestaltung/Erkundung (L1.6c), anschließend Gesamtabnahme (L1.5b).
-Restplan **50–85 Minuten aktive Agent-Arbeit**, inklusive passender Tests,
+**Reihenfolge:** L1.6a–c sind umgesetzt. Danach nur mit eigener Freigabe
+Gesamtabnahme (L1.5b).
+Restplan **20–35 Minuten aktive Agent-Arbeit**, inklusive passender Tests,
 Dokumentation und Commit/Push. Rückmeldung, Deployment-Wartezeit und echter
 Handytest separat. Dies ist keine Freigabe der Restpakete.
 
@@ -53,7 +54,7 @@ bisherige Roadmap; L1.5b wird bei Freigabe dahinter eingeordnet, nicht doppelt g
 
 ## Bereits umgesetzter Stand
 
-Stand: 30. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3, L1.4a und L1.6a umgesetzt und technisch
+Stand: 30. Oktober 2026. **L1.1, das verkleinerte L1.2, L1.3, L1.4a und L1.6a–c umgesetzt und technisch
 geprüft.** Der Nutzer hat den Gegnerumfang ausdrücklich reduziert:
 **zwei kleine Nahkämpfer und der bereits vorhandene Steinwächter**.
 Der frühere Plan mit sieben kleinen Gegnern, Steinwerfer und zusätzlichen Bossphasen
@@ -115,6 +116,7 @@ Koordinaten als (X; Z), Norden = negatives Z. Grundriss und Vorräte stammen aus
 | B · Ruinenhof | **Ein Steinläufer bei (2; 24)** | Keine Pflichtaufnahme | Er nähert sich beim Betreten des Hofs. Rückzug zum Start möglich. |
 | C · Waffenfund, (-3; 18,5) | Keine | Pulse Repeater mit 54 Schuss | Sichtbar am Hauptweg vor dem breiten Durchgang. |
 | D · Seitenterrasse, optional | **Keine zusätzlichen Gegner** | Medkit +35 bei (-13,5; 4), Rüstung +30 bei (-13,5; 0), Munition +27 bei (-9; -0,4) | Breite Treppe zur 1,1 m hohen Terrasse. Vorräte mitnehmen und nach E zurückkehren. |
+| D · Wartungsreserve, optional, (-14,6; 2) | Keine | Einmalige Reservekiste, E/Touch in Reichweite auf der Terrasse | Am Checkpoint mindestens 75 statt 50 Rüstung; beim Boss-Retry wieder 75. Bestehende Vorräte bleiben verfügbar. |
 | E · Innerer Hof | **Ein Steinläufer bei (2; -1)** | Munition +27 bei (11; 6,5) | Konsole bei (-3; -8) nach beiden Läufern mit E/Touch bedienen. Lichtleitung und Bosszugang werden aktiv. |
 | F · Siegelplatz, (0; -14) | Keine | Einmalig 100 HP, mindestens 50 Rüstung, Pulse mit 54 Schuss | Nach beiden Läufern und Konsole wird der Sitzungs-Checkpoint gesichert. Rüstung über 50 bleibt erhalten; kein wiederholtes Auffüllen. |
 | G · Wächterhof, (0; -29) | **Der vorhandene Steinwächter** | Munition +18 bei (-13; -37) und (13; -20); Medkit +35 auf Plateau bei (-12; -23) | Nach Freigabe löst Betreten hinter Z = -20,5 das Auftauchen aus. Eingang schließt während des Kampfes; Sieg lässt den Steinkern fallen. |
@@ -163,6 +165,14 @@ Anreise-Vorräte und die aktivierte Konsole bleiben erhalten. Kern und Relais
 werden beim Boss-Retry zurückgesetzt. „Level neu starten“ setzt immer alles zurück.
 Der Checkpoint gilt nur für die laufende Sitzung; Reload oder Spielmenü verlassen ihn.
 
+**L1.6c-Erkundungsbonus:** Die optionale Wartungsreserve auf der Terrasse erhöht
+die Checkpoint-Mindestrüstung und die Retry-Rüstung auf 75. Höhere vorhandene
+Rüstung wird am Checkpoint nicht reduziert. Der Fund bleibt nach Boss-Tod erhalten;
+Tod vor dem Checkpoint und vollständiger Neustart setzen ihn zurück. Kein Inventar,
+keine dauerhafte Kontofreischaltung und kein wiederholbares Auffüllen an der Kiste.
+Die sieben neuen Ausstattungsobjekte haben Kollision; Bodenmarken und Leitungen
+bleiben passierbar. Bestehende Mission und L1.6b-Bosswerte bleiben erhalten.
+
 Beim Boss-Sieg bleiben Bewegung und Kamera aktiv; die Rückzugssperre öffnet.
 Der Spieler muss den Steinkern bergen und am Relais einsetzen. Dadurch öffnet
 das Nordtor sichtbar und physisch; erst Durchgehen schließt das Level ab. Die bisherige Kristallkluft
@@ -193,11 +203,11 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
 | **L1.6a · Missionskette** | Auftrag, Konsole, Steinkern und Relaisabschluss | **Umgesetzt und technisch geprüft**; [Nachweis](../qa/ADVENTURE_MISSION_RESULT.md) |
 | **L1.6b · Kampf abstimmen** | Vergleich mit aktuellen Waffen, kürzerer Wellenablauf, angekündigter kräftigerer Faustschlag und sichtbare Erholung | **Umgesetzt**; [Nachweis](../qa/BOSS_PRESSURE_RESULT.md) |
-| **L1.6c · Ortsgestaltung** | Drei erkennbare Orte und lohnender Abstecher | **Offen, nicht freigegeben**; 30–50 Min. |
+| **L1.6c · Ortsgestaltung** | Ladestation, Reparaturplatz, Relaisversorgung und Wartungsreserve | **Umgesetzt**; [Nachweis](../qa/OUTPOST_PLACES_RESULT.md) |
 | **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen, nicht freigegeben**; 20–35 Min., echte Handyprüfung separat |
 
-Die verbleibenden **50–85 Minuten** entsprechen dem kompakten Ausbau oben.
-Frühere Gesamtschätzungen enthielten L1.6a/b und sind keine zusätzliche Restarbeit.
+Die verbleibenden **20–35 Minuten** entsprechen dem kompakten Ausbau oben.
+Frühere Gesamtschätzungen enthielten L1.6a–c und sind keine zusätzliche Restarbeit.
 Warten auf Rückmeldung/Hosting und echte Handyprüfung kommen separat hinzu.
 
 ### L1.2 – erledigt

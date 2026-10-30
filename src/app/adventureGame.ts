@@ -16,6 +16,7 @@ import { DesktopInput } from '../input/desktopInput';
 import { lifeHud, weaponHud } from './hud';
 import { StoneFeedback } from './stoneFeedback';
 import { AdventureMissionView, loadMissionAssets } from '../render/adventureMissionView';
+import { OutpostView } from '../render/outpostView';
 
 const hints: Record<string, string> = {
   A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
@@ -37,6 +38,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
   const simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
   const fight = new AdventureFight(), fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
+  const outpostView=new OutpostView(view.scene,missionAssets.drone);
   const missionView = new AdventureMissionView(view.scene,missionAssets);
   const {combat,pickups}=fight, clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
@@ -160,6 +162,9 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       if(after.consoleActive && !before.consoleActive) {
         feedback.play('console');announce('Verbindung steht. Dem Relais fehlt sein Kern. Das Signal kommt aus dem Wächterhof.');
       }
+      if(after.reserveRecovered && !before.reserveRecovered){
+        feedback.play('pickup');announce('Wartungsreserve geborgen. Am Ruhepunkt gibt es jetzt 75 Rüstung – auch bei erneutem Versuch.');
+      }
       if(after.bossActive && !before.bossActive && !bossIntroduced) {
         bossIntroduced=true;announce('Der Kern läuft. Leider hat er Beine.',180);
       }
@@ -203,6 +208,9 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
           objective='Pulse am Durchgang aufnehmen · danach zur Wartungskonsole.';
         if(state.consoleActive) objective=state.bossActive?'Steinkern bergen · Bezwinge den Wächter!':
           state.checkpoint?'Ruhepunkt gesichert · Betritt den freigegebenen Wächterhof.':'Verbindung steht · Folge der leuchtenden Leitung zum Ruhepunkt.';
+        if(room?.id==='D' && !state.bossActive) objective=state.reserveRecovered?
+          'Wartungsreserve geborgen · Am Ruhepunkt erhältst du 75 Rüstung.':
+          'Optional: Wartungsreserve bergen · 75 Rüstung am Ruhepunkt, auch nach einem Retry.';
         if(state.pve.outcome==='victory') {
           el('room-name').textContent=state.relayActive?'Außenposten online':'Relaisanlage';
           objective=state.relayActive?'Nordtor offen · Verlasse den Außenposten.':state.core?.collected?
@@ -227,6 +235,8 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       el('result-title').textContent=state.completed?'Der verwitterte Hof ist frei.':'Der Hof bleibt bewacht.';
       el('result-detail').textContent=state.completed?'Steinkern eingesetzt, Relais online. Der Außenposten arbeitet wieder. Dein Weg zur Kristallkluft ist frei.':
         state.checkpoint?'Kehre mit frischen Vorräten zum Ruhepunkt zurück. Die Konsole bleibt aktiv und die beiden Höfe bleiben befreit.':'Nutze die Vorräte und weiche den angekündigten Schlägen aus.';
+      if(state.reserveRecovered && (state.completed || state.checkpoint && state.pve.outcome==='defeat'))
+        el('result-detail').textContent+=' Wartungsreserve geborgen: 75 Rüstung am Ruhepunkt.';
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';
       el('pve-next').hidden=!state.completed;
       if (input.touchEnabled) el('camera-toggle').textContent = `Ansicht: ${{side:'seitlich',straight:'gerade',isometric:'isometrisch'}[view.camera.mode]}`;
@@ -242,6 +252,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       winner: null, reason: null, actors: { player: { id: 'player', team: 'blue', hp, armor, life: 1, alive: hp>0, respawnTicks: 0, protectionTicks: 0 } } };
     fightView.update(state,view.camera.camera,paused?0:Math.min(elapsed,.05),exploration);
     missionView.update(state,paused?0:Math.min(elapsed,.05));
+    outpostView.update(state);
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
     view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot());
     frameId = requestAnimationFrame(frame);
@@ -250,7 +261,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     read: () => ({ mode: 'adventure', level: 'stone', snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
       checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
-      mission:{consoleActive:fight.consoleActive,relayActive:fight.relayActive,entryClosed:fight.snapshot().entryClosed,
+      mission:{consoleActive:fight.consoleActive,relayActive:fight.relayActive,reserveRecovered:fight.reserveRecovered,entryClosed:fight.snapshot().entryClosed,
         interaction:fight.interaction(current.position,world)},
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),

@@ -2,7 +2,7 @@ import type { ArenaBox, ArenaDefinition } from './arena';
 import type { PickupDefinition } from '../core/pickups';
 import type { Vec3 } from '../core/types';
 import { MONSTER, PVE_RULES } from '../core/pve';
-import { STONE_CONSOLES, CONSOLE_FOOTPRINT } from './stoneDressing';
+import { STONE_CONSOLES, CONSOLE_FOOTPRINT, OUTPOST_PROPS } from './stoneDressing';
 import { ADVENTURE_MISSION } from './adventureMission';
 
 // Adventure balance only; simulation, attack animation and feedback share these timings.
@@ -20,14 +20,14 @@ interface Room { id: string; name: string; left: number; right: number; back: nu
 // A-H are places within three generous courts, not eight walled rooms.
 // The user rejected the first narrow, winding footprint during L1.1.
 export const STONE_ROOMS: readonly Room[] = [
-  { id: 'C', name: 'Waffenfund', left: -7, right: 3, back: 16, front: 21 },
-  { id: 'D', name: 'Seitenterrasse', left: -16, right: -7, back: -2, front: 6 },
+  { id: 'C', name: 'Ladestation · Waffenausgabe', left: -7, right: 3, back: 16, front: 21 },
+  { id: 'D', name: 'Wartungsterrasse', left: -16, right: -7, back: -2, front: 6 },
   { id: 'H', name: 'Nordtor', left: -7, right: 7, back: -43, front: -37 },
   { id: 'F', name: 'Siegelplatz', left: -5, right: 5, back: -17.5, front: -12 },
-  { id: 'A', name: 'Ankunft', left: -16, right: 16, back: 29, front: 38 },
-  { id: 'B', name: 'Ruinenhof', left: -16, right: 16, back: 16, front: 29 },
-  { id: 'E', name: 'Innerer Hof', left: -18, right: 18, back: -12, front: 12 },
-  { id: 'G', name: 'Wächterhof', left: -18, right: 18, back: -42, front: -16 },
+  { id: 'A', name: 'Ladestation', left: -16, right: 16, back: 29, front: 38 },
+  { id: 'B', name: 'Ladestation', left: -16, right: 16, back: 16, front: 29 },
+  { id: 'E', name: 'Wartungsbereich', left: -18, right: 18, back: -12, front: 12 },
+  { id: 'G', name: 'Relaisanlage · Wächterhof', left: -18, right: 18, back: -42, front: -16 },
 ];
 export const stoneRoomAt = (p: Vec3): Room | undefined => STONE_ROOMS.find(r =>
   p.x > r.left && p.x < r.right && p.z > r.back && p.z < r.front);
@@ -88,6 +88,8 @@ export const STONE_ADVENTURE: ArenaDefinition = { ...stoneLayout, boxes:[...ston
   ...[...wallEnds.values()].map(({x,z,height},i)=>block(`wall-joint-${i}`,x,z,.78,height+.14,.78)),
   ...STONE_CONSOLES.map(({id,x,z})=>block(id,x,z,CONSOLE_FOOTPRINT.x,CONSOLE_FOOTPRINT.y,CONSOLE_FOOTPRINT.z)),
   ...[ADVENTURE_MISSION.drone,ADVENTURE_MISSION.relay].map(({id,x,z,width,height,depth})=>block(id,x,z,width,height,depth)),
+  ...OUTPOST_PROPS.map(({id,x,y,z,width,height,depth})=>({
+    ...block(id,x,z,width,height,depth),center:{x,y:y+height/2,z},material:'metal' as const})),
 ] };
 const loot = (id: string, kind: PickupDefinition['kind'], x: number, z: number, amount: number,
   surface: string, y = 0): PickupDefinition => ({ id, kind, position: { x,y,z }, surface, amount });

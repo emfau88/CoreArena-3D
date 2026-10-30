@@ -5,11 +5,12 @@ import type { WeaponSnapshot } from '../../src/core/combat';
 import type { RunnerState } from '../../src/core/stoneRunner';
 
 interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoint:boolean;completed:boolean;weapons:WeaponSnapshot;
-  mission:{consoleActive:boolean;relayActive:boolean;entryClosed:boolean};
+  mission:{consoleActive:boolean;relayActive:boolean;reserveRecovered:boolean;entryClosed:boolean};
   core:{position:{x:number;y:number;z:number};collected:boolean}|null;
   enemies:(RunnerState & {screen:{x:number;y:number}})[];monsterScreen:{x:number;y:number};hp:number;armor:number }
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url='./?mode=pve&level=stone&adventure=1';
+const withReserve=process.env.OUTPOST_RESERVE==='1';
 test.use({headless:false});
 // Real inputs only: jump over a close swing/wave, walk out of the locked eruption.
 function bossDodge(s:State){
@@ -68,6 +69,16 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   await walk(page,0,18.5); await walk(page,-3,18.5); await page.locator('#weapon-pulse').click();
   await expect(page.locator('#room-hint')).not.toContainText('Pulse am Durchgang aufnehmen');
   await walk(page,0,18.5); await walk(page,0,7); await fireAt(page,1);
+  if(withReserve){
+    await walk(page,0,2);await walk(page,-12.5,2);
+    expect((await read(page)).snapshot.surface).toBe('side-terrace');
+    await expect(page.locator('#mission-interact')).toContainText('Wartungsreserve bergen');
+    await page.screenshot({path:info.outputPath('reserve-before.png')});
+    await page.keyboard.press('KeyE');await expect.poll(async()=>(await read(page)).mission.reserveRecovered).toBe(true);
+    await expect(page.locator('#mission-message')).toContainText('75 Rüstung');
+    await page.screenshot({path:info.outputPath('reserve-collected.png')});
+    await walk(page,0,2);
+  }
   await walk(page,0,8); await walk(page,11,8); await walk(page,11,6.5);
   expect((await read(page)).weapons.ammo).toBe(54);
   await walk(page,0,6.5); await walk(page,0,-14);
@@ -84,7 +95,7 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   await page.keyboard.press('KeyE');
   await page.screenshot({path:info.outputPath('mission-powered.png')});
   await walk(page,0,-8);await walk(page,0,-14); expect((await read(page)).bossActive).toBe(false);
-  expect((await read(page)).checkpoint).toBe(true); expect((await read(page)).armor).toBe(50);
+  expect((await read(page)).checkpoint).toBe(true); expect((await read(page)).armor).toBe(withReserve?75:50);
   await page.screenshot({path:info.outputPath('checkpoint.png')});
   await walk(page,0,-21); expect((await read(page)).bossActive).toBe(true);
   // First attempt: real boss attacks kill the stationary player, then use the checkpoint button.
@@ -93,7 +104,8 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   await page.screenshot({path:info.outputPath('checkpoint-defeat.png')});
   await page.locator('#pve-again').click();
   const retry=await read(page); expect(retry.snapshot.position.z).toBeCloseTo(-14,1);
-  expect(retry.enemies.every(e=>e.hp===0)).toBe(true); expect(retry.hp).toBe(100);expect(retry.armor).toBe(50);
+  expect(retry.enemies.every(e=>e.hp===0)).toBe(true); expect(retry.hp).toBe(100);expect(retry.armor).toBe(withReserve?75:50);
+  expect(retry.mission.reserveRecovered).toBe(withReserve);
   expect(retry.weapons.ammo).toBe(54);expect(retry.bossActive).toBe(false);expect(retry.pve.bossHp).toBe(600);
   expect(retry.mission.consoleActive).toBe(true);expect(retry.mission.relayActive).toBe(false);
   await expect(page.locator('#campaign-story')).toBeHidden();
@@ -124,12 +136,14 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   try { await expect(page.locator('#match-result')).toBeVisible(); } finally { await page.keyboard.up('KeyD'); }
   expect((await read(page)).snapshot.position.z).toBeLessThan(-45);expect((await read(page)).completed).toBe(true);
   await expect(page.locator('#result-title')).toHaveText('Der verwitterte Hof ist frei.');
+  if(withReserve)await expect(page.locator('#result-detail')).toContainText('Wartungsreserve geborgen');
   await page.screenshot({path:info.outputPath('completion.png')});
   await page.locator('#pve-again').click();
   await expect.poll(async()=>(await read(page)).enemies.every(e=>e.hp===70)).toBe(true);
   expect((await read(page)).bossActive).toBe(false);expect((await read(page)).hp).toBe(100);
   expect((await read(page)).weapons.ownsPulse).toBe(false);expect(errors).toEqual([]);
   expect((await read(page)).checkpoint).toBe(false);
+  expect((await read(page)).mission.reserveRecovered).toBe(false);
   expect((await read(page)).core).toBeNull();
   expect((await read(page)).mission.consoleActive).toBe(false);expect((await read(page)).mission.relayActive).toBe(false);
   await expect(page.locator('#mission-message')).toContainText('Lieferung angekommen');
@@ -223,6 +237,7 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
   page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   try {
     await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
+    await page.screenshot({path:info.outputPath('mobile-arrival.png')});
     const cdp=await context.newCDPSession(page);
     const release=()=>cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
     const move=async(x:number,z:number)=>{
@@ -262,6 +277,17 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     };
     await move(0,27);await fire(0);await move(0,18.5);await move(-3,18.5);await page.locator('#weapon-pulse').tap();
     await move(0,18.5);await move(0,7);await fire(1);
+    if(withReserve){
+      await move(0,2);await move(-12.5,2);
+      expect((await read(page)).snapshot.surface).toBe('side-terrace');
+      await expect(page.locator('#mission-interact')).toContainText('Wartungsreserve bergen');
+      await page.screenshot({path:info.outputPath('mobile-reserve-before.png')});
+      await page.locator('#mission-interact').tap();
+      await expect.poll(async()=>(await read(page)).mission.reserveRecovered).toBe(true);
+      await expect(page.locator('#mission-message')).toContainText('75 Rüstung');
+      await page.screenshot({path:info.outputPath('mobile-reserve-collected.png')});
+      await move(0,2);
+    }
     await move(0,-8);await move(-1,-8);
     await expect(page.locator('#mission-interact')).toHaveText('Konsole starten');
     await page.screenshot({path:info.outputPath('mobile-console.png')});
@@ -280,6 +306,7 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     await release();await page.screenshot({path:info.outputPath('mobile-powered.png')});
     await move(0,-8);await move(0,-14);
     expect((await read(page)).checkpoint).toBe(true);
+    expect((await read(page)).armor).toBe(withReserve?75:50);
     await page.screenshot({path:info.outputPath('mobile-checkpoint.png')});
     await move(0,-21);
     await expect.poll(async()=>(await read(page)).pve.outcome,{timeout:35000}).toBe('defeat');
@@ -287,6 +314,7 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     await page.locator('#pve-again').tap();
     const retry=await read(page);expect(retry.snapshot.position.z).toBeCloseTo(-14,1);
     expect(retry.hp).toBe(100);expect(retry.weapons.ammo).toBe(54);expect(retry.enemies.every(e=>e.hp===0)).toBe(true);
+    expect(retry.armor).toBe(withReserve?75:50);expect(retry.mission.reserveRecovered).toBe(withReserve);
     expect(retry.mission.consoleActive).toBe(true);expect(retry.mission.relayActive).toBe(false);
     await expect(page.locator('#campaign-story')).toBeHidden();
     await move(0,-21);await expect.poll(async()=>(await read(page)).pve.phase,{timeout:5000}).not.toBe('emerging');
@@ -305,9 +333,11 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2+42,y:box.y+box.height/2}]});
     try {await expect(page.locator('#match-result')).toBeVisible();} finally {await release();}
     expect((await read(page)).completed).toBe(true);expect((await read(page)).snapshot.position.z).toBeLessThan(-45);
+    if(withReserve)await expect(page.locator('#result-detail')).toContainText('Wartungsreserve geborgen');
     await page.screenshot({path:info.outputPath('mobile-completion.png')});
     await page.locator('#pve-again').tap();
     const reset=await read(page);expect(reset.checkpoint).toBe(false);expect(reset.core).toBeNull();
+    expect(reset.mission.reserveRecovered).toBe(false);
     expect(reset.mission.consoleActive).toBe(false);expect(reset.mission.relayActive).toBe(false);
     expect(reset.enemies.every(e=>e.hp===70)).toBe(true);expect(reset.weapons.ownsPulse).toBe(false);
     await page.locator('#pve-pause').tap();await page.locator('#adventure-home').tap();

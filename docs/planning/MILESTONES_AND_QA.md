@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 30. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a/b umgesetzt und technisch geprüft.**
+Stand: 30. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a–c umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
@@ -16,9 +16,11 @@ die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_
 Anschließend wurde **nur L1.6b** freigegeben: aktueller Auto-Arc-/Pulse-Vergleich,
 gezielte Bossabstimmung, klarere Angriffs- und Erholungsanzeige.
 [Messwerte und Prüfungen](../qa/BOSS_PRESSURE_RESULT.md).
-Ortsgestaltung/Erkundung (L1.6c) und Gesamtabnahme (L1.5b)
-bleiben offen und benötigen eine eigene Freigabe. Verbleibender Planrahmen:
-**50–85 Minuten aktive Agent-Arbeit**; [kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
+Anschließend wurde L1.6c separat freigegeben und umgesetzt: drei funktionale Orte
+und eine Wartungsreserve auf der Terrasse. [Nachweis](../qa/OUTPOST_PLACES_RESULT.md).
+Die Gesamtabnahme (L1.5b) bleibt offen und benötigt eine eigene Freigabe.
+Verbleibender Planrahmen: **20–35 Minuten aktive Agent-Arbeit**;
+[kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
 
 ## Aktueller Fortschritt
 
@@ -32,8 +34,9 @@ bleiben offen und benötigen eine eigene Freigabe. Verbleibender Planrahmen:
   vollständiger Desktop- und emulierter Touch-Ablauf technisch geprüft.
 - [x] L1.6b: Bossdruck neu gemessen; Faust und Wellenablauf gezielt abgestimmt,
   Warnfläche/-klänge und Erholung verdeutlicht; Desktop und emulierter Touch geprüft.
-- [ ] L1.6c: Ladestation, Wartungsbereich und Relaisanlage optisch unterscheiden.
-  L1.6c und die Gesamtabnahme L1.5b sind weiterhin nicht freigegeben.
+- [x] L1.6c: Ladestation, Wartungsbereich und Relaisanlage ausgestattet;
+  optionale Reserve mit Nutzen über Checkpoint und Boss-Retry hinweg.
+  Die Gesamtabnahme L1.5b ist weiterhin nicht freigegeben.
 
 - [x] 29. Oktober, Tempo/Zoom/Startwaffe: Sprint um 15 % reduziert, mobile Darstellung
   nochmals rund 26 % größer; Arc Lash mit automatischer Zielwahl, fünf Strahlen,
@@ -92,7 +95,7 @@ bleiben offen und benötigen eine eigene Freigabe. Verbleibender Planrahmen:
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
 - [ ] Persönliche Sichtung von L1.4b einschließlich der neuen Pflanzen/Konsolen;
-  L1.6a/b sind inzwischen umgesetzt. L1.6c und danach L1.5b benötigen jeweils
+  L1.6a–c sind inzwischen umgesetzt. L1.5b benötigt weiterhin
   eine Freigabe (L1.5b: 20–35 Minuten; echter Handytest separat).
 - [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 

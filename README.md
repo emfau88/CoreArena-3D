@@ -16,6 +16,10 @@ Bedienen in Reichweite mit **E** oder der eingeblendeten **Touch-Taste**.
 schnellere Schockwelle bei gleicher Reichweite, klarere Angriffsfläche und sichtbare
 Erholung. Stationäres Pulse-Feuer wurde mit dem aktuellen Auto-Arc erneut verglichen.
 [Messwerte und Browserprüfung](docs/qa/BOSS_PRESSURE_RESULT.md).
+**L1.6c · Drei funktionale Orte:** Ladebuchten mit Fracht und Waffenausgabe,
+Drohnen-Reparaturplatz und verbundene Relaisversorgung. Die optionale
+Wartungsreserve auf der Terrasse sichert 75 Rüstung am Ruhepunkt und beim Boss-Retry.
+[Vergleichsbilder und Prüfung](docs/qa/OUTPOST_PLACES_RESULT.md). L1.5b bleibt offen.
 **Kostenlose Ausstattung ergänzt:** AssetQuest-Pflanzen, Birken und Pilzgruppen
 in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
 Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.

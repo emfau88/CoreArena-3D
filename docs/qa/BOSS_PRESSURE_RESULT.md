@@ -2,7 +2,9 @@
 
 Stand: **30. Oktober 2026**. Nur L1.6b umgesetzt. Vor Beginn waren lokales
 `main` und GitHub-`main` auf **8eba27f** (fertiges L1.6a), Arbeitsbaum sauber.
-L1.6c und L1.5b bleiben offen. Sämtliche Spieltests verwenden **`adventure=1`**.
+Zum Zeitpunkt dieses Berichts waren L1.6c und L1.5b offen. Anschließend wurde
+[L1.6c separat umgesetzt](OUTPOST_PLACES_RESULT.md); L1.5b bleibt offen.
+Sämtliche Spieltests verwenden **`adventure=1`**.
 
 ## Befund vor der Änderung
 
@@ -106,5 +108,4 @@ Diese fehlerhaften Läufe zählen nicht zur Tabelle. Eine anfänglich nicht zur�
 Simulations-Testfigur wurde ebenfalls korrigiert; alle Schleifen sind begrenzt.
 
 **Kein tatsächlicher Handytest**, keine Handy-FPS-/Temperaturmessung und keine
-akustische Qualitätsabnahme. L1.6c (Orte/Erkundung) und L1.5b (Gesamtabnahme)
-bleiben separat freizugebende Arbeit.
+akustische Qualitätsabnahme. L1.5b (Gesamtabnahme) bleibt separat freizugebende Arbeit.
