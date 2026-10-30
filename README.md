@@ -12,6 +12,10 @@ nach beiden Läufern die Wartungskonsole starten, den Boss besiegen, seinen
 Steinkern bergen und am Relais einsetzen. Erst dann öffnet sich das Ausgangstor.
 Bedienen in Reichweite mit **E** oder der eingeblendeten **Touch-Taste**.
 [Missionsablauf und Prüfergebnis](docs/qa/ADVENTURE_MISSION_RESULT.md).
+**L1.6b · Bosskampf abgestimmt:** kräftigerer Faustschlag mit längerer Vorwarnung,
+schnellere Schockwelle bei gleicher Reichweite, klarere Angriffsfläche und sichtbare
+Erholung. Stationäres Pulse-Feuer wurde mit dem aktuellen Auto-Arc erneut verglichen.
+[Messwerte und Browserprüfung](docs/qa/BOSS_PRESSURE_RESULT.md).
 **Kostenlose Ausstattung ergänzt:** AssetQuest-Pflanzen, Birken und Pilzgruppen
 in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
 Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.
@@ -31,10 +35,11 @@ Austrittsstelle, gezielte Bodenausbrüche gegen Plateau-Camping und ein sammelba
 Steinkern. Kleine Wächter reagieren auch auf Beschuss von außerhalb ihres
 Aktivierungsbereichs. [Änderungen und Tests](docs/qa/ENCOUNTER_FIXES_RESULT.md).
 
-**29. Oktober: Schnellere Bossangriffe und steinerne Wächterpuppen.** Der Boss holt
-für Faustschläge nur noch 0,35 s aus und verfolgt schneller. Die beiden kleinen
+**29. Oktober: Schnellere Bossangriffe und steinerne Wächterpuppen.** Die damalige
+Faust-Vorwarnzeit von 0,35 s wurde in L1.6b auf besser lesbare 0,5 s verlängert;
+die Verfolgung bleibt bei 3,1 m/s. Die beiden kleinen
 Gegner nutzen nun das KayKit-Skelett mit eigener Steinoptik und Nahkampfanimationen.
-[Bilder, Tests und aktuelle Balancegrenze](docs/qa/BOSS_AND_GUARDS_RESULT.md).
+[Bilder, Tests und historische Balancegrenze](docs/qa/BOSS_AND_GUARDS_RESULT.md).
 
 **KayKit-Figur und Energie-Pickups.** Gedrungenes, geriggtes Mannequin
 mit Lauf-/Sprint-/Sprung-, Ziel-, Schuss-, Treffer- und Todesanimationen.

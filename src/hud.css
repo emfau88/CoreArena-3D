@@ -157,6 +157,7 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 #adventure-boss > span { float:right; }
 #adventure-boss #pve-telegraph { font-size:10px; }
 .touch-mode #adventure-boss { top:66px; width:240px; }
+#adventure-boss[data-phase="recovery"] #pve-telegraph { color:#b3f3de; }
 
 #mission-interact { position:fixed; left:50%; bottom:112px; transform:translateX(-50%); pointer-events:auto; min-height:46px; padding:10px 18px; background:#142b2af2; color:#ffe2a2; border:1px solid #e6c47d; border-radius:7px; }
 #mission-interact:disabled { color:#d0d9d1; border-color:#83918b; background:#192925e8; }

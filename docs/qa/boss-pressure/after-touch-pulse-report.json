@@ -1,0 +1,229 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/boss-pressure.spec.ts",
+      "--grep",
+      "touch pulse stationary",
+      "--project",
+      "chromium-1366",
+      "--trace",
+      "off",
+      "--output",
+      "test-results/pressure-touch-pulse"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-pulse",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-pulse",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-pulse",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-pulse",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-touch-pulse",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "boss-pressure.spec.ts",
+      "file": "boss-pressure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "touch pulse stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28722,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":true,\"weapon\":\"pulse\",\"location\":\"entrance\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":-0.1203090101480484,\"y\":0.03000000715255735,\"z\":-20.994422912597656},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600,\"bossCenter\":{\"x\":0,\"y\":1.85,\"z\":-29},\"phase\":\"chasing\",\"phaseTick\":0},\"end\":{\"position\":{\"x\":-0.1203090101480484,\"y\":0.028333342075347878,\"z\":-20.994422912597656},\"hp\":0,\"armor\":0,\"ammo\":3,\"bossHp\":90,\"outcome\":\"defeat\"},\"seconds\":8.466666666666667,\"hits\":4,\"events\":[{\"tick\":118,\"phase\":\"melee\",\"phaseTick\":32,\"hp\":100,\"armor\":20,\"position\":{\"x\":-0.1203090101480484,\"y\":0.028333342075347878,\"z\":-20.994422912597656}},{\"tick\":256,\"phase\":\"wave-attack\",\"phaseTick\":1,\"hp\":60,\"armor\":0,\"position\":{\"x\":-0.1203090101480484,\"y\":0.0266008138656616,\"z\":-20.994422912597656}},{\"tick\":425,\"phase\":\"melee\",\"phaseTick\":31,\"hp\":30,\"armor\":0,\"position\":{\"x\":-0.1203090101480484,\"y\":0.0266008138656616,\"z\":-20.994422912597656}},{\"tick\":508,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":0,\"armor\":0,\"position\":{\"x\":-0.1203090101480484,\"y\":0.028333342075347878,\"z\":-20.994422912597656}}],\"phases\":{\"chasing\":156,\"melee\":120,\"wave-warning\":88,\"wave-attack\":90,\"recovery\":50},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:17:59.505Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjp0cnVlLCJ3ZWFwb24iOiJwdWxzZSIsImxvY2F0aW9uIjoiZW50cmFuY2UiLCJzdHJhdGVneSI6InN0YXRpb25hcnkiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMjAzMDkwMTAxNDgwNDg0LCJ5IjowLjAzMDAwMDAwNzE1MjU1NzM1LCJ6IjotMjAuOTk0NDIyOTEyNTk3NjU2fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDAsImJvc3NDZW50ZXIiOnsieCI6MCwieSI6MS44NSwieiI6LTI5fSwicGhhc2UiOiJjaGFzaW5nIiwicGhhc2VUaWNrIjowfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOi0wLjEyMDMwOTAxMDE0ODA0ODQsInkiOjAuMDI4MzMzMzQyMDc1MzQ3ODc4LCJ6IjotMjAuOTk0NDIyOTEyNTk3NjU2fSwiaHAiOjAsImFybW9yIjowLCJhbW1vIjozLCJib3NzSHAiOjkwLCJvdXRjb21lIjoiZGVmZWF0In0sInNlY29uZHMiOjguNDY2NjY2NjY2NjY2NjY3LCJoaXRzIjo0LCJldmVudHMiOlt7InRpY2siOjExOCwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzIsImhwIjoxMDAsImFybW9yIjoyMCwicG9zaXRpb24iOnsieCI6LTAuMTIwMzA5MDEwMTQ4MDQ4NCwieSI6MC4wMjgzMzMzNDIwNzUzNDc4NzgsInoiOi0yMC45OTQ0MjI5MTI1OTc2NTZ9fSx7InRpY2siOjI1NiwicGhhc2UiOiJ3YXZlLWF0dGFjayIsInBoYXNlVGljayI6MSwiaHAiOjYwLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTAuMTIwMzA5MDEwMTQ4MDQ4NCwieSI6MC4wMjY2MDA4MTM4NjU2NjE2LCJ6IjotMjAuOTk0NDIyOTEyNTk3NjU2fX0seyJ0aWNrIjo0MjUsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjMxLCJocCI6MzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjotMC4xMjAzMDkwMTAxNDgwNDg0LCJ5IjowLjAyNjYwMDgxMzg2NTY2MTYsInoiOi0yMC45OTQ0MjI5MTI1OTc2NTZ9fSx7InRpY2siOjUwOCwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzAsImhwIjowLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTAuMTIwMzA5MDEwMTQ4MDQ4NCwieSI6MC4wMjgzMzMzNDIwNzUzNDc4NzgsInoiOi0yMC45OTQ0MjI5MTI1OTc2NTZ9fV0sInBoYXNlcyI6eyJjaGFzaW5nIjoxNTYsIm1lbGVlIjoxMjAsIndhdmUtd2FybmluZyI6ODgsIndhdmUtYXR0YWNrIjo5MCwicmVjb3ZlcnkiOjUwfSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-143eee5cb6824e25b4f7",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T17:17:57.482Z",
+    "duration": 31226.043999999998,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

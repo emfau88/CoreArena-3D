@@ -44,7 +44,7 @@ export class AdventureFightView {
   private time=0;
   constructor(private readonly scene:THREE.Scene,stone:CourtyardAssets['floor']) {
     scene.add(this.root); this.root.add(this.bossRoot);
-    this.boss=new MonsterView(this.bossRoot,'stone',ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,stone);
+    this.boss=new MonsterView(this.bossRoot,'stone',ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,stone,true);
     this.runners=[new RunnerView(this.root,stone),new RunnerView(this.root,stone)];
     this.core.name='adventure-boss-drop';this.root.add(this.core);this.core.add(this.coreGem);
     const gold=new THREE.MeshStandardMaterial({color:0xffd88a,emissive:0xffae46,emissiveIntensity:1.3,roughness:.4});

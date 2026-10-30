@@ -1,0 +1,429 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/boss-pressure.spec.ts",
+      "--grep",
+      "desktop",
+      "--project",
+      "chromium-1366",
+      "--trace",
+      "off",
+      "--output",
+      "test-results/pressure-before"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "boss-pressure.spec.ts",
+      "file": "boss-pressure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop arc stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31332,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"arc\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":0.0006691475864499807,\"y\":0.019933974742889382,\"z\":-20.87554359436035},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":0.0006691475864499807,\"y\":0.0249339699745178,\"z\":-20.87554359436035},\"hp\":0,\"armor\":0,\"ammo\":54,\"bossHp\":117,\"outcome\":\"defeat\"},\"seconds\":11.5,\"hits\":6,\"events\":[{\"tick\":108,\"phase\":\"melee\",\"phaseTick\":21,\"hp\":100,\"armor\":30,\"position\":{\"x\":0.0006691475864499807,\"y\":0.026600635051727273,\"z\":-20.87554359436035}},{\"tick\":251,\"phase\":\"wave-attack\",\"phaseTick\":6,\"hp\":70,\"armor\":0,\"position\":{\"x\":0.0006691475864499807,\"y\":0.021600639820098855,\"z\":-20.87554359436035}},{\"tick\":469,\"phase\":\"melee\",\"phaseTick\":25,\"hp\":50,\"armor\":0,\"position\":{\"x\":0.0006691475864499807,\"y\":0.019933974742889382,\"z\":-20.87554359436035}},{\"tick\":540,\"phase\":\"melee\",\"phaseTick\":21,\"hp\":30,\"armor\":0,\"position\":{\"x\":0.0006691475864499807,\"y\":0.029933965206146218,\"z\":-20.87554359436035}},{\"tick\":618,\"phase\":\"melee\",\"phaseTick\":24,\"hp\":10,\"armor\":0,\"position\":{\"x\":0.0006691475864499807,\"y\":0.028267300128936745,\"z\":-20.87554359436035}}],\"phases\":{\"chasing\":238,\"melee\":158,\"wave-warning\":91,\"wave-attack\":147,\"recovery\":51},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T16:56:40.701Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6ImFyYyIsInN0cmF0ZWd5Ijoic3RhdGlvbmFyeSIsInN0YXJ0Ijp7InBvc2l0aW9uIjp7IngiOjAuMDAwNjY5MTQ3NTg2NDQ5OTgwNywieSI6MC4wMTk5MzM5NzQ3NDI4ODkzODIsInoiOi0yMC44NzU1NDM1OTQzNjAzNX0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOjAuMDAwNjY5MTQ3NTg2NDQ5OTgwNywieSI6MC4wMjQ5MzM5Njk5NzQ1MTc4LCJ6IjotMjAuODc1NTQzNTk0MzYwMzV9LCJocCI6MCwiYXJtb3IiOjAsImFtbW8iOjU0LCJib3NzSHAiOjExNywib3V0Y29tZSI6ImRlZmVhdCJ9LCJzZWNvbmRzIjoxMS41LCJoaXRzIjo2LCJldmVudHMiOlt7InRpY2siOjEwOCwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MjEsImhwIjoxMDAsImFybW9yIjozMCwicG9zaXRpb24iOnsieCI6MC4wMDA2NjkxNDc1ODY0NDk5ODA3LCJ5IjowLjAyNjYwMDYzNTA1MTcyNzI3MywieiI6LTIwLjg3NTU0MzU5NDM2MDM1fX0seyJ0aWNrIjoyNTEsInBoYXNlIjoid2F2ZS1hdHRhY2siLCJwaGFzZVRpY2siOjYsImhwIjo3MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOjAuMDAwNjY5MTQ3NTg2NDQ5OTgwNywieSI6MC4wMjE2MDA2Mzk4MjAwOTg4NTUsInoiOi0yMC44NzU1NDM1OTQzNjAzNX19LHsidGljayI6NDY5LCJwaGFzZSI6Im1lbGVlIiwicGhhc2VUaWNrIjoyNSwiaHAiOjUwLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6MC4wMDA2NjkxNDc1ODY0NDk5ODA3LCJ5IjowLjAxOTkzMzk3NDc0Mjg4OTM4MiwieiI6LTIwLjg3NTU0MzU5NDM2MDM1fX0seyJ0aWNrIjo1NDAsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjIxLCJocCI6MzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjowLjAwMDY2OTE0NzU4NjQ0OTk4MDcsInkiOjAuMDI5OTMzOTY1MjA2MTQ2MjE4LCJ6IjotMjAuODc1NTQzNTk0MzYwMzV9fSx7InRpY2siOjYxOCwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MjQsImhwIjoxMCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOjAuMDAwNjY5MTQ3NTg2NDQ5OTgwNywieSI6MC4wMjgyNjczMDAxMjg5MzY3NDUsInoiOi0yMC44NzU1NDM1OTQzNjAzNX19XSwicGhhc2VzIjp7ImNoYXNpbmciOjIzOCwibWVsZWUiOjE1OCwid2F2ZS13YXJuaW5nIjo5MSwid2F2ZS1hdHRhY2siOjE0NywicmVjb3ZlcnkiOjUxfSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-aed03b8f79b0b2c0f445",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop arc reactive boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 31562,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f28f811d-8fea-453b-8d4c-686708b60f31\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ad5c8930-8318-41d1-a56a-4999d7e0061a\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90c2aecb-7cd6-466c-a94d-53eba1583a71\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e4d170a9-0d66-4a52-9e45-4ae5b9329738\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/1882d9c6-f5a5-4f66-93ce-b6af3304dbb8\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/12ed8303-8736-47b8-a7d2-954c647c6f30\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/dc175678-5c7e-4801-85d5-82ebc50ac077\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90b6f7dc-94dd-40d1-b9b2-6f9b255d6534\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/b84e9f56-cdd9-4d45-9336-3838090d1854\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/93ae9bc2-731e-457c-b0a8-b48fe1a7ed42\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f6c55597-a7b9-4bb7-97ac-6efa2d71d2a5\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f28f811d-8fea-453b-8d4c-686708b60f31\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ad5c8930-8318-41d1-a56a-4999d7e0061a\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90c2aecb-7cd6-466c-a94d-53eba1583a71\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e4d170a9-0d66-4a52-9e45-4ae5b9329738\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/1882d9c6-f5a5-4f66-93ce-b6af3304dbb8\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/12ed8303-8736-47b8-a7d2-954c647c6f30\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/dc175678-5c7e-4801-85d5-82ebc50ac077\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90b6f7dc-94dd-40d1-b9b2-6f9b255d6534\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/b84e9f56-cdd9-4d45-9336-3838090d1854\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/93ae9bc2-731e-457c-b0a8-b48fe1a7ed42\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f6c55597-a7b9-4bb7-97ac-6efa2d71d2a5\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:84:69",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 69,
+                      "line": 84
+                    },
+                    "snippet": "  82 |       const record={stage:process.env.BOSS_PRESSURE_STAGE??'after',mobile,weapon,strategy:active?'reactive':'stationary',...result,errors};\n  83 |       console.log(JSON.stringify(record));await info.attach('boss-pressure',{body:JSON.stringify(record),contentType:'application/json'});\n> 84 |       expect(result.end.outcome).not.toBe('running');expect(errors).toEqual([]);\n     |                                                                     ^\n  85 |       if(active)expect(result.end.outcome).toBe('victory');\n  86 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n  87 |     }finally{await context.close();}"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 69,
+                        "line": 84
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f28f811d-8fea-453b-8d4c-686708b60f31\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ad5c8930-8318-41d1-a56a-4999d7e0061a\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90c2aecb-7cd6-466c-a94d-53eba1583a71\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e4d170a9-0d66-4a52-9e45-4ae5b9329738\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/1882d9c6-f5a5-4f66-93ce-b6af3304dbb8\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/12ed8303-8736-47b8-a7d2-954c647c6f30\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/dc175678-5c7e-4801-85d5-82ebc50ac077\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90b6f7dc-94dd-40d1-b9b2-6f9b255d6534\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/b84e9f56-cdd9-4d45-9336-3838090d1854\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/93ae9bc2-731e-457c-b0a8-b48fe1a7ed42\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f6c55597-a7b9-4bb7-97ac-6efa2d71d2a5\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  82 |       const record={stage:process.env.BOSS_PRESSURE_STAGE??'after',mobile,weapon,strategy:active?'reactive':'stationary',...result,errors};\n  83 |       console.log(JSON.stringify(record));await info.attach('boss-pressure',{body:JSON.stringify(record),contentType:'application/json'});\n> 84 |       expect(result.end.outcome).not.toBe('running');expect(errors).toEqual([]);\n     |                                                                     ^\n  85 |       if(active)expect(result.end.outcome).toBe('victory');\n  86 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n  87 |     }finally{await context.close();}\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:84:69"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"arc\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.12060434371232986,\"y\":0.028294301033019997,\"z\":-21.17259407043457},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":4.079024791717529,\"y\":0.019943392276763894,\"z\":-21.172653198242188},\"hp\":90,\"armor\":0,\"ammo\":54,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":13.916666666666666,\"hits\":1,\"events\":[{\"tick\":246,\"phase\":\"wave-attack\",\"phaseTick\":3,\"hp\":90,\"armor\":0,\"position\":{\"x\":-0.12058856338262558,\"y\":0.9188579082489013,\"z\":-21.17246437072754}}],\"phases\":{\"chasing\":224,\"melee\":185,\"wave-warning\":93,\"wave-attack\":150,\"recovery\":78,\"eruption-warning\":73,\"eruption-attack\":26},\"errors\":[\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f28f811d-8fea-453b-8d4c-686708b60f31\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ad5c8930-8318-41d1-a56a-4999d7e0061a\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90c2aecb-7cd6-466c-a94d-53eba1583a71\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e4d170a9-0d66-4a52-9e45-4ae5b9329738\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/1882d9c6-f5a5-4f66-93ce-b6af3304dbb8\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/12ed8303-8736-47b8-a7d2-954c647c6f30\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/dc175678-5c7e-4801-85d5-82ebc50ac077\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/90b6f7dc-94dd-40d1-b9b2-6f9b255d6534\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/b84e9f56-cdd9-4d45-9336-3838090d1854\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/93ae9bc2-731e-457c-b0a8-b48fe1a7ed42\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/f6c55597-a7b9-4bb7-97ac-6efa2d71d2a5\"]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T16:57:13.336Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6ImFyYyIsInN0cmF0ZWd5IjoicmVhY3RpdmUiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMjA2MDQzNDM3MTIzMjk4NiwieSI6MC4wMjgyOTQzMDEwMzMwMTk5OTcsInoiOi0yMS4xNzI1OTQwNzA0MzQ1N30sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOjQuMDc5MDI0NzkxNzE3NTI5LCJ5IjowLjAxOTk0MzM5MjI3Njc2Mzg5NCwieiI6LTIxLjE3MjY1MzE5ODI0MjE4OH0sImhwIjo5MCwiYXJtb3IiOjAsImFtbW8iOjU0LCJib3NzSHAiOjAsIm91dGNvbWUiOiJ2aWN0b3J5In0sInNlY29uZHMiOjEzLjkxNjY2NjY2NjY2NjY2NiwiaGl0cyI6MSwiZXZlbnRzIjpbeyJ0aWNrIjoyNDYsInBoYXNlIjoid2F2ZS1hdHRhY2siLCJwaGFzZVRpY2siOjMsImhwIjo5MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOi0wLjEyMDU4ODU2MzM4MjYyNTU4LCJ5IjowLjkxODg1NzkwODI0ODkwMTMsInoiOi0yMS4xNzI0NjQzNzA3Mjc1NH19XSwicGhhc2VzIjp7ImNoYXNpbmciOjIyNCwibWVsZWUiOjE4NSwid2F2ZS13YXJuaW5nIjo5Mywid2F2ZS1hdHRhY2siOjE1MCwicmVjb3ZlcnkiOjc4LCJlcnVwdGlvbi13YXJuaW5nIjo3MywiZXJ1cHRpb24tYXR0YWNrIjoyNn0sImVycm9ycyI6WyJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvZjI4ZjgxMWQtOGZlYS00NTNiLThkNGMtNjg2NzA4YjYwZjMxIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIHRleHR1cmVzL2Zlcm5fMDJfZGlmZl8xay5qcGciLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0L2FkNWM4OTMwLTgzMTgtNDFkMS1hNTZhLTQ5OTlkN2UwMDYxYSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSB0ZXh0dXJlcy9mZXJuXzAyX2FybV8xay5qcGciLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvZmVybl8wMl9ub3JfZ2xfMWsuanBnIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIHRleHR1cmVzL3JvY2tfbW9zc19zZXRfMDFfZGlmZl8xay5qcGciLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvcm9ja19tb3NzX3NldF8wMV9yb3VnaF8xay5qcGciLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0LzkwYzJhZWNiLTdjZDYtNDY2Yy1hOTRkLTUzZWJhMTU4M2E3MSIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvZTRkMTcwYTktMGQ2Ni00YTUyLTllNDUtNGFlNWI5MzI5NzM4IiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC8xODgyZDljNi1mNWE1LTRmNjYtOTNjZS1iNmFmMzMwNGRiYjgiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvcm9ja19tb3NzX3NldF8wMV9ub3JfZ2xfMWsuanBnIiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC8xMmVkODMwMy04NzM2LTQ3YjgtYTdkMi05NTRjNjQ3YzZmMzAiLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0L2RjMTc1Njc4LTVjN2UtNDgwMS04NWQ1LTgyZWJjNTBhYzA3NyIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvOTBiNmY3ZGMtOTRkZC00MGQxLWI5YjItNmY5YjI1NWQ2NTM0IiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC9iODRlOWY1Ni1jZGQ5LTRkNDUtOTMzNi0zODM4MDkwZDE4NTQiLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0LzkzYWU5YmMyLTczMWUtNDU3Yy1iMGE4LWI0OGZlMWE3ZWQ0MiIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvZjZjNTU1OTctYTdiOS00YmI3LTk3YWMtNmVmYTJkNzFkMmE1Il19"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before\\boss-pressure-desktop-arc-reactive-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before\\boss-pressure-desktop-arc-reactive-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 69,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-911b5798ac34558fdd60",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop pulse stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28460,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"pulse\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":0.0011452187318354845,\"y\":0.02660170793533323,\"z\":-21.137155532836914},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":0.0011452187318354845,\"y\":0.01993504762649534,\"z\":-21.137155532836914},\"hp\":30,\"armor\":0,\"ammo\":0,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":10.1,\"hits\":4,\"events\":[{\"tick\":106,\"phase\":\"melee\",\"phaseTick\":26,\"hp\":100,\"armor\":30,\"position\":{\"x\":0.0011452187318354845,\"y\":0.024935042858123757,\"z\":-21.137155532836914}},{\"tick\":250,\"phase\":\"wave-attack\",\"phaseTick\":7,\"hp\":70,\"armor\":0,\"position\":{\"x\":0.0011452187318354845,\"y\":0.029935038089752175,\"z\":-21.137155532836914}},{\"tick\":467,\"phase\":\"melee\",\"phaseTick\":25,\"hp\":50,\"armor\":0,\"position\":{\"x\":0.0011452187318354845,\"y\":0.029935038089752175,\"z\":-21.137155532836914}},{\"tick\":541,\"phase\":\"melee\",\"phaseTick\":24,\"hp\":30,\"armor\":0,\"position\":{\"x\":0.0011452187318354845,\"y\":0.023268377780914284,\"z\":-21.137155532836914}}],\"phases\":{\"chasing\":194,\"melee\":123,\"wave-warning\":89,\"wave-attack\":152,\"recovery\":47},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T16:57:46.257Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6InB1bHNlIiwic3RyYXRlZ3kiOiJzdGF0aW9uYXJ5Iiwic3RhcnQiOnsicG9zaXRpb24iOnsieCI6MC4wMDExNDUyMTg3MzE4MzU0ODQ1LCJ5IjowLjAyNjYwMTcwNzkzNTMzMzIzLCJ6IjotMjEuMTM3MTU1NTMyODM2OTE0fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDB9LCJlbmQiOnsicG9zaXRpb24iOnsieCI6MC4wMDExNDUyMTg3MzE4MzU0ODQ1LCJ5IjowLjAxOTkzNTA0NzYyNjQ5NTM0LCJ6IjotMjEuMTM3MTU1NTMyODM2OTE0fSwiaHAiOjMwLCJhcm1vciI6MCwiYW1tbyI6MCwiYm9zc0hwIjowLCJvdXRjb21lIjoidmljdG9yeSJ9LCJzZWNvbmRzIjoxMC4xLCJoaXRzIjo0LCJldmVudHMiOlt7InRpY2siOjEwNiwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MjYsImhwIjoxMDAsImFybW9yIjozMCwicG9zaXRpb24iOnsieCI6MC4wMDExNDUyMTg3MzE4MzU0ODQ1LCJ5IjowLjAyNDkzNTA0Mjg1ODEyMzc1NywieiI6LTIxLjEzNzE1NTUzMjgzNjkxNH19LHsidGljayI6MjUwLCJwaGFzZSI6IndhdmUtYXR0YWNrIiwicGhhc2VUaWNrIjo3LCJocCI6NzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjowLjAwMTE0NTIxODczMTgzNTQ4NDUsInkiOjAuMDI5OTM1MDM4MDg5NzUyMTc1LCJ6IjotMjEuMTM3MTU1NTMyODM2OTE0fX0seyJ0aWNrIjo0NjcsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjI1LCJocCI6NTAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjowLjAwMTE0NTIxODczMTgzNTQ4NDUsInkiOjAuMDI5OTM1MDM4MDg5NzUyMTc1LCJ6IjotMjEuMTM3MTU1NTMyODM2OTE0fX0seyJ0aWNrIjo1NDEsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjI0LCJocCI6MzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjowLjAwMTE0NTIxODczMTgzNTQ4NDUsInkiOjAuMDIzMjY4Mzc3NzgwOTE0Mjg0LCJ6IjotMjEuMTM3MTU1NTMyODM2OTE0fX1dLCJwaGFzZXMiOnsiY2hhc2luZyI6MTk0LCJtZWxlZSI6MTIzLCJ3YXZlLXdhcm5pbmciOjg5LCJ3YXZlLWF0dGFjayI6MTUyLCJyZWNvdmVyeSI6NDd9LCJlcnJvcnMiOltdfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-bffc0f3ddccf0b2657a9",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop pulse reactive boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 27519,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/a5eb6434-520b-40e3-ab23-241268286cfa\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/c0941204-1217-4264-9e36-70155452f824\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/011a6a57-dbf1-4b58-95c3-ba259517bc3c\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e760180a-64a8-4103-b0e6-cf585e15bde4\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/d160e451-0059-490f-ba4a-43f9a01e74a5\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/4d38ab7b-794b-491e-96da-0a3c5ece0530\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/06ec4dae-cec6-498e-99d0-acd8ab4c0a65\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/118605c5-9844-4d05-ba5f-bbf6d8472fca\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ae0b9597-72b3-41d4-b70a-419559de5cfc\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/bbb23bbf-bf11-439b-af63-eaada828b297\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/fa83f961-9bfa-494f-8bdd-e94519de59ea\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/a5eb6434-520b-40e3-ab23-241268286cfa\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/c0941204-1217-4264-9e36-70155452f824\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/011a6a57-dbf1-4b58-95c3-ba259517bc3c\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e760180a-64a8-4103-b0e6-cf585e15bde4\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/d160e451-0059-490f-ba4a-43f9a01e74a5\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/4d38ab7b-794b-491e-96da-0a3c5ece0530\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/06ec4dae-cec6-498e-99d0-acd8ab4c0a65\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/118605c5-9844-4d05-ba5f-bbf6d8472fca\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ae0b9597-72b3-41d4-b70a-419559de5cfc\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/bbb23bbf-bf11-439b-af63-eaada828b297\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/fa83f961-9bfa-494f-8bdd-e94519de59ea\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:84:69",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 69,
+                      "line": 84
+                    },
+                    "snippet": "  82 |       const record={stage:process.env.BOSS_PRESSURE_STAGE??'after',mobile,weapon,strategy:active?'reactive':'stationary',...result,errors};\n  83 |       console.log(JSON.stringify(record));await info.attach('boss-pressure',{body:JSON.stringify(record),contentType:'application/json'});\n> 84 |       expect(result.end.outcome).not.toBe('running');expect(errors).toEqual([]);\n     |                                                                     ^\n  85 |       if(active)expect(result.end.outcome).toBe('victory');\n  86 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n  87 |     }finally{await context.close();}"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 69,
+                        "line": 84
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 29\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/a5eb6434-520b-40e3-ab23-241268286cfa\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/c0941204-1217-4264-9e36-70155452f824\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/011a6a57-dbf1-4b58-95c3-ba259517bc3c\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e760180a-64a8-4103-b0e6-cf585e15bde4\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/d160e451-0059-490f-ba4a-43f9a01e74a5\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/4d38ab7b-794b-491e-96da-0a3c5ece0530\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/06ec4dae-cec6-498e-99d0-acd8ab4c0a65\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/118605c5-9844-4d05-ba5f-bbf6d8472fca\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ae0b9597-72b3-41d4-b70a-419559de5cfc\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/bbb23bbf-bf11-439b-af63-eaada828b297\",\u001b[39m\n\u001b[31m+   \"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\u001b[39m\n\u001b[31m+   \"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/fa83f961-9bfa-494f-8bdd-e94519de59ea\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  82 |       const record={stage:process.env.BOSS_PRESSURE_STAGE??'after',mobile,weapon,strategy:active?'reactive':'stationary',...result,errors};\n  83 |       console.log(JSON.stringify(record));await info.attach('boss-pressure',{body:JSON.stringify(record),contentType:'application/json'});\n> 84 |       expect(result.end.outcome).not.toBe('running');expect(errors).toEqual([]);\n     |                                                                     ^\n  85 |       if(active)expect(result.end.outcome).toBe('victory');\n  86 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n  87 |     }finally{await context.close();}\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:84:69"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"pulse\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":0.0013925544917583466,\"y\":0.019968485832214333,\"z\":-21.011659622192383},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":0.0013189947931095958,\"y\":2.0855215549468995,\"z\":-21.01166343688965},\"hp\":100,\"armor\":50,\"ammo\":0,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":10.116666666666667,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":188,\"melee\":123,\"wave-warning\":88,\"wave-attack\":149,\"recovery\":53},\"errors\":[\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/a5eb6434-520b-40e3-ab23-241268286cfa\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/c0941204-1217-4264-9e36-70155452f824\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/011a6a57-dbf1-4b58-95c3-ba259517bc3c\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_diff_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_arm_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/fern_02_nor_gl_1k.jpg\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/e760180a-64a8-4103-b0e6-cf585e15bde4\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/d160e451-0059-490f-ba4a-43f9a01e74a5\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/4d38ab7b-794b-491e-96da-0a3c5ece0530\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/06ec4dae-cec6-498e-99d0-acd8ab4c0a65\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/118605c5-9844-4d05-ba5f-bbf6d8472fca\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_rough_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_diff_1k.jpg\",\"THREE.GLTFLoader: Couldn't load texture textures/rock_moss_set_01_nor_gl_1k.jpg\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/ae0b9597-72b3-41d4-b70a-419559de5cfc\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/bbb23bbf-bf11-439b-af63-eaada828b297\",\"Failed to load resource: net::ERR_BLOB_OUT_OF_MEMORY\",\"THREE.GLTFLoader: Couldn't load texture blob:http://127.0.0.1:8744/fa83f961-9bfa-494f-8bdd-e94519de59ea\"]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T16:58:15.165Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6InB1bHNlIiwic3RyYXRlZ3kiOiJyZWFjdGl2ZSIsInN0YXJ0Ijp7InBvc2l0aW9uIjp7IngiOjAuMDAxMzkyNTU0NDkxNzU4MzQ2NiwieSI6MC4wMTk5Njg0ODU4MzIyMTQzMzMsInoiOi0yMS4wMTE2NTk2MjIxOTIzODN9LCJocCI6MTAwLCJhcm1vciI6NTAsImFtbW8iOjU0LCJib3NzSHAiOjYwMH0sImVuZCI6eyJwb3NpdGlvbiI6eyJ4IjowLjAwMTMxODk5NDc5MzEwOTU5NTgsInkiOjIuMDg1NTIxNTU0OTQ2ODk5NSwieiI6LTIxLjAxMTY2MzQzNjg4OTY1fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjowLCJib3NzSHAiOjAsIm91dGNvbWUiOiJ2aWN0b3J5In0sInNlY29uZHMiOjEwLjExNjY2NjY2NjY2NjY2NywiaGl0cyI6MCwiZXZlbnRzIjpbXSwicGhhc2VzIjp7ImNoYXNpbmciOjE4OCwibWVsZWUiOjEyMywid2F2ZS13YXJuaW5nIjo4OCwid2F2ZS1hdHRhY2siOjE0OSwicmVjb3ZlcnkiOjUzfSwiZXJyb3JzIjpbIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC9hNWViNjQzNC01MjBiLTQwZTMtYWIyMy0yNDEyNjgyODZjZmEiLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0L2MwOTQxMjA0LTEyMTctNDI2NC05ZTM2LTcwMTU1NDUyZjgyNCIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvMDExYTZhNTctZGJmMS00YjU4LTk1YzMtYmEyNTk1MTdiYzNjIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIHRleHR1cmVzL2Zlcm5fMDJfZGlmZl8xay5qcGciLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvZmVybl8wMl9hcm1fMWsuanBnIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIHRleHR1cmVzL2Zlcm5fMDJfbm9yX2dsXzFrLmpwZyIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvZTc2MDE4MGEtNjRhOC00MTAzLWIwZTYtY2Y1ODVlMTViZGU0IiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC9kMTYwZTQ1MS0wMDU5LTQ5MGYtYmE0YS00M2Y5YTAxZTc0YTUiLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0LzRkMzhhYjdiLTc5NGItNDkxZS05NmRhLTBhM2M1ZWNlMDUzMCIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvMDZlYzRkYWUtY2VjNi00OThlLTk5ZDAtYWNkOGFiNGMwYTY1IiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC8xMTg2MDVjNS05ODQ0LTRkMDUtYmE1Zi1iYmY2ZDg0NzJmY2EiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvcm9ja19tb3NzX3NldF8wMV9yb3VnaF8xay5qcGciLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgdGV4dHVyZXMvcm9ja19tb3NzX3NldF8wMV9kaWZmXzFrLmpwZyIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSB0ZXh0dXJlcy9yb2NrX21vc3Nfc2V0XzAxX25vcl9nbF8xay5qcGciLCJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfQkxPQl9PVVRfT0ZfTUVNT1JZIiwiVEhSRUUuR0xURkxvYWRlcjogQ291bGRuJ3QgbG9hZCB0ZXh0dXJlIGJsb2I6aHR0cDovLzEyNy4wLjAuMTo4NzQ0L2FlMGI5NTk3LTcyYjMtNDFkNC1iNzBhLTQxOTU1OWRlNWNmYyIsIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9CTE9CX09VVF9PRl9NRU1PUlkiLCJUSFJFRS5HTFRGTG9hZGVyOiBDb3VsZG4ndCBsb2FkIHRleHR1cmUgYmxvYjpodHRwOi8vMTI3LjAuMC4xOjg3NDQvYmJiMjNiYmYtYmYxMS00MzliLWFmNjMtZWFhZGE4MjhiMjk3IiwiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IG5ldDo6RVJSX0JMT0JfT1VUX09GX01FTU9SWSIsIlRIUkVFLkdMVEZMb2FkZXI6IENvdWxkbid0IGxvYWQgdGV4dHVyZSBibG9iOmh0dHA6Ly8xMjcuMC4wLjE6ODc0NC9mYTgzZjk2MS05YmZhLTQ5NGYtOGJkZC1lOTQ1MTlkZTU5ZWEiXX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before\\boss-pressure-desktop-pulse-reactive-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before\\boss-pressure-desktop-pulse-reactive-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 69,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-89cad6ce2b54a5242972",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T16:56:37.429Z",
+    "duration": 126918.977,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,926 @@
+{
+  "date": "2026-10-30",
+  "baseline": "8eba27f63db99004946569e975e0ad3dc1a25d80",
+  "note": "Only passed runs are included. See BOSS_PRESSURE_RESULT.md for failed preliminary attempts and measurement limits.",
+  "records": [
+    {
+      "source": "before-first-report.json",
+      "test": "desktop arc stationary boss pressure",
+      "stage": "before",
+      "mobile": false,
+      "weapon": "arc",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": 0.0006691475864499807,
+          "y": 0.019933974742889382,
+          "z": -20.87554359436035
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": 0.0006691475864499807,
+          "y": 0.0249339699745178,
+          "z": -20.87554359436035
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 54,
+        "bossHp": 117,
+        "outcome": "defeat"
+      },
+      "seconds": 11.5,
+      "hits": 6,
+      "events": [
+        {
+          "tick": 108,
+          "phase": "melee",
+          "phaseTick": 21,
+          "hp": 100,
+          "armor": 30,
+          "position": {
+            "x": 0.0006691475864499807,
+            "y": 0.026600635051727273,
+            "z": -20.87554359436035
+          }
+        },
+        {
+          "tick": 251,
+          "phase": "wave-attack",
+          "phaseTick": 6,
+          "hp": 70,
+          "armor": 0,
+          "position": {
+            "x": 0.0006691475864499807,
+            "y": 0.021600639820098855,
+            "z": -20.87554359436035
+          }
+        },
+        {
+          "tick": 469,
+          "phase": "melee",
+          "phaseTick": 25,
+          "hp": 50,
+          "armor": 0,
+          "position": {
+            "x": 0.0006691475864499807,
+            "y": 0.019933974742889382,
+            "z": -20.87554359436035
+          }
+        },
+        {
+          "tick": 540,
+          "phase": "melee",
+          "phaseTick": 21,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": 0.0006691475864499807,
+            "y": 0.029933965206146218,
+            "z": -20.87554359436035
+          }
+        },
+        {
+          "tick": 618,
+          "phase": "melee",
+          "phaseTick": 24,
+          "hp": 10,
+          "armor": 0,
+          "position": {
+            "x": 0.0006691475864499807,
+            "y": 0.028267300128936745,
+            "z": -20.87554359436035
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 238,
+        "melee": 158,
+        "wave-warning": 91,
+        "wave-attack": 147,
+        "recovery": 51
+      },
+      "errors": []
+    },
+    {
+      "source": "before-first-report.json",
+      "test": "desktop pulse stationary boss pressure",
+      "stage": "before",
+      "mobile": false,
+      "weapon": "pulse",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": 0.0011452187318354845,
+          "y": 0.02660170793533323,
+          "z": -21.137155532836914
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": 0.0011452187318354845,
+          "y": 0.01993504762649534,
+          "z": -21.137155532836914
+        },
+        "hp": 30,
+        "armor": 0,
+        "ammo": 0,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 10.1,
+      "hits": 4,
+      "events": [
+        {
+          "tick": 106,
+          "phase": "melee",
+          "phaseTick": 26,
+          "hp": 100,
+          "armor": 30,
+          "position": {
+            "x": 0.0011452187318354845,
+            "y": 0.024935042858123757,
+            "z": -21.137155532836914
+          }
+        },
+        {
+          "tick": 250,
+          "phase": "wave-attack",
+          "phaseTick": 7,
+          "hp": 70,
+          "armor": 0,
+          "position": {
+            "x": 0.0011452187318354845,
+            "y": 0.029935038089752175,
+            "z": -21.137155532836914
+          }
+        },
+        {
+          "tick": 467,
+          "phase": "melee",
+          "phaseTick": 25,
+          "hp": 50,
+          "armor": 0,
+          "position": {
+            "x": 0.0011452187318354845,
+            "y": 0.029935038089752175,
+            "z": -21.137155532836914
+          }
+        },
+        {
+          "tick": 541,
+          "phase": "melee",
+          "phaseTick": 24,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": 0.0011452187318354845,
+            "y": 0.023268377780914284,
+            "z": -21.137155532836914
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 194,
+        "melee": 123,
+        "wave-warning": 89,
+        "wave-attack": 152,
+        "recovery": 47
+      },
+      "errors": []
+    },
+    {
+      "source": "before-reactive-report.json",
+      "test": "desktop arc reactive boss pressure",
+      "stage": "before",
+      "mobile": false,
+      "weapon": "arc",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": 0.0003936849534511566,
+          "y": 0.028302049636840798,
+          "z": -21.027751922607422
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -4.319744110107422,
+          "y": 0.023261523246765115,
+          "z": -21.027856826782227
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 14.05,
+      "hits": 0,
+      "events": [],
+      "phases": {
+        "chasing": 228,
+        "melee": 184,
+        "wave-warning": 89,
+        "wave-attack": 150,
+        "recovery": 94,
+        "eruption-warning": 72,
+        "eruption-attack": 24
+      },
+      "errors": []
+    },
+    {
+      "source": "before-reactive-report.json",
+      "test": "desktop pulse reactive boss pressure",
+      "stage": "before",
+      "mobile": false,
+      "weapon": "pulse",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": -0.07001174241304398,
+          "y": 0.026600515842437722,
+          "z": -20.926910400390625
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -0.06988348811864853,
+          "y": 1.763299560546875,
+          "z": -20.927074432373047
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 0,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 10.116666666666667,
+      "hits": 0,
+      "events": [],
+      "phases": {
+        "chasing": 199,
+        "melee": 117,
+        "wave-warning": 89,
+        "wave-attack": 155,
+        "recovery": 45
+      },
+      "errors": []
+    },
+    {
+      "source": "after-first-report.json",
+      "test": "desktop arc stationary boss pressure",
+      "stage": "after",
+      "mobile": false,
+      "weapon": "arc",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": 0.028179731220006943,
+          "y": 0.024965858459472634,
+          "z": -21.0647029876709
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": 0.028166495263576508,
+          "y": 0.029968774318695046,
+          "z": -21.064725875854492
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 54,
+        "bossHp": 250,
+        "outcome": "defeat"
+      },
+      "seconds": 8.433333333333334,
+      "hits": 4,
+      "events": [
+        {
+          "tick": 115,
+          "phase": "melee",
+          "phaseTick": 33,
+          "hp": 100,
+          "armor": 20,
+          "position": {
+            "x": 0.028166495263576508,
+            "y": 0.028302109241485573,
+            "z": -21.064725875854492
+          }
+        },
+        {
+          "tick": 254,
+          "phase": "wave-attack",
+          "phaseTick": 1,
+          "hp": 60,
+          "armor": 0,
+          "position": {
+            "x": 0.028166495263576508,
+            "y": 0.029968774318695046,
+            "z": -21.064725875854492
+          }
+        },
+        {
+          "tick": 422,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": 0.028166495263576508,
+            "y": 0.029968774318695046,
+            "z": -21.064725875854492
+          }
+        },
+        {
+          "tick": 506,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 0,
+          "armor": 0,
+          "position": {
+            "x": 0.028166495263576508,
+            "y": 0.029968774318695046,
+            "z": -21.064725875854492
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 155,
+        "melee": 116,
+        "wave-warning": 90,
+        "wave-attack": 89,
+        "recovery": 51
+      },
+      "errors": []
+    },
+    {
+      "source": "after-first-report.json",
+      "test": "desktop arc reactive boss pressure",
+      "stage": "after",
+      "mobile": false,
+      "weapon": "arc",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": -0.12062452733516693,
+          "y": 0.029934561252593972,
+          "z": -21.06814956665039
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": 4.079400062561035,
+          "y": 0.01998183727264402,
+          "z": -21.068208694458008
+        },
+        "hp": 90,
+        "armor": 0,
+        "ammo": 54,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 13.916666666666666,
+      "hits": 1,
+      "events": [
+        {
+          "tick": 254,
+          "phase": "wave-attack",
+          "phaseTick": 3,
+          "hp": 90,
+          "armor": 0,
+          "position": {
+            "x": -0.12063948810100555,
+            "y": 0.918561315536499,
+            "z": -21.068212509155273
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 237,
+        "melee": 223,
+        "wave-warning": 88,
+        "wave-attack": 91,
+        "recovery": 91,
+        "eruption-warning": 79,
+        "eruption-attack": 23
+      },
+      "errors": []
+    },
+    {
+      "source": "after-first-report.json",
+      "test": "desktop pulse stationary boss pressure",
+      "stage": "after",
+      "mobile": false,
+      "weapon": "pulse",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": -0.0021181751508265734,
+          "y": 0.02826825380325315,
+          "z": -21.094690322875977
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -0.0020747585222125053,
+          "y": 0.029968953132629372,
+          "z": -21.094669342041016
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 3,
+        "bossHp": 90,
+        "outcome": "defeat"
+      },
+      "seconds": 8.416666666666666,
+      "hits": 4,
+      "events": [
+        {
+          "tick": 114,
+          "phase": "melee",
+          "phaseTick": 33,
+          "hp": 100,
+          "armor": 20,
+          "position": {
+            "x": -0.002076905919238925,
+            "y": 0.026632523536682107,
+            "z": -21.094562530517578
+          }
+        },
+        {
+          "tick": 258,
+          "phase": "wave-attack",
+          "phaseTick": 6,
+          "hp": 60,
+          "armor": 0,
+          "position": {
+            "x": -0.0020413293968886137,
+            "y": 0.02163562774658201,
+            "z": -21.094642639160156
+          }
+        },
+        {
+          "tick": 423,
+          "phase": "melee",
+          "phaseTick": 32,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": -0.0020747585222125053,
+            "y": 0.026635622978210427,
+            "z": -21.094669342041016
+          }
+        },
+        {
+          "tick": 505,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 0,
+          "armor": 0,
+          "position": {
+            "x": -0.0020747585222125053,
+            "y": 0.029968953132629372,
+            "z": -21.094669342041016
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 152,
+        "melee": 121,
+        "wave-warning": 89,
+        "wave-attack": 92,
+        "recovery": 49
+      },
+      "errors": []
+    },
+    {
+      "source": "after-first-report.json",
+      "test": "desktop pulse reactive boss pressure",
+      "stage": "after",
+      "mobile": false,
+      "weapon": "pulse",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": -0.12066640704870224,
+          "y": 0.01993427276611326,
+          "z": -20.994016647338867
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -0.12060164660215378,
+          "y": 0.15496728420257566,
+          "z": -20.994022369384766
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 0,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 10.083333333333334,
+      "hits": 0,
+      "events": [],
+      "phases": {
+        "chasing": 193,
+        "melee": 175,
+        "wave-warning": 90,
+        "wave-attack": 89,
+        "recovery": 53
+      },
+      "errors": []
+    },
+    {
+      "source": "after-touch-plateau-report.json",
+      "test": "desktop pulse stationary plateau boss pressure",
+      "stage": "after",
+      "mobile": false,
+      "weapon": "pulse",
+      "location": "plateau",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": -11.86855697631836,
+          "y": 1.1299999713897706,
+          "z": -22.972854614257812
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -11.86855697631836,
+          "y": 1.1283331871032716,
+          "z": -22.972854614257812
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 0,
+        "bossHp": 46,
+        "outcome": "defeat"
+      },
+      "seconds": 9.016666666666667,
+      "hits": 3,
+      "events": [
+        {
+          "tick": 130,
+          "phase": "eruption-attack",
+          "phaseTick": 4,
+          "hp": 100,
+          "armor": 0,
+          "position": {
+            "x": -11.86855697631836,
+            "y": 1.1233328342437745,
+            "z": -22.972854614257812
+          }
+        },
+        {
+          "tick": 336,
+          "phase": "eruption-attack",
+          "phaseTick": 3,
+          "hp": 55,
+          "armor": 0,
+          "position": {
+            "x": -11.86855697631836,
+            "y": 1.1299997329711915,
+            "z": -22.972854614257812
+          }
+        },
+        {
+          "tick": 541,
+          "phase": "attack",
+          "phaseTick": 1,
+          "hp": 0,
+          "armor": 0,
+          "position": {
+            "x": -11.86855697631836,
+            "y": 1.1283331871032716,
+            "z": -22.972854614257812
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 170,
+        "eruption-warning": 226,
+        "eruption-attack": 51,
+        "recovery": 91
+      },
+      "errors": []
+    },
+    {
+      "source": "after-touch-plateau-report.json",
+      "test": "touch arc stationary boss pressure",
+      "stage": "after",
+      "mobile": true,
+      "weapon": "arc",
+      "location": "entrance",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": -0.11973042786121368,
+          "y": 0.02967236042022703,
+          "z": -21.007606506347656
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -0.11976806819438934,
+          "y": 0.019934332370758034,
+          "z": -21.007606506347656
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 54,
+        "bossHp": 243,
+        "outcome": "defeat"
+      },
+      "seconds": 8.45,
+      "hits": 4,
+      "events": [
+        {
+          "tick": 115,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 100,
+          "armor": 20,
+          "position": {
+            "x": -0.11976806819438934,
+            "y": 0.019934332370758034,
+            "z": -21.007606506347656
+          }
+        },
+        {
+          "tick": 256,
+          "phase": "wave-attack",
+          "phaseTick": 2,
+          "hp": 60,
+          "armor": 0,
+          "position": {
+            "x": -0.11976806819438934,
+            "y": 0.02993432283401487,
+            "z": -21.007606506347656
+          }
+        },
+        {
+          "tick": 423,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": -0.11976806819438934,
+            "y": 0.019934332370758034,
+            "z": -21.007606506347656
+          }
+        },
+        {
+          "tick": 507,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 0,
+          "armor": 0,
+          "position": {
+            "x": -0.11976806819438934,
+            "y": 0.019934332370758034,
+            "z": -21.007606506347656
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 156,
+        "melee": 120,
+        "wave-warning": 90,
+        "wave-attack": 90,
+        "recovery": 48
+      },
+      "errors": []
+    },
+    {
+      "source": "after-touch-plateau-report.json",
+      "test": "touch arc reactive boss pressure",
+      "stage": "after",
+      "mobile": true,
+      "weapon": "arc",
+      "location": "entrance",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": -0.00047181054833345115,
+          "y": 0.028268492221832253,
+          "z": -21.159412384033203
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": 4.081040382385254,
+          "y": 0.028323984146118142,
+          "z": -21.159339904785156
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 13.666666666666666,
+      "hits": 0,
+      "events": [],
+      "phases": {
+        "chasing": 218,
+        "melee": 225,
+        "wave-warning": 90,
+        "wave-attack": 90,
+        "recovery": 100,
+        "eruption-warning": 76,
+        "eruption-attack": 20
+      },
+      "errors": []
+    },
+    {
+      "source": "after-touch-plateau-report.json",
+      "test": "touch pulse reactive boss pressure",
+      "stage": "after",
+      "mobile": true,
+      "weapon": "pulse",
+      "location": "entrance",
+      "strategy": "reactive",
+      "start": {
+        "position": {
+          "x": -0.11954931914806366,
+          "y": 0.026600337028503396,
+          "z": -20.871049880981445
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600
+      },
+      "end": {
+        "position": {
+          "x": -0.11963420361280441,
+          "y": 0.5216004610061645,
+          "z": -20.871028900146484
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 0,
+        "bossHp": 0,
+        "outcome": "victory"
+      },
+      "seconds": 10.083333333333334,
+      "hits": 0,
+      "events": [],
+      "phases": {
+        "chasing": 196,
+        "melee": 177,
+        "wave-warning": 89,
+        "wave-attack": 90,
+        "recovery": 49
+      },
+      "errors": []
+    },
+    {
+      "source": "after-touch-pulse-report.json",
+      "test": "touch pulse stationary boss pressure",
+      "stage": "after",
+      "mobile": true,
+      "weapon": "pulse",
+      "location": "entrance",
+      "strategy": "stationary",
+      "start": {
+        "position": {
+          "x": -0.1203090101480484,
+          "y": 0.03000000715255735,
+          "z": -20.994422912597656
+        },
+        "hp": 100,
+        "armor": 50,
+        "ammo": 54,
+        "bossHp": 600,
+        "bossCenter": {
+          "x": 0,
+          "y": 1.85,
+          "z": -29
+        },
+        "phase": "chasing",
+        "phaseTick": 0
+      },
+      "end": {
+        "position": {
+          "x": -0.1203090101480484,
+          "y": 0.028333342075347878,
+          "z": -20.994422912597656
+        },
+        "hp": 0,
+        "armor": 0,
+        "ammo": 3,
+        "bossHp": 90,
+        "outcome": "defeat"
+      },
+      "seconds": 8.466666666666667,
+      "hits": 4,
+      "events": [
+        {
+          "tick": 118,
+          "phase": "melee",
+          "phaseTick": 32,
+          "hp": 100,
+          "armor": 20,
+          "position": {
+            "x": -0.1203090101480484,
+            "y": 0.028333342075347878,
+            "z": -20.994422912597656
+          }
+        },
+        {
+          "tick": 256,
+          "phase": "wave-attack",
+          "phaseTick": 1,
+          "hp": 60,
+          "armor": 0,
+          "position": {
+            "x": -0.1203090101480484,
+            "y": 0.0266008138656616,
+            "z": -20.994422912597656
+          }
+        },
+        {
+          "tick": 425,
+          "phase": "melee",
+          "phaseTick": 31,
+          "hp": 30,
+          "armor": 0,
+          "position": {
+            "x": -0.1203090101480484,
+            "y": 0.0266008138656616,
+            "z": -20.994422912597656
+          }
+        },
+        {
+          "tick": 508,
+          "phase": "melee",
+          "phaseTick": 30,
+          "hp": 0,
+          "armor": 0,
+          "position": {
+            "x": -0.1203090101480484,
+            "y": 0.028333342075347878,
+            "z": -20.994422912597656
+          }
+        }
+      ],
+      "phases": {
+        "chasing": 156,
+        "melee": 120,
+        "wave-warning": 88,
+        "wave-attack": 90,
+        "recovery": 50
+      },
+      "errors": []
+    }
+  ]
+}

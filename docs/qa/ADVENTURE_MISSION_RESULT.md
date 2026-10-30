@@ -3,7 +3,9 @@
 Stand: **30. Oktober 2026. Nur L1.6a umgesetzt und technisch geprüft.**
 Vor Beginn und nochmals vor Abschluss: lokales `main` und GitHub-`main` bei
 `d82588a59ae674e7d3d439bf5cba060284ecacd7`; zu Beginn sauberer Arbeitsbaum.
-L1.6b, L1.6c und L1.5b bleiben offen und nicht freigegeben.
+Zum Zeitpunkt dieses Berichts waren L1.6b, L1.6c und L1.5b offen und nicht
+freigegeben. **Nachtrag:** L1.6b wurde anschließend separat freigegeben und
+[umgesetzt/geprüft](BOSS_PRESSURE_RESULT.md); L1.6c und L1.5b bleiben offen.
 
 ## Spielbares Ergebnis
 

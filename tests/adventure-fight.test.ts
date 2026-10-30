@@ -8,7 +8,7 @@ import { AdventureFight } from '../src/core/adventureFight';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import type { Snapshot } from '../src/core/types';
 
-test('adventure boss strikes after 0.35s, repeats after 1.25s and still respects locked dodges and height',async()=>{
+test('adventure boss warns for 0.5s, hits for 30, repeats after 1.4s and respects locked dodges and height',async()=>{
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT);
   world.setObstacleEnabled('dormant-warden',false);
   try {
@@ -20,15 +20,16 @@ test('adventure boss strikes after 0.35s, repeats after 1.25s and still respects
       const facing=boss.snapshot().facing;
       const target=defense==='distance'?{...player,x:6}:defense==='behind'?{...player,z:-32}:
         defense==='height'?{...player,y:2}:player;
-      for(let i=0;i<20;i++)boss.step(target,world);
+      for(let i=0;i<29;i++)boss.step(target,world);
       assert.equal(boss.snapshot().hitsTaken,0);assert.equal(boss.snapshot().facing,facing);
       boss.step(target,world);assert.equal(boss.snapshot().hitsTaken,defense==='stay'?1:0);
       if(defense==='stay'){
         const first=boss.snapshot().lastHit;
-        for(let i=0;i<74;i++)boss.step(player,world);
+        assert.equal(boss.snapshot().armor,20);
+        for(let i=0;i<83;i++)boss.step(player,world);
         assert.equal(boss.snapshot().hitsTaken,1);
-        boss.step(player,world);assert.equal(boss.snapshot().lastHit-first,75);
-        assert.equal(boss.snapshot().hitsTaken,2);assert.equal(boss.snapshot().armor,10);
+        boss.step(player,world);assert.equal(boss.snapshot().lastHit-first,84);
+        assert.equal(boss.snapshot().hitsTaken,2);assert.equal(boss.snapshot().armor,0);assert.equal(boss.snapshot().hp,90);
       }
     }
     const boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS),far={x:0,y:.02,z:-21};
@@ -41,6 +42,41 @@ test('adventure boss strikes after 0.35s, repeats after 1.25s and still respects
     for(let i=0;i<47;i++)boss.step(far,world);
     assert.equal(boss.snapshot().phase,'recovery');boss.step(far,world);
     assert.equal(boss.snapshot().phase,'chasing');
+  }finally{world.dispose();}
+});
+
+test('adventure wave keeps its warning and 20m reach, hits once, then gives a real 0.8s recovery',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS);
+  world.setObstacleEnabled('dormant-warden',false);world.setObstacleEnabled('boss-entry-gate',false);
+  const player={x:0,y:.02,z:-9};
+  try{
+    for(let i=0;i<600&&boss.snapshot().phase!=='warning';i++)boss.step(player,world);
+    assert.equal(boss.snapshot().phase,'warning');
+    for(let i=0;i<89;i++)boss.step(player,world);
+    assert.equal(boss.snapshot().phase,'warning');assert.equal(boss.snapshot().hitsTaken,0);
+    boss.step(player,world);assert.equal(boss.snapshot().phase,'attack');
+    for(let i=0;i<90;i++)boss.step(player,world);
+    assert.equal(boss.snapshot().phase,'recovery');assert.equal(boss.snapshot().waveRadius,20);
+    assert.equal(boss.snapshot().hitsTaken,1);assert.equal(boss.snapshot().hp,90);
+    const center=boss.snapshot().center;
+    for(let i=0;i<47;i++)boss.step(player,world);
+    assert.deepEqual(boss.snapshot().center,center);assert.equal(boss.snapshot().phase,'recovery');
+    boss.step(player,world);assert.equal(boss.snapshot().phase,'chasing');
+  }finally{world.dispose();}
+});
+
+test('a real sidestep after 0.2s reaction escapes the locked adventure fist',async()=>{
+  const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT),boss=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS);
+  world.setObstacleEnabled('dormant-warden',false);
+  const simulation=new Simulation(world,{x:0,y:.02,z:-26},STONE_ADVENTURE_JUMP);
+  simulation.reset();
+  try{
+    for(let i=0;i<600&&boss.snapshot().phase!=='melee';i++)boss.step(simulation.step({x:0,z:0,sprint:false}).position,world);
+    assert.equal(boss.snapshot().phase,'melee');
+    const facing=boss.snapshot().facing;
+    for(let i=0;i<30;i++)boss.step(simulation.step({x:i>=12?1:0,z:0,sprint:false}).position,world);
+    assert.equal(boss.snapshot().hitsTaken,0);assert.equal(boss.snapshot().facing,facing);
+    assert.ok(simulation.snapshot().position.x>2);
   }finally{world.dispose();}
 });
 

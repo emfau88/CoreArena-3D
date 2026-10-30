@@ -7,7 +7,9 @@ import { ADVENTURE_MISSION } from './adventureMission';
 
 // Adventure balance only; simulation, attack animation and feedback share these timings.
 export const ADVENTURE_BOSS_RULES = Object.freeze({ ...PVE_RULES,
-  meleeWarning:21, meleeRecovery:15, meleeCooldown:39, recoveryTicks:48, chaseSpeed:3.1,
+  meleeWarning:30, meleeDamage:30, meleeRecovery:15, meleeCooldown:39, recoveryTicks:48, chaseSpeed:3.1,
+  // The same 20 m wave finishes sooner; keep its full 1.5 s warning and the recovery window.
+  waveTicks:90, waveSpeed:.2,
   elevatedChaseTicks:60 });
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.

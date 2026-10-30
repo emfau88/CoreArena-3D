@@ -1,0 +1,635 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/boss-pressure.spec.ts",
+      "--project",
+      "chromium-1366",
+      "--trace",
+      "off",
+      "--output",
+      "test-results/pressure-after"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-after",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-after",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-after",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-after",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "boss-pressure.spec.ts",
+      "file": "boss-pressure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop arc stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28277,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":false,\"weapon\":\"arc\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":0.028179731220006943,\"y\":0.024965858459472634,\"z\":-21.0647029876709},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":0.028166495263576508,\"y\":0.029968774318695046,\"z\":-21.064725875854492},\"hp\":0,\"armor\":0,\"ammo\":54,\"bossHp\":250,\"outcome\":\"defeat\"},\"seconds\":8.433333333333334,\"hits\":4,\"events\":[{\"tick\":115,\"phase\":\"melee\",\"phaseTick\":33,\"hp\":100,\"armor\":20,\"position\":{\"x\":0.028166495263576508,\"y\":0.028302109241485573,\"z\":-21.064725875854492}},{\"tick\":254,\"phase\":\"wave-attack\",\"phaseTick\":1,\"hp\":60,\"armor\":0,\"position\":{\"x\":0.028166495263576508,\"y\":0.029968774318695046,\"z\":-21.064725875854492}},{\"tick\":422,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":30,\"armor\":0,\"position\":{\"x\":0.028166495263576508,\"y\":0.029968774318695046,\"z\":-21.064725875854492}},{\"tick\":506,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":0,\"armor\":0,\"position\":{\"x\":0.028166495263576508,\"y\":0.029968774318695046,\"z\":-21.064725875854492}}],\"phases\":{\"chasing\":155,\"melee\":116,\"wave-warning\":90,\"wave-attack\":89,\"recovery\":51},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:05:18.408Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjpmYWxzZSwid2VhcG9uIjoiYXJjIiwic3RyYXRlZ3kiOiJzdGF0aW9uYXJ5Iiwic3RhcnQiOnsicG9zaXRpb24iOnsieCI6MC4wMjgxNzk3MzEyMjAwMDY5NDMsInkiOjAuMDI0OTY1ODU4NDU5NDcyNjM0LCJ6IjotMjEuMDY0NzAyOTg3NjcwOX0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOjAuMDI4MTY2NDk1MjYzNTc2NTA4LCJ5IjowLjAyOTk2ODc3NDMxODY5NTA0NiwieiI6LTIxLjA2NDcyNTg3NTg1NDQ5Mn0sImhwIjowLCJhcm1vciI6MCwiYW1tbyI6NTQsImJvc3NIcCI6MjUwLCJvdXRjb21lIjoiZGVmZWF0In0sInNlY29uZHMiOjguNDMzMzMzMzMzMzMzMzM0LCJoaXRzIjo0LCJldmVudHMiOlt7InRpY2siOjExNSwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzMsImhwIjoxMDAsImFybW9yIjoyMCwicG9zaXRpb24iOnsieCI6MC4wMjgxNjY0OTUyNjM1NzY1MDgsInkiOjAuMDI4MzAyMTA5MjQxNDg1NTczLCJ6IjotMjEuMDY0NzI1ODc1ODU0NDkyfX0seyJ0aWNrIjoyNTQsInBoYXNlIjoid2F2ZS1hdHRhY2siLCJwaGFzZVRpY2siOjEsImhwIjo2MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOjAuMDI4MTY2NDk1MjYzNTc2NTA4LCJ5IjowLjAyOTk2ODc3NDMxODY5NTA0NiwieiI6LTIxLjA2NDcyNTg3NTg1NDQ5Mn19LHsidGljayI6NDIyLCJwaGFzZSI6Im1lbGVlIiwicGhhc2VUaWNrIjozMCwiaHAiOjMwLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6MC4wMjgxNjY0OTUyNjM1NzY1MDgsInkiOjAuMDI5OTY4Nzc0MzE4Njk1MDQ2LCJ6IjotMjEuMDY0NzI1ODc1ODU0NDkyfX0seyJ0aWNrIjo1MDYsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjMwLCJocCI6MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOjAuMDI4MTY2NDk1MjYzNTc2NTA4LCJ5IjowLjAyOTk2ODc3NDMxODY5NTA0NiwieiI6LTIxLjA2NDcyNTg3NTg1NDQ5Mn19XSwicGhhc2VzIjp7ImNoYXNpbmciOjE1NSwibWVsZWUiOjExNiwid2F2ZS13YXJuaW5nIjo5MCwid2F2ZS1hdHRhY2siOjg5LCJyZWNvdmVyeSI6NTF9LCJlcnJvcnMiOltdfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-aed03b8f79b0b2c0f445",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop arc reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33534,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":false,\"weapon\":\"arc\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.12062452733516693,\"y\":0.029934561252593972,\"z\":-21.06814956665039},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":4.079400062561035,\"y\":0.01998183727264402,\"z\":-21.068208694458008},\"hp\":90,\"armor\":0,\"ammo\":54,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":13.916666666666666,\"hits\":1,\"events\":[{\"tick\":254,\"phase\":\"wave-attack\",\"phaseTick\":3,\"hp\":90,\"armor\":0,\"position\":{\"x\":-0.12063948810100555,\"y\":0.918561315536499,\"z\":-21.068212509155273}}],\"phases\":{\"chasing\":237,\"melee\":223,\"wave-warning\":88,\"wave-attack\":91,\"recovery\":91,\"eruption-warning\":79,\"eruption-attack\":23},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:05:46.723Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjpmYWxzZSwid2VhcG9uIjoiYXJjIiwic3RyYXRlZ3kiOiJyZWFjdGl2ZSIsInN0YXJ0Ijp7InBvc2l0aW9uIjp7IngiOi0wLjEyMDYyNDUyNzMzNTE2NjkzLCJ5IjowLjAyOTkzNDU2MTI1MjU5Mzk3MiwieiI6LTIxLjA2ODE0OTU2NjY1MDM5fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDB9LCJlbmQiOnsicG9zaXRpb24iOnsieCI6NC4wNzk0MDAwNjI1NjEwMzUsInkiOjAuMDE5OTgxODM3MjcyNjQ0MDIsInoiOi0yMS4wNjgyMDg2OTQ0NTgwMDh9LCJocCI6OTAsImFybW9yIjowLCJhbW1vIjo1NCwiYm9zc0hwIjowLCJvdXRjb21lIjoidmljdG9yeSJ9LCJzZWNvbmRzIjoxMy45MTY2NjY2NjY2NjY2NjYsImhpdHMiOjEsImV2ZW50cyI6W3sidGljayI6MjU0LCJwaGFzZSI6IndhdmUtYXR0YWNrIiwicGhhc2VUaWNrIjozLCJocCI6OTAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjotMC4xMjA2Mzk0ODgxMDEwMDU1NSwieSI6MC45MTg1NjEzMTU1MzY0OTksInoiOi0yMS4wNjgyMTI1MDkxNTUyNzN9fV0sInBoYXNlcyI6eyJjaGFzaW5nIjoyMzcsIm1lbGVlIjoyMjMsIndhdmUtd2FybmluZyI6ODgsIndhdmUtYXR0YWNrIjo5MSwicmVjb3ZlcnkiOjkxLCJlcnVwdGlvbi13YXJuaW5nIjo3OSwiZXJ1cHRpb24tYXR0YWNrIjoyM30sImVycm9ycyI6W119"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-911b5798ac34558fdd60",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop pulse stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27192,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":false,\"weapon\":\"pulse\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":-0.0021181751508265734,\"y\":0.02826825380325315,\"z\":-21.094690322875977},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.0020747585222125053,\"y\":0.029968953132629372,\"z\":-21.094669342041016},\"hp\":0,\"armor\":0,\"ammo\":3,\"bossHp\":90,\"outcome\":\"defeat\"},\"seconds\":8.416666666666666,\"hits\":4,\"events\":[{\"tick\":114,\"phase\":\"melee\",\"phaseTick\":33,\"hp\":100,\"armor\":20,\"position\":{\"x\":-0.002076905919238925,\"y\":0.026632523536682107,\"z\":-21.094562530517578}},{\"tick\":258,\"phase\":\"wave-attack\",\"phaseTick\":6,\"hp\":60,\"armor\":0,\"position\":{\"x\":-0.0020413293968886137,\"y\":0.02163562774658201,\"z\":-21.094642639160156}},{\"tick\":423,\"phase\":\"melee\",\"phaseTick\":32,\"hp\":30,\"armor\":0,\"position\":{\"x\":-0.0020747585222125053,\"y\":0.026635622978210427,\"z\":-21.094669342041016}},{\"tick\":505,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":0,\"armor\":0,\"position\":{\"x\":-0.0020747585222125053,\"y\":0.029968953132629372,\"z\":-21.094669342041016}}],\"phases\":{\"chasing\":152,\"melee\":121,\"wave-warning\":89,\"wave-attack\":92,\"recovery\":49},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:06:20.268Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjpmYWxzZSwid2VhcG9uIjoicHVsc2UiLCJzdHJhdGVneSI6InN0YXRpb25hcnkiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4wMDIxMTgxNzUxNTA4MjY1NzM0LCJ5IjowLjAyODI2ODI1MzgwMzI1MzE1LCJ6IjotMjEuMDk0NjkwMzIyODc1OTc3fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDB9LCJlbmQiOnsicG9zaXRpb24iOnsieCI6LTAuMDAyMDc0NzU4NTIyMjEyNTA1MywieSI6MC4wMjk5Njg5NTMxMzI2MjkzNzIsInoiOi0yMS4wOTQ2NjkzNDIwNDEwMTZ9LCJocCI6MCwiYXJtb3IiOjAsImFtbW8iOjMsImJvc3NIcCI6OTAsIm91dGNvbWUiOiJkZWZlYXQifSwic2Vjb25kcyI6OC40MTY2NjY2NjY2NjY2NjYsImhpdHMiOjQsImV2ZW50cyI6W3sidGljayI6MTE0LCJwaGFzZSI6Im1lbGVlIiwicGhhc2VUaWNrIjozMywiaHAiOjEwMCwiYXJtb3IiOjIwLCJwb3NpdGlvbiI6eyJ4IjotMC4wMDIwNzY5MDU5MTkyMzg5MjUsInkiOjAuMDI2NjMyNTIzNTM2NjgyMTA3LCJ6IjotMjEuMDk0NTYyNTMwNTE3NTc4fX0seyJ0aWNrIjoyNTgsInBoYXNlIjoid2F2ZS1hdHRhY2siLCJwaGFzZVRpY2siOjYsImhwIjo2MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOi0wLjAwMjA0MTMyOTM5Njg4ODYxMzcsInkiOjAuMDIxNjM1NjI3NzQ2NTgyMDEsInoiOi0yMS4wOTQ2NDI2MzkxNjAxNTZ9fSx7InRpY2siOjQyMywicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzIsImhwIjozMCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOi0wLjAwMjA3NDc1ODUyMjIxMjUwNTMsInkiOjAuMDI2NjM1NjIyOTc4MjEwNDI3LCJ6IjotMjEuMDk0NjY5MzQyMDQxMDE2fX0seyJ0aWNrIjo1MDUsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjMwLCJocCI6MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOi0wLjAwMjA3NDc1ODUyMjIxMjUwNTMsInkiOjAuMDI5OTY4OTUzMTMyNjI5MzcyLCJ6IjotMjEuMDk0NjY5MzQyMDQxMDE2fX1dLCJwaGFzZXMiOnsiY2hhc2luZyI6MTUyLCJtZWxlZSI6MTIxLCJ3YXZlLXdhcm5pbmciOjg5LCJ3YXZlLWF0dGFjayI6OTIsInJlY292ZXJ5Ijo0OX0sImVycm9ycyI6W119"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-bffc0f3ddccf0b2657a9",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop pulse reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28403,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":false,\"weapon\":\"pulse\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.12066640704870224,\"y\":0.01993427276611326,\"z\":-20.994016647338867},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.12060164660215378,\"y\":0.15496728420257566,\"z\":-20.994022369384766},\"hp\":100,\"armor\":50,\"ammo\":0,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":10.083333333333334,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":193,\"melee\":175,\"wave-warning\":90,\"wave-attack\":89,\"recovery\":53},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:06:47.469Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjpmYWxzZSwid2VhcG9uIjoicHVsc2UiLCJzdHJhdGVneSI6InJlYWN0aXZlIiwic3RhcnQiOnsicG9zaXRpb24iOnsieCI6LTAuMTIwNjY2NDA3MDQ4NzAyMjQsInkiOjAuMDE5OTM0MjcyNzY2MTEzMjYsInoiOi0yMC45OTQwMTY2NDczMzg4Njd9LCJocCI6MTAwLCJhcm1vciI6NTAsImFtbW8iOjU0LCJib3NzSHAiOjYwMH0sImVuZCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMjA2MDE2NDY2MDIxNTM3OCwieSI6MC4xNTQ5NjcyODQyMDI1NzU2NiwieiI6LTIwLjk5NDAyMjM2OTM4NDc2Nn0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6MCwiYm9zc0hwIjowLCJvdXRjb21lIjoidmljdG9yeSJ9LCJzZWNvbmRzIjoxMC4wODMzMzMzMzMzMzMzMzQsImhpdHMiOjAsImV2ZW50cyI6W10sInBoYXNlcyI6eyJjaGFzaW5nIjoxOTMsIm1lbGVlIjoxNzUsIndhdmUtd2FybmluZyI6OTAsIndhdmUtYXR0YWNrIjo4OSwicmVjb3ZlcnkiOjUzfSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-89cad6ce2b54a5242972",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "touch arc stationary boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5607,
+                  "error": {
+                    "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.",
+                    "stack": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 51,
+                      "line": 25
+                    },
+                    "snippet": "  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 51,
+                        "line": 25
+                      },
+                      "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n\n  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:07:15.883Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-arc-stationary-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-arc-stationary-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 51,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-5a923f629778a1721886",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "touch arc reactive boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5477,
+                  "error": {
+                    "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.",
+                    "stack": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 51,
+                      "line": 25
+                    },
+                    "snippet": "  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 51,
+                        "line": 25
+                      },
+                      "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n\n  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:07:22.438Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-arc-reactive-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-arc-reactive-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 51,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-a93dc490d43bc7ec8cfa",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "touch pulse stationary boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5258,
+                  "error": {
+                    "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.",
+                    "stack": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 51,
+                      "line": 25
+                    },
+                    "snippet": "  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 51,
+                        "line": 25
+                      },
+                      "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n\n  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:07:28.974Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-pulse-stationary-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-pulse-stationary-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 51,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-143eee5cb6824e25b4f7",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "touch pulse reactive boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5085,
+                  "error": {
+                    "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.",
+                    "stack": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 51,
+                      "line": 25
+                    },
+                    "snippet": "  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 51,
+                        "line": 25
+                      },
+                      "message": "Error: cdpSession.send: Protocol error (Input.dispatchTouchEvent): Must send a TouchStart first to start a new touch.\n\n  23 |       await expect(page.locator('#app')).toHaveAttribute('data-ready','true');\n  24 |       const cdp=await context.newCDPSession(page),stick=(await page.locator('#touch-stick').boundingBox()),jump=(await page.locator('#touch-jump').boundingBox());\n> 25 |       const release=async()=>{if(mobile)await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});\n     |                                                   ^\n  26 |         else {await page.mouse.up();for(const key of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(key);}};\n  27 |       const move=async(x:number,z:number)=>{\n  28 |         for(const [axis,target] of [['z',z],['x',x]] as const)for(let i=0;i<12;i++){\n    at release (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:25:51)\n    at fire (C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:55:37)\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:80:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:07:35.099Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-pulse-reactive-boss-pressure-chromium-1366\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-after\\boss-pressure-touch-pulse-reactive-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 51,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-5e6e2d88475836ddb6fe",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T17:05:16.480Z",
+    "duration": 144152.305,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

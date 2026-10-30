@@ -1,0 +1,273 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/boss-pressure.spec.ts",
+      "--grep",
+      "desktop.*reactive",
+      "--project",
+      "chromium-1366",
+      "--trace",
+      "off",
+      "--output",
+      "test-results/pressure-before-reactive"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before-reactive",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before-reactive",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before-reactive",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-before-reactive",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-before-reactive",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "boss-pressure.spec.ts",
+      "file": "boss-pressure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop arc reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34825,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"arc\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":0.0003936849534511566,\"y\":0.028302049636840798,\"z\":-21.027751922607422},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-4.319744110107422,\"y\":0.023261523246765115,\"z\":-21.027856826782227},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":14.05,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":228,\"melee\":184,\"wave-warning\":89,\"wave-attack\":150,\"recovery\":94,\"eruption-warning\":72,\"eruption-attack\":24},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T16:59:39.028Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6ImFyYyIsInN0cmF0ZWd5IjoicmVhY3RpdmUiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjowLjAwMDM5MzY4NDk1MzQ1MTE1NjYsInkiOjAuMDI4MzAyMDQ5NjM2ODQwNzk4LCJ6IjotMjEuMDI3NzUxOTIyNjA3NDIyfSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDB9LCJlbmQiOnsicG9zaXRpb24iOnsieCI6LTQuMzE5NzQ0MTEwMTA3NDIyLCJ5IjowLjAyMzI2MTUyMzI0Njc2NTExNSwieiI6LTIxLjAyNzg1NjgyNjc4MjIyN30sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6MCwib3V0Y29tZSI6InZpY3RvcnkifSwic2Vjb25kcyI6MTQuMDUsImhpdHMiOjAsImV2ZW50cyI6W10sInBoYXNlcyI6eyJjaGFzaW5nIjoyMjgsIm1lbGVlIjoxODQsIndhdmUtd2FybmluZyI6ODksIndhdmUtYXR0YWNrIjoxNTAsInJlY292ZXJ5Ijo5NCwiZXJ1cHRpb24td2FybmluZyI6NzIsImVydXB0aW9uLWF0dGFjayI6MjR9LCJlcnJvcnMiOltdfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-911b5798ac34558fdd60",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        },
+        {
+          "title": "desktop pulse reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 29214,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"before\",\"mobile\":false,\"weapon\":\"pulse\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.07001174241304398,\"y\":0.026600515842437722,\"z\":-20.926910400390625},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.06988348811864853,\"y\":1.763299560546875,\"z\":-20.927074432373047},\"hp\":100,\"armor\":50,\"ammo\":0,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":10.116666666666667,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":199,\"melee\":117,\"wave-warning\":89,\"wave-attack\":155,\"recovery\":45},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:00:13.899Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImJlZm9yZSIsIm1vYmlsZSI6ZmFsc2UsIndlYXBvbiI6InB1bHNlIiwic3RyYXRlZ3kiOiJyZWFjdGl2ZSIsInN0YXJ0Ijp7InBvc2l0aW9uIjp7IngiOi0wLjA3MDAxMTc0MjQxMzA0Mzk4LCJ5IjowLjAyNjYwMDUxNTg0MjQzNzcyMiwieiI6LTIwLjkyNjkxMDQwMDM5MDYyNX0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOi0wLjA2OTg4MzQ4ODExODY0ODUzLCJ5IjoxLjc2MzI5OTU2MDU0Njg3NSwieiI6LTIwLjkyNzA3NDQzMjM3MzA0N30sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6MCwiYm9zc0hwIjowLCJvdXRjb21lIjoidmljdG9yeSJ9LCJzZWNvbmRzIjoxMC4xMTY2NjY2NjY2NjY2NjcsImhpdHMiOjAsImV2ZW50cyI6W10sInBoYXNlcyI6eyJjaGFzaW5nIjoxOTksIm1lbGVlIjoxMTcsIndhdmUtd2FybmluZyI6ODksIndhdmUtYXR0YWNrIjoxNTUsInJlY292ZXJ5Ijo0NX0sImVycm9ycyI6W119"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-89cad6ce2b54a5242972",
+          "file": "boss-pressure.spec.ts",
+          "line": 13,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T16:59:35.682Z",
+    "duration": 67937.347,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

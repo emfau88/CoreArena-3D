@@ -170,7 +170,8 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       const damage=before.pve.bossHp-after.pve.bossHp;
       if(damage>0) { feedback.play('hit'); feedback.bossHit(damage,current.tick); }
       if(after.runners.some((r,i)=>r.hp<before.runners[i]!.hp)) feedback.play('hit');
-      if(after.pve.phase==='melee' && before.pve.phase!=='melee') feedback.play('windup');
+      if(after.pve.phase==='melee' && before.pve.phase!=='melee') feedback.play('boss-windup');
+      if(after.pve.phase==='warning' && before.pve.phase!=='warning') feedback.play(after.pve.kind==='wave'?'wave-warning':'eruption-warning');
       if(after.pve.phase==='melee' && after.pve.phaseTick===ADVENTURE_BOSS_RULES.meleeWarning
         || after.pve.phase==='attack' && before.pve.phase!=='attack') feedback.play('slam');
       if(after.pve.outcome==='victory' && before.pve.outcome!=='victory') feedback.play('victory');
@@ -215,9 +216,10 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       button.textContent=interaction?`${interaction.enabled && !input.touchEnabled?'E · ':''}${interaction.label}`:'';
       el('adventure-boss').hidden=!state.bossActive || state.pve.outcome==='victory';
       el('boss-hp-value').textContent=String(state.pve.bossHp); (el('boss-hp') as HTMLProgressElement).value=state.pve.bossHp;
-      const messages={emerging:'Der Boden bricht auf …',chasing:'Er verfolgt dich · Bleib in Bewegung!',melee:'FAUSTSCHLAG · Abstand halten!',
+      const messages={emerging:'Der Boden bricht auf …',chasing:'Er verfolgt dich · Bleib in Bewegung!',melee:'FAUSTSCHLAG · Seitlich ausweichen!',
         warning:state.pve.kind==='wave'?'SCHOCKWELLE · Sprung vorbereiten!':'BODENAUSBRUCH · Kreis verlassen!',
-        attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'Gegenfeuer!',defeated:'Steinsiegel gebrochen.'};
+        attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'ERHOLUNG · Jetzt feuern!',defeated:'Steinsiegel gebrochen.'};
+      el('adventure-boss').dataset.phase=state.pve.phase;
       el('pve-telegraph').textContent=messages[state.pve.phase];
       el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?state.relayActive?'Relais online · Ausgang offen':'Steinsiegel gebrochen · Relais versorgen':
         state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:state.consoleActive?'Weiter zum Ruhepunkt.':'Wartungskonsole starten.';

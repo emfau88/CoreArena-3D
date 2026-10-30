@@ -1,0 +1,434 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/boss-pressure.spec.ts",
+      "--grep",
+      "touch|plateau",
+      "--project",
+      "chromium-1366",
+      "--trace",
+      "off",
+      "--output",
+      "test-results/pressure-touch-plateau"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-plateau",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-plateau",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-plateau",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/pressure-touch-plateau",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-touch-plateau",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "boss-pressure.spec.ts",
+      "file": "boss-pressure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop pulse stationary plateau boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27184,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":false,\"weapon\":\"pulse\",\"location\":\"plateau\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":-11.86855697631836,\"y\":1.1299999713897706,\"z\":-22.972854614257812},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-11.86855697631836,\"y\":1.1283331871032716,\"z\":-22.972854614257812},\"hp\":0,\"armor\":0,\"ammo\":0,\"bossHp\":46,\"outcome\":\"defeat\"},\"seconds\":9.016666666666667,\"hits\":3,\"events\":[{\"tick\":130,\"phase\":\"eruption-attack\",\"phaseTick\":4,\"hp\":100,\"armor\":0,\"position\":{\"x\":-11.86855697631836,\"y\":1.1233328342437745,\"z\":-22.972854614257812}},{\"tick\":336,\"phase\":\"eruption-attack\",\"phaseTick\":3,\"hp\":55,\"armor\":0,\"position\":{\"x\":-11.86855697631836,\"y\":1.1299997329711915,\"z\":-22.972854614257812}},{\"tick\":541,\"phase\":\"attack\",\"phaseTick\":1,\"hp\":0,\"armor\":0,\"position\":{\"x\":-11.86855697631836,\"y\":1.1283331871032716,\"z\":-22.972854614257812}}],\"phases\":{\"chasing\":170,\"eruption-warning\":226,\"eruption-attack\":51,\"recovery\":91},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:13:43.474Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjpmYWxzZSwid2VhcG9uIjoicHVsc2UiLCJsb2NhdGlvbiI6InBsYXRlYXUiLCJzdHJhdGVneSI6InN0YXRpb25hcnkiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjotMTEuODY4NTU2OTc2MzE4MzYsInkiOjEuMTI5OTk5OTcxMzg5NzcwNiwieiI6LTIyLjk3Mjg1NDYxNDI1NzgxMn0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOi0xMS44Njg1NTY5NzYzMTgzNiwieSI6MS4xMjgzMzMxODcxMDMyNzE2LCJ6IjotMjIuOTcyODU0NjE0MjU3ODEyfSwiaHAiOjAsImFybW9yIjowLCJhbW1vIjowLCJib3NzSHAiOjQ2LCJvdXRjb21lIjoiZGVmZWF0In0sInNlY29uZHMiOjkuMDE2NjY2NjY2NjY2NjY3LCJoaXRzIjozLCJldmVudHMiOlt7InRpY2siOjEzMCwicGhhc2UiOiJlcnVwdGlvbi1hdHRhY2siLCJwaGFzZVRpY2siOjQsImhwIjoxMDAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjotMTEuODY4NTU2OTc2MzE4MzYsInkiOjEuMTIzMzMyODM0MjQzNzc0NSwieiI6LTIyLjk3Mjg1NDYxNDI1NzgxMn19LHsidGljayI6MzM2LCJwaGFzZSI6ImVydXB0aW9uLWF0dGFjayIsInBoYXNlVGljayI6MywiaHAiOjU1LCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTExLjg2ODU1Njk3NjMxODM2LCJ5IjoxLjEyOTk5OTczMjk3MTE5MTUsInoiOi0yMi45NzI4NTQ2MTQyNTc4MTJ9fSx7InRpY2siOjU0MSwicGhhc2UiOiJhdHRhY2siLCJwaGFzZVRpY2siOjEsImhwIjowLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTExLjg2ODU1Njk3NjMxODM2LCJ5IjoxLjEyODMzMzE4NzEwMzI3MTYsInoiOi0yMi45NzI4NTQ2MTQyNTc4MTJ9fV0sInBoYXNlcyI6eyJjaGFzaW5nIjoxNzAsImVydXB0aW9uLXdhcm5pbmciOjIyNiwiZXJ1cHRpb24tYXR0YWNrIjo1MSwicmVjb3ZlcnkiOjkxfSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-cef2961d11a43e3b0e84",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        },
+        {
+          "title": "touch arc stationary boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26171,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":true,\"weapon\":\"arc\",\"location\":\"entrance\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":-0.11973042786121368,\"y\":0.02967236042022703,\"z\":-21.007606506347656},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.11976806819438934,\"y\":0.019934332370758034,\"z\":-21.007606506347656},\"hp\":0,\"armor\":0,\"ammo\":54,\"bossHp\":243,\"outcome\":\"defeat\"},\"seconds\":8.45,\"hits\":4,\"events\":[{\"tick\":115,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":100,\"armor\":20,\"position\":{\"x\":-0.11976806819438934,\"y\":0.019934332370758034,\"z\":-21.007606506347656}},{\"tick\":256,\"phase\":\"wave-attack\",\"phaseTick\":2,\"hp\":60,\"armor\":0,\"position\":{\"x\":-0.11976806819438934,\"y\":0.02993432283401487,\"z\":-21.007606506347656}},{\"tick\":423,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":30,\"armor\":0,\"position\":{\"x\":-0.11976806819438934,\"y\":0.019934332370758034,\"z\":-21.007606506347656}},{\"tick\":507,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":0,\"armor\":0,\"position\":{\"x\":-0.11976806819438934,\"y\":0.019934332370758034,\"z\":-21.007606506347656}}],\"phases\":{\"chasing\":156,\"melee\":120,\"wave-warning\":90,\"wave-attack\":90,\"recovery\":48},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:14:10.692Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjp0cnVlLCJ3ZWFwb24iOiJhcmMiLCJsb2NhdGlvbiI6ImVudHJhbmNlIiwic3RyYXRlZ3kiOiJzdGF0aW9uYXJ5Iiwic3RhcnQiOnsicG9zaXRpb24iOnsieCI6LTAuMTE5NzMwNDI3ODYxMjEzNjgsInkiOjAuMDI5NjcyMzYwNDIwMjI3MDMsInoiOi0yMS4wMDc2MDY1MDYzNDc2NTZ9LCJocCI6MTAwLCJhcm1vciI6NTAsImFtbW8iOjU0LCJib3NzSHAiOjYwMH0sImVuZCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMTk3NjgwNjgxOTQzODkzNCwieSI6MC4wMTk5MzQzMzIzNzA3NTgwMzQsInoiOi0yMS4wMDc2MDY1MDYzNDc2NTZ9LCJocCI6MCwiYXJtb3IiOjAsImFtbW8iOjU0LCJib3NzSHAiOjI0Mywib3V0Y29tZSI6ImRlZmVhdCJ9LCJzZWNvbmRzIjo4LjQ1LCJoaXRzIjo0LCJldmVudHMiOlt7InRpY2siOjExNSwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzAsImhwIjoxMDAsImFybW9yIjoyMCwicG9zaXRpb24iOnsieCI6LTAuMTE5NzY4MDY4MTk0Mzg5MzQsInkiOjAuMDE5OTM0MzMyMzcwNzU4MDM0LCJ6IjotMjEuMDA3NjA2NTA2MzQ3NjU2fX0seyJ0aWNrIjoyNTYsInBoYXNlIjoid2F2ZS1hdHRhY2siLCJwaGFzZVRpY2siOjIsImhwIjo2MCwiYXJtb3IiOjAsInBvc2l0aW9uIjp7IngiOi0wLjExOTc2ODA2ODE5NDM4OTM0LCJ5IjowLjAyOTkzNDMyMjgzNDAxNDg3LCJ6IjotMjEuMDA3NjA2NTA2MzQ3NjU2fX0seyJ0aWNrIjo0MjMsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjMwLCJocCI6MzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjotMC4xMTk3NjgwNjgxOTQzODkzNCwieSI6MC4wMTk5MzQzMzIzNzA3NTgwMzQsInoiOi0yMS4wMDc2MDY1MDYzNDc2NTZ9fSx7InRpY2siOjUwNywicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzAsImhwIjowLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTAuMTE5NzY4MDY4MTk0Mzg5MzQsInkiOjAuMDE5OTM0MzMyMzcwNzU4MDM0LCJ6IjotMjEuMDA3NjA2NTA2MzQ3NjU2fX1dLCJwaGFzZXMiOnsiY2hhc2luZyI6MTU2LCJtZWxlZSI6MTIwLCJ3YXZlLXdhcm5pbmciOjkwLCJ3YXZlLWF0dGFjayI6OTAsInJlY292ZXJ5Ijo0OH0sImVycm9ycyI6W119"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-5a923f629778a1721886",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        },
+        {
+          "title": "touch arc reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33716,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":true,\"weapon\":\"arc\",\"location\":\"entrance\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.00047181054833345115,\"y\":0.028268492221832253,\"z\":-21.159412384033203},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":4.081040382385254,\"y\":0.028323984146118142,\"z\":-21.159339904785156},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":13.666666666666666,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":218,\"melee\":225,\"wave-warning\":90,\"wave-attack\":90,\"recovery\":100,\"eruption-warning\":76,\"eruption-attack\":20},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:14:36.871Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjp0cnVlLCJ3ZWFwb24iOiJhcmMiLCJsb2NhdGlvbiI6ImVudHJhbmNlIiwic3RyYXRlZ3kiOiJyZWFjdGl2ZSIsInN0YXJ0Ijp7InBvc2l0aW9uIjp7IngiOi0wLjAwMDQ3MTgxMDU0ODMzMzQ1MTE1LCJ5IjowLjAyODI2ODQ5MjIyMTgzMjI1MywieiI6LTIxLjE1OTQxMjM4NDAzMzIwM30sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6NjAwfSwiZW5kIjp7InBvc2l0aW9uIjp7IngiOjQuMDgxMDQwMzgyMzg1MjU0LCJ5IjowLjAyODMyMzk4NDE0NjExODE0MiwieiI6LTIxLjE1OTMzOTkwNDc4NTE1Nn0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6NTQsImJvc3NIcCI6MCwib3V0Y29tZSI6InZpY3RvcnkifSwic2Vjb25kcyI6MTMuNjY2NjY2NjY2NjY2NjY2LCJoaXRzIjowLCJldmVudHMiOltdLCJwaGFzZXMiOnsiY2hhc2luZyI6MjE4LCJtZWxlZSI6MjI1LCJ3YXZlLXdhcm5pbmciOjkwLCJ3YXZlLWF0dGFjayI6OTAsInJlY292ZXJ5IjoxMDAsImVydXB0aW9uLXdhcm5pbmciOjc2LCJlcnVwdGlvbi1hdHRhY2siOjIwfSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-a93dc490d43bc7ec8cfa",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        },
+        {
+          "title": "touch pulse stationary boss pressure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 27046,
+                  "error": {
+                    "message": "Error: browserContext.close: Target page, context or browser has been closed",
+                    "stack": "Error: browserContext.close: Target page, context or browser has been closed\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:99:14",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                      "column": 14,
+                      "line": 99
+                    },
+                    "snippet": "   97 |       if(active)expect(result.end.outcome).toBe('victory');\n   98 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n>  99 |     }finally{await context.close();await browser.close();}\n      |              ^\n  100 |   });\n  101 | }\n  102 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                        "column": 14,
+                        "line": 99
+                      },
+                      "message": "Error: browserContext.close: Target page, context or browser has been closed\n\n   97 |       if(active)expect(result.end.outcome).toBe('victory');\n   98 |       else if(process.env.BOSS_PRESSURE_STAGE!=='before')expect(result.end.outcome).toBe('defeat');\n>  99 |     }finally{await context.close();await browser.close();}\n      |              ^\n  100 |   });\n  101 | }\n  102 |\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts:99:14"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":true,\"weapon\":\"pulse\",\"location\":\"entrance\",\"strategy\":\"stationary\",\"start\":{\"position\":{\"x\":-0.12088184803724289,\"y\":0.024967646598815896,\"z\":-20.877044677734375},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.12088184803724289,\"y\":0.023300981521606423,\"z\":-20.877044677734375},\"hp\":0,\"armor\":0,\"ammo\":9,\"bossHp\":150,\"outcome\":\"defeat\"},\"seconds\":7.483333333333333,\"hits\":4,\"events\":[{\"tick\":60,\"phase\":\"melee\",\"phaseTick\":31,\"hp\":100,\"armor\":20,\"position\":{\"x\":-0.12088184803724289,\"y\":0.029967641830444314,\"z\":-20.877044677734375}},{\"tick\":197,\"phase\":\"wave-attack\",\"phaseTick\":1,\"hp\":60,\"armor\":0,\"position\":{\"x\":-0.12088184803724289,\"y\":0.023300981521606423,\"z\":-20.877044677734375}},{\"tick\":367,\"phase\":\"melee\",\"phaseTick\":32,\"hp\":30,\"armor\":0,\"position\":{\"x\":-0.12088184803724289,\"y\":0.019967651367187478,\"z\":-20.877044677734375}},{\"tick\":449,\"phase\":\"melee\",\"phaseTick\":30,\"hp\":0,\"armor\":0,\"position\":{\"x\":-0.12088184803724289,\"y\":0.023300981521606423,\"z\":-20.877044677734375}}],\"phases\":{\"chasing\":98,\"melee\":120,\"wave-warning\":89,\"wave-attack\":90,\"recovery\":49},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:15:10.598Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjp0cnVlLCJ3ZWFwb24iOiJwdWxzZSIsImxvY2F0aW9uIjoiZW50cmFuY2UiLCJzdHJhdGVneSI6InN0YXRpb25hcnkiLCJzdGFydCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMjA4ODE4NDgwMzcyNDI4OSwieSI6MC4wMjQ5Njc2NDY1OTg4MTU4OTYsInoiOi0yMC44NzcwNDQ2Nzc3MzQzNzV9LCJocCI6MTAwLCJhcm1vciI6NTAsImFtbW8iOjU0LCJib3NzSHAiOjYwMH0sImVuZCI6eyJwb3NpdGlvbiI6eyJ4IjotMC4xMjA4ODE4NDgwMzcyNDI4OSwieSI6MC4wMjMzMDA5ODE1MjE2MDY0MjMsInoiOi0yMC44NzcwNDQ2Nzc3MzQzNzV9LCJocCI6MCwiYXJtb3IiOjAsImFtbW8iOjksImJvc3NIcCI6MTUwLCJvdXRjb21lIjoiZGVmZWF0In0sInNlY29uZHMiOjcuNDgzMzMzMzMzMzMzMzMzLCJoaXRzIjo0LCJldmVudHMiOlt7InRpY2siOjYwLCJwaGFzZSI6Im1lbGVlIiwicGhhc2VUaWNrIjozMSwiaHAiOjEwMCwiYXJtb3IiOjIwLCJwb3NpdGlvbiI6eyJ4IjotMC4xMjA4ODE4NDgwMzcyNDI4OSwieSI6MC4wMjk5Njc2NDE4MzA0NDQzMTQsInoiOi0yMC44NzcwNDQ2Nzc3MzQzNzV9fSx7InRpY2siOjE5NywicGhhc2UiOiJ3YXZlLWF0dGFjayIsInBoYXNlVGljayI6MSwiaHAiOjYwLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTAuMTIwODgxODQ4MDM3MjQyODksInkiOjAuMDIzMzAwOTgxNTIxNjA2NDIzLCJ6IjotMjAuODc3MDQ0Njc3NzM0Mzc1fX0seyJ0aWNrIjozNjcsInBoYXNlIjoibWVsZWUiLCJwaGFzZVRpY2siOjMyLCJocCI6MzAsImFybW9yIjowLCJwb3NpdGlvbiI6eyJ4IjotMC4xMjA4ODE4NDgwMzcyNDI4OSwieSI6MC4wMTk5Njc2NTEzNjcxODc0NzgsInoiOi0yMC44NzcwNDQ2Nzc3MzQzNzV9fSx7InRpY2siOjQ0OSwicGhhc2UiOiJtZWxlZSIsInBoYXNlVGljayI6MzAsImhwIjowLCJhcm1vciI6MCwicG9zaXRpb24iOnsieCI6LTAuMTIwODgxODQ4MDM3MjQyODksInkiOjAuMDIzMzAwOTgxNTIxNjA2NDIzLCJ6IjotMjAuODc3MDQ0Njc3NzM0Mzc1fX1dLCJwaGFzZXMiOnsiY2hhc2luZyI6OTgsIm1lbGVlIjoxMjAsIndhdmUtd2FybmluZyI6ODksIndhdmUtYXR0YWNrIjo5MCwicmVjb3ZlcnkiOjQ5fSwiZXJyb3JzIjpbXX0="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\pressure-touch-plateau\\boss-pressure-touch-pulse-stationary-boss-pressure-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\boss-pressure.spec.ts",
+                    "column": 14,
+                    "line": 99
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-143eee5cb6824e25b4f7",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        },
+        {
+          "title": "touch pulse reactive boss pressure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28216,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"stage\":\"after\",\"mobile\":true,\"weapon\":\"pulse\",\"location\":\"entrance\",\"strategy\":\"reactive\",\"start\":{\"position\":{\"x\":-0.11954931914806366,\"y\":0.026600337028503396,\"z\":-20.871049880981445},\"hp\":100,\"armor\":50,\"ammo\":54,\"bossHp\":600},\"end\":{\"position\":{\"x\":-0.11963420361280441,\"y\":0.5216004610061645,\"z\":-20.871028900146484},\"hp\":100,\"armor\":50,\"ammo\":0,\"bossHp\":0,\"outcome\":\"victory\"},\"seconds\":10.083333333333334,\"hits\":0,\"events\":[],\"phases\":{\"chasing\":196,\"melee\":177,\"wave-warning\":89,\"wave-attack\":90,\"recovery\":49},\"errors\":[]}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-30T17:15:38.622Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "boss-pressure",
+                      "contentType": "application/json",
+                      "body": "eyJzdGFnZSI6ImFmdGVyIiwibW9iaWxlIjp0cnVlLCJ3ZWFwb24iOiJwdWxzZSIsImxvY2F0aW9uIjoiZW50cmFuY2UiLCJzdHJhdGVneSI6InJlYWN0aXZlIiwic3RhcnQiOnsicG9zaXRpb24iOnsieCI6LTAuMTE5NTQ5MzE5MTQ4MDYzNjYsInkiOjAuMDI2NjAwMzM3MDI4NTAzMzk2LCJ6IjotMjAuODcxMDQ5ODgwOTgxNDQ1fSwiaHAiOjEwMCwiYXJtb3IiOjUwLCJhbW1vIjo1NCwiYm9zc0hwIjo2MDB9LCJlbmQiOnsicG9zaXRpb24iOnsieCI6LTAuMTE5NjM0MjAzNjEyODA0NDEsInkiOjAuNTIxNjAwNDYxMDA2MTY0NSwieiI6LTIwLjg3MTAyODkwMDE0NjQ4NH0sImhwIjoxMDAsImFybW9yIjo1MCwiYW1tbyI6MCwiYm9zc0hwIjowLCJvdXRjb21lIjoidmljdG9yeSJ9LCJzZWNvbmRzIjoxMC4wODMzMzMzMzMzMzMzMzQsImhpdHMiOjAsImV2ZW50cyI6W10sInBoYXNlcyI6eyJjaGFzaW5nIjoxOTYsIm1lbGVlIjoxNzcsIndhdmUtd2FybmluZyI6ODksIndhdmUtYXR0YWNrIjo5MCwicmVjb3ZlcnkiOjQ5fSwiZXJyb3JzIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d77ec99a3e1cc4ed7b3-5e6e2d88475836ddb6fe",
+          "file": "boss-pressure.spec.ts",
+          "line": 14,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-30T17:13:41.872Z",
+    "duration": 145357.13,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

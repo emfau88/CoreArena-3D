@@ -3,6 +3,10 @@
 29. Oktober 2026. Freigegebener Schritt **L1.5a umgesetzt und technisch geprüft**.
 Die endgültige Schwierigkeit, persönliche Sichtung und Handy-Leistungsabnahme bleiben offen.
 
+**Historischer Bericht:** Die Werte und Balancebeobachtungen unten beschreiben
+L1.5a vor Auto-Arc und L1.6b. Der [aktuelle Bossvergleich und die gezielte
+Abstimmung](BOSS_PRESSURE_RESULT.md) ersetzen diesen Stand am 30. Oktober.
+
 [Spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)
 · [Roadmap](../planning/LEVEL_1_STONE_ADVENTURE.md)
 

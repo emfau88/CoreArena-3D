@@ -2,9 +2,10 @@
 
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
 
-**Stand 30. Oktober 2026: Nur L1.6a freigegeben, umgesetzt und technisch geprüft.**
+**Stand 30. Oktober 2026: L1.6a und anschließend L1.6b freigegeben und umgesetzt.**
 Die vollständige Missionskette ist spielbar; [Ergebnis und Browsernachweise](../qa/ADVENTURE_MISSION_RESULT.md).
-L1.6b, L1.6c und L1.5b bleiben offen und benötigen jeweils eine neue Freigabe.
+[L1.6b: aktueller Bossvergleich und Prüfungen](../qa/BOSS_PRESSURE_RESULT.md).
+L1.6c und L1.5b bleiben offen und benötigen jeweils eine neue Freigabe.
 
 Die [ausführliche Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md) dokumentiert
 sechs Vergleichsspiele, Quellen und konkrete Empfehlungen für diesen Ausbau.
@@ -22,18 +23,18 @@ durch das geöffnete Ausgangstor gehen.
 | Paket | Konkretes Ergebnis | Fertig, wenn … | Aktive Agentzeit |
 | --- | --- | --- | --- |
 | **L1.6a · Auftrag spielbar machen — erledigt** | Beschädigte Drohne, bedienbare Wartungskonsole, Bossfreigabe, erforderlicher Steinkern und Relais am Ausgang; Lichtreaktionen, Ton und vier kurze Meldungen. | Ganze Kette mit Maus/Tastatur und emuliertem Touch geprüft; Interaktion nur in Reichweite, auf Bodenhöhe und mit freier Sicht. Boss-Retry erhält aktivierte Konsole, Neustart setzt alles zurück. | Keine Restarbeit dieses Bulks; keine separat gemessene Istzeit |
-| **L1.6b · Kampf spannend und fair machen — offen** | Vergleich mit aktuellem Auto-Arc und Pulse; nur bei belegtem Bedarf vorhandene Angriffe, Warnung/Erholung und Trefferfeedback gezielt abstimmen. Kein pauschaler HP-Zuschlag. | Gleiche Startwerte für stationäres Feuer und bewusstes Ausweichen dokumentiert; aktives Spielen hat einen klaren Vorteil, Warnung und Trefferzone stimmen auch auf Touch überein. | **30–60 Min.** |
+| **L1.6b · Kampf spannend und fair machen — umgesetzt** | Aktueller Waffenvergleich; Faust: 0,5 s Vorwarnung und 30 Schaden; Schockwelle schneller bei gleicher Reichweite. Angriffsfläche, Warnklänge und Erholung deutlicher. | Dokumentierte stationäre und aktive Versuche mit gleichen Startwerten; Abstand/Höhe/Deckung bleiben wirksam. [Prüfstand](../qa/BOSS_PRESSURE_RESULT.md). | Keine geplante Restarbeit dieses Bulks; persönliche Spielrückmeldung separat |
 | **L1.6c · Drei erkennbare Orte gestalten — offen** | Ladestation, Wartungsbereich und Relaisanlage mit vorhandener Ausstattung ausarbeiten; Pulse-Fund lesbarer inszenieren, eine kleine Erkundungsentdeckung ergänzen. Drohne, Konsole, Relais und Leitungen aus L1.6a nicht erneut bauen. | Jeder Hof hat einen Blickfang; Hauptweg, Höhen und Gegner bleiben mobil lesbar. Der Abstecher lohnt sich auch angesichts der Checkpoint-Auffüllung. Vergleichsaufnahmen und Wegtest vorhanden. | **30–50 Min.** |
 | **L1.5b · Gesamtabnahme — offen** | Nach den freigegebenen Ausbauten den gesamten Ablauf, Schwierigkeit und Lade-/Laufzeit prüfen; gezielte Restkorrekturen. | Desktop-/Touch-Durchlauf und technische Prüfung dokumentiert; persönlicher Handytest und Spielurteil separat. | **20–35 Min.** |
 
 - [x] L1.6a: Auftrag, Konsole und Relaisabschluss.
-- [ ] L1.6b: Bossdruck und Kampfgefühl.
+- [x] L1.6b: Bossvergleich, gezielte Abstimmung und Kampflesbarkeit.
 - [ ] L1.6c: Ortsidentität und Erkundung.
 - [ ] L1.5b: Technische Gesamtabnahme und persönliche Rückmeldung.
 
-**Reihenfolge:** L1.6a ist erledigt. Danach nur mit eigener Freigabe Kampfvergleich/
-gezielte Abstimmung (L1.6b), Ortsgestaltung/Erkundung (L1.6c), Gesamtabnahme (L1.5b).
-Restplan **80–145 Minuten aktive Agent-Arbeit**, inklusive passender Tests,
+**Reihenfolge:** L1.6a und L1.6b sind umgesetzt. Danach nur mit eigener Freigabe
+Ortsgestaltung/Erkundung (L1.6c), anschließend Gesamtabnahme (L1.5b).
+Restplan **50–85 Minuten aktive Agent-Arbeit**, inklusive passender Tests,
 Dokumentation und Commit/Push. Rückmeldung, Deployment-Wartezeit und echter
 Handytest separat. Dies ist keine Freigabe der Restpakete.
 
@@ -144,9 +145,11 @@ Treffer- und Todesanimationen; kurze HP-Leiste, sichtbar kleiner als der Boss.
 
 Auftauchen aus dem Boden, Verfolgung, Faustschlag, Schockwelle und Bodenausbruch
 werden einschließlich Animationen und Navigation wiederverwendet. 600 HP wie zuvor.
-Die freigegebene Abstimmung vom 29. Oktober gilt nur für dieses Adventure:
-0,35 s Ausholen, 0,25 s Schlag-Erholung, 0,65 s zusätzliche Schlagpause;
-0,8 s Erholung nach Spezialangriffen und 3,1 m/s Verfolgung. Schaden unverändert.
+Die aktuelle Abstimmung aus L1.6b gilt nur für dieses Adventure:
+0,5 s Ausholen, 30 Faustschaden, 0,25 s Schlag-Erholung, 0,65 s zusätzliche Schlagpause;
+0,8 s Erholung nach Spezialangriffen und 3,1 m/s Verfolgung. Die Schockwelle
+läuft in 1,5 statt 2,5 s bis 20 m Radius (12 statt 7,2 m/s); ihre Vorwarnung
+bleibt 1,5 s. Wellen-/Ausbruchschaden und Waffenwerte bleiben unverändert.
 Simulation, Schlaganimation und Treffer-Sound verwenden dieselben Zeiten.
 Während des Auftauchens ist der Boss noch nicht angreifbar. Der ruhende Steinkörper
 weicht beim Erwachen dem beweglichen Boss; der Eingang bekommt sichtbar echte Kollision.
@@ -165,10 +168,12 @@ Der Spieler muss den Steinkern bergen und am Relais einsetzen. Dadurch öffnet
 das Nordtor sichtbar und physisch; erst Durchgehen schließt das Level ab. Die bisherige Kristallkluft
 steht danach als optionaler Button bereit und beginnt mit ihrer eigenen Ausrüstung.
 
-**Balance bleibt vorläufig:** Der frühere stationäre Pulse-/Arc-Sieg mit 30 HP
-stammt aus der Zeit vor der Auto-Arc-Änderung und ist kein aktueller Messwert.
-L1.6a verändert keine Kampfwerte. Vergleich und gegebenenfalls gezielte Abstimmung
-gehören zum separat freizugebenden L1.6b; zusätzliche Bossphasen und Gegner nicht.
+**Aktueller Balancevergleich:** L1.6b hat den alten Befund neu gemessen:
+Stationäres Auto-Arc verlor bereits; stationäres Pulse mit Arc-Fallback gewann
+erneut mit 30 HP. Nach gezielter Abstimmung verliert stationäres Feuer am
+definierten Zugang mit beiden Waffen, aktives Ausweichen gewinnt deutlich.
+[Bedingungen und Messwerte](../qa/BOSS_PRESSURE_RESULT.md). Das ersetzt keine
+persönliche Schwierigkeitsabnahme und ist keine Garantie für jede Position.
 
 ## Umsetzungsplan: vom spielbaren Kern zum fertigen Testlevel
 
@@ -187,11 +192,12 @@ abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten
 | **L1.4b · Drei Höfe gestalten** | Materialien, Innenpflanzen, saubere Mauerecken; kostenlose AssetQuest-Pflanzen und Retro-Tech-Konsolen | **Freigegebene Schritte umgesetzt und geprüft**; persönliche Sichtung offen. Weitere Ruinen/Lichter optional nach Rückmeldung |
 | **L1.5a · Bosstempo + Wächterpuppen** | Vorgeschlagene Bosszeiten/Verfolgung, KayKit-Nahkämpfer mit Steinoptik, synchronen Faustschlägen und Browserprüfung | **Umgesetzt**; [Ergebnis](../qa/BOSS_AND_GUARDS_RESULT.md) |
 | **L1.6a · Missionskette** | Auftrag, Konsole, Steinkern und Relaisabschluss | **Umgesetzt und technisch geprüft**; [Nachweis](../qa/ADVENTURE_MISSION_RESULT.md) |
-| **L1.6b/c · Kampf und Ortsgestaltung** | Gezielte Abstimmung nach Vergleich; drei erkennbare Orte und lohnender Abstecher | **Offen, nicht freigegeben**; zusammen 60–110 Min. |
+| **L1.6b · Kampf abstimmen** | Vergleich mit aktuellen Waffen, kürzerer Wellenablauf, angekündigter kräftigerer Faustschlag und sichtbare Erholung | **Umgesetzt**; [Nachweis](../qa/BOSS_PRESSURE_RESULT.md) |
+| **L1.6c · Ortsgestaltung** | Drei erkennbare Orte und lohnender Abstecher | **Offen, nicht freigegeben**; 30–50 Min. |
 | **L1.5b · Testlevel abnehmen** | Abschließende Schwierigkeit, Desktop-/Touch-Spielabnahme und Laufzeitprüfung | **Offen, nicht freigegeben**; 20–35 Min., echte Handyprüfung separat |
 
-Die verbleibenden **80–145 Minuten** entsprechen dem kompakten Ausbau oben.
-Frühere Gesamtschätzungen enthielten L1.6a und sind keine zusätzliche Restarbeit.
+Die verbleibenden **50–85 Minuten** entsprechen dem kompakten Ausbau oben.
+Frühere Gesamtschätzungen enthielten L1.6a/b und sind keine zusätzliche Restarbeit.
 Warten auf Rückmeldung/Hosting und echte Handyprüfung kommen separat hinzu.
 
 ### L1.2 – erledigt
