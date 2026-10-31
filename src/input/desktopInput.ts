@@ -14,7 +14,7 @@ export class DesktopInput {
   get pointer() { return this.touch.pointer.active ? this.touch.pointer : this.mouse; }
   get touchEnabled(): boolean { return this.touch.enabled; }
   constructor(canvas: HTMLCanvasElement, onCamera: () => void, onDiagnostics: () => void, onProbe: () => void,
-    onWeapon: (id: 'arc' | 'pulse' | 'cycle') => void = () => {}) {
+    onWeapon: (id: 'arc' | 'pulse' | 'rail' | 'cycle') => void = () => {}) {
     this.touch = new TouchControls(canvas, onCamera);
     const options = { signal: this.abort.signal };
     window.addEventListener('keydown', (event) => {
@@ -27,6 +27,7 @@ export class DesktopInput {
       if (event.code === 'KeyB' && !event.repeat) onProbe();
       if (event.code === 'Digit1' && !event.repeat) onWeapon('arc');
       if (event.code === 'Digit2' && !event.repeat) onWeapon('pulse');
+      if (event.code === 'Digit3' && !event.repeat) onWeapon('rail');
       if (event.code === 'Space' && !event.repeat) this.jumpPending = true;
       this.keys.add(event.code);
     }, options);

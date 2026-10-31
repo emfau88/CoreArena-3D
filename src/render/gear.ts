@@ -6,14 +6,22 @@ export function createWeaponModel(kind: WeaponId): THREE.Group {
   const group = new THREE.Group();
   const shell = new THREE.MeshStandardMaterial({ color: 0x8e9ca9, metalness: 0.75, roughness: 0.3 });
   const grip = new THREE.MeshStandardMaterial({ color: 0x17212d, metalness: 0.4, roughness: 0.6 });
-  const energy = new THREE.MeshStandardMaterial({ color: kind === 'arc' ? 0xd6a6ff : 0x9feeff,
-    emissive: kind === 'arc' ? 0x9e47ff : 0x26b8ff, emissiveIntensity: 1.6, roughness: 0.2 });
+  const energy = new THREE.MeshStandardMaterial({ color: kind === 'rail' ? 0xffdc8a : kind === 'arc' ? 0xd6a6ff : 0x9feeff,
+    emissive: kind === 'rail' ? 0xffae32 : kind === 'arc' ? 0x9e47ff : 0x26b8ff, emissiveIntensity: 1.6, roughness: 0.2 });
   const box = (x: number, y: number, z: number, w: number, h: number, d: number, mat: THREE.Material) => {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); mesh.position.set(x, y, z); mesh.castShadow = true; group.add(mesh);
   };
   box(0, 0, 0, 0.25, 0.2, 0.55, shell); box(0, -0.15, -0.12, 0.14, 0.25, 0.16, grip);
   box(0, 0.13, -0.08, 0.13, 0.06, 0.2, energy); box(0, 0, -0.34, 0.22, 0.13, 0.2, grip);
-  if (kind === 'pulse') {
+  if (kind === 'rail') {
+    for (const side of [-1, 1]) {
+      box(side * .11, 0, .7, .085, .12, .95, shell);
+      box(side * .11, .07, .7, .045, .025, .8, energy);
+    }
+    box(0, .2, .12, .13, .12, .35, grip);
+    box(0, .2, .3, .08, .07, .025, energy);
+    box(0, -.16, 0, .2, .2, .32, grip);
+  } else if (kind === 'pulse') {
     box(0, 0, 0.45, 0.12, 0.12, 0.46, grip); box(0, 0, 0.7, 0.17, 0.17, 0.06, energy);
     box(0, -0.12, 0.12, 0.18, 0.24, 0.2, grip);
     for (const side of [-1, 1]) box(side * 0.132, 0.03, 0.08, 0.025, 0.04, 0.35, energy);
@@ -31,13 +39,13 @@ export function createPickupModel(kind: PickupDefinition['kind']): THREE.Group {
   const group = new THREE.Group();
   const shell = new THREE.MeshStandardMaterial({ color: 0xb5c4cc, roughness: 0.35, metalness: 0.65 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x192833, roughness: 0.45, metalness: 0.6 });
-  const color = kind === 'health' ? 0x88efb9 : kind === 'armor' ? 0xf4c987 : 0x74d8ff;
+  const color = kind === 'rail' ? 0xffcc70 : kind === 'health' ? 0x88efb9 : kind === 'armor' ? 0xf4c987 : 0x74d8ff;
   const glow = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.8, roughness: 0.3 });
   const box = (x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.Material) => {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material); mesh.position.set(x, y, z); mesh.castShadow = true; group.add(mesh);
   };
-  if (kind === 'pulse') {
-    const gun = createWeaponModel('pulse'); gun.rotation.y = Math.PI / 2; gun.scale.setScalar(1.25); group.add(gun);
+  if (kind === 'pulse' || kind === 'rail') {
+    const gun = createWeaponModel(kind); gun.rotation.y = Math.PI / 2; gun.scale.setScalar(1.25); group.add(gun);
   } else if (kind === 'health') {
     box(0, 0, 0, 0.76, 0.46, 0.52, shell);
     for (const side of [-1, 1]) box(side * 0.3, 0, 0, 0.12, 0.5, 0.56, dark);

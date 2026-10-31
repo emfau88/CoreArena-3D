@@ -13,7 +13,7 @@ export class BotView {
   private readonly hp = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.1), new THREE.MeshBasicMaterial({ color: 0xe78770, side: THREE.DoubleSide }));
   private readonly armor = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.08), new THREE.MeshBasicMaterial({ color: 0x8ddcfa, side: THREE.DoubleSide }));
   private readonly effects: CombatView;
-  private readonly guns = { arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse') };
+  private readonly guns = { arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse'), rail: createWeaponModel('rail') };
   private readonly teamColor: number;
   constructor(scene: THREE.Scene, team: Team = 'red', label = 'GEGNER') {
     this.teamColor = team === 'blue' ? 0x75c9ff : 0xe78770;
@@ -34,6 +34,7 @@ export class BotView {
   }
   update(state: Snapshot | null, life: Life | undefined, weapons: WeaponSnapshot, tick: number, dt: number, camera: THREE.Camera): void {
     this.guns.arc.visible = weapons.selected === 'arc'; this.guns.pulse.visible = weapons.selected === 'pulse';
+    this.guns.rail.visible = weapons.selected === 'rail';
     this.fighter.actor.visible = this.ring.visible = this.bars.visible = !!state && !!life?.alive;
     this.effects.update(!!state, tick, weapons);
     if (!state || !life) return;

@@ -6,6 +6,9 @@ import { labelMesh } from './practiceView';
 
 export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
   const materials = createMaterials();
+  const floor = arena.boxes.find(shape => shape.id === 'floor')!;
+  const halfX = floor.size.x / 2, halfZ = floor.size.z / 2;
+  materials.floor.map!.repeat.set(floor.size.x / 8, floor.size.z / 8);
   const unit = new THREE.BoxGeometry(1, 1, 1);
   const box = (x: number, y: number, z: number, w: number, h: number, d: number, material: THREE.Material) => {
     const mesh = new THREE.Mesh(unit, material);
@@ -54,13 +57,13 @@ export function buildArena(scene: THREE.Scene, arena: ArenaDefinition): void {
     }
   }
   // Floor inlays and perimeter lights are decoration, not extra walkable geometry.
-  for (const z of [-11.5, 11.5]) {
-    box(0, 0.008, z, 40, 0.016, 0.035, materials.brass).castShadow = false;
-    for (let x = -18; x <= 18; x += 6) {
-      box(x, 0.63, Math.sign(z) * 13.38, 0.7, 0.045, 0.02, materials.light).castShadow = false;
+  for (const z of [-halfZ + 2.5, halfZ - 2.5]) {
+    box(0, 0.008, z, floor.size.x - 4, 0.016, 0.035, materials.brass).castShadow = false;
+    for (let x = -halfX + 4; x <= halfX - 4; x += 6) {
+      box(x, 0.63, Math.sign(z) * (halfZ - .62), 0.7, 0.045, 0.02, materials.light).castShadow = false;
     }
   }
-  for (const x of [-19.5, 19.5]) box(x, 0.008, 0, 0.035, 0.016, 23, materials.brass).castShadow = false;
+  for (const x of [-halfX + 2.5, halfX - 2.5]) box(x, 0.008, 0, 0.035, 0.016, floor.size.z - 5, materials.brass).castShadow = false;
   const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xa4aca6, transparent: true, opacity: 0.18, depthWrite: false });
   for (const x of [-7, 7]) {
     const ring = new THREE.Mesh(new THREE.RingGeometry(2.48, 2.52, 64), ringMaterial);

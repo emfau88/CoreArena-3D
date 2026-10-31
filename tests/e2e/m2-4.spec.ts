@@ -66,6 +66,11 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} 2v2 fu
     const stick = mobile ? (await page.locator('#touch-stick').boundingBox())! : null;
     const center = stick ? { x: stick.x + stick.width / 2, y: stick.y + stick.height / 2 } : { x: 0, y: 0 };
     // Walk over the existing Pulse pickup with real keyboard/joystick input.
+    // The expanded team's west spawn starts farther from the original pickup.
+    if (mobile) await touch('touchStart', [{ id: 1, x: center.x + 42, y: center.y }]);
+    else await page.keyboard.down('KeyD');
+    await expect.poll(async () => (await read(page)).snapshot.position.x, { intervals: [20] }).toBeGreaterThan(-7.3);
+    await release();
     if (mobile) await touch('touchStart', [{ id: 1, x: center.x, y: center.y + 42 }]);
     else await page.keyboard.down('KeyS');
     await expect.poll(async () => (await read(page)).weapons.ownsPulse, { intervals: [30] }).toBe(true);

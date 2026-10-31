@@ -1,6 +1,16 @@
 /* Arena-only changes. Adventure and the older PvE HUD retain their layout. */
 #app[data-arena] #team-start { width:100%; color:#b1ddff; border-color:#75c9ff88; }
 #app[data-arena] #team-status { color:#b1ddff; font-size:11px; }
+#app[data-arena] #weapon-panel { width:380px; }
+#app[data-arena] #weapon-pulse { --weapon-accent:#87d9fa; }
+#app[data-arena] #weapon-rail { --weapon-accent:#ffcd72; }
+.touch-mode #app[data-arena] #weapon-panel { width:300px; }
+.touch-mode #app[data-arena] .weapon-buttons { grid-template-columns:repeat(3, 1fr); gap:4px; }
+.touch-mode #app[data-arena] .weapon-icon { width:65px; }
+#app[data-arena-running] #match-panel { background:transparent; border-color:transparent; box-shadow:none; }
+#app[data-arena-running] #match-hint { color:#d1dde1; }
+.touch-mode #app[data-arena-running] #match-panel { width:205px; padding:4px 7px; }
+.touch-mode #app[data-arena-running] #match-restart { background:#172832a8; }
 .touch-mode #app[data-arena] #match-panel { max-height:calc(100dvh - 140px); overflow-y:auto; }
 .touch-mode #app[data-arena] #team-status { margin-top:4px; font-size:10px; }
 .touch-mode #app[data-arena] #match-panel #adventure-start { padding:7px; margin-bottom:4px; }

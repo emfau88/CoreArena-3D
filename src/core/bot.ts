@@ -23,6 +23,7 @@ export function perceive(world: RayWorld, foot: Vec3, facing: number, enemy: Com
 
 export interface BotDecision {
   readonly targetId: string | null;
+  readonly destination: Vec3;
   readonly movement: MoveCommand; readonly firing: boolean; readonly aim: AimSolution | null;
   readonly ray: Ray | null; readonly facing: number; readonly visible: boolean;
   readonly mode: 'patrol' | 'react' | 'fight' | 'search';
@@ -39,7 +40,7 @@ export class BotBrain {
   private aimPoint: Vec3 | null = null;
   private facing: number;
   private waypoint = 0;
-  constructor(private readonly initialFacing = Math.PI) { this.facing = initialFacing; }
+  constructor(private readonly initialFacing = Math.PI, private readonly patrolPoints: readonly Vec3[] = patrol) { this.facing = initialFacing; }
   reset(): void { this.memory = null; this.seenAt = this.readyAt = null; this.aimPoint = null; this.facing = this.initialFacing; this.waypoint = 0; }
   heading(): number { return this.facing; }
   step(tick: number, own: Snapshot, visible: CombatTarget | null, weapons: WeaponSnapshot): BotDecision {
@@ -54,15 +55,15 @@ export class BotBrain {
       if (this.seenAt !== null && tick - this.seenAt >= BOT_RULES.memoryTicks) { this.memory = null; this.seenAt = null; }
     }
     const mode = visible ? tick >= this.readyAt! ? 'fight' : 'react' : this.memory ? 'search' : 'patrol';
-    let destination = this.memory?.center ?? patrol[this.waypoint]!;
+    let destination = this.memory?.center ?? this.patrolPoints[this.waypoint]!;
     let distance = Math.hypot(destination.x - own.position.x, destination.z - own.position.z);
     if (!this.memory && distance < 0.3) {
-      this.waypoint = (this.waypoint + 1) % patrol.length; destination = patrol[this.waypoint]!;
+      this.waypoint = (this.waypoint + 1) % this.patrolPoints.length; destination = this.patrolPoints[this.waypoint]!;
       distance = Math.hypot(destination.x - own.position.x, destination.z - own.position.z);
     }
     const desired = Math.atan2(destination.x - own.position.x, destination.z - own.position.z);
     this.facing += Math.max(-BOT_RULES.turnPerTick, Math.min(BOT_RULES.turnPerTick, wrap(desired - this.facing)));
-    const standoff = weapons.selected === 'pulse' ? 9 : 3.6;
+    const standoff = weapons.selected === 'rail' ? 12 : weapons.selected === 'pulse' ? 9 : 3.6;
     // Direct local pursuit only; route selection and recovery belong to M2.4.
     const move = mode !== 'react' && distance > (visible ? standoff : 0.25);
     const scale = move ? Math.min(1, distance / 0.12) / Math.max(distance, 1e-8) : 0;
@@ -83,6 +84,6 @@ export class BotBrain {
     }
     return { movement, firing: mode === 'fight' && Math.abs(wrap(desired - this.facing)) < 0.15,
       aim, ray, facing: this.facing, visible: !!visible, mode, seenAt: this.seenAt, readyAt: this.readyAt,
-      remembered: this.memory ? { ...this.memory.center } : null, targetId: visible?.id ?? null };
+      remembered: this.memory ? { ...this.memory.center } : null, targetId: visible?.id ?? null, destination: { ...destination } };
   }
 }

@@ -98,10 +98,11 @@ export function createKayFighter(color:number) {
       // last unmodified pose so waist offsets never accumulate, even while paused.
       for(const pose of animatedPose)pose.bone.quaternion.copy(pose.rotation);
       const state=motion??{grounded:true,verticalSpeed:0,velocity:{x:0,y:0,z:speed},facing:0,weapon:'arc' as const,shot:false,alive:true};
+      const weapon=state.weapon==='rail'?'pulse':state.weapon;
       if(state.alive!==alive) {
         alive=state.alive;deadAge=0;
         if(!alive){activeLower.stop();activeUpper.stop();death.reset().play();}
-        else {death.stop();activeLower.reset().play();activeUpper=aiming[state.weapon];activeUpper.reset().play();
+        else {death.stop();activeLower.reset().play();activeUpper=aiming[weapon];activeUpper.reset().play();
           upperAge=0;landing=recoil=0;previousHp=state.hp??100;}
       }
       if(!alive){deadAge+=dt;updateAnimation(dt);return;}
@@ -113,10 +114,10 @@ export function createKayFighter(color:number) {
       legYaw=THREE.MathUtils.damp(legYaw,THREE.MathUtils.clamp(strafe,-.7,.7),12,dt);
       activeLower.timeScale=(backwards && nextLower==='walk'?-1:1)*(nextLower==='walk'?Math.max(.8,speed/4.8):nextLower==='run'?1.65:1);
       upperAge=Math.max(0,upperAge-dt);
-      let nextUpper:THREE.AnimationAction=aiming[state.weapon],nextUpperState:string=state.weapon;
+      let nextUpper:THREE.AnimationAction=aiming[weapon],nextUpperState:string=state.weapon;
       if((state.hp??100)<previousHp){hit.reset();upperAge=.2;upperState='hit';}
-      else if(state.shot){shooting[state.weapon].reset();upperAge=.16;upperState=`shot-${state.weapon}`;recoil=1;}
-      if(upperAge>0){nextUpper=upperState==='hit'?hit:shooting[state.weapon];nextUpperState=upperState;}
+      else if(state.shot){shooting[weapon].reset();upperAge=.16;upperState=`shot-${state.weapon}`;recoil=1;}
+      if(upperAge>0){nextUpper=upperState==='hit'?hit:shooting[weapon];nextUpperState=upperState;}
       switchAction(activeUpper,nextUpper);activeUpper=nextUpper;upperState=nextUpperState;
       if(!wasGrounded && state.grounded)landing=1;
       wasGrounded=state.grounded;previousHp=state.hp??100;

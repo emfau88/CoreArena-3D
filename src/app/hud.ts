@@ -4,10 +4,11 @@ const icon = (kind: 'arc' | 'pulse') => `<svg viewBox="0 0 96 36" aria-hidden="t
     : '<path d="M54 8H85V13H61V21H85V26H54Z" fill="currentColor"/><path d="M72 9L65 18H76L69 27" fill="none" stroke="currentColor" stroke-width="2"/>'}
 </svg>`;
 
-export function weaponHud(pulse = false): string {
+export function weaponHud(pulse = false, rail = false): string {
   return `<div class="weapon-buttons">
     <button id="weapon-arc" type="button" aria-pressed="${!pulse}" title="Automatischer Energiefächer · kurze Reichweite · halten für weitere Salven"><kbd>1</kbd><span class="weapon-icon">${icon('arc')}</span><span class="weapon-name">Arc Lash</span><span class="weapon-type">AUTO-FÄCHER</span><b>∞</b></button>
     <button id="weapon-pulse" type="button" aria-pressed="${pulse}"><kbd>2</kbd><span class="weapon-icon">${icon('pulse')}</span><span class="weapon-name">Pulse</span><span class="weapon-type">REPEATER</span><b id="ammo-count">${pulse ? '54 / 54' : '—'}</b></button>
+    ${rail ? '<button id="weapon-rail" type="button" aria-pressed="false" title="Präziser Einzelschuss · 40 m · sechs Schuss"><kbd>3</kbd><span class="weapon-icon"><svg viewBox="0 0 96 36" aria-hidden="true"><path d="M8 12H46V9H90V14H49V18H90V23H45L34 28H23L20 35H12L16 23H8Z" fill="currentColor"/><path d="M32 3H53V8H32Z" fill="currentColor" opacity=".5"/></svg></span><span class="weapon-name">Railgun</span><b id="rail-ammo">FINDEN</b></button>' : ''}
   </div>`;
 }
 

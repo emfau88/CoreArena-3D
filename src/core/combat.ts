@@ -2,10 +2,11 @@ import type { AimSolution, DiagnosticShot } from './aim';
 import type { Damage } from './match';
 import type { Ray, RayHit, RayWorld, Vec3 } from './types';
 
-export type WeaponId = 'arc' | 'pulse';
+export type WeaponId = 'arc' | 'pulse' | 'rail';
 export const WEAPONS = {
   arc: { name: 'Arc Lash', damage: 35, cooldown: 48, range: 5, coneDegrees: 30, burstTicks: 36, pulseTicks: 8, beams: 5 },
   pulse: { name: 'Pulse Repeater', damage: 10, cooldown: 10, range: 32, speed: 30, radius: 0.08, maxAmmo: 54 },
+  rail: { name: 'Railgun', damage: 70, cooldown: 84, range: 40, maxAmmo: 6 },
 } as const;
 export interface CombatTarget { readonly id: string; readonly center: Vec3; readonly radius: number }
 export interface CombatWorld extends RayWorld { sweepBall(ray: Ray, distance: number, radius: number): RayHit | null }
@@ -18,6 +19,8 @@ export interface WeaponSnapshot {
   readonly selected: WeaponId; readonly ownsPulse: boolean; readonly ammo: number;
   readonly projectiles: readonly Projectile[]; readonly lastArc: ArcShot | null;
   readonly impact: { readonly point: Vec3; readonly tick: number; readonly id: string } | null;
+  readonly ownsRail?: boolean; readonly railAmmo?: number; readonly railReadyAt?: number;
+  readonly lastRail?: { readonly tick: number; readonly start: Vec3; readonly end: Vec3; readonly target: string | null } | null;
 }
 export const directionTo = (a: Vec3, b: Vec3) => {
   const distance = Math.hypot(b.x - a.x, b.y - a.y, b.z - a.z);
@@ -69,33 +72,50 @@ function arcFan(world: RayWorld, origin: Vec3, manual: AimSolution | null, targe
     targetIds:[...new Set(beams.flatMap(beam=>beam.hit && targets.some(t=>t.id===beam.hit!.id)?[beam.hit.id]:[]))]};
 }
 
-export class Combat {
-  constructor(private readonly source = 'player') {}
+export class Combat<Rail extends boolean = false> {
+  constructor(private readonly source = 'player', private readonly railEnabled: Rail = false as Rail) {}
   private selected: WeaponId = 'arc';
   private ownsPulse = false;
   private ammo = 0;
-  private next: Record<WeaponId, number> = { arc: 0, pulse: 0 };
+  private next: Record<WeaponId, number> = { arc: 0, pulse: 0, rail: 0 };
+  private ownsRail = false;
+  private railAmmo = 0;
+  private lastRail: WeaponSnapshot['lastRail'] = null;
   private sequence = 0;
   private projectiles: Projectile[] = [];
   private lastArc: ArcShot | null = null;
   private burst: { tick:number; sequence:number; lockedId?:string } | null = null;
   private impact: WeaponSnapshot['impact'] = null;
-  snapshot(): WeaponSnapshot { return { selected: this.selected, ownsPulse: this.ownsPulse, ammo: this.ammo,
-    projectiles: this.projectiles, lastArc: this.lastArc, impact: this.impact }; }
-  select(id: WeaponId): void { if (id === 'arc' || (this.ownsPulse && this.ammo > 0)) {
+  snapshot(): Omit<WeaponSnapshot, 'selected'> & { selected: Rail extends true ? WeaponId : 'arc' | 'pulse' } {
+    return { selected: this.selected as Rail extends true ? WeaponId : 'arc' | 'pulse', ownsPulse: this.ownsPulse, ammo: this.ammo,
+    projectiles: this.projectiles, lastArc: this.lastArc, impact: this.impact,
+    ...(this.railEnabled ? { ownsRail: this.ownsRail, railAmmo: this.railAmmo, railReadyAt: this.next.rail, lastRail: this.lastRail } : {}) }; }
+  select(id: WeaponId): void { if (id === 'arc' || (id === 'pulse' && this.ownsPulse && this.ammo > 0)
+    || (id === 'rail' && this.railEnabled && this.ownsRail && this.railAmmo > 0)) {
     if(id!==this.selected) this.burst=this.lastArc=null;
     this.selected = id;
   } }
-  cycle(): void { this.select(this.selected === 'arc' ? 'pulse' : 'arc'); }
+  cycle(): void {
+    const available: WeaponId[] = ['arc', ...(this.ownsPulse && this.ammo > 0 ? ['pulse' as const] : []),
+      ...(this.railEnabled && this.railAmmo > 0 ? ['rail' as const] : [])];
+    this.select(available[(available.indexOf(this.selected) + 1) % available.length]!);
+  }
+  addRailAmmo(amount: number): number {
+    if (!this.railEnabled) return 0;
+    const accepted = Math.min(Math.max(0, amount), WEAPONS.rail.maxAmmo - this.railAmmo);
+    if (accepted > 0) this.ownsRail = true;
+    this.railAmmo += accepted; return accepted;
+  }
   addAmmo(amount: number, unlock = false): number {
     if (!this.ownsPulse && !unlock) return 0;
     this.ownsPulse = true;
     const accepted = Math.min(Math.max(0, amount), WEAPONS.pulse.maxAmmo - this.ammo);
     this.ammo += accepted; return accepted;
   }
-  clearEffects(): void { this.projectiles = []; this.burst = this.lastArc = this.impact = null; }
+  clearEffects(): void { this.projectiles = []; this.burst = this.lastArc = this.impact = this.lastRail = null; }
   reset(): void { this.selected = 'arc'; this.ownsPulse = false; this.ammo = this.sequence = 0;
-    this.next = { arc: 0, pulse: 0 }; this.clearEffects(); }
+    this.ownsRail = false; this.railAmmo = 0;
+    this.next = { arc: 0, pulse: 0, rail: 0 }; this.clearEffects(); }
   step(tick: number, firing: boolean, aim: AimSolution | null, camera: Ray | null,
     world: CombatWorld, targets: readonly CombatTarget[], foot?:Vec3): { attacked: boolean; damage: Damage[] } {
     const damage: Damage[] = [];
@@ -107,6 +127,17 @@ export class Combat {
       this.next[kind] = tick + WEAPONS[kind].cooldown;
       if (kind === 'arc') {
         this.burst={tick,sequence:++this.sequence};
+      } else if (kind === 'rail') {
+        // Cast from the shoulder: a long barrel must never fire through nearby cover.
+        const start = origin!, forward = directionTo(start, aim!.firePoint).direction;
+        const hit = world.raycast({ origin: start, direction: forward }, WEAPONS.rail.range);
+        this.lastRail = { tick, start, end: hit?.point ?? along(start, forward, WEAPONS.rail.range), target: hit?.id ?? null };
+        if (hit) {
+          this.impact = { point: hit.point, tick, id: hit.id };
+          damage.push({ source: this.source, target: hit.id, amount: WEAPONS.rail.damage });
+        }
+        this.railAmmo--;
+        if (this.railAmmo === 0) this.selected = 'arc';
       } else {
         const forward=directionTo(aim!.muzzle,aim!.firePoint).direction;
         this.projectiles.push({ id: ++this.sequence, position: aim!.muzzle, direction: forward, remaining: WEAPONS.pulse.range });

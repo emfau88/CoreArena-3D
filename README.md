@@ -6,8 +6,9 @@
   Erkundung und Bosskämpfe. Das Stein-Testlevel ist spielbar, L1.6a–c sind umgesetzt;
   nächste offene Abnahme: L1.5b. [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — aktueller Schwerpunkt.** Training, 1v1 und
-  jetzt **2v2-Teamkampf** sind spielbar (M2.4a). Bot-Routen, Ressourcenplanung und
-  Schwierigkeitswahl bleiben M2.4b; CTF und Liga folgen später.
+  jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und
+  Railgun. Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und Schwierigkeitswahl
+  bleiben M2.4b; CTF und Liga folgen später.
   [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
 
 Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
@@ -21,6 +22,13 @@ ausgearbeitete Adventure-Umgebung ist noch nicht auf die Arena übertragen.
 Bots. 10 Teamabschüsse oder zwei Minuten, kein Freundschaden, getrennte Respawns
 und vollständiger Neustart. 1v1 und Training bleiben auswählbar.
 [M2.4a: Umfang, Prüfung und Grenzen](docs/qa/M2_4_RESULT.md).
+
+**Arena-Zusatz: 56 × 36 m statt 44 × 28 m**, breite Außenwege, zusätzliche Deckung
+und zwei Railgun-Felder auf West- und Ostflanke. Die Teams starten getrennt auf
+beiden Seiten; Arena-Bots können Bodenhindernisse umgehen und die Waffen regulär
+aufnehmen. **Railgun: Taste 3 oder Touch-Button**, sechs Schuss, 70 Schaden,
+40 m Reichweite und 1,4 s Nachladezeit. Nur in Arena, nicht im Adventure.
+[Ausbau und Browserprüfung](docs/qa/ARENA_EXPANSION_RESULT.md).
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
@@ -255,21 +263,24 @@ Er merkt sich einen verlorenen Gegner höchstens 2 s am zuletzt gesehenen Ort un
 feuert ohne Sicht nicht weiter. Zielnachführung erfolgt alle 0,1 s mit begrenztem
 Drehtempo und Zielabweichung. Bereits abgefeuerte Projektile fliegen weiter.
 Beide starten mit Arc Lash; auch der Bot muss Pulse und Munition regulär aufnehmen.
-Der Gegner patrouilliert und verfolgt lokal auf E0. Gezielte Höhenrouten, Umwege bei
-Teamspiel ist mit M2.4a umgesetzt. Umwege, Ressourcenplanung und Schwierigkeitswahl
-bleiben M2.4b; die Bots verwenden bisher lokale Verfolgung und einfache Patrouillen.
+Teamspiel ist mit M2.4a umgesetzt. Auf der erweiterten Arena führen Patrouillen
+durch beide Außenflanken; die vorhandene Umgehungslogik führt um Bodenhindernisse.
+Gezielte Höhenrouten, bedarfsgerechte Ressourcenplanung und Schwierigkeitswahl
+bleiben M2.4b. Waffen werden nur durch tatsächliche Aufnahme freigeschaltet.
 
 | Waffe | Bedienung und Wirkung |
 | --- | --- |
 | Arc Lash | **1**; unbegrenzt, automatische Zielwahl in 5 m, fünf Strahlen im 60°-Fächer; 35 Schaden pro getroffenem Gegner verteilt auf 0,6 s, neue Salve alle 0,8 s; Wände blockieren |
 | Pulse Repeater | **2** nach Waffenpickup; 10 Schaden, 10 Ticks (~0,167 s) Abstand, sichtbare Projektile mit 30 m/s und 32 m Reichweite; maximal 54 Schuss |
+| Railgun — nur Arena | **3** nach Waffenpickup; präziser Sofortstrahl, 70 Schaden, 40 m Reichweite, 84 Ticks (1,4 s) Abstand, maximal sechs Schuss. Erste Wand/Figur stoppt den Strahl; keine automatische Zielwahl |
 
-Mausrad über der Arena wechselt verfügbare Waffen. Leere Pulse fällt auf Arc Lash
+Mausrad über der Arena wechselt verfügbare Waffen. Leere Pulse/Railgun fällt auf Arc Lash
 zurück; ein Pickup wählt niemals automatisch eine andere Waffe. Die Pulse-Waffe
 liegt auf E0 hinter dem Start, Munition auf E1, Armor auf E2 und Heilung links hinten
 auf E0. Nur auf derselben Standfläche und Höhe aufnehmen; volle Ressourcen bleiben
 liegen, Teilmengen bleiben erhalten. Vollständig aufgebrauchte Pickups kehren nach
-10 Sekunden zurück. Tod/Respawn entfernt Pulse und Munition; Neustart setzt auch
+10 Sekunden zurück. Die beiden neuen Arena-Felder auf den Außenflanken enthalten
+je sechs Railgun-Schuss. Tod/Respawn entfernt gefundene Waffen und Munition; Neustart setzt auch
 Pickups und sämtliche Projektile zurück. Freies Training vor Matchstart behält die
 M1-Diagnosewaffe zum Prüfen der Höhen.
 
@@ -289,6 +300,7 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | M2.3 Botwahrnehmung und Kampf | Erledigt; Sicht/Reaktion/Gedächtnis, Waffenregeln und echtes Botduell geprüft |
 | Separater PvE-Ausbau | Technisch geprüft: drei Karten, eigene Gegner, Mini-Geschichte, Verfolgung und neues Kampf-HUD |
 | M2.4a | Begrenztes 2v2 umgesetzt; [Nachweis](docs/qa/M2_4_RESULT.md) |
+| Arena-Zusatz: Map und Railgun | Größere Karte, zwei Waffenfelder, Railgun, E0-Umgehungen; [Nachweis](docs/qa/ARENA_EXPANSION_RESULT.md) |
 | M2.4b–M2.6 | Routen/Ressourcen/Schwierigkeiten, Arena-Ausbau und Gesamtabnahme offen |
 
 [M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).

@@ -33,6 +33,7 @@ export class ArenaView {
   private readonly animateEnvironment: ((dt: number) => void) | void;
   private lastAmmo=0;
   private lastArcTick=-1;
+  private lastRailTick=-1;
   fighterDiagnostics(){return this.fighter.diagnostics();}
   pickupDiagnostics(){return this.combat.diagnostics();}
   arcDiagnostics(){return this.combat.arcDiagnostics();}
@@ -95,7 +96,9 @@ export class ArenaView {
     this.actor.rotation.y = aim ? Math.atan2(aim.firePoint.x - current.position.x, aim.firePoint.z - current.position.z) : current.facing;
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
     const arcTick=weapons?.lastArc?.tick??-1;
-    const fired=weapons?.selected==='pulse'?weapons.ammo<this.lastAmmo:arcTick>this.lastArcTick;
+    const railTick=weapons?.lastRail?.tick??-1;
+    const fired=(weapons?.selected==='pulse'?weapons.ammo<this.lastAmmo:arcTick>this.lastArcTick)||railTick>this.lastRailTick;
+    this.lastRailTick=railTick;
     this.lastAmmo=weapons?.ammo??0;this.lastArcTick=arcTick;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt,{grounded:current.grounded,
       verticalSpeed:current.velocity.y,velocity:current.velocity,facing:this.actor.rotation.y,weapon:weapons?.selected??'arc',shot:fired,

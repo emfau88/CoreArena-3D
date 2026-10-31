@@ -1,7 +1,7 @@
 import type { RayWorld, Snapshot, Vec3 } from './types';
 import { directionTo } from './combat';
 
-export type PickupKind = 'pulse' | 'ammo' | 'health' | 'armor';
+export type PickupKind = 'pulse' | 'ammo' | 'health' | 'armor' | 'rail';
 export interface PickupDefinition { readonly id: string; readonly kind: PickupKind; readonly position: Vec3; readonly surface: string; readonly amount: number }
 export interface PickupState extends PickupDefinition { readonly remaining: number; readonly respawnAt: number }
 export const PICKUP_RESPAWN_TICKS = 10 * 60;

@@ -6,8 +6,8 @@ import { createPickupModel } from './gear';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { ArcView } from './arcView';
 
-const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e };
-const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG' };
+const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e, rail: 0xffcd72 };
+const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG', rail: 'RAILGUN · 6 SCHUSS' };
 export class CombatView {
   private readonly root = new THREE.Group();
   private readonly arc = new ArcView(this.root);
@@ -19,6 +19,9 @@ export class CombatView {
   diagnostics(){return [...this.pickups].map(([id,v])=>({id,visible:v.group.visible,remaining:v.remaining,particles:v.particles.visible}));}
   private readonly bolts: THREE.Mesh[] = [];
   private readonly impact = new THREE.Mesh(new THREE.SphereGeometry(0.16, 8, 6), new THREE.MeshBasicMaterial({ color: 0xa1dcff }));
+  private readonly rail = new THREE.Mesh(new THREE.CylinderGeometry(.045, .045, 1, 6),
+    new THREE.MeshBasicMaterial({ color: 0xffdf9a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false }));
+  private readonly railDirection = new THREE.Vector3();
   constructor(scene: THREE.Scene, definitions: readonly PickupDefinition[]) {
     for (const item of definitions) {
       const group = new THREE.Group(); group.position.set(item.position.x, item.position.y + 0.04, item.position.z);
@@ -50,12 +53,22 @@ export class CombatView {
       const spark = new THREE.Mesh(new THREE.OctahedronGeometry(0.055), material);
       spark.position.set(Math.sin(i * 2.4) * 0.27, Math.cos(i * 1.3) * 0.2, Math.cos(i * 2.4) * 0.27); this.impact.add(spark);
     }
-    this.root.add(this.impact); scene.add(this.root); this.root.visible = false;
+    this.root.add(this.impact, this.rail); this.rail.visible = false; scene.add(this.root); this.root.visible = false;
   }
   update(active: boolean, tick: number, weapons?: WeaponSnapshot, pickups: readonly PickupState[] = [], sideView = false): void {
     this.root.visible = active;
     if (!active || !weapons) return;
     this.arc.update(tick,weapons.lastArc);
+    const rail = weapons.lastRail, age = rail ? tick - rail.tick : Infinity;
+    this.rail.visible = age >= 0 && age < 12;
+    if (rail && this.rail.visible) {
+      this.railDirection.set(rail.end.x - rail.start.x, rail.end.y - rail.start.y, rail.end.z - rail.start.z);
+      const length = this.railDirection.length();
+      this.rail.scale.set(1 + age * .12, length, 1 + age * .12);
+      this.rail.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), this.railDirection.normalize());
+      this.rail.position.set((rail.start.x + rail.end.x) / 2, (rail.start.y + rail.end.y) / 2, (rail.start.z + rail.end.z) / 2);
+      this.rail.material.opacity = 1 - age / 12;
+    }
     for (const item of pickups) {
       const visual = this.pickups.get(item.id)!;
       if(tick<this.lastTick)visual.flash=-100;

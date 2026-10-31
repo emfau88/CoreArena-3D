@@ -6,6 +6,12 @@ M2.4 wurde nach Nutzerabstimmung geteilt: Teamkampf zuerst, Wege/Ressourcen/
 Schwierigkeiten bleiben M2.4b. [Umfang und Nachweis](../qa/M2_4_RESULT.md).
 M2.5–M2.6 und M3–M5 bleiben offen; es gibt keine automatische Freigabe.
 
+Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
+Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutzen
+vorhandene Systeme. [Prüfstand](../qa/ARENA_EXPANSION_RESULT.md). M2.4b umfasst weiter
+Höhenrouten, bedarfsgerechte Ressourcenwahl und Schwierigkeiten; diese nicht als
+erledigt behandeln. E0-Umgehungen und die neue Waffe nicht erneut einplanen.
+
 Adventure bleibt eine eigenständige, derzeit pausierte Variante. Das Steinlevel
 mit L1.6a–c bleibt unverändert; L1.5b ist offen. Arena ist keine Voraussetzung für
 diese Abnahme. Maßgeblich ist der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md).

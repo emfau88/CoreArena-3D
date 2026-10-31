@@ -5,6 +5,11 @@ Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind tech
 umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
 M2.4b (Routen/Ressourcen/Schwierigkeiten), M2.5–M2.6 und M3–M5 bleiben offen.
 
+**Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
+getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
+Höhennavigation, bedarfsgerechte Ressourcenwahl und Schwierigkeit bleiben offen.
+[Ausbau/Prüfung](../qa/ARENA_EXPANSION_RESULT.md). Adventure bleibt unverändert.
+
 **Adventure / PvE-Kampagne bleibt eine separate Spielvariante, derzeit pausiert.**
 Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
 L1.6a–c sind bereits umgesetzt, L1.5b bleibt offen. Arena-Pakete sind keine nächsten
@@ -155,7 +160,8 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M2.2 ✅ Waffen und Ressourcen** | Arc Lash/Pulse, Auswahl, Munition und Pickups; Zielregel dokumentiert | Erledigt; Nutzer-Spielurteil offen | 15–30 Min. ursprünglicher Planwert | 21 Kern-/Physiktests und acht Browserfälle einschließlich Waffenwahl, Pulse-Treffern, Fallback und Armor auf E2; [Nachweis](../qa/M2_2_RESULT.md) |
 | **M2.3 ✅ Botwahrnehmung und Kampf** | Spielbares 1v1, begrenzte 3D-Sicht, kopierte Erinnerung, Reaktion und gemeinsame Waffenbedienung | Erledigt; Nutzer-Spielurteil offen | 25–50 Min. ursprünglicher Planwert | Verdeckte Gegner verborgen; keine vorzeitige Reaktion; echtes Duell mit Schaden/Kills/Respawns; [Nachweis](../qa/M2_3_RESULT.md) |
 | **M2.4a ✅ Begrenztes Teamspiel** | 2v2, sichtbare Gegnerwahl, Teamkennzeichnung, unabhängige Leben/Waffen/Respawns und Teamwertung | M2.3; separat von Adventure umgesetzt | Keine separat gemessene Istzeit | Vollständiger Desktop-/Touch-Match, Neustart, 1v1-Regression; [Nachweis](../qa/M2_4_RESULT.md) |
-| **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — offen** | Blockierte Wege und Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile | M2.4a; neuer begrenzter Auftrag | Vor Freigabe neu schätzen; alter Gesamtwert 15–30 Min. gilt nicht als Restschätzung | Pflichtwege und Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
+| **Arena-Zusatz ✅ Map und Railgun** | Größere Spielfläche, zwei Railgun-Felder, dritte Arena-Waffe, E0-Umgehungen und Außenpatrouillen | Separater Nutzerauftrag nach M2.4a | Keine separat gemessene Istzeit | Beide Felder, räumliche Treffer und Desktop-/Touch-Spiel; [Nachweis](../qa/ARENA_EXPANSION_RESULT.md) |
+| **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — offen** | Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile; E0-Umgehungen bereits vorhanden | M2.4a und Arena-Zusatz; neuer begrenzter Auftrag | Vor Freigabe neu schätzen; alter Gesamtwert 15–30 Min. gilt nicht als Restschätzung | Pflichtwege und bedarfsgerechte Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
 | **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 10–20 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
 | **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
 | **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
