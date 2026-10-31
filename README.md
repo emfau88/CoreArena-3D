@@ -34,8 +34,12 @@ aufnehmen. **Railgun: Taste 3 oder Touch-Button**, sechs Schuss, 70 Schaden,
 und Bots. Bots springen auf E1/E2, holen benötigte Vorräte und kehren zurück.
 Vor dem Match **Leicht / Normal / Schwer** wählen: Reaktionszeit, Zielgenauigkeit
 und Feuerpausen ändern sich; HP, Rüstung, Sichtweite und Waffenwerte bleiben gleich.
-[Prüfung und Grenzen](docs/qa/M2_4B_RESULT.md). M2.5 ist als nächstes freigegeben,
-M2.6 und Adventure-L1.5b bleiben offen.
+[Prüfung und Grenzen](docs/qa/M2_4B_RESULT.md).
+
+**M2.5:** klarere blaue/rote Startplätze und Höhenflächen, kompakteres Match-HUD,
+Pausenmenü über **Menü / Esc** mit Kamera, Ton, Vollbild, Bot-Stufe und Neustart.
+Treffer, Schaden, Funde und Matchende geben kurzes Bild-/Tonfeedback.
+[Prüfung und Bilder](docs/qa/M2_5_RESULT.md). M2.6 und Adventure-L1.5b bleiben offen.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
@@ -138,7 +142,7 @@ Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
 
 Eigenständiges Desktop-Spielprojekt. **M0, M1 und M2.1–M2.3 sind umgesetzt und technisch
-geprüft.** Zusätzlich sind M2.4a (2v2) und M2.4b (Bot-Wege/Ressourcen/Stufen) umgesetzt; M2.5 ist freigegeben, M2.6 bleibt offen.
+geprüft.** Zusätzlich sind M2.4a (2v2), M2.4b (Bot-Wege/Ressourcen/Stufen) und M2.5 (Arena/HUD/Feedback) umgesetzt; M2.6 bleibt offen.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
@@ -310,7 +314,8 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | M2.4a | Begrenztes 2v2 umgesetzt; [Nachweis](docs/qa/M2_4_RESULT.md) |
 | Arena-Zusatz: Map und Railgun | Größere Karte, zwei Waffenfelder, Railgun, E0-Umgehungen; [Nachweis](docs/qa/ARENA_EXPANSION_RESULT.md) |
 | M2.4b | Höhenrouten/Ressourcen/Schwierigkeiten und Adventure-Bewegung umgesetzt |
-| M2.5 / M2.6 | Arena/Feedback freigegeben; Gesamtabnahme offen |
+| M2.5 | Arena/HUD/Feedback umgesetzt; [Prüfstand](docs/qa/M2_5_RESULT.md) |
+| M2.6 | Gesamtabnahme offen |
 
 [M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 

@@ -44,7 +44,7 @@ export class CombatBot {
       this.world.setTargetPosition(actor.life.id, actorCenter(actor.position));
       this.world.setTargetEnabled(actor.life.id, actor.life.alive);
     }
-    if (!life.alive) return { attacked: false, damage: [] };
+    if (!life.alive) return { attacked: false, damage: [], weapon: this.weapons.snapshot().selected };
     const own = this.snapshot();
     const enemies = actors.filter(actor => actor.life.alive && actor.life.team !== life.team);
     const seen = enemies.map(actor => perceive(this.world, own.position, this.brain.heading(),
@@ -60,6 +60,7 @@ export class CombatBot {
         : inventory.ownsPulse && inventory.ammo > 0 && distance > 4.4 ? 'pulse' : 'arc');
     }
     this.decision = this.brain.step(tick, own, visible, this.weapons.snapshot());
+    const weapon = this.weapons.snapshot().selected;
     const attack = this.weapons.step(tick, this.decision.firing, this.decision.aim, this.decision.ray,
       this.world, seen, own.position);
     let movement = this.decision.movement;
@@ -92,7 +93,7 @@ export class CombatBot {
     }
     this.simulation.step(movement);
     if (this.snapshot().position.y < -8) attack.damage.push({ target: this.fighter.id, amount: 1000 });
-    return attack;
+    return { ...attack, weapon };
   }
   dispose(): void { this.world.dispose(); }
 }

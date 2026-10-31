@@ -21,6 +21,7 @@ import { createCombatBot, type CombatBot } from './combatBot';
 import { actorCenter, type BotDifficulty } from '../core/bot';
 import { BotView } from '../render/botView';
 import { ARENA_FIGHTERS, arenaRoster, fighterTarget, type ArenaMode } from '../arena/teams';
+import { ArenaFeedback } from './arenaFeedback';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
   const fighters = ARENA_FIGHTERS.filter(fighter => fighter.id !== 'player');
@@ -45,17 +46,21 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   let match = new ArenaMatch(arenaRoster(arenaMode));
   let aim: AimSolution | null = null;
   let view: ArenaView;
-  try { view = new ArenaView(host, EXPANDED_ARENA, { pickups: EXPANDED_PICKUPS, build: buildExpandedArena, shadowSpan: 35 }); }
+  try { view = new ArenaView(host, EXPANDED_ARENA, { pickups: EXPANDED_PICKUPS, build: buildExpandedArena, shadowSpan: 35,
+    playerColor: 0x8ac2e5, playerLabel: 'DU' }); }
   catch (error) { world.dispose(); probeWorld.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
   const botViews = bots.map(bot => new BotView(view.scene, bot.fighter.team, bot.fighter.id === 'ally' ? 'VERBÜNDETER' : 'GEGNER'));
   host.dataset.arena = 'true';
   // Arena fights need more surrounding space than the close Adventure camera.
   view.camera.trackPlayer(M1_ARENA.spawn, matchMedia('(any-pointer: coarse)').matches ? 1.4 : 1.25); view.resize();
+  view.camera.containArena(29, 19);
   const simulation = new Simulation(world, M1_ARENA.spawn, COMPACT_JUMP);
   const clock = new FixedClock();
   const diagnosticsAllowed = import.meta.env.DEV || import.meta.env.MODE === 'test';
   let diagnostics = false;
   let paused = false;
+  let menuPaused = false;
+  let displayReady = false;
   let previous = simulation.snapshot();
   let current = previous;
   let lastTime = performance.now();
@@ -76,7 +81,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <option value="easy">Leicht</option><option value="normal" selected>Normal</option><option value="hard">Schwer</option></select></label>
       <button id="bot-start" type="button">Botmatch starten</button>
       <button id="pve-start" type="button">Mini-Kampagne: Die drei Siegel</button>
-      <button id="match-start" type="button">Trainingsmatch starten</button><button id="match-restart" type="button" hidden>Neu starten</button>
+      <button id="match-start" type="button">Trainingsmatch starten</button>
       <small id="match-hint">2v2: Du + ein blauer Bot gegen zwei rote Bots. Alternativ 1v1 oder Training.</small>
       <small id="team-status" hidden></small></div>
       <div id="weapon-panel" hidden>${weaponHud(false, true) }
@@ -90,11 +95,17 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <footer><span><kbd>W A S D</kbd> Bewegen</span><span><kbd>SHIFT</kbd> Sprinten</span>
       <span><kbd>SPACE</kbd> Springen</span><span><kbd>MAUS</kbd> Zielen / Feuer halten</span>
       <button id="camera-toggle" type="button"><kbd>V</kbd> <span id="camera-label">Gerade Ansicht</span></button></footer>
+      <button id="arena-menu" type="button" hidden>Menü <kbd>Esc</kbd></button>
     </div>
     <div id="pause" hidden><div><span class="eyebrow">PAUSE</span><h2>Bereit, wenn du es bist.</h2>
-    <button id="resume" type="button">Weiter</button></div></div>
+    <button id="resume" type="button">Weiter</button>
+    <div id="arena-settings"><button id="match-restart" type="button" hidden>Runde neu starten</button>
+    <button id="arena-home" type="button">Spielauswahl</button></div>
+    <p class="arena-controls">WASD · Bewegung / Shift · Sprint / Leertaste · Sprung<br>1–3 · Waffen / V · Ansicht / F · Vollbild</p>
+    <small>Bot-Stufe gilt ab der nächsten Runde.</small></div></div>
     <div id="match-result" hidden><div><span class="eyebrow">RUNDE BEENDET</span><h2 id="result-title"></h2>
-    <p id="result-detail"></p><button id="result-restart" type="button">Noch einmal spielen</button></div></div>
+    <p id="result-detail"></p><button id="result-restart" type="button">Noch einmal spielen</button>
+    <button id="result-arena-home" type="button">Spielauswahl</button></div></div>
     <pre id="diagnostics" hidden></pre>`);
   const label = host.querySelector<HTMLElement>('#camera-label')!;
   const pausePanel = host.querySelector<HTMLElement>('#pause')!;
@@ -104,6 +115,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const probeLabel = host.querySelector<HTMLElement>('#probe-status')!;
   const probeButton = host.querySelector<HTMLButtonElement>('#probe-start')!;
   const element = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
+  const feedback = new ArenaFeedback(host, element('arena-settings'));
+  element('arena-settings').append(element('camera-toggle'));
   const startProbe = () => { if (arenaMode !== 'training') return; probe.start(); probeButton.disabled = true; };
   const toggleCamera = () => {
     view.camera.toggle();
@@ -122,6 +135,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   function setPaused(value: boolean) {
     value ||= input.touchEnabled && innerHeight > innerWidth;
     paused = value;
+    feedback.pause(value);
     input.clear();
     clock.reset();
     lastTime = performance.now();
@@ -129,22 +143,31 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     pausePanel.hidden = !value;
   }
   window.addEventListener('blur', () => setPaused(true), options);
-  window.addEventListener('focus', () => { if (!document.hidden) setPaused(false); }, options);
-  document.addEventListener('visibilitychange', () => setPaused(document.hidden || !document.hasFocus()), options);
+  window.addEventListener('focus', () => { if (!document.hidden) setPaused(menuPaused); }, options);
+  document.addEventListener('visibilitychange', () => setPaused(menuPaused || document.hidden || !document.hasFocus()), options);
   window.addEventListener('resize', () => {
     view.resize();
-    if (input.touchEnabled) setPaused(document.hidden || !document.hasFocus());
+    if (input.touchEnabled) setPaused(menuPaused || document.hidden || !document.hasFocus());
   }, options);
   host.querySelector('#resume')!.addEventListener('click', () => {
+    menuPaused = false;
     view.renderer.domElement.focus();
     setPaused(false);
   }, options);
+  element('arena-menu').addEventListener('click', () => { menuPaused = true; setPaused(true); }, options);
+  window.addEventListener('keydown', event => {
+    if (event.code === 'Escape' && !event.repeat) { menuPaused = !paused; setPaused(menuPaused); }
+  }, options);
+  for (const id of ['arena-home', 'result-arena-home']) element(id).addEventListener('click', () => location.assign(location.pathname), options);
   host.querySelector('#camera-toggle')!.addEventListener('click', toggleCamera, options);
   probeButton.addEventListener('click', startProbe, options);
   for (const id of ['arc', 'pulse', 'rail'] as WeaponId[]) element(`weapon-${id}`).addEventListener('click', () => {
     if (match.snapshot().phase === 'running' && match.snapshot().actors.player!.alive) combat.select(id);
   }, options);
   function restartMatch(mode = arenaMode) {
+    const selectedDifficulty = (element('bot-difficulty') as HTMLSelectElement).value;
+    difficulty = selectedDifficulty === 'easy' || selectedDifficulty === 'hard' ? selectedDifficulty : 'normal';
+    menuPaused = false; feedback.reset();
     arenaMode = mode;
     host.dataset.arenaRunning = 'true';
     match = new ArenaMatch(arenaRoster(arenaMode));
@@ -159,7 +182,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     probeSimulation.reset(); probe = new TraversalProbe(M1_ARENA.links ?? []); probeButton.disabled = false;
     for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, arenaMode === 'training');
     element('team-start').hidden = true;
-    element('difficulty-control').hidden = true;
+    element('arena-settings').append(element('difficulty-control'));
+    element('arena-menu').hidden = false;
     element('adventure-start').hidden = true; element('pve-start').hidden = true;
     element('bot-start').hidden = true;
     element('match-start').hidden = true; element('match-restart').hidden = false;
@@ -176,10 +200,6 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   }
   element('team-start').addEventListener('click', () => restartMatch('teams'), options);
-  element('bot-difficulty').addEventListener('change', event => {
-    const value = (event.target as HTMLSelectElement).value;
-    if (value === 'easy' || value === 'normal' || value === 'hard') difficulty = value;
-  }, options);
   element('bot-start').addEventListener('click', () => restartMatch('duel'), options);
   element('pve-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve`), options);
   element('adventure-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve&level=stone&adventure=1`), options);
@@ -187,6 +207,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   for (const id of ['match-restart', 'result-restart']) element(id).addEventListener('click', () => restartMatch(), options);
 
   function frame(now: number) {
+    if (!displayReady) {
+      const fullscreen = host.querySelector('#fullscreen-toggle');
+      if (fullscreen) { element('arena-settings').append(fullscreen); displayReady = true; }
+    }
     const elapsed = Math.max(0, (now - lastTime) / 1000);
     lastTime = now;
     let alpha = 1;
@@ -214,6 +238,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         const cameraRay = canPlay && input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
         aim = cameraRay ? solveAim(world, cameraRay, current.position) : null;
         if (before.phase === 'ready') weapon.step(current.tick, canPlay && firing, aim);
+        const shotWeapon = combat.snapshot().selected;
         const attack = before.phase === 'running' ? combat.step(before.tick + 1, canPlay && firing, aim, cameraRay, world,
           arenaMode !== 'training' ? playingBots.filter(bot => bot.fighter.team !== playerBefore.team && before.actors[bot.fighter.id]!.alive)
             .map(bot => ({ ...fighterTarget(bot.fighter), center: actorCenter(bot.snapshot().position) }))
@@ -225,6 +250,25 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         match.step(damage, [...attack.attacked ? ['player'] : [], ...botAttacks.filter(attack => attack.attacked).map(attack => attack.id)]);
         const after = match.snapshot();
         const playerAfter = after.actors.player!;
+        if (before.phase === 'running') {
+          if (attack.attacked) feedback.play(shotWeapon);
+          for (const attack of botAttacks.filter(attack => attack.attacked)) {
+            const foot = playingBots.find(bot => bot.fighter.id === attack.id)!.snapshot().position;
+            const distance = Math.hypot(foot.x - current.position.x, foot.z - current.position.z);
+            if (distance < 16 && attack.weapon) feedback.play(attack.weapon, .35 * (1 - distance / 20), (foot.x - current.position.x) / 16);
+          }
+          const confirmed = damage.find(hit => hit.source === 'player' && before.actors[hit.target] && after.actors[hit.target]
+            && after.actors[hit.target]!.hp + after.actors[hit.target]!.armor < before.actors[hit.target]!.hp + before.actors[hit.target]!.armor);
+          if (confirmed) {
+            const point = playingBots.find(bot => bot.fighter.id === confirmed.target)?.snapshot().position
+              ?? M1_ARENA.targets?.find(target => target.id === confirmed.target)?.center;
+            if (point) feedback.confirmedHit(after.tick, view.projectedPosition(point));
+          }
+          if (playerAfter.hp + playerAfter.armor < playerBefore.hp + playerBefore.armor) feedback.damaged(after.tick, !playerAfter.alive);
+          if (after.scores.blue > before.scores.blue) feedback.announce(after.tick, 'PUNKT FÜR BLAU');
+          else if (after.scores.red > before.scores.red) feedback.announce(after.tick, 'PUNKT FÜR ROT');
+          if (after.phase === 'ended') feedback.play('result');
+        }
         if (before.phase === 'running') {
           for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, arenaMode === 'training' && after.actors[target.id]!.alive);
           for (const bot of playingBots) {
@@ -241,8 +285,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
             if (playerAfter.alive && !playerBefore.alive) { current = simulation.reset(playerSpawn()); previous = current; view.camera.snap(current.position); weapon.reset(); combat.reset(); }
           }
         }
-        if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount) =>
-          kind === 'rail' ? combat.addRailAmmo(amount) : kind === 'pulse' || kind === 'ammo' ? combat.addAmmo(amount, kind === 'pulse') : match.restore('player', kind === 'health' ? 'hp' : 'armor', amount));
+        if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount) => {
+          const taken = kind === 'rail' ? combat.addRailAmmo(amount) : kind === 'pulse' || kind === 'ammo' ? combat.addAmmo(amount, kind === 'pulse') : match.restore('player', kind === 'health' ? 'hp' : 'armor', amount);
+          if (taken > 0) { feedback.play('pickup'); feedback.announce(after.tick,
+            `${kind === 'rail' ? 'RAILGUN' : kind === 'pulse' ? 'PULSE' : kind === 'ammo' ? 'MUNITION' : kind === 'health' ? 'HEILUNG' : 'RÜSTUNG'} +${taken}`); }
+          return taken;
+        });
         if (after.phase === 'running') for (const bot of playingBots) pickups.step(after.tick, after.actors[bot.fighter.id]!.alive ? bot.snapshot() : null, bot.world, (kind, amount) =>
           kind === 'rail' ? bot.weapons.addRailAmmo(amount) : kind === 'pulse' || kind === 'ammo' ? bot.weapons.addAmmo(amount, kind === 'pulse') : match.restore(bot.fighter.id, kind === 'health' ? 'hp' : 'armor', amount));
         if (probe.status !== 'ready' && after.phase !== 'ended') probeSimulation.step(probe.command(probeSimulation.snapshot()));
@@ -256,7 +304,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       const inventory = combat.snapshot();
       if (arenaMode === 'teams') {
         const ally = state.actors.ally!;
-        element('team-status').textContent = ally.alive ? `VERBÜNDETER · ${ally.hp} HP / ${ally.armor} Rüstung` : `VERBÜNDETER · Respawn ${(ally.respawnTicks / 60).toFixed(1)} s`;
+        element('team-status').textContent = ally.alive ? `VERBÜNDETER · ${ally.hp} HP` : `VERBÜNDETER · zurück in ${(ally.respawnTicks / 60).toFixed(1)} s`;
       }
       element('ammo-count').textContent = inventory.ownsPulse ? `${inventory.ammo} / 54` : 'FINDEN';
       element('weapon-arc').setAttribute('aria-pressed', String(inventory.selected === 'arc'));
@@ -276,7 +324,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       (element('armor-bar') as HTMLProgressElement).value = player.armor;
       element('life-panel').dataset.low = String(player.hp > 0 && player.hp <= 30);
       element('life-status').textContent = !player.alive ? `Eliminiert · Respawn in ${(player.respawnTicks / 60).toFixed(1)} s`
-        : player.protectionTicks > 0 ? `Spawn-Schutz · ${(player.protectionTicks / 60).toFixed(1)} s` : 'Bereit';
+        : player.protectionTicks > 0 ? `Spawn-Schutz · ${(player.protectionTicks / 60).toFixed(1)} s` : '';
       element('match-result').hidden = state.phase !== 'ended';
       if (state.phase === 'ended') {
         element('result-title').textContent = state.winner === 'draw' ? 'Unentschieden.' : state.winner === 'blue' ? 'Blau gewinnt.' : 'Rot gewinnt.';
@@ -300,6 +348,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera));
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
       probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
+    feedback.draw(match.snapshot().tick);
     frameId = requestAnimationFrame(frame);
   }
   // Read-only observability is compiled into test builds only. No setters or result injection.
@@ -315,7 +364,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           marker: { x: view.marker.position.x, z: view.marker.position.z },
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           weapons: combat.snapshot(), pickups: pickups.snapshot(),
-          arenaMode, difficulty,
+          arenaMode, difficulty, audio: feedback.diagnostics(),
           bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
           bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
             resourceGoal: bot.resourceGoal,
@@ -337,6 +386,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     cancelAnimationFrame(frameId);
     abort.abort();
     input.dispose();
+    feedback.dispose();
     world.dispose();
     probeWorld.dispose();
     bots.forEach(bot => bot.dispose());

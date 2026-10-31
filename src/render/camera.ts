@@ -13,19 +13,23 @@ export class ArenaCamera {
   private followFactor = 0.42;
   private viewScale = 1;
   private mobile = false;
+  private tracked: Vec3 = { x: 0, y: 0, z: 0 };
+  private bounds: { halfX: number; halfZ: number } | null = null;
+  containArena(halfX: number, halfZ: number): void { this.bounds = { halfX, halfZ }; this.place(); }
   constructor() { this.place(); }
   trackPlayer(position: Vec3, viewScale = 1, initialView: 'straight' | 'side' = 'straight'): void {
     this.followFactor = 1; this.viewScale = viewScale;
     this.horizontalView = initialView === 'side'; this.mode = initialView; this.snap(position);
   }
   snap(position: Vec3): void {
+    this.tracked = position;
     this.focus.set(position.x * this.followFactor, 0, position.z * this.followFactor);
     this.place();
   }
   toggle(): void {
     this.mode = this.mode === 'side' ? 'straight' : this.mode === 'straight' ? 'isometric'
       : this.horizontalView ? 'side' : 'straight';
-    this.place();
+    if (this.bounds) this.snap(this.tracked); else this.place();
   }
   resize(width: number, height: number, mobile = false): void {
     this.mobile = mobile;
@@ -36,8 +40,10 @@ export class ArenaCamera {
     this.camera.top = viewHeight / 2;
     this.camera.bottom = -this.camera.top;
     this.camera.updateProjectionMatrix();
+    if (this.bounds) this.place();
   }
   follow(position: Vec3, dt: number, velocity?: Vec3): void {
+    this.tracked = position;
     const blend = 1 - Math.exp(-5 * dt);
     const lead = this.mobile && this.followFactor === 1 ? .35 : 0;
     this.focus.x += (position.x * this.followFactor + (velocity?.x ?? 0) * lead - this.focus.x) * blend;
@@ -54,6 +60,17 @@ export class ArenaCamera {
     if (this.mode === 'side') this.offset.set(42, 58, 0);
     else if (this.mode === 'straight') this.offset.set(0, 58, 42);
     else this.offset.set(26, 58, 36);
+    // The rotated viewport can exceed the map's depth. Keep its player follow
+    // unrestricted so an elevated fighter never disappears behind the top HUD.
+    if (this.bounds && this.mode === 'straight') {
+      const length = this.offset.length(), horizontal = Math.hypot(this.offset.x, this.offset.z);
+      const depth = this.camera.top * length / this.offset.y;
+      const xExtent = this.camera.right * this.offset.z / horizontal + depth * this.offset.x / horizontal;
+      const zExtent = this.camera.right * this.offset.x / horizontal + depth * this.offset.z / horizontal;
+      const xLimit = Math.max(0, this.bounds.halfX - xExtent), zLimit = Math.max(0, this.bounds.halfZ - zExtent);
+      this.focus.x = THREE.MathUtils.clamp(this.focus.x, -xLimit, xLimit);
+      this.focus.z = THREE.MathUtils.clamp(this.focus.z, -zLimit, zLimit);
+    }
     this.camera.position.copy(this.focus).add(this.offset);
     this.camera.lookAt(this.focus);
     this.camera.updateMatrixWorld();

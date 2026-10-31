@@ -46,5 +46,6 @@ Testbuild/Typecheck erfolgreich. Touch-Emulation ist kein tatsächlicher Handyte
 Gezielte Navigation für diese Arena und ihre expliziten Höhenverbindungen;
 kein allgemeiner Navmesh-Generator, kein vorgetäuschtes Wissen über verdeckte Gegner.
 Schwierigkeitsgefühl und echte Smartphone-Leistung brauchen persönliche Abnahme.
-M2.5 ist ausdrücklich freigegeben und folgt separat. M2.6 und Adventure-L1.5b offen.
+M2.5 wurde anschließend separat umgesetzt: [Nachweis](M2_5_RESULT.md).
+M2.6 und Adventure-L1.5b bleiben offen.
 CTF-3.0 und Hexwars unverändert.

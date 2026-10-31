@@ -5,6 +5,7 @@ import type { MatchSnapshot } from '../../src/core/match';
 import type { PickupState } from '../../src/core/pickups';
 interface State {
   snapshot: Snapshot; weapons: WeaponSnapshot; match: MatchSnapshot; paused: boolean; pickups: PickupState[];
+  audio: { state: string; muted: boolean; played: Record<string, number>; peak: number };
   targets: { id: string; screen: { x: number; y: number } }[];
   bots: { id: string; team: string; snapshot: Snapshot; screen: { x: number; y: number }; weapons: WeaponSnapshot }[];
 }
@@ -70,6 +71,16 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} expand
     expect((await read(page)).weapons.railAmmo).toBe(6);
     await page.screenshot({ path: info.outputPath('east-rail.png') });
     const tour = await read(page);
+    expect(tour.audio.state).toBe('running'); expect(tour.audio.peak).toBeGreaterThan(0);
+    expect(tour.audio.played.rail).toBeGreaterThanOrEqual(6); expect(tour.audio.played.hit).toBeGreaterThan(0);
+    expect(tour.audio.played.pickup).toBeGreaterThan(0);
+    await click('#arena-menu'); await expect(page.locator('#pause')).toBeVisible();
+    const pausedTick = (await read(page)).match.tick;
+    await page.waitForTimeout(300); expect((await read(page)).match.tick).toBe(pausedTick);
+    await click('#arena-sound'); expect((await read(page)).audio.muted).toBe(true);
+    await page.screenshot({ path: info.outputPath('pause-settings.png') });
+    await click('#arena-sound'); expect((await read(page)).audio.muted).toBe(false);
+    await click('#resume'); expect((await read(page)).paused).toBe(false);
     // New match with actual team spawns, Rail pickup and normal player inputs.
     await page.reload(); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true'); await click('#team-start');
     await walk(-20, 3); expect((await read(page)).weapons.railAmmo).toBe(6); await click('#weapon-rail');
@@ -94,12 +105,13 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} expand
       await page.waitForTimeout(160);
     }
     await release(); expect(state.match.phase).toBe('ended'); expect(railFired).toBe(true); expect(botRail).toBe(true);
+    expect(state.audio.played.result).toBe(1);
     await page.screenshot({ path: info.outputPath('team-result.png') });
     const result = state.match; await click('#result-restart'); state = await read(page);
     expect(state.match.scores).toEqual({ blue: 0, red: 0 }); expect(state.weapons.ownsRail).toBe(false);
     expect(state.bots.every(bot => !bot.weapons.ownsRail && !bot.weapons.lastRail)).toBe(true);
     expect(errors).toEqual([]);
-    await info.attach('arena-expansion', { body: JSON.stringify({ mobile, shots, tour, result, restarted: state.match, railFired, botRail, errors }), contentType: 'application/json' });
+    await info.attach('arena-expansion', { body: JSON.stringify({ mobile, shots, tour, result, audio: state.audio, restarted: state.match, railFired, botRail, errors }), contentType: 'application/json' });
   } catch (error) {
     await page.screenshot({ path: info.outputPath('failure.png') });
     await info.attach('failure-state', { body: JSON.stringify(await read(page)), contentType: 'application/json' });

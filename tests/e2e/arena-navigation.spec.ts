@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import type { Snapshot } from '../../src/core/types';
 import type { MatchSnapshot } from '../../src/core/match';
 interface State {
-  snapshot: Snapshot; match: MatchSnapshot; difficulty: string;
+  snapshot: Snapshot; match: MatchSnapshot; difficulty: string; camera: string; screen: { x: number; y: number };
   probe: { status: string; visited: string[] };
   bots: { resourceGoal: string | null; snapshot: Snapshot }[];
 }
@@ -41,9 +41,19 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} Advent
     await expect.poll(async () => (await read(page)).match.actors.player!.armor).toBe(100);
     await page.screenshot({ path: info.outputPath('e2-supply.png') });
     const route = await read(page);
+    if (mobile) { await page.locator('#arena-menu').tap(); await page.locator('#camera-toggle').tap(); await page.locator('#resume').tap(); }
+    else await page.keyboard.press('KeyV');
+    expect((await read(page)).camera).toBe('isometric');
+    await page.waitForTimeout(300);
+    const screen = (await read(page)).screen;
+    expect(screen.y).toBeGreaterThan(70); expect(screen.y).toBeLessThan(page.viewportSize()!.height - 80);
+    await page.screenshot({ path: info.outputPath('e2-isometric.png') });
     const choices = [];
     for (const difficulty of ['easy', 'hard']) {
       await page.reload(); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
+      expect(await page.locator('#bot-difficulty').evaluate(element => {
+        const box = element.getBoundingClientRect(); return document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2) === element;
+      })).toBe(true);
       await page.locator('#bot-difficulty').selectOption(difficulty);
       if (mobile) await page.locator('#team-start').tap(); else await page.locator('#team-start').click();
       await expect.poll(async () => (await read(page)).bots.some(bot => !!bot.resourceGoal)).toBe(true);

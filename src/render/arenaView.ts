@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
 import type { Ray, Snapshot, Vec3 } from '../core/types';
 import type { AimSolution, DiagnosticShot } from '../core/aim';
-import { PracticeView } from './practiceView';
+import { PracticeView, labelMesh } from './practiceView';
 import { CAPSULE_CENTER } from '../core/types';
 import { ArenaCamera } from './camera';
 import { buildArena } from './buildArena';
@@ -17,8 +17,8 @@ export class ArenaView {
   readonly renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   readonly scene = new THREE.Scene();
   readonly camera = new ArenaCamera();
-  private readonly fighter = createFighter();
-  readonly actor = this.fighter.actor;
+  private readonly fighter: ReturnType<typeof createFighter>;
+  readonly actor: THREE.Group;
   readonly marker: THREE.Mesh;
   private readonly debugGeometry = new THREE.BufferGeometry();
   private readonly debug = new THREE.LineSegments(this.debugGeometry,
@@ -38,9 +38,10 @@ export class ArenaView {
   pickupDiagnostics(){return this.combat.diagnostics();}
   arcDiagnostics(){return this.combat.arcDiagnostics();}
 
-  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number;
+  constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number; playerColor?: number; playerLabel?: string;
     build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void) } = {}) {
     const touch = matchMedia('(any-pointer: coarse)').matches;
+    this.fighter = createFighter(options.playerColor); this.actor = this.fighter.actor;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -69,6 +70,10 @@ export class ArenaView {
     vitalBack.position.z = -0.005;
     this.health.position.y = 0.04; this.armor.position.y = -0.045;
     this.vitals.add(vitalBack, this.health, this.armor); this.scene.add(this.vitals);
+    if (options.playerLabel) {
+      const label = labelMesh(options.playerLabel, 1); label.position.y = .3;
+      this.vitals.add(label);
+    }
     this.marker = new THREE.Mesh(new THREE.RingGeometry(0.66, 0.72, 48),
       new THREE.MeshBasicMaterial({ color: 0x91d6db, side: THREE.DoubleSide }));
     this.marker.rotation.x = -Math.PI / 2;

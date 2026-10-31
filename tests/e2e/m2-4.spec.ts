@@ -59,7 +59,7 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} 2v2 fu
       { timeout: 25_000, intervals: [100] }).toBeGreaterThan(1);
     const respawn = await read(page);
     expect(respawn.match.scores.blue + respawn.match.scores.red).toBeGreaterThan(0);
-    await click('#match-restart');
+    await click('#arena-menu'); await click('#match-restart');
     state = await read(page);
     expect(state.match.scores).toEqual({ blue: 0, red: 0 });
     expect(state.bots.every(bot => bot.weapons.projectiles.length === 0 && !bot.weapons.ownsPulse)).toBe(true);
