@@ -5,7 +5,7 @@ import type { MatchSnapshot } from '../../src/core/match';
 
 interface MobileState { snapshot: Snapshot; weapons: WeaponSnapshot; match: MatchSnapshot; paused: boolean; camera: string;
   targets: { id: string; screen: { x: number; y: number } }[]; viewport: { dpr: number } }
-test.use({ headless: false, viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
+test.use({ headless: false, trace: 'off', viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
 test('touch joystick, independent aim finger, jump, orientation reset and restart', async ({ page }, info) => {
   const errors: string[] = []; page.on('pageerror', (error) => errors.push(error.message));
   const read = () => page.evaluate(() => {
@@ -50,7 +50,8 @@ test('touch joystick, independent aim finger, jump, orientation reset and restar
   expect((await read()).weapons.ammo).toBe(cancelled.weapons.ammo - 1);
   await page.locator('#touch-jump').tap();
   await expect.poll(async () => (await read()).snapshot.position.y, { intervals: [20] }).toBeGreaterThan(0.5);
-  await page.locator('#touch-camera').tap(); expect((await read()).camera).toBe('isometric');
+  await page.locator('#arena-menu').tap(); await page.locator('#camera-toggle').tap(); await page.locator('#resume').tap();
+  expect((await read()).camera).toBe('isometric');
   await page.locator('#touch-sprint').tap(); await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed', 'true');
   await page.screenshot({ path: info.outputPath('mobile-landscape.png') });
   await touch('touchStart', [right, aim]);
@@ -64,7 +65,12 @@ test('touch joystick, independent aim finger, jump, orientation reset and restar
   expect((await read()).weapons.ammo).toBe(rotated.weapons.ammo);
   expect((await read()).snapshot.position.x).toBeCloseTo(rotated.snapshot.position.x, 2);
   await expect(page.locator('#touch-sprint')).toHaveAttribute('aria-pressed', 'false');
-  await page.getByRole('button', { name: 'Neu starten', exact: true }).tap();
+  await page.locator('#arena-menu').tap();
+  const pausedTick = (await read()).match.tick;
+  const other = await page.context().newPage(); await other.goto('about:blank'); await other.bringToFront();
+  await page.waitForTimeout(250); await page.bringToFront(); await other.close();
+  expect((await read()).paused).toBe(true); expect((await read()).match.tick).toBe(pausedTick);
+  await page.locator('#match-restart').tap();
   expect((await read()).weapons.ownsPulse).toBe(false);
   expect((await read()).viewport.dpr).toBe(1);
   await info.attach('touch-result', { body: JSON.stringify({ together, moveOnly, aimOnly, rotated, errors }), contentType: 'application/json' });

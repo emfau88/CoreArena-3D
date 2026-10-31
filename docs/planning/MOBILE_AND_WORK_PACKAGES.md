@@ -4,7 +4,9 @@ Stand: 31. Oktober 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenst
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
 umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
 M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
-**M2.5 ist umgesetzt und technisch geprüft.** M2.6 und M3–M5 bleiben offen.
+**M2.5 ist umgesetzt und technisch geprüft; M2.6 technisch abgeschlossen.**
+[M2.6-Nachweise](../qa/M2_6_RESULT.md). Persönliche Spiel-/Geräteabnahme und
+Bewertung der Seitenbalance bleiben offen; M3–M5 sind nicht freigegeben.
 
 **Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
 getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
@@ -165,7 +167,7 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **Arena-Zusatz ✅ Map und Railgun** | Größere Spielfläche, zwei Railgun-Felder, dritte Arena-Waffe, E0-Umgehungen und Außenpatrouillen | Separater Nutzerauftrag nach M2.4a | Keine separat gemessene Istzeit | Beide Felder, räumliche Treffer und Desktop-/Touch-Spiel; [Nachweis](../qa/ARENA_EXPANSION_RESULT.md) |
 | **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — umgesetzt und technisch geprüft** | Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile; gemeinsame Adventure-Bewegung | M2.4a und Arena-Zusatz; ausdrücklich freigegeben | Keine getrennt gemessene Istzeit | Pflichtwege und bedarfsgerechte Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
 | **M2.5 Arena und Feedback — umgesetzt und technisch geprüft** | Klare Teams/Höhen, kleines HUD, Pausenmenü und Feedbacksounds | M2.2–M2.4 | Keine getrennt gemessene Istzeit | [Prüfstand und Bilder](../qa/M2_5_RESULT.md); persönliche Abnahme separat |
-| **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
+| **M2.6 Matchprüfung und Übergabe — technisch abgeschlossen** | 30 Botmatches, vollständige Desktop-/Touch-Matches, Zeitlimit, Performance; Deckungs-Stillstand behoben | M2.1–M2.5; ausdrücklich freigegeben | Historischer Plan: 15–30 Min.; keine getrennt gemessene Istzeit | [Prüfstand](../qa/M2_6_RESULT.md); persönliche Spiel-/Geräteabnahme und Bewertung der Seitenbalance offen |
 | **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
 | **M3.2 One Flag** | Neutrale Flagge, Runner/Escort/Interception auf vorhandener Basis | M3.1 geprüft | 15–30 Min. | Regulärer Transport und Capture |
 | **M3.3 Objective-Übergabe** | Wege, Rollen und beide Modi unter Konkurrenz prüfen und abstimmen | M3.1–M3.2 | 20–40 Min. | Routentests und echte Spiele beider Modi; breitere Matrix später |
@@ -279,10 +281,11 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand, 31. Oktober: M0/M1 und M2.1–M2.5 umgesetzt und technisch geprüft; Touch-Zugang vorhanden.**
-[M2.4a-Nachweise](../qa/M2_4_RESULT.md). M2.4b ist umgesetzt und technisch geprüft;
-M2.5 ist anschließend umgesetzt. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md),
-[M2.5-Nachweis](../qa/M2_5_RESULT.md). Nächster offener Arena-Schritt ist M2.6;
-CTF/Teamrollen (M3) und Liga (M4) folgen erst danach und bleiben gesondert freizugeben.
+**Aktueller Stand, 31. Oktober: M0/M1 und M2.1–M2.6 umgesetzt und technisch geprüft; Touch-Zugang vorhanden.**
+[M2.6-Nachweis](../qa/M2_6_RESULT.md). Als Nächstes steht der persönliche
+10-Minuten-Vergleich Leicht/Normal/Schwer an, besonders zur Seitenversorgung und
+zum Schwierigkeitsgefühl. Echte Handyabnahme bleibt separat offen.
+CTF/Teamrollen (M3) und Liga (M4) bleiben gesondert freizugeben; kein automatischer
+Beginn von M3. Adventure-L1.5b bleibt offen.
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
 sie sind keine aktuelle Restschätzung und keine Freigabe weiterer Pakete.

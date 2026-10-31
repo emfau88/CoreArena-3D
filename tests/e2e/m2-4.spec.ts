@@ -73,8 +73,10 @@ for (const mobile of [false, true]) test(`${mobile ? 'touch' : 'desktop'} 2v2 fu
     await release();
     if (mobile) await touch('touchStart', [{ id: 1, x: center.x, y: center.y + 42 }]);
     else await page.keyboard.down('KeyS');
-    await expect.poll(async () => (await read(page)).weapons.ownsPulse, { intervals: [30] }).toBe(true);
-    await release(); await click('#weapon-pulse');
+    await page.waitForFunction(() => (window as unknown as { __coreArena: { read(): State } }).__coreArena.read().snapshot.position.z >= 3.9);
+    await release();
+    await expect.poll(async () => (await read(page)).weapons.ownsPulse, { intervals: [50], timeout: 13_000 }).toBe(true);
+    await click('#weapon-pulse');
     const samples: unknown[] = []; let usedPulse = false; let usedArc = false; let captured = false;
     const started = Date.now(); let previousSample = -1;
     while ((state = await read(page)).match.phase === 'running' && Date.now() - started < 135_000) {

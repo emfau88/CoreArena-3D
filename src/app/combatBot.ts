@@ -3,7 +3,7 @@ import { BotBrain, actorCenter, perceive, type BotDecision, type BotDifficulty }
 import { Combat, directionTo } from '../core/combat';
 import type { Life } from '../core/match';
 import { Simulation } from '../core/simulation';
-import type { Vec3 } from '../core/types';
+import type { MoveCommand, Vec3 } from '../core/types';
 import { createSpatialWorld, type RapierWorld } from '../physics/rapierWorld';
 import { ARENA_FIGHTERS, fighterTarget, type ArenaFighter } from '../arena/teams';
 import { ArenaNavigation } from '../core/arenaNavigation';
@@ -25,6 +25,8 @@ export class CombatBot {
   private readonly brain: BotBrain;
   private readonly navigation: ArenaNavigation | null;
   resourceGoal: string | null = null;
+  /** Read-only audit of the resolved movement intent; never supplies enemy observations. */
+  intent: { goal: Vec3; surface: string; requested: boolean; command: MoveCommand } | null = null;
   decision: BotDecision | null = null;
   constructor(readonly world: RapierWorld, readonly fighter: ArenaFighter = ARENA_FIGHTERS[1]!, arena = M1_ARENA, expanded = false) {
     this.simulation = new Simulation(world, fighter.spawn, expanded ? COMPACT_JUMP : undefined);
@@ -35,7 +37,7 @@ export class CombatBot {
   snapshot() { return { ...this.simulation.snapshot(), facing: this.brain.heading() }; }
   setDifficulty(value: BotDifficulty): void { this.brain.setDifficulty(value); }
   reset(spawn = this.fighter.spawn): void { this.simulation.reset(spawn); this.weapons.reset(); this.clear(); }
-  clear(): void { this.weapons.clearEffects(); this.brain.reset(); this.navigation?.reset(); this.decision = null; this.resourceGoal = null; }
+  clear(): void { this.weapons.clearEffects(); this.brain.reset(); this.navigation?.reset(); this.decision = null; this.resourceGoal = null; this.intent = null; }
   step(tick: number, life: Life, enemyLife: Life, enemyFoot: Vec3) {
     return this.stepActors(tick, life, [{ life: enemyLife, position: enemyFoot }]);
   }
@@ -72,8 +74,10 @@ export class CombatBot {
       const goal = resource?.position ?? { ...this.decision.destination,
         y: this.decision.destination.y - (this.decision.remembered ? 1.1 : 0) };
       const surface = resource?.surface ?? this.navigation.surfaceAt(goal);
-      if (resource || Math.hypot(movement.x, movement.z) > 0 || own.surface !== surface)
+      const requested = !!resource || Math.hypot(movement.x, movement.z) > 0 || own.surface !== surface;
+      if (requested)
         movement = this.navigation.command(own, goal, surface);
+      this.intent = { goal, surface, requested, command: movement };
     }
     if (actors.length > 1 && own.grounded && own.surface === 'floor' && !movement.jump) {
       // Local body spacing keeps several bots readable around respawns. This only

@@ -14,6 +14,7 @@
     "preview": "vite preview --host 127.0.0.1 --port 8743 --strictPort",
     "preview:test": "vite preview --outDir dist-test --host 127.0.0.1 --port 8744 --strictPort",
     "test": "tsx --test tests/*.test.ts",
+    "qa:arena:soak": "tsx scripts/qa/arenaSoak.ts",
     "test:browser": "npm run build:test && playwright test"
   },
   "dependencies": {

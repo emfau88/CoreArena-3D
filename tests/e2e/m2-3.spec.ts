@@ -11,7 +11,7 @@ const read = (page: Page): Promise<Observation> => page.evaluate(() => {
   return { snapshot, match, weapons, bot };
 });
 
-test.use({ headless: false });
+test.use({ headless: false, trace: 'off' });
 test('bot duel: real enemy damage, player respawn, moving target hit, rival respawn and clean restart', async ({ page, browser }, info) => {
   test.setTimeout(60_000);
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
@@ -26,7 +26,7 @@ test('bot duel: real enemy damage, player respawn, moving target hit, rival resp
   await expect.poll(async () => (await read(page)).match.actors.player!.life).toBe(2);
   const respawn = await read(page);
   expect(respawn.match.actors.player!.protectionTicks).toBeGreaterThan(0);
-  await page.getByRole('button', { name: 'Neu starten', exact: true }).click();
+  await page.locator('#arena-menu').click(); await page.locator('#match-restart').click();
   await page.keyboard.down('KeyS');
   await page.waitForFunction(() => (window as unknown as { __coreArena: { read(): Observation } }).__coreArena.read().snapshot.position.z >= 3.4);
   await page.keyboard.up('KeyS');
@@ -46,7 +46,7 @@ test('bot duel: real enemy damage, player respawn, moving target hit, rival resp
   await expect.poll(async () => (await read(page)).match.actors.rival!.life).toBe(2);
   const rivalRespawn = await read(page);
   expect(rivalRespawn.bot!.weapons.ammo).toBe(0);
-  await page.getByRole('button', { name: 'Neu starten', exact: true }).click();
+  await page.locator('#arena-menu').click(); await page.locator('#match-restart').click();
   const restarted = await read(page);
   expect(restarted.match.scores).toEqual({ blue: 0, red: 0 });
   expect(restarted.bot!.weapons.projectiles).toEqual([]); expect(restarted.bot!.weapons.lastArc).toBeNull();

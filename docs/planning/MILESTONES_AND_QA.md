@@ -5,7 +5,10 @@ M2.1–M2.4b sind umgesetzt und technisch geprüft.
 M2.4a brachte 2v2, M2.4b ergänzt Wege/Ressourcen/Schwierigkeiten und die
 Adventure-Bewegung. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
 **M2.5 ist anschließend umgesetzt und technisch geprüft.**
-[Arena/HUD/Feedback](../qa/M2_5_RESULT.md). M2.6 und M3–M5 bleiben offen.
+[Arena/HUD/Feedback](../qa/M2_5_RESULT.md). **M2.6 ist technisch abgeschlossen:**
+[30 Botrunden, Browsermatches, Fehlerkorrektur und Performance](../qa/M2_6_RESULT.md).
+Persönliche Spiel-/Geräteabnahme und Bewertung der Seitenbalance bleiben offen.
+M3–M5 bleiben gesondert freizugeben.
 
 Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
 Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutzen
@@ -39,7 +42,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
 | **Adventure / PvE-Kampagne — pausiert** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; Bot-Wege/Ressourcen/Stufen und M2.5 Arena/Feedback | M2.6 Gesamtabnahme offen; danach CTF und Liga |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.1–M2.6 technisch abgeschlossen | Persönliche Spiel-/Geräteabnahme und Seitenbalance bewerten; danach gesonderte Freigabe für CTF und Liga |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
@@ -175,7 +178,8 @@ Freigabe eines weiteren Umsetzungspakets.
 - [x] M2.4a: begrenztes 2v2, Teamkennzeichnung und unabhängige Kampf-/Lebenszyklen; [Nachweis](../qa/M2_4_RESULT.md).
 - [x] M2.4b: Schwierigkeiten, Routen und Ressourcenplanung; gemeinsame Adventure-Bewegung.
 - [x] M2.5 Gesamtarena/HUD/Feedback umgesetzt; [Prüfstand](../qa/M2_5_RESULT.md).
-- [ ] M2.6 Gesamtabnahme offen.
+- [x] M2.6 technische Matchprüfung mit Fehlerkorrektur abgeschlossen; [Nachweis](../qa/M2_6_RESULT.md).
+- [ ] Persönliche Gesamtspiel-/Geräteabnahme und Bewertung der Seitenbalance offen.
 
 Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 
@@ -234,7 +238,7 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 | --- | --- | --- | --- |
 | **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **Ist: ca. 30 Minuten** (Nutzerangabe) | Browsernachweise vorhanden; persönliches Spielurteil offen |
 | **M1 Höhen und Aim — technisch erledigt, nachgearbeitet** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Ist Erststand: ca. 30 Minuten** (Nutzerangabe); Nacharbeit separat | Erste Spielrückmeldung eingearbeitet; erneute persönliche Bestätigung offen |
-| **M2 erstes Spiel — bis M2.5 umgesetzt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse/Rail, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und kurze Feedbacksounds | **1,5–3 Stunden historischer Gesamtplan; keine aktuelle Restschätzung** | M2.6 und persönliche Gesamtspielabnahme offen |
+| **M2 erstes Spiel — bis M2.6 technisch abgeschlossen** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse/Rail, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und kurze Feedbacksounds | **1,5–3 Stunden historischer Gesamtplan; keine aktuelle Restschätzung** | Persönliche Gesamtspiel-/Geräteabnahme und Bewertung der Seitenbalance offen |
 | **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **1–2 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
 | **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **1–2 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
 | **M5 spätere Produktvalidierung** | Weitere Arenen, zusätzliche Waffen, größere Liga und Distributionsentscheidung nach Kernspielabnahme | **Noch nicht seriös schätzbar** | Eigenständiges Go/No-Go und neuer begrenzter Auftrag |
@@ -281,6 +285,14 @@ Bewusst noch offen: zehnfache Wiederholungen je Link/Kamera, sämtliche Höhen-/
 Anschließend persönlicher Nutzer-Spieltest von mindestens 5–10 Minuten. Protokoll: Wird Höhe sofort verstanden? Sind Landungen und Zielmarker zuverlässig? Bleibt die Figur sichtbar? Fühlt sich die Steuerung direkt an? Ein negatives Urteil führt zu gezielter M1-Nacharbeit.
 
 ## M2 Abnahme
+
+Prüfstand vom 31. Oktober: [M2.6-Ergebnisse](../qa/M2_6_RESULT.md).
+Technische Gates geprüft: 68 Kerntests, 30 vollständige Botmatches und zehn
+Browserfälle. Drei 2v2-Runden mit regulärer 120-s-/10-Kill-Konfiguration endeten
+am Abschussziel; der Zeitlimitpfad wurde zusätzlich volle 120 Sekunden geprüft.
+Das persönliche Nutzerurteil und echte Mobilgeräte sind damit nicht abgenommen.
+Die asymmetrische Versorgung zeigte eine auffällige Seitenbalance und braucht
+vor einem Liga-Ausbau ein eigenes Spielurteil.
 
 Erst zwei klar unterschiedliche Waffen und ein Matchmodus. Arc-Lash-Zielkegel und Pulse-Tracking werden vor endgültiger Abstimmung vergleichbar getestet; eine andere Arc-Lash-Zielregel benötigt eine dokumentierte Entscheidung. Rocket, Todes-Drops und weitere Waffen folgen als separate Aufträge.
 
@@ -365,6 +377,6 @@ Der Abschlussbericht enthält tatsächlichen Commit/Branch, Start-/Preview-Link 
 - **Technisch geprüft:** automatische und reale Browserfälle bestanden.
 - **Spielerisch abgenommen:** Nutzer hat den jeweiligen Spieltest bestätigt.
 
-Nur der letzte zutreffende Status wird behauptet. M0/M1 und M2.1–M2.4b sind
-umgesetzt; [aktueller Prüfstand](../qa/M2_4B_RESULT.md). Persönliche Spielurteile
-bleiben separat. M2.5 ist anschließend umgesetzt, M2.6 bleibt offen.
+Nur der letzte zutreffende Status wird behauptet. M0/M1 und M2.1–M2.6 sind
+umgesetzt und technisch geprüft; [aktueller Prüfstand](../qa/M2_6_RESULT.md).
+Persönliche Spielurteile und echte Handytests bleiben separat offen.

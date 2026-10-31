@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "scripts": [
+    "http://127.0.0.1:8743/CoreArena-3D/assets/index-B-W8eLcI.js"
+  ],
+  "testApi": "undefined",
+  "origins": [
+    "http://127.0.0.1:8743"
+  ],
+  "errors": [],
+  "failures": []
+}

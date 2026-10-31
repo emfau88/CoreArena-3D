@@ -367,7 +367,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           arenaMode, difficulty, audio: feedback.diagnostics(),
           bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
           bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
-            resourceGoal: bot.resourceGoal,
+            resourceGoal: bot.resourceGoal, intent: bot.intent,
             weapons: bot.weapons.snapshot(), screen: view.projectedPosition(bot.snapshot().position) })),
           probe: { status: probe.status, snapshot: probeSimulation.snapshot(), visited: [...probe.visited] },
           targets: (M1_ARENA.targets ?? []).map((target) => ({ ...target,

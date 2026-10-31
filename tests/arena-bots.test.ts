@@ -12,6 +12,7 @@ import { Pickups } from '../src/core/pickups';
 import { createCombatBot } from '../src/app/combatBot';
 import { chooseBotResource } from '../src/core/botResources';
 import { BOT_DIFFICULTIES, BotBrain, type BotDifficulty } from '../src/core/bot';
+import { ArenaNavigation } from '../src/core/arenaNavigation';
 
 test('shared Adventure motor keeps E0/E1/E2 route reachable, steps .3m but blocks a full ledge', async () => {
   assert.equal(COMPACT_JUMP, STONE_ADVENTURE_JUMP);
@@ -79,5 +80,22 @@ test('resource choice ignores full inventories and unavailable pickups; difficul
     const reaction = BOT_DIFFICULTIES[difficulty].reactionTicks;
     for (let tick = 1; tick <= reaction; tick++) assert.equal(brain.step(tick, own, enemy, combat.snapshot()).firing, false);
     assert.equal(brain.step(reaction + 1, own, enemy, combat.snapshot()).firing, true);
+  }
+});
+
+test('a bot recovers from measured cover-clearance stalls using physical movement', async () => {
+  // Actual stalls from the M2.6 30-match audit: both benches and E1 edges.
+  for (const spawn of [{ x: 9.747, y: .025, z: 8.226 }, { x: -13.307, y: .03, z: 8.175 },
+    { x: -15.898, y: .027, z: 5.688 }, { x: 14.834, y: .02, z: 5.788 },
+    { x: -10.491, y: .028, z: -3.386 }, { x: -10.418, y: .02, z: -6.737 }]) {
+    const world = await createSpatialWorld({ ...EXPANDED_ARENA, spawn }, SHALLOW_STEPS);
+    try {
+      const sim = new Simulation(world, spawn, COMPACT_JUMP), nav = new ArenaNavigation(EXPANDED_ARENA);
+      const goal = { x: -9, y: 0, z: 5 };
+      for (let tick = 0; tick < 900 && Math.hypot(sim.snapshot().position.x - goal.x, sim.snapshot().position.z - goal.z) > .2; tick++)
+        sim.step(nav.command(sim.snapshot(), goal));
+      assert.ok(Math.hypot(sim.snapshot().position.x - goal.x, sim.snapshot().position.z - goal.z) < .2, JSON.stringify({ spawn, state: sim.snapshot() }));
+      assert.equal(sim.snapshot().surface, 'floor');
+    } finally { world.dispose(); }
   }
 });

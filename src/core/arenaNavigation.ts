@@ -11,10 +11,19 @@ const toward = (from: Vec3, to: Vec3, jump = false): MoveCommand => {
 /** Routes over the existing three surfaces; movement and landings stay in Rapier. */
 export class ArenaNavigation {
   private readonly floor: BossNavigation;
+  private readonly clearance;
+  private readonly floorBox;
   private link: TraversalLink | null = null;
   private jumping = false;
   private ticks = 0;
-  constructor(private readonly arena: ArenaDefinition) { this.floor = new BossNavigation(arena, .45); }
+  constructor(private readonly arena: ArenaDefinition) {
+    this.floor = new BossNavigation(arena, .45);
+    this.floorBox = arena.boxes.find(box => box.id === 'floor')!;
+    this.clearance = arena.boxes.filter(box => box.id !== 'floor').map(box => ({
+      left: box.center.x - box.size.x / 2, right: box.center.x + box.size.x / 2,
+      back: box.center.z - box.size.z / 2, front: box.center.z + box.size.z / 2,
+    }));
+  }
   reset(): void { this.link = null; this.jumping = false; this.ticks = 0; this.floor.reset(); }
   surfaceAt(foot: Vec3): string {
     return this.arena.boxes.find(box => box.level && Math.abs(foot.y - box.center.y - box.size.y / 2) < .6
@@ -31,6 +40,22 @@ export class ArenaNavigation {
     }
     return null;
   }
+  private leaveClearance(foot: Vec3): Vec3 | undefined {
+    // Physical collision permits getting closer than the planner's safety margin
+    // after a landing or body-spacing nudge. Walk outward before planning again.
+    const margin = .45 + .18, inset = .03;
+    const contains = (r: typeof this.clearance[number], p: Vec3) => p.x > r.left - margin && p.x < r.right + margin
+      && p.z > r.back - margin && p.z < r.front + margin;
+    const candidates = this.clearance.filter(r => contains(r, foot)).flatMap(r => [
+      ...foot.x < r.left ? [{ ...foot, x: r.left - margin - inset }] : [],
+      ...foot.x > r.right ? [{ ...foot, x: r.right + margin + inset }] : [],
+      ...foot.z < r.back ? [{ ...foot, z: r.back - margin - inset }] : [],
+      ...foot.z > r.front ? [{ ...foot, z: r.front + margin + inset }] : [],
+    ]).filter(p => !this.clearance.some(r => contains(r, p))
+      && Math.abs(p.x - this.floorBox.center.x) < this.floorBox.size.x / 2 - margin
+      && Math.abs(p.z - this.floorBox.center.z) < this.floorBox.size.z / 2 - margin);
+    return candidates.sort((a, b) => distance(a, foot) - distance(b, foot))[0];
+  }
   command(own: Snapshot, goal: Vec3, surface = this.surfaceAt(goal)): MoveCommand {
     if (this.link && this.jumping) {
       if (++this.ticks > 180 || own.grounded && this.ticks > 8 &&
@@ -38,6 +63,10 @@ export class ArenaNavigation {
       else return toward(own.position, this.link.end);
     }
     if (!own.grounded) return toward(own.position, goal);
+    if (own.surface === 'floor') {
+      const escape = this.leaveClearance(own.position);
+      if (escape) { this.floor.reset(); return toward(own.position, escape); }
+    }
     this.link = own.surface !== surface ? this.route(own.surface ?? 'floor', surface) : null;
     if (this.link) {
       if (distance(own.position, this.link.start) < .16) {
