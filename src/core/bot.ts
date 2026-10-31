@@ -22,6 +22,7 @@ export function perceive(world: RayWorld, foot: Vec3, facing: number, enemy: Com
 }
 
 export interface BotDecision {
+  readonly targetId: string | null;
   readonly movement: MoveCommand; readonly firing: boolean; readonly aim: AimSolution | null;
   readonly ray: Ray | null; readonly facing: number; readonly visible: boolean;
   readonly mode: 'patrol' | 'react' | 'fight' | 'search';
@@ -36,13 +37,16 @@ export class BotBrain {
   private seenAt: number | null = null;
   private readyAt: number | null = null;
   private aimPoint: Vec3 | null = null;
-  private facing = Math.PI;
+  private facing: number;
   private waypoint = 0;
-  reset(): void { this.memory = null; this.seenAt = this.readyAt = null; this.aimPoint = null; this.facing = Math.PI; this.waypoint = 0; }
+  constructor(private readonly initialFacing = Math.PI) { this.facing = initialFacing; }
+  reset(): void { this.memory = null; this.seenAt = this.readyAt = null; this.aimPoint = null; this.facing = this.initialFacing; this.waypoint = 0; }
   heading(): number { return this.facing; }
   step(tick: number, own: Snapshot, visible: CombatTarget | null, weapons: WeaponSnapshot): BotDecision {
     if (visible) {
-      if (this.readyAt === null || this.memory?.id !== visible.id) this.readyAt = tick + BOT_RULES.reactionTicks;
+      if (this.readyAt === null || this.memory?.id !== visible.id) {
+        this.readyAt = tick + BOT_RULES.reactionTicks; this.aimPoint = null;
+      }
       this.memory = { ...visible, center: { ...visible.center } }; this.seenAt = tick;
       if (!this.aimPoint || tick % BOT_RULES.aimIntervalTicks === 0) this.aimPoint = { ...visible.center };
     } else {
@@ -79,6 +83,6 @@ export class BotBrain {
     }
     return { movement, firing: mode === 'fight' && Math.abs(wrap(desired - this.facing)) < 0.15,
       aim, ray, facing: this.facing, visible: !!visible, mode, seenAt: this.seenAt, readyAt: this.readyAt,
-      remembered: this.memory ? { ...this.memory.center } : null };
+      remembered: this.memory ? { ...this.memory.center } : null, targetId: visible?.id ?? null };
   }
 }

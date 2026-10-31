@@ -1,4 +1,5 @@
 import { weaponHud, lifeHud } from './hud';
+import '../arenaHud.css';
 import { M1_ARENA } from '../arena/arena';
 import { FixedClock } from '../core/fixedClock';
 import { Simulation } from '../core/simulation';
@@ -14,15 +15,21 @@ import { Combat } from '../core/combat';
 import type { WeaponId } from '../core/combat';
 import { Pickups } from '../core/pickups';
 import { ARENA_PICKUPS } from '../arena/pickups';
-import { createCombatBot } from './combatBot';
-import { BOT_TARGET, actorCenter } from '../core/bot';
+import { createCombatBot, type CombatBot } from './combatBot';
+import { actorCenter } from '../core/bot';
 import { BotView } from '../render/botView';
+import { ARENA_FIGHTERS, arenaRoster, fighterTarget, type ArenaMode } from '../arena/teams';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
-  const world = await createSpatialWorld({ ...M1_ARENA, targets: [...M1_ARENA.targets ?? [], BOT_TARGET] });
-  world.setTargetEnabled('rival', false);
-  const rival = await createCombatBot();
-  let botMode = false;
+  const fighters = ARENA_FIGHTERS.filter(fighter => fighter.id !== 'player');
+  const world = await createSpatialWorld({ ...M1_ARENA, targets: [...M1_ARENA.targets ?? [], ...fighters.map(fighterTarget)] });
+  const bots: CombatBot[] = [];
+  try { for (const fighter of fighters) {
+    world.setTargetEnabled(fighter.id, false);
+    bots.push(await createCombatBot(fighter, ARENA_FIGHTERS));
+  } } catch (error) { world.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
+  let arenaMode: ArenaMode = 'training';
+  const activeBots = () => bots.filter(bot => arenaMode === 'teams' || arenaMode === 'duel' && bot.fighter.id === 'rival');
   // An isolated, non-blocking route probe shares the identical arena and player motor.
   const probeWorld = await createSpatialWorld(M1_ARENA);
   const probeSimulation = new Simulation(probeWorld, M1_ARENA.spawn);
@@ -30,13 +37,13 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const weapon = new DiagnosticWeapon();
   const combat = new Combat();
   const pickups = new Pickups(ARENA_PICKUPS);
-  let match = new ArenaMatch([{ id: 'player', team: 'blue' },
-    ...(M1_ARENA.targets ?? []).map((target) => ({ id: target.id, team: 'red' as const }))]);
+  let match = new ArenaMatch(arenaRoster(arenaMode));
   let aim: AimSolution | null = null;
   let view: ArenaView;
   try { view = new ArenaView(host, M1_ARENA); }
-  catch (error) { world.dispose(); probeWorld.dispose(); rival.dispose(); throw error; }
-  const botView = new BotView(view.scene);
+  catch (error) { world.dispose(); probeWorld.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
+  const botViews = bots.map(bot => new BotView(view.scene, bot.fighter.team, bot.fighter.id === 'ally' ? 'VERBÜNDETER' : 'GEGNER'));
+  host.dataset.arena = 'true';
   const simulation = new Simulation(world, M1_ARENA.spawn);
   const clock = new FixedClock();
   const diagnosticsAllowed = import.meta.env.DEV || import.meta.env.MODE === 'test';
@@ -57,10 +64,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       <div id="match-panel"><button id="adventure-start" type="button">Adventure: Der verwitterte Hof</button>
       <div class="eyebrow" id="match-mode">10 ABSCHÜSSE / 2 MINUTEN</div>
       <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
+      <button id="team-start" type="button">2v2-Teamspiel starten</button>
       <button id="bot-start" type="button">Botmatch starten</button>
       <button id="pve-start" type="button">Mini-Kampagne: Die drei Siegel</button>
       <button id="match-start" type="button">Trainingsmatch starten</button><button id="match-restart" type="button" hidden>Neu starten</button>
-      <small id="match-hint">1 gegen 1 mit Bot oder Training mit drei stationären Zielen.</small></div>
+      <small id="match-hint">2v2: Du + ein blauer Bot gegen zwei rote Bots. Alternativ 1v1 oder Training.</small>
+      <small id="team-status" hidden></small></div>
       <div id="weapon-panel" hidden>${weaponHud(false) }
       <small id="weapon-hint">Arc Lash · 5 m · enger Zielkegel</small><small>1 / 2 oder Mausrad · Pulse-Pickup hinter dem Start</small></div>
       <div id="life-panel" hidden>${lifeHud}<p id="life-status"></p>
@@ -86,7 +95,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const probeLabel = host.querySelector<HTMLElement>('#probe-status')!;
   const probeButton = host.querySelector<HTMLButtonElement>('#probe-start')!;
   const element = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
-  const startProbe = () => { if (botMode) return; probe.start(); probeButton.disabled = true; };
+  const startProbe = () => { if (arenaMode !== 'training') return; probe.start(); probeButton.disabled = true; };
   const toggleCamera = () => {
     view.camera.toggle();
     label.textContent = view.camera.mode === 'straight' ? 'Gerade Ansicht' : 'Isometrische Ansicht';
@@ -126,30 +135,39 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   for (const id of ['arc', 'pulse'] as WeaponId[]) element(`weapon-${id}`).addEventListener('click', () => {
     if (match.snapshot().phase === 'running' && match.snapshot().actors.player!.alive) combat.select(id);
   }, options);
-  function restartMatch(withBot = botMode) {
-    botMode = withBot;
-    match = new ArenaMatch([{ id: 'player', team: 'blue' }, ...(botMode ? [{ id: 'rival', team: 'red' as const }]
-      : (M1_ARENA.targets ?? []).map((target) => ({ id: target.id, team: 'red' as const })))]);
+  function restartMatch(mode = arenaMode) {
+    arenaMode = mode;
+    match = new ArenaMatch(arenaRoster(arenaMode));
     match.start(); weapon.reset(); combat.reset(); pickups.reset(); aim = null; input.clear();
-    rival.reset(); world.setTargetPosition('rival', actorCenter(rival.snapshot().position)); world.setTargetEnabled('rival', botMode);
+    for (const bot of bots) {
+      bot.reset(); world.setTargetPosition(bot.fighter.id, actorCenter(bot.snapshot().position));
+      world.setTargetEnabled(bot.fighter.id, !!match.snapshot().actors[bot.fighter.id]);
+      for (const fighter of ARENA_FIGHTERS) bot.world.setTargetEnabled(fighter.id, !!match.snapshot().actors[fighter.id]);
+    }
     current = simulation.reset(); previous = current;
     probeSimulation.reset(); probe = new TraversalProbe(M1_ARENA.links ?? []); probeButton.disabled = false;
-    for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, !botMode);
+    for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, arenaMode === 'training');
+    element('team-start').hidden = true;
+    element('adventure-start').hidden = true; element('pve-start').hidden = true;
     element('bot-start').hidden = true;
     element('match-start').hidden = true; element('match-restart').hidden = false;
     element('match-result').hidden = true; element('life-panel').hidden = false;
     element('weapon-panel').hidden = false;
     host.querySelector<HTMLElement>('.location')!.hidden = true;
-    element('match-mode').textContent = `${botMode ? 'BOTDUELL' : 'TRAINING'} · 10 ABSCHÜSSE / 2 MINUTEN`;
-    host.querySelector<HTMLElement>('.phase')!.innerHTML = `<i></i>${botMode ? 'BOTDUELL · 1 GEGEN 1' : 'TRAININGSARENA'}`;
-    element('match-hint').textContent = botMode ? 'Roter Gegner · Deckung unterbricht seine Sicht.' : 'Arc Lash: kurz & unbegrenzt · Pulse: Projektile & Munition';
-    element('life-hint').innerHTML = `${botMode ? 'Rot ist dein Gegner.' : 'Orange Fläche links: Schaden testen.'}<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.`;
+    const modeLabel = arenaMode === 'teams' ? 'TEAMKAMPF · 2 GEGEN 2' : arenaMode === 'duel' ? 'BOTDUELL · 1 GEGEN 1' : 'TRAINING';
+    element('match-mode').textContent = `${modeLabel} · 10 ABSCHÜSSE / 2 MINUTEN`;
+    host.querySelector<HTMLElement>('.phase')!.innerHTML = `<i></i>${modeLabel}`;
+    element('match-hint').textContent = arenaMode === 'teams' ? 'Du bist Blau · Verbündeter mit blauem Ring · Kein Freundschaden.'
+      : arenaMode === 'duel' ? 'Roter Gegner · Deckung unterbricht seine Sicht.' : 'Arc Lash: kurz & unbegrenzt · Pulse: Projektile & Munition';
+    element('team-status').hidden = arenaMode !== 'teams';
+    element('life-hint').innerHTML = `${arenaMode !== 'training' ? 'Blau ist dein Team. Rot ist der Gegner.' : 'Orange Fläche links: Schaden testen.'}<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.`;
     view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   }
-  element('bot-start').addEventListener('click', () => restartMatch(true), options);
+  element('team-start').addEventListener('click', () => restartMatch('teams'), options);
+  element('bot-start').addEventListener('click', () => restartMatch('duel'), options);
   element('pve-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve`), options);
   element('adventure-start').addEventListener('click', () => location.assign(`${location.pathname}?mode=pve&level=stone&adventure=1`), options);
-  element('match-start').addEventListener('click', () => restartMatch(false), options);
+  element('match-start').addEventListener('click', () => restartMatch('training'), options);
   for (const id of ['match-restart', 'result-restart']) element(id).addEventListener('click', () => restartMatch(), options);
 
   function frame(now: number) {
@@ -168,33 +186,39 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         const command = input.command(view.camera.basis());
         const firing = input.fire();
         if (canPlay) current = simulation.step(command);
-        const botAttack = botMode && before.phase === 'running'
-          ? rival.step(before.tick + 1, before.actors.rival!, playerBefore, current.position) : { attacked: false, damage: [] };
-        if (botMode) world.setTargetPosition('rival', actorCenter(rival.snapshot().position));
+        const playingBots = activeBots();
+        // All brains observe the same tick snapshot, independent of bot iteration order.
+        const actors = [{ life: playerBefore, position: current.position }, ...playingBots.map(bot =>
+          ({ life: before.actors[bot.fighter.id]!, position: bot.snapshot().position }))];
+        const botAttacks = before.phase === 'running' ? playingBots.map(bot => ({ id: bot.fighter.id,
+          ...bot.stepActors(before.tick + 1, before.actors[bot.fighter.id]!, actors.filter(actor => actor.life.id !== bot.fighter.id)) })) : [];
+        for (const bot of playingBots) world.setTargetPosition(bot.fighter.id, actorCenter(bot.snapshot().position));
         // Jumping over the practice arena's low perimeter must not leave an endless fall.
         if (current.position.y < -8 && before.phase === 'ready') { current = simulation.reset(); previous = current; }
         const cameraRay = canPlay && input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
         aim = cameraRay ? solveAim(world, cameraRay, current.position) : null;
         if (before.phase === 'ready') weapon.step(current.tick, canPlay && firing, aim);
         const attack = before.phase === 'running' ? combat.step(before.tick + 1, canPlay && firing, aim, cameraRay, world,
-          botMode ? before.actors.rival!.alive ? [{ ...BOT_TARGET, center: actorCenter(rival.snapshot().position) }] : []
+          arenaMode !== 'training' ? playingBots.filter(bot => bot.fighter.team !== playerBefore.team && before.actors[bot.fighter.id]!.alive)
+            .map(bot => ({ ...fighterTarget(bot.fighter), center: actorCenter(bot.snapshot().position) }))
             : (M1_ARENA.targets ?? []).filter((target) => before.actors[target.id]!.alive), current.position) : { attacked: false, damage: [] };
-        const damage = [...attack.damage, ...botAttack.damage];
+        const damage = [...attack.damage, ...botAttacks.flatMap(attack => attack.damage)];
         if (current.position.y < -8) damage.push({ target: 'player', amount: 1000 });
-        if (!botMode && inTrainingField(current.position) && (before.tick + 1) % TRAINING_FIELD.intervalTicks === 0)
+        if (arenaMode === 'training' && inTrainingField(current.position) && (before.tick + 1) % TRAINING_FIELD.intervalTicks === 0)
           damage.push({ target: 'player', amount: TRAINING_FIELD.damage });
-        match.step(damage, [...attack.attacked ? ['player'] : [], ...botAttack.attacked ? ['rival'] : []]);
+        match.step(damage, [...attack.attacked ? ['player'] : [], ...botAttacks.filter(attack => attack.attacked).map(attack => attack.id)]);
         const after = match.snapshot();
         const playerAfter = after.actors.player!;
         if (before.phase === 'running') {
-          for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, !botMode && after.actors[target.id]!.alive);
-          if (botMode) {
-            if (after.actors.rival!.alive !== before.actors.rival!.alive || after.phase === 'ended') {
-              rival.clear();
-              if (after.actors.rival!.alive && !before.actors.rival!.alive) rival.reset();
+          for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, arenaMode === 'training' && after.actors[target.id]!.alive);
+          for (const bot of playingBots) {
+            const id = bot.fighter.id;
+            if (after.actors[id]!.alive !== before.actors[id]!.alive || after.phase === 'ended') {
+              bot.clear();
+              if (after.actors[id]!.alive && !before.actors[id]!.alive) bot.reset();
             }
-            world.setTargetPosition('rival', actorCenter(rival.snapshot().position));
-            world.setTargetEnabled('rival', after.actors.rival!.alive);
+            world.setTargetPosition(id, actorCenter(bot.snapshot().position));
+            world.setTargetEnabled(id, after.actors[id]!.alive);
           }
           if (playerAfter.alive !== playerBefore.alive || after.phase === 'ended') {
             input.clear(); aim = null; weapon.lastShot = null; combat.clearEffects();
@@ -203,8 +227,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         }
         if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount) =>
           kind === 'pulse' || kind === 'ammo' ? combat.addAmmo(amount, kind === 'pulse') : match.restore('player', kind === 'health' ? 'hp' : 'armor', amount));
-        if (botMode && after.phase === 'running') pickups.step(after.tick, after.actors.rival!.alive ? rival.snapshot() : null, rival.world, (kind, amount) =>
-          kind === 'pulse' || kind === 'ammo' ? rival.weapons.addAmmo(amount, kind === 'pulse') : match.restore('rival', kind === 'health' ? 'hp' : 'armor', amount));
+        if (after.phase === 'running') for (const bot of playingBots) pickups.step(after.tick, after.actors[bot.fighter.id]!.alive ? bot.snapshot() : null, bot.world, (kind, amount) =>
+          kind === 'pulse' || kind === 'ammo' ? bot.weapons.addAmmo(amount, kind === 'pulse') : match.restore(bot.fighter.id, kind === 'health' ? 'hp' : 'armor', amount));
         if (probe.status !== 'ready' && after.phase !== 'ended') probeSimulation.step(probe.command(probeSimulation.snapshot()));
         steps.push(performance.now() - start);
         if (steps.length > 600) steps.shift();
@@ -214,6 +238,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       hitLabel.textContent = (M1_ARENA.targets ?? []).map((target) => weapon.hits[target.id] ?? 0).join(' / ');
       const state = match.snapshot(); const player = state.actors.player!;
       const inventory = combat.snapshot();
+      if (arenaMode === 'teams') {
+        const ally = state.actors.ally!;
+        element('team-status').textContent = ally.alive ? `VERBÜNDETER · ${ally.hp} HP / ${ally.armor} Rüstung` : `VERBÜNDETER · Respawn ${(ally.respawnTicks / 60).toFixed(1)} s`;
+      }
       element('ammo-count').textContent = inventory.ownsPulse ? `${inventory.ammo} / 54` : 'FINDEN';
       element('weapon-arc').setAttribute('aria-pressed', String(inventory.selected === 'arc'));
       element('weapon-pulse').setAttribute('aria-pressed', String(inventory.selected === 'pulse'));
@@ -247,7 +275,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       lastHud = now;
     }
     if (diagnostics) view.showColliders(true, world.debugLines());
-    botView.update(botMode ? rival.snapshot() : null, match.snapshot().actors.rival, rival.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera);
+    bots.forEach((bot, i) => botViews[i]!.update(match.snapshot().actors[bot.fighter.id] ? bot.snapshot() : null,
+      match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera));
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
       probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
     frameId = requestAnimationFrame(frame);
@@ -265,7 +294,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           marker: { x: view.marker.position.x, z: view.marker.position.z },
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           weapons: combat.snapshot(), pickups: pickups.snapshot(),
-          bot: botMode ? { snapshot: rival.snapshot(), decision: rival.decision, weapons: rival.weapons.snapshot(), screen: view.projectedPosition(rival.snapshot().position) } : null,
+          arenaMode,
+          bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
+          bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
+            weapons: bot.weapons.snapshot(), screen: view.projectedPosition(bot.snapshot().position) })),
           probe: { status: probe.status, snapshot: probeSimulation.snapshot(), visited: [...probe.visited] },
           targets: (M1_ARENA.targets ?? []).map((target) => ({ ...target,
             screen: view.projectedPosition({ ...target.center, y: target.center.y - 0.9 }) })),
@@ -285,9 +317,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     input.dispose();
     world.dispose();
     probeWorld.dispose();
-    rival.dispose();
+    bots.forEach(bot => bot.dispose());
     view.dispose();
     host.querySelectorAll('#hud, #pause, #diagnostics, #match-result').forEach((element) => element.remove());
     Reflect.deleteProperty(window, '__coreArena');
+    delete host.dataset.arena;
   };
 }

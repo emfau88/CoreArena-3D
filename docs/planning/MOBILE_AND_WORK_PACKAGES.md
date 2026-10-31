@@ -2,10 +2,11 @@
 
 Stand: 31. Oktober 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
-umgesetzt. M2.4–M2.6 und M3–M5 bleiben zurückgestellt und nicht freigegeben.
+umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
+M2.4b (Routen/Ressourcen/Schwierigkeiten), M2.5–M2.6 und M3–M5 bleiben offen.
 
-**Adventure / PvE-Kampagne ist eine separate Spielvariante und der aktuelle
-Schwerpunkt.** Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
+**Adventure / PvE-Kampagne bleibt eine separate Spielvariante, derzeit pausiert.**
+Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
 L1.6a–c sind bereits umgesetzt, L1.5b bleibt offen. Arena-Pakete sind keine nächsten
 Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
 
@@ -153,7 +154,8 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M2.1 ✅ Lebenszyklus und Match** | HP/Armor, Schaden, Tod/Respawn, Spawn-Schutz, TDM-Score, Timer und Restart; Trainingsmatch mit vorhandenen Zielen | Erledigt; Nutzer-Spielurteil offen | 10–20 Min. ursprünglicher Planwert; keine separat gemessene Ist-Zeit | 16 Kern-/Physiktests, vollständiger Browsermatch mit 10 Abschüssen, Respawn und Restart; [Nachweis](../qa/M2_1_RESULT.md) |
 | **M2.2 ✅ Waffen und Ressourcen** | Arc Lash/Pulse, Auswahl, Munition und Pickups; Zielregel dokumentiert | Erledigt; Nutzer-Spielurteil offen | 15–30 Min. ursprünglicher Planwert | 21 Kern-/Physiktests und acht Browserfälle einschließlich Waffenwahl, Pulse-Treffern, Fallback und Armor auf E2; [Nachweis](../qa/M2_2_RESULT.md) |
 | **M2.3 ✅ Botwahrnehmung und Kampf** | Spielbares 1v1, begrenzte 3D-Sicht, kopierte Erinnerung, Reaktion und gemeinsame Waffenbedienung | Erledigt; Nutzer-Spielurteil offen | 25–50 Min. ursprünglicher Planwert | Verdeckte Gegner verborgen; keine vorzeitige Reaktion; echtes Duell mit Schaden/Kills/Respawns; [Nachweis](../qa/M2_3_RESULT.md) |
-| **M2.4 Teamspiel und Schwierigkeiten** | 2v2, Ressourcenwahl, Easy/Normal/Hard und blockierte Routen | M2.3 | 15–30 Min. | Alle Stufen nutzen Pflichtwege; gleiche Basisstats |
+| **M2.4a ✅ Begrenztes Teamspiel** | 2v2, sichtbare Gegnerwahl, Teamkennzeichnung, unabhängige Leben/Waffen/Respawns und Teamwertung | M2.3; separat von Adventure umgesetzt | Keine separat gemessene Istzeit | Vollständiger Desktop-/Touch-Match, Neustart, 1v1-Regression; [Nachweis](../qa/M2_4_RESULT.md) |
+| **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — offen** | Blockierte Wege und Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile | M2.4a; neuer begrenzter Auftrag | Vor Freigabe neu schätzen; alter Gesamtwert 15–30 Min. gilt nicht als Restschätzung | Pflichtwege und Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
 | **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 10–20 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
 | **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
 | **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
@@ -269,4 +271,7 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand: M0.1–M0.3, M1.1–M1.4 und M2.1–M2.3 umgesetzt und technisch geprüft; einfacher Touch-Zugang zusätzlich umgesetzt.** [M2.3-Nachweise](../qa/M2_3_RESULT.md). Vor M2.4 auf die nächste Freigabe warten. Weiterer Mobile-Ausbau bleibt optional.
+**Aktueller Stand, 31. Oktober: M0/M1, M2.1–M2.3 und M2.4a umgesetzt; Touch-Zugang vorhanden.**
+[M2.4a-Nachweise](../qa/M2_4_RESULT.md). M2.4b ist der nächste offene Arena-Schritt.
+Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
+sie sind keine aktuelle Restschätzung und keine Freigabe weiterer Pakete.

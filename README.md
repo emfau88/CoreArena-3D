@@ -2,12 +2,13 @@
 
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
-- **Adventure / PvE-Kampagne — aktueller Schwerpunkt.** Zusammenhängende Missionen,
+- **Adventure / PvE-Kampagne — eigenständig, derzeit pausiert.** Zusammenhängende Missionen,
   Erkundung und Bosskämpfe. Das Stein-Testlevel ist spielbar, L1.6a–c sind umgesetzt;
   nächste offene Abnahme: L1.5b. [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
-- **Arena / Teamspiel / CTF / Liga — zurückgestellt.** Ursprüngliche eigenständige
-  Spielrichtung. Training und 1v1-Botduell sind vorhanden (bis M2.3); 2v2, CTF und
-  Liga sind noch Planung. [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
+- **Arena / Teamspiel / CTF / Liga — aktueller Schwerpunkt.** Training, 1v1 und
+  jetzt **2v2-Teamkampf** sind spielbar (M2.4a). Bot-Routen, Ressourcenplanung und
+  Schwierigkeitswahl bleiben M2.4b; CTF und Liga folgen später.
+  [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
 
 Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
 Schritte. Spielerfigur, Waffen und Technik werden teilweise geteilt; die
@@ -15,6 +16,11 @@ ausgearbeitete Adventure-Umgebung ist noch nicht auf die Arena übertragen.
 [Stand und Unterschiede der Varianten](docs/planning/MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
 
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
+
+**Arena: „2v2-Teamspiel starten“** — du und ein blauer Verbündeter gegen zwei rote
+Bots. 10 Teamabschüsse oder zwei Minuten, kein Freundschaden, getrennte Respawns
+und vollständiger Neustart. 1v1 und Training bleiben auswählbar.
+[M2.4a: Umfang, Prüfung und Grenzen](docs/qa/M2_4_RESULT.md).
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
@@ -103,7 +109,7 @@ Joystick. Im Adventure bündelt **Menü** Kamera, Ton, Vollbild und Neustart; di
 zeigt etwas mehr in Laufrichtung. Kürzere Adventure-Sprünge gelten für Desktop und
 Touch gleichermaßen. [Änderungen und Prüfung](docs/qa/MOBILE_POLISH_RESULT.md).
 
-**Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „Botmatch starten“ für das neue 1-gegen-1 oder „Trainingsmatch starten“ für stationäre Ziele; am Desktop dann WASD/Shift/Space.
+**Desktop: Maus + Tastatur. Mobile: Querformat + Touch.** „2v2-Teamspiel starten“ für zwei Teams, „Botmatch starten“ für 1v1 oder „Trainingsmatch starten“ für stationäre Ziele; am Desktop dann WASD/Shift/Space.
 **F** oder „Vollbild“ wechselt in echtes Browser-Vollbild. Die nähere Kamera füllt
 die Spielfläche; schlanke HUD-Anzeigen und HP/Rüstung direkt über der Figur halten
 den Kampf im Mittelpunkt. Die Glutschmiede hat hellere Flächen und klarere Deckungskanten.
@@ -117,7 +123,7 @@ Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
 
 Eigenständiges Desktop-Spielprojekt. **M0, M1 und M2.1–M2.3 sind umgesetzt und technisch
-geprüft.** M2.4 und folgende Pakete benötigen die nächste Freigabe.
+geprüft.** Zusätzlich ist M2.4a (begrenztes 2v2) umgesetzt; M2.4b und folgende Pakete bleiben offen.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
@@ -250,7 +256,8 @@ feuert ohne Sicht nicht weiter. Zielnachführung erfolgt alle 0,1 s mit begrenzt
 Drehtempo und Zielabweichung. Bereits abgefeuerte Projektile fliegen weiter.
 Beide starten mit Arc Lash; auch der Bot muss Pulse und Munition regulär aufnehmen.
 Der Gegner patrouilliert und verfolgt lokal auf E0. Gezielte Höhenrouten, Umwege bei
-Blockaden, Ressourcenplanung, Teamspiel und Schwierigkeitswahl folgen mit M2.4.
+Teamspiel ist mit M2.4a umgesetzt. Umwege, Ressourcenplanung und Schwierigkeitswahl
+bleiben M2.4b; die Bots verwenden bisher lokale Verfolgung und einfache Patrouillen.
 
 | Waffe | Bedienung und Wirkung |
 | --- | --- |
@@ -281,7 +288,8 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | M2.2 Waffen und Ressourcen | Erledigt; beide Waffen, Pickups, Munition und Restart im Browser geprüft |
 | M2.3 Botwahrnehmung und Kampf | Erledigt; Sicht/Reaktion/Gedächtnis, Waffenregeln und echtes Botduell geprüft |
 | Separater PvE-Ausbau | Technisch geprüft: drei Karten, eigene Gegner, Mini-Geschichte, Verfolgung und neues Kampf-HUD |
-| M2.4–M2.6 | Nicht begonnen; nächste Freigabe erforderlich |
+| M2.4a | Begrenztes 2v2 umgesetzt; [Nachweis](docs/qa/M2_4_RESULT.md) |
+| M2.4b–M2.6 | Routen/Ressourcen/Schwierigkeiten, Arena-Ausbau und Gesamtabnahme offen |
 
 [M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 

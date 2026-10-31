@@ -1,11 +1,14 @@
 # CORE ARENA 3D — Produktvision
 
-**Aktuelle Priorität, 28.10.2026:** Zuerst ein vollständig spielbares, hochwertiges
-Adventure-Testlevel mit drei offenen Höfen, zwei kleinen Nahkämpfern und dem
-vorhandenen Steinwächter fertigstellen. Abschluss, Materialien, Dekoration, Licht
-und Spielgefühl sind im [Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md) konkretisiert.
-Die Arena-/Liga-Vision unten bleibt langfristige Perspektive; 2v2-TDM ist derzeit
-nicht das erste Abnahmeziel. Desktop zuerst, vorhandene mobile Bedienung erhalten.
+**Aktuelle Priorität, 31.10.2026:** Arena und Adventure sind zwei eigenständige
+Spielvarianten. Arena wird mit dem begrenzten 2v2-Paket M2.4a fortgesetzt;
+Routen/Ressourcen/Schwierigkeiten bleiben M2.4b. Die Arena-Endproduktvision unten
+bleibt die Richtung, nicht der Umfang dieses einzelnen Pakets.
+Adventure L1.6a–c ist umgesetzt; L1.5b bleibt offen und pausiert.
+[Arena-Pakete](planning/MOBILE_AND_WORK_PACKAGES.md) · [Adventure-Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md).
+Touch-Steuerung und Auto-Arc sind inzwischen gemeinsame Realität. Die folgenden
+historischen Aussagen zu ausschließlich manuellem Aim und nur rudimentärem Mobile
+sind insoweit überholt; M2.4a verändert weder Waffenwerte noch Adventure.
 
 **Historischer Produktbrief:** Stand 20.10.2026, Grundlage des ersten Agentenplans.
 Nicht automatisch als Auftrag für einen Full Rewrite zu lesen.

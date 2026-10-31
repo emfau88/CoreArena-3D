@@ -1,9 +1,12 @@
 # Level 1: Der verwitterte Hof
 
 **Spielvariante: Adventure / PvE-Kampagne.** Dieser Plan beschreibt ausschließlich
-den Adventure-Ausbau. Arena, 2v2, CTF und Liga sind eine getrennte, zurückgestellte
+den Adventure-Ausbau. Arena, 2v2, CTF und Liga sind eine getrennte
 Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Plans.
 [Gemeinsame Grundlage und Unterschiede](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
+
+**31. Oktober: Der aktuelle Arbeitsfokus wechselt auf Arena-M2.4a.** Dieser
+Adventure-Stand bleibt unverändert; L1.5b bleibt offen und separat freizugeben.
 
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
 
@@ -196,7 +199,8 @@ L1.1/L1.2 bleiben erledigt; L1.3 schließt inzwischen den Levelablauf ab. Der vo
 Kampfversuch. Das ausdrücklich gewünschte Qualitätsziel vom 28. Oktober braucht
 zusätzlich einen fertigen Abschluss und einen eigenen Gestaltungsschritt. L1.4 wird
 dafür in eine sichtbare Stilprobe und ihre Übertragung unterteilt; L1.5 bündelt die
-abschließende Kampf-/Spielabnahme. Arena/Liga und neue Frost-/Glut-Level warten.
+abschließende Kampf-/Spielabnahme. Neue Frost-/Glut-Adventure-Level warten;
+die Arena wird unabhängig davon nach ihrer eigenen Roadmap weitergeführt.
 
 | Paket | Ergebnis | Status / weitere aktive Agent-Zeit |
 | --- | --- | --- |

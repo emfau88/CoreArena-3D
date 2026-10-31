@@ -1,15 +1,14 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 31. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a–c umgesetzt und technisch geprüft.**
-Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
-mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
-freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
-Innenpflanzen und Mauerecken aus L1.4b freigegeben und übertragen. Die anschließend
-freigegebene kostenlose AssetQuest-/Retro-Tech-Ausstattung ist umgesetzt; weitere
-Lichtgestaltung bleibt optional, die abschließende Abnahme L1.5b offen. L1.5a ergänzt
-Bosstempo und KayKit-Wächterpuppen. Arena-Teamspiel/Liga
-(M2.4–M2.6 und M3–M5) bleiben langfristiger Rückstand und sind kein Hindernis für
-die Abnahme dieses Testlevels. Maßgeblich ist der [aktuelle Levelplan](LEVEL_1_STONE_ADVENTURE.md).
+Stand: 31. Oktober 2026. **Arena ist wieder der aktive Schwerpunkt.** M0/M1,
+M2.1–M2.3 und jetzt **M2.4a: begrenztes 2v2** sind umgesetzt. Das ursprüngliche
+M2.4 wurde nach Nutzerabstimmung geteilt: Teamkampf zuerst, Wege/Ressourcen/
+Schwierigkeiten bleiben M2.4b. [Umfang und Nachweis](../qa/M2_4_RESULT.md).
+M2.5–M2.6 und M3–M5 bleiben offen; es gibt keine automatische Freigabe.
+
+Adventure bleibt eine eigenständige, derzeit pausierte Variante. Das Steinlevel
+mit L1.6a–c bleibt unverändert; L1.5b ist offen. Arena ist keine Voraussetzung für
+diese Abnahme. Maßgeblich ist der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 **L1.6a wurde freigegeben und umgesetzt:** Auftrag, Konsole und Relaisabschluss.
 [Umfang und Prüfungen](../qa/ADVENTURE_MISSION_RESULT.md).
@@ -33,25 +32,25 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / PvE-Kampagne — aktiv** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — zurückgestellt** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | M0/M1-Grundlage und M2.1–M2.3; Training und 1v1-Botduell | M2.4–M2.6 für vollständiges 2v2; danach geplante M3-Flaggenmodi und M4-Liga |
+| **Adventure / PvE-Kampagne — pausiert** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1 und M2.4a: spielbarer 2v2-Grundablauf | M2.4b: Wege/Ressourcen/Schwierigkeiten; M2.5 Arena/Feedback, M2.6 Gesamtabnahme; danach CTF und Liga |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
 Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
 
-**Vergleich anhand des Spielcodes bei `38bcf49` am 31. Oktober:**
+**Vergleich anhand des Spielcodes am 31. Oktober, einschließlich M2.4a:**
 
 | Bereich | Adventure-Stand | Arena-Stand / gemeinsame Grundlage |
 |---|---|---|
 | Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Einfachere prozedurale Materialien und blockbasierte Höhenarena; ebenfalls echte Höhe/Kollision |
 | Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Prozedurale Gartenbepflanzung und Arena-Deko; diese Adventure-Assetzusammenstellung wird dort nicht geladen |
 | Spielerfigur | Animierter KayKit-Ruinenkurier | **Bereits gemeinsam:** `main.ts` lädt KayKit vor beiden Einstiegen; beide verwenden `ArenaView`/`createFighter()` inklusive Kurier-Look |
-| Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | Ein roter KayKit-Kampfbot; Teamrollen, 2v2 und CTF-KI fehlen |
+| Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | 1v1 oder drei KayKit-Bots im 2v2, blaue/rote Kennzeichnung und Gegnerwahl; komplexe Wege und CTF-Rollen fehlen |
 | Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | **Bereits gemeinsam:** `Combat`, `CombatView`, `gear` und `ArcView`; keine pauschale Übertragung dieser bereits vorhandenen Verbesserungen nötig |
 | HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | Waffen-/Lebensanzeigen gemeinsam; Matchscore/Timer und Trainingsanzeigen. `game.ts` bindet das PvE-Ton-/Trefferfeedback nicht ein |
 | Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Kamera-/Eingabe-/Physikklassen und Touch-Steuerung; Arena nutzt andere Kameraführung und Standardsprungkurve. Der mobile Zoomfaktor ist geteilt |
-| Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden mit Höhen-/Deckungsrouten für Training und Botduell; vollständiges Teammatch noch offen |
+| Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden: Training, 1v1 und 2v2 bis Ergebnis/Restart; taktische Bot-Höhenrouten und Gesamtpolitur offen |
 
 **Einordnung:** Das Adventure ist bei Umgebung, Inszenierung und zusammenhängendem
 Spielablauf deutlich weiter ausgearbeitet. Es ist kein Nachweis höherer technischer
@@ -167,7 +166,8 @@ Freigabe eines weiteren Umsetzungspakets.
 - [x] M2.3 durch „go nächster punkt“ freigegeben: Botwahrnehmung und Kampf.
 - [x] M2.3: Spielbares Botduell, begrenzte 3D-Sicht, Erinnerung, Reaktion und gemeinsame Waffen; gezielte Kern- und Browserprüfung bestanden.
 - [x] Spielrückmeldung nach M2.3: Boden-Aim auf derselben Höhe bestimmt die Schussrichtung auf Waffenhöhe; Cursor vor/hinter Gegner trifft entlang der Flugbahn. [Nachweis](../qa/DIRECTIONAL_AIM_RESULT.md).
-- [ ] M2.4–M2.6: Teamspiel/Schwierigkeiten/Routen, Gesamtarena und integrierte Matchabnahme; noch nicht freigegeben.
+- [x] M2.4a: begrenztes 2v2, Teamkennzeichnung und unabhängige Kampf-/Lebenszyklen; [Nachweis](../qa/M2_4_RESULT.md).
+- [ ] M2.4b: Schwierigkeiten, Routen und Ressourcenplanung; M2.5 Gesamtarena/Feedback und M2.6 Gesamtabnahme bleiben offen.
 
 Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 
@@ -226,12 +226,15 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 | --- | --- | --- | --- |
 | **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **Ist: ca. 30 Minuten** (Nutzerangabe) | Browsernachweise vorhanden; persönliches Spielurteil offen |
 | **M1 Höhen und Aim — technisch erledigt, nachgearbeitet** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Ist Erststand: ca. 30 Minuten** (Nutzerangabe); Nacharbeit separat | Erste Spielrückmeldung eingearbeitet; erneute persönliche Bestätigung offen |
-| **M2 erstes Spiel — 3 von 6 Paketen technisch erledigt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden ursprünglicher Gesamtplan** | M2.1–M2.3 geprüft; vollständige echte 2v2-Matches und Nutzerabnahme noch offen |
+| **M2 erstes Spiel — bis M2.4a umgesetzt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden historischer Gesamtplan; keine aktuelle Restschätzung** | 2v2-Grundablauf vorhanden; M2.4b–M2.6 und persönliche Gesamtspielabnahme offen |
 | **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **1–2 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
 | **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **1–2 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
 | **M5 spätere Produktvalidierung** | Weitere Arenen, zusätzliche Waffen, größere Liga und Distributionsentscheidung nach Kernspielabnahme | **Noch nicht seriös schätzbar** | Eigenständiges Go/No-Go und neuer begrenzter Auftrag |
 
-**Nach M2.3 verbleiben laut Paketplan 40–80 Minuten bis einschließlich M2 beziehungsweise 2 Stunden 40 Minuten bis 5 Stunden 20 Minuten bis einschließlich M4.** Die ursprünglichen Gesamtspannen bleiben zur Einordnung in der Tabelle erhalten. Weitere Feedbackrunden kommen separat hinzu. Die Bereiche gelten für den beschriebenen Umfang und sind keine Kalendertermine. Nach M2 erneut anhand der tatsächlichen Umsetzung kalibrieren, statt den Faktor aus zwei kleinen Meilensteinen blind fortzuschreiben.
+**Historischer Plan nach M2.3:** 40–80 Minuten bis einschließlich M2 beziehungsweise
+2 Stunden 40 Minuten bis 5 Stunden 20 Minuten bis einschließlich M4. Nach der
+Aufteilung von M2.4 sind diese Zahlen keine aktuelle Restschätzung. Den konkreten
+M2.4b-Zuschnitt vor Freigabe neu kalibrieren; keine erfundenen Istzeiten abziehen.
 
 Bei einem ungelösten Grundproblem wird das Layout vereinfacht oder der laufende Meilenstein geteilt. Es werden nicht gleichzeitig zusätzliche Maps, Waffen oder Menüs begonnen.
 
@@ -354,4 +357,6 @@ Der Abschlussbericht enthält tatsächlichen Commit/Branch, Start-/Preview-Link 
 - **Technisch geprüft:** automatische und reale Browserfälle bestanden.
 - **Spielerisch abgenommen:** Nutzer hat den jeweiligen Spieltest bestätigt.
 
-Nur der letzte zutreffende Status wird behauptet. Aktuell sind M0, M1 und M2.1–M2.3 **umgesetzt und technisch geprüft**; persönliche Spielurteile bleiben separat. [M2.3-Nachweise](../qa/M2_3_RESULT.md): 25 Kerntests, echtes Browserduell und Waffen-/Touch-Regression. M2.4–M2.6 benötigen die nächste Freigabe.
+Nur der letzte zutreffende Status wird behauptet. M0/M1, M2.1–M2.3 und M2.4a sind
+umgesetzt; [aktueller Prüfstand](../qa/M2_4_RESULT.md). Persönliche Spielurteile
+bleiben separat. M2.4b–M2.6 benötigen die nächste Freigabe.

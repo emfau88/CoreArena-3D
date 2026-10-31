@@ -1,0 +1,7 @@
+/* Arena-only changes. Adventure and the older PvE HUD retain their layout. */
+#app[data-arena] #team-start { width:100%; color:#b1ddff; border-color:#75c9ff88; }
+#app[data-arena] #team-status { color:#b1ddff; font-size:11px; }
+.touch-mode #app[data-arena] #match-panel { max-height:calc(100dvh - 140px); overflow-y:auto; }
+.touch-mode #app[data-arena] #team-status { margin-top:4px; font-size:10px; }
+.touch-mode #app[data-arena] #match-panel #adventure-start { padding:7px; margin-bottom:4px; }
+.touch-mode #app[data-arena] #match-panel button { min-height:36px; padding:6px 9px; }
