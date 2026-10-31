@@ -47,8 +47,7 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     // No ground snapping: ledges and undersides must be resolved by actual collision.
     this.controller.setNormalNudgeFactor(0.01);
     this.controller.disableAutostep();
-    // Only the adventure's shallow, explicit stair treads opt in. Full ledges
-    // still require a real jump; all existing arenas retain their old motor.
+    // Opt-in shallow stair assistance. Full ledges still require a real jump.
     if (stepHeight > 0) this.controller.enableAutostep(stepHeight, 0.2, false);
     this.controller.disableSnapToGround();
     this.controller.setSlideEnabled(true);

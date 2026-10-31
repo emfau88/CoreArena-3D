@@ -13,7 +13,7 @@ export const ADVENTURE_BOSS_RULES = Object.freeze({ ...PVE_RULES,
   elevatedChaseTicks:60 });
 
 // Shared by desktop and touch; the old arena keeps its existing height routes.
-export const STONE_ADVENTURE_JUMP = { jumpSpeed: 11.8, gravity: 34 } as const;
+export { COMPACT_JUMP as STONE_ADVENTURE_JUMP } from '../core/movementProfile';
 export const ADVENTURE_CHECKPOINT = { x:0, y:.06, z:-14 } as const;
 
 interface Room { id: string; name: string; left: number; right: number; back: number; front: number }

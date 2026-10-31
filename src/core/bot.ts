@@ -4,6 +4,12 @@ import type { AimSolution } from './aim';
 
 export const BOT_RULES = Object.freeze({ sightRange: 18, fieldOfView: 140, reactionTicks: 24,
   memoryTicks: 120, aimIntervalTicks: 6, turnPerTick: 0.07, aimErrorRadians: 0.06 });
+export type BotDifficulty = 'easy' | 'normal' | 'hard';
+export const BOT_DIFFICULTIES = {
+  easy: { ...BOT_RULES, reactionTicks: 42, aimIntervalTicks: 12, turnPerTick: .05, aimErrorRadians: .12, fireTicks: 72 },
+  normal: { ...BOT_RULES, fireTicks: 120 },
+  hard: { ...BOT_RULES, reactionTicks: 15, aimIntervalTicks: 4, turnPerTick: .09, aimErrorRadians: .035, fireTicks: 120 },
+} as const;
 export const BOT_SPAWN = { x: -7, y: 0.06, z: 9 };
 export const BOT_TARGET = { id: 'rival', center: { x: -7, y: 1.16, z: 9 }, radius: 0.6, level: 'BOT' };
 export const actorCenter = (foot: Vec3): Vec3 => ({ ...foot, y: foot.y + 1.1 });
@@ -41,15 +47,18 @@ export class BotBrain {
   private facing: number;
   private waypoint = 0;
   constructor(private readonly initialFacing = Math.PI, private readonly patrolPoints: readonly Vec3[] = patrol) { this.facing = initialFacing; }
+  private difficulty: BotDifficulty = 'normal';
+  setDifficulty(value: BotDifficulty): void { this.difficulty = value; this.reset(); }
   reset(): void { this.memory = null; this.seenAt = this.readyAt = null; this.aimPoint = null; this.facing = this.initialFacing; this.waypoint = 0; }
   heading(): number { return this.facing; }
   step(tick: number, own: Snapshot, visible: CombatTarget | null, weapons: WeaponSnapshot): BotDecision {
+    const rules = BOT_DIFFICULTIES[this.difficulty];
     if (visible) {
       if (this.readyAt === null || this.memory?.id !== visible.id) {
-        this.readyAt = tick + BOT_RULES.reactionTicks; this.aimPoint = null;
+        this.readyAt = tick + rules.reactionTicks; this.aimPoint = null;
       }
       this.memory = { ...visible, center: { ...visible.center } }; this.seenAt = tick;
-      if (!this.aimPoint || tick % BOT_RULES.aimIntervalTicks === 0) this.aimPoint = { ...visible.center };
+      if (!this.aimPoint || tick % rules.aimIntervalTicks === 0) this.aimPoint = { ...visible.center };
     } else {
       this.readyAt = null; this.aimPoint = null;
       if (this.seenAt !== null && tick - this.seenAt >= BOT_RULES.memoryTicks) { this.memory = null; this.seenAt = null; }
@@ -62,9 +71,9 @@ export class BotBrain {
       distance = Math.hypot(destination.x - own.position.x, destination.z - own.position.z);
     }
     const desired = Math.atan2(destination.x - own.position.x, destination.z - own.position.z);
-    this.facing += Math.max(-BOT_RULES.turnPerTick, Math.min(BOT_RULES.turnPerTick, wrap(desired - this.facing)));
+    this.facing += Math.max(-rules.turnPerTick, Math.min(rules.turnPerTick, wrap(desired - this.facing)));
     const standoff = weapons.selected === 'rail' ? 12 : weapons.selected === 'pulse' ? 9 : 3.6;
-    // Direct local pursuit only; route selection and recovery belong to M2.4.
+    // The Arena navigator resolves this intent into physical routes and jumps.
     const move = mode !== 'react' && distance > (visible ? standoff : 0.25);
     const scale = move ? Math.min(1, distance / 0.12) / Math.max(distance, 1e-8) : 0;
     const movement = { x: (destination.x - own.position.x) * scale, z: (destination.z - own.position.z) * scale, sprint: false };
@@ -72,7 +81,7 @@ export class BotBrain {
     if (visible && this.aimPoint) {
       const muzzle = actorCenter(own.position);
       const line = directionTo(muzzle, this.aimPoint);
-      const error = Math.sin(tick * 0.083) * BOT_RULES.aimErrorRadians;
+      const error = Math.sin(tick * 0.083) * rules.aimErrorRadians;
       const yaw = this.facing + error;
       const horizontal = Math.hypot(line.direction.x, line.direction.z);
       const direction = { x: Math.sin(yaw) * horizontal, y: line.direction.y, z: Math.cos(yaw) * horizontal };
@@ -82,7 +91,7 @@ export class BotBrain {
       aim = { muzzle, firePoint: point, target: { id: visible.id, point, normal: { x: 0, y: 1, z: 0 }, distance: line.distance },
         impact: null, end: point, blocked: false };
     }
-    return { movement, firing: mode === 'fight' && Math.abs(wrap(desired - this.facing)) < 0.15,
+    return { movement, firing: mode === 'fight' && tick % 120 < rules.fireTicks && Math.abs(wrap(desired - this.facing)) < 0.15,
       aim, ray, facing: this.facing, visible: !!visible, mode, seenAt: this.seenAt, readyAt: this.readyAt,
       remembered: this.memory ? { ...this.memory.center } : null, targetId: visible?.id ?? null, destination: { ...destination } };
   }

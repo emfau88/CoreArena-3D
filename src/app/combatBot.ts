@@ -1,40 +1,45 @@
 import { M1_ARENA, type ArenaDefinition } from '../arena/arena';
-import { BotBrain, actorCenter, perceive, type BotDecision } from '../core/bot';
+import { BotBrain, actorCenter, perceive, type BotDecision, type BotDifficulty } from '../core/bot';
 import { Combat, directionTo } from '../core/combat';
 import type { Life } from '../core/match';
 import { Simulation } from '../core/simulation';
 import type { Vec3 } from '../core/types';
 import { createSpatialWorld, type RapierWorld } from '../physics/rapierWorld';
 import { ARENA_FIGHTERS, fighterTarget, type ArenaFighter } from '../arena/teams';
-import { BossNavigation } from '../core/bossNavigation';
+import { ArenaNavigation } from '../core/arenaNavigation';
+import { chooseBotResource } from '../core/botResources';
+import { COMPACT_JUMP, SHALLOW_STEPS } from '../core/movementProfile';
+import type { PickupState } from '../core/pickups';
 import { wingPatrol } from '../arena/expandedArena';
 
 export interface BotActor { readonly life: Life; readonly position: Vec3 }
 export async function createCombatBot(fighter: ArenaFighter = ARENA_FIGHTERS[1]!, roster: readonly ArenaFighter[] = ARENA_FIGHTERS.slice(0, 2),
   arena: ArenaDefinition = M1_ARENA, expanded = false): Promise<CombatBot> {
   const world = await createSpatialWorld({ ...arena, spawn: fighter.spawn,
-    targets: roster.filter(actor => actor.id !== fighter.id).map(fighterTarget) });
+    targets: roster.filter(actor => actor.id !== fighter.id).map(fighterTarget) }, expanded ? SHALLOW_STEPS : {});
   return new CombatBot(world, fighter, arena, expanded);
 }
 export class CombatBot {
   readonly weapons: Combat<boolean>;
   readonly simulation: Simulation;
   private readonly brain: BotBrain;
-  private readonly navigation: BossNavigation | null;
+  private readonly navigation: ArenaNavigation | null;
+  resourceGoal: string | null = null;
   decision: BotDecision | null = null;
   constructor(readonly world: RapierWorld, readonly fighter: ArenaFighter = ARENA_FIGHTERS[1]!, arena = M1_ARENA, expanded = false) {
-    this.simulation = new Simulation(world, fighter.spawn);
+    this.simulation = new Simulation(world, fighter.spawn, expanded ? COMPACT_JUMP : undefined);
     this.weapons = new Combat(fighter.id, expanded);
     this.brain = new BotBrain(fighter.facing, expanded ? wingPatrol(fighter.team) : undefined);
-    this.navigation = expanded ? new BossNavigation(arena, .45) : null;
+    this.navigation = expanded ? new ArenaNavigation(arena) : null;
   }
   snapshot() { return { ...this.simulation.snapshot(), facing: this.brain.heading() }; }
-  reset(spawn = this.fighter.spawn): void { this.simulation.reset(spawn); this.weapons.reset(); this.brain.reset(); this.navigation?.reset(); this.decision = null; }
-  clear(): void { this.weapons.clearEffects(); this.brain.reset(); this.navigation?.reset(); this.decision = null; }
+  setDifficulty(value: BotDifficulty): void { this.brain.setDifficulty(value); }
+  reset(spawn = this.fighter.spawn): void { this.simulation.reset(spawn); this.weapons.reset(); this.clear(); }
+  clear(): void { this.weapons.clearEffects(); this.brain.reset(); this.navigation?.reset(); this.decision = null; this.resourceGoal = null; }
   step(tick: number, life: Life, enemyLife: Life, enemyFoot: Vec3) {
     return this.stepActors(tick, life, [{ life: enemyLife, position: enemyFoot }]);
   }
-  stepActors(tick: number, life: Life, actors: readonly BotActor[]) {
+  stepActors(tick: number, life: Life, actors: readonly BotActor[], pickups: readonly PickupState[] = []) {
     for (const actor of actors) {
       this.world.setTargetPosition(actor.life.id, actorCenter(actor.position));
       this.world.setTargetEnabled(actor.life.id, actor.life.alive);
@@ -58,14 +63,18 @@ export class CombatBot {
     const attack = this.weapons.step(tick, this.decision.firing, this.decision.aim, this.decision.ray,
       this.world, seen, own.position);
     let movement = this.decision.movement;
-    if (this.navigation && own.grounded && own.surface === 'floor' && Math.hypot(movement.x, movement.z) > 0) {
-      // Reuse the existing obstacle planner; never give it hidden enemy positions.
-      const next = this.navigation.steer(own.position, this.decision.destination);
-      const dx = next.x - own.position.x, dz = next.z - own.position.z, distance = Math.hypot(dx, dz);
-      const speed = Math.min(1, distance / .12);
-      movement = { ...movement, x: dx / Math.max(distance, .001) * speed, z: dz / Math.max(distance, .001) * speed };
+    this.resourceGoal = null;
+    if (this.navigation) {
+      const resource = !visible && (!this.decision.remembered || life.hp < 35)
+        ? chooseBotResource(pickups, life, inventory, own.position) : null;
+      this.resourceGoal = resource?.id ?? null;
+      const goal = resource?.position ?? { ...this.decision.destination,
+        y: this.decision.destination.y - (this.decision.remembered ? 1.1 : 0) };
+      const surface = resource?.surface ?? this.navigation.surfaceAt(goal);
+      if (resource || Math.hypot(movement.x, movement.z) > 0 || own.surface !== surface)
+        movement = this.navigation.command(own, goal, surface);
     }
-    if (actors.length > 1) {
+    if (actors.length > 1 && own.grounded && own.surface === 'floor' && !movement.jump) {
       // Local body spacing keeps several bots readable around respawns. This only
       // steers movement at contact distance; it never supplies hidden aiming data.
       let x = movement.x, z = movement.z;

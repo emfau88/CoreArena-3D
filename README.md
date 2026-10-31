@@ -7,8 +7,8 @@
   nächste offene Abnahme: L1.5b. [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — aktueller Schwerpunkt.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und
-  Railgun. Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und Schwierigkeitswahl
-  bleiben M2.4b; CTF und Liga folgen später.
+  Railgun. **M2.4b:** Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und
+  Schwierigkeitswahl ergänzt; CTF und Liga folgen später.
   [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
 
 Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
@@ -29,6 +29,13 @@ beiden Seiten; Arena-Bots können Bodenhindernisse umgehen und die Waffen regul�
 aufnehmen. **Railgun: Taste 3 oder Touch-Button**, sechs Schuss, 70 Schaden,
 40 m Reichweite und 1,4 s Nachladezeit. Nur in Arena, nicht im Adventure.
 [Ausbau und Browserprüfung](docs/qa/ARENA_EXPANSION_RESULT.md).
+
+**M2.4b:** Arena übernimmt Adventure-Sprungkurve und 32-cm-Treppenhilfe für Spieler
+und Bots. Bots springen auf E1/E2, holen benötigte Vorräte und kehren zurück.
+Vor dem Match **Leicht / Normal / Schwer** wählen: Reaktionszeit, Zielgenauigkeit
+und Feuerpausen ändern sich; HP, Rüstung, Sichtweite und Waffenwerte bleiben gleich.
+[Prüfung und Grenzen](docs/qa/M2_4B_RESULT.md). M2.5 ist als nächstes freigegeben,
+M2.6 und Adventure-L1.5b bleiben offen.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
@@ -131,7 +138,7 @@ Pulse liegt hinter dem Startpunkt; aufnehmen und mit **2** wählen, **1** wählt
 veröffentlicht geprüfte Spieländerungen auf `main` automatisch über GitHub Pages.
 
 Eigenständiges Desktop-Spielprojekt. **M0, M1 und M2.1–M2.3 sind umgesetzt und technisch
-geprüft.** Zusätzlich ist M2.4a (begrenztes 2v2) umgesetzt; M2.4b und folgende Pakete bleiben offen.
+geprüft.** Zusätzlich sind M2.4a (2v2) und M2.4b (Bot-Wege/Ressourcen/Stufen) umgesetzt; M2.5 ist freigegeben, M2.6 bleibt offen.
 
 Spielbar sind Bewegung, Sprint, Sprünge über E0/E1/E2, Kopf-/Wandkollision,
 3D-Mausziel und Diagnosefeuer auf drei Höhenziele sowie beide V5-Kameras.
@@ -265,8 +272,9 @@ Drehtempo und Zielabweichung. Bereits abgefeuerte Projektile fliegen weiter.
 Beide starten mit Arc Lash; auch der Bot muss Pulse und Munition regulär aufnehmen.
 Teamspiel ist mit M2.4a umgesetzt. Auf der erweiterten Arena führen Patrouillen
 durch beide Außenflanken; die vorhandene Umgehungslogik führt um Bodenhindernisse.
-Gezielte Höhenrouten, bedarfsgerechte Ressourcenplanung und Schwierigkeitswahl
-bleiben M2.4b. Waffen werden nur durch tatsächliche Aufnahme freigeschaltet.
+M2.4b ergänzt Höhenrouten, bedarfsgerechte Ressourcenplanung und Schwierigkeitswahl.
+Die oben genannten Reaktionswerte beschreiben Normal. Waffen werden nur durch
+tatsächliche Aufnahme freigeschaltet.
 
 | Waffe | Bedienung und Wirkung |
 | --- | --- |
@@ -301,7 +309,8 @@ M1-Diagnosewaffe zum Prüfen der Höhen.
 | Separater PvE-Ausbau | Technisch geprüft: drei Karten, eigene Gegner, Mini-Geschichte, Verfolgung und neues Kampf-HUD |
 | M2.4a | Begrenztes 2v2 umgesetzt; [Nachweis](docs/qa/M2_4_RESULT.md) |
 | Arena-Zusatz: Map und Railgun | Größere Karte, zwei Waffenfelder, Railgun, E0-Umgehungen; [Nachweis](docs/qa/ARENA_EXPANSION_RESULT.md) |
-| M2.4b–M2.6 | Routen/Ressourcen/Schwierigkeiten, Arena-Ausbau und Gesamtabnahme offen |
+| M2.4b | Höhenrouten/Ressourcen/Schwierigkeiten und Adventure-Bewegung umgesetzt |
+| M2.5 / M2.6 | Arena/Feedback freigegeben; Gesamtabnahme offen |
 
 [M2.3-Ergebnis und Testnachweise](docs/qa/M2_3_RESULT.md), [M2.2-Nachweise](docs/qa/M2_2_RESULT.md), [M2.1-Nachweise](docs/qa/M2_1_RESULT.md), [M1-Nachweise](docs/qa/M1_RESULT.md), [M0-Nachweise](docs/qa/M0_RESULT.md).
 

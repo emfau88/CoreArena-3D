@@ -3,11 +3,13 @@
 Stand: 31. Oktober 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
 umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
-M2.4b (Routen/Ressourcen/Schwierigkeiten), M2.5–M2.6 und M3–M5 bleiben offen.
+M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
+**M2.5 ist ausdrücklich als nächster Schritt freigegeben.** M2.6 und M3–M5 bleiben offen.
 
 **Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
 getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
-Höhennavigation, bedarfsgerechte Ressourcenwahl und Schwierigkeit bleiben offen.
+Höhennavigation, bedarfsgerechte Ressourcenwahl und Schwierigkeit wurden danach
+mit M2.4b ergänzt; zusätzlich die Adventure-Sprungkurve und Treppenhilfe übernommen.
 [Ausbau/Prüfung](../qa/ARENA_EXPANSION_RESULT.md). Adventure bleibt unverändert.
 
 **Adventure / PvE-Kampagne bleibt eine separate Spielvariante, derzeit pausiert.**
@@ -161,8 +163,8 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M2.3 ✅ Botwahrnehmung und Kampf** | Spielbares 1v1, begrenzte 3D-Sicht, kopierte Erinnerung, Reaktion und gemeinsame Waffenbedienung | Erledigt; Nutzer-Spielurteil offen | 25–50 Min. ursprünglicher Planwert | Verdeckte Gegner verborgen; keine vorzeitige Reaktion; echtes Duell mit Schaden/Kills/Respawns; [Nachweis](../qa/M2_3_RESULT.md) |
 | **M2.4a ✅ Begrenztes Teamspiel** | 2v2, sichtbare Gegnerwahl, Teamkennzeichnung, unabhängige Leben/Waffen/Respawns und Teamwertung | M2.3; separat von Adventure umgesetzt | Keine separat gemessene Istzeit | Vollständiger Desktop-/Touch-Match, Neustart, 1v1-Regression; [Nachweis](../qa/M2_4_RESULT.md) |
 | **Arena-Zusatz ✅ Map und Railgun** | Größere Spielfläche, zwei Railgun-Felder, dritte Arena-Waffe, E0-Umgehungen und Außenpatrouillen | Separater Nutzerauftrag nach M2.4a | Keine separat gemessene Istzeit | Beide Felder, räumliche Treffer und Desktop-/Touch-Spiel; [Nachweis](../qa/ARENA_EXPANSION_RESULT.md) |
-| **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — offen** | Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile; E0-Umgehungen bereits vorhanden | M2.4a und Arena-Zusatz; neuer begrenzter Auftrag | Vor Freigabe neu schätzen; alter Gesamtwert 15–30 Min. gilt nicht als Restschätzung | Pflichtwege und bedarfsgerechte Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
-| **M2.5 Arena und Feedback** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | 10–20 Min. | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
+| **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — umgesetzt und technisch geprüft** | Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile; gemeinsame Adventure-Bewegung | M2.4a und Arena-Zusatz; ausdrücklich freigegeben | Keine getrennt gemessene Istzeit | Pflichtwege und bedarfsgerechte Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
+| **M2.5 Arena und Feedback — freigegeben** | Gesamtarena, kleines HUD, klare Teams und Feedbacksounds | M2.2–M2.4 | Historischer Plan 10–20 Min.; keine Zusage für den erweiterten Stand | Höhe/Deckung lesbar, Match ohne Diagnosehilfen |
 | **M2.6 Matchprüfung und Übergabe** | Gesamtablauf, gezielte Botsimulationen, Performance und Korrekturen | M2.1–M2.5 | 15–30 Min. | Echte vollständige Browsermatches; breitere Matrix nach Bewährung |
 | **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
 | **M3.2 One Flag** | Neutrale Flagge, Runner/Escort/Interception auf vorhandener Basis | M3.1 geprüft | 15–30 Min. | Regulärer Transport und Capture |
@@ -278,6 +280,7 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
 **Aktueller Stand, 31. Oktober: M0/M1, M2.1–M2.3 und M2.4a umgesetzt; Touch-Zugang vorhanden.**
-[M2.4a-Nachweise](../qa/M2_4_RESULT.md). M2.4b ist der nächste offene Arena-Schritt.
+[M2.4a-Nachweise](../qa/M2_4_RESULT.md). M2.4b ist umgesetzt und technisch geprüft;
+M2.5 folgt mit ausdrücklicher Freigabe. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
 sie sind keine aktuelle Restschätzung und keine Freigabe weiterer Pakete.

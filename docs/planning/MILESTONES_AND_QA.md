@@ -1,16 +1,15 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
 Stand: 31. Oktober 2026. **Arena ist wieder der aktive Schwerpunkt.** M0/M1,
-M2.1–M2.3 und jetzt **M2.4a: begrenztes 2v2** sind umgesetzt. Das ursprüngliche
-M2.4 wurde nach Nutzerabstimmung geteilt: Teamkampf zuerst, Wege/Ressourcen/
-Schwierigkeiten bleiben M2.4b. [Umfang und Nachweis](../qa/M2_4_RESULT.md).
-M2.5–M2.6 und M3–M5 bleiben offen; es gibt keine automatische Freigabe.
+M2.1–M2.4b sind umgesetzt und technisch geprüft.
+M2.4a brachte 2v2, M2.4b ergänzt Wege/Ressourcen/Schwierigkeiten und die
+Adventure-Bewegung. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
+**M2.5 ist ausdrücklich freigegeben und folgt anschließend.** M2.6 und M3–M5 bleiben offen.
 
 Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
 Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutzen
-vorhandene Systeme. [Prüfstand](../qa/ARENA_EXPANSION_RESULT.md). M2.4b umfasst weiter
-Höhenrouten, bedarfsgerechte Ressourcenwahl und Schwierigkeiten; diese nicht als
-erledigt behandeln. E0-Umgehungen und die neue Waffe nicht erneut einplanen.
+vorhandene Systeme. [Prüfstand](../qa/ARENA_EXPANSION_RESULT.md). E0-Umgehungen,
+Höhenrouten, Ressourcenwahl und die neue Waffe nicht erneut einplanen.
 
 Adventure bleibt eine eigenständige, derzeit pausierte Variante. Das Steinlevel
 mit L1.6a–c bleibt unverändert; L1.5b ist offen. Arena ist keine Voraussetzung für
@@ -39,7 +38,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
 | **Adventure / PvE-Kampagne — pausiert** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1 und M2.4a: spielbarer 2v2-Grundablauf | M2.4b: Wege/Ressourcen/Schwierigkeiten; M2.5 Arena/Feedback, M2.6 Gesamtabnahme; danach CTF und Liga |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.4b: Wege/Ressourcen/Schwierigkeiten | M2.5 Arena/Feedback freigegeben; M2.6 Gesamtabnahme offen; danach CTF und Liga |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
@@ -173,7 +172,8 @@ Freigabe eines weiteren Umsetzungspakets.
 - [x] M2.3: Spielbares Botduell, begrenzte 3D-Sicht, Erinnerung, Reaktion und gemeinsame Waffen; gezielte Kern- und Browserprüfung bestanden.
 - [x] Spielrückmeldung nach M2.3: Boden-Aim auf derselben Höhe bestimmt die Schussrichtung auf Waffenhöhe; Cursor vor/hinter Gegner trifft entlang der Flugbahn. [Nachweis](../qa/DIRECTIONAL_AIM_RESULT.md).
 - [x] M2.4a: begrenztes 2v2, Teamkennzeichnung und unabhängige Kampf-/Lebenszyklen; [Nachweis](../qa/M2_4_RESULT.md).
-- [ ] M2.4b: Schwierigkeiten, Routen und Ressourcenplanung; M2.5 Gesamtarena/Feedback und M2.6 Gesamtabnahme bleiben offen.
+- [x] M2.4b: Schwierigkeiten, Routen und Ressourcenplanung; gemeinsame Adventure-Bewegung.
+- [ ] M2.5 Gesamtarena/Feedback: ausdrücklich freigegeben; M2.6 Gesamtabnahme offen.
 
 Separater Versuch vom 26. Oktober 2026, außerhalb der nummerierten Roadmap:
 
@@ -232,7 +232,7 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 | --- | --- | --- | --- |
 | **M0 Fundament — technisch erledigt** | Vite/TS/Three/Rapier, fester Takt, Figur auf E0, Wandkollision, beide Kameras, V5-Materialprobe, Start-/Buildanleitung | **Ist: ca. 30 Minuten** (Nutzerangabe) | Browsernachweise vorhanden; persönliches Spielurteil offen |
 | **M1 Höhen und Aim — technisch erledigt, nachgearbeitet** | E0/E1/E2, Sprung und Fall, Körper-/Deckenfreiheit, Zielmarker und Diagnosewaffe, drei Dummies, einfache Bot-Traversalprobe | **Ist Erststand: ca. 30 Minuten** (Nutzerangabe); Nacharbeit separat | Erste Spielrückmeldung eingearbeitet; erneute persönliche Bestätigung offen |
-| **M2 erstes Spiel — bis M2.4a umgesetzt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden historischer Gesamtplan; keine aktuelle Restschätzung** | 2v2-Grundablauf vorhanden; M2.4b–M2.6 und persönliche Gesamtspielabnahme offen |
+| **M2 erstes Spiel — bis M2.4b umgesetzt** | Eine überarbeitete Arena, 2v2-TDM, Arc Lash/Pulse/Rail, Pickups, HP/Armor, Tod/Respawn, Score/Timer/Restart, Easy/Normal/Hard, kleines HUD und belegte kurze Feedbacksounds | **1,5–3 Stunden historischer Gesamtplan; keine aktuelle Restschätzung** | M2.5 freigegeben; M2.6 und persönliche Gesamtspielabnahme offen |
 | **M3 Objectives** | Erst Classic CTF, danach One Flag; Träger-, Drop-, Return- und Capture-Regeln sowie passende Teamrollen | **1–2 Stunden** | Echte Captures durch gültige Wege; Schwierigkeit und Teams bleiben nachvollziehbar |
 | **M4 kleine Liga** | Ein-Klick-Qualifier, Teamidentität, eine Proving-Saison mit drei Matches, Tabelle, ein Recruitment-Moment, sichere lokale Saves | **1–2 Stunden** | Neuer Spieler versteht den Einstieg; komplette kleine Liga einschließlich Reload und Recruitment |
 | **M5 spätere Produktvalidierung** | Weitere Arenen, zusätzliche Waffen, größere Liga und Distributionsentscheidung nach Kernspielabnahme | **Noch nicht seriös schätzbar** | Eigenständiges Go/No-Go und neuer begrenzter Auftrag |
@@ -240,7 +240,7 @@ Freigegebener Zuschnitt: **M0 umfasst Fundament, Kameras, Figur, Basiskollision 
 **Historischer Plan nach M2.3:** 40–80 Minuten bis einschließlich M2 beziehungsweise
 2 Stunden 40 Minuten bis 5 Stunden 20 Minuten bis einschließlich M4. Nach der
 Aufteilung von M2.4 sind diese Zahlen keine aktuelle Restschätzung. Den konkreten
-M2.4b-Zuschnitt vor Freigabe neu kalibrieren; keine erfundenen Istzeiten abziehen.
+M2.4b wurde mit zusätzlicher Bewegungsübernahme ausdrücklich freigegeben; keine erfundenen Istzeiten abziehen.
 
 Bei einem ungelösten Grundproblem wird das Layout vereinfacht oder der laufende Meilenstein geteilt. Es werden nicht gleichzeitig zusätzliche Maps, Waffen oder Menüs begonnen.
 
@@ -363,6 +363,6 @@ Der Abschlussbericht enthält tatsächlichen Commit/Branch, Start-/Preview-Link 
 - **Technisch geprüft:** automatische und reale Browserfälle bestanden.
 - **Spielerisch abgenommen:** Nutzer hat den jeweiligen Spieltest bestätigt.
 
-Nur der letzte zutreffende Status wird behauptet. M0/M1, M2.1–M2.3 und M2.4a sind
-umgesetzt; [aktueller Prüfstand](../qa/M2_4_RESULT.md). Persönliche Spielurteile
-bleiben separat. M2.4b–M2.6 benötigen die nächste Freigabe.
+Nur der letzte zutreffende Status wird behauptet. M0/M1 und M2.1–M2.4b sind
+umgesetzt; [aktueller Prüfstand](../qa/M2_4B_RESULT.md). Persönliche Spielurteile
+bleiben separat. M2.5 ist freigegeben, M2.6 bleibt offen.

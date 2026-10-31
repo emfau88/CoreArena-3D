@@ -6,6 +6,9 @@ import type { Vec3 } from '../core/types';
 /** Arena expansion only; Adventure and the historical M1 physics fixture stay intact. */
 export const EXPANDED_ARENA: ArenaDefinition = {
   ...M1_ARENA,
+  links: [...M1_ARENA.links!,
+    { from: 'e1', to: 'floor', kind: 'drop', start: { x: -7, y: 2.05, z: -4 }, end: { x: -11.5, y: 0, z: -4 } },
+  ],
   boxes: [
     ...M1_ARENA.boxes.filter(box => !['floor', 'north', 'south', 'west', 'east'].includes(box.id)),
     { id: 'floor', center: { x: 0, y: -0.4, z: 0 }, size: { x: 56, y: 0.8, z: 36 }, material: 'floor' },

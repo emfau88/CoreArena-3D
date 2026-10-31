@@ -1,4 +1,7 @@
 /* Arena-only changes. Adventure and the older PvE HUD retain their layout. */
+#app[data-arena] #difficulty-control { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:6px 0; font-size:12px; }
+#app[data-arena] #difficulty-control[hidden] { display:none; }
+#app[data-arena] #bot-difficulty { color:#d7e8ed; background:#172832; border:1px solid #53707d; border-radius:5px; padding:6px; }
 #app[data-arena] #team-start { width:100%; color:#b1ddff; border-color:#75c9ff88; }
 #app[data-arena] #team-status { color:#b1ddff; font-size:11px; }
 #app[data-arena] #weapon-panel { width:380px; }
