@@ -1,5 +1,10 @@
 # Level 1: Der verwitterte Hof
 
+**Spielvariante: Adventure / PvE-Kampagne.** Dieser Plan beschreibt ausschließlich
+den Adventure-Ausbau. Arena, 2v2, CTF und Liga sind eine getrennte, zurückgestellte
+Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Plans.
+[Gemeinsame Grundlage und Unterschiede](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
+
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
 
 **Stand 30. Oktober 2026: L1.6a, L1.6b und anschließend L1.6c freigegeben und umgesetzt.**

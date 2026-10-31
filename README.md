@@ -1,5 +1,19 @@
 # CORE ARENA 3D
 
+**Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
+
+- **Adventure / PvE-Kampagne — aktueller Schwerpunkt.** Zusammenhängende Missionen,
+  Erkundung und Bosskämpfe. Das Stein-Testlevel ist spielbar, L1.6a–c sind umgesetzt;
+  nächste offene Abnahme: L1.5b. [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+- **Arena / Teamspiel / CTF / Liga — zurückgestellt.** Ursprüngliche eigenständige
+  Spielrichtung. Training und 1v1-Botduell sind vorhanden (bis M2.3); 2v2, CTF und
+  Liga sind noch Planung. [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
+
+Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
+Schritte. Spielerfigur, Waffen und Technik werden teilweise geteilt; die
+ausgearbeitete Adventure-Umgebung ist noch nicht auf die Arena übertragen.
+[Stand und Unterschiede der Varianten](docs/planning/MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
+
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**

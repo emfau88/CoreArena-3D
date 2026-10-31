@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 30. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a–c umgesetzt und technisch geprüft.**
+Stand: 31. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a sowie L1.6a–c umgesetzt und technisch geprüft.**
 Aktuelles erstes Produktziel ist **ein vollständig spielbares, hochwertiges Stein-Adventure-Testlevel**
 mit zwei kleinen Nahkämpfern und dem vorhandenen Boss. L1.3 und die anschließend
 freigegebene Stilprobe L1.4a sind umgesetzt. Anschließend wurden Boden/Materialien,
@@ -23,6 +23,53 @@ Verbleibender Planrahmen: **20–35 Minuten aktive Agent-Arbeit**;
 [kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
 
 ## Aktueller Fortschritt
+
+### Zwei getrennte Spielvarianten
+
+**Arena/Teamspiel und Adventure/Kampagne sind zwei eigenständige Spielvarianten,
+keine aufeinanderfolgenden Phasen desselben Spielmodus.** Sie liegen im selben
+Repository und verwenden Teile derselben Technik. Dieses Dokument führt beide
+Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
+
+| Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
+|---|---|---|---|
+| **Adventure / PvE-Kampagne — aktiv** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
+| **Arena / Teamspiel / CTF / Liga — zurückgestellt** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | M0/M1-Grundlage und M2.1–M2.3; Training und 1v1-Botduell | M2.4–M2.6 für vollständiges 2v2; danach geplante M3-Flaggenmodi und M4-Liga |
+
+Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
+noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
+Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
+
+**Vergleich anhand des Spielcodes bei `38bcf49` am 31. Oktober:**
+
+| Bereich | Adventure-Stand | Arena-Stand / gemeinsame Grundlage |
+|---|---|---|
+| Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Einfachere prozedurale Materialien und blockbasierte Höhenarena; ebenfalls echte Höhe/Kollision |
+| Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Prozedurale Gartenbepflanzung und Arena-Deko; diese Adventure-Assetzusammenstellung wird dort nicht geladen |
+| Spielerfigur | Animierter KayKit-Ruinenkurier | **Bereits gemeinsam:** `main.ts` lädt KayKit vor beiden Einstiegen; beide verwenden `ArenaView`/`createFighter()` inklusive Kurier-Look |
+| Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | Ein roter KayKit-Kampfbot; Teamrollen, 2v2 und CTF-KI fehlen |
+| Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | **Bereits gemeinsam:** `Combat`, `CombatView`, `gear` und `ArcView`; keine pauschale Übertragung dieser bereits vorhandenen Verbesserungen nötig |
+| HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | Waffen-/Lebensanzeigen gemeinsam; Matchscore/Timer und Trainingsanzeigen. `game.ts` bindet das PvE-Ton-/Trefferfeedback nicht ein |
+| Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Kamera-/Eingabe-/Physikklassen und Touch-Steuerung; Arena nutzt andere Kameraführung und Standardsprungkurve. Der mobile Zoomfaktor ist geteilt |
+| Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden mit Höhen-/Deckungsrouten für Training und Botduell; vollständiges Teammatch noch offen |
+
+**Einordnung:** Das Adventure ist bei Umgebung, Inszenierung und zusammenhängendem
+Spielablauf deutlich weiter ausgearbeitet. Es ist kein Nachweis höherer technischer
+Leistung und keine fertige mehrteilige Kampagne. Die Arena besitzt bereits die
+gemeinsamen modernen Figuren-/Waffensysteme; ihre eigene Umgebung und Teamspiel-
+Systeme sind weniger weit. Ein späterer Arena-Ausbau muss deshalb gemeinsam
+vorhandene Verbesserungen zuerst prüfen und nur fehlende Teile übernehmen.
+
+Quellen im Code: [Arena-Einstieg](../../src/app/game.ts),
+[Adventure-Einstieg](../../src/app/adventureGame.ts),
+[gemeinsamer Modellstart](../../src/main.ts),
+[gemeinsame Figur](../../src/render/kayFighter.ts),
+[Arena-Umgebung](../../src/render/buildArena.ts),
+[Adventure-Umgebung](../../src/render/courtyardLook.ts).
+Dies ist eine Dokumentations-/Codeprüfung, kein neuer Browser-Spieltest und keine
+Freigabe eines weiteren Umsetzungspakets.
+
+### Bisherige Umsetzung und Nachweise
 
 - [x] 29. Oktober, [Adventure-Shooter-Vorbildanalyse](ADVENTURE_SHOOTER_REFERENCES.md)
   dokumentiert: Darksiders Genesis, Bastion, The Ascent, RUINER sowie Hades und

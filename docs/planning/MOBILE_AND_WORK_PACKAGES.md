@@ -1,18 +1,16 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 29. Oktober 2026. **M0, M1, M2.1–M2.3 und Adventure L1.1–L1.4a umgesetzt und technisch geprüft.**
-Aktuelles Ziel ist das [hochwertige erste Adventure-Testlevel](LEVEL_1_STONE_ADVENTURE.md).
-L1.3 schließt den Levelablauf ab; L1.4a gestaltet den ersten Hof. Der Material-/Ecken-/
-Pflanzenschritt von L1.4b ist auf die ganze Map übertragen; weitere Blickfänge und
-Spielabnahme bleiben offen. Die untenstehende
-M-Paketfolge bleibt die spätere Arena-/Liga-Perspektive. Desktop bleibt das erste
-Qualitätsziel, der vorhandene mobile Zugang bleibt Teil des spielbaren Testlevels.
+Stand: 31. Oktober 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
+Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
+umgesetzt. M2.4–M2.6 und M3–M5 bleiben zurückgestellt und nicht freigegeben.
 
-**Nächster geplanter Ausbau:** [L1.6a–c](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten)
-ergänzt Auftrag/Konsole/Relaisabschluss, Bossdruck und Ortsgestaltung; noch nicht
-zur Umsetzung freigegeben. Die neue Interaktion erhält eine kontextabhängige
-Touch-Taste. Abschluss, Retry und Kampf werden auch im Querformat geprüft;
-L1.5b bleibt die abschließende Abnahme nach diesen Paketen.
+**Adventure / PvE-Kampagne ist eine separate Spielvariante und der aktuelle
+Schwerpunkt.** Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
+L1.6a–c sind bereits umgesetzt, L1.5b bleibt offen. Arena-Pakete sind keine nächsten
+Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
+
+Die folgenden datierten Mobile-/PvE-Notizen dokumentieren frühere Zusatzaufträge.
+Sie sind historische Nachweise und keine zweite aktuelle Adventure-Roadmap.
 
 ## Freigegebener kleiner Mobile-Zusatz
 
