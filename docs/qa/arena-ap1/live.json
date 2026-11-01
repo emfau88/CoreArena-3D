@@ -1,0 +1,22 @@
+[
+  {
+    "mobile": false,
+    "url": "https://emfau88.github.io/CoreArena-3D/",
+    "status": 200,
+    "bundle": "/CoreArena-3D/assets/index-qPC8--Kk.js",
+    "testApi": "undefined",
+    "teamStartMovementJumpAndMenu": true,
+    "errors": [],
+    "failed": []
+  },
+  {
+    "mobile": true,
+    "url": "https://emfau88.github.io/CoreArena-3D/",
+    "status": 200,
+    "bundle": "/CoreArena-3D/assets/index-qPC8--Kk.js",
+    "testApi": "undefined",
+    "teamStartMovementJumpAndMenu": true,
+    "errors": [],
+    "failed": []
+  }
+]

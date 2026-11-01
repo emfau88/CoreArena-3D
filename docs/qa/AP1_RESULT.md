@@ -73,6 +73,17 @@ Bundle: `index-qPC8--Kk.js`; die Testdiagnose `__coreArena` ist nicht enthalten.
 [Desktop](arena-ap1/production-local-desktop.png),
 [Touch](arena-ap1/production-local-touch.png).
 
+**Veröffentlicht und live geprüft:** Spielcommit
+[`75e8851`](https://github.com/emfau88/CoreArena-3D/commit/75e88516df9456da532d617e52ddb69b5945ff78),
+[GitHub-Pages-Lauf erfolgreich](https://github.com/emfau88/CoreArena-3D/actions/runs/41311219851).
+Auf der [öffentlichen Arena](https://emfau88.github.io/CoreArena-3D/) bestanden
+dieselben Produktions-Stichproben mit frischen Desktop- und Touch-Browsern:
+HTTP 200, identischer Bundle-Hash, Teamstart, Bewegungs-/Sprungeingaben und Menü,
+keine JavaScript-/HTTP-Fehler, keine freigeschaltete Testdiagnose.
+[Live-Bericht](arena-ap1/live.json), [Desktop](arena-ap1/live-desktop.png),
+[Touch-Emulation](arena-ap1/live-touch.png). Dieser Nachweis ist ein ergänzender
+Live-Smoke-Test; die vollständigen AP1-Abläufe stehen im Browserbericht oben.
+
 ## Laufzeit und Grenzen
 
 Kurze Stichproben aus den letzten jeweils bis zu 600 Renderframes der AP1-Abläufe:
