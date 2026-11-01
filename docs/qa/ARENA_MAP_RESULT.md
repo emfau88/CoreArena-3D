@@ -117,6 +117,14 @@ externe CDN-Anfrage und keine Test-API. Der Adventure-Einstieg bleibt separat.
 [Produktionsprüfung](arena-map/production-local.json). Lokale Ladezeiten
 1,55/1,67 s sind keine Aussage über einen Internet-Kaltstart.
 
+**Live veröffentlicht und geprüft:** Spielcommit `271c3f6`, erfolgreicher
+[Pages-Lauf 41301596475](https://github.com/emfau88/CoreArena-3D/actions/runs/41301596475).
+Das erwartete Produktionsbundle startet über GitHub Pages mit 2v2, Bewegung,
+Sprung und Pausenmenü auf Desktop und in Touch-Emulation. HTTP 200, keine
+JS-/HTTP-Fehler, keine externe CDN-Anfrage, keine Test-API; Adventure separat
+erreichbar. Gemessener Arena-Einstieg 4,34/2,48 s auf derselben PC-Verbindung,
+keine Aussage über echte Handyhardware. [Live-Nachweis](arena-map/production-live.json).
+
 Ansichten: [Ostseite](arena-map/desktop-east.png),
 [Rail-Versorgung, isometrisch](arena-map/rail-isometric.png),
 [hohe Plattform auf kleinem Touch-Querformat](arena-map/touch-small-east.png),

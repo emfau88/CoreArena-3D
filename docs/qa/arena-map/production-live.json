@@ -1,0 +1,34 @@
+{
+  "url": "https://emfau88.github.io/CoreArena-3D/",
+  "reports": [
+    {
+      "mobile": false,
+      "status": 200,
+      "readyMs": 4341,
+      "bundle": "index-BVw5K5Xz.js",
+      "testApi": "undefined",
+      "errors": [],
+      "failed": [],
+      "origins": [
+        "https://emfau88.github.io"
+      ]
+    },
+    {
+      "adventureSeparate": true,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "mobile": true,
+      "status": 200,
+      "readyMs": 2482,
+      "bundle": "index-BVw5K5Xz.js",
+      "testApi": "undefined",
+      "errors": [],
+      "failed": [],
+      "origins": [
+        "https://emfau88.github.io"
+      ]
+    }
+  ]
+}
