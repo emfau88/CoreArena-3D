@@ -40,7 +40,7 @@ export class ArenaView {
   arcDiagnostics(){return this.combat.arcDiagnostics();}
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number; playerColor?: number; playerLabel?: string;
-    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean } = {}) {
+    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean; arenaPads?: boolean } = {}) {
     this.keepDeathPose = options.keepDeathPose ?? true;
     const touch = matchMedia('(any-pointer: coarse)').matches;
     this.fighter = createFighter(options.playerColor); this.actor = this.fighter.actor;
@@ -65,7 +65,7 @@ export class ArenaView {
     this.scene.add(sun);
     this.animateEnvironment = (options.build ?? buildArena)(this.scene, arena);
     this.practice = new PracticeView(this.scene, arena, options.training ?? true);
-    this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS);
+    this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS, options.arenaPads);
     this.scene.add(this.actor);
     const vitalBack = new THREE.Mesh(new THREE.PlaneGeometry(1.52, 0.24),
       new THREE.MeshBasicMaterial({ color: 0x0b131a, transparent: true, opacity: 0.75, depthWrite: false }));

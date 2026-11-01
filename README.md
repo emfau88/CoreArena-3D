@@ -10,7 +10,7 @@
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und
   Railgun. **M2.4b:** Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und
   Schwierigkeitswahl ergänzt; CTF und Liga folgen später.
-  [Arena-Arbeitspakete](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap).
+  [Arena-Roadmap mit Bulk-Checkboxen](docs/planning/MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste).
 
 Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
 Schritte. Spielerfigur, Waffen und Technik werden teilweise geteilt; die
@@ -57,6 +57,12 @@ CTF/Liga folgen nach eigener Freigabe; Adventure bleibt unverändert.
 **Arena-Todeseffekt:** Spieler und Bots zerplatzen bei Eliminierung kurz in
 Konfetti ihrer Teamfarbe. Klarer Tod, anschließender Respawn; keine geänderten
 Kampfregeln. [Desktop-/Touch-Prüfung](docs/qa/ARENA_DEATH_RESULT.md).
+
+**Arena AP1:** flache 3D-Spawnpads mit Teamzeichen und kurzem Respawn-Impuls,
+einheitliche Vorratssockel mit Nachladefortschritt/Countdown und kurzen Vollmeldungen.
+Die Rail-Deckungen erhalten gefaste Kanten, Metallrippen und abgestimmte Materialien.
+Desktop und Touch-Emulation geprüft; echter Handytest bleibt offen.
+[Ergebnis und Spielaufnahmen](docs/qa/AP1_RESULT.md). AP2 und alle weiteren Bulks bleiben offen.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen

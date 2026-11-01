@@ -1,14 +1,18 @@
 # CORE ARENA 3D — Produktvision
 
-**Aktuelle Priorität, 31.10.2026:** Arena und Adventure sind zwei eigenständige
-Spielvarianten. Arena wird mit dem begrenzten 2v2-Paket M2.4a fortgesetzt;
-Routen/Ressourcen/Schwierigkeiten bleiben M2.4b. Die Arena-Endproduktvision unten
-bleibt die Richtung, nicht der Umfang dieses einzelnen Pakets.
-Adventure L1.6a–c ist umgesetzt; L1.5b bleibt offen und pausiert.
-[Arena-Pakete](planning/MOBILE_AND_WORK_PACKAGES.md) · [Adventure-Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md).
+**Aktueller Stand, 1.11.2026:** Arena und Adventure sind zwei eigenständige
+Spielvarianten. Arena M0/M1 und M2.1–M2.6 sowie das separate Map-Paket und
+Konfetti-Eliminierungen und [AP1 Premium-Bauteile](qa/AP1_RESULT.md) sind umgesetzt und technisch geprüft. Persönliche
+Spiel-/Geräteabnahme bleibt offen. Der CTF-3.0-Abgleich ist als
+[Arena-To-do-Liste mit Bulks](planning/MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste)
+integriert: AP1 ist erledigt; AP2 (HUD und Matchfluss) ist der empfohlene nächste
+Gestaltungs-Bulk, M3.1 Classic CTF der nächste funktionale Meilenstein.
+Die übrigen Bulks bleiben geplant und sind nicht zur Umsetzung freigegeben.
+Adventure L1.6a–c und L1.5b sind technisch abgeschlossen; persönliche Abnahme offen.
+[Adventure-Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md).
 Touch-Steuerung und Auto-Arc sind inzwischen gemeinsame Realität. Die folgenden
 historischen Aussagen zu ausschließlich manuellem Aim und nur rudimentärem Mobile
-sind insoweit überholt; M2.4a verändert weder Waffenwerte noch Adventure.
+sind insoweit überholt. Der historische Produktbrief ist keine aktuelle Statusliste.
 
 **Historischer Produktbrief:** Stand 20.10.2026, Grundlage des ersten Agentenplans.
 Nicht automatisch als Auftrag für einen Full Rewrite zu lesen.

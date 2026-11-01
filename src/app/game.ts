@@ -23,6 +23,7 @@ import { BotView } from '../render/botView';
 import { ARENA_FIGHTERS, arenaRoster, fighterTarget, type ArenaMode } from '../arena/teams';
 import { ArenaFeedback } from './arenaFeedback';
 import { ArenaDeathView } from '../render/arenaDeathView';
+import { ArenaFixtures } from '../render/arenaFixtures';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
   const fighters = ARENA_FIGHTERS.filter(fighter => fighter.id !== 'player');
@@ -48,10 +49,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   let aim: AimSolution | null = null;
   let view: ArenaView;
   try { view = new ArenaView(host, EXPANDED_ARENA, { pickups: EXPANDED_PICKUPS, build: buildExpandedArena, shadowSpan: 35,
-    playerColor: 0x8ac2e5, playerLabel: 'DU', keepDeathPose: false }); }
+    playerColor: 0x8ac2e5, playerLabel: 'DU', keepDeathPose: false, arenaPads: true }); }
   catch (error) { world.dispose(); probeWorld.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
   const botViews = bots.map(bot => new BotView(view.scene, bot.fighter.team, bot.fighter.id === 'ally' ? 'VERBÜNDETER' : 'GEGNER'));
   const deaths = new ArenaDeathView(view.scene);
+  const fixtures = new ArenaFixtures(view.scene, EXPANDED_PICKUPS);
+  let unavailablePickup: string | null = null;
   host.dataset.arena = 'true';
   // Arena fights need more surrounding space than the close Adventure camera.
   view.camera.trackPlayer(M1_ARENA.spawn, matchMedia('(any-pointer: coarse)').matches ? 1.4 : 1.25); view.resize();
@@ -169,7 +172,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   function restartMatch(mode = arenaMode) {
     const selectedDifficulty = (element('bot-difficulty') as HTMLSelectElement).value;
     difficulty = selectedDifficulty === 'easy' || selectedDifficulty === 'hard' ? selectedDifficulty : 'normal';
-    menuPaused = false; feedback.reset(); deaths.reset();
+    menuPaused = false; feedback.reset(); deaths.reset(); fixtures.reset(); unavailablePickup = null;
     arenaMode = mode;
     host.dataset.arenaRunning = 'true';
     match = new ArenaMatch(arenaRoster(arenaMode));
@@ -294,12 +297,21 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
             if (playerAfter.alive && !playerBefore.alive) { current = simulation.reset(playerSpawn()); previous = current; view.camera.snap(current.position); weapon.reset(); combat.reset(); }
           }
         }
-        if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount) => {
+        let blocked: string | null = null;
+        if (after.phase === 'running') pickups.step(after.tick, playerAfter.alive ? current : null, world, (kind, amount, item) => {
+          blocked = item.id;
           const taken = kind === 'rail' ? combat.addRailAmmo(amount) : kind === 'pulse' || kind === 'ammo' ? combat.addAmmo(amount, kind === 'pulse') : match.restore('player', kind === 'health' ? 'hp' : 'armor', amount);
           if (taken > 0) { feedback.play('pickup'); feedback.announce(after.tick,
             `${kind === 'rail' ? 'RAILGUN' : kind === 'pulse' ? 'PULSE' : kind === 'ammo' ? 'MUNITION' : kind === 'health' ? 'HEILUNG' : 'RÜSTUNG'} +${taken}`); }
           return taken;
+        }, item => {
+          blocked = item.id;
+          if (unavailablePickup !== item.id) feedback.announce(after.tick,
+            item.kind === 'ammo' && !combat.snapshot().ownsPulse ? 'Erst Pulse aufnehmen'
+              : `${item.kind === 'health' ? 'Gesundheit' : item.kind === 'armor' ? 'Rüstung'
+                : item.kind === 'rail' ? 'Rail-Munition' : 'Pulse-Munition'} voll`);
         });
+        unavailablePickup = blocked;
         if (after.phase === 'running') for (const bot of playingBots) pickups.step(after.tick, after.actors[bot.fighter.id]!.alive ? bot.snapshot() : null, bot.world, (kind, amount) =>
           kind === 'rail' ? bot.weapons.addRailAmmo(amount) : kind === 'pulse' || kind === 'ammo' ? bot.weapons.addAmmo(amount, kind === 'pulse') : match.restore(bot.fighter.id, kind === 'health' ? 'hp' : 'armor', amount));
         if (probe.status !== 'ready' && after.phase !== 'ended') probeSimulation.step(probe.command(probeSimulation.snapshot()));
@@ -357,6 +369,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera));
     // Pause freezes the burst; after the last kill it may finish behind the result panel.
     deaths.update(paused ? 0 : Math.min(elapsed, .05));
+    fixtures.update(match.snapshot(), pickups.snapshot(), [{ id: 'player', position: playerSpawn() },
+      ...activeBots().map(bot => ({ id: bot.fighter.id, position: botSpawn(bot) }))], arenaMode === 'teams');
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
       probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
     feedback.draw(match.snapshot().tick);
@@ -376,6 +390,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           weapons: combat.snapshot(), pickups: pickups.snapshot(),
           arenaMode, difficulty, audio: feedback.diagnostics(), deathEffects: deaths.diagnostics(), playerVisible: view.actor.visible,
+          fixtures: fixtures.diagnostics(),
           bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
           bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
             resourceGoal: bot.resourceGoal, intent: bot.intent,
@@ -398,6 +413,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     abort.abort();
     input.dispose();
     feedback.dispose();
+    fixtures.dispose();
     world.dispose();
     probeWorld.dispose();
     bots.forEach(bot => bot.dispose());

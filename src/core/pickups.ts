@@ -14,7 +14,8 @@ export class Pickups {
     this.items = ids ? this.items.map((item,i) => ids.includes(item.id) ? fresh[i]! : item) : fresh;
   }
   snapshot(): readonly PickupState[] { return this.items; }
-  step(tick: number, player: Snapshot | null, world: RayWorld, take: (kind: PickupKind, amount: number) => number): void {
+  step(tick: number, player: Snapshot | null, world: RayWorld, take: (kind: PickupKind, amount: number, item: Readonly<PickupState>) => number,
+    unavailable?: (item: PickupState) => void): void {
     this.items = this.items.map((old) => {
       const item = this.respawn && old.remaining === 0 && tick >= old.respawnAt ? { ...old, remaining: old.amount, respawnAt: 0 } : old;
       if (!player?.grounded || player.surface !== item.surface || item.remaining === 0
@@ -23,8 +24,8 @@ export class Pickups {
       const origin = { ...player.position, y: player.position.y + 0.5 };
       const line = directionTo(origin, { ...item.position, y: item.position.y + 0.5 });
       if (line.distance > 0.01 && world.raycast({ origin, direction: line.direction }, line.distance, true)) return item;
-      const amount = Math.min(item.remaining, Math.max(0, take(item.kind, item.remaining)));
-      if (!amount) return item;
+      const amount = Math.min(item.remaining, Math.max(0, take(item.kind, item.remaining, item)));
+      if (!amount) { unavailable?.(item); return item; }
       const remaining = item.remaining - amount;
       return { ...item, remaining, respawnAt: this.respawn && remaining === 0 ? tick + PICKUP_RESPAWN_TICKS : 0 };
     });

@@ -22,7 +22,7 @@ export class CombatView {
   private readonly rail = new THREE.Mesh(new THREE.CylinderGeometry(.045, .045, 1, 6),
     new THREE.MeshBasicMaterial({ color: 0xffdf9a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false }));
   private readonly railDirection = new THREE.Vector3();
-  constructor(scene: THREE.Scene, definitions: readonly PickupDefinition[]) {
+  constructor(scene: THREE.Scene, definitions: readonly PickupDefinition[], private readonly arenaPads = false) {
     for (const item of definitions) {
       const group = new THREE.Group(); group.position.set(item.position.x, item.position.y + 0.04, item.position.z);
       const arcs=Array.from({length:4},(_,i)=>new THREE.RingGeometry(.64,.68,12,1,i*Math.PI/2,Math.PI*.36));
@@ -30,6 +30,7 @@ export class CombatView {
         new THREE.MeshBasicMaterial({ color: COLORS[item.kind], transparent: true,opacity:.75,depthWrite:false,toneMapped:false }));
       arcs.forEach(arc=>arc.dispose());
       ring.rotation.x = -Math.PI / 2;
+      ring.visible = !arenaPads;
       const gem = createPickupModel(item.kind);
       const particles=new THREE.InstancedMesh(new THREE.OctahedronGeometry(.035),
         new THREE.MeshBasicMaterial({color:COLORS[item.kind],transparent:true,opacity:.8,depthWrite:false,
@@ -81,7 +82,7 @@ export class CombatView {
       const age = tick - visual.flash;
       const flash=age>=0 && age<24?1-age/24:0,available=item.remaining>0;
       visual.group.visible=available||flash>0||item.respawnAt>tick;
-      visual.label.visible=available;visual.particles.visible=available||flash>0;
+      visual.label.visible=available;visual.particles.visible=(!this.arenaPads && available)||flash>0;
       visual.ring.material.opacity=available ? .65+Math.sin(tick/35)*.12 : flash>0 ? flash*.9 : .13;
       visual.ring.scale.setScalar(1+(1-flash)*(flash>0 ? .65 : 0));
       for(let i=0;i<12;i++) {

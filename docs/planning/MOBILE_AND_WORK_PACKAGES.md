@@ -1,4 +1,4 @@
-# CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
+# CORE ARENA 3D: Arena-Roadmap und Arbeitspakete
 
 Stand: 1. November 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
@@ -16,8 +16,13 @@ Die neue Versorgung wird vor/nach dem Umbau einschließlich gespiegelter Karte
 mit denselben Bot-Startvarianten verglichen. [Umfang und Prüfstand](../qa/ARENA_MAP_RESULT.md).
 Freie Kampfwege und vorhandene Systeme bleiben maßgeblich. Die Arena hat eine
 eigene Gestaltung; die Adventure-Assetpakete werden nicht zusätzlich geladen.
-M3 ist weiterhin nicht freigegeben. Als Nächstes persönliche Kartenprobe,
-danach bei Freigabe **M3.1 Classic CTF**.
+M3 ist weiterhin nicht freigegeben. Der CTF-3.0-Abgleich ergänzt die untenstehende
+[Arena-To-do-Liste](#arena-to-do-liste) um gezielte Gestaltungs-Bulks.
+**AP1 Premium-Bauteile ist separat freigegeben, umgesetzt und technisch geprüft:**
+3D-Spawn-/Vorratssockel, Nachladeanzeige, Vollmeldungen und überarbeitete
+Rail-Deckungen. [Desktop-/Touch-Nachweise](../qa/AP1_RESULT.md).
+Empfohlener nächster sichtbarer Bulk: **AP2 Arena-HUD und Matchfluss**;
+nächster funktionaler Meilenstein bleibt **M3.1 Classic CTF**.
 
 **Kleiner Arena-Feedback-Nachtrag, umgesetzt und geprüft:** klarere Eliminierungen
 mit kurzem Lichtimpuls und Konfetti in Teamfarben. Spieler/Bots, Pause und Respawn
@@ -35,6 +40,238 @@ Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
 L1.6a–c sind umgesetzt, L1.5b ist technisch abgeschlossen; persönliche Abnahme offen.
 Arena-Pakete sind keine nächsten
 Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
+
+## Arena-To-do-Liste
+
+Stand: 1. November 2026. Integrierter Ausbauplan aus dem CTF-3.0-Abgleich mit
+20 Verbesserungshebeln; keine zusätzliche konkurrierende Roadmap.
+**AP1 wurde separat freigegeben und ist umgesetzt und technisch geprüft.**
+Alle offenen Bulks sind geplant und benötigen einen eigenen Umsetzungsauftrag.
+
+**Ziel:** ein hochwertiger 3D-Arena-Shooter gegen Bot-Teams mit einer gut lesbaren
+Höhenkarte, unterscheidbaren Waffen, CTF/One Flag und einer kurzen Liga mit
+Rivalen und verhaltensbasiertem Wingman-Recruitment. Skill statt Stat-Grind.
+Adventure bleibt eine eigenständige Variante; CTF-3.0 und Hexwars werden nicht verändert.
+Nur kostenlose beziehungsweise eigene Assets mit dokumentierter Herkunft verwenden.
+
+**Pflege:** `[x]` bedeutet umgesetzt und technisch geprüft, nicht automatisch
+persönlich abgenommen. Nach jedem Bulk Datum, Nachweis und verbleibende Grenzen
+ergänzen. `H1` bis `H20` verweisen auf die Nummern der Analyse vom 1. November.
+AP1–AP5 sind neue Gestaltungszusätze; M3/M4 behalten ihre bestehenden IDs.
+Die älteren M-Zeitspannen weiter unten sind Vorabwerte, keine Zusage für den
+hier konkretisierten Umfang. Aktive Agent-Zeit vor dem jeweiligen Auftrag neu
+schätzen; Geräte-/Nutzerwartezeit separat halten.
+
+### Bereits vorhanden — nicht erneut entwickeln
+
+- [x] M0/M1 und M2.1–M2.6: echte Höhen/Deckung, Sprung und Treppenhilfe,
+  Training/1v1/2v2, Bot-Höhenwege/Ressourcenwahl und drei Schwierigkeitsstufen.
+- [x] Arc Lash, Pulse und Railgun mit Modellen, Munition, Auswahl und räumlichen Treffern.
+- [x] 56 × 36-m-Arena mit getrennten Teamstarts, beidseitigen E1/E2-Routen,
+  symmetrischer Versorgung, zwei Rail-Feldern, überarbeiteten Materialien und Depots.
+- [x] Geriggte Figuren, kompaktes Desktop-/Touch-HUD, Pause, Treffer-/Tonfeedback,
+  Tod mit Konfetti, regulärer Respawn, Matchwertung und Neustart.
+- [ ] Persönliche Karten-/Spielabnahme, menschliche Seitenbalance und echtes Handy prüfen.
+
+Nachweise: [M2.6](../qa/M2_6_RESULT.md), [Map-Paket](../qa/ARENA_MAP_RESULT.md),
+[Konfetti](../qa/ARENA_DEATH_RESULT.md). Die offenen Gestaltungspunkte verfeinern
+diese Grundlagen; sie erklären bereits vorhandene Systeme nicht wieder zu fehlenden.
+
+### Empfohlene Reihenfolge
+
+**AP1 ✅ → AP2 → AP3 → M3.1 → M3.2 → M3.3 → AP4 → AP5 → M4.1–M4.4.**
+M5.W1 bleibt ein optionaler späterer Versuch. AP1–AP5 sind keine technische
+Startbedingung für M3; bei Vorrang für Objectives kann M3.1 nach Kartenabnahme
+direkt freigegeben werden. Keine automatische Freigabe nach Abschluss eines Bulks.
+
+| Bulk | Ergebnis | Analyse-Hebel |
+| --- | --- | --- |
+| **AP1 — technisch erledigt** | Gestaltung, Spawn-/Pickup-Pads und Deckungsmodul | H2, H4, H5, H8 |
+| **AP2 — als Nächstes empfohlen, offen** | Arena-HUD, Touch-Lesbarkeit, Start/Ergebnis/Revanche | H3, H12, H16 |
+| AP3 | Figuren und Waffenpräsentation | H6, H7 |
+| M3.1 | Classic CTF und erste Objective-Rollen | H1, Grundlage H11 |
+| M3.2 | One Flag | H17 |
+| M3.3 | Teamkommandos, Ressourcen und Objective-Abnahme | H11, H14 |
+| AP4 | Licht und gestaltete Umgebung | H9, H10 |
+| AP5 | Kampfereignisse und Klang | H13 |
+| M4.1 | Qualifier | H15 |
+| M4.2 | Team und Drei-Match-Saison | H18 |
+| M4.3 | Rekrutierung und lokale Saves | H19, Abschluss H18 |
+| M4.4 | Gesamtabnahme bis Reload; persönlicher Geräte-Nachweis separat | Übergreifende Abnahme |
+| M5.W1 — optional | Eine zusätzliche taktische Waffe | H20 |
+
+### AP1 — Premium-Bauteile (H2, H4, H5, H8)
+
+Spielergebnis: Basen, Versorgung und Deckung wirken wie Teile einer gestalteten Arena.
+
+**Am 1. November umgesetzt und technisch geprüft.** [Ergebnis, Bilder und Tests](../qa/AP1_RESULT.md).
+69 Kerntests und fünf Browserfälle bestanden; persönliches Gestaltungsurteil und
+echter Handytest bleiben offen. Die nachfolgenden Bulks sind nicht freigegeben.
+
+- [x] **H2:** Obsidian-Garden-Gestaltung in einer tatsächlichen Spielkamera festlegen:
+  Graphit/Stein, neutrales Metall, Grün und sparsame Team-/Energiefarben.
+- [x] **H4:** Ein flaches 3D-Spawnpad mit Teamemblem und kurzem Respawn-Licht bauen;
+  denselben Typ an den bestehenden blauen/roten Startplätzen verwenden.
+- [x] **H5:** Einen gemeinsamen Pickup-Sockel mit Zuständen bereit/leer/nachladend,
+  Wiederkehranzeige und kurzer Rückmeldung bei vollem Inventar ausarbeiten.
+- [x] **H8:** Einen wiederverwendbaren Deckungstyp mit Kanten, Sockel und abgestimmten
+  Materialien aufwerten; anschließend an passenden bestehenden Deckungen einsetzen.
+- [x] Technische Abnahme: Desktop und kleines Touch-Querformat; Spawn, Aufnahme/Nachladen,
+  voller Vorrat und Deckung verständlich, Wege und Kollision unverändert.
+
+Basis: vorhandene Spawn-/Pickupdaten, Modelle und Map-Paket. Grenze: erster
+repräsentativer Bauteilsatz, keine komplette Helix-Rekonstruktion, neue Räume
+oder Kampfregeln. Das Helix-Gesamtbild ist eine 2D-Referenz, kein fertiges 3D-Level.
+
+### AP2 — Arena-HUD und Matchfluss (H3, H12, H16)
+
+Spielergebnis: Match starten, Zustand lesen und erneut spielen gelingt ohne Sucharbeit.
+
+- [ ] **H3:** Bestehende Anzeigen mit einheitlicher Typografie, Icons und ruhigen
+  Panels gestalten; Spielstand/Ziel, Vitalwerte und Waffen klar priorisieren.
+- [ ] **H12:** Kleines Querformat mit lesbaren Anzeigen, freien Daumenbereichen und
+  passendem Kameraabstand abstimmen; nur begründete Kameraänderungen übernehmen.
+- [ ] **H16:** Arena-Einstieg mit Schnellstart, kompakter Matchwahl/Kartenbild sowie
+  verständlichem Ergebnis/Revanche gestalten; Adventure als separaten Einstieg führen.
+- [ ] Abnahme: Start → vollständiger TDM → Ergebnis → Revanche auf Desktop/Touch;
+  Waffenwechsel, Pause und Rotation ohne verdeckte Bedienelemente.
+
+Abhängigkeit: AP1-Gestaltung. Vorhandene HUD-/Menü- und Eingabesysteme nutzen.
+Grenze: bestehende Modi/Teamgrößen; noch keine Ligaoberfläche oder allgemeines UI-Framework.
+CTF-Zustände werden erst mit M3 ergänzt. Echter Handy-Nachweis bleibt separat offen.
+
+### AP3 — Figuren und Waffenpräsentation (H6, H7)
+
+Spielergebnis: Eigene Figur, Wingman und aktive Waffe sind sofort erkennbar.
+
+- [ ] **H6:** Arc/Pulse/Rail durch Silhouette und passende HUD-Icons unterscheiden;
+  Waffen an Händen befestigen und passende Ziel-/Schusshaltungen auch bei Bots nutzen.
+- [ ] **H7:** Vorhandene KayKit-Figuren mit wenigen Arena-spezifischen Helm-/Rüstungsteilen
+  individualisieren; Teamfarbe und Spieler-/Wingman-Unterscheidung erhalten.
+- [ ] Abnahme: Alle drei Waffen bei Bewegung, Sprung, Feuer und Respawn auf Desktop/Touch;
+  erkennbare Teams und saubere Haltung ohne geänderte Trefferkörper.
+
+Abhängigkeit: AP1/AP2-Gestaltung; vorhandene Rigs/Animationen und Waffenmodelle nutzen.
+Grenze: kosmetische Varianten, keine neuen Waffen, Charakterwerte oder Adventure-Kostüme.
+
+### M3.1 — Classic CTF (H1, Grundlage für H11)
+
+- [ ] **H1:** Flaggen aufnehmen, tragen, fallen lassen, zurückbringen und erobern;
+  eigene Flagge muss für Capture zu Hause sein, Rückkehr nach Zeitablauf unterstützen.
+- [ ] Träger-/Verteidigungsrollen als spielbare Bot-Grundlage und klare Flaggen-/Carrier-Anzeige ergänzen.
+- [ ] Abnahme: reguläres Desktop-/Touch-CTF mit Capture über Höhenroute, Tod/Drop,
+  Return, Matchende und Neustart; keine Capture-Auslösung auf der falschen Ebene.
+
+Abhängigkeit: geprüfter M2-Kern, Kartenabnahme und Freigabe. Vorhandene Teams,
+Physik, Navigation und Matchregeln erweitern; keine neue Karte oder Liga.
+
+### M3.2 — One Flag (H17)
+
+- [ ] **H17:** Neutrale Flagge, gültigen Zielpunkt und Runner-/Escort-/Interception-Rollen
+  auf der geprüften CTF-Grundlage ergänzen.
+- [ ] Abnahme: echter Transport, Abfangen, Drop und Capture bis Matchende auf Desktop/Touch.
+
+Abhängigkeit: M3.1. Grenze: zweite Objective-Variante auf derselben Arena.
+
+### M3.3 — Teamspiel, Ressourcenkontrolle und Objective-Abnahme (H11, H14)
+
+- [ ] **H11:** Rollenwechsel zwischen Träger, Begleiter und Verteidiger abstimmen;
+  einfache Kommandos Folgen/Angreifen/Verteidigen mit sichtbarer Rückmeldung ergänzen.
+- [ ] **H14:** Risiko/Nutzen von Rail, Höhenrüstung und Heilung im Objective-Spiel prüfen;
+  bestehende Versorgung, sichere Spawn-Ausgänge und faire Gegenwege gezielt abstimmen.
+- [ ] Abnahme: beide Objective-Modi mit echten Spieler-/Bot-Captures, Rollenwechseln,
+  Seitenwechselvergleich und Desktop-/Touch-Kommandos; TDM bleibt spielbar.
+
+Abhängigkeit: M3.1/M3.2. Grenze: keine zusätzlichen Pads ohne Spieltestbefund.
+Kurzlebige Waffenreste nach Kills sind ein **optionaler Folgeversuch** zu H14,
+kein Pflichtumfang dieser Abnahme und keine Wiederholung der fertigen Konfetti-Arbeit.
+
+### AP4 — Licht und Umgebung (H9, H10)
+
+- [ ] **H9:** Boden/Figuren/Pickups durch Material- und Lichtkontrast trennen;
+  Höhenkanten, Bodenkontakt und sparsame lokale Leuchtflächen ausarbeiten.
+- [ ] **H10:** Randarchitektur und wenige unterschiedliche Pflanzengruppen komponieren;
+  ein charakteristisches Motiv ergänzen, freie Laufwege und ruhige Böden bewahren.
+- [ ] Abnahme: beide Kameras und kleines Touch-Querformat; Gegner/Höhen/Deckung lesbar,
+  keine verdeckten Wege oder neuen unsichtbaren Hindernisse; Renderkosten vergleichen.
+
+Abhängigkeit: AP1, vorzugsweise nach M3.3. Bestehende Geometrie und wiederverwendbare
+Assets nutzen; keine Rundumerneuerung des Grundrisses oder flächige Bodenleitsysteme.
+
+### AP5 — Kampfereignisse und Klang (H13)
+
+- [ ] **H13:** Kurzen Killfeed, unterscheidbare Rüstungstreffer und charakteristischere
+  Waffengeräusche auf dem vorhandenen Treffer-/Tonfeedback aufbauen.
+- [ ] Abnahme: Kampf mit mehreren Beteiligten auf Desktop/Touch verständlich;
+  keine Meldungsflut, Tonübersteuerung oder Vermischung von Team-/Waffenfarben.
+
+Abhängigkeit: AP2/AP3. Konfetti, Respawn und vorhandenes Feedback erhalten;
+eigene Synthese oder nachweisbar freie Sounds verwenden, Original-WAVs nicht ungeprüft kopieren.
+
+### M4.1 — Einstieg und Qualifier (H15)
+
+- [ ] **H15:** Kurzen Ein-Klick-Qualifier mit tatsächlich bestätigter Bewegung,
+  Sprung, Waffenaufnahme, Kampf und Objective-Aktion auf bestehender Karte anbieten.
+- [ ] Abnahme: frischer Desktop-/Touch-Einstieg bis Qualifier-Ende; keine automatisch
+  abgehakten Lernaktionen. Verständlichkeit anschließend persönlich prüfen.
+
+Abhängigkeit: M3 und AP2. Vorhandenes Training nutzen; kein separater Tutorial-Level.
+
+### M4.2 — Team und kleine Saison (H18, erster Teil)
+
+- [ ] **H18:** Teamidentität, benannte Rivalen, drei Matches, Tabelle und Saisonabschluss verbinden.
+- [ ] Abnahme: drei tatsächlich gespielte Matches zählen jeweils genau einmal;
+  Sieg und Niederlage erlauben einen nachvollziehbaren nächsten Schritt.
+
+Abhängigkeit: M4.1. Grenze: eine Proving-Saison, keine große Karriere oder Online-Liga.
+
+### M4.3 — Rekrutierung und lokale Saves (H19; H18, Fortsetzung)
+
+- [ ] **H19:** Einen Rekrutierungsmoment und unterscheidbare Wingman-Rollenpräferenzen
+  anbieten; Verhalten statt HP, Schaden oder Geschwindigkeit verändern.
+- [ ] **H18:** Team, Saison und Rekrutierung versioniert lokal speichern und nach Reload fortsetzen.
+- [ ] Abnahme: neuer Begleiter verhält sich erkennbar anders; Reload erhält Fortschritt,
+  doppelte Ergebniswertung ausgeschlossen; Adventure-/CTF-3.0-Spielstände bleiben getrennt.
+
+Abhängigkeit: M4.2 und M3-Teamrollen. Bestehende Figurenvarianten verwenden;
+keine Accounts, Cloud-Saves oder Stat-Grind-Systeme.
+
+### M4.4 — Gesamtabnahme der kleinen Arena-Liga
+
+- [ ] Qualifier → Teamgründung → drei Matches → Abschluss → Rekrutierung → Reload
+  als zusammenhängenden Desktop-/Touch-Ablauf prüfen und gefundene Fehler beheben.
+- [ ] Persönliche First-Run-Rückmeldung und echte Handy-Prüfung getrennt dokumentieren;
+  Lesbarkeit, Bedienung und Leistung als bestanden/offen mit Gerät und Messumgebung ausweisen.
+
+Abhängigkeit: M4.1–M4.3. Kein automatischer Beginn von M5.
+
+### M5.W1 — Optional: eine weitere taktische Waffenrolle (H20)
+
+- [ ] **H20:** Nach Kernspielabnahme genau eine Rakete **oder** Lobgranate auswählen;
+  Flächenkontrolle, Warn-/Projektilbild und Gegenmöglichkeiten begrenzen.
+- [ ] Abnahme: 3D-Deckung/Höhen, Eigen-/Teamschadensregel, Bot-Bedienung und
+  Desktop-/Touch-Spielgefühl im Vergleich zu Arc/Pulse/Rail prüfen.
+
+Abhängigkeit: M3.3, vorzugsweise nach M4.4 und eigener Freigabe. Kein Auftrag für
+das komplette Originalarsenal. Weitere Premium-Karten, größere Teams und Ligen
+bleiben M5-Optionen; keine zusätzlichen Maps allein für optische Abwechslung vorziehen.
+
+### Gemeinsame Fertig-Kriterien und Referenzen
+
+Für jeden freigegebenen Bulk: passender echter Browser-Spielablauf auf Desktop
+und Touch-Emulation, gezielte Kernprüfungen bei Regeländerungen sowie Build/Typecheck
+bei Codeänderungen. Reine Dokumentationspflege benötigt keinen neuen Spieltest.
+Bei Grafikänderungen Sichtvergleich und Renderkosten protokollieren; Emulator-FPS
+auf der PC-GPU sind kein Handy-Nachweis. Keine vollständige neue QA-Matrix ohne Anlass.
+
+Grundlage: unsere Arena `7be95a3` mit [Live-Nachweis](../qa/ARENA_DEATH_RESULT.md),
+[CTF-3.0-Vision/Umfang](https://github.com/emfau88/CTF-3.0/blob/9794575fa6241f47845fb85352316564789e8d1c/README.md),
+[Helix-Aufbau](https://github.com/emfau88/CTF-3.0/blob/9794575fa6241f47845fb85352316564789e8d1c/docs/qa/phase-1-helix-v2-1/README.md)
+und [Original-Pickupdarstellung](https://github.com/emfau88/CTF-3.0/blob/9794575fa6241f47845fb85352316564789e8d1c/src/adapters/phaser/PhaserArenaPickupRenderer.ts).
+Die Hebel sind Designempfehlungen; der Originalcode und dessen historischer
+Freigabestatus erteilen keinen Umsetzungsauftrag für dieses Repository.
+
+## Historische Mobile-/PvE-Notizen
 
 Die folgenden datierten Mobile-/PvE-Notizen dokumentieren frühere Zusatzaufträge.
 Sie sind historische Nachweise und keine zweite aktuelle Adventure-Roadmap.
@@ -194,7 +431,7 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M4.3 Rekrutierung und Saves** | Rekrutierung, versionierte Saves und Reload | M4.2 | 20–40 Min. | Rekrutierung erhalten, CTF-Saves unverändert |
 | **M4.4 Liga-Übergabe** | Einstieg bis Saisonende, Verständlichkeit und Regression | M4.1–M4.3 | 10–20 Min. | Reale Drei-Match-Saison, Reload, Rekrutierung |
 
-Summen: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben); M2 **90–180 Min. (1,5–3 h)**; M3 und M4 jeweils **60–120 Min. (1–2 h)**. M1-Nacharbeit an Kantensprung und Plateau-Lesbarkeit nach der ersten Nutzerprobe ist kein Bestandteil dieser gemeldeten Erstzeiten. Der Puffer ist enthalten. Persönliche Spieltests: M1 5–10 Min., M2/M3 je ca. 10–15 Min., M4 ca. 10–20 Min.; Wartezeiten auf diese Tests und Freigaben sind keine Agent-Arbeitszeit. Nach jedem Meilenstein Schätzung und beobachtete Dauer vergleichen, keine erfundenen Paket-Istzeiten eintragen.
+Historische Summen des ursprünglichen Zuschnitts: M0 und M1 **Ist jeweils ca. 30 Min. bis Erstübergabe** (Nutzerangaben); M2 **90–180 Min. (1,5–3 h)**; M3 und M4 jeweils **60–120 Min. (1–2 h)**. AP1–AP5 und die Konkretisierungen der To-do-Liste sind darin nicht neu geschätzt; keine aktuelle Restaufwandssumme daraus ableiten. M1-Nacharbeit an Kantensprung und Plateau-Lesbarkeit nach der ersten Nutzerprobe ist kein Bestandteil dieser gemeldeten Erstzeiten. Persönliche Spieltests und Freigabewartezeit sind separat. Nach jedem Meilenstein Schätzung und beobachtete Dauer vergleichen, keine erfundenen Paket-Istzeiten eintragen.
 
 ## Wie die Pakete bearbeitet werden
 
@@ -285,11 +522,11 @@ Touch; keine Kampagnenstruktur, Speicherung oder neue Gegnernavigation.
 Vorheriger Stand auf `checkpoint/pre-pve-test-2026-10-26` gesichert, Umsetzung als
 separater rücknehmbarer Commit. [Browsernachweise](../qa/PVE_BASIC_RESULT.md).
 Keine separat gemessene Ist-Zeit; kein nachträglich erfundener Planwert.
-Als Nächstes zunächst Nutzerurteil zur PvE-Richtung einholen. M2.4 bleibt ungeöffnet.
+Damals als nächster Schritt vorgesehen: Nutzerurteil zur PvE-Richtung; M2.4 war noch ungeöffnet.
 
 Nacharbeit auf Spielrückmeldung vom 21. Oktober 2026: Gleichhohes Boden-Aim lenkt Arc/Pulse jetzt auf Waffenhöhe durch den Cursorstrahl, statt in den Boden. Vor und hinter den Gegner zielen funktioniert entlang der tatsächlichen Trefferbahn; echte 3D-Zielwahl auf andere Höhen bleibt erhalten. Kein Beginn von M2.4. [Prüfung](../qa/DIRECTIONAL_AIM_RESULT.md).
 
-Nach Abschluss von M2.3 verbleiben für **M2.4–M2.6 zusammen 40–80 Minuten** aus dem bestehenden Paketplan. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehört nicht zum ursprünglichen Waffenpaket.
+Historischer Plan nach M2.3: **M2.4–M2.6 zusammen 40–80 Minuten**. Diese inzwischen erledigten Pakete sind kein Restaufwand. Keine separat gemessenen Paket-Istzeiten werden nachträglich erfunden; die ursprünglichen Schätzungen bleiben als Planwerte sichtbar. Die zusätzlich angeforderte GitHub-Pages-Veröffentlichung gehörte nicht zum ursprünglichen Waffenpaket.
 
 Jedes Paket umfasst seine passenden Tests und einen kurzen Browsernachweis, soweit es sichtbares Spielverhalten verändert. Die abschließenden Prüfblöcke bündeln Regression, längere Simulationen und Spielabnahme; sie verschieben das Testen nicht ans Ende.
 
@@ -299,12 +536,12 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand, 31. Oktober: M0/M1 und M2.1–M2.6 umgesetzt und technisch geprüft; Touch-Zugang vorhanden.**
-[M2.6-Nachweis](../qa/M2_6_RESULT.md). Als Nächstes steht der persönliche
-10-Minuten-Vergleich Leicht/Normal/Schwer an, besonders zur Seitenversorgung und
-zum Schwierigkeitsgefühl. Echte Handyabnahme bleibt separat offen.
-CTF/Teamrollen (M3) und Liga (M4) bleiben gesondert freizugeben; kein automatischer
-Beginn von M3. Adventure-L1.5b ist separat technisch abgeschlossen;
+**Aktueller Stand, 1. November:** M0/M1, M2.1–M2.6, Map-Paket, Konfetti und AP1 technisch
+geprüft; Touch-Zugang vorhanden. Maßgebliche offene Aufgaben und Reihenfolge stehen
+in der [Arena-To-do-Liste](#arena-to-do-liste). Persönlicher Vergleich der
+Schwierigkeiten/Seitenversorgung und echte Handyabnahme bleiben separat offen.
+AP2–AP5, CTF/Teamrollen (M3) und Liga (M4) sind geplant, nicht freigegeben.
+Adventure-L1.5b ist separat technisch abgeschlossen;
 [Prüfstand und persönliche Grenzen](../qa/L1_5B_RESULT.md).
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
 sie sind keine aktuelle Restschätzung und keine Freigabe weiterer Pakete.

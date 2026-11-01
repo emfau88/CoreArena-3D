@@ -115,11 +115,16 @@ test('pickups require correct support/height and line of sight, retain partial r
   const player: Snapshot = { tick: 0, position: { x: 0, y: 0.03, z: 0 }, velocity: { x: 0, y: 0, z: 0 }, grounded: true, surface: 'floor', ceiling: false, facing: 0 };
   let collected = 0;
   try {
-    pickups.step(1, player, world, (kind, amount) => { assert.equal(kind, 'ammo'); collected += amount; return amount; });
+    pickups.step(1, player, world, (kind, amount) => { assert.equal(kind, 'ammo'); collected += amount; return amount; },
+      () => assert.fail('no full-inventory notice on the wrong floor'));
     assert.equal(collected, 0);
     const upstairs = { ...player, surface: 'e1', position: { x: 0, y: 2.08, z: 0 } };
     pickups.step(2, upstairs, world, () => 7); assert.equal(pickups.snapshot()[0]!.remaining, 20);
-    pickups.step(3, upstairs, world, () => 0); assert.equal(pickups.snapshot()[0]!.remaining, 20);
+    const refused: string[] = [];
+    pickups.step(3, upstairs, world, (_kind, amount, item) => {
+      assert.equal(item.id, 'ammo'); assert.equal(amount, 20); return 0;
+    }, item => refused.push(item.id));
+    assert.deepEqual(refused, ['ammo']); assert.equal(pickups.snapshot()[0]!.remaining, 20);
     pickups.step(4, upstairs, world, (kind, amount) => { assert.equal(kind, 'ammo'); return amount; });
     assert.equal(pickups.snapshot()[0]!.remaining, 0);
     pickups.step(4 + PICKUP_RESPAWN_TICKS - 1, null, world, () => 0); assert.equal(pickups.snapshot()[0]!.remaining, 0);
@@ -129,7 +134,8 @@ test('pickups require correct support/height and line of sight, retain partial r
   const wall = await createSpatialWorld({ ...arena, boxes: [{ id: 'wall', center: { x: 0.3, y: 1, z: 0 }, size: { x: 0.05, y: 2, z: 2 }, material: 'stone' }] });
   try {
     const behind = new Pickups([{ id: 'behind', kind: 'health', position: { x: 0.6, y: 0, z: 0 }, surface: 'floor', amount: 25 }]);
-    behind.step(1, player, wall, () => { assert.fail('pickup through wall'); });
+    behind.step(1, player, wall, () => { assert.fail('pickup through wall'); },
+      () => assert.fail('no full-inventory notice through cover'));
   } finally { wall.dispose(); }
 });
 

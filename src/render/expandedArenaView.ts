@@ -2,19 +2,11 @@ import * as THREE from 'three';
 import { buildArena } from './buildArena';
 import { labelMesh } from './practiceView';
 import type { ArenaDefinition } from '../arena/arena';
-import { EXPANDED_PICKUPS, TEAM_SPAWNS } from '../arena/expandedArena';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 
 export function buildExpandedArena(scene: THREE.Scene, arena: ArenaDefinition): void {
   buildArena(scene, arena, true);
-  // Team bays and route markings sit on existing surfaces, with no hidden collision.
-  for (const [id, spawn] of Object.entries(TEAM_SPAWNS)) {
-    const blue = id === 'player' || id === 'ally', color = blue ? 0x71bff1 : 0xe89179;
-    const material = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .65, depthWrite: false });
-    const ring = new THREE.Mesh(new THREE.RingGeometry(1.15, 1.27, 40), material);
-    ring.rotation.x = -Math.PI / 2; ring.position.set(spawn.x, .025, spawn.z); scene.add(ring);
-    const label = labelMesh(blue ? 'BLAU' : 'ROT', 2.2);
-    label.rotation.x = -Math.PI / 2; label.position.set(spawn.x, .03, spawn.z + 1.7); scene.add(label);
-  }
+  // Spawn/pickup sockets are handled by the Arena-only live fixture renderer.
   for (const shape of arena.boxes.filter(box => box.level)) {
     const lower = shape.level!.startsWith('E1');
     const body = scene.getObjectByName(shape.id) as THREE.Mesh<THREE.BoxGeometry, THREE.MeshStandardMaterial>;
@@ -32,23 +24,11 @@ export function buildExpandedArena(scene: THREE.Scene, arena: ArenaDefinition): 
     }
   }
   addServiceBays(scene, arena);
-  for (const pickup of EXPANDED_PICKUPS.filter(item => item.kind === 'rail')) {
-    const pad = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), new THREE.MeshStandardMaterial({
-      color: 0x363b3d, metalness: .6, roughness: .5, polygonOffset: true, polygonOffsetFactor: -1,
-    }));
-    pad.rotation.x = -Math.PI / 2; pad.position.set(pickup.position.x, .02, pickup.position.z);
-    scene.add(pad);
-    const border = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(3.6, 3.6)),
-      new THREE.LineBasicMaterial({ color: 0xe5bc78 }));
-    border.rotation.x = -Math.PI / 2; border.position.copy(pad.position).y += .01; scene.add(border);
-    const label = labelMesh(pickup.position.x < 0 ? 'WESTFLANKE' : 'OSTFLANKE', 4);
-    label.rotation.x = -Math.PI / 2; label.position.set(pickup.position.x, .03, pickup.position.z + 2.4); scene.add(label);
-  }
 }
 
 /** Equipment is built into existing solid cover, never invisible extra blockers. */
 function addServiceBays(scene: THREE.Scene, arena: ArenaDefinition): void {
-  const shell = new THREE.MeshStandardMaterial({ color: 0x64716e, roughness: .72, metalness: .35 });
+  const shell = new THREE.MeshStandardMaterial({ color: 0x737e83, roughness: .53, metalness: .6 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x202d32, roughness: .7, metalness: .45 });
   const trim = new THREE.MeshStandardMaterial({ color: 0x9baca6, roughness: .6, metalness: .45 });
   const unit = new THREE.BoxGeometry(1, 1, 1);
@@ -76,7 +56,22 @@ function addServiceBays(scene: THREE.Scene, arena: ArenaDefinition): void {
     // Existing flank cover becomes a power cabinet for the adjacent Rail pickup.
     const cabinet = arena.boxes.find(shape => shape.id === `wing-cover-${side}`)!;
     const c = cabinet.center, s = cabinet.size;
-    box(c.x, 1.534, c.z, s.x + .012, .14, s.z + .012, shell);
+    const body = scene.getObjectByName(cabinet.id) as THREE.Mesh;
+    // Bevel the visual skin by 4 cm; extents and the existing solid collision stay fixed.
+    // The original unit geometry is shared by other boxes and must not be disposed here.
+    body.geometry = new RoundedBoxGeometry(s.x, s.y, s.z, 2, .04);
+    body.scale.set(1, 1, 1);
+    body.material = new THREE.MeshStandardMaterial({ color: 0x39454b, roughness: .68, metalness: .4 });
+    box(c.x, .12, c.z, s.x, .24, s.z, dark);
+    box(c.x, 1.53, c.z, s.x - .08, .12, s.z - .08, shell);
+    // Repeated lid and armour ribs make the same module readable from either camera.
+    for (const end of [-1, 1]) {
+      box(c.x, .78, c.z + end * (s.z / 2 - .055), s.x - .04, 1.25, .11, shell);
+      box(c.x, .78, c.z + end * (s.z / 2 + .002), s.x - .36, .8, .01, dark);
+      box(c.x, .95, c.z + end * (s.z / 2 + .01), .64, .05, .012, light);
+    }
+    for (const sideFace of [-1, 1]) for (const offset of [-1.8, 1.8])
+      box(c.x + sideFace * (s.x / 2 - .035), .8, c.z + offset, .07, 1.4, .14, trim);
     // Top access hatches remain readable from the overhead combat camera.
     for (const offset of [-1.35, 1.35]) {
       box(c.x, 1.608, c.z + offset, 1.55, .016, 1.9, dark);

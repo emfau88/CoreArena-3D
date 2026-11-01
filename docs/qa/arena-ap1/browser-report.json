@@ -1,0 +1,1161 @@
+[
+  {
+    "case": "AP1 desktop pads, supply, cover and respawn",
+    "status": "passed",
+    "durationMs": 35829,
+    "mobile": false,
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "errors": [],
+    "failed": [],
+    "team": {
+      "position": {
+        "x": -14,
+        "y": 0.04388890266418455,
+        "z": 3
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": -14,
+              "y": 0.061,
+              "z": 3
+            }
+          },
+          {
+            "id": "ally",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": -14,
+              "y": 0.061,
+              "z": 9
+            }
+          },
+          {
+            "id": "rival",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": 14,
+              "y": 0.061,
+              "z": 3
+            }
+          },
+          {
+            "id": "rival-2",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": 14,
+              "y": 0.061,
+              "z": 9
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 13,
+        "calls": 596,
+        "triangles": 87328,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 13,
+      "frameP95Ms": 680.5
+    },
+    "cover": {
+      "position": {
+        "x": -22.980440139770508,
+        "y": 0.026550447940826394,
+        "z": 1.9799776077270508
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 5,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 3899,
+        "calls": 535,
+        "triangles": 47826,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 8.3
+    },
+    "respawn": {
+      "position": {
+        "x": -7,
+        "y": 0.05055556297302244,
+        "z": 2
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "charging",
+            "seconds": 7,
+            "remaining": 0,
+            "fill": 0.3916666666666667
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "charging",
+            "seconds": 10,
+            "remaining": 0,
+            "fill": 0.033333333333333326
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 2,
+            "flashing": true,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          },
+          {
+            "id": "rival",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 9
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 2319,
+        "calls": 487,
+        "triangles": 57942,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 8.3
+    }
+  },
+  {
+    "case": "AP1 touch pads, supply, cover and respawn",
+    "status": "passed",
+    "durationMs": 35049,
+    "mobile": true,
+    "viewport": {
+      "width": 667,
+      "height": 375
+    },
+    "errors": [],
+    "failed": [],
+    "team": {
+      "position": {
+        "x": -14,
+        "y": 0.04388890266418455,
+        "z": 3
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": -14,
+              "y": 0.061,
+              "z": 3
+            }
+          },
+          {
+            "id": "ally",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": -14,
+              "y": 0.061,
+              "z": 9
+            }
+          },
+          {
+            "id": "rival",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": 14,
+              "y": 0.061,
+              "z": 3
+            }
+          },
+          {
+            "id": "rival-2",
+            "life": 1,
+            "flashing": true,
+            "position": {
+              "x": 14,
+              "y": 0.061,
+              "z": 9
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 17,
+        "calls": 494,
+        "triangles": 71664,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 17,
+      "frameP95Ms": 869.38
+    },
+    "cover": {
+      "position": {
+        "x": -22.98508071899414,
+        "y": 0.02332249879837034,
+        "z": 1.9799946546554565
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 5,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 5978,
+        "calls": 454,
+        "triangles": 45770,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 5.5
+    },
+    "respawn": {
+      "position": {
+        "x": -7,
+        "y": 0.06,
+        "z": 2
+      },
+      "surface": null,
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "charging",
+            "seconds": 7,
+            "remaining": 0,
+            "fill": 0.39
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "charging",
+            "seconds": 10,
+            "remaining": 0,
+            "fill": 0.03166666666666662
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 2,
+            "flashing": true,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          },
+          {
+            "id": "rival",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 9
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 2293,
+        "calls": 454,
+        "triangles": 57482,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 5.6
+    }
+  },
+  {
+    "case": "Adventure retains its separate pickup presentation",
+    "status": "passed",
+    "durationMs": 3215
+  },
+  {
+    "case": "map east supply route 1920 desktop",
+    "status": "passed",
+    "durationMs": 16285,
+    "mobile": false,
+    "width": 1920,
+    "height": 1080,
+    "errors": [],
+    "failed": [],
+    "elevated": {
+      "position": {
+        "x": 7.0378007888793945,
+        "y": 4.142072296142578,
+        "z": -8.980575561523438
+      },
+      "surface": "e2-east",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "charging",
+            "seconds": 7,
+            "remaining": 0,
+            "fill": 0.3433333333333334
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 21,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "charging",
+            "seconds": 10,
+            "remaining": 0,
+            "fill": 0.013333333333333308
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 1046,
+        "calls": 507,
+        "triangles": 47410,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 8.4
+    },
+    "end": {
+      "position": {
+        "x": 19.993806838989258,
+        "y": 0.02465466260910032,
+        "z": 3.017401933670044
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "charging",
+            "seconds": 2,
+            "remaining": 0,
+            "fill": 0.895
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 21,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "charging",
+            "seconds": 5,
+            "remaining": 0,
+            "fill": 0.565
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "charging",
+            "seconds": 9,
+            "remaining": 0,
+            "fill": 0.14
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 1934,
+        "calls": 366,
+        "triangles": 44284,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 11
+    }
+  },
+  {
+    "case": "map east supply route 667 touch",
+    "status": "passed",
+    "durationMs": 14468,
+    "mobile": true,
+    "width": 667,
+    "height": 375,
+    "errors": [],
+    "failed": [],
+    "elevated": {
+      "position": {
+        "x": 7.036889553070068,
+        "y": 4.143334007263183,
+        "z": -8.962432861328125
+      },
+      "surface": "e2-east",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "charging",
+            "seconds": 7,
+            "remaining": 0,
+            "fill": 0.3466666666666667
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 21,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "charging",
+            "seconds": 10,
+            "remaining": 0,
+            "fill": 0.013333333333333308
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 1720,
+        "calls": 470,
+        "triangles": 46950,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 5.6
+    },
+    "end": {
+      "position": {
+        "x": 19.996763229370117,
+        "y": 0.021666562557220437,
+        "z": 3.0366199016571045
+      },
+      "surface": "floor",
+      "fixtures": {
+        "pads": [
+          {
+            "id": "pulse-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 54,
+            "fill": 1
+          },
+          {
+            "id": "ammo-e1",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 27,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 50,
+            "fill": 1
+          },
+          {
+            "id": "health-e0",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "pulse-e0-east",
+            "state": "charging",
+            "seconds": 2,
+            "remaining": 0,
+            "fill": 0.8733333333333333
+          },
+          {
+            "id": "ammo-e1-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 21,
+            "fill": 1
+          },
+          {
+            "id": "armor-e2-east",
+            "state": "charging",
+            "seconds": 5,
+            "remaining": 0,
+            "fill": 0.54
+          },
+          {
+            "id": "health-e0-east",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 25,
+            "fill": 1
+          },
+          {
+            "id": "rail-west",
+            "state": "ready",
+            "seconds": 0,
+            "remaining": 6,
+            "fill": 1
+          },
+          {
+            "id": "rail-east",
+            "state": "charging",
+            "seconds": 9,
+            "remaining": 0,
+            "fill": 0.1266666666666667
+          }
+        ],
+        "spawns": [
+          {
+            "id": "player",
+            "life": 1,
+            "flashing": false,
+            "position": {
+              "x": -7,
+              "y": 0.061,
+              "z": 2
+            }
+          }
+        ]
+      },
+      "render": {
+        "frame": 3410,
+        "calls": 293,
+        "triangles": 43126,
+        "points": 0,
+        "lines": 0
+      },
+      "frameSamples": 600,
+      "frameP95Ms": 2.9
+    }
+  }
+]

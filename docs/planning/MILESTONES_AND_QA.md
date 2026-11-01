@@ -12,6 +12,15 @@ Versorgung/Höhenzugänge an und verbessert Materialien, Kanten und Ausstattung.
 Persönliche Spiel-/Geräteabnahme und menschliche Seitenbalance bleiben offen.
 M3–M5 bleiben gesondert freizugeben.
 
+Der CTF-3.0-Abgleich vom 1. November ist als
+[Arena-To-do-Liste mit Checkboxen](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste)
+integriert. AP1–AP5 ergänzen die Gestaltung; M3/M4 behalten ihre IDs und ihren
+Freigabestatus. **AP1 wurde danach separat freigegeben und technisch abgeschlossen:**
+Spawn-/Vorratssockel, Nachladeanzeige, Vollmeldungen und Deckungsmodul.
+[69 Kerntests und fünf Browserfälle](../qa/AP1_RESULT.md).
+Als Nächstes empfohlen: AP2 (HUD und Matchfluss); M3.1 bleibt der nächste
+funktionale Meilenstein. Die übrigen Bulks sind nicht zur Umsetzung freigegeben.
+
 Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
 Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutzen
 vorhandene Systeme. [Prüfstand](../qa/ARENA_EXPANSION_RESULT.md). E0-Umgehungen,
@@ -45,19 +54,19 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
 | **Adventure / PvE-Kampagne — eigenständig** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, L1.6a–c und technische L1.5b-Abnahme | Persönliche Spiel-/Handyabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.1–M2.6 technisch abgeschlossen; separates Map-Paket umgesetzt | Überarbeitete Karte persönlich/auf Handy prüfen; danach gesonderte Freigabe für M3.1 Classic CTF |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1 technisch geprüft | Karten-/Handyabnahme; AP2 als nächster Gestaltungs-Bulk empfohlen, funktional M3.1 Classic CTF; jeweils gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
 Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
 
-**Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket:**
+**Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket und AP1:**
 
 | Bereich | Adventure-Stand | Arena-Stand / gemeinsame Grundlage |
 |---|---|---|
 | Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Ruhigere prozedurale Steinflächen, ausgearbeitete Kanten/Sockel und beidseitige Höhenarena; echte Höhe/Kollision |
-| Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Verfeinerte prozedurale Gartenpflanzen, Teamdepots und Rail-Energiekästen in vorhandener Deckung; keine zusätzlichen Assetdownloads |
-| Spielerfigur | Animierter KayKit-Ruinenkurier | **Bereits gemeinsam:** `main.ts` lädt KayKit vor beiden Einstiegen; beide verwenden `ArenaView`/`createFighter()` inklusive Kurier-Look |
+| Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Prozedurale Gartenpflanzen, Teamdepots, überarbeitete Rail-Deckungsmodule und einheitliche 3D-Spawn-/Vorratssockel mit Zustandsanzeige; keine zusätzlichen Assetdownloads |
+| Spielerfigur | Animierter KayKit-Ruinenkurier | Gemeinsames KayKit-Rig und Animationen; Arena nutzt blau/rote Mannequins, der angepasste Kurier-Look gehört zum Adventure |
 | Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | 1v1 oder drei KayKit-Bots im 2v2, Teamkennzeichnung, Höhenwege, Ressourcenwahl und drei Stufen; CTF-Rollen fehlen |
 | Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | **Bereits gemeinsam:** `Combat`, `CombatView`, `gear` und `ArcView`; keine pauschale Übertragung dieser bereits vorhandenen Verbesserungen nötig |
 | HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | Gemeinsame Waffen-/Lebensanzeigen; kompaktes Match-HUD, Pausenmenü und eigenes Arena-Ton-/Trefferfeedback seit M2.5 |
@@ -217,11 +226,11 @@ M2.2-Nachweise: [Ergebnis](../qa/M2_2_RESULT.md), 21 bestandene Kern-/Physiktest
 
 **Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
 
-Das ursprüngliche erste Produktziel war ein verlässlich spielbares 2v2-TDM auf einer
-Höhenarena. Seit der Zielklärung vom 28. Oktober hat das vollständige Stein-Adventure
-Vorrang. Die folgenden M-Meilensteine dokumentieren die Arena-/Liga-Perspektive für
-später; sie sind keine aktuelle Pflichtreihenfolge. Jeder freigegebene Schritt endet
-weiterhin mit einem sichtbaren Ergebnis und passender Prüfung.
+Das erste Arena-Produktziel war ein verlässlich spielbares 2v2-TDM auf einer
+Höhenarena und ist bis M2.6 technisch geprüft. Der Adventure-Vorrang vom 28. Oktober
+war eine frühere Priorität; inzwischen wird Arena separat fortgesetzt. Maßgeblich
+für die nächste Reihenfolge ist die Arena-To-do-Liste oben. Jeder freigegebene
+Schritt endet mit einem sichtbaren Ergebnis und passender Prüfung.
 
 Die konkrete Reihenfolge der Arbeitspakete M0.1 bis M4.4 und die Einschätzung einer optionalen Mobile-Erweiterung stehen in [MOBILE_AND_WORK_PACKAGES.md](MOBILE_AND_WORK_PACKAGES.md). Die dortigen Pakete unterteilen die folgenden Aufwandsspannen; sie erweitern den Desktop-Umfang nicht. Ein Touch-Versuch wäre ein separat freizugebender Zusatz.
 
