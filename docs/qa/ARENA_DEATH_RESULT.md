@@ -40,3 +40,12 @@ Touch läuft auf der PC-GPU; kein echter Handytest und keine neue Performance-Ab
 Reproduktion: `npm test`, `npm run build:test`,
 `npx playwright test tests/e2e/arena-death.spec.ts --project=chromium-1366`,
 `npm run build`. CTF-3.0, Hexwars und die Adventure-Roadmap bleiben unverändert.
+
+## Veröffentlichter Stand
+
+Spielcode `7be95a3` ist auf `main`; [Pages-Run 41307707782](https://github.com/emfau88/CoreArena-3D/actions/runs/41307707782)
+war erfolgreich. Der Live-Build lädt `index-Dvsk0iYH.js` ohne Test-API.
+Desktop 1366 × 768 und Touch-Emulation 667 × 375 wurden anschließend erneut mit
+echtem Bot-Kill und regulärem Respawn geprüft: keine JavaScript- oder HTTP-Fehler.
+[Live-Bericht](arena-death/live.json), [Desktop](arena-death/live-desktop.png),
+[Touch-Emulation](arena-death/live-touch.png). Weiterhin kein echter Handytest.
