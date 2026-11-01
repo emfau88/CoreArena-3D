@@ -44,7 +44,7 @@
 #app[data-arena] .weapon-buttons button[aria-pressed="true"]::after { display:none; }
 #app[data-arena] .weapon-buttons button:disabled { opacity:.56; }
 #app[data-arena] #weapon-pulse { --weapon-accent:#87d9fa; }
-#app[data-arena] #weapon-rail { --weapon-accent:#ffcd72; }
+#app[data-arena] #weapon-rail { --weapon-accent:#65ed7d; }
 #app[data-arena] .weapon-icon { grid-column:1; grid-row:1; width:49px; height:24px; margin:0; }
 #app[data-arena] .weapon-name { grid-column:1 / -1; grid-row:2; font-size:12px; font-weight:550; }
 #app[data-arena] .weapon-buttons b { position:static; grid-column:2; grid-row:1; margin:0; font-size:12px; white-space:nowrap; }
@@ -87,9 +87,9 @@
 #app[data-arena] #arena-notice { position:fixed; left:50%; top:116px; transform:translateX(-50%); background:#18272cec; border:1px solid var(--arena-border); border-radius:6px; padding:7px 12px; color:#e8dfb6; font-size:12px; pointer-events:none; }
 .touch-mode #app[data-arena] .desktop-copy { display:none; }
 .touch-mode #app[data-arena] .touch-copy { display:inline; }
-.touch-mode #app[data-arena] #weapon-panel { top:max(8px,env(safe-area-inset-top)); left:max(10px,env(safe-area-inset-left)); right:auto; bottom:auto; width:276px; padding:4px; }
+.touch-mode #app[data-arena] #weapon-panel { top:max(8px,env(safe-area-inset-top)); left:max(10px,env(safe-area-inset-left)); right:auto; bottom:auto; width:246px; padding:3px; }
 .touch-mode #app[data-arena] .weapon-buttons { gap:4px; }
-.touch-mode #app[data-arena] .weapon-buttons button { min-height:56px; padding:5px; grid-template-rows:20px 18px; }
+.touch-mode #app[data-arena] .weapon-buttons button { min-height:48px; padding:3px 4px; grid-template-rows:18px 16px; }
 .touch-mode #app[data-arena] .weapon-icon { width:30px; height:18px; }
 .touch-mode #app[data-arena] .weapon-name { font-size:11px; }
 .touch-mode #app[data-arena] .weapon-buttons b { font-size:11px; }
@@ -102,12 +102,22 @@
 .touch-mode #app[data-arena] #team-status { margin:2px 0 0; padding:2px 0 0; font-size:9px; }
 .touch-mode #app[data-arena] #arena-menu { top:max(8px,env(safe-area-inset-top)); right:max(10px,env(safe-area-inset-right)); min-width:60px; padding:8px; font-size:11px; }
 .touch-mode #app[data-arena] #arena-menu kbd, .touch-mode #app[data-arena] #touch-camera, .touch-mode #app[data-arena] #touch-hint { display:none; }
-.touch-mode #app[data-arena] #life-panel { left:50%; transform:translateX(-50%); bottom:max(12px,env(safe-area-inset-bottom)); width:156px; padding:6px 9px; }
-.touch-mode #app[data-arena] #hp-value { font-size:23px; }
-.touch-mode #app[data-arena] #armor-value { font-size:19px; }
-.touch-mode #app[data-arena] #life-panel .vitals-numbers small { font-size:8px; }
-.touch-mode #app[data-arena] #life-status { font-size:10px; }
-.touch-mode #app[data-arena] #touch-sprint { min-width:82px; min-height:56px; }
+.touch-mode #app[data-arena] #life-panel { left:50%; transform:translateX(-50%); bottom:max(10px,env(safe-area-inset-bottom)); width:132px; padding:4px 8px; border-radius:7px; background:#142027bf; }
+.touch-mode #app[data-arena] .vitals-numbers { margin:0 0 3px; }
+.touch-mode #app[data-arena] #hp-value { font-size:18px; }
+.touch-mode #app[data-arena] #armor-value { font-size:16px; }
+.touch-mode #app[data-arena] #life-panel .vitals-numbers small { font-size:7px; }
+.touch-mode #app[data-arena] #hp-bar { height:3px; margin-top:0; }
+.touch-mode #app[data-arena] #armor-bar { height:2px; margin-top:2px; }
+.touch-mode #app[data-arena] #life-status { position:absolute; left:50%; bottom:calc(100% + 4px); transform:translateX(-50%); width:max-content; max-width:200px; margin:0; padding:3px 6px; border-radius:4px; background:#142027d9; font-size:9px; }
+.touch-mode #app[data-arena] #life-panel[data-low="true"] { background:#321f23eb; }
+.touch-mode #app[data-arena] #touch-stick { width:88px; height:88px; background:radial-gradient(circle,#233c4877,#111f2877); box-shadow:none; }
+.touch-mode #app[data-arena] #touch-stick span { width:34px; height:34px; }
+.touch-mode #app[data-arena] #touch-stick small { display:none; }
+.touch-mode #app[data-arena] #touch-actions button { font-size:10px; padding:6px; background:#142027aa; }
+.touch-mode #app[data-arena] #touch-jump { width:60px; height:60px; border-radius:50%; }
+.touch-mode #app[data-arena] #touch-sprint { min-width:60px; min-height:44px; }
+.touch-mode #app[data-arena] #touch-sprint[aria-pressed="true"] { background:#53482ee8; }
 .touch-mode #app[data-arena] #arena-notice { top:86px; font-size:11px; padding:5px 9px; }
 .touch-mode #app[data-arena] #pause > div { width:380px; padding:14px 18px; }
 .touch-mode #app[data-arena] #pause h2 { display:none; }

@@ -24,8 +24,10 @@ Rail-Deckungen. [Desktop-/Touch-Nachweise](../qa/AP1_RESULT.md).
 **AP2 Arena-HUD und Matchfluss ist ebenfalls separat freigegeben und technisch umgesetzt:**
 Arena-Einstieg mit Kartenübersicht, Schnellstart, klareren Kampf-Panels und
 Ergebnis/Revanche. [Desktop-/Touch-Nachweise](../qa/AP2_RESULT.md).
-Empfohlener nächster sichtbarer Bulk: **AP3 Figuren und Waffenpräsentation**;
-nächster funktionaler Meilenstein bleibt **M3.1 Classic CTF**.
+**AP3 Figuren und Waffenpräsentation ist danach separat freigegeben und technisch umgesetzt:**
+Arena-Helme/Rüstung, handgeführte Arc/Pulse/Rail und passende Icons. Auf zusätzlichen
+Nutzerwunsch sind Mobile-Steuerung und Vitalanzeige kompakter. [Nachweise](../qa/AP3_RESULT.md).
+Empfohlener nächster Bulk: **M3.1 Classic CTF**, noch nicht freigegeben.
 
 **Kleiner Arena-Feedback-Nachtrag, umgesetzt und geprüft:** klarere Eliminierungen
 mit kurzem Lichtimpuls und Konfetti in Teamfarben. Spieler/Bots, Pause und Respawn
@@ -48,7 +50,7 @@ Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei
 
 Stand: 1. November 2026. Integrierter Ausbauplan aus dem CTF-3.0-Abgleich mit
 20 Verbesserungshebeln; keine zusätzliche konkurrierende Roadmap.
-**AP1 und AP2 wurden separat freigegeben und sind umgesetzt und technisch geprüft.**
+**AP1–AP3 wurden separat freigegeben und sind umgesetzt und technisch geprüft.**
 Alle offenen Bulks sind geplant und benötigen einen eigenen Umsetzungsauftrag.
 
 **Ziel:** ein hochwertiger 3D-Arena-Shooter gegen Bot-Teams mit einer gut lesbaren
@@ -82,7 +84,7 @@ diese Grundlagen; sie erklären bereits vorhandene Systeme nicht wieder zu fehle
 
 ### Empfohlene Reihenfolge
 
-**AP1 ✅ → AP2 ✅ → AP3 → M3.1 → M3.2 → M3.3 → AP4 → AP5 → M4.1–M4.4.**
+**AP1 ✅ → AP2 ✅ → AP3 ✅ → M3.1 → M3.2 → M3.3 → AP4 → AP5 → M4.1–M4.4.**
 M5.W1 bleibt ein optionaler späterer Versuch. AP1–AP5 sind keine technische
 Startbedingung für M3; bei Vorrang für Objectives kann M3.1 nach Kartenabnahme
 direkt freigegeben werden. Keine automatische Freigabe nach Abschluss eines Bulks.
@@ -91,8 +93,8 @@ direkt freigegeben werden. Keine automatische Freigabe nach Abschluss eines Bulk
 | --- | --- | --- |
 | **AP1 — technisch erledigt** | Gestaltung, Spawn-/Pickup-Pads und Deckungsmodul | H2, H4, H5, H8 |
 | **AP2 — technisch erledigt** | Arena-HUD, Touch-Lesbarkeit, Start/Ergebnis/Revanche | H3, H12, H16 |
-| **AP3 — als Nächstes empfohlen, offen** | Figuren und Waffenpräsentation | H6, H7 |
-| M3.1 | Classic CTF und erste Objective-Rollen | H1, Grundlage H11 |
+| **AP3 — technisch erledigt** | Figuren und Waffenpräsentation | H6, H7 |
+| **M3.1 — als Nächstes empfohlen, offen** | Classic CTF und erste Objective-Rollen | H1, Grundlage H11 |
 | M3.2 | One Flag | H17 |
 | M3.3 | Teamkommandos, Ressourcen und Objective-Abnahme | H11, H14 |
 | AP4 | Licht und gestaltete Umgebung | H9, H10 |
@@ -152,11 +154,17 @@ CTF-Zustände werden erst mit M3 ergänzt. Echter Handy-Nachweis bleibt separat 
 
 Spielergebnis: Eigene Figur, Wingman und aktive Waffe sind sofort erkennbar.
 
-- [ ] **H6:** Arc/Pulse/Rail durch Silhouette und passende HUD-Icons unterscheiden;
+**Am 1. November umgesetzt und technisch geprüft.** [Ergebnis und Spielaufnahmen](../qa/AP3_RESULT.md).
+Desktop und Touch: drei Waffen, Handkontakt/Zielrichtung, Bewegung/Sprung/Feuer,
+Teams, Tod/Respawn und Pause geprüft. Zusätzlicher Nutzerwunsch: kleinere
+Mobile-Tasten, 88-px-Joystick und kompakte Vitalanzeige. Persönliche Gestaltung-/
+Geräteabnahme bleibt offen; keine Freigabe weiterer Bulks.
+
+- [x] **H6:** Arc/Pulse/Rail durch Silhouette und passende HUD-Icons unterscheiden;
   Waffen an Händen befestigen und passende Ziel-/Schusshaltungen auch bei Bots nutzen.
-- [ ] **H7:** Vorhandene KayKit-Figuren mit wenigen Arena-spezifischen Helm-/Rüstungsteilen
+- [x] **H7:** Vorhandene KayKit-Figuren mit wenigen Arena-spezifischen Helm-/Rüstungsteilen
   individualisieren; Teamfarbe und Spieler-/Wingman-Unterscheidung erhalten.
-- [ ] Abnahme: Alle drei Waffen bei Bewegung, Sprung, Feuer und Respawn auf Desktop/Touch;
+- [x] Abnahme: Alle drei Waffen bei Bewegung, Sprung, Feuer und Respawn auf Desktop/Touch;
   erkennbare Teams und saubere Haltung ohne geänderte Trefferkörper.
 
 Abhängigkeit: AP1/AP2-Gestaltung; vorhandene Rigs/Animationen und Waffenmodelle nutzen.
@@ -544,11 +552,11 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand, 1. November:** M0/M1, M2.1–M2.6, Map-Paket, Konfetti und AP1/AP2 technisch
+**Aktueller Stand, 1. November:** M0/M1, M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch
 geprüft; Touch-Zugang vorhanden. Maßgebliche offene Aufgaben und Reihenfolge stehen
 in der [Arena-To-do-Liste](#arena-to-do-liste). Persönlicher Vergleich der
 Schwierigkeiten/Seitenversorgung und echte Handyabnahme bleiben separat offen.
-AP3–AP5, CTF/Teamrollen (M3) und Liga (M4) sind geplant, nicht freigegeben.
+AP4/AP5, CTF/Teamrollen (M3) und Liga (M4) sind geplant, nicht freigegeben.
 Adventure-L1.5b ist separat technisch abgeschlossen;
 [Prüfstand und persönliche Grenzen](../qa/L1_5B_RESULT.md).
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;

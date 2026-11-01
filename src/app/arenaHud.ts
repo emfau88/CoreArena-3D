@@ -1,11 +1,12 @@
 import { EXPANDED_ARENA, EXPANDED_PICKUPS, TEAM_SPAWNS } from '../arena/expandedArena';
 import { weaponHud, lifeHud } from './hud';
+import { arenaWeaponIcons } from './arenaWeaponIcons';
 
 /** A static overview from the playable map data, not a second map definition. */
 function mapPreview(): string {
   const blocks = EXPANDED_ARENA.boxes.filter(b => b.material !== 'floor').map(b => `<rect x="${b.center.x - b.size.x / 2}" y="${b.center.z - b.size.z / 2}" width="${b.size.x}" height="${b.size.z}" rx=".2" fill="${b.planted ? '#617866' : b.level?.startsWith('E2') ? '#81928d' : b.level ? '#52666e' : '#36444b'}" stroke="#afc3c144" stroke-width=".15"/>
     ${b.level ? `<text x="${b.center.x}" y="${b.center.z + b.size.z / 2 - .6}" text-anchor="middle" fill="#e1ece6" font-size="1.2">${b.level.slice(0, 2)}</text>` : ''}`).join('');
-  const supplies = EXPANDED_PICKUPS.map(p => `<circle cx="${p.position.x}" cy="${p.position.z}" r=".55" fill="${p.kind === 'rail' ? '#edc783' : p.kind === 'health' ? '#a6d7b5' : '#b9d8e4'}"/>`).join('');
+  const supplies = EXPANDED_PICKUPS.map(p => `<circle cx="${p.position.x}" cy="${p.position.z}" r=".55" fill="${p.kind === 'rail' ? '#65ed7d' : p.kind === 'health' ? '#a6d7b5' : '#b9d8e4'}"/>`).join('');
   const spawns = Object.entries(TEAM_SPAWNS).map(([id, p]) => `<circle cx="${p.x}" cy="${p.z}" r="1.2" fill="none" stroke="${id === 'player' || id === 'ally' ? '#8fceef' : '#e7a28c'}" stroke-width=".4"/>`).join('');
   return `<svg viewBox="-29 -19 58 38" role="img" aria-label="Obsidian Garden: zwei Teamstarts je Seite, Höhenflächen in der Mitte und Railgun auf beiden Flanken">
     <rect x="-28" y="-18" width="56" height="36" rx=".7" fill="#1a252b" stroke="#82948e" stroke-width=".3"/>
@@ -37,7 +38,7 @@ export function arenaHud(): string {
     <div id="match-panel" hidden><div class="eyebrow" id="match-mode">2v2 · ZIEL 10</div>
       <div id="match-score"><span class="blue"><span id="blue-label">BLAU</span><b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b><span id="red-label">ROT</span></span></div>
       <small id="team-status" hidden></small></div>
-    <div id="weapon-panel" hidden aria-label="Waffenauswahl">${weaponHud(false, true)}<small id="weapon-hint"></small></div>
+    <div id="weapon-panel" hidden aria-label="Waffenauswahl">${weaponHud(false, true,arenaWeaponIcons)}<small id="weapon-hint"></small></div>
     <div id="life-panel" hidden aria-label="Lebenspunkte und Rüstung">${lifeHud}<p id="life-status" role="status"></p></div>
     <button id="arena-menu" type="button" hidden aria-label="Spiel pausieren und Menü öffnen">Menü <kbd>Esc</kbd></button>
   </div>

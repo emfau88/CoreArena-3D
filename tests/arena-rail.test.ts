@@ -17,6 +17,7 @@ test('Rail is opt-in: Adventure defaults cannot unlock, select or cycle to it', 
   adventure.cycle(); assert.equal(adventure.snapshot().selected, 'pulse');
   adventure.cycle(); assert.equal(adventure.snapshot().selected, 'arc');
   assert.equal('ownsRail' in adventure.snapshot(), false);
+  assert.equal('lastFire' in adventure.snapshot(), false);
 });
 
 test('Rail hits at range and height, stops at the first body/wall, consumes one round and observes cooldown/reset', async () => {
@@ -36,7 +37,9 @@ test('Rail hits at range and height, stops at the first body/wall, consumes one 
       assert.equal(attack.damage[0]?.target, cover === 'none' ? 'enemy' : cover);
       assert.equal(attack.damage[0]?.amount, WEAPONS.rail.damage);
       assert.equal(combat.snapshot().railAmmo, 5);
+      assert.deepEqual(combat.snapshot().lastFire,{tick:1,weapon:'rail'});
       assert.equal(combat.step(84, true, aim, ray, world, [target], foot).attacked, false);
+      assert.deepEqual(combat.snapshot().lastFire,{tick:1,weapon:'rail'});
       assert.equal(combat.step(85, true, aim, ray, world, [target], foot).attacked, true);
       if (cover === 'ally') {
         const match = new ArenaMatch([{ id: 'player', team: 'blue' }, { id: 'ally', team: 'blue' }, { id: 'enemy', team: 'red' }]);
@@ -46,6 +49,12 @@ test('Rail hits at range and height, stops at the first body/wall, consumes one 
       for (let tick = 169; tick <= 421; tick += 84) combat.step(tick, true, aim, ray, world, [target], foot);
       assert.equal(combat.snapshot().railAmmo, 0); assert.equal(combat.snapshot().selected, 'arc');
       combat.reset(); assert.equal(combat.snapshot().ownsRail, false); assert.equal(combat.snapshot().lastRail, null);
+      assert.equal(combat.snapshot().lastFire,null);
+      combat.addAmmo(54,true);combat.select('pulse');
+      combat.step(1,true,aim,ray,world,[target],foot);
+      combat.addAmmo(1); // Standing on a refill must not conceal the shot animation event.
+      assert.equal(combat.snapshot().ammo,54);assert.deepEqual(combat.snapshot().lastFire,{tick:1,weapon:'pulse'});
+      combat.clearEffects();assert.equal(combat.snapshot().lastFire,null);
     } finally { world.dispose(); }
   }
 });

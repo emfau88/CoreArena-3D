@@ -5,6 +5,7 @@ import { labelMesh } from './practiceView';
 import { createPickupModel } from './gear';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { ArcView } from './arcView';
+import { ARENA_WEAPON_COLORS } from './arenaEquipment';
 
 const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e, rail: 0xffcd72 };
 const LABELS = { pulse: 'PULSE REPEATER', ammo: 'ENERGIE', health: 'MEDKIT', armor: 'RÜSTUNG', rail: 'RAILGUN · 6 SCHUSS' };
@@ -23,17 +24,19 @@ export class CombatView {
     new THREE.MeshBasicMaterial({ color: 0xffdf9a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false }));
   private readonly railDirection = new THREE.Vector3();
   constructor(scene: THREE.Scene, definitions: readonly PickupDefinition[], private readonly arenaPads = false) {
+    if(arenaPads)this.rail.material.color.setHex(ARENA_WEAPON_COLORS.rail);
     for (const item of definitions) {
+      const color=arenaPads&&item.kind==='rail'?ARENA_WEAPON_COLORS.rail:COLORS[item.kind];
       const group = new THREE.Group(); group.position.set(item.position.x, item.position.y + 0.04, item.position.z);
       const arcs=Array.from({length:4},(_,i)=>new THREE.RingGeometry(.64,.68,12,1,i*Math.PI/2,Math.PI*.36));
       const ring = new THREE.Mesh(mergeGeometries(arcs),
-        new THREE.MeshBasicMaterial({ color: COLORS[item.kind], transparent: true,opacity:.75,depthWrite:false,toneMapped:false }));
+        new THREE.MeshBasicMaterial({ color, transparent: true,opacity:.75,depthWrite:false,toneMapped:false }));
       arcs.forEach(arc=>arc.dispose());
       ring.rotation.x = -Math.PI / 2;
       ring.visible = !arenaPads;
-      const gem = createPickupModel(item.kind);
+      const gem = createPickupModel(item.kind,arenaPads);
       const particles=new THREE.InstancedMesh(new THREE.OctahedronGeometry(.035),
-        new THREE.MeshBasicMaterial({color:COLORS[item.kind],transparent:true,opacity:.8,depthWrite:false,
+        new THREE.MeshBasicMaterial({color,transparent:true,opacity:.8,depthWrite:false,
           blending:THREE.AdditiveBlending,toneMapped:false}),12);
       particles.frustumCulled=false;
       gem.position.y = 0.55;
@@ -43,9 +46,9 @@ export class CombatView {
       group.add(ring, gem, label,particles); this.root.add(group); this.pickups.set(item.id, { group, gem, ring,label,particles, remaining: item.amount, flash: -100 });
     }
     const geometry = new THREE.CapsuleGeometry(0.065, 0.22, 3, 6); geometry.rotateX(Math.PI / 2);
-    const material = new THREE.MeshBasicMaterial({ color: 0xe7fbff });
+    const material = new THREE.MeshBasicMaterial({ color: arenaPads?0x69b7ff:0xe7fbff, toneMapped:!arenaPads });
     const trailGeometry = new THREE.ConeGeometry(0.085, 0.85, 6); trailGeometry.rotateX(-Math.PI / 2);
-    const trailMaterial = new THREE.MeshBasicMaterial({ color: 0x4dc5ff, transparent: true, opacity: 0.65, depthWrite: false, blending: THREE.AdditiveBlending });
+    const trailMaterial = new THREE.MeshBasicMaterial({ color: arenaPads?0x2e83ff:0x4dc5ff, transparent: true, opacity: 0.65, depthWrite: false, blending: arenaPads?THREE.NormalBlending:THREE.AdditiveBlending,toneMapped:!arenaPads });
     for (let i = 0; i < 64; i++) {
       const bolt = new THREE.Mesh(geometry, material); const trail = new THREE.Mesh(trailGeometry, trailMaterial); trail.position.z = -0.45;
       bolt.add(trail); this.bolts.push(bolt); this.root.add(bolt);

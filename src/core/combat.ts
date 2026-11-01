@@ -21,6 +21,8 @@ export interface WeaponSnapshot {
   readonly impact: { readonly point: Vec3; readonly tick: number; readonly id: string } | null;
   readonly ownsRail?: boolean; readonly railAmmo?: number; readonly railReadyAt?: number;
   readonly lastRail?: { readonly tick: number; readonly start: Vec3; readonly end: Vec3; readonly target: string | null } | null;
+  /** Arena presentation event; also works when a pickup immediately refills fired ammo. */
+  readonly lastFire?: { readonly tick: number; readonly weapon: WeaponId } | null;
 }
 export const directionTo = (a: Vec3, b: Vec3) => {
   const distance = Math.hypot(b.x - a.x, b.y - a.y, b.z - a.z);
@@ -81,6 +83,7 @@ export class Combat<Rail extends boolean = false> {
   private ownsRail = false;
   private railAmmo = 0;
   private lastRail: WeaponSnapshot['lastRail'] = null;
+  private lastFire: WeaponSnapshot['lastFire'] = null;
   private sequence = 0;
   private projectiles: Projectile[] = [];
   private lastArc: ArcShot | null = null;
@@ -89,7 +92,7 @@ export class Combat<Rail extends boolean = false> {
   snapshot(): Omit<WeaponSnapshot, 'selected'> & { selected: Rail extends true ? WeaponId : 'arc' | 'pulse' } {
     return { selected: this.selected as Rail extends true ? WeaponId : 'arc' | 'pulse', ownsPulse: this.ownsPulse, ammo: this.ammo,
     projectiles: this.projectiles, lastArc: this.lastArc, impact: this.impact,
-    ...(this.railEnabled ? { ownsRail: this.ownsRail, railAmmo: this.railAmmo, railReadyAt: this.next.rail, lastRail: this.lastRail } : {}) }; }
+    ...(this.railEnabled ? { ownsRail: this.ownsRail, railAmmo: this.railAmmo, railReadyAt: this.next.rail, lastRail: this.lastRail, lastFire: this.lastFire } : {}) }; }
   select(id: WeaponId): void { if (id === 'arc' || (id === 'pulse' && this.ownsPulse && this.ammo > 0)
     || (id === 'rail' && this.railEnabled && this.ownsRail && this.railAmmo > 0)) {
     if(id!==this.selected) this.burst=this.lastArc=null;
@@ -112,7 +115,7 @@ export class Combat<Rail extends boolean = false> {
     const accepted = Math.min(Math.max(0, amount), WEAPONS.pulse.maxAmmo - this.ammo);
     this.ammo += accepted; return accepted;
   }
-  clearEffects(): void { this.projectiles = []; this.burst = this.lastArc = this.impact = this.lastRail = null; }
+  clearEffects(): void { this.projectiles = []; this.burst = this.lastArc = this.impact = this.lastRail = this.lastFire = null; }
   reset(): void { this.selected = 'arc'; this.ownsPulse = false; this.ammo = this.sequence = 0;
     this.ownsRail = false; this.railAmmo = 0;
     this.next = { arc: 0, pulse: 0, rail: 0 }; this.clearEffects(); }
@@ -123,6 +126,7 @@ export class Combat<Rail extends boolean = false> {
     const origin=foot?{x:foot.x,y:foot.y+1.15,z:foot.z}:aim?.muzzle;
     if (firing && (this.selected==='arc'?!!origin:!!aim&&!!camera) && tick >= this.next[this.selected]) {
       attacked = true;
+      if(this.railEnabled)this.lastFire={tick,weapon:this.selected};
       const kind = this.selected;
       this.next[kind] = tick + WEAPONS[kind].cooldown;
       if (kind === 'arc') {

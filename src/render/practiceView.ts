@@ -28,15 +28,16 @@ export class PracticeView {
     new THREE.BufferAttribute(new Float32Array(27), 3));
   private readonly tracer = new THREE.Line(this.tracerGeometry, new THREE.LineBasicMaterial({ color: 0xd6a6ff }));
   private readonly gun = new THREE.Group();
-  private readonly weapons = { arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse'), rail: createWeaponModel('rail') };
+  private readonly weapons;
   private readonly bot = createFighter(0xd7b779);
   private readonly targets = new Map<string, THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>>();
   private readonly targetDetails = new Map<string, { hoop: THREE.Mesh<THREE.TorusGeometry, THREE.MeshStandardMaterial>; bars: THREE.Group; hp: THREE.Mesh; armor: THREE.Mesh }>();
   private readonly hazard = new THREE.Group();
   private readonly targetRoot = new THREE.Group();
   private readonly normal = new THREE.Vector3();
-  constructor(scene: THREE.Scene, arena: ArenaDefinition, private readonly trainingEnabled = true) {
-    this.gun.add(...Object.values(this.weapons));
+  constructor(scene: THREE.Scene, arena: ArenaDefinition, private readonly trainingEnabled = true, private readonly handWeapon = false) {
+    this.weapons=handWeapon?null:{ arc: createWeaponModel('arc'), pulse: createWeaponModel('pulse'), rail: createWeaponModel('rail') };
+    if(this.weapons)this.gun.add(...Object.values(this.weapons));
     for (const target of arena.targets ?? []) {
       const mesh = new THREE.Mesh(new THREE.SphereGeometry(target.radius, 16, 12),
         new THREE.MeshStandardMaterial({ color: 0xa96253, metalness: 0.55, roughness: 0.35, emissive: 0xffb881, emissiveIntensity: 0 }));
@@ -70,9 +71,8 @@ export class PracticeView {
     scene.add(this.reticle, this.impact, this.tracer, this.gun, this.bot.actor, this.targetRoot);
   }
   update(state: Snapshot, aim: AimSolution | null, shot: DiagnosticShot | null, bot: Snapshot | null, dt: number, match?: MatchSnapshot, camera?: THREE.Camera, selected: WeaponId = 'arc'): void {
-    this.weapons.arc.visible = selected === 'arc'; this.weapons.pulse.visible = selected === 'pulse';
-    this.weapons.rail.visible = selected === 'rail';
-    this.reticle.visible = this.gun.visible = !!aim;
+    if(this.weapons)for(const [id,gun] of Object.entries(this.weapons))gun.visible=selected===id;
+    this.reticle.visible = !!aim;this.gun.visible=!!aim&&!this.handWeapon;
     if (aim) {
       this.reticle.position.set(aim.target.point.x, aim.target.point.y, aim.target.point.z);
       this.normal.set(aim.target.normal.x, aim.target.normal.y, aim.target.normal.z).normalize();

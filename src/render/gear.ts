@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { WeaponId } from '../core/combat';
 import type { PickupDefinition } from '../core/pickups';
+import { createArenaWeapon } from './arenaEquipment';
 
 export function createWeaponModel(kind: WeaponId): THREE.Group {
   const group = new THREE.Group();
@@ -35,7 +36,7 @@ export function createWeaponModel(kind: WeaponId): THREE.Group {
   return group;
 }
 
-export function createPickupModel(kind: PickupDefinition['kind']): THREE.Group {
+export function createPickupModel(kind: PickupDefinition['kind'], arena = false): THREE.Group {
   const group = new THREE.Group();
   const shell = new THREE.MeshStandardMaterial({ color: 0xb5c4cc, roughness: 0.35, metalness: 0.65 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x192833, roughness: 0.45, metalness: 0.6 });
@@ -45,7 +46,7 @@ export function createPickupModel(kind: PickupDefinition['kind']): THREE.Group {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material); mesh.position.set(x, y, z); mesh.castShadow = true; group.add(mesh);
   };
   if (kind === 'pulse' || kind === 'rail') {
-    const gun = createWeaponModel(kind); gun.rotation.y = Math.PI / 2; gun.scale.setScalar(1.25); group.add(gun);
+    const gun = arena?createArenaWeapon(kind):createWeaponModel(kind); gun.rotation.y = Math.PI / 2; gun.scale.setScalar(1.25); group.add(gun);
   } else if (kind === 'health') {
     box(0, 0, 0, 0.76, 0.46, 0.52, shell);
     for (const side of [-1, 1]) box(side * 0.3, 0, 0, 0.12, 0.5, 0.56, dark);

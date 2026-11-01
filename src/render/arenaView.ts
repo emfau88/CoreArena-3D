@@ -12,6 +12,7 @@ import type { WeaponSnapshot } from '../core/combat';
 import type { PickupDefinition, PickupState } from '../core/pickups';
 import { ARENA_PICKUPS } from '../arena/pickups';
 import { CombatView } from './combatView';
+import type { ArenaRole } from './arenaEquipment';
 
 export class ArenaView {
   readonly renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
@@ -34,16 +35,19 @@ export class ArenaView {
   private lastAmmo=0;
   private lastArcTick=-1;
   private lastRailTick=-1;
+  private lastArenaShot=-1;
+  private readonly arenaFighter:boolean;
   private readonly keepDeathPose: boolean;
   fighterDiagnostics(){return this.fighter.diagnostics();}
   pickupDiagnostics(){return this.combat.diagnostics();}
   arcDiagnostics(){return this.combat.arcDiagnostics();}
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number; playerColor?: number; playerLabel?: string;
-    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean; arenaPads?: boolean } = {}) {
+    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean; arenaPads?: boolean; arenaRole?:ArenaRole } = {}) {
     this.keepDeathPose = options.keepDeathPose ?? true;
     const touch = matchMedia('(any-pointer: coarse)').matches;
-    this.fighter = createFighter(options.playerColor); this.actor = this.fighter.actor;
+    this.arenaFighter=!!options.arenaRole;
+    this.fighter = createFighter(options.playerColor,options.arenaRole); this.actor = this.fighter.actor;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -64,7 +68,7 @@ export class ArenaView {
     sun.shadow.normalBias = 0.035;
     this.scene.add(sun);
     this.animateEnvironment = (options.build ?? buildArena)(this.scene, arena);
-    this.practice = new PracticeView(this.scene, arena, options.training ?? true);
+    this.practice = new PracticeView(this.scene, arena, options.training ?? true,this.arenaFighter);
     this.combat = new CombatView(this.scene, options.pickups ?? ARENA_PICKUPS, options.arenaPads);
     this.scene.add(this.actor);
     const vitalBack = new THREE.Mesh(new THREE.PlaneGeometry(1.52, 0.24),
@@ -104,12 +108,15 @@ export class ArenaView {
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
     const arcTick=weapons?.lastArc?.tick??-1;
     const railTick=weapons?.lastRail?.tick??-1;
-    const fired=(weapons?.selected==='pulse'?weapons.ammo<this.lastAmmo:arcTick>this.lastArcTick)||railTick>this.lastRailTick;
+    const fired=this.arenaFighter ? !!weapons?.lastFire && weapons.lastFire.tick!==this.lastArenaShot
+      : (weapons?.selected==='pulse'?weapons.ammo<this.lastAmmo:arcTick>this.lastArcTick)||railTick>this.lastRailTick;
+    this.lastArenaShot=weapons?.lastFire?.tick??-1;
     this.lastRailTick=railTick;
     this.lastAmmo=weapons?.ammo??0;this.lastArcTick=arcTick;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt,{grounded:current.grounded,
       verticalSpeed:current.velocity.y,velocity:current.velocity,facing:this.actor.rotation.y,weapon:weapons?.selected??'arc',shot:fired,
-      alive:life?.alive??true,hp:life?.hp});
+      alive:life?.alive??true,hp:life?.hp,aimPitch:aim?Math.atan2(aim.firePoint.y-current.position.y-1.15,
+        Math.hypot(aim.firePoint.x-current.position.x,aim.firePoint.z-current.position.z)):0});
     this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
     this.marker.visible = life?.alive ?? true;this.actor.visible=this.marker.visible||(this.keepDeathPose && this.fighter.deathVisible);
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
@@ -141,6 +148,14 @@ export class ArenaView {
   projectedPosition(position: Vec3): { x: number; y: number } {
     const point = new THREE.Vector3(position.x, position.y + CAPSULE_CENTER, position.z).project(this.camera.camera);
     return { x: (point.x + 1) * innerWidth / 2, y: (1 - point.y) * innerHeight / 2 };
+  }
+  captureFighter(position:Vec3,facing:number):string {
+    // A separate documentation camera. Never move the live camera or simulation.
+    const aspect=innerWidth/innerHeight,camera=new THREE.OrthographicCamera(-2*aspect,2*aspect,2,-2,.1,100);
+    const target=new THREE.Vector3(position.x,position.y+.95,position.z);
+    camera.position.copy(new THREE.Vector3(3,2.5,4).applyAxisAngle(new THREE.Vector3(0,1,0),facing)).add(target);
+    camera.lookAt(target);this.renderer.render(this.scene,camera);
+    const png=this.renderer.domElement.toDataURL();this.renderer.render(this.scene,this.camera.camera);return png;
   }
   dispose(): void {
     const geometries = new Set<THREE.BufferGeometry>();

@@ -49,7 +49,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   let aim: AimSolution | null = null;
   let view: ArenaView;
   try { view = new ArenaView(host, EXPANDED_ARENA, { pickups: EXPANDED_PICKUPS, build: buildExpandedArena, shadowSpan: 35,
-    playerColor: 0x8ac2e5, playerLabel: 'DU', keepDeathPose: false, arenaPads: true }); }
+    playerColor: 0xffffff, playerLabel: 'DU', keepDeathPose: false, arenaPads: true, arenaRole:'player' }); }
   catch (error) { world.dispose(); probeWorld.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
   const botViews = bots.map(bot => new BotView(view.scene, bot.fighter.team, bot.fighter.id === 'ally' ? 'VERBÜNDETER' : 'GEGNER'));
   const deaths = new ArenaDeathView(view.scene);
@@ -363,12 +363,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     }
     if (diagnostics) view.showColliders(true, world.debugLines());
     bots.forEach((bot, i) => botViews[i]!.update(match.snapshot().actors[bot.fighter.id] ? bot.snapshot() : null,
-      match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera));
+      match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, paused?0:Math.min(elapsed, 0.05), view.camera.camera,bot.decision?.aim?.firePoint));
     // Pause freezes the burst; after the last kill it may finish behind the result panel.
     deaths.update(paused ? 0 : Math.min(elapsed, .05));
     fixtures.update(match.snapshot(), pickups.snapshot(), [{ id: 'player', position: playerSpawn() },
       ...activeBots().map(bot => ({ id: bot.fighter.id, position: botSpawn(bot) }))], arenaMode === 'teams');
-    view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
+    view.draw(previous, current, alpha, paused?0:Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
       probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
     feedback.draw(match.snapshot().tick);
     frameId = requestAnimationFrame(frame);
@@ -378,6 +378,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     Object.defineProperty(window, '__coreArena', {
       configurable: true,
       value: Object.freeze({
+        portrait:(id='player')=>{
+          const state=bots.find(bot=>bot.fighter.id===id)?.snapshot()??current;
+          return view.captureFighter(state.position,id==='player'?view.actor.rotation.y:state.facing);
+        },
         read: () => ({
           snapshot: current, paused, camera: view.camera.mode, basis: view.camera.basis(),
           screen: view.projectedPosition(current.position),
@@ -387,11 +391,11 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           weapons: combat.snapshot(), pickups: pickups.snapshot(),
           arenaMode, difficulty, audio: feedback.diagnostics(), deathEffects: deaths.diagnostics(), playerVisible: view.actor.visible,
-          fixtures: fixtures.diagnostics(),
+          fixtures: fixtures.diagnostics(),fighter:view.fighterDiagnostics(),
           bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
           bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
             resourceGoal: bot.resourceGoal, intent: bot.intent,
-            weapons: bot.weapons.snapshot(), screen: view.projectedPosition(bot.snapshot().position) })),
+            weapons: bot.weapons.snapshot(), fighter:botViews[bots.indexOf(bot)]!.diagnostics(),screen: view.projectedPosition(bot.snapshot().position) })),
           probe: { status: probe.status, snapshot: probeSimulation.snapshot(), visited: [...probe.visited] },
           targets: (M1_ARENA.targets ?? []).map((target) => ({ ...target,
             screen: view.projectedPosition({ ...target.center, y: target.center.y - 0.9 }) })),

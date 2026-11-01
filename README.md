@@ -69,7 +69,15 @@ Desktop und Touch-Emulation geprüft; echter Handytest bleibt offen.
 Teamstand, Zeit, Vitalwerte und Waffen. Das Ergebnis zeigt Endstand, Rundendauer
 und eine direkte Revanche. Desktop und Touch-Querformat einschließlich Rotation
 geprüft. [Ergebnis und Spielaufnahmen](docs/qa/AP2_RESULT.md).
-AP3 und alle weiteren Bulks bleiben offen; echter Handytest bleibt separat.
+
+**Arena AP3:** eigene Helm-/Rüstungsmerkmale für Spieler, Wingman und Gegner;
+Arc-Gabel, Pulse-Repeater und lange Railgun mit passenden HUD-Icons und
+Handbefestigung. Railgun mit einem Lauf/einem grünen Strahl, Pulse mit blauen
+Projektilen. Zielhaltung und Rückstoß gelten auch für Bots.
+Zusätzlicher Nutzerwunsch: kleinerer Mobile-Joystick, kompaktere Aktions-/Waffentasten
+und schmalere HP-/Rüstungsanzeige. [Ergebnis und Prüfungen](docs/qa/AP3_RESULT.md).
+Als Nächstes ist M3.1 Classic CTF geplant; AP4/AP5 und M3–M5 bleiben offen.
+Echter Handytest bleibt separat.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen

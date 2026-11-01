@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { createKayFighter, type FighterMotion } from './kayFighter';
+import type { ArenaRole } from './arenaEquipment';
 
-export function createFighter(color = 0xc7c9c3) {
-  const kaykit=createKayFighter(color);if(kaykit)return kaykit;
+export function createFighter(color = 0xc7c9c3, arenaRole?:ArenaRole) {
+  const kaykit=createKayFighter(color,arenaRole);if(kaykit)return kaykit;
   const actor = new THREE.Group();
   const armor = new THREE.MeshStandardMaterial({ color, roughness: 0.48, metalness: 0.45 });
   const dark = new THREE.MeshStandardMaterial({ color: 0x343b42, roughness: 0.65, metalness: 0.3 });

@@ -4,7 +4,7 @@ import { PICKUP_RESPAWN_TICKS, type PickupDefinition, type PickupState } from '.
 import type { MatchSnapshot } from '../core/match';
 import type { Vec3 } from '../core/types';
 
-const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e, rail: 0xffcd72 };
+const COLORS = { pulse: 0x89ceff, ammo: 0x89ceff, health: 0x9ee1ab, armor: 0xe4bf7e, rail: 0x65ed7d };
 const TEAMS = { blue: 0x71bff1, red: 0xe89179 };
 const SPAWN_IDS = ['player', 'ally', 'rival', 'rival-2'];
 type Spawn = { id: string; position: Vec3 };

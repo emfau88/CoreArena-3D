@@ -21,8 +21,10 @@ Spawn-/Vorratssockel, Nachladeanzeige, Vollmeldungen und Deckungsmodul.
 **AP2 ist anschließend separat freigegeben und technisch abgeschlossen:**
 Kartenübersicht/Schnellstart, Arena-HUD und Ergebnis/Revanche; vollständige
 Desktop-/Touch-Matches und Menü-/Rotationsprüfung. [Nachweise](../qa/AP2_RESULT.md).
-Als Nächstes empfohlen: AP3 (Figuren und Waffenpräsentation); M3.1 bleibt der nächste
-funktionale Meilenstein. Die übrigen Bulks sind nicht zur Umsetzung freigegeben.
+**AP3 ist danach separat freigegeben und technisch abgeschlossen:** eigene
+Arena-Figuren, unterscheidbare handgeführte Waffen und passende HUD-Icons;
+zusätzlich auf Nutzerwunsch kompaktere Mobile-Bedienung. [Nachweise](../qa/AP3_RESULT.md).
+Als Nächstes empfohlen: M3.1 Classic CTF. Die übrigen Bulks sind nicht zur Umsetzung freigegeben.
 
 Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
 Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutzen
@@ -57,21 +59,21 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
 | **Adventure / PvE-Kampagne — eigenständig** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, L1.6a–c und technische L1.5b-Abnahme | Persönliche Spiel-/Handyabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1/AP2 technisch geprüft | Karten-/Handyabnahme; AP3 als nächster Gestaltungs-Bulk empfohlen, funktional M3.1 Classic CTF; jeweils gesonderte Freigabe |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch geprüft | Karten-/Handyabnahme; als Nächstes M3.1 Classic CTF, gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
 Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
 
-**Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket und AP1/AP2:**
+**Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket und AP1–AP3:**
 
 | Bereich | Adventure-Stand | Arena-Stand / gemeinsame Grundlage |
 |---|---|---|
 | Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Ruhigere prozedurale Steinflächen, ausgearbeitete Kanten/Sockel und beidseitige Höhenarena; echte Höhe/Kollision |
 | Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Prozedurale Gartenpflanzen, Teamdepots, überarbeitete Rail-Deckungsmodule und einheitliche 3D-Spawn-/Vorratssockel mit Zustandsanzeige; keine zusätzlichen Assetdownloads |
-| Spielerfigur | Animierter KayKit-Ruinenkurier | Gemeinsames KayKit-Rig und Animationen; Arena nutzt blau/rote Mannequins, der angepasste Kurier-Look gehört zum Adventure |
+| Spielerfigur | Animierter KayKit-Ruinenkurier | Gemeinsames KayKit-Rig; eigene Arena-Helme/Rüstung, heller Spielerhelm, blauer Wingman mit zwei Helmfinnen und korallfarbene Gegner |
 | Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | 1v1 oder drei KayKit-Bots im 2v2, Teamkennzeichnung, Höhenwege, Ressourcenwahl und drei Stufen; CTF-Rollen fehlen |
-| Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | **Bereits gemeinsam:** `Combat`, `CombatView`, `gear` und `ArcView`; keine pauschale Übertragung dieser bereits vorhandenen Verbesserungen nötig |
+| Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | Gemeinsame Kampf-/Effektgrundlage; AP3 ergänzt Arena-spezifische Arc/Pulse/Rail-Silhouetten, Handbefestigung, Zielhaltung und passende Icons/Fundmodelle |
 | HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | AP2: eigener Arena-Einstieg mit Kartenübersicht/Schnellstart, klar gegliederte HUD-Panels und Ergebnis/Revanche; vorhandenes Arena-Ton-/Trefferfeedback |
 | Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Eingabe/Physik und seit M2.4b dieselbe Sprungkurve/Treppenhilfe; Arena-spezifischer Kameraabstand und Kartenbegrenzung |
 | Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden: beidseitig gleiche Ressourcen/Höhenrouten, Training, 1v1 und 2v2 bis Ergebnis/Restart; CTF/Liga noch offen |

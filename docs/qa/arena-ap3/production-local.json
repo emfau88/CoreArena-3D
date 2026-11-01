@@ -1,0 +1,52 @@
+[
+  {
+    "mobile": false,
+    "bundle": "/CoreArena-3D/assets/index-DAr_h61h.js",
+    "status": 200,
+    "adventure": "http://127.0.0.1:8746/CoreArena-3D/?mode=pve&level=stone&adventure=1",
+    "errors": [],
+    "failed": [],
+    "testApi": "absent"
+  },
+  {
+    "mobile": true,
+    "bundle": "/CoreArena-3D/assets/index-DAr_h61h.js",
+    "status": 200,
+    "sizes": {
+      "weapon-panel": {
+        "x": 9.991423606872559,
+        "y": 7.9902801513671875,
+        "width": 245.99771118164062,
+        "height": 55.803314208984375
+      },
+      "life-panel": {
+        "x": 267.91021728515625,
+        "y": 321.5408630371094,
+        "width": 131.9897003173828,
+        "height": 43.53916549682617
+      },
+      "touch-stick": {
+        "x": 17.99599838256836,
+        "y": 269.08233642578125,
+        "width": 87.9931411743164,
+        "height": 87.9931411743164
+      },
+      "touch-sprint": {
+        "x": 521.841064453125,
+        "y": 313.0788879394531,
+        "width": 59.991424560546875,
+        "height": 43.9965705871582
+      },
+      "touch-jump": {
+        "x": 589.82275390625,
+        "y": 297.08404541015625,
+        "width": 59.991424560546875,
+        "height": 59.991424560546875
+      }
+    },
+    "adventure": "http://127.0.0.1:8746/CoreArena-3D/?mode=pve&level=stone&adventure=1",
+    "errors": [],
+    "failed": [],
+    "testApi": "absent"
+  }
+]

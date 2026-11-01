@@ -4,9 +4,11 @@ import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import type { WeaponId } from '../core/combat';
 import type { Vec3 } from '../core/types';
 import { applyCourierLook } from './courierLook';
+import { applyArenaLook, createArenaWeapon, type ArenaRole } from './arenaEquipment';
 
-export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number }
+export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number; aimPitch?:number }
 let template: THREE.Group | undefined;
+let handSlot: THREE.Object3D | undefined;
 let clips: THREE.AnimationClip[] = [];
 let loading: Promise<void> | undefined;
 let meleeLoading: Promise<void> | undefined;
@@ -17,6 +19,7 @@ export function loadFighterAssets(): Promise<void> {
     const loader=new GLTFLoader(),base=`${import.meta.env.BASE_URL}assets/kaykit/`;
     const [model,...sets]=await Promise.all(['Mannequin_Medium','General','Movement','Ranged'].map(name=>loader.loadAsync(`${base}${name}.glb`)));
     template=model!.scene;clips=sets.flatMap(set=>set.animations);
+    handSlot=sets[2]!.scene.getObjectByName('handslotr');
   })();
 }
 
@@ -59,14 +62,17 @@ export function kayClip(body:THREE.Object3D,name:string):THREE.AnimationClip {
     body.getObjectByName(track.name.slice(0,track.name.lastIndexOf('.')))));
 }
 
-export function createKayFighter(color:number) {
+export function createKayFighter(color:number, arenaRole?:ArenaRole) {
   if(!template) return null;
   const {actor,body,visual,scale}=createKayRig(color);
   const courier=color===0xc7c9c3;
   if(courier)applyCourierLook(body);
+  let equipment:ReturnType<typeof createArenaEquipment>|undefined;
+  if(arenaRole) { applyArenaLook(body,arenaRole);equipment=createArenaEquipment(body); }
   const mixer=new THREE.AnimationMixer(body),axis=new THREE.Vector3(0,1,0),yaw=new THREE.Quaternion();
   const hips=body.getObjectByName('hips')!,chest=body.getObjectByName('chest')!;
-  const animatedPose=[hips,chest].map(bone=>({bone,rotation:bone.quaternion.clone()}));
+  const animatedPose=[hips,chest,...arenaRole?[body.getObjectByName('upperarml')!,body.getObjectByName('lowerarml')!]:[]]
+    .map(bone=>({bone,rotation:bone.quaternion.clone()}));
   const updateAnimation=(dt:number)=>{
     mixer.update(dt);
     for(const pose of animatedPose)pose.rotation.copy(pose.bone.quaternion);
@@ -74,7 +80,16 @@ export function createKayFighter(color:number) {
   const upper=/^(chest|head|upperarm|lowerarm|wrist|hand)/;
   const action=(name:string,part:'full'|'lower'|'upper'='full',once=false)=>{
     const source=kayClip(body,name);
-    const tracks=source.tracks.filter(track=>part==='full'||(part==='upper')===upper.test(track.name));
+    let tracks=source.tracks.filter(track=>part==='full'||(part==='upper')===upper.test(track.name));
+    // Arena holds the authored settled aim pose; looping the raise-up intro made
+    // the weapon repeatedly dip. Adventure retains its existing animation clips.
+    if(arenaRole && name.endsWith('_Aiming')) tracks=tracks.map(track=>{
+      const held=track.clone(),interpolant=track instanceof THREE.QuaternionKeyframeTrack
+        ?new THREE.QuaternionLinearInterpolant(track.times,track.values,track.getValueSize())
+        :new THREE.LinearInterpolant(track.times,track.values,track.getValueSize());
+      const sample=Array.from(interpolant.evaluate(.7) as Float32Array);
+      held.times=new Float32Array([0,1]);held.values=new Float32Array([...sample,...sample]);return held;
+    });
     const clip=new THREE.AnimationClip(`${name}-${part}`,source.duration,tracks);
     const result=mixer.clipAction(clip);if(once) {result.setLoop(THREE.LoopOnce,1);result.clampWhenFinished=true;}
     return result;
@@ -105,7 +120,7 @@ export function createKayFighter(color:number) {
         else {death.stop();activeLower.reset().play();activeUpper=aiming[weapon];activeUpper.reset().play();
           upperAge=0;landing=recoil=0;previousHp=state.hp??100;}
       }
-      if(!alive){deadAge+=dt;updateAnimation(dt);return;}
+      if(!alive){deadAge+=dt;updateAnimation(dt);equipment?.update(state.weapon,false);return;}
       const nextLower=!state.grounded?'jump':speed>8?'run':speed>.2?'walk':'idle';
       switchAction(activeLower,lower[nextLower]);activeLower=lower[nextLower];lowerState=nextLower;
       const targetYaw=speed>.2?THREE.MathUtils.euclideanModulo(Math.atan2(state.velocity.x,state.velocity.z)-state.facing+Math.PI,Math.PI*2)-Math.PI:0;
@@ -117,7 +132,7 @@ export function createKayFighter(color:number) {
       let nextUpper:THREE.AnimationAction=aiming[weapon],nextUpperState:string=state.weapon;
       if((state.hp??100)<previousHp){hit.reset();upperAge=.2;upperState='hit';}
       else if(state.shot){shooting[weapon].reset();upperAge=.16;upperState=`shot-${state.weapon}`;recoil=1;}
-      if(upperAge>0){nextUpper=upperState==='hit'?hit:shooting[weapon];nextUpperState=upperState;}
+      if(upperAge>0){nextUpper=upperState==='hit'?hit:arenaRole?aiming[weapon]:shooting[weapon];nextUpperState=upperState;}
       switchAction(activeUpper,nextUpper);activeUpper=nextUpper;upperState=nextUpperState;
       if(!wasGrounded && state.grounded)landing=1;
       wasGrounded=state.grounded;previousHp=state.hp??100;
@@ -126,12 +141,74 @@ export function createKayFighter(color:number) {
       // Small waist turn keeps legs responsive while shoulders continue aiming.
       yaw.setFromAxisAngle(axis,legYaw);hips.quaternion.premultiply(yaw);
       yaw.setFromAxisAngle(axis,-legYaw);chest.quaternion.premultiply(yaw);
+      if(arenaRole){
+        // Shoulder a two-handed rifle across the torso, with the barrel still
+        // pointing along aim. This also keeps the foregrip inside the left arm's reach.
+        if(state.weapon!=='arc')chest.rotateY(-Math.PI/6);
+      }
       visual.scale.set(scale*(1+landing*.07),scale*(1-landing*.09),scale*(1+landing*.07));
       visual.position.z=-recoil*.055;
+      equipment?.update(state.weapon,true,upperState==='hit'?undefined:{yaw:actor.rotation.y,pitch:THREE.MathUtils.clamp(state.aimPitch??0,-.55,.55)});
     },
-    diagnostics:()=>({model:'kaykit-mannequin-medium',style:courier?'ruins-courier':'mannequin',lower:lowerState,upper:upperState,time:mixer.time,legYaw,
-      deathAge:deadAge,bones:body.getObjectsByProperty('type','Bone').length,
+    diagnostics:()=>({model:'kaykit-mannequin-medium',style:arenaRole?`arena-${arenaRole}`:courier?'ruins-courier':'mannequin',lower:lowerState,upper:upperState,time:mixer.time,legYaw,
+      deathAge:deadAge,facing:actor.rotation.y,bones:body.getObjectsByProperty('type','Bone').length,
       hips:hips.quaternion.toArray(),chest:chest.quaternion.toArray(),
-      leg:body.getObjectByName('lowerlegl')?.quaternion.toArray(),scale:visual.scale.toArray()}),
+      leg:body.getObjectByName('lowerlegl')?.quaternion.toArray(),scale:visual.scale.toArray(),
+      ...(equipment?{equipment:equipment.diagnostics()}: {})}),
+  };
+}
+
+/** Authored KayKit hand slot, plus a small visual-only support-hand correction. */
+function createArenaEquipment(body:THREE.Object3D) {
+  if(!handSlot)throw new Error('KayKit ranged hand slot missing');
+  const slot=handSlot.clone(false);body.getObjectByName('handr')!.add(slot);
+  const mount=new THREE.Group();mount.rotation.y=Math.PI/2;slot.add(mount); // Slot +X is barrel-forward.
+  const guns={arc:createArenaWeapon('arc'),pulse:createArenaWeapon('pulse'),rail:createArenaWeapon('rail')};
+  mount.add(...Object.values(guns));
+  const left=body.getObjectByName('handl')!;
+  const chest=body.getObjectByName('chest')!;
+  const joints=[body.getObjectByName('lowerarml')!,body.getObjectByName('upperarml')!];
+  const target=new THREE.Vector3(),origin=new THREE.Vector3(),end=new THREE.Vector3(),direction=new THREE.Vector3();
+  const delta=new THREE.Quaternion(),worldRotation=new THREE.Quaternion(),parentRotation=new THREE.Quaternion();
+  let selected:WeaponId='arc',visible=true;
+  return {
+    update(weapon:WeaponId,alive:boolean,aim?:{yaw:number;pitch:number}) {
+      selected=weapon;visible=alive;mount.visible=alive;
+      mount.rotation.y=Math.PI/2+(weapon==='arc'?0:Math.PI/6);
+      for(const [id,gun] of Object.entries(guns))gun.visible=id===weapon;
+      if(!alive)return;
+      // The source poses point diagonally relative to the rig. Rotate shoulders
+      // together with both hands so the actual barrel follows the gameplay aim.
+      body.updateWorldMatrix(true,true);
+      if(aim){
+        mount.getWorldPosition(origin);mount.localToWorld(end.set(0,0,1));end.sub(origin).normalize();
+        direction.set(Math.sin(aim.yaw)*Math.cos(aim.pitch),Math.sin(aim.pitch),Math.cos(aim.yaw)*Math.cos(aim.pitch));
+        delta.setFromUnitVectors(end,direction);
+        chest.getWorldQuaternion(worldRotation);chest.parent!.getWorldQuaternion(parentRotation);
+        chest.quaternion.copy(parentRotation.invert().multiply(delta).multiply(worldRotation));
+        chest.updateWorldMatrix(false,true);
+      }
+      if(weapon==='arc')return;
+      // Keep the left hand on the foregrip while recoil/waist/aim animate. All
+      // offsets are restored before the next mixer sample; no cumulative twisting.
+      body.updateWorldMatrix(true,true);
+      target.set(0,-.015,weapon==='rail'?.55:.48);mount.localToWorld(target);
+      for(let pass=0;pass<4;pass++)for(const joint of joints) {
+        joint.getWorldPosition(origin);left.getWorldPosition(end);
+        end.sub(origin).normalize();direction.copy(target).sub(origin).normalize();
+        delta.setFromUnitVectors(end,direction);
+        joint.getWorldQuaternion(worldRotation);joint.parent!.getWorldQuaternion(parentRotation);
+        joint.quaternion.copy(parentRotation.invert().multiply(delta).multiply(worldRotation));
+        joint.updateWorldMatrix(false,true);
+      }
+    },
+    diagnostics() {
+      body.updateWorldMatrix(true,true);
+      const grip=slot.getWorldPosition(new THREE.Vector3()),weapon=mount.getWorldPosition(new THREE.Vector3());
+      const support=mount.localToWorld(new THREE.Vector3(0,-.015,selected==='rail'?.55:.48));
+      return {weapon:selected,parent:slot.parent!.name,slot:slot.name,visible,grip:grip.toArray(),
+        gripError:grip.distanceTo(weapon),supportError:selected==='arc'?null:left.getWorldPosition(new THREE.Vector3()).distanceTo(support),
+        forward:mount.localToWorld(new THREE.Vector3(0,0,1)).sub(weapon).normalize().toArray()};
+    },
   };
 }

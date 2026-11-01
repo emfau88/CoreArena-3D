@@ -32,7 +32,8 @@ Project-owned integration in `src/render/kayFighter.ts`: cloning the skeleton,
 scaling to the existing player's height, rougher materials, animation selection
 and blending, upper/lower-body masks, small directional waist turn, recoil and
 landing squash. Optional hand-slot marker tracks absent from the mannequin are
-excluded. The player's actual movement and damage remain simulation-controlled.
+excluded unless the corresponding slot is attached (Arena, see below).
+The player's actual movement and damage remain simulation-controlled.
 
 Guard-specific adaptation in `src/render/kayGuard.ts`: stone materials/UVs using
 our existing CC0 Poly Haven Rock Tile Floor surfaces, a slightly wider silhouette,
@@ -45,3 +46,12 @@ flatter head, fuller lower torso and larger boots, applied to cloned bind-pose
 vertices with original bone weights. Material shader remaps painted atlas regions
 to ivory/coral/graphite while preserving existing dark details. No additional
 bitmap assets; source GLB and other character instances remain intact.
+
+Arena-only AP3 adaptation (2026-11-01) in `src/render/arenaEquipment.ts` and
+`src/render/kayFighter.ts`: owned helmet/armor geometry and a neutral/team palette
+on cloned materials, retaining the atlas seams. Player, wingman and rival use the
+same unmodified source skeleton. The right-hand slot is cloned from `Ranged.glb`;
+held aim samples, shoulder alignment, visual recoil and a small support-hand
+correction fit the weapons to the rig. Adventure keeps its existing animation path.
+Arc/Pulse/Rail geometry and matching SVG HUD icons are original project code,
+not models copied from CTF-3.0 or Hexwars. No added textures or binary downloads.
