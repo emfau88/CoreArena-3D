@@ -114,6 +114,17 @@ Testdiagnose `__coreArena` nicht enthalten. Verifizierter Bundle-Name:
 Reproduzierbar mit `scripts/qa/ap3Production.mjs <Spiel-URL> <Bericht-Präfix>`
 nach lokalem Produktionsbuild; das Skript vergleicht auch den ausgelieferten Bundle-Namen.
 
+**Veröffentlicht und live geprüft:** Spielcommit
+[`a164643`](https://github.com/emfau88/CoreArena-3D/commit/a164643584cc5d5369770aaf07d139c24e735a5c),
+[erfolgreicher Pages-Lauf](https://github.com/emfau88/CoreArena-3D/actions/runs/41325473130).
+Dieselben Produktions-Stichproben bestanden auf der öffentlichen Arena mit Desktop
+und Touch: identisches Bundle `index-DAr_h61h.js`, HTTP 200, keine JavaScript-/
+HTTP-Fehler, keine Testdiagnose. Joystick 88 px, Sprung 60 px, Sprint 44 px hoch,
+Vitalpanel rund 132 × 44 px; separater Adventure-Joystick unverändert 116 px.
+[Live-Bericht](arena-ap3/live.json), [Desktop](arena-ap3/live-desktop-hud.png),
+[Touch](arena-ap3/live-touch-hud.png), [breites Touch-Querformat](arena-ap3/live-touch-wide.png).
+Weiterhin kein echter Handytest.
+
 ## Reproduktion
 
 ```powershell
