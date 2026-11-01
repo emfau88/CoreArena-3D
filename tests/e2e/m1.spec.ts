@@ -2,11 +2,14 @@ import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import type { Snapshot } from '../../src/core/types';
 import type { AimSolution } from '../../src/core/aim';
+import type { MatchSnapshot } from '../../src/core/match';
+import type { WeaponSnapshot } from '../../src/core/combat';
 
 interface M1Observation {
   snapshot: Snapshot; camera: string; aim: AimSolution | null; hits: Record<string, number>;
   probe: { status: string; visited: string[]; snapshot: Snapshot };
   targets: { id: string; screen: { x: number; y: number } }[];
+  match: MatchSnapshot; weapons: WeaponSnapshot;
 }
 const read = (page: Page): Promise<M1Observation> => page.evaluate(() =>
   (window as unknown as { __coreArena: { read(): M1Observation } }).__coreArena.read());
@@ -30,13 +33,13 @@ async function target(page: Page, id: string) {
   await expect.poll(async () => (await read(page)).aim?.target.id).toBe(id);
   return point;
 }
-test.use({ headless: false });
+test.use({ headless: false, trace: 'off' });
 test('jump directly against both plateau walls without slow edge climbing', async ({ page }, info) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
   await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
-  await page.locator('canvas').click();
+  await page.locator('#match-start').click();
   await walkNorth(page, -1.015);
   await waitTicks(page, 10);
   const e0Tick = (await read(page)).snapshot.tick;
@@ -64,13 +67,19 @@ test('play the height route, hit three height targets, respect cover and show th
   page.on('request', (request) => { if (new URL(request.url()).origin !== 'http://127.0.0.1:8744') external.push(request.url()); });
   await page.goto('./');
   await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
-  await page.locator('canvas').click();
+  await page.locator('#match-start').click();
+  // The AP2 lobby now requires a match start. Verify the current real Pulse
+  // weapon rather than the historical pre-match diagnostic ray counter.
+  await page.keyboard.down('KeyS');
+  await expect.poll(async () => (await read(page)).weapons.ownsPulse).toBe(true);
+  await page.keyboard.up('KeyS'); await page.locator('#weapon-pulse').click();
+  const health = async (id: string) => { const a = (await read(page)).match.actors[id]!; return a.hp + a.armor; };
   await waitTicks(page, 15);
   const blockedPoint = await target(page, 'dummy-e0');
   expect((await read(page)).aim?.impact?.id).toBe('wall');
   await page.mouse.click(blockedPoint.x, blockedPoint.y);
   await waitTicks(page, 10);
-  expect((await read(page)).hits['dummy-e0'] ?? 0).toBe(0);
+  expect(await health('dummy-e0')).toBe(150);
   await page.screenshot({ path: info.outputPath('e0-cover.png') });
 
   await walkNorth(page, 0.3);
@@ -78,7 +87,7 @@ test('play the height route, hit three height targets, respect cover and show th
   await expect.poll(async () => (await read(page)).snapshot.surface).toBe('e1');
   let point = await target(page, 'dummy-e1');
   await page.mouse.click(point.x, point.y);
-  await expect.poll(async () => (await read(page)).hits['dummy-e1'] ?? 0).toBeGreaterThan(0);
+  await expect.poll(() => health('dummy-e1')).toBeLessThan(150);
   await page.screenshot({ path: info.outputPath('e1-hit.png') });
 
   await walkNorth(page, -4.8);
@@ -88,7 +97,7 @@ test('play the height route, hit three height targets, respect cover and show th
   await page.mouse.down();
   await waitTicks(page, 30);
   await page.mouse.up();
-  expect((await read(page)).hits['dummy-e2']).toBeGreaterThan(2);
+  await expect.poll(() => health('dummy-e2')).toBeLessThan(130);
   await page.screenshot({ path: info.outputPath('e2-hit.png') });
   await page.keyboard.press('KeyV');
   expect((await read(page)).camera).toBe('isometric');
@@ -100,7 +109,7 @@ test('play the height route, hit three height targets, respect cover and show th
   // From the upper platform this target has a free line over the central wall.
   point = await target(page, 'dummy-e0');
   await page.mouse.click(point.x, point.y);
-  await expect.poll(async () => (await read(page)).hits['dummy-e0'] ?? 0).toBeGreaterThan(0);
+  await expect.poll(() => health('dummy-e0')).toBeLessThan(150);
 
   await page.keyboard.press('KeyB');
   await expect.poll(async () => (await read(page)).probe.status, { timeout: 15_000 }).toBe('complete');

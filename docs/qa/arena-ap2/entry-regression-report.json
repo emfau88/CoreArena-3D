@@ -1,0 +1,143 @@
+[
+  {
+    "case": "AP2 desktop lobby, HUD, pause and separate entry",
+    "status": "passed",
+    "durationMs": 9086,
+    "mobile": false,
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "lobby": {
+      "scroll": 523,
+      "client": 523
+    },
+    "panels": [
+      {
+        "id": "match-panel",
+        "x": 536.3636474609375,
+        "y": 13.9937105178833,
+        "right": 830.3601989746094,
+        "bottom": 115.92338275909424
+      },
+      {
+        "id": "weapon-panel",
+        "x": 984.734130859375,
+        "y": 664.6369018554688,
+        "right": 1346.7266845703125,
+        "bottom": 748.4419326782227
+      },
+      {
+        "id": "life-panel",
+        "x": 19.997140884399414,
+        "y": 651.6295166015625,
+        "right": 247.98455238342285,
+        "bottom": 748.4419784545898
+      },
+      {
+        "id": "arena-menu",
+        "x": 1261.092041015625,
+        "y": 13.9937105178833,
+        "right": 1346.726692199707,
+        "bottom": 57.990281105041504
+      }
+    ],
+    "errors": [],
+    "failed": []
+  },
+  {
+    "case": "AP2 touch lobby, HUD, pause and separate entry",
+    "status": "passed",
+    "durationMs": 10965,
+    "mobile": true,
+    "viewport": {
+      "width": 667,
+      "height": 375
+    },
+    "lobby": {
+      "scroll": 367,
+      "client": 353
+    },
+    "panels": [
+      {
+        "id": "match-panel",
+        "x": 391.8238830566406,
+        "y": 7.9902801513671875,
+        "right": 587.8215942382812,
+        "bottom": 80.34590911865234
+      },
+      {
+        "id": "weapon-panel",
+        "x": 9.991423606872559,
+        "y": 7.9902801513671875,
+        "right": 285.9776906967163,
+        "bottom": 73.78501892089844
+      },
+      {
+        "id": "life-panel",
+        "x": 255.9105224609375,
+        "y": 281.4179382324219,
+        "right": 411.899658203125,
+        "bottom": 363.0788879394531
+      },
+      {
+        "id": "arena-menu",
+        "x": 597.8273315429688,
+        "y": 7.9902801513671875,
+        "right": 657.8187561035156,
+        "bottom": 51.98685073852539
+      },
+      {
+        "id": "touch-stick",
+        "x": 17.99599838256836,
+        "y": 241.0806121826172,
+        "right": 133.99084854125977,
+        "bottom": 357.0754623413086
+      },
+      {
+        "id": "touch-actions",
+        "x": 481.4036560058594,
+        "y": 279.0880432128906,
+        "right": 649.8141784667969,
+        "bottom": 357.0754623413086
+      }
+    ],
+    "errors": [],
+    "failed": []
+  },
+  {
+    "case": "real input moves the rendered actor in screen directions in both cameras",
+    "status": "passed",
+    "durationMs": 4187
+  },
+  {
+    "case": "real keyboard collision blocks a wall and allows sliding along it",
+    "status": "passed",
+    "durationMs": 3702
+  },
+  {
+    "case": "focus loss pauses, clears held movement and does not catch up on return",
+    "status": "passed",
+    "durationMs": 3073
+  },
+  {
+    "case": "resize, camera and collider diagnostics render correctly; capture evidence",
+    "status": "passed",
+    "durationMs": 8535
+  },
+  {
+    "case": "jump directly against both plateau walls without slow edge climbing",
+    "status": "passed",
+    "durationMs": 6013
+  },
+  {
+    "case": "play the height route, hit three height targets, respect cover and show the route probe",
+    "status": "passed",
+    "durationMs": 16958
+  },
+  {
+    "case": "touch joystick, independent aim finger, jump, orientation reset and restart",
+    "status": "passed",
+    "durationMs": 5407
+  }
+]

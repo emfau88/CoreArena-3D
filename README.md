@@ -62,7 +62,14 @@ Kampfregeln. [Desktop-/Touch-Prüfung](docs/qa/ARENA_DEATH_RESULT.md).
 einheitliche Vorratssockel mit Nachladefortschritt/Countdown und kurzen Vollmeldungen.
 Die Rail-Deckungen erhalten gefaste Kanten, Metallrippen und abgestimmte Materialien.
 Desktop und Touch-Emulation geprüft; echter Handytest bleibt offen.
-[Ergebnis und Spielaufnahmen](docs/qa/AP1_RESULT.md). AP2 und alle weiteren Bulks bleiben offen.
+[Ergebnis und Spielaufnahmen](docs/qa/AP1_RESULT.md).
+
+**Arena AP2:** eigener Einstieg mit Kartenübersicht und direktem 2v2-Start;
+1v1 und Training daneben, Adventure klar getrennt. Ruhige HUD-Panels ordnen
+Teamstand, Zeit, Vitalwerte und Waffen. Das Ergebnis zeigt Endstand, Rundendauer
+und eine direkte Revanche. Desktop und Touch-Querformat einschließlich Rotation
+geprüft. [Ergebnis und Spielaufnahmen](docs/qa/AP2_RESULT.md).
+AP3 und alle weiteren Bulks bleiben offen; echter Handytest bleibt separat.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen

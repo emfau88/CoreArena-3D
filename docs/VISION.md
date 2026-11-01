@@ -2,10 +2,11 @@
 
 **Aktueller Stand, 1.11.2026:** Arena und Adventure sind zwei eigenständige
 Spielvarianten. Arena M0/M1 und M2.1–M2.6 sowie das separate Map-Paket und
-Konfetti-Eliminierungen und [AP1 Premium-Bauteile](qa/AP1_RESULT.md) sind umgesetzt und technisch geprüft. Persönliche
+Konfetti-Eliminierungen, [AP1 Premium-Bauteile](qa/AP1_RESULT.md) und
+[AP2 HUD/Matchfluss](qa/AP2_RESULT.md) sind umgesetzt und technisch geprüft. Persönliche
 Spiel-/Geräteabnahme bleibt offen. Der CTF-3.0-Abgleich ist als
 [Arena-To-do-Liste mit Bulks](planning/MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste)
-integriert: AP1 ist erledigt; AP2 (HUD und Matchfluss) ist der empfohlene nächste
+integriert: AP1/AP2 sind erledigt; AP3 (Figuren und Waffenpräsentation) ist der empfohlene nächste
 Gestaltungs-Bulk, M3.1 Classic CTF der nächste funktionale Meilenstein.
 Die übrigen Bulks bleiben geplant und sind nicht zur Umsetzung freigegeben.
 Adventure L1.6a–c und L1.5b sind technisch abgeschlossen; persönliche Abnahme offen.

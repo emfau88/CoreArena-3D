@@ -144,12 +144,28 @@ for (const { mobile, difficulty, width, height } of cases) test(`${mobile ? 'tou
     expect(['time','score']).toContain(state.match.reason);
     if(state.match.reason==='time') expect(state.match.tick).toBe(7200); else expect(Math.max(state.match.scores.blue,state.match.scores.red)).toBeGreaterThanOrEqual(10);
     await expect(page.locator('#match-result')).toBeVisible();
+    await expect(page.locator('#result-blue')).toHaveText(String(state.match.scores.blue));
+    await expect(page.locator('#result-red')).toHaveText(String(state.match.scores.red));
+    await expect(page.locator('#result-context')).toContainText('2v2');
+    await expect(page.locator('#result-title')).toHaveText(state.match.winner === 'draw' ? 'Unentschieden.' : state.match.winner === 'blue' ? 'Sieg für Blau.' : 'Rot gewinnt.');
+    for (const id of ['result-restart', 'result-arena-home']) {
+      const reachable = await page.locator(`#${id}`).evaluate(el => {
+        const r=el.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+        return r.x>=0&&r.y>=0&&r.right<=innerWidth&&r.bottom<=innerHeight&&r.height>=43.5&&!!hit&&el.contains(hit);
+      });
+      expect(reachable, id).toBe(true);
+    }
+    if (mobile) await expect(page.locator('#touch-stick')).toBeHidden();
+    else { await page.keyboard.press('Escape'); await expect(page.locator('#pause')).toBeHidden(); }
     await page.screenshot({ path: info.outputPath('result.png') });
     const result = state.match; await page.waitForTimeout(250);
     expect((await read(page)).match).toEqual(result);
     await click('#result-restart'); const restarted = await read(page);
     expect(restarted.match.phase).toBe('running'); expect(restarted.match.scores).toEqual({ blue: 0, red: 0 });
     expect(Object.values(restarted.match.actors).every(actor => actor.life === 1)).toBe(true);
+    expect(restarted.difficulty).toBe(difficulty); expect(restarted.arenaMode).toBe('teams');
+    await expect(page.locator('#weapon-arc')).toHaveAttribute('aria-pressed','true');
+    if (mobile) await expect(page.locator('#touch-stick')).toBeVisible();
     expect(restarted.bots.every(bot => !bot.weapons.ownsPulse && bot.weapons.projectiles.length === 0)).toBe(true);
     await info.attach('team-match-report', { body: JSON.stringify({ mobile, difficulty, environment, viewport:state.viewport, perf, respawn, result, restarted, usedArc, usedPulse, samples, errors }), contentType: 'application/json' });
     expect(errors).toEqual([]);

@@ -51,7 +51,7 @@ test.beforeEach(async ({ page }) => {
   page.on('request', (request) => urls.push(request.url()));
   await page.goto('./');
   await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
-  await page.locator('canvas').click();
+  await page.locator('#match-start').click();
   await ticks(page, 15);
 });
 test.afterEach(async ({ page }, info) => {

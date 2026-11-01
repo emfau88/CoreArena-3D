@@ -1,4 +1,4 @@
-import { weaponHud, lifeHud } from './hud';
+import { arenaHud } from './arenaHud';
 import '../arenaHud.css';
 import { M1_ARENA } from '../arena/arena';
 import { EXPANDED_ARENA, EXPANDED_PICKUPS, TEAM_SPAWNS } from '../arena/expandedArena';
@@ -73,45 +73,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   let frameId = 0;
   const frames: number[] = [];
   const steps: number[] = [];
-  host.insertAdjacentHTML('beforeend', `
-    <div id="hud">
-      <header><div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div>
-      <span class="eyebrow">CORE ARENA</span><h1>Obsidian Garden</h1></div></div>
-      <span class="phase"><i></i>TRAININGSARENA</span></header>
-      <div id="match-panel"><button id="adventure-start" type="button">Adventure: Der verwitterte Hof</button>
-      <div class="eyebrow" id="match-mode">10 ABSCHÜSSE / 2 MINUTEN</div>
-      <div id="match-score"><span class="blue">BLAU <b id="blue-score">0</b></span><time id="match-time">02:00</time><span class="red"><b id="red-score">0</b> ROT</span></div>
-      <button id="team-start" type="button">2v2-Teamspiel starten</button>
-      <label id="difficulty-control">Bot-Stufe <select id="bot-difficulty" aria-label="Bot-Schwierigkeit">
-      <option value="easy">Leicht</option><option value="normal" selected>Normal</option><option value="hard">Schwer</option></select></label>
-      <button id="bot-start" type="button">Botmatch starten</button>
-      <button id="pve-start" type="button">Mini-Kampagne: Die drei Siegel</button>
-      <button id="match-start" type="button">Trainingsmatch starten</button>
-      <small id="match-hint">2v2: Du + ein blauer Bot gegen zwei rote Bots. Alternativ 1v1 oder Training.</small>
-      <small id="team-status" hidden></small></div>
-      <div id="weapon-panel" hidden>${weaponHud(false, true) }
-      <small id="weapon-hint">Arc Lash · 5 m · Auto-Fächer</small><small>1 / 2 / 3 oder Mausrad · Railgun auf beiden Außenflanken</small></div>
-      <div id="life-panel" hidden>${lifeHud}<p id="life-status"></p>
-      <small id="life-hint">Orange Fläche links: Schaden testen.<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.</small></div>
-      <div class="location"><span class="eyebrow">01 / OBSIDIAN GARDEN</span>
-      <p>Hoch hinaus.</p><small>Folge den Sprungmarkierungen zu E1 und E2.</small>
-      <div id="practice-status"><span id="height-status">E0</span> · Treffer <span id="hit-count">0 / 0 / 0</span></div>
-      <button id="probe-start" type="button"><kbd>B</kbd> Route zeigen</button><small id="probe-status">Goldene Figur · E0 → E1 → E2 → E0</small></div>
-      <footer><span><kbd>W A S D</kbd> Bewegen</span><span><kbd>SHIFT</kbd> Sprinten</span>
-      <span><kbd>SPACE</kbd> Springen</span><span><kbd>MAUS</kbd> Zielen / Feuer halten</span>
-      <button id="camera-toggle" type="button"><kbd>V</kbd> <span id="camera-label">Gerade Ansicht</span></button></footer>
-      <button id="arena-menu" type="button" hidden>Menü <kbd>Esc</kbd></button>
-    </div>
-    <div id="pause" hidden><div><span class="eyebrow">PAUSE</span><h2>Bereit, wenn du es bist.</h2>
-    <button id="resume" type="button">Weiter</button>
-    <div id="arena-settings"><button id="match-restart" type="button" hidden>Runde neu starten</button>
-    <button id="arena-home" type="button">Spielauswahl</button></div>
-    <p class="arena-controls">WASD · Bewegung / Shift · Sprint / Leertaste · Sprung<br>1–3 · Waffen / V · Ansicht / F · Vollbild</p>
-    <small>Bot-Stufe gilt ab der nächsten Runde.</small></div></div>
-    <div id="match-result" hidden><div><span class="eyebrow">RUNDE BEENDET</span><h2 id="result-title"></h2>
-    <p id="result-detail"></p><button id="result-restart" type="button">Noch einmal spielen</button>
-    <button id="result-arena-home" type="button">Spielauswahl</button></div></div>
-    <pre id="diagnostics" hidden></pre>`);
+  host.insertAdjacentHTML('beforeend', arenaHud());
   const label = host.querySelector<HTMLElement>('#camera-label')!;
   const pausePanel = host.querySelector<HTMLElement>('#pause')!;
   const diagnosticPanel = host.querySelector<HTMLElement>('#diagnostics')!;
@@ -121,8 +83,11 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   const probeButton = host.querySelector<HTMLButtonElement>('#probe-start')!;
   const element = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
   const feedback = new ArenaFeedback(host, element('arena-settings'));
-  element('arena-settings').append(element('camera-toggle'));
-  const startProbe = () => { if (arenaMode !== 'training') return; probe.start(); probeButton.disabled = true; };
+  const startProbe = () => {
+    if (arenaMode !== 'training' || match.snapshot().phase !== 'running') return;
+    probe.start(); probeButton.disabled = true; menuPaused = false; setPaused(false);
+    view.renderer.domElement.focus();
+  };
   const toggleCamera = () => {
     view.camera.toggle();
     label.textContent = view.camera.mode === 'straight' ? 'Gerade Ansicht' : 'Isometrische Ansicht';
@@ -137,6 +102,12 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   });
   const abort = new AbortController();
   const options = { signal: abort.signal };
+  host.addEventListener('keydown', event => {
+    // Native Space/Enter activation and select navigation must not reach gameplay shortcuts.
+    if (event.code !== 'Tab' && event.code !== 'Escape' && event.target instanceof HTMLElement
+      && event.target.closest('button, select, summary')
+      && (event.code === 'Space' || event.code === 'Enter' || event.target instanceof HTMLSelectElement)) event.stopPropagation();
+  }, { ...options, capture: true });
   function setPaused(value: boolean) {
     value ||= input.touchEnabled && innerHeight > innerWidth;
     paused = value;
@@ -145,7 +116,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     clock.reset();
     lastTime = performance.now();
     previous = current;
-    pausePanel.hidden = !value;
+    // Lobby and result already stop player input; never stack a pause dialog over them.
+    pausePanel.hidden = !value || match.snapshot().phase !== 'running';
+    host.dataset.arenaOverlay = String(value || match.snapshot().phase !== 'running');
+    if (!pausePanel.hidden) element('resume').focus({ preventScroll: true });
   }
   window.addEventListener('blur', () => setPaused(true), options);
   window.addEventListener('focus', () => { if (!document.hidden) setPaused(menuPaused); }, options);
@@ -161,13 +135,29 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   }, options);
   element('arena-menu').addEventListener('click', () => { menuPaused = true; setPaused(true); }, options);
   window.addEventListener('keydown', event => {
-    if (event.code === 'Escape' && !event.repeat) { menuPaused = !paused; setPaused(menuPaused); }
+    if (event.code === 'Escape' && !event.repeat && match.snapshot().phase === 'running') {
+      menuPaused = !paused; setPaused(menuPaused);
+      if (!paused) view.renderer.domElement.focus();
+    }
+    // Keep keyboard focus in the active Arena screen without changing shared Adventure input.
+    if (event.code === 'Tab') {
+      const panel = !pausePanel.hidden ? pausePanel : !element('match-result').hidden ? element('match-result')
+        : !element('arena-lobby').hidden ? element('arena-lobby') : null;
+      const controls = panel ? [...panel.querySelectorAll<HTMLElement>('button, select, summary, a[href]')]
+        .filter(control => control.getClientRects().length && !control.matches(':disabled')) : [];
+      const first = controls[0], last = controls.at(-1);
+      if (first && last && (!panel!.contains(document.activeElement) || event.shiftKey && document.activeElement === first
+        || !event.shiftKey && document.activeElement === last)) {
+        event.preventDefault(); (event.shiftKey ? last : first).focus();
+      }
+    }
   }, options);
   for (const id of ['arena-home', 'result-arena-home']) element(id).addEventListener('click', () => location.assign(location.pathname), options);
   host.querySelector('#camera-toggle')!.addEventListener('click', toggleCamera, options);
   probeButton.addEventListener('click', startProbe, options);
   for (const id of ['arc', 'pulse', 'rail'] as WeaponId[]) element(`weapon-${id}`).addEventListener('click', () => {
     if (match.snapshot().phase === 'running' && match.snapshot().actors.player!.alive) combat.select(id);
+    view.renderer.domElement.focus();
   }, options);
   function restartMatch(mode = arenaMode) {
     const selectedDifficulty = (element('bot-difficulty') as HTMLSelectElement).value;
@@ -186,22 +176,18 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     current = simulation.reset(playerSpawn()); previous = current; view.camera.snap(current.position);
     probeSimulation.reset(); probe = new TraversalProbe(M1_ARENA.links ?? []); probeButton.disabled = false;
     for (const target of M1_ARENA.targets ?? []) world.setTargetEnabled(target.id, arenaMode === 'training');
-    element('team-start').hidden = true;
+    element('arena-lobby').hidden = true; element('match-panel').hidden = false;
     element('arena-settings').append(element('difficulty-control'));
     element('arena-menu').hidden = false;
-    element('adventure-start').hidden = true; element('pve-start').hidden = true;
-    element('bot-start').hidden = true;
-    element('match-start').hidden = true; element('match-restart').hidden = false;
+    element('match-restart').hidden = false;
     element('match-result').hidden = true; element('life-panel').hidden = false;
     element('weapon-panel').hidden = false;
-    host.querySelector<HTMLElement>('.location')!.hidden = true;
-    const modeLabel = arenaMode === 'teams' ? 'TEAMKAMPF · 2 GEGEN 2' : arenaMode === 'duel' ? 'BOTDUELL · 1 GEGEN 1' : 'TRAINING';
-    element('match-mode').textContent = `${modeLabel} · 10 ABSCHÜSSE / 2 MINUTEN`;
-    host.querySelector<HTMLElement>('.phase')!.innerHTML = `<i></i>${modeLabel}`;
-    element('match-hint').textContent = arenaMode === 'teams' ? 'Du bist Blau · Kein Freundschaden · Railgun auf beiden Außenflanken.'
-      : arenaMode === 'duel' ? 'Roter Gegner · Deckung unterbricht seine Sicht.' : 'Arc Lash: kurz & unbegrenzt · Pulse: Projektile & Munition';
+    const modeLabel = arenaMode === 'teams' ? '2v2' : arenaMode === 'duel' ? '1v1' : 'TRAINING';
+    element('match-mode').textContent = `${modeLabel} · ZIEL 10`;
+    element('blue-label').textContent = arenaMode === 'teams' ? 'BLAU' : 'DU';
+    element('red-label').textContent = arenaMode === 'training' ? 'ZIELE' : 'ROT';
+    element('arena-training-tools').hidden = arenaMode !== 'training';
     element('team-status').hidden = arenaMode !== 'teams';
-    element('life-hint').innerHTML = `${arenaMode !== 'training' ? 'Blau ist dein Team. Rot ist der Gegner.' : 'Orange Fläche links: Schaden testen.'}<br>Goldener Ring: Spawn-Schutz · Feuer beendet ihn.`;
     view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   }
   element('team-start').addEventListener('click', () => restartMatch('teams'), options);
@@ -226,7 +212,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         const start = performance.now();
         const before = match.snapshot();
         const playerBefore = before.actors.player!;
-        const canPlay = before.phase === 'ready' || (before.phase === 'running' && playerBefore.alive);
+        const canPlay = before.phase === 'running' && playerBefore.alive;
         previous = current;
         const command = input.command(view.camera.basis());
         const firing = input.fire();
@@ -346,10 +332,21 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
       element('life-panel').dataset.low = String(player.hp > 0 && player.hp <= 30);
       element('life-status').textContent = !player.alive ? `Eliminiert · Respawn in ${(player.respawnTicks / 60).toFixed(1)} s`
         : player.protectionTicks > 0 ? `Spawn-Schutz · ${(player.protectionTicks / 60).toFixed(1)} s` : '';
+      const enteringResult = state.phase === 'ended' && element('match-result').hidden;
       element('match-result').hidden = state.phase !== 'ended';
+      host.dataset.arenaOverlay = String(paused || state.phase !== 'running');
+      element('arena-menu').hidden = state.phase !== 'running';
       if (state.phase === 'ended') {
-        element('result-title').textContent = state.winner === 'draw' ? 'Unentschieden.' : state.winner === 'blue' ? 'Blau gewinnt.' : 'Rot gewinnt.';
-        element('result-detail').textContent = `${state.scores.blue} : ${state.scores.red} · ${state.reason === 'score' ? 'Abschussziel erreicht' : 'Zeit abgelaufen'}`;
+        element('match-result').dataset.winner = state.winner ?? 'draw';
+        element('result-title').textContent = arenaMode === 'training' ? 'Training beendet.' : state.winner === 'draw' ? 'Unentschieden.' : state.winner === 'blue' ? 'Sieg für Blau.' : 'Rot gewinnt.';
+        element('result-blue').textContent = String(state.scores.blue); element('result-red').textContent = String(state.scores.red);
+        element('result-blue-label').textContent = arenaMode === 'teams' ? 'DEIN TEAM · BLAU' : 'DU · BLAU';
+        element('result-red-label').textContent = arenaMode === 'training' ? 'TRAININGSZIELE' : 'GEGNER · ROT';
+        element('result-detail').textContent = state.reason === 'score' ? '10 Abschüsse erreicht' : 'Zeit abgelaufen';
+        const played = Math.floor(state.tick / 60);
+        element('result-context').textContent = `${arenaMode === 'teams' ? '2v2' : arenaMode === 'duel' ? '1v1' : 'Training'} · ${difficulty === 'easy' ? 'Leicht' : difficulty === 'hard' ? 'Schwer' : 'Normal'} · ${Math.floor(played / 60)}:${String(played % 60).padStart(2, '0')} gespielt`;
+        element('result-restart').textContent = arenaMode === 'training' ? 'Training wiederholen' : 'Revanche starten';
+        if (enteringResult) { input.clear(); element('result-restart').focus({ preventScroll: true }); }
       }
       heightLabel.textContent = current.grounded ? `${current.surface === 'floor' ? 'E0' : current.surface?.toUpperCase() ?? 'KANTE'} · ${current.position.y.toFixed(2)} m` : `SPRUNG / FALL · ${current.position.y.toFixed(2)} m`;
       const statuses = { ready: 'Goldene Figur · E0 → E1 → E2 → E0', running: `Route läuft · ${probe.visited.join(' → ').replaceAll('floor', 'E0')}`,
@@ -407,6 +404,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   }
   document.querySelector('#loading')?.remove();
   host.dataset.ready = 'true';
+  host.dataset.arenaOverlay = 'true';
   frameId = requestAnimationFrame(frame);
   return () => {
     cancelAnimationFrame(frameId);
@@ -422,5 +420,6 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     Reflect.deleteProperty(window, '__coreArena');
     delete host.dataset.arena;
     delete host.dataset.arenaRunning;
+    delete host.dataset.arenaOverlay;
   };
 }

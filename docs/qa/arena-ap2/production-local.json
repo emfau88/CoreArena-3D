@@ -1,0 +1,22 @@
+[
+  {
+    "mobile": false,
+    "url": "http://127.0.0.1:8746/CoreArena-3D/",
+    "status": 200,
+    "bundle": "/CoreArena-3D/assets/index-ChAzrrCz.js",
+    "testApi": "undefined",
+    "startMovementJumpPauseHomeAdventure": true,
+    "errors": [],
+    "failed": []
+  },
+  {
+    "mobile": true,
+    "url": "http://127.0.0.1:8746/CoreArena-3D/",
+    "status": 200,
+    "bundle": "/CoreArena-3D/assets/index-ChAzrrCz.js",
+    "testApi": "undefined",
+    "startMovementJumpPauseHomeAdventure": true,
+    "errors": [],
+    "failed": []
+  }
+]

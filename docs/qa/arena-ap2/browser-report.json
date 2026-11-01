@@ -1,0 +1,796 @@
+[
+  {
+    "case": "AP1 desktop pads, supply, cover and respawn",
+    "status": "passed",
+    "durationMs": 36497
+  },
+  {
+    "case": "AP1 touch pads, supply, cover and respawn",
+    "status": "passed",
+    "durationMs": 37107
+  },
+  {
+    "case": "Adventure retains its separate pickup presentation",
+    "status": "passed",
+    "durationMs": 3193
+  },
+  {
+    "case": "AP2 desktop lobby, HUD, pause and separate entry",
+    "status": "passed",
+    "durationMs": 8507,
+    "mobile": false,
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "lobby": {
+      "scroll": 523,
+      "client": 523
+    },
+    "panels": [
+      {
+        "id": "match-panel",
+        "x": 536.3636474609375,
+        "y": 13.9937105178833,
+        "right": 830.3601989746094,
+        "bottom": 115.92338275909424
+      },
+      {
+        "id": "weapon-panel",
+        "x": 984.734130859375,
+        "y": 664.6369018554688,
+        "right": 1346.7266845703125,
+        "bottom": 748.4419326782227
+      },
+      {
+        "id": "life-panel",
+        "x": 19.997140884399414,
+        "y": 651.6295166015625,
+        "right": 247.98455238342285,
+        "bottom": 748.4419784545898
+      },
+      {
+        "id": "arena-menu",
+        "x": 1261.092041015625,
+        "y": 13.9937105178833,
+        "right": 1346.726692199707,
+        "bottom": 57.990281105041504
+      }
+    ],
+    "errors": [],
+    "failed": []
+  },
+  {
+    "case": "AP2 touch lobby, HUD, pause and separate entry",
+    "status": "passed",
+    "durationMs": 10382,
+    "mobile": true,
+    "viewport": {
+      "width": 667,
+      "height": 375
+    },
+    "lobby": {
+      "scroll": 367,
+      "client": 353
+    },
+    "panels": [
+      {
+        "id": "match-panel",
+        "x": 391.8238830566406,
+        "y": 7.9902801513671875,
+        "right": 587.8215942382812,
+        "bottom": 80.34590911865234
+      },
+      {
+        "id": "weapon-panel",
+        "x": 9.991423606872559,
+        "y": 7.9902801513671875,
+        "right": 285.9776906967163,
+        "bottom": 73.78501892089844
+      },
+      {
+        "id": "life-panel",
+        "x": 255.9105224609375,
+        "y": 281.4179382324219,
+        "right": 411.899658203125,
+        "bottom": 363.0788879394531
+      },
+      {
+        "id": "arena-menu",
+        "x": 597.8273315429688,
+        "y": 7.9902801513671875,
+        "right": 657.8187561035156,
+        "bottom": 51.98685073852539
+      },
+      {
+        "id": "touch-stick",
+        "x": 17.99599838256836,
+        "y": 241.0806121826172,
+        "right": 133.99084854125977,
+        "bottom": 357.0754623413086
+      },
+      {
+        "id": "touch-actions",
+        "x": 481.4036560058594,
+        "y": 279.0880432128906,
+        "right": 649.8141784667969,
+        "bottom": 357.0754623413086
+      }
+    ],
+    "errors": [],
+    "failed": []
+  },
+  {
+    "case": "small landscape HUD and pause controls remain reachable",
+    "status": "passed",
+    "durationMs": 2985
+  },
+  {
+    "case": "desktop easy full acceptance match",
+    "status": "passed",
+    "durationMs": 92295,
+    "mobile": false,
+    "difficulty": "easy",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 0.9999999761474712
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "logicalCpus": 16,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "result": {
+      "phase": "ended",
+      "tick": 4089,
+      "remainingTicks": 3111,
+      "scores": {
+        "blue": 10,
+        "red": 4
+      },
+      "actors": {
+        "player": {
+          "id": "player",
+          "team": "blue",
+          "spawn": {
+            "x": -7,
+            "y": 0.06,
+            "z": 2
+          },
+          "facing": 0,
+          "life": 4,
+          "hp": 30,
+          "armor": 0,
+          "alive": true,
+          "respawnTicks": 0,
+          "protectionTicks": 0
+        },
+        "rival": {
+          "id": "rival",
+          "team": "red",
+          "spawn": {
+            "x": -7,
+            "y": 0.06,
+            "z": 9
+          },
+          "facing": 3.141592653589793,
+          "life": 4,
+          "hp": 0,
+          "armor": 0,
+          "alive": false,
+          "respawnTicks": 240,
+          "protectionTicks": 0
+        },
+        "ally": {
+          "id": "ally",
+          "team": "blue",
+          "spawn": {
+            "x": -10,
+            "y": 0.06,
+            "z": 2
+          },
+          "facing": 0,
+          "life": 2,
+          "hp": 80,
+          "armor": 2,
+          "alive": true,
+          "respawnTicks": 0,
+          "protectionTicks": 0
+        },
+        "rival-2": {
+          "id": "rival-2",
+          "team": "red",
+          "spawn": {
+            "x": -3,
+            "y": 0.06,
+            "z": 9
+          },
+          "facing": 3.141592653589793,
+          "life": 6,
+          "hp": 0,
+          "armor": 0,
+          "alive": false,
+          "respawnTicks": 24,
+          "protectionTicks": 0
+        }
+      },
+      "reason": "score",
+      "winner": "blue"
+    },
+    "usedArc": true,
+    "usedPulse": true,
+    "errors": [],
+    "perf": [
+      {
+        "seconds": 11,
+        "frameP50": 5.5,
+        "frameP95": 8.399999999997817,
+        "stepP95": 1.300000011920929,
+        "droppedTicks": 93,
+        "render": {
+          "frame": 4924,
+          "calls": 574,
+          "triangles": 86412,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 16,
+        "frameP50": 5.599999999998545,
+        "frameP95": 10.900000000001455,
+        "stepP95": 1.300000011920929,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 5743,
+          "calls": 556,
+          "triangles": 59658,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 21,
+        "frameP50": 7.900000000001454,
+        "frameP95": 11.099999999998545,
+        "stepP95": 1.2999999523162842,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 6434,
+          "calls": 547,
+          "triangles": 81140,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 26,
+        "frameP50": 5.599999999998545,
+        "frameP95": 11,
+        "stepP95": 1.2000000476837158,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 7191,
+          "calls": 462,
+          "triangles": 57620,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 31,
+        "frameP50": 5.599999999998545,
+        "frameP95": 8.400000000001455,
+        "stepP95": 1.300000011920929,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 8033,
+          "calls": 539,
+          "triangles": 88126,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 36,
+        "frameP50": 5.5,
+        "frameP95": 8.39999999999418,
+        "stepP95": 1.300000011920929,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 8922,
+          "calls": 520,
+          "triangles": 60840,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 41,
+        "frameP50": 5.5,
+        "frameP95": 8.400000000001455,
+        "stepP95": 1.199999988079071,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 9885,
+          "calls": 593,
+          "triangles": 88256,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 46,
+        "frameP50": 8.299999999995634,
+        "frameP95": 11.30000000000291,
+        "stepP95": 1.4000000357627869,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 10497,
+          "calls": 515,
+          "triangles": 58026,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 51,
+        "frameP50": 5.600000000005821,
+        "frameP95": 8.5,
+        "stepP95": 1.5,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 11274,
+          "calls": 592,
+          "triangles": 88514,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 56,
+        "frameP50": 5.600000000005821,
+        "frameP95": 8.400000000008731,
+        "stepP95": 1.300000011920929,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 12045,
+          "calls": 495,
+          "triangles": 58422,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 61,
+        "frameP50": 5.5,
+        "frameP95": 8.39999999999418,
+        "stepP95": 1.199999988079071,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 12930,
+          "calls": 566,
+          "triangles": 74704,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 66,
+        "frameP50": 5.5,
+        "frameP95": 8.39999999999418,
+        "stepP95": 1.199999988079071,
+        "droppedTicks": 115,
+        "render": {
+          "frame": 13872,
+          "calls": 535,
+          "triangles": 75686,
+          "points": 0,
+          "lines": 0
+        }
+      }
+    ],
+    "restart": {
+      "arenaMode": "teams",
+      "difficulty": "easy",
+      "match": {
+        "phase": "running",
+        "tick": 0,
+        "remainingTicks": 7200,
+        "scores": {
+          "blue": 0,
+          "red": 0
+        },
+        "winner": null,
+        "reason": null,
+        "actors": {
+          "player": {
+            "id": "player",
+            "team": "blue",
+            "spawn": {
+              "x": -7,
+              "y": 0.06,
+              "z": 2
+            },
+            "facing": 0,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "rival": {
+            "id": "rival",
+            "team": "red",
+            "spawn": {
+              "x": -7,
+              "y": 0.06,
+              "z": 9
+            },
+            "facing": 3.141592653589793,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "ally": {
+            "id": "ally",
+            "team": "blue",
+            "spawn": {
+              "x": -10,
+              "y": 0.06,
+              "z": 2
+            },
+            "facing": 0,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "rival-2": {
+            "id": "rival-2",
+            "team": "red",
+            "spawn": {
+              "x": -3,
+              "y": 0.06,
+              "z": 9
+            },
+            "facing": 3.141592653589793,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          }
+        }
+      }
+    }
+  },
+  {
+    "case": "touch hard full acceptance match",
+    "status": "passed",
+    "durationMs": 75632,
+    "mobile": true,
+    "difficulty": "hard",
+    "viewport": {
+      "width": 668,
+      "height": 375,
+      "dpr": 1
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "logicalCpus": 16,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "result": {
+      "phase": "ended",
+      "tick": 3515,
+      "remainingTicks": 3685,
+      "scores": {
+        "blue": 4,
+        "red": 10
+      },
+      "actors": {
+        "player": {
+          "id": "player",
+          "team": "blue",
+          "spawn": {
+            "x": -7,
+            "y": 0.06,
+            "z": 2
+          },
+          "facing": 0,
+          "life": 6,
+          "hp": 0,
+          "armor": 0,
+          "alive": false,
+          "respawnTicks": 240,
+          "protectionTicks": 0
+        },
+        "rival": {
+          "id": "rival",
+          "team": "red",
+          "spawn": {
+            "x": -7,
+            "y": 0.06,
+            "z": 9
+          },
+          "facing": 3.141592653589793,
+          "life": 3,
+          "hp": 100,
+          "armor": 50,
+          "alive": true,
+          "respawnTicks": 0,
+          "protectionTicks": 0
+        },
+        "ally": {
+          "id": "ally",
+          "team": "blue",
+          "spawn": {
+            "x": -10,
+            "y": 0.06,
+            "z": 2
+          },
+          "facing": 0,
+          "life": 4,
+          "hp": 0,
+          "armor": 0,
+          "alive": false,
+          "respawnTicks": 122,
+          "protectionTicks": 0
+        },
+        "rival-2": {
+          "id": "rival-2",
+          "team": "red",
+          "spawn": {
+            "x": -3,
+            "y": 0.06,
+            "z": 9
+          },
+          "facing": 3.141592653589793,
+          "life": 3,
+          "hp": 55,
+          "armor": 0,
+          "alive": true,
+          "respawnTicks": 0,
+          "protectionTicks": 0
+        }
+      },
+      "reason": "score",
+      "winner": "red"
+    },
+    "usedArc": true,
+    "usedPulse": true,
+    "errors": [],
+    "perf": [
+      {
+        "seconds": 11,
+        "frameP50": 5.600000000002183,
+        "frameP95": 11,
+        "stepP95": 1.100000023841858,
+        "droppedTicks": 54,
+        "render": {
+          "frame": 5903,
+          "calls": 529,
+          "triangles": 85848,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 16,
+        "frameP50": 2.900000000001455,
+        "frameP95": 5.69999999999709,
+        "stepP95": 1.100000023841858,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 6925,
+          "calls": 495,
+          "triangles": 71440,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 21,
+        "frameP50": 2.8000000000029104,
+        "frameP95": 5.599999999998545,
+        "stepP95": 1,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 8204,
+          "calls": 371,
+          "triangles": 43080,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 26,
+        "frameP50": 2.8000000000029104,
+        "frameP95": 5.599999999998545,
+        "stepP95": 0.9000000357627869,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 9736,
+          "calls": 471,
+          "triangles": 65788,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 31,
+        "frameP50": 2.8000000000029104,
+        "frameP95": 5.600000000005821,
+        "stepP95": 0.800000011920929,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 11141,
+          "calls": 496,
+          "triangles": 85386,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 36,
+        "frameP50": 5.5,
+        "frameP95": 8.400000000001455,
+        "stepP95": 1,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 12355,
+          "calls": 437,
+          "triangles": 64088,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 41,
+        "frameP50": 2.900000000001455,
+        "frameP95": 5.69999999999709,
+        "stepP95": 1.100000023841858,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 13415,
+          "calls": 435,
+          "triangles": 59292,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 46,
+        "frameP50": 2.900000000001455,
+        "frameP95": 5.700000000004366,
+        "stepP95": 1,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 14674,
+          "calls": 454,
+          "triangles": 66386,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 51,
+        "frameP50": 2.8000000000029104,
+        "frameP95": 5.600000000005821,
+        "stepP95": 1,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 15947,
+          "calls": 523,
+          "triangles": 87294,
+          "points": 0,
+          "lines": 0
+        }
+      },
+      {
+        "seconds": 56,
+        "frameP50": 2.8000000000029104,
+        "frameP95": 5.600000000005821,
+        "stepP95": 0.9000000357627869,
+        "droppedTicks": 62,
+        "render": {
+          "frame": 17364,
+          "calls": 485,
+          "triangles": 71442,
+          "points": 0,
+          "lines": 0
+        }
+      }
+    ],
+    "restart": {
+      "arenaMode": "teams",
+      "difficulty": "hard",
+      "match": {
+        "phase": "running",
+        "tick": 0,
+        "remainingTicks": 7200,
+        "scores": {
+          "blue": 0,
+          "red": 0
+        },
+        "winner": null,
+        "reason": null,
+        "actors": {
+          "player": {
+            "id": "player",
+            "team": "blue",
+            "spawn": {
+              "x": -7,
+              "y": 0.06,
+              "z": 2
+            },
+            "facing": 0,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "rival": {
+            "id": "rival",
+            "team": "red",
+            "spawn": {
+              "x": -7,
+              "y": 0.06,
+              "z": 9
+            },
+            "facing": 3.141592653589793,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "ally": {
+            "id": "ally",
+            "team": "blue",
+            "spawn": {
+              "x": -10,
+              "y": 0.06,
+              "z": 2
+            },
+            "facing": 0,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          },
+          "rival-2": {
+            "id": "rival-2",
+            "team": "red",
+            "spawn": {
+              "x": -3,
+              "y": 0.06,
+              "z": 9
+            },
+            "facing": 3.141592653589793,
+            "life": 1,
+            "hp": 100,
+            "armor": 50,
+            "alive": true,
+            "respawnTicks": 0,
+            "protectionTicks": 120
+          }
+        }
+      }
+    }
+  }
+]

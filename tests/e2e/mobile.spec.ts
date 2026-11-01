@@ -20,8 +20,9 @@ test('touch joystick, independent aim finger, jump, orientation reset and restar
     await expect.poll(async () => (await read()).match.tick, { intervals: [20] }).toBeGreaterThanOrEqual(tick);
   };
   await page.goto('./'); await expect(page.locator('#app')).toHaveAttribute('data-ready', 'true');
-  await expect(page.locator('#touch-stick')).toBeVisible();
+  await expect(page.locator('#touch-stick')).toBeHidden();
   await page.getByRole('button', { name: 'Trainingsmatch starten', exact: true }).tap();
+  await expect(page.locator('#touch-stick')).toBeVisible();
   const box = (await page.locator('#touch-stick').boundingBox())!;
   const center = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
   const down = { id: 1, x: center.x, y: center.y + 42 };

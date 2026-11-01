@@ -21,7 +21,10 @@ M3 ist weiterhin nicht freigegeben. Der CTF-3.0-Abgleich ergänzt die untenstehe
 **AP1 Premium-Bauteile ist separat freigegeben, umgesetzt und technisch geprüft:**
 3D-Spawn-/Vorratssockel, Nachladeanzeige, Vollmeldungen und überarbeitete
 Rail-Deckungen. [Desktop-/Touch-Nachweise](../qa/AP1_RESULT.md).
-Empfohlener nächster sichtbarer Bulk: **AP2 Arena-HUD und Matchfluss**;
+**AP2 Arena-HUD und Matchfluss ist ebenfalls separat freigegeben und technisch umgesetzt:**
+Arena-Einstieg mit Kartenübersicht, Schnellstart, klareren Kampf-Panels und
+Ergebnis/Revanche. [Desktop-/Touch-Nachweise](../qa/AP2_RESULT.md).
+Empfohlener nächster sichtbarer Bulk: **AP3 Figuren und Waffenpräsentation**;
 nächster funktionaler Meilenstein bleibt **M3.1 Classic CTF**.
 
 **Kleiner Arena-Feedback-Nachtrag, umgesetzt und geprüft:** klarere Eliminierungen
@@ -45,7 +48,7 @@ Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei
 
 Stand: 1. November 2026. Integrierter Ausbauplan aus dem CTF-3.0-Abgleich mit
 20 Verbesserungshebeln; keine zusätzliche konkurrierende Roadmap.
-**AP1 wurde separat freigegeben und ist umgesetzt und technisch geprüft.**
+**AP1 und AP2 wurden separat freigegeben und sind umgesetzt und technisch geprüft.**
 Alle offenen Bulks sind geplant und benötigen einen eigenen Umsetzungsauftrag.
 
 **Ziel:** ein hochwertiger 3D-Arena-Shooter gegen Bot-Teams mit einer gut lesbaren
@@ -79,7 +82,7 @@ diese Grundlagen; sie erklären bereits vorhandene Systeme nicht wieder zu fehle
 
 ### Empfohlene Reihenfolge
 
-**AP1 ✅ → AP2 → AP3 → M3.1 → M3.2 → M3.3 → AP4 → AP5 → M4.1–M4.4.**
+**AP1 ✅ → AP2 ✅ → AP3 → M3.1 → M3.2 → M3.3 → AP4 → AP5 → M4.1–M4.4.**
 M5.W1 bleibt ein optionaler späterer Versuch. AP1–AP5 sind keine technische
 Startbedingung für M3; bei Vorrang für Objectives kann M3.1 nach Kartenabnahme
 direkt freigegeben werden. Keine automatische Freigabe nach Abschluss eines Bulks.
@@ -87,8 +90,8 @@ direkt freigegeben werden. Keine automatische Freigabe nach Abschluss eines Bulk
 | Bulk | Ergebnis | Analyse-Hebel |
 | --- | --- | --- |
 | **AP1 — technisch erledigt** | Gestaltung, Spawn-/Pickup-Pads und Deckungsmodul | H2, H4, H5, H8 |
-| **AP2 — als Nächstes empfohlen, offen** | Arena-HUD, Touch-Lesbarkeit, Start/Ergebnis/Revanche | H3, H12, H16 |
-| AP3 | Figuren und Waffenpräsentation | H6, H7 |
+| **AP2 — technisch erledigt** | Arena-HUD, Touch-Lesbarkeit, Start/Ergebnis/Revanche | H3, H12, H16 |
+| **AP3 — als Nächstes empfohlen, offen** | Figuren und Waffenpräsentation | H6, H7 |
 | M3.1 | Classic CTF und erste Objective-Rollen | H1, Grundlage H11 |
 | M3.2 | One Flag | H17 |
 | M3.3 | Teamkommandos, Ressourcen und Objective-Abnahme | H11, H14 |
@@ -106,7 +109,7 @@ Spielergebnis: Basen, Versorgung und Deckung wirken wie Teile einer gestalteten 
 
 **Am 1. November umgesetzt und technisch geprüft.** [Ergebnis, Bilder und Tests](../qa/AP1_RESULT.md).
 69 Kerntests und fünf Browserfälle bestanden; persönliches Gestaltungsurteil und
-echter Handytest bleiben offen. Die nachfolgenden Bulks sind nicht freigegeben.
+echter Handytest bleiben offen. AP2 wurde danach separat beauftragt; weitere Bulks bleiben offen.
 
 - [x] **H2:** Obsidian-Garden-Gestaltung in einer tatsächlichen Spielkamera festlegen:
   Graphit/Stein, neutrales Metall, Grün und sparsame Team-/Energiefarben.
@@ -127,13 +130,18 @@ oder Kampfregeln. Das Helix-Gesamtbild ist eine 2D-Referenz, kein fertiges 3D-Le
 
 Spielergebnis: Match starten, Zustand lesen und erneut spielen gelingt ohne Sucharbeit.
 
-- [ ] **H3:** Bestehende Anzeigen mit einheitlicher Typografie, Icons und ruhigen
+**Am 1. November umgesetzt und technisch geprüft.** [Ergebnis und Spielaufnahmen](../qa/AP2_RESULT.md).
+Vollständige Desktop-/Touch-2v2-Runden mit Ergebnis/Revanche, Startauswahl, Pause,
+kleines Querformat und Rotation geprüft. Kameraabstand nach Sichtprüfung beibehalten.
+Persönliches Spiel-/Gestaltungsurteil und echter Handytest bleiben offen.
+
+- [x] **H3:** Bestehende Anzeigen mit einheitlicher Typografie, Icons und ruhigen
   Panels gestalten; Spielstand/Ziel, Vitalwerte und Waffen klar priorisieren.
-- [ ] **H12:** Kleines Querformat mit lesbaren Anzeigen, freien Daumenbereichen und
+- [x] **H12:** Kleines Querformat mit lesbaren Anzeigen, freien Daumenbereichen und
   passendem Kameraabstand abstimmen; nur begründete Kameraänderungen übernehmen.
-- [ ] **H16:** Arena-Einstieg mit Schnellstart, kompakter Matchwahl/Kartenbild sowie
+- [x] **H16:** Arena-Einstieg mit Schnellstart, kompakter Matchwahl/Kartenbild sowie
   verständlichem Ergebnis/Revanche gestalten; Adventure als separaten Einstieg führen.
-- [ ] Abnahme: Start → vollständiger TDM → Ergebnis → Revanche auf Desktop/Touch;
+- [x] Technische Abnahme: Start → vollständiger TDM → Ergebnis → Revanche auf Desktop/Touch;
   Waffenwechsel, Pause und Rotation ohne verdeckte Bedienelemente.
 
 Abhängigkeit: AP1-Gestaltung. Vorhandene HUD-/Menü- und Eingabesysteme nutzen.
@@ -536,11 +544,11 @@ Ein Paket, dessen Kernrisiko sich in der vorgesehenen Zeit nicht auflösen läss
 
 Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Prüfungen, bekannte Grenzen und das nächste noch offene Risiko. „Umgesetzt“, „technisch geprüft“ und „spielerisch abgenommen“ bleiben getrennte Aussagen.
 
-**Aktueller Stand, 1. November:** M0/M1, M2.1–M2.6, Map-Paket, Konfetti und AP1 technisch
+**Aktueller Stand, 1. November:** M0/M1, M2.1–M2.6, Map-Paket, Konfetti und AP1/AP2 technisch
 geprüft; Touch-Zugang vorhanden. Maßgebliche offene Aufgaben und Reihenfolge stehen
 in der [Arena-To-do-Liste](#arena-to-do-liste). Persönlicher Vergleich der
 Schwierigkeiten/Seitenversorgung und echte Handyabnahme bleiben separat offen.
-AP2–AP5, CTF/Teamrollen (M3) und Liga (M4) sind geplant, nicht freigegeben.
+AP3–AP5, CTF/Teamrollen (M3) und Liga (M4) sind geplant, nicht freigegeben.
 Adventure-L1.5b ist separat technisch abgeschlossen;
 [Prüfstand und persönliche Grenzen](../qa/L1_5B_RESULT.md).
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
