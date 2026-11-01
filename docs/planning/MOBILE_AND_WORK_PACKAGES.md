@@ -1,6 +1,6 @@
 # CORE ARENA 3D: Mobile-Einschätzung und Arbeitspakete
 
-Stand: 31. Oktober 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
+Stand: 1. November 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
 umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
 M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
@@ -8,15 +8,26 @@ M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
 [M2.6-Nachweise](../qa/M2_6_RESULT.md). Persönliche Spiel-/Geräteabnahme und
 Bewertung der Seitenbalance bleiben offen; M3–M5 sind nicht freigegeben.
 
+**Empfehlung nach Kartenvergleich vom 1. November, noch nicht freigegeben:**
+Vor Classic CTF ein begrenztes Paket für Arena-Mapqualität vorsehen. Zuerst die
+asymmetrische Versorgung und Höhenzugänge auf der bestehenden 56 × 36-m-Karte
+bewerten und gezielt abstimmen. Danach ruhigere Bodenfugen, ausgearbeitete
+Wand-/Plateaukanten und wenige funktionale Requisiten für Teamseiten und Flanken.
+Adventure ist bei Materialien und Ortsgestaltung weiter ausgearbeitet; Figuren,
+Bewegung und das Arena-HUD haben bereits eine gemeinsame beziehungsweise geprüfte
+Grundlage. Die Arena erhält eine eigene Gestaltung, freie Sicht und Kampfwege
+bleiben maßgeblich. Kein neuer Arena-Code durch diese Empfehlung, kein Beginn von M3.
+
 **Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
 getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
 Höhennavigation, bedarfsgerechte Ressourcenwahl und Schwierigkeit wurden danach
 mit M2.4b ergänzt; zusätzlich die Adventure-Sprungkurve und Treppenhilfe übernommen.
 [Ausbau/Prüfung](../qa/ARENA_EXPANSION_RESULT.md). Adventure bleibt unverändert.
 
-**Adventure / PvE-Kampagne bleibt eine separate Spielvariante, derzeit pausiert.**
+**Adventure / PvE-Kampagne bleibt eine separate Spielvariante.**
 Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
-L1.6a–c sind bereits umgesetzt, L1.5b bleibt offen. Arena-Pakete sind keine nächsten
+L1.6a–c sind umgesetzt, L1.5b ist technisch abgeschlossen; persönliche Abnahme offen.
+Arena-Pakete sind keine nächsten
 Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
 
 Die folgenden datierten Mobile-/PvE-Notizen dokumentieren frühere Zusatzaufträge.
@@ -286,6 +297,7 @@ Nach jedem Paket dokumentieren: tatsächlich erreichter Zustand, ausgeführte Pr
 10-Minuten-Vergleich Leicht/Normal/Schwer an, besonders zur Seitenversorgung und
 zum Schwierigkeitsgefühl. Echte Handyabnahme bleibt separat offen.
 CTF/Teamrollen (M3) und Liga (M4) bleiben gesondert freizugeben; kein automatischer
-Beginn von M3. Adventure-L1.5b bleibt offen.
+Beginn von M3. Adventure-L1.5b ist separat technisch abgeschlossen;
+[Prüfstand und persönliche Grenzen](../qa/L1_5B_RESULT.md).
 Die datierten älteren Meldungen und Summen oben dokumentieren den damaligen Plan;
 sie sind keine aktuelle Restschätzung und keine Freigabe weiterer Pakete.

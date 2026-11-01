@@ -3,6 +3,7 @@ import type { PveSnapshot } from '../../src/core/pve';
 import type { Snapshot } from '../../src/core/types';
 import type { WeaponSnapshot } from '../../src/core/combat';
 import type { RunnerState } from '../../src/core/stoneRunner';
+import { observeAdventure } from './adventureMetrics';
 
 interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoint:boolean;completed:boolean;weapons:WeaponSnapshot;
   mission:{consoleActive:boolean;relayActive:boolean;reserveRecovered:boolean;entryClosed:boolean};
@@ -11,7 +12,7 @@ interface State { snapshot:Snapshot;pve:PveSnapshot;bossActive:boolean;checkpoin
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url='./?mode=pve&level=stone&adventure=1';
 const withReserve=process.env.OUTPOST_RESERVE==='1';
-test.use({headless:false});
+test.use({headless:false,trace:'off'});
 // Real inputs only: jump over a close swing/wave, walk out of the locked eruption.
 function bossDodge(s:State){
   const p=s.snapshot.position,b=s.pve,distance=Math.hypot(p.x-b.center.x,p.z-b.center.z);
@@ -24,16 +25,15 @@ async function walk(page:Page,x:number,z:number) {
   for(const [axis,target] of [['z',z],['x',x]] as const) for(let i=0;i<12;i++) {
     const delta=target-(await read(page)).snapshot.position[axis]; if(Math.abs(delta)<.3) break;
     const direction=Math.sign(delta),key=axis==='z'?(direction>0?'KeyA':'KeyD'):(direction>0?'KeyS':'KeyW');
-    if(Math.abs(delta)<1.2) await page.keyboard.press(key,{delay:Math.min(85,Math.abs(delta)/7.2*800)});
-    else { await page.keyboard.down(key); try {
+    await page.keyboard.down(key); try {
       await page.waitForFunction(({axis,target,direction})=>{
         const s=(window as unknown as {__coreArena:{read():State}}).__coreArena.read();
-        return (s.snapshot.position[axis]-target)*direction>=-.5;
+        return (s.snapshot.position[axis]-target)*direction>=-.15;
       },{axis,target,direction},{timeout:10000});
-    } finally {await page.keyboard.up(key);} }
+    } finally {await page.keyboard.up(key);}
     await page.waitForTimeout(40);
   }
-  const p=(await read(page)).snapshot.position; expect(Math.hypot(p.x-x,p.z-z)).toBeLessThan(.6);
+  const p=(await read(page)).snapshot.position; expect(Math.hypot(p.x-x,p.z-z),`Route (${x}, ${z}), actual ${JSON.stringify(p)}`).toBeLessThan(.6);
 }
 async function fireAt(page:Page,index:number|'boss') {
   const initial=await read(page),point=index==='boss'?initial.monsterScreen:initial.enemies[index]!.screen;
@@ -57,6 +57,7 @@ async function fireAt(page:Page,index:number|'boss') {
 }
 test('menu entry, mission console, checkpoint death and retry, required core and relay, physical exit and full reset',async({page},info)=>{
   test.setTimeout(180_000); const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  const metrics = await observeAdventure(page);
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('./'); await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
@@ -124,6 +125,8 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   await walk(page,won.core!.position.x,won.core!.position.z);
   expect((await read(page)).core?.collected).toBe(true);
   await expect(page.locator('#room-hint')).toContainText('Steinkern geborgen');
+  // Return to the center lane before approaching the solid relay from the south.
+  await walk(page,0,won.core!.position.z);
   await walk(page,0,-40);await page.keyboard.press('KeyD',{delay:800});
   expect((await read(page)).snapshot.position.z).toBeGreaterThan(-42);expect((await read(page)).completed).toBe(false);
   await walk(page,0,-39);await expect(page.locator('#mission-interact')).toHaveText('E · Steinkern einsetzen');
@@ -138,6 +141,7 @@ test('menu entry, mission console, checkpoint death and retry, required core and
   await expect(page.locator('#result-title')).toHaveText('Der verwitterte Hof ist frei.');
   if(withReserve)await expect(page.locator('#result-detail')).toContainText('Wartungsreserve geborgen');
   await page.screenshot({path:info.outputPath('completion.png')});
+  await info.attach('adventure-performance',{body:JSON.stringify(await metrics()),contentType:'application/json'});
   await page.locator('#pve-again').click();
   await expect.poll(async()=>(await read(page)).enemies.every(e=>e.hp===70)).toBe(true);
   expect((await read(page)).bossActive).toBe(false);expect((await read(page)).hp).toBe(100);
@@ -231,8 +235,9 @@ test('touch melee kill, menu restart, actual defeat and retry',async({browser},i
 
 test('touch full mission: simultaneous console input, checkpoint retry, core, relay, exit and full reset',async({browser},info)=>{
   test.setTimeout(180_000);
-  const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true,isMobile:true,deviceScaleFactor:2});
+  const context=await browser.newContext({viewport:process.env.ADVENTURE_TOUCH_SMALL==='1'?{width:667,height:375}:{width:844,height:390},hasTouch:true,isMobile:true,deviceScaleFactor:2});
   const page=await context.newPage(),errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  const metrics = await observeAdventure(page);
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});
   try {
@@ -322,10 +327,12 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     const won=await read(page);expect(won.mission.relayActive).toBe(false);expect(won.core?.collected).toBe(false);
     await move(won.core!.position.x,won.core!.position.z);
     expect((await read(page)).core?.collected).toBe(true);
+    await move(0,won.core!.position.z);
     await move(0,-39);await expect(page.locator('#mission-interact')).toHaveText('Steinkern einsetzen');
     await page.screenshot({path:info.outputPath('mobile-relay.png')});
     await page.locator('#mission-interact').tap();
     await expect.poll(async()=>(await read(page)).mission.relayActive).toBe(true);
+    await expect(page.locator('#room-name')).toHaveText('Außenposten online');
     await page.screenshot({path:info.outputPath('mobile-online.png')});
     await move(0,-40);
     await page.screenshot({path:info.outputPath('mobile-open-gate.png')});
@@ -335,6 +342,7 @@ test('touch full mission: simultaneous console input, checkpoint retry, core, re
     expect((await read(page)).completed).toBe(true);expect((await read(page)).snapshot.position.z).toBeLessThan(-45);
     if(withReserve)await expect(page.locator('#result-detail')).toContainText('Wartungsreserve geborgen');
     await page.screenshot({path:info.outputPath('mobile-completion.png')});
+    await info.attach('adventure-performance',{body:JSON.stringify(await metrics()),contentType:'application/json'});
     await page.locator('#pve-again').tap();
     const reset=await read(page);expect(reset.checkpoint).toBe(false);expect(reset.core).toBeNull();
     expect(reset.mission.reserveRecovered).toBe(false);

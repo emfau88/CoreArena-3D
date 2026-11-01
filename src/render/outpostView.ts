@@ -7,7 +7,6 @@ import { labelMesh } from './practiceView';
 /** Fixed dressing for the three existing places. No additional downloads or lights. */
 export class OutpostView {
   private readonly power=new THREE.MeshStandardMaterial({color:0x314b46,emissive:0x89e4cf,emissiveIntensity:0,roughness:.7});
-  private readonly service=new THREE.MeshStandardMaterial({color:0x465755,emissive:0x8bc7df,emissiveIntensity:0,roughness:.7});
   private readonly reserveLid:THREE.Group;
   private readonly reserveLight=new THREE.MeshBasicMaterial({color:0x9bd4ff});
   constructor(scene:THREE.Scene,drone:THREE.Group){
@@ -27,27 +26,22 @@ export class OutpostView {
       const mesh=labelMesh(text,w);mesh.rotation.set(-Math.PI/2,0,Math.PI/2);mesh.position.set(x,y,z);scene.add(mesh);
     };
     const pad=(x:number,z:number,w:number,d:number,m:THREE.Material)=>{
-      for(const side of [-1,1]){
-        line(x+side*w/2,z-d/2,x+side*w/2,z+d/2,m);
-        line(x-w/2,z+side*d/2,x+w/2,z+side*d/2,m);
+      // Berth corners retain the place identity without full painted frames.
+      for(const sx of [-1,1])for(const sz of [-1,1]){
+        const cx=x+sx*w/2,cz=z+sz*d/2;
+        line(cx,cz,cx-sx*.5,cz,m);line(cx,cz,cx,cz-sz*.5,m);
       }
     };
     // Two grounded charging berths: one stranded courier, one empty. Amber supply and cargo.
     pad(-3,34,3,3.4,amber);pad(-9,34,3,3.4,amber);
     line(-7,34,-4.5,34,amber);line(-7,34,-7.5,34,amber);
     label('01 · LADEN',-5.8,30.7,4.3);label('PULSE',-3,20.5,2.5);
-    pad(-3,18.5,2.5,2.6,amber);line(-5.3,18.5,-4.3,18.5,amber);
     // The existing wide stair gets a low edge stripe and a visible optional destination.
     for(const [x,y]of[[-4.45,.28],[-5.45,.55],[-6.5,.82]] as const)
       for(const z of [.15,3.85])box(x,y+.025,z,.9,.035,.12,blue);
     label('RESERVE ↑',-2.6,2,3.6);label('02 · WARTUNG',4,-4.5,4.5);
     label('75 RÜSTUNG',-12.3,2,2.6,1.15);
-    line(6,-8,-3,-8,this.service);line(-3,-8,-3,-10,this.service);
     label('03 · RELAIS',3,-36.3,4.2);
-    for(const side of [-1,1]){
-      line(side*10.8,-40.2,side*8,-39,this.power);
-      line(side*8,-39,-3,-39,this.power);
-    }
     this.reserveLid=new THREE.Group();scene.add(this.reserveLid);
     for(const p of OUTPOST_PROPS){
       const {x,y,z,width:w,height:h,depth:d}=p;
@@ -93,7 +87,6 @@ export class OutpostView {
     }
   }
   update(state:AdventureFightState):void{
-    this.service.emissiveIntensity=state.consoleActive?.7:0;
     this.power.emissiveIntensity=state.relayActive?1.3:0;
     this.reserveLid.rotation.x=state.reserveRecovered?-1.1:0;
     this.reserveLight.color.setHex(state.reserveRecovered?0x53615b:0x9bd4ff);

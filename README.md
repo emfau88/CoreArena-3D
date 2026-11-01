@@ -2,10 +2,11 @@
 
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
-- **Adventure / PvE-Kampagne — eigenständig, derzeit pausiert.** Zusammenhängende Missionen,
+- **Adventure / PvE-Kampagne — eigenständig.** Zusammenhängende Missionen,
   Erkundung und Bosskämpfe. Das Stein-Testlevel ist spielbar, L1.6a–c sind umgesetzt;
-  nächste offene Abnahme: L1.5b. [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
-- **Arena / Teamspiel / CTF / Liga — aktueller Schwerpunkt.** Training, 1v1 und
+  L1.5b ist technisch abgeschlossen, persönliche Spiel-/Handyabnahme offen.
+  [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+- **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und
   Railgun. **M2.4b:** Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und
   Schwierigkeitswahl ergänzt; CTF und Liga folgen später.
@@ -45,7 +46,7 @@ Treffer, Schaden, Funde und Matchende geben kurzes Bild-/Tonfeedback.
 Zeitlimit, 1v1, Höhenwege und kleine HUDs geprüft; ein Hängenbleiben der Bots nahe
 Deckung behoben. [Ergebnisse und Grenzen](docs/qa/M2_6_RESULT.md).
 Persönliche Spielabnahme, echte Handytests und die Bewertung der Seitenbalance
-bleiben offen. Adventure-L1.5b bleibt separat offen.
+bleiben offen. Adventure hat eine eigene Abnahme und Roadmap.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
@@ -64,7 +65,13 @@ Erholung. Stationäres Pulse-Feuer wurde mit dem aktuellen Auto-Arc erneut vergl
 **L1.6c · Drei funktionale Orte:** Ladebuchten mit Fracht und Waffenausgabe,
 Drohnen-Reparaturplatz und verbundene Relaisversorgung. Die optionale
 Wartungsreserve auf der Terrasse sichert 75 Rüstung am Ruhepunkt und beim Boss-Retry.
-[Vergleichsbilder und Prüfung](docs/qa/OUTPOST_PLACES_RESULT.md). L1.5b bleibt offen.
+[Vergleichsbilder und Prüfung](docs/qa/OUTPOST_PLACES_RESULT.md).
+**L1.5b · Technische Gesamtabnahme:** komplette Desktop-/Touch-Missionen mit und
+ohne Reserve, Tod/Retry, Bossvergleich, Höhenwege und Laufzeit geprüft. Manuelle
+Pause bleibt bei Rotation erhalten. Auf Spielrückmeldung sind lange Bodenleitungen
+entfernt; kurze Orts-/Interaktions- und Treppenhinweise bleiben.
+[Prüfbericht und Grenzen](docs/qa/L1_5B_RESULT.md). Echte Handy- und persönliche
+Spielabnahme bleiben offen; kein automatischer Beginn weiterer Kampagnenlevel.
 **Kostenlose Ausstattung ergänzt:** AssetQuest-Pflanzen, Birken und Pilzgruppen
 in allen drei Höfen; vier verlassene Retro-Tech-Konsolen mit Statuslichtern.
 Nur die frei angebotenen Demo-Modelle wurden verwendet, ohne Kauf.

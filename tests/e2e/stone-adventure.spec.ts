@@ -29,7 +29,7 @@ const walkTo = async(page:Page,x:number,z:number) => {
 };
 // Layout/input regression keeps its quiet comparison route. Combat has a separate real playthrough.
 const url = './?mode=pve&level=stone&adventure=1&explore=1';
-test.use({headless:false});
+test.use({headless:false,trace:'off'});
 test.afterEach(async({page},info)=>{
   if(info.status!==info.expectedStatus && !page.isClosed()) {
     const state=await read(page).catch(()=>null);
@@ -57,6 +57,15 @@ test('walk every room, collect supplies, climb real stairs, aim/fire, pause and 
   await expect.poll(async()=>(await read(page)).armor).toBe(80);
   await walkTo(page,-9,-.4);
   expect((await read(page)).pickups.find(p=>p.id==='side-ammo')!.remaining).toBeLessThan(27);
+  // A full weapon leaves the unused part of a supply pack for later.
+  const remainingAmmo = (await read(page)).pickups.find(p=>p.id==='side-ammo')!.remaining;
+  expect((await read(page)).weapons.ammo).toBe(54); expect(remainingAmmo).toBeGreaterThan(0);
+  await page.waitForTimeout(250);
+  expect((await read(page)).pickups.find(p=>p.id==='side-ammo')!.remaining).toBe(remainingAmmo);
+  const shootingFrom = (await read(page)).playerScreen;
+  await page.mouse.move(shootingFrom.x+100,shootingFrom.y+15); await page.mouse.down();
+  try { await expect.poll(async()=>(await read(page)).pickups.find(p=>p.id==='side-ammo')!.remaining).toBe(0); }
+  finally { await page.mouse.up(); }
   await page.screenshot({path:info.outputPath('side-terrace.png')});
   await page.keyboard.press('KeyV'); expect((await read(page)).camera).toBe('straight');
   await page.keyboard.press('KeyV'); await page.screenshot({path:info.outputPath('side-terrace-isometric.png')});

@@ -1,0 +1,282 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/adventure-acceptance.spec.ts",
+      "--project=chromium-1366"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chromium",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "adventure-acceptance.spec.ts",
+      "file": "adventure-acceptance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop Adventure manual pause survives focus and resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-01T09:33:22.386Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "pause-check",
+                      "contentType": "application/json",
+                      "body": "eyJtb2JpbGUiOmZhbHNlLCJ0aWNrIjoxNiwiZmluYWwiOnsibW9kZSI6ImFkdmVudHVyZSIsImxldmVsIjoic3RvbmUiLCJzbmFwc2hvdCI6eyJ0aWNrIjoyNSwicG9zaXRpb24iOnsieCI6MC4wMDAwMDc0NzA4MzUwNDM5MzIzMTEsInkiOjAuMDIxNTg0MDEwMTI0MjA2NTIsInoiOjMzfSwidmVsb2NpdHkiOnsieCI6MCwieSI6MCwieiI6MH0sImdyb3VuZGVkIjp0cnVlLCJzdXJmYWNlIjoiZmxvb3ItZW50cnkiLCJjZWlsaW5nIjpmYWxzZSwiZmFjaW5nIjowfSwid2VhcG9ucyI6eyJzZWxlY3RlZCI6ImFyYyIsIm93bnNQdWxzZSI6ZmFsc2UsImFtbW8iOjAsInByb2plY3RpbGVzIjpbXSwibGFzdEFyYyI6bnVsbCwiaW1wYWN0IjpudWxsfSwicGlja3VwcyI6W3siaWQiOiJhZHZlbnR1cmUtcHVsc2UiLCJraW5kIjoicHVsc2UiLCJwb3NpdGlvbiI6eyJ4IjotMywieSI6MCwieiI6MTguNX0sInN1cmZhY2UiOiJmbG9vci1lbnRyeSIsImFtb3VudCI6NTQsInJlbWFpbmluZyI6NTQsInJlc3Bhd25BdCI6MH0seyJpZCI6InNpZGUtaGVhbHRoIiwia2luZCI6ImhlYWx0aCIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjR9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hcm1vciIsImtpbmQiOiJhcm1vciIsInBvc2l0aW9uIjp7IngiOi0xMy41LCJ5IjoxLjEsInoiOjB9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjozMCwicmVtYWluaW5nIjozMCwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1hbW1vIiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjotOSwieSI6MS4xLCJ6IjotMC40fSwic3VyZmFjZSI6InNpZGUtdGVycmFjZSIsImFtb3VudCI6MjcsInJlbWFpbmluZyI6MjcsInJlc3Bhd25BdCI6MH0seyJpZCI6ImNvdXJ0LWFtbW8iLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOjExLCJ5IjowLCJ6Ijo2LjV9LCJzdXJmYWNlIjoiZmxvb3ItbWlkZGxlIiwiYW1vdW50IjoyNywicmVtYWluaW5nIjoyNywicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1hbW1vLXdlc3QiLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOi0xMywieSI6MCwieiI6LTM3fSwic3VyZmFjZSI6ImZsb29yLWJvc3MiLCJhbW91bnQiOjE4LCJyZW1haW5pbmciOjE4LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWFtbW8tZWFzdCIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6MTMsInkiOjAsInoiOi0yMH0sInN1cmZhY2UiOiJmbG9vci1ib3NzIiwiYW1vdW50IjoxOCwicmVtYWluaW5nIjoxOCwicmVzcGF3bkF0IjowfSx7ImlkIjoiYm9zcy1oZWFsdGgiLCJraW5kIjoiaGVhbHRoIiwicG9zaXRpb24iOnsieCI6LTEyLCJ5IjoxLjEsInoiOi0yM30sInN1cmZhY2UiOiJib3NzLWhlYWx0aC1wbGF0ZWF1IiwiYW1vdW50IjozNSwicmVtYWluaW5nIjozNSwicmVzcGF3bkF0IjowfV0sImhwIjoxMDAsImFybW9yIjo1MCwicHZlIjp7InRpY2siOjI1LCJwaGFzZSI6ImVtZXJnaW5nIiwicGhhc2VUaWNrIjowLCJraW5kIjoid2F2ZSIsInRhcmdldCI6eyJ4IjowLCJ5IjowLCJ6IjotMjl9LCJ3YXZlUmFkaXVzIjoyLCJocCI6MTAwLCJhcm1vciI6NTAsImJvc3NIcCI6NjAwLCJvdXRjb21lIjoicnVubmluZyIsImhpdHNUYWtlbiI6MCwibGFzdEhpdCI6LTEwMCwiY2VudGVyIjp7IngiOjAsInkiOjEuODUsInoiOi0yOX0sImZhY2luZyI6MCwibW92aW5nIjpmYWxzZX0sImJvc3NBY3RpdmUiOmZhbHNlLCJjaGVja3BvaW50IjpmYWxzZSwiY29tcGxldGVkIjpmYWxzZSwiY29yZSI6bnVsbCwibWlzc2lvbiI6eyJjb25zb2xlQWN0aXZlIjpmYWxzZSwicmVsYXlBY3RpdmUiOmZhbHNlLCJyZXNlcnZlUmVjb3ZlcmVkIjpmYWxzZSwiZW50cnlDbG9zZWQiOnRydWUsImludGVyYWN0aW9uIjpudWxsfSwiZW5lbWllcyI6W3siaWQiOiJjb3VydHlhcmQtcnVubmVyIiwiY2VudGVyIjp7IngiOjIsInkiOjAuODUsInoiOjI0fSwiaHAiOjcwLCJmYWNpbmciOjAsInBoYXNlIjoiaWRsZSIsInBoYXNlVGljayI6MjUsIm1vdmluZyI6ZmFsc2UsInNjcmVlbiI6eyJ4Ijo5NTcuNzg1NzE0Mjg1NzEzNywieSI6NDAyLjA4NzMxNTc0NDE4NTk2fX0seyJpZCI6ImlubmVyLXJ1bm5lciIsImNlbnRlciI6eyJ4IjoyLCJ5IjowLjg1LCJ6IjotMX0sImhwIjo3MCwiZmFjaW5nIjowLCJwaGFzZSI6ImlkbGUiLCJwaGFzZVRpY2siOjI1LCJtb3ZpbmciOmZhbHNlLCJzY3JlZW4iOnsieCI6MTcxOS42OTA0NzYxOTA0NzU1LCJ5Ijo0MDIuMDg3MzE1NzQ0MTg1ODR9fV0sIm1vbnN0ZXJTY3JlZW4iOnsieCI6MjU3My4wMjM4MDk1MjM4MDg3LCJ5IjozNTAuOTMxOTU2NTI3Mzg2NDN9LCJwYXVzZWQiOmZhbHNlLCJvdmVydmlldyI6ZmFsc2UsImNhbWVyYSI6InNpZGUiLCJzZWN0aW9uIjoiQSIsInBsYXllclNjcmVlbiI6eyJ4Ijo2ODMuNDk5OTk5OTk5OTk5MywieSI6MzY3LjUyNzE5MTIzMjU5OTh9LCJmZWVkYmFjayI6eyJzdGF0ZSI6InJ1bm5pbmciLCJtdXRlZCI6ZmFsc2UsInBsYXllZCI6MCwicGVhayI6MH0sImZpZ2h0ZXIiOnsibW9kZWwiOiJrYXlraXQtbWFubmVxdWluLW1lZGl1bSIsInN0eWxlIjoicnVpbnMtY291cmllciIsImxvd2VyIjoiaWRsZSIsInVwcGVyIjoiYXJjIiwidGltZSI6MC4zNTg0MDAwMDAwMDAwMDAxNiwibGVnWWF3IjowLCJkZWF0aEFnZSI6MCwiYm9uZXMiOjIxLCJoaXBzIjpbMC4wMDM1NjcwNTM0OTMzNDIxMTg2LDAuMDQzMTU3NDcxMTg1OTUyNjMsMC4wMDAxNTQwOTI5OTA2ODE2NjM2LDAuOTk5MDYxOTAyNTE5MzM4MV0sImNoZXN0IjpbMC4wOTU2ODczNDYzNDU3NTM4NSwtMC4xMjg2NzMxODAwOTY2Mjk0LDAuMDg3NjgxMzI0NTE5MDE5NzEsMC45ODMxNTc3MzM5Mzg4MjE3XSwibGVnIjpbMC4zMTc1Mzg1MzcxNjA0ODY3LDYuNjk3OTMwMzM3ODk1MTEzZS04LC0yLjEzNjMzNDE2MDM1NDI4ZS03LDAuOTQ4MjQ1MzY3NzI4MTY3N10sInNjYWxlIjpbMC44MDc3MzA3NjM3MDcwNDY0LDAuODA3NzMwNzYzNzA3MDQ2NCwwLjgwNzczMDc2MzcwNzA0NjRdfSwiZ3VhcmRzIjpbeyJtb2RlbCI6ImtheWtpdC1zdG9uZS1ndWFyZCIsInN0YXRlIjoiaWRsZSIsImNsaXBUaW1lIjowLjM1ODQwMDAwMDAwMDAwMDE2LCJjb250YWN0VGltZSI6MC41LCJib25lcyI6MjEsImhhbmQiOlsxLjU2NDQxNDQ1OTQ5ODg4MjcsMC42NTk0OTIwNTUzODY4MTcsMjQuMTQ5MTkwNzA0ODcyMDM3XSwidmlzaWJsZSI6dHJ1ZX0seyJtb2RlbCI6ImtheWtpdC1zdG9uZS1ndWFyZCIsInN0YXRlIjoiaWRsZSIsImNsaXBUaW1lIjowLjM1ODQwMDAwMDAwMDAwMDE2LCJjb250YWN0VGltZSI6MC41LCJib25lcyI6MjEsImhhbmQiOlsxLjU2NDQxNDQ1OTQ5ODg4MjcsMC42NTk0OTIwNTUzODY4MTcsLTAuODUwODA5Mjk1MTI3OTYwOF0sInZpc2libGUiOnRydWV9XSwicGlja3VwVmlzdWFscyI6W3siaWQiOiJhZHZlbnR1cmUtcHVsc2UiLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjU0LCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJzaWRlLWhlYWx0aCIsInZpc2libGUiOnRydWUsInJlbWFpbmluZyI6MzUsInBhcnRpY2xlcyI6dHJ1ZX0seyJpZCI6InNpZGUtYXJtb3IiLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjMwLCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJzaWRlLWFtbW8iLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjI3LCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJjb3VydC1hbW1vIiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjoyNywicGFydGljbGVzIjp0cnVlfSx7ImlkIjoiYm9zcy1hbW1vLXdlc3QiLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjE4LCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJib3NzLWFtbW8tZWFzdCIsInZpc2libGUiOnRydWUsInJlbWFpbmluZyI6MTgsInBhcnRpY2xlcyI6dHJ1ZX0seyJpZCI6ImJvc3MtaGVhbHRoIiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjozNSwicGFydGljbGVzIjp0cnVlfV0sImFyY1Zpc3VhbCI6eyJ2aXNpYmxlIjpmYWxzZSwiYmVhbXMiOjB9LCJ2aWV3cG9ydCI6eyJ3aWR0aCI6MTM2NywiaGVpZ2h0Ijo3NjgsImRwciI6MC45OTk5OTk5NzYxNDc0NzEyLCJ2aWV3SGVpZ2h0IjoyNS4yfSwicmVuZGVyQ2FsbHMiOjMwN30sImVycm9ycyI6W119"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e3c6a851c7631ff94e91-c553d81b68b7661887ea",
+          "file": "adventure-acceptance.spec.ts",
+          "line": 4,
+          "column": 37
+        },
+        {
+          "title": "touch Adventure manual pause survives focus and resize",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium-1366",
+              "projectName": "chromium-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5888,
+                  "error": {
+                    "message": "Error: Explicit pause must survive a resize/rotation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: Explicit pause must survive a resize/rotation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\adventure-acceptance.spec.ts:25:84",
+                    "location": {
+                      "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\adventure-acceptance.spec.ts",
+                      "column": 84,
+                      "line": 25
+                    },
+                    "snippet": "  23 |     await page.setViewportSize(mobile ? { width: 667, height: 375 } : { width: 1366, height: 768 });\n  24 |     await page.waitForTimeout(200);\n> 25 |     expect((await read()).paused, 'Explicit pause must survive a resize/rotation').toBe(true);\n     |                                                                                    ^\n  26 |     expect((await read()).snapshot.tick).toBe(tick);\n  27 |     await page.screenshot({ path: info.outputPath('manual-pause.png') });\n  28 |     await click('#resume'); await expect.poll(async () => (await read()).snapshot.tick).toBeGreaterThan(tick);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\adventure-acceptance.spec.ts",
+                        "column": 84,
+                        "line": 25
+                      },
+                      "message": "Error: Explicit pause must survive a resize/rotation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  23 |     await page.setViewportSize(mobile ? { width: 667, height: 375 } : { width: 1366, height: 768 });\n  24 |     await page.waitForTimeout(200);\n> 25 |     expect((await read()).paused, 'Explicit pause must survive a resize/rotation').toBe(true);\n     |                                                                                    ^\n  26 |     expect((await read()).snapshot.tick).toBe(tick);\n  27 |     await page.screenshot({ path: info.outputPath('manual-pause.png') });\n  28 |     await click('#resume'); await expect.poll(async () => (await read()).snapshot.tick).toBeGreaterThan(tick);\n    at C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\adventure-acceptance.spec.ts:25:84"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-01T09:33:29.638Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\adventure-acceptance-touch-50759-e-survives-focus-and-resize-chromium-1366\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e\\adventure-acceptance.spec.ts",
+                    "column": 84,
+                    "line": 25
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e3c6a851c7631ff94e91-7e9deeb11c72faaa5504",
+          "file": "adventure-acceptance.spec.ts",
+          "line": 4,
+          "column": 37
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-01T09:33:19.262Z",
+    "duration": 16931.27,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

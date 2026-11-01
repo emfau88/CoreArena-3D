@@ -1,0 +1,1716 @@
+{
+  "samples": [
+    {
+      "ms": 2745.5,
+      "tick": 5,
+      "section": "A",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 2.7000000000000455,
+      "p95": 2.7000000000000455,
+      "max": 2027.5,
+      "longFrames": 1,
+      "renderCalls": 306
+    },
+    {
+      "ms": 3091.399999976158,
+      "tick": 26,
+      "section": "A",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.400000000000091,
+      "p95": 108.30000000000018,
+      "max": 2027.5,
+      "longFrames": 3,
+      "renderCalls": 306
+    },
+    {
+      "ms": 4065,
+      "tick": 86,
+      "section": "B",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.199999999999818,
+      "p95": 13.900000000000091,
+      "max": 2027.5,
+      "longFrames": 3,
+      "renderCalls": 319
+    },
+    {
+      "ms": 5055.099999964237,
+      "tick": 141,
+      "section": "B",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.199999999999818,
+      "p95": 11.100000000000364,
+      "max": 2027.5,
+      "longFrames": 4,
+      "renderCalls": 339
+    },
+    {
+      "ms": 6066.099999964237,
+      "tick": 201,
+      "section": "B",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999999727,
+      "p95": 11.299999999999272,
+      "max": 2027.5,
+      "longFrames": 4,
+      "renderCalls": 346
+    },
+    {
+      "ms": 7067.5,
+      "tick": 261,
+      "section": "C",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.300000000000182,
+      "p95": 11.300000000000182,
+      "max": 2027.5,
+      "longFrames": 4,
+      "renderCalls": 352
+    },
+    {
+      "ms": 8075.300000011921,
+      "tick": 322,
+      "section": "C",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.300000000000182,
+      "p95": 11.299999999999272,
+      "max": 169.49999999999955,
+      "longFrames": 4,
+      "renderCalls": 314
+    },
+    {
+      "ms": 9057.800000011921,
+      "tick": 381,
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.300000000001091,
+      "p95": 11.299999999999272,
+      "max": 169.49999999999955,
+      "longFrames": 4,
+      "renderCalls": 313
+    },
+    {
+      "ms": 10072.199999988079,
+      "tick": 442,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.399999999999636,
+      "p95": 11.299999999999272,
+      "max": 19.399999999999636,
+      "longFrames": 4,
+      "renderCalls": 324
+    },
+    {
+      "ms": 11070.899999976158,
+      "tick": 502,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.399999999999636,
+      "p95": 11.299999999999272,
+      "max": 19.399999999999636,
+      "longFrames": 4,
+      "renderCalls": 365
+    },
+    {
+      "ms": 12061.699999988079,
+      "tick": 561,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.300000000001091,
+      "p95": 11.200000000000728,
+      "max": 19.399999999999636,
+      "longFrames": 4,
+      "renderCalls": 353
+    },
+    {
+      "ms": 13065.599999964237,
+      "tick": 621,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999999272,
+      "p95": 11.100000000000364,
+      "max": 13.900000000001455,
+      "longFrames": 4,
+      "renderCalls": 280
+    },
+    {
+      "ms": 14065.899999976158,
+      "tick": 682,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 11.099999999998545,
+      "max": 13.900000000001455,
+      "longFrames": 4,
+      "renderCalls": 273
+    },
+    {
+      "ms": 15064.599999964237,
+      "tick": 741,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 8.399999999999636,
+      "max": 11.299999999999272,
+      "longFrames": 4,
+      "renderCalls": 311
+    },
+    {
+      "ms": 16056.199999988079,
+      "tick": 801,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 8.399999999999636,
+      "max": 11.200000000000728,
+      "longFrames": 4,
+      "renderCalls": 333
+    },
+    {
+      "ms": 17059.5,
+      "tick": 861,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 8.399999999999636,
+      "max": 16.69999999999891,
+      "longFrames": 4,
+      "renderCalls": 347
+    },
+    {
+      "ms": 18062.5,
+      "tick": 921,
+      "section": "F",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 8.400000000001455,
+      "max": 16.69999999999891,
+      "longFrames": 4,
+      "renderCalls": 356
+    },
+    {
+      "ms": 19067.19999998808,
+      "tick": 982,
+      "section": "F",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000000364,
+      "p95": 8.400000000001455,
+      "max": 22.19999999999709,
+      "longFrames": 4,
+      "renderCalls": 370
+    },
+    {
+      "ms": 20061.30000001192,
+      "tick": 1041,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 22.19999999999709,
+      "longFrames": 4,
+      "renderCalls": 353
+    },
+    {
+      "ms": 21057.899999976158,
+      "tick": 1080,
+      "section": "E",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 36,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": {
+          "kind": "console",
+          "enabled": false,
+          "label": "Verbindung steht"
+        }
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 205.60000000000218,
+      "longFrames": 5,
+      "renderCalls": 309
+    },
+    {
+      "ms": 22060.30000001192,
+      "tick": 1144,
+      "section": "F",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 225.09999999999854,
+      "longFrames": 6,
+      "renderCalls": 311
+    },
+    {
+      "ms": 23064.899999976158,
+      "tick": 1197,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 225.09999999999854,
+      "longFrames": 7,
+      "renderCalls": 323
+    },
+    {
+      "ms": 24063,
+      "tick": 1256,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 225.09999999999854,
+      "longFrames": 7,
+      "renderCalls": 453
+    },
+    {
+      "ms": 25068.69999998808,
+      "tick": 1317,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.400000000001455,
+      "max": 222.20000000000073,
+      "longFrames": 7,
+      "renderCalls": 450
+    },
+    {
+      "ms": 26060.899999976158,
+      "tick": 1376,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 8.400000000001455,
+      "max": 222.20000000000073,
+      "longFrames": 7,
+      "renderCalls": 449
+    },
+    {
+      "ms": 27061.80000001192,
+      "tick": 1436,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.700000000000728,
+      "p95": 8.5,
+      "max": 22.299999999999272,
+      "longFrames": 7,
+      "renderCalls": 451
+    },
+    {
+      "ms": 28063.899999976158,
+      "tick": 1496,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 20,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 8.5,
+      "max": 27.69999999999709,
+      "longFrames": 7,
+      "renderCalls": 447
+    },
+    {
+      "ms": 29062.69999998808,
+      "tick": 1556,
+      "section": "G",
+      "phase": "warning",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 20,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 8.400000000001455,
+      "max": 27.69999999999709,
+      "longFrames": 7,
+      "renderCalls": 451
+    },
+    {
+      "ms": 30055.099999964237,
+      "tick": 1616,
+      "section": "G",
+      "phase": "attack",
+      "outcome": "running",
+      "hp": 60,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 8.5,
+      "max": 27.69999999999709,
+      "longFrames": 7,
+      "renderCalls": 432
+    },
+    {
+      "ms": 31062.399999976158,
+      "tick": 1676,
+      "section": "G",
+      "phase": "attack",
+      "outcome": "running",
+      "hp": 60,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 10.899999999997817,
+      "max": 27.69999999999709,
+      "longFrames": 7,
+      "renderCalls": 431
+    },
+    {
+      "ms": 32070.599999964237,
+      "tick": 1737,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "running",
+      "hp": 60,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000002183,
+      "p95": 11.100000000002183,
+      "max": 22.200000000000728,
+      "longFrames": 7,
+      "renderCalls": 433
+    },
+    {
+      "ms": 33062.09999996424,
+      "tick": 1796,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 30,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.099999999998545,
+      "p95": 13.799999999999272,
+      "max": 22.200000000000728,
+      "longFrames": 7,
+      "renderCalls": 429
+    },
+    {
+      "ms": 34056.59999996424,
+      "tick": 1848,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "defeat",
+      "hp": 0,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999999272,
+      "p95": 13.80000000000291,
+      "max": 22.200000000000728,
+      "longFrames": 7,
+      "renderCalls": 383
+    },
+    {
+      "ms": 35065.5,
+      "tick": 1848,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "defeat",
+      "hp": 0,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.30000000000291,
+      "p95": 14,
+      "max": 122.19999999999709,
+      "longFrames": 9,
+      "renderCalls": 383
+    },
+    {
+      "ms": 36061.30000001192,
+      "tick": 1889,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.30000000000291,
+      "p95": 14,
+      "max": 122.19999999999709,
+      "longFrames": 10,
+      "renderCalls": 315
+    },
+    {
+      "ms": 37063.59999996424,
+      "tick": 1936,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.39999999999418,
+      "p95": 14,
+      "max": 291.70000000000437,
+      "longFrames": 11,
+      "renderCalls": 431
+    },
+    {
+      "ms": 38060.80000001192,
+      "tick": 1996,
+      "section": "G",
+      "phase": "emerging",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.39999999999418,
+      "p95": 14,
+      "max": 291.70000000000437,
+      "longFrames": 11,
+      "renderCalls": 430
+    },
+    {
+      "ms": 39069.80000001192,
+      "tick": 2053,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.30000000000291,
+      "p95": 13.80000000000291,
+      "max": 291.70000000000437,
+      "longFrames": 11,
+      "renderCalls": 427
+    },
+    {
+      "ms": 40060.19999998808,
+      "tick": 2108,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.30000000000291,
+      "p95": 13.69999999999709,
+      "max": 291.70000000000437,
+      "longFrames": 12,
+      "renderCalls": 454
+    },
+    {
+      "ms": 41077.80000001192,
+      "tick": 2169,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.10000000000582,
+      "max": 291.70000000000437,
+      "longFrames": 12,
+      "renderCalls": 448
+    },
+    {
+      "ms": 42066.39999997616,
+      "tick": 2228,
+      "section": "G",
+      "phase": "warning",
+      "outcome": "running",
+      "hp": 100,
+      "armor": 50,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.099999999998545,
+      "max": 216.70000000000437,
+      "longFrames": 12,
+      "renderCalls": 451
+    },
+    {
+      "ms": 43056.39999997616,
+      "tick": 2288,
+      "section": "G",
+      "phase": "attack",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.19999999999709,
+      "max": 216.70000000000437,
+      "longFrames": 12,
+      "renderCalls": 451
+    },
+    {
+      "ms": 44061.19999998808,
+      "tick": 2348,
+      "section": "G",
+      "phase": "attack",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.19999999999709,
+      "max": 22.30000000000291,
+      "longFrames": 12,
+      "renderCalls": 451
+    },
+    {
+      "ms": 45064.80000001192,
+      "tick": 2408,
+      "section": "G",
+      "phase": "recovery",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.19999999999709,
+      "max": 16.69999999999709,
+      "longFrames": 12,
+      "renderCalls": 447
+    },
+    {
+      "ms": 46061.30000001192,
+      "tick": 2468,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.299999999995634,
+      "p95": 11.10000000000582,
+      "max": 16.69999999999709,
+      "longFrames": 12,
+      "renderCalls": 447
+    },
+    {
+      "ms": 47062.09999996424,
+      "tick": 2528,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.19999999999709,
+      "p95": 11.099999999998545,
+      "max": 16.69999999999709,
+      "longFrames": 12,
+      "renderCalls": 452
+    },
+    {
+      "ms": 48079.69999998808,
+      "tick": 2589,
+      "section": "G",
+      "phase": "melee",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.10000000000582,
+      "p95": 11,
+      "max": 13.80000000000291,
+      "longFrames": 12,
+      "renderCalls": 452
+    },
+    {
+      "ms": 49071.19999998808,
+      "tick": 2649,
+      "section": "G",
+      "phase": "chasing",
+      "outcome": "running",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.19999999999709,
+      "p95": 11.099999999998545,
+      "max": 14.10000000000582,
+      "longFrames": 12,
+      "renderCalls": 456
+    },
+    {
+      "ms": 50062.59999996424,
+      "tick": 2708,
+      "section": "G",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.19999999999709,
+      "p95": 11.099999999998545,
+      "max": 14.10000000000582,
+      "longFrames": 12,
+      "renderCalls": 428
+    },
+    {
+      "ms": 51056.59999996424,
+      "tick": 2760,
+      "section": "G",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 8.19999999999709,
+      "p95": 11,
+      "max": 213.90000000000146,
+      "longFrames": 13,
+      "renderCalls": 400
+    },
+    {
+      "ms": 52061.09999996424,
+      "tick": 2820,
+      "section": "G",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.700000000004366,
+      "p95": 11,
+      "max": 213.90000000000146,
+      "longFrames": 13,
+      "renderCalls": 359
+    },
+    {
+      "ms": 53067.39999997616,
+      "tick": 2881,
+      "section": "G",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000005821,
+      "p95": 8.5,
+      "max": 213.90000000000146,
+      "longFrames": 13,
+      "renderCalls": 336
+    },
+    {
+      "ms": 54061.59999996424,
+      "tick": 2940,
+      "section": "H",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.600000000005821,
+      "p95": 8.5,
+      "max": 213.90000000000146,
+      "longFrames": 13,
+      "renderCalls": 335
+    },
+    {
+      "ms": 55061.09999996424,
+      "tick": 3000,
+      "section": "H",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": {
+          "kind": "relay",
+          "enabled": true,
+          "label": "Steinkern einsetzen"
+        }
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.5,
+      "max": 13.69999999999709,
+      "longFrames": 13,
+      "renderCalls": 334
+    },
+    {
+      "ms": 56055.80000001192,
+      "tick": 3051,
+      "section": "H",
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": true,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.5,
+      "max": 111,
+      "longFrames": 15,
+      "renderCalls": 329
+    },
+    {
+      "ms": 57062.89999997616,
+      "tick": 3101,
+      "phase": "defeated",
+      "outcome": "victory",
+      "hp": 90,
+      "armor": 0,
+      "mission": {
+        "consoleActive": true,
+        "relayActive": true,
+        "reserveRecovered": false,
+        "entryClosed": false,
+        "interaction": null
+      },
+      "viewport": {
+        "width": 1367,
+        "height": 768,
+        "dpr": 0.9999999761474712,
+        "viewHeight": 25.2
+      },
+      "p50": 5.599999999998545,
+      "p95": 8.69999999999709,
+      "max": 111,
+      "longFrames": 16,
+      "renderCalls": 300
+    }
+  ],
+  "readyMs": 824.0999999642372,
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "logicalCpus": 16,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "resources": [
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/index-4tD6qouU.js",
+      "duration": 47.5,
+      "transferSize": 300,
+      "decodedBodySize": 5098950
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/index-Doe3Oz3g.css",
+      "duration": 6.100000023841858,
+      "transferSize": 300,
+      "decodedBodySize": 26696
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+      "duration": 4.600000023841858,
+      "transferSize": 300,
+      "decodedBodySize": 420044
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/kaykit/General.glb",
+      "duration": 6.199999988079071,
+      "transferSize": 300,
+      "decodedBodySize": 828240
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/kaykit/Movement.glb",
+      "duration": 7.699999988079071,
+      "transferSize": 300,
+      "decodedBodySize": 689624
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/kaykit/Ranged.glb",
+      "duration": 9.399999976158142,
+      "transferSize": 300,
+      "decodedBodySize": 1014852
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/adventureGame-aCa4Cwbt.js",
+      "duration": 10.600000023841858,
+      "transferSize": 19865,
+      "decodedBodySize": 52841
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/stoneFeedback-B1BltGI6.js",
+      "duration": 8.199999988079071,
+      "transferSize": 6976,
+      "decodedBodySize": 19708
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+      "duration": 16.69999998807907,
+      "transferSize": 7199,
+      "decodedBodySize": 6899
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+      "duration": 17.5,
+      "transferSize": 10287,
+      "decodedBodySize": 9987
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/assetquest/forest-details.glb",
+      "duration": 113.60000002384186,
+      "transferSize": 1418936,
+      "decodedBodySize": 1418636
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/retro-tech/console-a.glb",
+      "duration": 29.099999964237213,
+      "transferSize": 276248,
+      "decodedBodySize": 275948
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/retro-tech/console-b.glb",
+      "duration": 28.099999964237213,
+      "transferSize": 249616,
+      "decodedBodySize": 249316
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/hexwars/hoverbot.glb",
+      "duration": 156.79999995231628,
+      "transferSize": 2571064,
+      "decodedBodySize": 2570764
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/hexwars/relay.glb",
+      "duration": 231.10000002384186,
+      "transferSize": 3253804,
+      "decodedBodySize": 3253504
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+      "duration": 125.79999995231628,
+      "transferSize": 1133179,
+      "decodedBodySize": 1132879
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+      "duration": 123.19999998807907,
+      "transferSize": 1056566,
+      "decodedBodySize": 1056266
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+      "duration": 225.39999997615814,
+      "transferSize": 580596,
+      "decodedBodySize": 580296
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+      "duration": 234.69999998807907,
+      "transferSize": 622225,
+      "decodedBodySize": 621925
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+      "duration": 240.19999998807907,
+      "transferSize": 982033,
+      "decodedBodySize": 981733
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+      "duration": 228.80000001192093,
+      "transferSize": 264578,
+      "decodedBodySize": 264278
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+      "duration": 243.29999995231628,
+      "transferSize": 114889,
+      "decodedBodySize": 114589
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/kaykit/Melee.glb",
+      "duration": 103.10000002384186,
+      "transferSize": 999716,
+      "decodedBodySize": 999416
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+      "duration": 101.10000002384186,
+      "transferSize": 176476,
+      "decodedBodySize": 176176
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+      "duration": 108.39999997615814,
+      "transferSize": 316005,
+      "decodedBodySize": 315705
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+      "duration": 116,
+      "transferSize": 280659,
+      "decodedBodySize": 280359
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+      "duration": 117.19999998807907,
+      "transferSize": 367522,
+      "decodedBodySize": 367222
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+      "duration": 207,
+      "transferSize": 1466680,
+      "decodedBodySize": 1466380
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+      "duration": 138.79999995231628,
+      "transferSize": 168399,
+      "decodedBodySize": 168099
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+      "duration": 139.19999998807907,
+      "transferSize": 82924,
+      "decodedBodySize": 82624
+    },
+    {
+      "name": "http://127.0.0.1:8744/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+      "duration": 170.5999999642372,
+      "transferSize": 210275,
+      "decodedBodySize": 209975
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import type {WeaponSnapshot} from '../../src/core/combat';
 interface State {snapshot:Snapshot;pve:PveSnapshot;weapons:WeaponSnapshot;checkpoint:boolean;
   enemies:{hp:number;screen:{x:number;y:number}}[];monsterScreen:{x:number;y:number}}
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
-test.use({headless:false});
+test.use({headless:false,trace:'off'});
 
 // Compare actual play from the normal spawn. No fixtures, teleports, damage or ammo injection.
 for(const mobile of [false,true])for(const weapon of ['arc','pulse'] as const)for(const active of [false,true])

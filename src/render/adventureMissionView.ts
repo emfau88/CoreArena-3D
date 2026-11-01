@@ -13,7 +13,6 @@ export async function loadMissionAssets() {
 type Assets=Awaited<ReturnType<typeof loadMissionAssets>>;
 
 export class AdventureMissionView {
-  private readonly lineMaterial=new THREE.MeshStandardMaterial({color:0x354e48,emissive:0x83e6c1,emissiveIntensity:0,roughness:.7});
   private readonly relayMaterial=new THREE.MeshStandardMaterial({color:0x58655d,emissive:0xffd188,emissiveIntensity:0,roughness:.6});
   private readonly consoleMarker:THREE.Group;
   private readonly relayMarker:THREE.Group;
@@ -38,14 +37,8 @@ export class AdventureMissionView {
     };
     this.droneLamp=lamp(-2.2,.55,34,0xf2ae78);
     this.consoleLamp=lamp(-2.3,1.3,-8,0xf2ae78);
-    // Thin grounded conduits show the exact connection to the boss and the final relay.
-    const segment=(ax:number,az:number,bx:number,bz:number,material:THREE.Material)=>{
-      const length=Math.hypot(bx-ax,bz-az),mesh=new THREE.Mesh(new THREE.BoxGeometry(.11,.035,length),material);
-      mesh.position.set((ax+bx)/2,.025,(az+bz)/2);mesh.rotation.y=Math.atan2(bx-ax,bz-az);scene.add(mesh);
-    };
-    segment(-3,-8,-1.5,-10,this.lineMaterial);segment(-1.5,-10,-1.5,-26,this.lineMaterial);
-    segment(-1.5,-26,0,-29,this.lineMaterial);segment(0,-29,-3,-39,this.relayMaterial);
-    segment(-3,-39,0,-42,this.relayMaterial);
+    // Local interaction markers and lamps show progress without a continuous
+    // route drawn across the courtyards and combat floor.
     const marker=(x:number,z:number,text:string)=>{
       const group=new THREE.Group();group.position.set(x,0,z);scene.add(group);
       const ring=new THREE.Mesh(new THREE.RingGeometry(1.5,1.58,40),new THREE.MeshBasicMaterial({color:0xffd188,side:THREE.DoubleSide,depthWrite:false}));
@@ -62,7 +55,6 @@ export class AdventureMissionView {
   }
   update(state:AdventureFightState,dt:number):void {
     this.time+=dt;
-    this.lineMaterial.emissiveIntensity=state.consoleActive?.9:0;
     this.relayMaterial.emissiveIntensity=state.relayActive?1.5:0;
     this.socket.visible=state.relayActive;
     this.consoleLamp.material.color.setHex(state.consoleActive?0x9bf2d0:0xf2ae78);

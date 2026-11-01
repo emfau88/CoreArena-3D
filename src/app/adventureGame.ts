@@ -43,7 +43,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   const {combat,pickups}=fight, clock = new FixedClock();
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
-  let paused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0;
+  let paused = false, menuPaused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0;
   let interactPending=false, messageUntil=0, bossIntroduced=false;
   host.dataset.adventure = 'true';
   host.insertAdjacentHTML('beforeend', `<div id="hud" class="pve-hud adventure-hud">
@@ -110,7 +110,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     world.setObstacleEnabled('north-gate',!exploration && !state.relayActive);
   };
   const placePlayer = (position:Vec3) => {
-    feedback.reset(); overview = false; syncWorld();
+    feedback.reset(); menuPaused = false; overview = false; syncWorld();
     current = simulation.reset(position); previous = current; aim = null;
     messageUntil=0;
     el('match-result').hidden=true;
@@ -125,11 +125,11 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     else placePlayer(fight.retry());
   };
   window.addEventListener('blur', () => setPaused(true), options);
-  window.addEventListener('focus', () => setPaused(document.hidden), options);
-  document.addEventListener('visibilitychange', () => setPaused(document.hidden || !document.hasFocus()), options);
-  window.addEventListener('resize', () => { view.resize(); if (input.touchEnabled) setPaused(document.hidden || !document.hasFocus()); }, options);
-  el('resume').addEventListener('click', () => { view.renderer.domElement.focus(); setPaused(false); }, options);
-  el('pve-pause').addEventListener('click', () => setPaused(true), options);
+  window.addEventListener('focus', () => setPaused(menuPaused || document.hidden), options);
+  document.addEventListener('visibilitychange', () => setPaused(menuPaused || document.hidden || !document.hasFocus()), options);
+  window.addEventListener('resize', () => { view.resize(); if (input.touchEnabled) setPaused(menuPaused || document.hidden || !document.hasFocus()); }, options);
+  el('resume').addEventListener('click', () => { menuPaused = false; view.renderer.domElement.focus(); setPaused(false); }, options);
+  el('pve-pause').addEventListener('click', () => { menuPaused = true; setPaused(true); }, options);
   el('pve-restart').addEventListener('click', restart, options);
   el('pve-again').addEventListener('click', retry, options);
   el('pve-next').addEventListener('click', () => { if(fight.completed) location.assign(`${location.pathname}?mode=pve&level=frost`); }, options);

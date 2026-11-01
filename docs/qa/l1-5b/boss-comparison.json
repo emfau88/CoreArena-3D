@@ -1,0 +1,697 @@
+[
+  {
+    "stage": "after",
+    "mobile": false,
+    "weapon": "arc",
+    "location": "entrance",
+    "strategy": "stationary",
+    "start": {
+      "position": {
+        "x": 0.00016898299509193748,
+        "y": 0.02160224914550779,
+        "z": -21.23467445373535
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": 0.00016898299509193748,
+        "y": 0.024935579299926736,
+        "z": -21.23467445373535
+      },
+      "hp": 0,
+      "armor": 0,
+      "ammo": 54,
+      "bossHp": 236,
+      "outcome": "defeat"
+    },
+    "seconds": 8.466666666666667,
+    "hits": 4,
+    "events": [
+      {
+        "tick": 115,
+        "phase": "melee",
+        "phaseTick": 34,
+        "hp": 100,
+        "armor": 20,
+        "position": {
+          "x": 0.00016898299509193748,
+          "y": 0.029935574531555154,
+          "z": -21.23467445373535
+        }
+      },
+      {
+        "tick": 261,
+        "phase": "wave-attack",
+        "phaseTick": 6,
+        "hp": 60,
+        "armor": 0,
+        "position": {
+          "x": 0.00016898299509193748,
+          "y": 0.026602244377136208,
+          "z": -21.23467445373535
+        }
+      },
+      {
+        "tick": 427,
+        "phase": "melee",
+        "phaseTick": 33,
+        "hp": 30,
+        "armor": 0,
+        "position": {
+          "x": 0.00016898299509193748,
+          "y": 0.029935574531555154,
+          "z": -21.23467445373535
+        }
+      },
+      {
+        "tick": 508,
+        "phase": "melee",
+        "phaseTick": 30,
+        "hp": 0,
+        "armor": 0,
+        "position": {
+          "x": 0.00016898299509193748,
+          "y": 0.024935579299926736,
+          "z": -21.23467445373535
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 152,
+      "melee": 128,
+      "wave-warning": 88,
+      "wave-attack": 93,
+      "recovery": 45
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": false,
+    "weapon": "arc",
+    "location": "entrance",
+    "strategy": "reactive",
+    "start": {
+      "position": {
+        "x": 0.011575103737413883,
+        "y": 0.02660236358642576,
+        "z": -21.28336524963379
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": -4.18873405456543,
+        "y": 0.02163962125778196,
+        "z": -21.28378677368164
+      },
+      "hp": 90,
+      "armor": 0,
+      "ammo": 54,
+      "bossHp": 0,
+      "outcome": "victory"
+    },
+    "seconds": 13.933333333333334,
+    "hits": 1,
+    "events": [
+      {
+        "tick": 303,
+        "phase": "wave-attack",
+        "phaseTick": 3,
+        "hp": 90,
+        "armor": 0,
+        "position": {
+          "x": 0.011500329710543156,
+          "y": 0.9121581077575683,
+          "z": -21.283498764038086
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 251,
+      "melee": 260,
+      "wave-warning": 87,
+      "wave-attack": 90,
+      "recovery": 48,
+      "eruption-warning": 75,
+      "eruption-attack": 23
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": false,
+    "weapon": "pulse",
+    "location": "entrance",
+    "strategy": "stationary",
+    "start": {
+      "position": {
+        "x": -0.0005679563619196415,
+        "y": 0.02830216884613035,
+        "z": -21.06660270690918
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": -0.0005679563619196415,
+        "y": 0.021635508537292458,
+        "z": -21.06660270690918
+      },
+      "hp": 0,
+      "armor": 0,
+      "ammo": 4,
+      "bossHp": 140,
+      "outcome": "defeat"
+    },
+    "seconds": 8.466666666666667,
+    "hits": 4,
+    "events": [
+      {
+        "tick": 115,
+        "phase": "melee",
+        "phaseTick": 31,
+        "hp": 100,
+        "armor": 20,
+        "position": {
+          "x": -0.0005679563619196415,
+          "y": 0.026635503768920876,
+          "z": -21.06660270690918
+        }
+      },
+      {
+        "tick": 256,
+        "phase": "wave-attack",
+        "phaseTick": 1,
+        "hp": 60,
+        "armor": 0,
+        "position": {
+          "x": -0.0005679563619196415,
+          "y": 0.021635508537292458,
+          "z": -21.06660270690918
+        }
+      },
+      {
+        "tick": 427,
+        "phase": "melee",
+        "phaseTick": 33,
+        "hp": 30,
+        "armor": 0,
+        "position": {
+          "x": -0.0005679563619196415,
+          "y": 0.026635503768920876,
+          "z": -21.06660270690918
+        }
+      },
+      {
+        "tick": 508,
+        "phase": "melee",
+        "phaseTick": 30,
+        "hp": 0,
+        "armor": 0,
+        "position": {
+          "x": -0.0005679563619196415,
+          "y": 0.021635508537292458,
+          "z": -21.06660270690918
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 158,
+      "melee": 118,
+      "wave-warning": 86,
+      "wave-attack": 88,
+      "recovery": 51
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": false,
+    "weapon": "pulse",
+    "location": "plateau",
+    "strategy": "stationary",
+    "start": {
+      "position": {
+        "x": -11.860858917236328,
+        "y": 1.1283331871032716,
+        "z": -23.064939498901367
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": -0.8061583821850515,
+        "y": 1.85,
+        "z": -28.817006993000916
+      },
+      "phase": "chasing",
+      "phaseTick": 16
+    },
+    "end": {
+      "position": {
+        "x": -11.860857963562012,
+        "y": 1.1249996185302735,
+        "z": -23.064937591552734
+      },
+      "hp": 0,
+      "armor": 0,
+      "ammo": 1,
+      "bossHp": 120,
+      "outcome": "defeat"
+    },
+    "seconds": 8.9,
+    "hits": 3,
+    "events": [
+      {
+        "tick": 123,
+        "phase": "eruption-attack",
+        "phaseTick": 4,
+        "hp": 100,
+        "armor": 0,
+        "position": {
+          "x": -11.860857963562012,
+          "y": 1.128254270553589,
+          "z": -23.064937591552734
+        }
+      },
+      {
+        "tick": 332,
+        "phase": "eruption-attack",
+        "phaseTick": 6,
+        "hp": 55,
+        "armor": 0,
+        "position": {
+          "x": -11.860857963562012,
+          "y": 1.12658748626709,
+          "z": -23.064937591552734
+        }
+      },
+      {
+        "tick": 534,
+        "phase": "attack",
+        "phaseTick": 1,
+        "hp": 0,
+        "armor": 0,
+        "position": {
+          "x": -11.860857963562012,
+          "y": 1.1249996185302735,
+          "z": -23.064937591552734
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 155,
+      "eruption-warning": 225,
+      "eruption-attack": 52,
+      "recovery": 96
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": false,
+    "weapon": "pulse",
+    "location": "entrance",
+    "strategy": "reactive",
+    "start": {
+      "position": {
+        "x": 0.0038961113896220922,
+        "y": 0.021632468700408913,
+        "z": -21.117712020874023
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": -0.8339102864265442,
+        "y": 0.02301690578460691,
+        "z": -21.117843627929688
+      },
+      "hp": 90,
+      "armor": 0,
+      "ammo": 0,
+      "bossHp": 0,
+      "outcome": "victory"
+    },
+    "seconds": 11.716666666666667,
+    "hits": 1,
+    "events": [
+      {
+        "tick": 263,
+        "phase": "wave-attack",
+        "phaseTick": 8,
+        "hp": 90,
+        "armor": 0,
+        "position": {
+          "x": 0.00376012921333313,
+          "y": 1.3371883392333985,
+          "z": -21.117891311645508
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 243,
+      "melee": 220,
+      "wave-warning": 92,
+      "wave-attack": 88,
+      "recovery": 46,
+      "eruption-warning": 6
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": true,
+    "weapon": "arc",
+    "location": "entrance",
+    "strategy": "stationary",
+    "start": {
+      "position": {
+        "x": -0.046572405844926834,
+        "y": 0.02162978649139402,
+        "z": -21.039016723632812
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": -0.046572405844926834,
+        "y": 0.02662978172302244,
+        "z": -21.039016723632812
+      },
+      "hp": 0,
+      "armor": 0,
+      "ammo": 54,
+      "bossHp": 243,
+      "outcome": "defeat"
+    },
+    "seconds": 8.466666666666667,
+    "hits": 4,
+    "events": [
+      {
+        "tick": 118,
+        "phase": "melee",
+        "phaseTick": 33,
+        "hp": 100,
+        "armor": 20,
+        "position": {
+          "x": -0.046572405844926834,
+          "y": 0.023296451568603493,
+          "z": -21.039016723632812
+        }
+      },
+      {
+        "tick": 256,
+        "phase": "wave-attack",
+        "phaseTick": 1,
+        "hp": 60,
+        "armor": 0,
+        "position": {
+          "x": -0.046572405844926834,
+          "y": 0.02662978172302244,
+          "z": -21.039016723632812
+        }
+      },
+      {
+        "tick": 427,
+        "phase": "melee",
+        "phaseTick": 33,
+        "hp": 30,
+        "armor": 0,
+        "position": {
+          "x": -0.046572405844926834,
+          "y": 0.02162978649139402,
+          "z": -21.039016723632812
+        }
+      },
+      {
+        "tick": 508,
+        "phase": "melee",
+        "phaseTick": 30,
+        "hp": 0,
+        "armor": 0,
+        "position": {
+          "x": -0.046572405844926834,
+          "y": 0.02662978172302244,
+          "z": -21.039016723632812
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 157,
+      "melee": 122,
+      "wave-warning": 90,
+      "wave-attack": 92,
+      "recovery": 45
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": true,
+    "weapon": "arc",
+    "location": "entrance",
+    "strategy": "reactive",
+    "start": {
+      "position": {
+        "x": -0.0016224359860643744,
+        "y": 0.029808795452117898,
+        "z": -21.17194366455078
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": 4.3186259269714355,
+        "y": 0.02459166049957273,
+        "z": -21.171911239624023
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 0,
+      "outcome": "victory"
+    },
+    "seconds": 14.05,
+    "hits": 0,
+    "events": [],
+    "phases": {
+      "chasing": 243,
+      "melee": 226,
+      "wave-warning": 88,
+      "wave-attack": 90,
+      "recovery": 97,
+      "eruption-warning": 72,
+      "eruption-attack": 24
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": true,
+    "weapon": "pulse",
+    "location": "entrance",
+    "strategy": "stationary",
+    "start": {
+      "position": {
+        "x": 0.00008653644181322306,
+        "y": 0.023302352428436257,
+        "z": -21.10043716430664
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": 0.00008653644181322306,
+        "y": 0.028302347660064675,
+        "z": -21.10043716430664
+      },
+      "hp": 0,
+      "armor": 0,
+      "ammo": 3,
+      "bossHp": 90,
+      "outcome": "defeat"
+    },
+    "seconds": 8.466666666666667,
+    "hits": 4,
+    "events": [
+      {
+        "tick": 118,
+        "phase": "melee",
+        "phaseTick": 34,
+        "hp": 100,
+        "armor": 20,
+        "position": {
+          "x": 0.00008653644181322306,
+          "y": 0.02496901750564573,
+          "z": -21.10043716430664
+        }
+      },
+      {
+        "tick": 256,
+        "phase": "wave-attack",
+        "phaseTick": 1,
+        "hp": 60,
+        "armor": 0,
+        "position": {
+          "x": 0.00008653644181322306,
+          "y": 0.028302347660064675,
+          "z": -21.10043716430664
+        }
+      },
+      {
+        "tick": 426,
+        "phase": "melee",
+        "phaseTick": 32,
+        "hp": 30,
+        "armor": 0,
+        "position": {
+          "x": 0.00008653644181322306,
+          "y": 0.02496901750564573,
+          "z": -21.10043716430664
+        }
+      },
+      {
+        "tick": 508,
+        "phase": "melee",
+        "phaseTick": 30,
+        "hp": 0,
+        "armor": 0,
+        "position": {
+          "x": 0.00008653644181322306,
+          "y": 0.028302347660064675,
+          "z": -21.10043716430664
+        }
+      }
+    ],
+    "phases": {
+      "chasing": 155,
+      "melee": 120,
+      "wave-warning": 89,
+      "wave-attack": 90,
+      "recovery": 50
+    },
+    "errors": []
+  },
+  {
+    "stage": "after",
+    "mobile": true,
+    "weapon": "pulse",
+    "location": "entrance",
+    "strategy": "reactive",
+    "start": {
+      "position": {
+        "x": -0.0008013566257432103,
+        "y": 0.02300373315811155,
+        "z": -20.995677947998047
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 54,
+      "bossHp": 600,
+      "bossCenter": {
+        "x": 0,
+        "y": 1.85,
+        "z": -29
+      },
+      "phase": "chasing",
+      "phaseTick": 0
+    },
+    "end": {
+      "position": {
+        "x": -0.0009718123474158347,
+        "y": 0.026633954048156716,
+        "z": -20.99563980102539
+      },
+      "hp": 100,
+      "armor": 50,
+      "ammo": 0,
+      "bossHp": 0,
+      "outcome": "victory"
+    },
+    "seconds": 10.133333333333333,
+    "hits": 0,
+    "events": [],
+    "phases": {
+      "chasing": 203,
+      "melee": 177,
+      "wave-warning": 86,
+      "wave-attack": 92,
+      "recovery": 49
+    },
+    "errors": []
+  }
+]

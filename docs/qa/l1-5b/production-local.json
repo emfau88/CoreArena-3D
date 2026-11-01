@@ -1,0 +1,31 @@
+[
+  {
+    "mode": "adventure",
+    "mobile": false,
+    "status": 200,
+    "readyMs": 2918,
+    "testApi": "undefined",
+    "origins": [
+      "http://127.0.0.1:8743"
+    ],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "mode": "adventure",
+    "mobile": true,
+    "status": 200,
+    "readyMs": 1677,
+    "testApi": "undefined",
+    "origins": [
+      "http://127.0.0.1:8743"
+    ],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "mode": "arena",
+    "teamStart": true,
+    "menu": true
+  }
+]

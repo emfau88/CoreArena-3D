@@ -1,0 +1,8 @@
+{
+  "cpu": "AMD Ryzen 7 6800H with Radeon Graphics         ",
+  "logicalCpus": 16,
+  "ramGiB": 15.3,
+  "platform": "win32",
+  "release": "10.0.26200",
+  "node": "v22.17.1"
+}

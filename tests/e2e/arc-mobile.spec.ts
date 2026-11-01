@@ -9,7 +9,7 @@ interface State {
   playerScreen: {x:number;y:number};
 }
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
-test.use({headless:false});
+test.use({headless:false,trace:'off'});
 
 for(const mobile of [false,true])test(`${mobile?'touch':'desktop'} Arc acquires away from pointer, continues after release and renders five strands`,async({browser},info)=>{
   const context=await browser.newContext(mobile

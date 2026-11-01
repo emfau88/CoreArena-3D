@@ -1,6 +1,6 @@
 import { test,expect } from '@playwright/test';
 
-test.use({headless:false});
+test.use({headless:false,trace:'off'});
 test('all courts: fixed side, straight and isometric inspection cameras',async({page},info)=>{
   const errors:string[]=[]; page.on('pageerror',e=>errors.push(e.message));
   page.on('response',r=>{if(r.status()>=400) errors.push(`${r.status()} ${r.url()}`);});

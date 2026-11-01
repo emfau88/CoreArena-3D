@@ -1,6 +1,6 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 31. Oktober 2026. **Arena ist wieder der aktive Schwerpunkt.** M0/M1,
+Stand: 1. November 2026. **Arena und Adventure bleiben getrennte Varianten.** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.
 M2.4a brachte 2v2, M2.4b ergänzt Wege/Ressourcen/Schwierigkeiten und die
 Adventure-Bewegung. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
@@ -15,9 +15,10 @@ Waffenfelder ergänzt.** Teamstarts auf beiden Seiten und Boden-Umgehungen nutze
 vorhandene Systeme. [Prüfstand](../qa/ARENA_EXPANSION_RESULT.md). E0-Umgehungen,
 Höhenrouten, Ressourcenwahl und die neue Waffe nicht erneut einplanen.
 
-Adventure bleibt eine eigenständige, derzeit pausierte Variante. Das Steinlevel
-mit L1.6a–c bleibt unverändert; L1.5b ist offen. Arena ist keine Voraussetzung für
-diese Abnahme. Maßgeblich ist der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md).
+Adventure bleibt eine eigenständige Variante. Das Steinlevel mit L1.6a–c ist
+anschließend durch L1.5b technisch geprüft; Pausenfehler und störende Bodenlinien
+wurden gezielt korrigiert. Persönliche Spiel-/Handyabnahme bleibt offen.
+Maßgeblich ist der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md).
 
 **L1.6a wurde freigegeben und umgesetzt:** Auftrag, Konsole und Relaisabschluss.
 [Umfang und Prüfungen](../qa/ADVENTURE_MISSION_RESULT.md).
@@ -26,9 +27,9 @@ gezielte Bossabstimmung, klarere Angriffs- und Erholungsanzeige.
 [Messwerte und Prüfungen](../qa/BOSS_PRESSURE_RESULT.md).
 Anschließend wurde L1.6c separat freigegeben und umgesetzt: drei funktionale Orte
 und eine Wartungsreserve auf der Terrasse. [Nachweis](../qa/OUTPOST_PLACES_RESULT.md).
-Die Gesamtabnahme (L1.5b) bleibt offen und benötigt eine eigene Freigabe.
-Verbleibender Planrahmen: **20–35 Minuten aktive Agent-Arbeit**;
-[kompakter Plan](LEVEL_1_STONE_ADVENTURE.md#kompakter-nächster-ausbau-der-verstummte-außenposten).
+Die technische Gesamtabnahme L1.5b wurde am 1. November freigegeben und durchgeführt.
+[Ergebnisse und persönliche Grenzen](../qa/L1_5B_RESULT.md). Kein automatisch
+freigegebener Kampagnenausbau; keine zusätzliche L1.5b-Restschätzung.
 
 ## Aktueller Fortschritt
 
@@ -41,7 +42,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / PvE-Kampagne — pausiert** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, inklusive L1.6a–c | L1.5b: Gesamtabnahme; danach Kampagnenausbau gesondert planen |
+| **Adventure / PvE-Kampagne — eigenständig** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, L1.6a–c und technische L1.5b-Abnahme | Persönliche Spiel-/Handyabnahme; danach Kampagnenausbau gesondert planen |
 | **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.1–M2.6 technisch abgeschlossen | Persönliche Spiel-/Geräteabnahme und Seitenbalance bewerten; danach gesonderte Freigabe für CTF und Liga |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
@@ -91,7 +92,7 @@ Freigabe eines weiteren Umsetzungspakets.
   Warnfläche/-klänge und Erholung verdeutlicht; Desktop und emulierter Touch geprüft.
 - [x] L1.6c: Ladestation, Wartungsbereich und Relaisanlage ausgestattet;
   optionale Reserve mit Nutzen über Checkpoint und Boss-Retry hinweg.
-  Die Gesamtabnahme L1.5b ist weiterhin nicht freigegeben.
+  Anschließend L1.5b separat freigegeben und technisch geprüft.
 
 - [x] 29. Oktober, Tempo/Zoom/Startwaffe: Sprint um 15 % reduziert, mobile Darstellung
   nochmals rund 26 % größer; Arc Lash mit automatischer Zielwahl, fünf Strahlen,
@@ -149,10 +150,10 @@ Freigabe eines weiteren Umsetzungspakets.
 - [x] L1.4a: Erster Hof mit echten Steinmaterialien, lesbaren Mauer-/Deckungskanten, Farnen, Felsgruppen und einer Fackel gestaltet. Vier Browserfälle bestanden: Vergleichskameras, beide Deckungssprünge, vollständiger Desktopkampf und mobile Wegprüfung. [Vorher/Nachher und Nachweise](../qa/L1_4A_RESULT.md).
 - [x] Rückmeldung zur Stilprobe: Boden auf die ganze Map, Pflanzen auch innen, Maueranschlüsse sauber schließen.
 - [x] L1.4b-Materialschritt: Steinboden in allen Höfen/Verbindungen/Ausgang, passende Wände und Terrassen, massive Eckpfeiler mit Kollision und zusätzliche Innenpflanzen. Sieben gezielte Kerntests und fünf Browserfälle bestanden. [Nachweise](../qa/L1_4B_MATERIALS_RESULT.md).
-- [ ] Persönliche Sichtung von L1.4b einschließlich der neuen Pflanzen/Konsolen;
-  L1.6a–c sind inzwischen umgesetzt. L1.5b benötigt weiterhin
-  eine Freigabe (L1.5b: 20–35 Minuten; echter Handytest separat).
-- [ ] L1.5b: Schwierigkeit und Leistung abschließend prüfen, persönliche Spielabnahme. L1.5a (Bosstempo/Wächterpuppen) ist umgesetzt. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
+- [ ] Persönliche Sichtung einschließlich Pflanzen/Konsolen und L1.6a–c; echter Handytest separat.
+- [x] L1.5b: technische Gesamtabnahme, aktueller Bossvergleich und Leistung geprüft;
+  Pausenkorrektur und reduzierte Bodenlinien. [Nachweis](../qa/L1_5B_RESULT.md).
+- [ ] Persönliche Adventure-Spielabnahme. Zusätzliche Gegner/Bossphasen sind kein Pflichtprogramm.
 
 - [x] M0.1: Eigenständiger Projektstart mit lokalen Abhängigkeiten und Browser-Build.
 - [x] M0.2: 60-Hz-Simulation, Kapsel/Wandkollision, WASD/Shift, beide Kameras und Fokusbehandlung.
