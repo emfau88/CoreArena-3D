@@ -1,0 +1,34 @@
+{
+  "url": "http://127.0.0.1:8745/CoreArena-3D/",
+  "reports": [
+    {
+      "mobile": false,
+      "status": 200,
+      "readyMs": 1548,
+      "bundle": "index-BVw5K5Xz.js",
+      "testApi": "undefined",
+      "errors": [],
+      "failed": [],
+      "origins": [
+        "http://127.0.0.1:8745"
+      ]
+    },
+    {
+      "adventureSeparate": true,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "mobile": true,
+      "status": 200,
+      "readyMs": 1672,
+      "bundle": "index-BVw5K5Xz.js",
+      "testApi": "undefined",
+      "errors": [],
+      "failed": [],
+      "origins": [
+        "http://127.0.0.1:8745"
+      ]
+    }
+  ]
+}

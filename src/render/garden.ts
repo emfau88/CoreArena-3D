@@ -1,9 +1,12 @@
 import * as THREE from 'three';
 import type { ArenaDefinition } from '../arena/arena';
 
-export function addGarden(scene: THREE.Scene, arena: ArenaDefinition): void {
+export function addGarden(scene: THREE.Scene, arena: ArenaDefinition, refined = false): void {
   const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute([
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(refined ? [
+    0, 0, 0, -.12, .35, .10, 0, .44, .19, .12, .35, .10,
+    -.15, .62, .40, 0, .71, .46, .15, .62, .40, 0, .76, .83,
+  ] : [
     0, 0, 0, -0.22, 0.4, 0.12, 0, 0.5, 0.2, 0.22, 0.4, 0.12,
     -0.24, 0.85, 0.36, 0, 0.9, 0.48, 0.24, 0.85, 0.36, 0, 1.25, 0.65,
   ], 3));
@@ -18,7 +21,7 @@ export function addGarden(scene: THREE.Scene, arena: ArenaDefinition): void {
   let seed = 3219, index = 0;
   const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
   const dummy = new THREE.Object3D();
-  const shades = [0x2f6632, 0x3e7838, 0x4f8042, 0x315c30].map((hex) => new THREE.Color(hex));
+  const shades = (refined ? [0x385f47, 0x53744b, 0x657e51, 0x304c3c] : [0x2f6632, 0x3e7838, 0x4f8042, 0x315c30]).map((hex) => new THREE.Color(hex));
   for (const box of plants) {
     const clusters = Math.ceil(box.size.x * box.size.z * 1.5);
     for (let plant = 0; plant < clusters; plant++) {

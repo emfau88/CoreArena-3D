@@ -14,7 +14,7 @@
 
 Keine gemeinsame Pflichtreihenfolge: Arena-Pakete sind keine nächsten Adventure-
 Schritte. Spielerfigur, Waffen und Technik werden teilweise geteilt; die
-ausgearbeitete Adventure-Umgebung ist noch nicht auf die Arena übertragen.
+Arena hat mit dem Map-Paket eine eigene überarbeitete Umgebung erhalten.
 [Stand und Unterschiede der Varianten](docs/planning/MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
 
 ## ▶ [Jetzt im Browser spielen](https://emfau88.github.io/CoreArena-3D/)
@@ -47,6 +47,12 @@ Zeitlimit, 1v1, Höhenwege und kleine HUDs geprüft; ein Hängenbleiben der Bots
 Deckung behoben. [Ergebnisse und Grenzen](docs/qa/M2_6_RESULT.md).
 Persönliche Spielabnahme, echte Handytests und die Bewertung der Seitenbalance
 bleiben offen. Adventure hat eine eigene Abnahme und Roadmap.
+
+**Arena-Map-Paket:** gleiche Versorgung und E1/E2-Zugänge auf beiden Teamseiten,
+ruhigere Steinflächen, ausgearbeitete Kanten, dezente Gartenbepflanzung sowie
+Teamdepots und Rail-Energiekästen in vorhandener Deckung. Die Karte bleibt
+56 × 36 m groß. [Vergleich und Prüfstand](docs/qa/ARENA_MAP_RESULT.md).
+CTF/Liga folgen nach eigener Freigabe; Adventure bleibt unverändert.
 
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen

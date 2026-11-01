@@ -50,7 +50,7 @@ test('Rail hits at range and height, stops at the first body/wall, consumes one 
   }
 });
 
-test('expanded arena has exactly two extra weapon fields; a real bot walks both wings around cover and collects Rail', async () => {
+test('expanded arena keeps two Rail fields; a real bot walks both wings around cover and collects Rail', async () => {
   // Each full player capsule needs clearance from the low garden benches, too.
   for (const spawn of Object.values(TEAM_SPAWNS)) for (const box of EXPANDED_ARENA.boxes.filter(box => box.id !== 'floor'))
     assert.ok(Math.abs(spawn.x - box.center.x) > box.size.x / 2 + .45 || Math.abs(spawn.z - box.center.z) > box.size.z / 2 + .45,
@@ -60,7 +60,6 @@ test('expanded arena has exactly two extra weapon fields; a real bot walks both 
   const match = new ArenaMatch([fighter]); match.start(); const pickups = new Pickups(EXPANDED_PICKUPS);
   const visited = new Set<string>();
   try {
-    assert.equal(EXPANDED_PICKUPS.length, 6);
     assert.equal(EXPANDED_PICKUPS.filter(item => item.kind === 'rail').length, 2);
     for (let tick = 1; tick < 2400 && visited.size < 2; tick++) {
       bot.stepActors(tick, match.snapshot().actors.ally!, []);

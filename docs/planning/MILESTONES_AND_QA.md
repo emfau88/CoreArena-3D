@@ -7,7 +7,9 @@ Adventure-Bewegung. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
 **M2.5 ist anschließend umgesetzt und technisch geprüft.**
 [Arena/HUD/Feedback](../qa/M2_5_RESULT.md). **M2.6 ist technisch abgeschlossen:**
 [30 Botrunden, Browsermatches, Fehlerkorrektur und Performance](../qa/M2_6_RESULT.md).
-Persönliche Spiel-/Geräteabnahme und Bewertung der Seitenbalance bleiben offen.
+Das danach separat freigegebene [Arena-Map-Paket](../qa/ARENA_MAP_RESULT.md) gleicht
+Versorgung/Höhenzugänge an und verbessert Materialien, Kanten und Ausstattung.
+Persönliche Spiel-/Geräteabnahme und menschliche Seitenbalance bleiben offen.
 M3–M5 bleiben gesondert freizugeben.
 
 Separater Nutzerauftrag danach: **Arena auf 56 × 36 m erweitert, Railgun und zwei
@@ -43,24 +45,24 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
 | **Adventure / PvE-Kampagne — eigenständig** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, L1.6a–c und technische L1.5b-Abnahme | Persönliche Spiel-/Handyabnahme; danach Kampagnenausbau gesondert planen |
-| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.1–M2.6 technisch abgeschlossen | Persönliche Spiel-/Geräteabnahme und Seitenbalance bewerten; danach gesonderte Freigabe für CTF und Liga |
+| **Arena / Teamspiel / CTF / Liga — aktiv** | [M-Arbeitspakete](MOBILE_AND_WORK_PACKAGES.md#arbeitspakete-der-desktop-roadmap) | Training, 1v1, 2v2; M2.1–M2.6 technisch abgeschlossen; separates Map-Paket umgesetzt | Überarbeitete Karte persönlich/auf Handy prüfen; danach gesonderte Freigabe für M3.1 Classic CTF |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
 Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
 
-**Vergleich anhand des Spielcodes am 31. Oktober, einschließlich M2.4a:**
+**Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket:**
 
 | Bereich | Adventure-Stand | Arena-Stand / gemeinsame Grundlage |
 |---|---|---|
-| Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Einfachere prozedurale Materialien und blockbasierte Höhenarena; ebenfalls echte Höhe/Kollision |
-| Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Prozedurale Gartenbepflanzung und Arena-Deko; diese Adventure-Assetzusammenstellung wird dort nicht geladen |
+| Umgebung und Materialien | Steinflächen mit Farb-, Normal- und Rauheitskarten, ausgearbeitete Kanten und massive Plateaus | Ruhigere prozedurale Steinflächen, ausgearbeitete Kanten/Sockel und beidseitige Höhenarena; echte Höhe/Kollision |
+| Pflanzen und Ausstattung | AssetQuest-Pflanzen, Farne/Felsen, Retro-Tech-Konsolen, Drohne/Relais, funktionale Ausstattung und reagierende Leitungen | Verfeinerte prozedurale Gartenpflanzen, Teamdepots und Rail-Energiekästen in vorhandener Deckung; keine zusätzlichen Assetdownloads |
 | Spielerfigur | Animierter KayKit-Ruinenkurier | **Bereits gemeinsam:** `main.ts` lädt KayKit vor beiden Einstiegen; beide verwenden `ArenaView`/`createFighter()` inklusive Kurier-Look |
-| Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | 1v1 oder drei KayKit-Bots im 2v2, blaue/rote Kennzeichnung und Gegnerwahl; komplexe Wege und CTF-Rollen fehlen |
+| Gegner | Zwei angepasste KayKit-Steinläufer mit Nahkampfanimationen plus inszenierter Steinwächter | 1v1 oder drei KayKit-Bots im 2v2, Teamkennzeichnung, Höhenwege, Ressourcenwahl und drei Stufen; CTF-Rollen fehlen |
 | Waffen und Pickups | Arc/Pulse, Modelle, Effekte und leuchtende Fundstellen | **Bereits gemeinsam:** `Combat`, `CombatView`, `gear` und `ArcView`; keine pauschale Übertragung dieser bereits vorhandenen Verbesserungen nötig |
-| HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | Waffen-/Lebensanzeigen gemeinsam; Matchscore/Timer und Trainingsanzeigen. `game.ts` bindet das PvE-Ton-/Trefferfeedback nicht ein |
-| Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Kamera-/Eingabe-/Physikklassen und Touch-Steuerung; Arena nutzt andere Kameraführung und Standardsprungkurve. Der mobile Zoomfaktor ist geteilt |
-| Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden: Training, 1v1 und 2v2 bis Ergebnis/Restart; taktische Bot-Höhenrouten und Gesamtpolitur offen |
+| HUD und Rückmeldung | Orts-/Auftragsanzeige, Interaktion, Bosswarnungen, Missionsmeldungen, eigener kompakter Touch-Menüaufbau und `StoneFeedback` | Gemeinsame Waffen-/Lebensanzeigen; kompaktes Match-HUD, Pausenmenü und eigenes Arena-Ton-/Trefferfeedback seit M2.5 |
+| Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Eingabe/Physik und seit M2.4b dieselbe Sprungkurve/Treppenhilfe; Arena-spezifischer Kameraabstand und Kartenbegrenzung |
+| Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden: beidseitig gleiche Ressourcen/Höhenrouten, Training, 1v1 und 2v2 bis Ergebnis/Restart; CTF/Liga noch offen |
 
 **Einordnung:** Das Adventure ist bei Umgebung, Inszenierung und zusammenhängendem
 Spielablauf deutlich weiter ausgearbeitet. Es ist kein Nachweis höherer technischer
@@ -75,8 +77,8 @@ Quellen im Code: [Arena-Einstieg](../../src/app/game.ts),
 [gemeinsame Figur](../../src/render/kayFighter.ts),
 [Arena-Umgebung](../../src/render/buildArena.ts),
 [Adventure-Umgebung](../../src/render/courtyardLook.ts).
-Dies ist eine Dokumentations-/Codeprüfung, kein neuer Browser-Spieltest und keine
-Freigabe eines weiteren Umsetzungspakets.
+Browsernachweise: [M2.6](../qa/M2_6_RESULT.md), [Arena-Map-Paket](../qa/ARENA_MAP_RESULT.md)
+und separat [L1.5b](../qa/L1_5B_RESULT.md). Keine Freigabe eines weiteren Pakets.
 
 ### Bisherige Umsetzung und Nachweise
 
@@ -292,8 +294,9 @@ Technische Gates geprüft: 68 Kerntests, 30 vollständige Botmatches und zehn
 Browserfälle. Drei 2v2-Runden mit regulärer 120-s-/10-Kill-Konfiguration endeten
 am Abschussziel; der Zeitlimitpfad wurde zusätzlich volle 120 Sekunden geprüft.
 Das persönliche Nutzerurteil und echte Mobilgeräte sind damit nicht abgenommen.
-Die asymmetrische Versorgung zeigte eine auffällige Seitenbalance und braucht
-vor einem Liga-Ausbau ein eigenes Spielurteil.
+Die damals asymmetrische Versorgung zeigte eine auffällige Seitenbalance. Das
+anschließende [Map-Paket](../qa/ARENA_MAP_RESULT.md) gleicht Ressourcen/Zugänge an;
+der kontrollierte Botvergleich ersetzt weiterhin kein menschliches Spielurteil.
 
 Erst zwei klar unterschiedliche Waffen und ein Matchmodus. Arc-Lash-Zielkegel und Pulse-Tracking werden vor endgültiger Abstimmung vergleichbar getestet; eine andere Arc-Lash-Zielregel benötigt eine dokumentierte Entscheidung. Rocket, Todes-Drops und weitere Waffen folgen als separate Aufträge.
 

@@ -58,38 +58,54 @@ for (const { mobile, difficulty, width, height } of cases) test(`${mobile ? 'tou
     state = await read(page);
     expect(state.match.scores).toEqual({ blue: 0, red: 0 });
     expect(state.bots.every(bot => bot.weapons.projectiles.length === 0 && !bot.weapons.ownsPulse)).toBe(true);
-    const stick = mobile ? (await page.locator('#touch-stick').boundingBox())! : null;
-    const center = stick ? { x: stick.x + stick.width / 2, y: stick.y + stick.height / 2 } : { x: 0, y: 0 };
-    // Walk over the existing Pulse pickup with real keyboard/joystick input.
-    // The expanded team's west spawn starts farther from the original pickup.
-    if (mobile) await touch('touchStart', [{ id: 1, x: center.x + 42, y: center.y }]);
-    else await page.keyboard.down('KeyD');
-    await expect.poll(async () => (await read(page)).snapshot.position.x, { intervals: [20] }).toBeGreaterThan(-7.3);
-    await release();
-    if (mobile) await touch('touchStart', [{ id: 1, x: center.x, y: center.y + 42 }]);
-    else await page.keyboard.down('KeyS');
-    await page.waitForFunction(() => (window as unknown as { __coreArena: { read(): State } }).__coreArena.read().snapshot.position.z >= 3.9);
-    await release();
-    // A teammate may have collected it first. Stop on the field and wait for its
-    // normal refill instead of walking past while polling only the inventory.
-    await expect.poll(async () => (await read(page)).weapons.ownsPulse, { intervals: [50], timeout: 13_000 }).toBe(true);
-    await click('#weapon-pulse');
     if (mobile) await click('#touch-jump'); else await page.keyboard.press('Space');
     await expect.poll(async () => (await read(page)).snapshot.position.y, { intervals: [20] }).toBeGreaterThan(.5);
     await expect.poll(async () => (await read(page)).snapshot.grounded).toBe(true);
+    const stick = mobile ? (await page.locator('#touch-stick').boundingBox())! : null;
+    const center = stick ? { x: stick.x + stick.width / 2, y: stick.y + stick.height / 2 } : { x: 0, y: 0 };
+    // Approach the actual pickup centre, defending with Arc while waiting for a
+    // teammate's refill. A genuine death returns us to spawn, so walk back rather
+    // than polling an empty inventory at the respawn point for thirteen seconds.
+    const pickupDeadline = Date.now() + 25_000;
+    while (!(state = await read(page)).weapons.ownsPulse && Date.now() < pickupDeadline) {
+      await release();
+      if (!state.match.actors.player!.alive) { await page.waitForTimeout(100); continue; }
+      const dx = -7 - state.snapshot.position.x, dz = 4 - state.snapshot.position.z;
+      const sx = Math.abs(dx) > .2 ? Math.sign(dx) : 0, sz = Math.abs(dz) > .2 ? Math.sign(dz) : 0;
+      const aim = { x: width * .55, y: height * .48 };
+      if (mobile) await touch('touchStart', [{ id: 2, ...aim },
+        ...(sx || sz ? [{ id: 1, x: center.x + sx * 35, y: center.y + sz * 35 }] : [])]);
+      else {
+        for (const [key, pressed] of [['KeyA', sx < 0], ['KeyD', sx > 0], ['KeyW', sz < 0], ['KeyS', sz > 0]] as const)
+          if (pressed) await page.keyboard.down(key);
+        await page.mouse.move(aim.x, aim.y); await page.mouse.down();
+      }
+      await page.waitForTimeout(80);
+    }
+    await release(); expect((await read(page)).weapons.ownsPulse).toBe(true);
+    await click('#weapon-pulse');
+    // Observe the player's shot immediately. A refill underfoot can conceal ammo
+    // consumption, and a later death correctly clears both weapon and projectiles.
+    let usedPulse = false;
+    if (mobile) await touch('touchStart', [{ id: 2, x: width * .55, y: height * .48 }]);
+    else { await page.mouse.move(width * .55, height * .48); await page.mouse.down(); }
+    await expect.poll(async () => { const w = (await read(page)).weapons;
+      return usedPulse ||= w.projectiles.length > 0 || w.ownsPulse && w.ammo < 54;
+    }, { intervals: [16], timeout: 2000 }).toBe(true);
+    await release();
     const environment = await page.evaluate(() => {
       const gl=document.querySelector('canvas')!.getContext('webgl2')!, ext=gl.getExtension('WEBGL_debug_renderer_info');
       return { userAgent:navigator.userAgent, logicalCpus:navigator.hardwareConcurrency, gpu:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):'unavailable' };
     });
     const percentile = (values:number[], q:number) => [...values].sort((a,b)=>a-b)[Math.floor((values.length-1)*q)] ?? 0;
     const perf:unknown[]=[];
-    const samples: unknown[] = []; let usedPulse = false; let usedArc = false; let captured = false;
+    const samples: unknown[] = []; let usedArc = false; let captured = false;
     const pulseUntil = (await read(page)).match.tick + 360;
     const started = Date.now(); let previousSample = -1;
     while ((state = await read(page)).match.phase === 'running' && Date.now() - started < 135_000) {
       for (const bot of state.bots) if (bot.decision?.targetId)
         expect(state.match.actors[bot.decision.targetId]!.team).not.toBe(bot.team);
-      usedPulse ||= state.weapons.ownsPulse && state.weapons.ammo < 54;
+      usedPulse ||= state.weapons.projectiles.length > 0 || state.weapons.ownsPulse && state.weapons.ammo < 54;
       usedArc ||= !!state.weapons.lastArc;
       const elapsed = Math.floor(state.match.tick / 60);
       if (elapsed >= previousSample + 5) { perf.push({seconds:elapsed,frameP50:percentile(state.frames,.5),frameP95:percentile(state.frames,.95),stepP95:percentile(state.steps,.95),droppedTicks:state.droppedTicks,render:state.render}); samples.push({ seconds: elapsed, match: state.match, bots: state.bots.map(bot =>

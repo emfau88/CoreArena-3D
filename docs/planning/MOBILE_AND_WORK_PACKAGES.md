@@ -6,17 +6,18 @@ umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
 M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
 **M2.5 ist umgesetzt und technisch geprüft; M2.6 technisch abgeschlossen.**
 [M2.6-Nachweise](../qa/M2_6_RESULT.md). Persönliche Spiel-/Geräteabnahme und
-Bewertung der Seitenbalance bleiben offen; M3–M5 sind nicht freigegeben.
+Bewertung der menschlichen Seitenbalance bleiben offen; M3–M5 sind nicht freigegeben.
 
-**Empfehlung nach Kartenvergleich vom 1. November, noch nicht freigegeben:**
-Vor Classic CTF ein begrenztes Paket für Arena-Mapqualität vorsehen. Zuerst die
-asymmetrische Versorgung und Höhenzugänge auf der bestehenden 56 × 36-m-Karte
-bewerten und gezielt abstimmen. Danach ruhigere Bodenfugen, ausgearbeitete
-Wand-/Plateaukanten und wenige funktionale Requisiten für Teamseiten und Flanken.
-Adventure ist bei Materialien und Ortsgestaltung weiter ausgearbeitet; Figuren,
-Bewegung und das Arena-HUD haben bereits eine gemeinsame beziehungsweise geprüfte
-Grundlage. Die Arena erhält eine eigene Gestaltung, freie Sicht und Kampfwege
-bleiben maßgeblich. Kein neuer Arena-Code durch diese Empfehlung, kein Beginn von M3.
+**Arena-Map-Paket, am 1. November separat freigegeben, umgesetzt und technisch geprüft:**
+Die 56 × 36-m-Karte hat nun beidseitig gleiche Deckung, E1/E2-Zugänge und
+Pulse-/Heilungs-/Höhenvorräte. Ruhigere Steinflächen, klarere Kanten, kleinere
+Pflanzenblätter, eingebaute Teamdepots und Rail-Energiekästen ergänzen die Gestaltung.
+Die neue Versorgung wird vor/nach dem Umbau einschließlich gespiegelter Karte
+mit denselben Bot-Startvarianten verglichen. [Umfang und Prüfstand](../qa/ARENA_MAP_RESULT.md).
+Freie Kampfwege und vorhandene Systeme bleiben maßgeblich. Die Arena hat eine
+eigene Gestaltung; die Adventure-Assetpakete werden nicht zusätzlich geladen.
+M3 ist weiterhin nicht freigegeben. Als Nächstes persönliche Kartenprobe,
+danach bei Freigabe **M3.1 Classic CTF**.
 
 **Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
 getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
@@ -179,6 +180,7 @@ M0 und M1 sind umgesetzt; die erste Spielrückmeldung zu M1 wurde nachgearbeitet
 | **M2.4b Bot-Wege, Ressourcen und Schwierigkeit — umgesetzt und technisch geprüft** | Höhenrouten, bedarfsgerechte Ressourcenwahl, Easy/Normal/Hard ohne Stat-Vorteile; gemeinsame Adventure-Bewegung | M2.4a und Arena-Zusatz; ausdrücklich freigegeben | Keine getrennt gemessene Istzeit | Pflichtwege und bedarfsgerechte Pickup-Anreise durch echte Bewegungsbefehle; faire Stufen |
 | **M2.5 Arena und Feedback — umgesetzt und technisch geprüft** | Klare Teams/Höhen, kleines HUD, Pausenmenü und Feedbacksounds | M2.2–M2.4 | Keine getrennt gemessene Istzeit | [Prüfstand und Bilder](../qa/M2_5_RESULT.md); persönliche Abnahme separat |
 | **M2.6 Matchprüfung und Übergabe — technisch abgeschlossen** | 30 Botmatches, vollständige Desktop-/Touch-Matches, Zeitlimit, Performance; Deckungs-Stillstand behoben | M2.1–M2.5; ausdrücklich freigegeben | Historischer Plan: 15–30 Min.; keine getrennt gemessene Istzeit | [Prüfstand](../qa/M2_6_RESULT.md); persönliche Spiel-/Geräteabnahme und Bewertung der Seitenbalance offen |
+| **Arena-Map-Paket — umgesetzt und technisch geprüft** | Gleiche Versorgung und Höhenzugänge auf beiden Seiten; ruhigere Materialien, Kanten, Teamdepots und Rail-Energiekästen; 56 × 36 m beibehalten | Nach M2.6 separat freigegeben | Keine getrennt gemessene reine Coding-Zeit | [Vergleich und Browserprüfung](../qa/ARENA_MAP_RESULT.md); menschliches Spielurteil und echtes Handy separat |
 | **M3.1 Classic CTF** | Flaggenzustände und Carrier-/Verteidigungsrollen als spielbarer Modus | M2 abgenommen, M3 freigegeben | 25–50 Min. | Capture über Höhenroute; Drop/Return korrekt |
 | **M3.2 One Flag** | Neutrale Flagge, Runner/Escort/Interception auf vorhandener Basis | M3.1 geprüft | 15–30 Min. | Regulärer Transport und Capture |
 | **M3.3 Objective-Übergabe** | Wege, Rollen und beide Modi unter Konkurrenz prüfen und abstimmen | M3.1–M3.2 | 20–40 Min. | Routentests und echte Spiele beider Modi; breitere Matrix später |

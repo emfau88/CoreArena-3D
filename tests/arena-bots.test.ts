@@ -40,8 +40,8 @@ test('shared Adventure motor keeps E0/E1/E2 route reachable, steps .3m but block
 });
 
 test('all difficulties physically reach high supplies and return; resources apply through normal pickups', async () => {
-  for (const difficulty of Object.keys(BOT_DIFFICULTIES) as BotDifficulty[]) {
-    const fighter = { id: 'ally', team: 'blue' as const, spawn: { x: -14, y: .06, z: 3 }, facing: 0 };
+  for (const difficulty of Object.keys(BOT_DIFFICULTIES) as BotDifficulty[]) for (const side of [-1, 1]) {
+    const fighter = { id: 'ally', team: side < 0 ? 'blue' as const : 'red' as const, spawn: { x: side * 14, y: .06, z: 3 }, facing: side < 0 ? 0 : Math.PI };
     const bot = await createCombatBot(fighter, [fighter], EXPANDED_ARENA, true);
     try {
       bot.setDifficulty(difficulty); bot.weapons.addAmmo(10, true);
@@ -57,12 +57,24 @@ test('all difficulties physically reach high supplies and return; resources appl
         });
         if (collected.length >= 2 && bot.snapshot().surface === 'floor') break;
       }
-      assert.ok(visited.has('e1') && visited.has('e2'), JSON.stringify({ difficulty, visited: [...visited], state: bot.snapshot(), goal: bot.resourceGoal }));
+      const suffix = side < 0 ? '' : '-east';
+      assert.ok(visited.has(`e1${suffix}`) && visited.has(`e2${suffix}`), JSON.stringify({ difficulty, side, visited: [...visited], state: bot.snapshot(), goal: bot.resourceGoal }));
       assert.deepEqual(collected.sort(), ['ammo', 'armor']);
       assert.equal(bot.weapons.snapshot().ammo, 37); assert.equal(match.snapshot().actors.ally!.armor, 100);
       assert.equal(bot.snapshot().surface, 'floor');
     } finally { bot.dispose(); }
   }
+});
+
+test('both team sides have equal physical cover and supply distances on the 56 x 36 arena', () => {
+  const floor = EXPANDED_ARENA.boxes.find(box => box.id === 'floor')!;
+  assert.equal(floor.size.x, 56); assert.equal(floor.size.z, 36);
+  for (const box of EXPANDED_ARENA.boxes) assert.ok(EXPANDED_ARENA.boxes.some(other =>
+    other.center.x === -box.center.x && other.center.y === box.center.y && other.center.z === box.center.z
+    && other.size.x === box.size.x && other.size.y === box.size.y && other.size.z === box.size.z), `unpaired cover: ${box.id}`);
+  for (const item of EXPANDED_PICKUPS) assert.ok(EXPANDED_PICKUPS.some(other => other.id !== item.id
+    && other.kind === item.kind && other.amount === item.amount && other.position.x === -item.position.x
+    && other.position.y === item.position.y && other.position.z === item.position.z), `unpaired supply: ${item.id}`);
 });
 
 test('resource choice ignores full inventories and unavailable pickups; difficulty gates reaction without stat buffs', () => {

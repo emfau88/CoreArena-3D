@@ -1,4 +1,5 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 import { cpus, totalmem, platform, release } from 'node:os';
 import assert from 'node:assert/strict';
 import { createCombatBot } from '../../src/app/combatBot';
@@ -13,16 +14,26 @@ import type { Vec3 } from '../../src/core/types';
 // Deterministic starting variations, not a production RNG or altered combat rules.
 const random = (seed: number) => () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 2 ** 32);
 const distance = (a: Vec3, b: Vec3) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
-const out = process.argv[2] ?? 'docs/qa/m2-6/soak.json';
+const out = process.argv[2] ?? 'test-results/arena-soak.json';
 const firstSeed = Number(process.argv[3] ?? 1), lastSeed = Number(process.argv[4] ?? 10);
 const reports = [];
+// Reflect only the map, leaving teams, spawn jitter, patrols and actor order fixed.
+// This separates a map-side advantage from colour/order biases in the same bots.
+const orientations = process.argv.includes('--paired') ? ['original', 'mirrored'] : ['original'];
+for (const orientation of orientations) {
+const reflect = (p: Vec3): Vec3 => ({ ...p, x: -p.x });
+const arena = orientation === 'original' ? EXPANDED_ARENA : { ...EXPANDED_ARENA,
+  boxes: EXPANDED_ARENA.boxes.map(box => ({ ...box, center: reflect(box.center) })),
+  links: EXPANDED_ARENA.links!.map(link => ({ ...link, start: reflect(link.start), end: reflect(link.end) })),
+};
+const items = orientation === 'original' ? EXPANDED_PICKUPS : EXPANDED_PICKUPS.map(item => ({ ...item, position: reflect(item.position) }));
 for (const difficulty of Object.keys(BOT_DIFFICULTIES) as BotDifficulty[]) for (let seed = firstSeed; seed <= lastSeed; seed++) {
   const rand = random(seed);
   const roster = ARENA_FIGHTERS.map(fighter => ({ ...fighter, facing: fighter.facing + (rand() - .5),
     spawn: { ...TEAM_SPAWNS[fighter.id]!, x: TEAM_SPAWNS[fighter.id]!.x + (rand() - .5), z: TEAM_SPAWNS[fighter.id]!.z + (rand() - .5) * .6 } }));
   const bots = [];
-  for (const fighter of roster) { const bot = await createCombatBot(fighter, roster, EXPANDED_ARENA, true); bot.setDifficulty(difficulty); bots.push(bot); }
-  const match = new ArenaMatch(roster), pickups = new Pickups(EXPANDED_PICKUPS); match.start();
+  for (const fighter of roster) { const bot = await createCombatBot(fighter, roster, arena, true); bot.setDifficulty(difficulty); bots.push(bot); }
+  const match = new ArenaMatch(roster), pickups = new Pickups(items); match.start();
   const progress = new Map<string, { position: Vec3; tick: number }>();
   const stuck: unknown[] = [], surfaces = new Map(bots.map(bot => [bot.fighter.id, new Set<string>()]));
   const collected: Record<string, number> = {}, combat: Record<string, { shots: number; contacts: number; damage: number }> = {};
@@ -81,12 +92,13 @@ for (const difficulty of Object.keys(BOT_DIFFICULTIES) as BotDifficulty[]) for (
       if (tick % 300 === 0) trace.push({ tick, scores: after.scores, bots: bots.map(bot => ({ id: bot.fighter.id, position: bot.snapshot().position, goal: bot.resourceGoal, mode: bot.decision?.mode })) });
       assert.ok(tick <= MATCH_RULES.durationTicks);
     }
-    const report = { difficulty, seed, seconds: match.snapshot().tick / 60, scores: match.snapshot().scores, reason: match.snapshot().reason,
+    const report = { orientation, difficulty, seed, seconds: match.snapshot().tick / 60, scores: match.snapshot().scores, reason: match.snapshot().reason,
       simulatedMs: Math.round(performance.now() - started), surfaces: Object.fromEntries([...surfaces].map(([id, values]) => [id, [...values]])), collected, combat, stuck, trace };
     reports.push(report);
-    console.log(JSON.stringify({ difficulty, seed, seconds: report.seconds, scores: report.scores, stuck: stuck.length }));
+    console.log(JSON.stringify({ orientation, difficulty, seed, seconds: report.seconds, scores: report.scores, stuck: stuck.length }));
   } finally { bots.forEach(bot => bot.dispose()); }
 }
-mkdirSync('docs/qa/m2-6', { recursive: true });
+}
+mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, JSON.stringify({ hardware: { cpu: cpus()[0]?.model, logicalCpus: cpus().length, ramGiB: +(totalmem() / 2 ** 30).toFixed(1), platform: platform(), release: release(), node: process.version }, reports }, null, 2) + '\n');
 if (reports.some(report => report.stuck.length)) process.exitCode = 1;
