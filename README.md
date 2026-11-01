@@ -54,6 +54,10 @@ Teamdepots und Rail-Energiekästen in vorhandener Deckung. Die Karte bleibt
 56 × 36 m groß. [Vergleich und Prüfstand](docs/qa/ARENA_MAP_RESULT.md).
 CTF/Liga folgen nach eigener Freigabe; Adventure bleibt unverändert.
 
+**Arena-Todeseffekt:** Spieler und Bots zerplatzen bei Eliminierung kurz in
+Konfetti ihrer Teamfarbe. Klarer Tod, anschließender Respawn; keine geänderten
+Kampfregeln. [Desktop-/Touch-Prüfung](docs/qa/ARENA_DEATH_RESULT.md).
+
 **Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.

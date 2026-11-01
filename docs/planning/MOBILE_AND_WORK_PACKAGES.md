@@ -19,6 +19,11 @@ eigene Gestaltung; die Adventure-Assetpakete werden nicht zusätzlich geladen.
 M3 ist weiterhin nicht freigegeben. Als Nächstes persönliche Kartenprobe,
 danach bei Freigabe **M3.1 Classic CTF**.
 
+**Kleiner Arena-Feedback-Nachtrag, umgesetzt und geprüft:** klarere Eliminierungen
+mit kurzem Lichtimpuls und Konfetti in Teamfarben. Spieler/Bots, Pause und Respawn
+auf Desktop/Touch geprüft; keine Regeländerung und kein Beginn von M3.
+[Nachweis](../qa/ARENA_DEATH_RESULT.md).
+
 **Separat angeforderter Arena-Zusatz:** 56 × 36 m, zwei Railgun-Felder, Railgun und
 getrennte Teamstarts umgesetzt. Vorhandene Boden-Umgehungslogik wiederverwendet;
 Höhennavigation, bedarfsgerechte Ressourcenwahl und Schwierigkeit wurden danach

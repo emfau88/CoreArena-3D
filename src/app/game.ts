@@ -22,6 +22,7 @@ import { actorCenter, type BotDifficulty } from '../core/bot';
 import { BotView } from '../render/botView';
 import { ARENA_FIGHTERS, arenaRoster, fighterTarget, type ArenaMode } from '../arena/teams';
 import { ArenaFeedback } from './arenaFeedback';
+import { ArenaDeathView } from '../render/arenaDeathView';
 
 export async function startGame(host: HTMLElement): Promise<() => void> {
   const fighters = ARENA_FIGHTERS.filter(fighter => fighter.id !== 'player');
@@ -47,9 +48,10 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   let aim: AimSolution | null = null;
   let view: ArenaView;
   try { view = new ArenaView(host, EXPANDED_ARENA, { pickups: EXPANDED_PICKUPS, build: buildExpandedArena, shadowSpan: 35,
-    playerColor: 0x8ac2e5, playerLabel: 'DU' }); }
+    playerColor: 0x8ac2e5, playerLabel: 'DU', keepDeathPose: false }); }
   catch (error) { world.dispose(); probeWorld.dispose(); bots.forEach(bot => bot.dispose()); throw error; }
   const botViews = bots.map(bot => new BotView(view.scene, bot.fighter.team, bot.fighter.id === 'ally' ? 'VERBÜNDETER' : 'GEGNER'));
+  const deaths = new ArenaDeathView(view.scene);
   host.dataset.arena = 'true';
   // Arena fights need more surrounding space than the close Adventure camera.
   view.camera.trackPlayer(M1_ARENA.spawn, matchMedia('(any-pointer: coarse)').matches ? 1.4 : 1.25); view.resize();
@@ -167,7 +169,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
   function restartMatch(mode = arenaMode) {
     const selectedDifficulty = (element('bot-difficulty') as HTMLSelectElement).value;
     difficulty = selectedDifficulty === 'easy' || selectedDifficulty === 'hard' ? selectedDifficulty : 'normal';
-    menuPaused = false; feedback.reset();
+    menuPaused = false; feedback.reset(); deaths.reset();
     arenaMode = mode;
     host.dataset.arenaRunning = 'true';
     match = new ArenaMatch(arenaRoster(arenaMode));
@@ -251,6 +253,13 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
         const after = match.snapshot();
         const playerAfter = after.actors.player!;
         if (before.phase === 'running') {
+          for (const life of Object.values(after.actors)) if (before.actors[life.id]?.alive && !life.alive) {
+            const position = life.id === 'player' ? current.position
+              : playingBots.find(bot => bot.fighter.id === life.id)?.snapshot().position;
+            const dummy = M1_ARENA.targets?.find(target => target.id === life.id);
+            if (position) deaths.emit(life.id, life.life, life.team, position);
+            else if (dummy) deaths.emit(life.id, life.life, life.team, { ...dummy.center, y: dummy.center.y - 1.1 });
+          }
           if (attack.attacked) feedback.play(shotWeapon);
           for (const attack of botAttacks.filter(attack => attack.attacked)) {
             const foot = playingBots.find(bot => bot.fighter.id === attack.id)!.snapshot().position;
@@ -346,6 +355,8 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
     if (diagnostics) view.showColliders(true, world.debugLines());
     bots.forEach((bot, i) => botViews[i]!.update(match.snapshot().actors[bot.fighter.id] ? bot.snapshot() : null,
       match.snapshot().actors[bot.fighter.id], bot.weapons.snapshot(), match.snapshot().tick, Math.min(elapsed, 0.05), view.camera.camera));
+    // Pause freezes the burst; after the last kill it may finish behind the result panel.
+    deaths.update(paused ? 0 : Math.min(elapsed, .05));
     view.draw(previous, current, alpha, Math.min(elapsed, 0.05), aim, match.snapshot().phase === 'ready' ? weapon.lastShot : combat.snapshot().lastArc,
       probe.status === 'ready' ? null : probeSimulation.snapshot(), match.snapshot(), combat.snapshot(), pickups.snapshot());
     feedback.draw(match.snapshot().tick);
@@ -364,7 +375,7 @@ export async function startGame(host: HTMLElement): Promise<() => void> {
           marker: { x: view.marker.position.x, z: view.marker.position.z },
           aim, hits: { ...weapon.hits }, lastShot: weapon.lastShot, match: match.snapshot(),
           weapons: combat.snapshot(), pickups: pickups.snapshot(),
-          arenaMode, difficulty, audio: feedback.diagnostics(),
+          arenaMode, difficulty, audio: feedback.diagnostics(), deathEffects: deaths.diagnostics(), playerVisible: view.actor.visible,
           bot: arenaMode === 'duel' ? { snapshot: bots[0]!.snapshot(), decision: bots[0]!.decision, weapons: bots[0]!.weapons.snapshot(), screen: view.projectedPosition(bots[0]!.snapshot().position) } : null,
           bots: activeBots().map(bot => ({ id: bot.fighter.id, team: bot.fighter.team, snapshot: bot.snapshot(), decision: bot.decision,
             resourceGoal: bot.resourceGoal, intent: bot.intent,

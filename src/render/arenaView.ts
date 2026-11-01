@@ -34,12 +34,14 @@ export class ArenaView {
   private lastAmmo=0;
   private lastArcTick=-1;
   private lastRailTick=-1;
+  private readonly keepDeathPose: boolean;
   fighterDiagnostics(){return this.fighter.diagnostics();}
   pickupDiagnostics(){return this.combat.diagnostics();}
   arcDiagnostics(){return this.combat.arcDiagnostics();}
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number; playerColor?: number; playerLabel?: string;
-    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void) } = {}) {
+    build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean } = {}) {
+    this.keepDeathPose = options.keepDeathPose ?? true;
     const touch = matchMedia('(any-pointer: coarse)').matches;
     this.fighter = createFighter(options.playerColor); this.actor = this.fighter.actor;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1 : 1.5));
@@ -109,7 +111,7 @@ export class ArenaView {
       verticalSpeed:current.velocity.y,velocity:current.velocity,facing:this.actor.rotation.y,weapon:weapons?.selected??'arc',shot:fired,
       alive:life?.alive??true,hp:life?.hp});
     this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
-    this.marker.visible = life?.alive ?? true;this.actor.visible=this.marker.visible||this.fighter.deathVisible;
+    this.marker.visible = life?.alive ?? true;this.actor.visible=this.marker.visible||(this.keepDeathPose && this.fighter.deathVisible);
     (this.marker.material as THREE.MeshBasicMaterial).color.setHex(life && life.protectionTicks > 0 ? 0xffdd88 : 0x91d6db);
     this.camera.follow(this.position, dt, current.velocity);
     this.vitals.visible = !!life?.alive;
