@@ -105,6 +105,16 @@ HTTP 200; Bundle `index-ChAzrrCz.js`, Testdiagnose `__coreArena` nicht enthalten
 [Touch-HUD](arena-ap2/production-local-touch-hud.png).
 Das ist ein ergänzender Produktions-Smoke-Test; vollständige Runden siehe oben.
 
+**Veröffentlicht und live geprüft:** Spielcommit
+[`c1aeae3`](https://github.com/emfau88/CoreArena-3D/commit/c1aeae3ddd7dc059fc22f97c0767463756a4bd68),
+[erfolgreicher GitHub-Pages-Lauf](https://github.com/emfau88/CoreArena-3D/actions/runs/41319682799).
+Auf der [öffentlichen Arena](https://emfau88.github.io/CoreArena-3D/) bestanden
+dieselben Produktions-Stichproben auf Desktop und Touch: identisches Bundle
+`index-ChAzrrCz.js`, HTTP 200, Einstieg/2v2/Eingaben/Pause/Spielauswahl/Adventure,
+keine JavaScript-/HTTP-Fehler und keine freigeschaltete Testdiagnose.
+[Live-Bericht](arena-ap2/live.json), [Desktop-Einstieg](arena-ap2/live-desktop-lobby.png),
+[Touch-HUD](arena-ap2/live-touch-hud.png). Kein echter Handytest.
+
 ## Reproduktion
 
 ```powershell
