@@ -160,6 +160,18 @@ Der getrennte Arena-2v2-Einstieg und sein Menü bleiben erreichbar.
 [Produktionsnachweis](l1-5b/production-local.json). Die bekannte Vite-Warnung zum
 großen Three-/Rapier-Hauptbundle bleibt bestehen (ca. 5,10 MB / gzip 1,87 MB).
 
+**Live-Nachtrag:** Spielcommit `5b7a14e`, GitHub-Pages-Lauf `41296120868` erfolgreich.
+Der direkte Einstieg über GitHub Pages brauchte in frischen Browserkontexten
+**11,60 s Desktop und 19,08 s Touch-Emulation** bis spielbereit. Dieselbe Windows-
+Verbindung, keine Netz-Drosselung; die Werte messen keinen echten Handyprozessor.
+Der erste Live-Test hatte nach fünf Sekunden zu früh abgebrochen. Mit gemessener
+vollständiger Ladephase: HTTP 200, erwartetes Adventure-Bundle, keine Asset-/JS-
+Fehler, keine externe CDN-Anfrage und keine Test-API. Touch-Pause/Rotation und der
+separate Arena-2v2-Einstieg bestanden. [Live-Nachweis](l1-5b/production-live.json).
+Der Downloadumfang bleibt damit eine sichtbare Qualitätsgrenze: Vor zusätzlichem
+Adventure-Inhalt wäre eine begrenzte Ladezeit-/Assetbudget-Optimierung sinnvoll.
+Es wird kein schneller Internet-Kaltstart als bestanden behauptet.
+
 Reproduktion: `npm test`, `npm run build`, `npm run build:test`.
 Browser: `npx playwright test tests/e2e/adventure-acceptance.spec.ts
 tests/e2e/adventure-fight.spec.ts tests/e2e/arc-mobile.spec.ts

@@ -1,0 +1,36 @@
+{
+  "commit": "5b7a14ebaa0b1887fe1215a0abf344da0e86b2f4",
+  "run": 41296120868,
+  "results": [
+    {
+      "mode": "adventure",
+      "mobile": false,
+      "status": 200,
+      "readyMs": 11598,
+      "bundle": "adventureGame-By-0yLqm.js",
+      "testApi": "undefined",
+      "origins": [
+        "https://emfau88.github.io"
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "mode": "adventure",
+      "mobile": true,
+      "status": 200,
+      "readyMs": 19083,
+      "bundle": "adventureGame-By-0yLqm.js",
+      "testApi": "undefined",
+      "origins": [
+        "https://emfau88.github.io"
+      ],
+      "errors": [],
+      "failed": []
+    },
+    {
+      "mode": "arena",
+      "teamStart": true
+    }
+  ]
+}
