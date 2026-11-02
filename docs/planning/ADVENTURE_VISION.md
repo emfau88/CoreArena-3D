@@ -5,7 +5,8 @@ Produktvision und Roadmap sind vom Nutzer grundsätzlich freigegeben; die Strukt
 mit 26 Bulks und sechs Qualitätstoren bleibt erhalten. Die menschliche Abnahme
 wird auf drei Spieltermine gebündelt. Am 2.11.2026 wurden zunächst A0.1/A0.2,
 anschließend ausdrücklich **alle Bulks bis einschließlich A4** beauftragt.
-Der Kernprototyp ist technisch umgesetzt; T1/G1 bleibt menschlich offen.
+Der Kernprototyp ist technisch umgesetzt und in T1 grundsätzlich akzeptiert (G1).
+Knackigeres Peitschengefühl und deutlichere Treffer bleiben als Feinschliff offen.
 Den jeweiligen Umsetzungsstand führt die Roadmap.
 Die [Adventure-Roadmap](ADVENTURE_ROADMAP.md) ist die einzige maßgebliche Quelle
 für zukünftige Adventure-Arbeitspakete, Status, Abnahmen und Freigaben.

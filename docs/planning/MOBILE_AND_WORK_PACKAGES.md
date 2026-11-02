@@ -45,7 +45,8 @@ mit M2.4b ergänzt; zusätzlich die Adventure-Sprungkurve und Treppenhilfe über
 Für ihren Ausbau gelten die [neue Produktvision](ADVENTURE_VISION.md) und allein die
 [Adventure-Roadmap](ADVENTURE_ROADMAP.md). Neue Richtung: Desktop-first-Action-Adventure
 mit Boss-Rush-Schwerpunkt; A0.1–A4 sind separat beauftragt und technisch abgeschlossen.
-Menschliches T1/G1 steht aus; weitere Adventure-Bulks bleiben geplant.
+T1/G1 qualitativ bestanden; Peitschen-/Trefferfeedback bleibt als Feinschliff offen.
+Weitere Adventure-Bulks bleiben geplant.
 Der [L1-Levelplan](LEVEL_1_STONE_ADVENTURE.md) ist Bestands-/Historiennachweis:
 L1.6a–c sind umgesetzt, L1.5b ist technisch abgeschlossen; persönliche Abnahme offen.
 Arena-Pakete sind keine nächsten

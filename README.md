@@ -10,7 +10,8 @@
   **A0.1–A4 technisch abgeschlossen: Vergleichslabor, Kampfansicht, Dash und Energiepeitsche.**
   [Ergebnis und Spieltest T1](docs/qa/ADVENTURE_A1_A4_RESULT.md).
   26 Bulks, sechs Gates und drei gebündelte menschliche Spieltermine bleiben erhalten.
-  Menschliches G1 ist offen; A5 und spätere Mechaniken sind noch nicht beauftragt.
+  G1 qualitativ bestanden; härteres Peitschengefühl und deutlichere Treffer bleiben
+  als Feinschliff offen. A5 und spätere Mechaniken sind noch nicht beauftragt.
   Spielbarer Bestand: Steinmission L1.6a–c und L1.5b technisch abgeschlossen,
   persönliche Spiel-/Handyabnahme offen; alte Arc/Pulse-/Sprint-Regeln bleiben in Legacy
   und der regulären Mission aktiv. Neue Regeln nur im ausdrücklich gewählten Entwicklungslabor.

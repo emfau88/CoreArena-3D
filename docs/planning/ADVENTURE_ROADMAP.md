@@ -6,7 +6,7 @@ Dokumentation ist beauftragt; Vision und Struktur mit **26 Bulks und sechs Gates
 sind grundsätzlich freigegeben. Menschliche Prüfungen sind auf **drei Spieltermine**
 gebündelt (Abschnitt 5). **A0.1–A4 sind technisch abgeschlossen** auf
 `codex/adventure-combat-prototype`. A1–A4 wurden am 2.11.2026 ausdrücklich mit
-„ok dann zieh bis inkl. a4 durch“ beauftragt. **T1/G1 bleibt menschlich offen.**
+„ok dann zieh bis inkl. a4 durch“ beauftragt. **T1/G1 ist nach qualitativer Nutzerrückmeldung bestanden; Peitschen-/Trefferfeedback bleibt als nicht blockierender Feinschliff offen.**
 A5 und spätere Bulks bleiben geplant. Legacy und reguläre Mission behalten ihre Kampfregeln.
 [Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md).
 
@@ -250,7 +250,7 @@ Netzbedingungen und ein Releasebudget fest und optimiert vor zusätzlichem Asset
 Für jedes Gate Commit, Profil, Datum, technische Nachweise und menschliche
 Teilnehmer getrennt dokumentieren. Ergebnisse: **offen, bestanden, Nacharbeit,
 Kurskorrektur**; nur Gate 4 kann bei gestrichener Progression ausdrücklich entfallen.
-Aktuell sind alle sechs Gates **offen**. Für G1 liegen die technischen A1–A4-Nachweise vor; das Nutzerurteil folgt in T1. Der Nutzer trifft das abschließende
+**G1 ist bestanden**: Der Nutzer akzeptiert den Kernprototyp grundsätzlich („ok soweit ok“) und stellt härteres Peitschengefühl sowie deutlichere Treffer ausdrücklich zur späteren Verbesserung zurück. Keine numerischen Bewertungen oder Versuchszahlen angegeben. **G2–G6 bleiben offen.** Der Nutzer trifft das abschließende
 Produkturteil. Kleine Testgruppen sind Entscheidungshilfe, keine statistische Marktvalidierung.
 
 ### Drei gebündelte menschliche Spieltermine
@@ -395,7 +395,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A1 — Kampfansicht und gerichtetes Mausziel
 
-**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A1](../qa/ADVENTURE_A1_RESULT.md).
 **Ziel/Nutzen:** Richtungen und Gefahren sind bei dynamischer Bewegung zuverlässig lesbar.
 **Umfang:** Ein Adventure-Kameraprofil auf vorhandener Infrastruktur, Zielrichtung und einfacher Richtungsindikator. Höchstens ein zusätzlicher Perspektivvergleich bei belegter Grenze.
@@ -414,7 +414,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.1 — Bosskörper und faire Bewegungsgrenzen
 
-**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.1](../qa/ADVENTURE_A2_1_RESULT.md).
 **Ziel/Nutzen:** Positionierung bleibt glaubwürdig; Spieler und Boss überlagern sich nicht beliebig.
 **Umfang:** Prototyp-only Körperform des aktiven Steinwächters und definierte Kontaktauflösung; keine Bossattacken oder Kontakt-Schäden ändern.
@@ -433,7 +433,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.2 — Gerichteter Dash und unmittelbare Bewegung
 
-**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.2](../qa/ADVENTURE_A2_2_RESULT.md).
 **Ziel/Nutzen:** Ausweichen wird eine präzise, begrenzte Handlung.
 **Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Sprungkurve bleibt Basis, keine zusätzlichen Mobilitätsfähigkeiten.
@@ -452,7 +452,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A3 — Energiepeitsche: räumliche Angriffsregeln
 
-**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
 **Umfang:** Eine Grundattacke mit Vorschwung/Rücklauf, einfache sichtbare Bahn und bestehende Schadensschnittstelle; keine Mods oder neue Waffen.
@@ -472,7 +472,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A4 — Peitschenbewegung, Kontaktfeedback und Gate 1
 
-**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A4](../qa/ADVENTURE_A4_RESULT.md).
 **Ziel/Nutzen:** Die funktionierende Attacke wird als eigenständige, befriedigende Peitsche wahrgenommen.
 **Umfang:** Spielerpose, kontrollierte Energieform, Kontaktreaktionen und wenige Sounds; keine neue Attackenregel ohne eigenen dokumentierten Korrekturumfang.
@@ -481,7 +481,8 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 - [x] Animation und sichtbare Spitze an Simulationsphasen koppeln, Vorschwung/Rücklauf unterscheiden.
 - [x] Fehlschlag, Kontakt und Rücktreffer akustisch/visuell trennen; Gegnerwarnungen priorisieren.
 - [x] Effekte begrenzen, Pause/Retry/30-Hz-Darstellung technisch prüfen.
-- [ ] G1 mit dem Nutzer in Spieltermin T1 durchführen und dokumentieren.
+- [x] Qualitative T1-Rückmeldung dokumentiert: Grundprototyp akzeptiert, G1 bestanden; keine Punktbewertung oder Versuchszahl behauptet.
+- [ ] Nicht blockierender Feinschliff vor T2: Peitsche knackiger/härter wirken lassen und tatsächliche Treffer deutlicher zeigen. Zuerst Schwungabschluss/Rückschnappen, Kontaktsound und kurze Gegnerreaktion prüfen; kein pauschaler Schadensbonus. Kein neuer Bulk.
 
 **Systeme/Dateien:** `src/render/kayFighter.ts`, `arenaView.ts`, `src/app/stoneFeedback.ts`; `src/render/energyWhipView.ts`; passende Browser-/Performancefälle.
 **Tests/Regression:** K/N sowie A bei gemeinsamem Rig; zehn Retries, stummes Spiel, reduzierte Effekte, sichtbare Bahn gegen tatsächliche Treffer vergleichen.
@@ -867,6 +868,7 @@ freigegebener Bulk seine hier beschriebene Grenze, den Rest als neuen begrenzten
 Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen.
 
 Der aktuelle Implementierungsauftrag reicht ausdrücklich **bis einschließlich A4**.
-Die technische Umsetzung ist abgeschlossen; nächster Schritt ist **Spieltermin T1 / G1**.
-A5.1 wird erst nach positivem Nutzerurteil und passender Folgefreigabe umgesetzt.
+Die technische Umsetzung und das qualitative Nutzerurteil **T1/G1 sind abgeschlossen**.
+Empfohlener nächster Abschnitt: **A5.1–A7.2 bis Spieltermin T2**, einschließlich des
+dokumentierten A4-Feedback-Feinschliffs. Dieser Abschnitt ist noch nicht beauftragt.
 Die früher gemeldeten Arc-/Pulse-Siege betreffen die A0-Basis und ersetzen T1 nicht.
