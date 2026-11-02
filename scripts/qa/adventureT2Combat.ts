@@ -8,15 +8,17 @@ import {AdventureMotor,BOSS_BODY} from '../../src/core/adventureControls';
 import {EnergyWhip} from '../../src/core/energyWhip';
 import {directionTo} from '../../src/core/combat';
 import {solveAim} from '../../src/core/aim';
+import {PROTOTYPE_EXIT_SEAL} from '../../src/core/adventureBalance';
 
 const rows:unknown[]=[];
 const moves=process.argv[2]??'sweep',output=process.argv[3]??'docs/qa/adventure-a5-a7',trials=Number(process.argv[4]??9);
-if(!['sweep','overhead','mixed'].includes(moves)||!Number.isInteger(trials)||trials<1||trials>9)throw new Error('Expected sweep/overhead/mixed, output directory, 1..9 trials');
-for(const strategy of ['stationary','backward','circle','jump','plateau','reactive','complement'])for(let trial=0;trial<trials;trial++){
+if(!['sweep','overhead','mixed','aerial'].includes(moves)||!Number.isInteger(trials)||trials<1||trials>9)throw new Error('Expected sweep/overhead/mixed/aerial, output directory, 1..9 trials');
+for(const strategy of ['stationary','backward','circle','jump','plateau','reactive','complement',...(moves==='aerial'?['double-jump']:[])])for(let trial=0;trial<trials;trial++){
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT,{stepHeight:.32});
   try{
     const fight=createAdventureVariant('prototype',strategy==='complement').fight;prepareBossAttempt(fight,world,'arc');
     world.setObstacleEnabled('dormant-warden',false);world.setObstacleEnabled('boss-entry-gate',true);
+    world.setObstacleBox('north-gate',PROTOTYPE_EXIT_SEAL.center,PROTOTYPE_EXIT_SEAL.size);
     for(const runner of fight.runners)world.setTargetEnabled(runner.definition.id,false);
     const positionIndex=trial%3;
     const spawn=strategy==='plateau'?{x:-12+positionIndex,y:1.16,z:-23}:positionIndex===0?LAB_SPAWN:{x:positionIndex===1?-7:7,y:.06,z:-29};
@@ -29,6 +31,7 @@ for(const strategy of ['stationary','backward','circle','jump','plateau','reacti
       if(strategy==='backward'&&d<6.3){x=-line.direction.x;z=-line.direction.z;}
       if(strategy==='circle'){x=line.direction.z+line.direction.x*(d-3.2);z=-line.direction.x+line.direction.z*(d-3.2);}
       if(strategy==='jump')jump=p.grounded;
+      if(strategy==='double-jump')jump=p.grounded||motor.jumpSnapshot().available&&p.velocity.y<1;
       if(strategy==='reactive'||strategy==='complement'){
         if(b.phase==='melee'&&b.exchange?.window!=='counter'){
           if(b.phaseTick>12&&b.phaseTick<48){x=Math.cos(b.facing);z=-Math.sin(b.facing);dash=b.phaseTick===16;}
@@ -48,9 +51,10 @@ for(const strategy of ['stationary','backward','circle','jump','plateau','reacti
       if(shot.attacked){shots++;pulseMaxRange=Math.max(pulseMaxRange,d);}
       if(pulse)pulseTicks++;
       const rangedDamage=shot.damage.filter(h=>h.target===ADVENTURE_BOSS.id).reduce((n,h)=>n+h.amount,0);
-      const overhead=moves==='overhead'||moves==='mixed'&&b.exchange?.window==='counter'&&d<5.5&&
+      const overhead=moves==='overhead'||(moves==='mixed'||moves==='aerial')&&b.exchange?.window==='counter'&&d<5.5&&
         (b.phase==='melee'?b.phaseTick<100:b.phaseTick<64);
-      const attack=whip.step(move.current.tick,move.current.position,line.direction,!pulse&&!move.active&&whip.snapshot().phase==='idle',world,fight.targets(),overhead?'overhead':'sweep');
+      const kind=moves==='aerial'&&!move.current.grounded?'air':overhead?'overhead':'sweep';
+      const attack=whip.step(move.current.tick,move.current.position,line.direction,!pulse&&!move.active&&whip.snapshot().phase==='idle',world,fight.targets(),kind);
       fight.step(move.current.position,world,[...attack.damage,...shot.damage]);minimum=Math.min(minimum,d);
       // Attribute the observed HP delta, including protection/phase boundaries and overkill.
       const raw=rangedDamage+attack.damage.filter(h=>h.target===ADVENTURE_BOSS.id).reduce((n,h)=>n+h.amount,0);

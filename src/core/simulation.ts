@@ -12,14 +12,14 @@ export class Simulation {
       grounded: false, facing: 0, surface: null, ceiling: false,
     });
   }
-  step(command: MoveCommand, speedOverride?: number): Snapshot {
+  step(command: MoveCommand, speedOverride?: number, airJumpSpeed?: number): Snapshot {
     const length = Math.hypot(command.x, command.z);
     const divisor = Math.max(1, length);
     const speed = speedOverride ?? (command.sprint ? SPRINT_SPEED : WALK_SPEED);
     const vx = command.x / divisor * speed;
     const vz = command.z / divisor * speed;
     const vy = command.jump && this.state.grounded ? this.jump.jumpSpeed
-      : this.state.grounded ? -0.1 : this.state.velocity.y - this.jump.gravity * TICK_SECONDS;
+      : this.state.grounded ? -0.1 : airJumpSpeed ?? this.state.velocity.y - this.jump.gravity * TICK_SECONDS;
     const result = this.world.move({
       x: vx * TICK_SECONDS, y: vy * TICK_SECONDS, z: vz * TICK_SECONDS,
     },speedOverride!==undefined);

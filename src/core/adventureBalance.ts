@@ -13,3 +13,5 @@ export const PROTOTYPE_TACTICS:EncounterTactics = Object.freeze({
 });
 export const PROTOTYPE_PICKUPS = STONE_ADVENTURE_PICKUPS.filter(p=>p.kind==='health'||p.kind==='armor');
 export const COMPLEMENT_AMMO = 12;
+// Visible prototype-only seal prevents the new air jump bypassing the relay gate.
+export const PROTOTYPE_EXIT_SEAL=Object.freeze({center:{x:0,y:2.6,z:-42},size:{x:37,y:5.2,z:.4}});

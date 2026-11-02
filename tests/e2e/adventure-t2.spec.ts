@@ -37,7 +37,8 @@ for(const reserve of [false,true])test(`T2 complete prototype mission, reserve $
   await page.locator('#pve-again').click();const retry=await readT2(page);
   expect(retry.enemies.every(r=>r.hp===0)).toBe(true);expect(retry.pve.bossHp).toBe(900);expect(retry.pve.hp).toBe(100);
   expect(retry.pve.armor).toBe(reserve?75:50);expect(retry.weapons.ammo).toBe(0);expect(retry.prototype.whip.sequence).toBe(0);
-  await walkT2(page,0,-21);const won=await defeatT2(page,'boss');await info.attach('boss',{body:JSON.stringify(won),contentType:'application/json'});
+  // Exercise the current starting weapon: sweep/air strike plus overhead in long counter windows.
+  await walkT2(page,0,-21);const won=await defeatT2(page,'boss',false,'mixed');await info.attach('boss',{body:JSON.stringify(won),contentType:'application/json'});
   await page.screenshot({path:info.outputPath('core-drop.jpg'),quality:75});expect(won.result.completed).toBe(false);
   const core=won.result.core!.position;await walkT2(page,core.x,core.z);expect((await readT2(page)).core?.collected).toBe(true);
   await walkT2(page,0,core.z);await walkT2(page,0,-39);await page.keyboard.press('KeyE');

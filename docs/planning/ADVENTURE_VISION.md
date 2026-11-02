@@ -40,7 +40,7 @@ werden durch dieses Dokument nicht geändert. Die
 | Verständliche, faire Bossangriffe und Gegenangriffe | Peitsche allein oder mit begrenzter Fernkampfoption | Offene Welt, prozedurale Maps, große Geschichte/Vertonung |
 | Startausrüstung kann alle drei Bosse besiegen | Zwei alternative Waffenmodifikationen; Freischaltmodell | Inventarraster, Seltenheiten, Loot-Tabellen, Shops, Crafting |
 | Bestehende Maps und funktionierende Missionssysteme weiterverwenden | Assistenzoptionen nach beobachteten Einstiegshürden | Endlose Stat-Progression, tägliche Pflichten, Ressourcen-Grind |
-| Humor durch Verhalten und Animation, lesbare stilisierte Optik | Zusätzliche Waffe nur mit späterem eigenem Nutzenbeleg | Doppelsprung, Luftdash, Parieren oder Kombobäume als Pflicht |
+| Humor durch Verhalten und Animation, lesbare stilisierte Optik | Zusätzliche Waffe nur mit späterem eigenem Nutzenbeleg | Luftdash, Parieren oder Kombobäume als Pflicht |
 
 Ein Versuch wird erst durch sein dokumentiertes Qualitätstor zur Produktentscheidung.
 Die Namen und Grenzen der Gates stehen ausschließlich in der Roadmap. Eine
@@ -98,6 +98,12 @@ keinen Sprung durch ein Zurücksetzen der Schwerkraft. Körperkontakt mit dem Bo
 erhält eine klar sichtbare, einfache Bodenform; Trefferhülle und Bewegungsblocker
 bleiben getrennte Aufgaben. Kein automatischer Kontaktschaden. Einklemmen und
 Bossbewegung gegen den Spieler müssen ausdrücklich geprüft werden.
+
+Ergänzender Nutzerauftrag in T2: ein kürzerer zweiter Sprung im Adventure-Prototyp.
+Er braucht einen neuen Tastendruck und ist genau einmal bis zur nächsten Landung
+möglich. Der Bodenabsprung bleibt unverändert. Kein Schweben, Luftdash oder
+Unverwundbarkeitsfenster; Deckenberührung und Pause laden den Luftsprung nicht auf.
+Bossantworten, Plateaus und geschlossene Missionssperren werden damit erneut geprüft.
 
 Bei der Peitsche zunächst freie normale Bewegung mit begrenzter Zielkorrektur im
 Ausholen. Während eines aktiven Schlages bleibt die Richtung fest. Ein später
@@ -157,10 +163,13 @@ Später könnte ein Rückhaken ein eigenes Timing eröffnen; dies gehört zur op
 Modifikationsprüfung. Wiederholtes Halten und einzelnes Klicken werden als Bedienungsfrage
 verglichen, ohne ein neues automatisches Zielsuchen einzuführen.
 
-Sprungangriff und gezielter Rückhaken bleiben spätere Designkandidaten. Ein
-kontextabhängiger Luftangriff wäre zuerst mit dem normalen Sprung zu prüfen;
-Doppelsprung und Luftkombos verändern zusätzlich die Boss-Ausweichregeln und
-werden in dieser Nacharbeit nicht eingeführt.
+Auf weiteren ausdrücklichen Nutzerwunsch startet eine Peitscheneingabe in der Luft
+jetzt einen diagonalen Abwärtshieb, bereits aus dem normalen Sprung. Beide Tasten
+wählen dort dieselbe Bewegung. Der kürzere Doppelsprung setzt laufende Angriffe
+und Erholung nicht zurück. Zwei bewusst getimte Schläge sind möglich, sofern die
+Erholung vor der Landung endet; kein automatischer Kombobaum oder Landungs-Flächenschaden.
+Der gezielte Rückhaken bleibt ein späterer Designkandidat. Nutzen und Wahl zwischen
+den drei Bewegungen werden im laufenden T2 geprüft. [Regeln und Nachweis](../qa/ADVENTURE_AIR_RESULT.md).
 
 Feedback priorisiert Ursache: Bewegungsgeräusch, Kontakt, Rücktreffer, gegnerische
 Reaktion. Sehr kurze Trefferpause oder Kamerareaktion nur als einzelner Vergleich;
@@ -396,6 +405,8 @@ Spielfluss zu prüfen und keine Vorentscheidung für spätere Bosse.
 Erhöhte Plattformen schützen vor der Bodenwelle. Der Ausbruch markiert dagegen
 die tatsächlich gewählte Oberfläche und kann die Plattform treffen; ein hoher
 Faustschwung bleibt nur bei passender Reichweite/Höhe und freier Sicht gefährlich.
-Ein Doppelsprung ist weiterhin nicht enthalten. Charge oder Sprungangriff bleiben
-Optionen für eine konkret nachgewiesene Lücke, kein automatisch geplanter Ausbau.
+Der ergänzend beauftragte Doppelsprung und Spieler-Lufthieb sind enthalten.
+Charge oder Sprungangriff des Bosses bleiben Optionen für eine konkret nachgewiesene
+Lücke, kein automatisch geplanter Ausbau. Die Touch-Bedienung bietet auch Dash,
+Überkopf-Knall und Luftsprung; eine echte Smartphone-Abnahme steht noch aus.
 [Umfang, Grenzen und T2-Ablauf](../qa/ADVENTURE_A5_A7_RESULT.md).

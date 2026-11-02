@@ -1,0 +1,10 @@
+{
+  "result": {
+    "diagnosticHook": false,
+    "lab": false,
+    "restart": "Level neu starten",
+    "room": "Ladestation",
+    "bossHidden": true
+  },
+  "errors": []
+}

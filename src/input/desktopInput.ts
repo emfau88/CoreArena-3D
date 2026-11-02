@@ -10,7 +10,6 @@ export class DesktopInput {
   private firePending = false;
   private secondaryPending = false;
   private dashPending = false;
-  private touchFireHeld = false;
   private firing = false;
   private readonly mouse = { x: 0, y: 0, active: false };
   private readonly touch: TouchControls;
@@ -74,10 +73,11 @@ export class DesktopInput {
     this.firePending = false;
     return fire;
   }
-  attackPressed():boolean { const touch=this.touch.fire(), pressed=this.firePending || touch&&!this.touchFireHeld;
-    this.firePending=false;this.touchFireHeld=touch;return pressed; }
-  dashPressed():boolean {const pressed=this.dashPending;this.dashPending=false;return pressed;}
-  secondaryPressed():boolean {const pressed=this.secondaryPending;this.secondaryPending=false;return pressed;}
-  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.secondaryPending = this.firing = this.dashPending = this.touchFireHeld = false; this.mouse.active = false; this.touch.clear(); }
+  attackPressed():boolean { const touch=this.touch.attackPressed(),pressed=this.firePending||touch;this.firePending=false;return pressed; }
+  dashPressed():boolean {const touch=this.touch.dash(),pressed=this.dashPending||touch;this.dashPending=false;return pressed;}
+  secondaryPressed():boolean {const touch=this.touch.secondary(),pressed=this.secondaryPending||touch;this.secondaryPending=false;return pressed;}
+  setAdventure(enabled:boolean){this.touch.setAdventure(enabled);}
+  combatStatus(grounded:boolean,airAvailable:boolean,dashReady:boolean){this.touch.combatStatus(grounded,airAvailable,dashReady);}
+  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.secondaryPending = this.firing = this.dashPending = false; this.mouse.active = false; this.touch.clear(); }
   dispose(): void { this.abort.abort(); this.clear(); this.touch.dispose(); }
 }

@@ -129,6 +129,10 @@ export class RapierWorld implements SpatialWorld, RayWorld {
     const collider = this.obstacles.get(id);
     if (collider && collider.isEnabled() !== enabled) { collider.setEnabled(enabled); this.world.step(); }
   }
+  setObstacleBox(id:string,center:Vec3,size:Vec3):void {
+    const collider=this.obstacles.get(id);if(!collider)throw new Error(`Unknown obstacle: ${id}`);
+    collider.setHalfExtents({x:size.x/2,y:size.y/2,z:size.z/2});collider.setTranslation(center);this.world.step();
+  }
   sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly = false): RayHit | null {
     const hit = this.world.castShape(ray.origin, { x: 0, y: 0, z: 0, w: 1 }, ray.direction,
       new RAPIER.Ball(radius), 0, distance, true,

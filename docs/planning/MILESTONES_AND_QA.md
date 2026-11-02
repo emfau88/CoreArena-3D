@@ -26,6 +26,9 @@ Danach wurden A1–A4 ausdrücklich beauftragt und technisch abgeschlossen.
 Anschließend wurde A5.1–A7.2 bis zum T2-Kandidaten freigegeben: A5/A6/A7.1 sind
 technisch umgesetzt, A7.2 vorbereitet. [Nachweise und T2](../qa/ADVENTURE_A5_A7_RESULT.md).
 Der A4-Feinschliff ist umgesetzt; G2/G3 bleiben bis zum menschlichen Urteil offen.
+Auf ergänzenden Nutzerauftrag sind im isolierten Prototyp Sprungangriff, kurzer
+Doppelsprung und Touch-Aktionen ergänzt. [Nachweis und Grenzen](../qa/ADVENTURE_AIR_RESULT.md).
+Arena-/Legacy-Regeln und die 26 Bulks bleiben erhalten; keine Releasefreigabe.
 
 **Arena-Bestand vom 1. November, unverändert:** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.

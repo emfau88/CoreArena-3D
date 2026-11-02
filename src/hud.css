@@ -166,3 +166,6 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 .touch-mode .adventure-hud #campaign-story { display:block; bottom:78px; width:min(350px,calc(100vw - 320px)); font-size:10px; }
 .touch-mode #mission-interact { left:auto; right:18px; bottom:108px; transform:none; min-height:48px; max-width:210px; font-size:12px; }
 .touch-mode #adventure-location { width:calc(100vw - 450px); }
+.touch-mode #app[data-adventure] .adventure-combat #touch-heavy { min-width:60px; min-height:56px; border-color:#dbb773; }
+.touch-mode #app[data-adventure] .adventure-combat #touch-sprint { min-width:58px; }
+.adventure-combat button[aria-disabled="true"] { opacity:.55; }

@@ -5,7 +5,7 @@ import type { AdventureFightState } from '../core/adventureFight';
 import { MonsterView } from './monsterView';
 import { createKayGuard } from './kayGuard';
 import type { CourtyardAssets } from './courtyardLook';
-import { PROTOTYPE_BOSS_RULES } from '../core/adventureBalance';
+import { PROTOTYPE_BOSS_RULES, PROTOTYPE_EXIT_SEAL } from '../core/adventureBalance';
 
 class RunnerView {
   readonly root=new THREE.Group();
@@ -43,8 +43,17 @@ export class AdventureFightView {
   private readonly coreGem=new THREE.Group();
   private readonly motes:THREE.Mesh[]=[];
   private time=0;
+  private readonly exitSeal=new THREE.Group();
   constructor(private readonly scene:THREE.Scene,stone:CourtyardAssets['floor']) {
     scene.add(this.root); this.root.add(this.bossRoot);
+    this.exitSeal.name='prototype-exit-seal';this.root.add(this.exitSeal);
+    const seal=PROTOTYPE_EXIT_SEAL;
+    this.exitSeal.position.set(seal.center.x,seal.center.y,seal.center.z);
+    this.exitSeal.add(new THREE.Mesh(new THREE.BoxGeometry(seal.size.x,seal.size.y,seal.size.z),
+      new THREE.MeshBasicMaterial({color:0xf3bd67,transparent:true,opacity:.1,depthWrite:false})));
+    const edge=new THREE.MeshBasicMaterial({color:0xeac28b});
+    for(const y of [-seal.size.y/2,seal.size.y/2]){const rail=new THREE.Mesh(new THREE.BoxGeometry(seal.size.x,.04,.04),edge);rail.position.y=y;this.exitSeal.add(rail);}
+    for(const x of [-seal.size.x/2,seal.size.x/2]){const rail=new THREE.Mesh(new THREE.BoxGeometry(.04,seal.size.y,.04),edge);rail.position.x=x;this.exitSeal.add(rail);}
     this.boss=new MonsterView(this.bossRoot,'stone',ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,stone,true);
     this.runners=[new RunnerView(this.root,stone),new RunnerView(this.root,stone)];
     this.core.name='adventure-boss-drop';this.root.add(this.core);this.core.add(this.coreGem);
@@ -83,6 +92,7 @@ export class AdventureFightView {
     this.scene.getObjectByName('adventure-dormant')!.visible=!state.bossActive;
     this.scene.getObjectByName('adventure-entry-gate')!.visible=!exploration && state.entryClosed;
     const exitOpen=exploration || state.relayActive;
+    this.exitSeal.visible=!!state.pve.exchange&&!exitOpen;
     this.exitOpening=exitOpen ? Math.min(1,this.exitOpening+dt*1.5) : 0;
     const slide=this.exitOpening*this.exitOpening*(3-2*this.exitOpening)*5.1;
     this.scene.getObjectByName('adventure-exit-gate')!.children.forEach((leaf,i)=>leaf.position.x=(i?1:-1)*slide);

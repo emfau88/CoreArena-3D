@@ -90,7 +90,7 @@ export class EnergyWhipView {
   update(w:WhipSnapshot,hand:THREE.Vector3,foot:Vec3,aim:Vec3,boss:Vec3|null,tick:number,practice:boolean,reduced:boolean){
     this.group.visible=true;
     if(w.sequence!==this.sequence){this.clearHistory();this.sequence=w.sequence;}
-    const heavy=w.attack==='overhead',color=heavy?0xffbf69:w.phase==='return'?0x87bfff:0x53e5dc;
+    const heavy=w.attack==='overhead',color=w.attack==='air'?0xaf9dff:heavy?0xffbf69:w.phase==='return'?0x87bfff:0x53e5dc;
     this.energy.color.setHex(color);this.trailMaterial.color.setHex(color);
     this.energy.opacity=reduced?.12:.24;
     this.handle.position.copy(hand);this.handle.rotation.set(0,w.yaw,Math.PI/3);

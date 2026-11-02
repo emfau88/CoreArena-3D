@@ -7,8 +7,10 @@ export const WHIP = Object.freeze({ windup:6, forwardEnd:16, returnStart:21, ret
 // More burst and reach, but lower sustained damage than the broad 22+14 sweep.
 export const OVERHEAD = Object.freeze({ ...WHIP, windup:14, forwardEnd:24, returnStart:24, returnEnd:24,
   duration:64, reach:5.6, forwardDamage:46, returnDamage:0, aimTurnPerTick:.045 });
-export type WhipAttack = 'sweep'|'overhead';
-export const whipRules = (attack:WhipAttack) => attack==='overhead'?OVERHEAD:WHIP;
+export const AIR_WHIP = Object.freeze({ ...WHIP, windup:5, forwardEnd:16, returnStart:16, returnEnd:16,
+  duration:38, reach:4.5, forwardDamage:30, returnDamage:0, aimTurnPerTick:.06 });
+export type WhipAttack = 'sweep'|'overhead'|'air';
+export const whipRules = (attack:WhipAttack) => attack==='overhead'?OVERHEAD:attack==='air'?AIR_WHIP:WHIP;
 export type WhipPhase = 'idle'|'windup'|'forward'|'turn'|'return'|'recovery';
 export const whipPhase = (age:number,attack:WhipAttack='sweep'):WhipPhase => {
   const r=whipRules(attack);
@@ -21,6 +23,11 @@ const distance = (a:Vec3,b:Vec3) => Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 const snap=(t:number)=>1-Math.pow(1-Math.max(0,Math.min(1,t)),3);
 export function whipPose(age:number,attack:WhipAttack='sweep') {
   const phase=whipPhase(age,attack);
+  if(attack==='air'){
+    if(phase==='windup')return {angle:mix(.3,.65,age/5),length:mix(.65,1.4,age/5)};
+    if(phase==='forward')return {angle:mix(.65,-.9,snap((age-5)/11)),length:mix(1.4,AIR_WHIP.reach,(age-5)/3)};
+    return {angle:mix(-.9,.1,(age-16)/22),length:phase==='idle'?.65:mix(AIR_WHIP.reach,.65,(age-16)/16)};
+  }
   if(attack==='overhead') {
     if(phase==='windup')return {angle:mix(.25,1.45,age/14),length:mix(.65,2.2,age/14)};
     if(phase==='forward')return {angle:mix(1.45,-.13,snap((age-14)/10)),length:mix(2.2,OVERHEAD.reach,(age-14)/3)};
@@ -42,6 +49,12 @@ export function whipCurve(foot:Vec3,yaw:number,age:number,attack:WhipAttack='swe
       const t=i/WHIP.segments,pitch=pose.angle+Math.sin(t*Math.PI)*.24;
       const reach=Math.cos(pitch)*pose.length*t;
       return {x:root.x+forward.x*reach,y:root.y+Math.sin(pitch)*pose.length*t,z:root.z+forward.z*reach};
+    }
+    if(attack==='air'){
+      const t=i/WHIP.segments,phase=whipPhase(age,attack);
+      const sweep=phase==='forward'?mix(-.6,.08,snap((age-5)/11)):phase==='windup'?-.6:.08;
+      const angle=yaw+sweep*t,pitch=pose.angle+Math.sin(t*Math.PI)*.16,reach=Math.cos(pitch)*pose.length*t;
+      return {x:root.x+Math.sin(angle)*reach,y:root.y+Math.sin(pitch)*pose.length*t,z:root.z+Math.cos(angle)*reach};
     }
     const t=i/WHIP.segments,lag=Math.sin(t*Math.PI)*.32*(whipPhase(age)==='return'?-1:1);
     const angle=yaw+pose.angle*(.35+.65*t)+lag;
@@ -92,7 +105,7 @@ export class EnergyWhip {
     if(this.age<0 && pressed && tick>=this.readyAt) {
       this.attack=attack;
       // Dash/weapon switching can cancel the animation, never erase overhead recovery.
-      if(attack==='overhead')this.readyAt=tick+OVERHEAD.duration;
+      if(attack!=='sweep')this.readyAt=tick+whipRules(attack).duration;
       this.age=0;this.yaw=Math.atan2(aim.x,aim.z);this.sequence++;started=true;
       this.hit={forward:new Set(),return:new Set()};this.previousFoot=foot;this.contact=null;
     } else if(this.age>=0) this.age++;

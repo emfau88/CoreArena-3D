@@ -19,8 +19,10 @@ Im laufenden T2 meldet der Nutzer zu wenig optische Qualität und Abwechslung de
 Peitsche. Ausdrücklich freigegeben ist deshalb eine begrenzte **A3/A4-Nacharbeit**:
 Seitenschwung links, Überkopf-Knall rechts, hochwertigere prozedurale Darstellung
 und klareres Kontaktfeedback. Die Startwaffe erhält zwei direkte Eingaben; keine
-Mods/Progression, kein Doppelsprung und keine dritte Attacke. 26 Bulks, sechs Gates
-und drei Spieltermine bleiben erhalten. G2/G3 und A7.2 bleiben offen.
+Mods/Progression. Im anschließenden Nutzerauftrag kommt gezielt **A2.2/A3/A4-Nacharbeit**
+hinzu: kürzerer Doppelsprung, kontextabhängiger diagonaler Lufthieb und vollständige
+Touch-Eingaben für die Prototyp-Aktionen. [Regeln und Nachweise](../qa/ADVENTURE_AIR_RESULT.md).
+26 Bulks, sechs Gates und drei Spieltermine bleiben erhalten. G2/G3 und A7.2 bleiben offen.
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -448,12 +450,13 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 **Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.2](../qa/ADVENTURE_A2_2_RESULT.md).
 **Ziel/Nutzen:** Ausweichen wird eine präzise, begrenzte Handlung.
-**Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Sprungkurve bleibt Basis, keine zusätzlichen Mobilitätsfähigkeiten.
+**Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Boden-Sprungkurve bleibt Basis. Später ausdrücklich beauftragte T2-Nacharbeit: ein kürzerer Luftsprung pro Landung, kein Luftdash oder Immunitätsfenster.
 
 - [x] Dashbeginn auf Tastendruck, Richtung, Dauer, Reichweite und Wiederaufladung als Profil definieren.
 - [x] Stillstand/Richtungswechsel vergleichen; Beschleunigung nur bei nachgewiesenem Vorteil verändern.
 - [x] Bewegung durch vorhandene Kollisionsprüfung führen; Sprung-/Boden-/Abgrundverhalten festlegen.
 - [x] Kleinen Bereitschaftshinweis und lesende Zeitmessung ergänzen; Pause, Tod und Retry vollständig zurücksetzen.
+- [x] T2-Nacharbeit: Luftsprung nur auf neue Eingabe; kein Nachladen an Decken oder durch Pause, kein dritter Sprung. Geschlossene Missionssperren, Frameraten und Touch-Mehrfingereingaben erneut prüfen. [Nachweis](../qa/ADVENTURE_AIR_RESULT.md).
 
 **Systeme/Dateien:** `src/core/simulation.ts`, `types.ts`, `movementProfile.ts`, `src/input/desktopInput.ts`, `src/app/adventureGame.ts`; ggf. kleines Adventure-Movement-Modul.
 **Tests/Regression:** K/R/A/P; N für diagonale Richtung, gehaltene Taste, Cooldown, Wände/Treppen/Boss und 30/60/144 Hz.
@@ -467,7 +470,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 **Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
-**Umfang:** Ursprünglich eine Grundattacke mit Vorschwung/Rücklauf; in der freigegebenen T2-Nacharbeit zusätzlich der direkt gewählte Überkopf-Knall. Beide nutzen dieselbe räumliche Schadensschnittstelle; keine Mods oder neue Waffen.
+**Umfang:** Ursprünglich eine Grundattacke mit Vorschwung/Rücklauf; in der freigegebenen T2-Nacharbeit zusätzlich der direkt gewählte Überkopf-Knall und der kontextabhängige Lufthieb. Alle nutzen dieselbe räumliche Schadensschnittstelle; keine Mods oder neue Waffen.
 
 - [x] Phasen, Eingabe, Richtungsbindung und eine kontrollierte 3D-Kurve definieren.
 - [x] Überstrichene Bahn zwischen Ticks prüfen; Weltblocker, Höhe und mehrere mögliche Ziele berücksichtigen.
@@ -475,6 +478,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 - [x] Bewegung während Angriff sowie Dash-Abbruch festlegen; ausstehenden Schaden bei Abbruch/Tod/Retry löschen.
 - [x] Testziele mit Distanzen/Winkeln, Deckung und unterschiedlichen Höhen bereitstellen.
 - [x] T2-Nacharbeit: schmaler Überkopfschlag mit eigenem Ausholen/Einzeltreffer/Erholung; Rechtsklick ohne Wiederholung durch Halten, keine Angriffswarteschlange, Dash-Abbruch überspringt die Erholungszeit nicht. [Nachweis](../qa/ADVENTURE_WHIP_MOVES_RESULT.md).
+- [x] Ergänzender T2-Auftrag: gerichteter Abwärtshieb aus normalem Sprung und Doppelsprung, höchstens ein Treffer pro Ziel; reale Höhe und Deckung beachten, Erholung nicht durch Luftsprung zurücksetzen. Eigene Körperpose und violette Spur aus vorhandener Darstellung. [Nachweis](../qa/ADVENTURE_AIR_RESULT.md).
 
 **Systeme/Dateien:** `src/core/energyWhip.ts`, `tests/adventure-prototype.test.ts`; `src/core/combat.ts` nur Schnittstelle, `aim.ts`, Physikadapter, Kompositionspunkt, einfache Renderbahn.
 **Tests/Regression:** K/R/A/P, N für treffen/verfehlen, zwischen Ticks kreuzendes Ziel, Wand, Höhenversatz, Rücklauf, Abbruch und Mehrfachtreffer; Frameratevergleich.
@@ -885,6 +889,7 @@ Der aktuelle Implementierungsauftrag umfasst **A5.1–A7.2 bis zum T2-Kandidaten
 einschließlich A4-Feedback-Feinschliff. Technik und Vergleich sind vorbereitet;
 **T2 mit dem Nutzer läuft; die beauftragte Peitschen-Nacharbeit wird darin erneut geprüft**. A7.2, G2 und G3 sind noch nicht menschlich
 abgeschlossen. Keine automatische Freigabe für A8, weitere Bosskarten oder Release.
-Die ergänzend angesprochenen Charge-/Sprungangriffe bleiben Designkandidaten;
-Doppelsprung und zusätzliche Bossattacken wurden nicht eingeführt. Die Plateau-
-Prüfung ist Bestandteil von A5.2, kein weiterer Bulk.
+Die ergänzend angesprochenen Charge-/Sprungangriffe des Bosses bleiben Designkandidaten.
+Spieler-Lufthieb und Doppelsprung sind auf späteren ausdrücklichen Auftrag umgesetzt;
+ihre Wirkung gehört zur laufenden T2-Abnahme. Die erneute Plateau-/Bossprüfung bleibt
+Bestandteil von A5.2, kein weiterer Bulk.

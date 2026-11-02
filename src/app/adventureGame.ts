@@ -15,6 +15,7 @@ import type { MatchSnapshot } from '../core/match';
 import { DesktopInput } from '../input/desktopInput';
 import { lifeHud, weaponHud } from './hud';
 import { StoneFeedback } from './stoneFeedback';
+import { PROTOTYPE_EXIT_SEAL } from '../core/adventureBalance';
 import { AdventureMissionView, loadMissionAssets } from '../render/adventureMissionView';
 import { OutpostView } from '../render/outpostView';
 
@@ -135,7 +136,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const restart = () => {
     if (lab) { restartLab(true); return; }
     fight.reset();resetMissionPrototype();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
-    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.'+(prototype?' Links: Schwung · Rechts: Überkopf-Knall · Shift: Dash.':''),540);
+    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.'+(prototype?
+      input.touchEnabled?' Feld tippen: Schlag · Knall: schwerer Schlag · Sprung zweimal: Doppelsprung.':' Links: Schwung · Rechts: Überkopf-Knall · Shift: Dash · 2× Space: Doppelsprung.':''),540);
   };
   const retry = () => {
     if (lab) { restartLab(true); return; }
@@ -143,6 +145,9 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     else {const spawn=fight.retry();resetMissionPrototype();placePlayer(spawn);}
   };
   const configurePresentation=()=>{
+    input.setAdventure(!!prototype);
+    const exit=prototype?PROTOTYPE_EXIT_SEAL:STONE_ADVENTURE_COMBAT.boxes.find(b=>b.id==='north-gate')!;
+    world.setObstacleBox('north-gate',exit.center,exit.size);
     view.scene.getObjectByName('outpost-pulse-label')!.visible=!prototype;
     view.camera.combat(!!prototype);whipView?.hide();feedback.reset(true);view.resetPresentation();fightView.resetPresentation(!!prototype);
     el('weapon-panel').hidden=!!prototype&&!fight.complement;el('camera-toggle').hidden=!!prototype;
@@ -153,7 +158,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     host.querySelectorAll('footer > span')[1]!.textContent=prototype?'SHIFT · Dash':'SHIFT · Sprint';
     let controls=host.querySelector<HTMLElement>('#whip-controls');
     if(!controls){controls=document.createElement('span');controls.id='whip-controls';host.querySelector('footer')!.append(controls);}
-    controls.hidden=!prototype;controls.textContent='Links: Schwung · Rechts: Überkopf-Knall';
+    controls.hidden=!prototype;controls.textContent='Links: Schwung · Rechts: Knall · Luft: Lufthieb · 2× Space: Doppelsprung';
   };
   const resetMissionPrototype=()=>{
     if(entry.profile!=='prototype')return;
@@ -262,7 +267,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     if (now-lastHud > 70) {
       if(prototype){
         const w=prototype.whip.snapshot();
-        el('whip-controls').textContent='Links: Schwung · Rechts: Überkopf-Knall'+
+        input.combatStatus(current.grounded,prototype.motor.jumpSnapshot().available,prototype.motor.snapshot().readyIn===0);
+        el('whip-controls').textContent='Links: Schwung · Rechts: Überkopf-Knall · Luft: Lufthieb · 2× Space: Doppelsprung'+
           (weapons.selected==='arc'&&w.readyIn>0&&(w.phase==='recovery'||w.phase==='idle')?` · Erholung ${(w.readyIn/60).toFixed(1)} s`:'');
       }
       const room = stoneRoomAt(current.position);
@@ -283,7 +289,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
             'Steinkern geborgen · Am Relais vor dem Nordtor einsetzen.':'Steinkern beim besiegten Wächter einsammeln · Das Relais braucht seine Energie.';
         }
         el('room-hint').textContent=objective;
-        if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent='Links: breiter Schwung · Rechts: schmaler Überkopf-Knall · Ein Klick pro Angriff';}
+        if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent=input.touchEnabled?'Feld tippen: Schlag · Knall: schwerer Schlag · Sprung zweimal: Doppelsprung · Luft: Lufthieb':'Links: Schwung · Rechts: Überkopf-Knall · Luft: Lufthieb · Leertaste erneut: Doppelsprung';}
       }
       const interaction=exploration?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
       button.hidden=paused || !interaction;

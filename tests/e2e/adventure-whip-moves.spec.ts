@@ -99,14 +99,15 @@ test('mixed whip moves defeat the real warden, preserve warnings and distinguish
   await info.attach('mixed-boss',{body:JSON.stringify({result,captures:captures.map(({image,...rest})=>rest)}),contentType:'application/json'});
 });
 
-test('regular prototype mission accepts both attacks and ordinary jump without a double jump',async({page})=>{
+test('regular prototype mission accepts ground attacks and a single extra air jump',async({page})=>{
   await page.goto('./?mode=pve&level=stone&adventure=1&combat=prototype');await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   const s=await readT2(page),point=s.enemies[0]!.screen;
   await page.mouse.click(point.x,point.y,{button:'right'});await page.waitForTimeout(60);
   expect((await readT2(page)).prototype.whip.attack).toBe('overhead');
   await page.keyboard.press('Space');await page.waitForTimeout(100);const jump=await readT2(page);
   await page.keyboard.press('Space');await page.waitForTimeout(60);const after=await readT2(page);
-  expect(after.snapshot.velocity.y).toBeLessThan(jump.snapshot.velocity.y);expect(after.prototype.whip.sequence).toBe(1);
+  expect(after.prototype.airJump.uses).toBe(1);expect(after.prototype.airJump.available).toBe(false);expect(after.prototype.whip.sequence).toBe(1);
+  expect(after.snapshot.position.y).toBeGreaterThan(jump.snapshot.position.y);
   await page.locator('#pve-restart').click();expect((await readT2(page)).prototype.whip.readyIn).toBe(0);
   await page.mouse.click(point.x,point.y);await page.waitForTimeout(60);expect((await readT2(page)).prototype.whip.attack).toBe('sweep');
 });

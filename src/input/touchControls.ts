@@ -9,6 +9,9 @@ export class TouchControls {
   private aimId: number | null = null;
   private jumpPending = false;
   private firePending = false;
+  private dashPending=false;
+  private secondaryPending=false;
+  private adventure=false;
   x = 0;
   up = 0;
   sprint = false;
@@ -19,7 +22,7 @@ export class TouchControls {
     this.root = document.createElement('div'); this.root.id = 'touch-controls';
     this.root.innerHTML = `<div id="touch-stick" aria-label="Bewegungsjoystick"><span></span><small>BEWEGEN</small></div>
       <div id="touch-actions"><button id="touch-camera" type="button" aria-label="Kamera wechseln">Ansicht</button>
-      <button id="touch-sprint" type="button" aria-pressed="false">Sprint aus</button><button id="touch-jump" type="button">Sprung</button></div>
+      <button id="touch-heavy" type="button" hidden>Knall</button><button id="touch-sprint" type="button" aria-pressed="false">Sprint aus</button><button id="touch-jump" type="button">Sprung</button></div>
       <div id="touch-hint">Arena berühren &amp; halten: zielen und feuern</div>
       <div id="rotate-device"><div>Bitte ins Querformat drehen.<small>Links bewegen · Arena berühren zum Feuern</small></div></div>`;
     canvas.parentElement!.append(this.root);
@@ -57,7 +60,10 @@ export class TouchControls {
     this.root.querySelector('#touch-jump')!.addEventListener('pointerdown', (event) => {
       event.preventDefault(); this.jumpPending = true;
     }, options);
-    const toggleSprint = () => { this.sprint = !this.sprint; this.sprintLabel(); };
+    this.root.querySelector<HTMLButtonElement>('#touch-heavy')!.addEventListener('pointerdown',event=>{
+      if(event.button!==0||!this.adventure)return;event.preventDefault();this.secondaryPending=true;
+    },options);
+    const toggleSprint = () => { if(this.adventure){this.dashPending=true;return;} this.sprint = !this.sprint; this.sprintLabel(); };
     this.sprintButton.addEventListener('pointerdown', (event) => {
       if (event.button !== 0) return;
       // Secondary touch pointers may not synthesize click while the joystick is held.
@@ -79,18 +85,35 @@ export class TouchControls {
   private aim(event: PointerEvent): void { Object.assign(this.pointer, { x: event.clientX, y: event.clientY, active: true }); }
   private sprintLabel(): void {
     this.sprintButton.setAttribute('aria-pressed', String(this.sprint));
-    this.sprintButton.textContent = this.sprint ? 'Sprint an' : 'Sprint aus';
+    this.sprintButton.textContent = this.adventure?'Dash':this.sprint ? 'Sprint an' : 'Sprint aus';
   }
+  setAdventure(enabled:boolean){
+    this.adventure=enabled;this.root.classList.toggle('adventure-combat',enabled);this.clear();
+    this.root.querySelector<HTMLButtonElement>('#touch-heavy')!.hidden=!enabled;
+    this.root.querySelector('#touch-jump')!.textContent=enabled?'Sprung ×2':'Sprung';
+    this.root.querySelector('#touch-jump')!.removeAttribute('aria-disabled');this.sprintButton.removeAttribute('aria-disabled');
+    this.root.querySelector('#touch-hint')!.textContent=enabled?'Feld tippen: Schlag · in der Luft: Lufthieb':'Arena berühren & halten: zielen und feuern';
+  }
+  attackPressed(){const pressed=this.firePending;this.firePending=false;return pressed;}
+  combatStatus(grounded:boolean,airAvailable:boolean,dashReady:boolean){
+    if(!this.adventure)return;
+    const jump=this.root.querySelector<HTMLButtonElement>('#touch-jump')!;
+    jump.textContent=grounded?'Sprung ×2':airAvailable?'Luftsprung':'Landung…';
+    jump.setAttribute('aria-disabled',String(!grounded&&!airAvailable));
+    this.sprintButton.setAttribute('aria-disabled',String(!grounded||!dashReady));
+  }
+  dash(){const pressed=this.dashPending;this.dashPending=false;return pressed;}
+  secondary(){const pressed=this.secondaryPending;this.secondaryPending=false;return pressed;}
   jump(): boolean { const jump = this.jumpPending; this.jumpPending = false; return jump; }
   fire(): boolean {
     const fire = this.aimId !== null || this.firePending;
     this.firePending = false;
-    if (!fire) this.pointer.active = false;
+    if (!fire&&!this.adventure) this.pointer.active = false;
     return fire;
   }
   clear(): void {
     this.moveId = this.aimId = null; this.x = this.up = 0;
-    this.jumpPending = this.firePending = this.sprint = this.pointer.active = false;
+    this.jumpPending = this.firePending = this.dashPending = this.secondaryPending = this.sprint = this.pointer.active = false;
     this.knob.style.transform = ''; this.sprintLabel();
   }
   dispose(): void { this.abort.abort(); this.root.remove(); }
