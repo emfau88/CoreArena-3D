@@ -10,7 +10,9 @@ import {directionTo} from '../../src/core/combat';
 import {solveAim} from '../../src/core/aim';
 
 const rows:unknown[]=[];
-for(const strategy of ['stationary','backward','circle','jump','plateau','reactive','complement'])for(let trial=0;trial<9;trial++){
+const moves=process.argv[2]??'sweep',output=process.argv[3]??'docs/qa/adventure-a5-a7',trials=Number(process.argv[4]??9);
+if(!['sweep','overhead','mixed'].includes(moves)||!Number.isInteger(trials)||trials<1||trials>9)throw new Error('Expected sweep/overhead/mixed, output directory, 1..9 trials');
+for(const strategy of ['stationary','backward','circle','jump','plateau','reactive','complement'])for(let trial=0;trial<trials;trial++){
   const world=await createSpatialWorld(STONE_ADVENTURE_COMBAT,{stepHeight:.32});
   try{
     const fight=createAdventureVariant('prototype',strategy==='complement').fight;prepareBossAttempt(fight,world,'arc');
@@ -46,16 +48,18 @@ for(const strategy of ['stationary','backward','circle','jump','plateau','reacti
       if(shot.attacked){shots++;pulseMaxRange=Math.max(pulseMaxRange,d);}
       if(pulse)pulseTicks++;
       const rangedDamage=shot.damage.filter(h=>h.target===ADVENTURE_BOSS.id).reduce((n,h)=>n+h.amount,0);
-      const attack=whip.step(move.current.tick,move.current.position,line.direction,!pulse&&!move.active&&whip.snapshot().phase==='idle',world,fight.targets());
+      const overhead=moves==='overhead'||moves==='mixed'&&b.exchange?.window==='counter'&&d<5.5&&
+        (b.phase==='melee'?b.phaseTick<100:b.phaseTick<64);
+      const attack=whip.step(move.current.tick,move.current.position,line.direction,!pulse&&!move.active&&whip.snapshot().phase==='idle',world,fight.targets(),overhead?'overhead':'sweep');
       fight.step(move.current.position,world,[...attack.damage,...shot.damage]);minimum=Math.min(minimum,d);
       // Attribute the observed HP delta, including protection/phase boundaries and overkill.
       const raw=rangedDamage+attack.damage.filter(h=>h.target===ADVENTURE_BOSS.id).reduce((n,h)=>n+h.amount,0);
       const applied=b.bossHp-fight.life.snapshot().bossHp;
       if(raw>0){pulseDamage+=applied*rangedDamage/raw;if(applied/raw>.5)pulseCounterDamage+=applied*rangedDamage/raw;}
     }
-    const b=fight.life.snapshot();rows.push({strategy,trial,spawn,outcome:b.outcome,seconds:(b.tick-120)/60,bossHp:b.bossHp,hp:b.hp,armor:b.armor,
+    const b=fight.life.snapshot();rows.push({strategy,moves,trial,spawn,outcome:b.outcome,seconds:(b.tick-120)/60,bossHp:b.bossHp,hp:b.hp,armor:b.armor,
       hitsTaken:b.hitsTaken,exchange:b.exchange,whip:whip.snapshot(),dash:motor.snapshot(),shots,pulseDamage,pulseCounterDamage,pulseTicks,pulseMaxRange,phases:[...phases],minimum,position:sim.snapshot().position});
     console.log(JSON.stringify({strategy,trial,outcome:b.outcome,seconds:(b.tick-120)/60,bossHp:b.bossHp,hp:b.hp,hits:b.hitsTaken}));
   }finally{world.dispose();}
 }
-mkdirSync('docs/qa/adventure-a5-a7',{recursive:true});writeFileSync('docs/qa/adventure-a5-a7/combat-policies.json',JSON.stringify(rows,null,2)+'\n');
+mkdirSync(output,{recursive:true});writeFileSync(`${output}/combat-policies${moves==='sweep'?'':`-${moves}`}.json`,JSON.stringify(rows,null,2)+'\n');

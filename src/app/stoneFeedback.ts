@@ -1,7 +1,8 @@
-type Cue = 'whip-guard'|'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
+type Cue = 'whip-charge'|'whip-crack'|'whip-impact'|'whip-guard'|'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
 const tones: Record<Cue, [number, number, number, number]> = {
   'whip-guard':[1800,550,.055,.045],
-  'whip-swing':[300,650,.12,.045], 'whip-return':[640,210,.11,.04],
+  'whip-charge':[230,920,.19,.025], 'whip-crack':[1900,180,.085,.075], 'whip-impact':[180,45,.15,.12],
+  'whip-swing':[850,180,.085,.055], 'whip-return':[1100,240,.075,.045],
   'whip-hit':[1200,95,.095,.1], 'whip-back-hit':[1500,150,.075,.09],dash:[220,65,.13,.045],
   pulse: [480, 120, 0.09, 0.1], arc: [180, 85, 0.6, 0.13], hit: [240, 80, 0.07, 0.08],
   hurt: [95, 40, 0.22, 0.18], step: [80, 45, 0.055, 0.035], land: [100, 35, 0.16, 0.12],
@@ -68,7 +69,10 @@ export class StoneFeedback {
     oscillator.connect(gain); gain.connect(stereo); stereo.connect(this.master!);
     const noise = ctx.createBufferSource(), filter = ctx.createBiquadFilter(); noise.buffer = this.noise;
     noise.loop=cue==='arc';
-    filter.type = 'lowpass'; filter.frequency.value = cue==='whip-hit'||cue==='whip-back-hit'?3200:cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450;
+    const crack=cue==='whip-crack'||cue==='whip-swing'||cue==='whip-return';
+    filter.type = crack?'bandpass':'lowpass';
+    filter.frequency.setValueAtTime(crack?5500:cue==='whip-guard'?2000:cue==='whip-impact'?1800:cue==='whip-hit'||cue==='whip-back-hit'?3200:cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450,now);
+    if(crack)filter.frequency.exponentialRampToValueAtTime(900,now+duration);
     noise.connect(filter); filter.connect(gain);
     this.voices++; this.played++;
     const cleanup = () => {

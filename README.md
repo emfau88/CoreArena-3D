@@ -9,6 +9,7 @@
   [Adventure-Roadmap mit Bulks und sechs Gates](docs/planning/ADVENTURE_ROADMAP.md).
   **A0–A6.2 und A7.1 technisch umgesetzt; A7.2 als Spieltermin T2 vorbereitet.**
   [T2-Kandidat: Steinwächter, erste Mission und Waffenvergleich](docs/qa/ADVENTURE_A5_A7_RESULT.md).
+  [T2-Nacharbeit: Seitenschwung links, Überkopf-Knall rechts und neue Peitscheneffekte](docs/qa/ADVENTURE_WHIP_MOVES_RESULT.md).
   26 Bulks, sechs Gates und drei menschliche Spieltermine bleiben erhalten.
   G1 qualitativ bestanden; G2/G3 und der Richtungsentscheid folgen in T2.
   Legacy bleibt unveränderter Standard. Im Entwicklungs-/Testbuild ist die

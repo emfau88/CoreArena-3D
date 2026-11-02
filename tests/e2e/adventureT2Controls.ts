@@ -19,7 +19,7 @@ export async function walkT2(page:Page,x:number,z:number){
   }
   const p=(await readT2(page)).snapshot.position;expect(Math.hypot(p.x-x,p.z-z),JSON.stringify(p)).toBeLessThan(.65);
 }
-export async function defeatT2(page:Page,index:'boss'|number,complement=false){
+export async function defeatT2(page:Page,index:'boss'|number,complement=false,moves:'sweep'|'mixed'='sweep'){
   const deadline=Date.now()+100000,frames:T2State[]=[];let lastDash=-1000;
   try{while(Date.now()<deadline){
     const s=await readT2(page),p=s.snapshot,b=s.pve;
@@ -38,7 +38,11 @@ export async function defeatT2(page:Page,index:'boss'|number,complement=false){
     const pulse=complement&&index==='boss'&&d>5&&s.weapons.ammo>0&&b.phase!=='emerging';
     if((pulse?'pulse':'arc')!==s.weapons.selected)await page.keyboard.press(pulse?'Digit2':'Digit1');
     const point=index==='boss'?s.monsterScreen:s.enemies[index]!.screen;
-    if((s.prototype.whip.phase==='idle'||pulse)&&b.outcome==='running'&&(index!=='boss'||b.phase!=='emerging'))await page.mouse.click(point.x,point.y);
+    // Commit to the slower move only in a sufficiently long, nearby counter window.
+    const overhead=moves==='mixed'&&b.exchange?.window==='counter'&&d<5.5&&
+      (b.phase==='melee'?b.phaseTick<100:b.phaseTick<64);
+    if((s.prototype.whip.phase==='idle'&&s.prototype.whip.readyIn===0||pulse)&&b.outcome==='running'&&(index!=='boss'||b.phase!=='emerging'))
+      await page.mouse.click(point.x,point.y,{button:!pulse&&overhead?'right':'left'});
     if(frames.length===0||p.tick-frames.at(-1)!.snapshot.tick>=60)frames.push(s);
     await page.waitForTimeout(35);
   }}finally{for(const key of ['KeyW','KeyA','KeyS','KeyD'])await page.keyboard.up(key);}

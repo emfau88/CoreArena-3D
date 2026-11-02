@@ -167,7 +167,7 @@ export class MonsterView {
       foot.position.z = 0.2 + step * 0.42; foot.position.y = 0.35 + Math.max(0, step) * 0.24;
     });
     const prototype=!!state.exchange;
-    if (state.bossHp < this.previousHp) this.flash = prototype?(this.previousHp-state.bossHp>4?.18:.05):.1;
+    if (state.bossHp < this.previousHp) this.flash = prototype?(this.previousHp-state.bossHp>5?.18:.05):.1;
     this.previousHp = state.bossHp; this.flash = Math.max(0, this.flash - dt);
     this.coreMaterial.emissiveIntensity = this.flash > 0 ? 6 : 2 + Math.sin(state.tick / 10) * 0.5;
     const recovering=this.adventureFeedback&&(state.phase==='recovery'||state.exchange?.window==='counter')&&state.outcome==='running';

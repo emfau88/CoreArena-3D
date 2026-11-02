@@ -78,7 +78,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     if (id === 'cycle') combat.cycle(); else combat.select(id);
     if(combat.snapshot().selected!==old)prototype?.whip.cancel();
   } };
-  const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
+  const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon,()=>!!prototype);
   const feedback = new StoneFeedback(host);
   const announce = (text:string,ticks=360) => { el('mission-message').textContent=text; messageUntil=current.tick+ticks; };
   const requestInteraction = () => { if(!paused && !exploration) interactPending=true; };
@@ -135,7 +135,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const restart = () => {
     if (lab) { restartLab(true); return; }
     fight.reset();resetMissionPrototype();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
-    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.'+(prototype?' Klick: Peitsche · Shift: Dash · Leertaste: Sprung.':''),540);
+    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.'+(prototype?' Links: Schwung · Rechts: Überkopf-Knall · Shift: Dash.':''),540);
   };
   const retry = () => {
     if (lab) { restartLab(true); return; }
@@ -147,10 +147,13 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     view.camera.combat(!!prototype);whipView?.hide();feedback.reset(true);view.resetPresentation();fightView.resetPresentation(!!prototype);
     el('weapon-panel').hidden=!!prototype&&!fight.complement;el('camera-toggle').hidden=!!prototype;
     el('weapon-arc').querySelector('.weapon-name')!.textContent=prototype?'Energiepeitsche':'Arc Lash';
-    el('weapon-arc').querySelector('.weapon-type')!.textContent=prototype?'KLICK · SCHWUNG':'AUTO-FÄCHER';
-    el('weapon-arc').title=prototype?'Ein Klick pro Peitschenschlag · Hin- und Rückschwung':'Automatischer Energiefächer · kurze Reichweite · halten für weitere Salven';
+    el('weapon-arc').querySelector('.weapon-type')!.textContent=prototype?'LINKS / RECHTS':'AUTO-FÄCHER';
+    el('weapon-arc').title=prototype?'Linksklick: Seitenschwung · Rechtsklick: Überkopf-Knall (längere Erholung)':'Automatischer Energiefächer · kurze Reichweite · halten für weitere Salven';
     el('weapon-panel').querySelector('small')!.textContent=prototype?'Pulse: 12 Schuss pro Versuch · kein Munitionsfund':'Arc zum Start · Pulse am Norddurchgang';
     host.querySelectorAll('footer > span')[1]!.textContent=prototype?'SHIFT · Dash':'SHIFT · Sprint';
+    let controls=host.querySelector<HTMLElement>('#whip-controls');
+    if(!controls){controls=document.createElement('span');controls.id='whip-controls';host.querySelector('footer')!.append(controls);}
+    controls.hidden=!prototype;controls.textContent='Links: Schwung · Rechts: Überkopf-Knall';
   };
   const resetMissionPrototype=()=>{
     if(entry.profile!=='prototype')return;
@@ -196,7 +199,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       previous = current;
       const pressed=prototype?input.attackPressed():false;
-      const prototypeStep=prototype?.step(input.command(view.camera.basis()),input.dashPressed(),pressed&&combat.snapshot().selected==='arc'&&before.pve.outcome==='running',ray,world,fight.targets(),feedback,before.pve.exchange?.window!=='counter');
+      const secondary=input.secondaryPressed(),canWhip=combat.snapshot().selected==='arc'&&before.pve.outcome==='running';
+      const prototypeStep=prototype?.step(input.command(view.camera.basis()),input.dashPressed(),pressed&&canWhip,ray,world,fight.targets(),feedback,before.pve.exchange?.window!=='counter',secondary&&canWhip);
       current=prototypeStep?.current??simulation.step(input.command(view.camera.basis()));
       if (exploration && current.position.y < -6) { current = simulation.reset(); previous = current; view.camera.snap(current.position); }
       if (before.pve.outcome==='victory' && current.position.y < -6) {
@@ -256,6 +260,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     const weapons = combat.snapshot();
     const state=fight.snapshot(), {hp,armor}=state.pve;
     if (now-lastHud > 70) {
+      if(prototype){
+        const w=prototype.whip.snapshot();
+        el('whip-controls').textContent='Links: Schwung · Rechts: Überkopf-Knall'+
+          (weapons.selected==='arc'&&w.readyIn>0&&(w.phase==='recovery'||w.phase==='idle')?` · Erholung ${(w.readyIn/60).toFixed(1)} s`:'');
+      }
       const room = stoneRoomAt(current.position);
       if (room) { el('room-name').textContent = prototype&&room.id==='C'?'Ladestation':room.name; el('room-hint').textContent = hints[room.id]!; }
       const guards=state.runners.filter(r=>r.hp>0).length;
@@ -274,7 +283,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
             'Steinkern geborgen · Am Relais vor dem Nordtor einsetzen.':'Steinkern beim besiegten Wächter einsammeln · Das Relais braucht seine Energie.';
         }
         el('room-hint').textContent=objective;
-        if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent='Nahziele: Hin- und Rückschwung · Fernziel: Reichweite · Ein Klick pro Schlag';}
+        if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent='Links: breiter Schwung · Rechts: schmaler Überkopf-Knall · Ein Klick pro Angriff';}
       }
       const interaction=exploration?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
       button.hidden=paused || !interaction;
@@ -338,7 +347,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
         interaction:fight.interaction(current.position,world)},
       enemies:fight.runners.map(r=>({...r.snapshot(),screen:view.projectedPosition(r.snapshot().center)})),
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
-      paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,
+      paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,whipVisual:whipView?.diagnostics()??null,
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),arcVisual:view.arcDiagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.

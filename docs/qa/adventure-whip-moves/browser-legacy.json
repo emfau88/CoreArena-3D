@@ -1,0 +1,212 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\Documents\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/adventure-acceptance.spec.ts",
+      "--project=chrome-1366",
+      "--grep",
+      "desktop Adventure manual",
+      "--output=test-results/whip-v2-legacy",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\madde\\Documents\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/whip-v2-legacy",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/whip-v2-legacy",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/whip-v2-legacy",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/Documents/CoreArena 3D/test-results/whip-v2-legacy",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/Documents/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\test-results\\whip-v2-legacy",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chrome-1366",
+        "testDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\Documents\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chrome",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chrome-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "adventure-acceptance.spec.ts",
+      "file": "adventure-acceptance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop Adventure manual pause survives focus and resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome-1366",
+              "projectName": "chrome-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4733,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-02T18:05:26.302Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "pause-check",
+                      "contentType": "application/json",
+                      "body": "eyJtb2JpbGUiOmZhbHNlLCJ0aWNrIjoxNCwiZmluYWwiOnsibW9kZSI6ImFkdmVudHVyZSIsImxldmVsIjoic3RvbmUiLCJjb21iYXRQcm9maWxlIjoibGVnYWN5IiwiY29tYmF0UnVsZXMiOiJsZWdhY3ktYTAiLCJsYWIiOm51bGwsInNuYXBzaG90Ijp7InRpY2siOjIxLCJwb3NpdGlvbiI6eyJ4IjowLjAwMDAwNzQ3MDgzNTA0MzkzMjMxMSwieSI6MC4wMjgyNTA2NzA0MzMwNDQ0MSwieiI6MzN9LCJ2ZWxvY2l0eSI6eyJ4IjowLCJ5IjowLCJ6IjowfSwiZ3JvdW5kZWQiOnRydWUsInN1cmZhY2UiOiJmbG9vci1lbnRyeSIsImNlaWxpbmciOmZhbHNlLCJmYWNpbmciOjB9LCJ3ZWFwb25zIjp7InNlbGVjdGVkIjoiYXJjIiwib3duc1B1bHNlIjpmYWxzZSwiYW1tbyI6MCwicHJvamVjdGlsZXMiOltdLCJsYXN0QXJjIjpudWxsLCJpbXBhY3QiOm51bGx9LCJwaWNrdXBzIjpbeyJpZCI6ImFkdmVudHVyZS1wdWxzZSIsImtpbmQiOiJwdWxzZSIsInBvc2l0aW9uIjp7IngiOi0zLCJ5IjowLCJ6IjoxOC41fSwic3VyZmFjZSI6ImZsb29yLWVudHJ5IiwiYW1vdW50Ijo1NCwicmVtYWluaW5nIjo1NCwicmVzcGF3bkF0IjowfSx7ImlkIjoic2lkZS1oZWFsdGgiLCJraW5kIjoiaGVhbHRoIiwicG9zaXRpb24iOnsieCI6LTEzLjUsInkiOjEuMSwieiI6NH0sInN1cmZhY2UiOiJzaWRlLXRlcnJhY2UiLCJhbW91bnQiOjM1LCJyZW1haW5pbmciOjM1LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJzaWRlLWFybW9yIiwia2luZCI6ImFybW9yIiwicG9zaXRpb24iOnsieCI6LTEzLjUsInkiOjEuMSwieiI6MH0sInN1cmZhY2UiOiJzaWRlLXRlcnJhY2UiLCJhbW91bnQiOjMwLCJyZW1haW5pbmciOjMwLCJyZXNwYXduQXQiOjB9LHsiaWQiOiJzaWRlLWFtbW8iLCJraW5kIjoiYW1tbyIsInBvc2l0aW9uIjp7IngiOi05LCJ5IjoxLjEsInoiOi0wLjR9LCJzdXJmYWNlIjoic2lkZS10ZXJyYWNlIiwiYW1vdW50IjoyNywicmVtYWluaW5nIjoyNywicmVzcGF3bkF0IjowfSx7ImlkIjoiY291cnQtYW1tbyIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6MTEsInkiOjAsInoiOjYuNX0sInN1cmZhY2UiOiJmbG9vci1taWRkbGUiLCJhbW91bnQiOjI3LCJyZW1haW5pbmciOjI3LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWFtbW8td2VzdCIsImtpbmQiOiJhbW1vIiwicG9zaXRpb24iOnsieCI6LTEzLCJ5IjowLCJ6IjotMzd9LCJzdXJmYWNlIjoiZmxvb3ItYm9zcyIsImFtb3VudCI6MTgsInJlbWFpbmluZyI6MTgsInJlc3Bhd25BdCI6MH0seyJpZCI6ImJvc3MtYW1tby1lYXN0Iiwia2luZCI6ImFtbW8iLCJwb3NpdGlvbiI6eyJ4IjoxMywieSI6MCwieiI6LTIwfSwic3VyZmFjZSI6ImZsb29yLWJvc3MiLCJhbW91bnQiOjE4LCJyZW1haW5pbmciOjE4LCJyZXNwYXduQXQiOjB9LHsiaWQiOiJib3NzLWhlYWx0aCIsImtpbmQiOiJoZWFsdGgiLCJwb3NpdGlvbiI6eyJ4IjotMTIsInkiOjEuMSwieiI6LTIzfSwic3VyZmFjZSI6ImJvc3MtaGVhbHRoLXBsYXRlYXUiLCJhbW91bnQiOjM1LCJyZW1haW5pbmciOjM1LCJyZXNwYXduQXQiOjB9XSwicHJvdG90eXBlIjpudWxsLCJocCI6MTAwLCJhcm1vciI6NTAsInB2ZSI6eyJ0aWNrIjoyMSwicGhhc2UiOiJlbWVyZ2luZyIsInBoYXNlVGljayI6MCwia2luZCI6IndhdmUiLCJ0YXJnZXQiOnsieCI6MCwieSI6MCwieiI6LTI5fSwid2F2ZVJhZGl1cyI6MiwiaHAiOjEwMCwiYXJtb3IiOjUwLCJib3NzSHAiOjYwMCwib3V0Y29tZSI6InJ1bm5pbmciLCJoaXRzVGFrZW4iOjAsImxhc3RIaXQiOi0xMDAsImNlbnRlciI6eyJ4IjowLCJ5IjoxLjg1LCJ6IjotMjl9LCJmYWNpbmciOjAsIm1vdmluZyI6ZmFsc2V9LCJib3NzQWN0aXZlIjpmYWxzZSwiY2hlY2twb2ludCI6ZmFsc2UsImNvbXBsZXRlZCI6ZmFsc2UsImNvcmUiOm51bGwsIm1pc3Npb24iOnsiY29uc29sZUFjdGl2ZSI6ZmFsc2UsInJlbGF5QWN0aXZlIjpmYWxzZSwicmVzZXJ2ZVJlY292ZXJlZCI6ZmFsc2UsImVudHJ5Q2xvc2VkIjp0cnVlLCJpbnRlcmFjdGlvbiI6bnVsbH0sImVuZW1pZXMiOlt7ImlkIjoiY291cnR5YXJkLXJ1bm5lciIsImNlbnRlciI6eyJ4IjoyLCJ5IjowLjg1LCJ6IjoyNH0sImhwIjo3MCwiZmFjaW5nIjowLCJwaGFzZSI6ImlkbGUiLCJwaGFzZVRpY2siOjIxLCJtb3ZpbmciOmZhbHNlLCJzY3JlZW4iOnsieCI6OTU3Ljc4NTcxNDI4NTcxMzcsInkiOjQwMi4wODczNTM1OTg1MzY2NX19LHsiaWQiOiJpbm5lci1ydW5uZXIiLCJjZW50ZXIiOnsieCI6MiwieSI6MC44NSwieiI6LTF9LCJocCI6NzAsImZhY2luZyI6MCwicGhhc2UiOiJpZGxlIiwicGhhc2VUaWNrIjoyMSwibW92aW5nIjpmYWxzZSwic2NyZWVuIjp7IngiOjE3MTkuNjkwNDc2MTkwNDc1NSwieSI6NDAyLjA4NzM1MzU5ODUzNjZ9fV0sIm1vbnN0ZXJTY3JlZW4iOnsieCI6MjU3My4wMjM4MDk1MjM4MDg3LCJ5IjozNTAuOTMxOTk0MzgxNzM3Mn0sInBhdXNlZCI6ZmFsc2UsIm92ZXJ2aWV3IjpmYWxzZSwiY2FtZXJhIjoic2lkZSIsInNlY3Rpb24iOiJBIiwid2hpcFZpc3VhbCI6bnVsbCwicGxheWVyU2NyZWVuIjp7IngiOjY4My40OTk5OTk5OTk5OTkzLCJ5IjozNjcuNDA4MDY1MzAyMjUyMX0sImZlZWRiYWNrIjp7InN0YXRlIjoicnVubmluZyIsIm11dGVkIjpmYWxzZSwicGxheWVkIjowLCJwZWFrIjowLCJ2b2ljZXMiOjB9LCJmaWdodGVyIjp7Im1vZGVsIjoia2F5a2l0LW1hbm5lcXVpbi1tZWRpdW0iLCJzdHlsZSI6InJ1aW5zLWNvdXJpZXIiLCJsb3dlciI6ImlkbGUiLCJ1cHBlciI6ImFyYyIsInRpbWUiOjAuMzA1NTk5OTk5OTk5OTk5OSwibGVnWWF3IjowLCJkZWF0aEFnZSI6MCwiZmFjaW5nIjowLCJib25lcyI6MjEsImhpcHMiOlswLjAwMjkwNDk0MDA0NTEzNjgzMTMsMC4wNDMxNTc1Njg3NzU2MzI0NzUsMC4wMDAxMjU0OTA4MzY0NDI4ODEzLDAuOTk5MDY0MDQ2OTEyMjg5M10sImNoZXN0IjpbMC4wODg5ODU3NTE2NjA4MTQwMiwtMC4xMTk2NTUzNTIyMjM2MTM0MywwLjA4MTU0MDQzNTgwNjc3NjUsMC45ODU0NTE4MjAyMzk4NTUyXSwibGVnIjpbMC4zMDgxOTU3NDExNzMyMjQ5LDYuNTg0MzI5MDQ4NDk3NjM2ZS04LC0yLjEzMDY2NDM0NTQ1NTA2NjZlLTcsMC45NTEzMjI5NjU3Mjg1ODgyXSwic2NhbGUiOlswLjgwNzczMDc2MzcwNzA0NjQsMC44MDc3MzA3NjM3MDcwNDY0LDAuODA3NzMwNzYzNzA3MDQ2NF19LCJndWFyZHMiOlt7Im1vZGVsIjoia2F5a2l0LXN0b25lLWd1YXJkIiwic3RhdGUiOiJpZGxlIiwiY2xpcFRpbWUiOjAuMzA1NTk5OTk5OTk5OTk5OSwiY29udGFjdFRpbWUiOjAuNSwiYm9uZXMiOjIxLCJoYW5kIjpbMS41NjQ0MDA0MTM2NDU2Mzc1LDAuNjYyNTI2ODY3Mzc1OTM4NywyNC4xNTA5NjcyMDg5NjE3N10sInZpc2libGUiOnRydWV9LHsibW9kZWwiOiJrYXlraXQtc3RvbmUtZ3VhcmQiLCJzdGF0ZSI6ImlkbGUiLCJjbGlwVGltZSI6MC4zMDU1OTk5OTk5OTk5OTk5LCJjb250YWN0VGltZSI6MC41LCJib25lcyI6MjEsImhhbmQiOlsxLjU2NDQwMDQxMzY0NTYzNzUsMC42NjI1MjY4NjczNzU5Mzg3LC0wLjg0OTAzMjc5MTAzODIyODNdLCJ2aXNpYmxlIjp0cnVlfV0sInBpY2t1cFZpc3VhbHMiOlt7ImlkIjoiYWR2ZW50dXJlLXB1bHNlIiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjo1NCwicGFydGljbGVzIjp0cnVlfSx7ImlkIjoic2lkZS1oZWFsdGgiLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjM1LCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJzaWRlLWFybW9yIiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjozMCwicGFydGljbGVzIjp0cnVlfSx7ImlkIjoic2lkZS1hbW1vIiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjoyNywicGFydGljbGVzIjp0cnVlfSx7ImlkIjoiY291cnQtYW1tbyIsInZpc2libGUiOnRydWUsInJlbWFpbmluZyI6MjcsInBhcnRpY2xlcyI6dHJ1ZX0seyJpZCI6ImJvc3MtYW1tby13ZXN0IiwidmlzaWJsZSI6dHJ1ZSwicmVtYWluaW5nIjoxOCwicGFydGljbGVzIjp0cnVlfSx7ImlkIjoiYm9zcy1hbW1vLWVhc3QiLCJ2aXNpYmxlIjp0cnVlLCJyZW1haW5pbmciOjE4LCJwYXJ0aWNsZXMiOnRydWV9LHsiaWQiOiJib3NzLWhlYWx0aCIsInZpc2libGUiOnRydWUsInJlbWFpbmluZyI6MzUsInBhcnRpY2xlcyI6dHJ1ZX1dLCJhcmNWaXN1YWwiOnsidmlzaWJsZSI6ZmFsc2UsImJlYW1zIjowfSwidmlld3BvcnQiOnsid2lkdGgiOjEzNjcsImhlaWdodCI6NzY4LCJkcHIiOjAuOTk5OTk5OTc2MTQ3NDcxMiwidmlld0hlaWdodCI6MjUuMn0sInJlbmRlckNhbGxzIjozMDV9LCJlcnJvcnMiOltdfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e3c6a851c7631ff94e91-0709ac73682c6c81a6f3",
+          "file": "adventure-acceptance.spec.ts",
+          "line": 4,
+          "column": 37
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-02T18:05:24.591Z",
+    "duration": 6706.642,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

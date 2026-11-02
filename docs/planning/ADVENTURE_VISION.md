@@ -145,11 +145,22 @@ Schlagphase speisen Simulation und Rendering; das Render-Skelett entscheidet nic
 über Schaden. Die vorhandenen Rapier-Abfragen werden gezielt ergänzt, falls ihre
 bisherige Ersttreffer-Schnittstelle für mehrere Ziele nicht ausreicht.
 
-Zunächst startet ein Klick beide Bewegungen. Der Rücktreffer belohnt gehaltenen
-Abstand und günstige Position. Er ist kein kostenlos garantierter Doppelschaden.
+Der Seitenschwung startet per Linksklick beide Bewegungen. Der Rücktreffer belohnt
+gehaltenen Abstand und günstige Position. Er ist kein kostenlos garantierter Doppelschaden.
+Als ausdrücklich beauftragte T2-Nacharbeit ergänzt Rechtsklick einen schmalen
+Überkopf-Knall: etwas mehr Reichweite und ein stärkerer Einzeltreffer, dafür längeres
+Ausholen und längere Erholung. Beide Bewegungen sind Teil der Startwaffe; keine
+Freischaltung oder Vorwegnahme von A8. Ein Klick startet einen Angriff, Halten
+wiederholt ihn nicht. Dash darf abbrechen, die Erholungszeit des Überkopfschlags
+bleibt bestehen. Menschlich offen ist, ob beide Angriffe situativ gewählt werden.
 Später könnte ein Rückhaken ein eigenes Timing eröffnen; dies gehört zur optionalen
 Modifikationsprüfung. Wiederholtes Halten und einzelnes Klicken werden als Bedienungsfrage
 verglichen, ohne ein neues automatisches Zielsuchen einzuführen.
+
+Sprungangriff und gezielter Rückhaken bleiben spätere Designkandidaten. Ein
+kontextabhängiger Luftangriff wäre zuerst mit dem normalen Sprung zu prüfen;
+Doppelsprung und Luftkombos verändern zusätzlich die Boss-Ausweichregeln und
+werden in dieser Nacharbeit nicht eingeführt.
 
 Feedback priorisiert Ursache: Bewegungsgeräusch, Kontakt, Rücktreffer, gegnerische
 Reaktion. Sehr kurze Trefferpause oder Kamerareaktion nur als einzelner Vergleich;

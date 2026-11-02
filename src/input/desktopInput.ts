@@ -8,6 +8,7 @@ export class DesktopInput {
   private readonly abort = new AbortController();
   private jumpPending = false;
   private firePending = false;
+  private secondaryPending = false;
   private dashPending = false;
   private touchFireHeld = false;
   private firing = false;
@@ -16,7 +17,8 @@ export class DesktopInput {
   get pointer() { return this.touch.pointer.active ? this.touch.pointer : this.mouse; }
   get touchEnabled(): boolean { return this.touch.enabled; }
   constructor(canvas: HTMLCanvasElement, onCamera: () => void, onDiagnostics: () => void, onProbe: () => void,
-    onWeapon: (id: 'arc' | 'pulse' | 'rail' | 'cycle') => void = () => {}) {
+    onWeapon: (id: 'arc' | 'pulse' | 'rail' | 'cycle') => void = () => {},
+    secondaryEnabled: () => boolean = () => false) {
     this.touch = new TouchControls(canvas, onCamera);
     const options = { signal: this.abort.signal };
     window.addEventListener('keydown', (event) => {
@@ -41,12 +43,15 @@ export class DesktopInput {
       Object.assign(this.mouse, { x: event.clientX, y: event.clientY, active: true });
     }, options);
     canvas.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'touch' || event.button !== 0) return;
+      if (event.pointerType === 'touch' || (event.button !== 0 && !(event.button===2 && secondaryEnabled()))) return;
+      if(event.button===2)event.preventDefault();
       canvas.focus();
       canvas.setPointerCapture(event.pointerId);
       Object.assign(this.mouse, { x: event.clientX, y: event.clientY, active: true });
-      this.firing = this.firePending = true;
+      if(event.button===2)this.secondaryPending=true;
+      else this.firing = this.firePending = true;
     }, options);
+    canvas.addEventListener('contextmenu',event=>{if(secondaryEnabled())event.preventDefault();},options);
     window.addEventListener('pointerup', (event) => { if (event.pointerType !== 'touch' && event.button === 0) this.firing = false; }, options);
     canvas.addEventListener('pointerleave', (event) => { if (event.pointerType !== 'touch') this.mouse.active = false; }, options);
     canvas.addEventListener('pointercancel', (event) => { if (event.pointerType !== 'touch') this.clear(); }, options);
@@ -72,6 +77,7 @@ export class DesktopInput {
   attackPressed():boolean { const touch=this.touch.fire(), pressed=this.firePending || touch&&!this.touchFireHeld;
     this.firePending=false;this.touchFireHeld=touch;return pressed; }
   dashPressed():boolean {const pressed=this.dashPending;this.dashPending=false;return pressed;}
-  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.firing = this.dashPending = this.touchFireHeld = false; this.mouse.active = false; this.touch.clear(); }
+  secondaryPressed():boolean {const pressed=this.secondaryPending;this.secondaryPending=false;return pressed;}
+  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.secondaryPending = this.firing = this.dashPending = this.touchFireHeld = false; this.mouse.active = false; this.touch.clear(); }
   dispose(): void { this.abort.abort(); this.clear(); this.touch.dispose(); }
 }

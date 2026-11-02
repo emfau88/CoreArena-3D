@@ -105,7 +105,7 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
     <label>Versuch <select id="lab-scenario"><option value="boss">Steinwächter</option><option value="melee">Nur Faust / Gegenangriff</option><option value="targets">Übungsziele ohne Gegnerdruck</option></select></label>
     <label><input id="lab-complement" type="checkbox"> Zusätzlich Pulse · 12 Schuss (1/2 wechseln)</label>
     <label><input id="lab-reduced" type="checkbox"> Trefferfunken aus</label>
-    <small id="lab-controls">Klick: Peitschenschlag · Shift: Dash · Leertaste: Sprung</small><output id="lab-combat"></output>
+    <small id="lab-controls">Links: Schwung · Rechts: Überkopf-Knall · Shift: Dash · Leertaste: Sprung</small><output id="lab-combat"></output>
     <button id="lab-start" type="button">Bossversuch starten</button>
     <button id="lab-export" type="button">Messdaten speichern</button><output id="lab-status">Bereit · Auswahl gilt beim nächsten Start</output>`;
   host.append(panel);

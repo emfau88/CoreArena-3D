@@ -12,7 +12,15 @@ seine Wirkung sowie **G2/G3 und der Richtungsentscheid bleiben menschlich offen*
 A8 und spätere Bulks sind nicht beauftragt. Legacy bleibt der reguläre Standard;
 der Prototyp ist im Entwicklungs-/Testbuild auch als vollständige Mission anwählbar.
 [Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md) ·
-[T2-Kandidat A5–A7](../qa/ADVENTURE_A5_A7_RESULT.md).
+[T2-Kandidat A5–A7](../qa/ADVENTURE_A5_A7_RESULT.md) ·
+[T2-Nacharbeit: zwei Peitschenangriffe und Darstellung](../qa/ADVENTURE_WHIP_MOVES_RESULT.md).
+
+Im laufenden T2 meldet der Nutzer zu wenig optische Qualität und Abwechslung der
+Peitsche. Ausdrücklich freigegeben ist deshalb eine begrenzte **A3/A4-Nacharbeit**:
+Seitenschwung links, Überkopf-Knall rechts, hochwertigere prozedurale Darstellung
+und klareres Kontaktfeedback. Die Startwaffe erhält zwei direkte Eingaben; keine
+Mods/Progression, kein Doppelsprung und keine dritte Attacke. 26 Bulks, sechs Gates
+und drei Spieltermine bleiben erhalten. G2/G3 und A7.2 bleiben offen.
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -459,13 +467,14 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 **Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
-**Umfang:** Eine Grundattacke mit Vorschwung/Rücklauf, einfache sichtbare Bahn und bestehende Schadensschnittstelle; keine Mods oder neue Waffen.
+**Umfang:** Ursprünglich eine Grundattacke mit Vorschwung/Rücklauf; in der freigegebenen T2-Nacharbeit zusätzlich der direkt gewählte Überkopf-Knall. Beide nutzen dieselbe räumliche Schadensschnittstelle; keine Mods oder neue Waffen.
 
 - [x] Phasen, Eingabe, Richtungsbindung und eine kontrollierte 3D-Kurve definieren.
 - [x] Überstrichene Bahn zwischen Ticks prüfen; Weltblocker, Höhe und mehrere mögliche Ziele berücksichtigen.
 - [x] Treffer je Ziel/Schlagphase begrenzen; Rücklauf besitzt ein eigenes Trefferfenster.
 - [x] Bewegung während Angriff sowie Dash-Abbruch festlegen; ausstehenden Schaden bei Abbruch/Tod/Retry löschen.
 - [x] Testziele mit Distanzen/Winkeln, Deckung und unterschiedlichen Höhen bereitstellen.
+- [x] T2-Nacharbeit: schmaler Überkopfschlag mit eigenem Ausholen/Einzeltreffer/Erholung; Rechtsklick ohne Wiederholung durch Halten, keine Angriffswarteschlange, Dash-Abbruch überspringt die Erholungszeit nicht. [Nachweis](../qa/ADVENTURE_WHIP_MOVES_RESULT.md).
 
 **Systeme/Dateien:** `src/core/energyWhip.ts`, `tests/adventure-prototype.test.ts`; `src/core/combat.ts` nur Schnittstelle, `aim.ts`, Physikadapter, Kompositionspunkt, einfache Renderbahn.
 **Tests/Regression:** K/R/A/P, N für treffen/verfehlen, zwischen Ticks kreuzendes Ziel, Wand, Höhenversatz, Rücklauf, Abbruch und Mehrfachtreffer; Frameratevergleich.
@@ -487,6 +496,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 - [x] Effekte begrenzen, Pause/Retry/30-Hz-Darstellung technisch prüfen.
 - [x] Qualitative T1-Rückmeldung dokumentiert: Grundprototyp akzeptiert, G1 bestanden; keine Punktbewertung oder Versuchszahl behauptet.
 - [x] Nicht blockierender Feinschliff vor T2 technisch umgesetzt (Wirkung in T2 prüfen): Peitsche knackiger/härter wirken lassen und tatsächliche Treffer deutlicher zeigen. Zuerst Schwungabschluss/Rückschnappen, Kontaktsound und kurze Gegnerreaktion prüfen; kein pauschaler Schadensbonus. Kein neuer Bulk.
+- [x] Zusätzliche T2-Nacharbeit: schmaler heller Kern, farbiger Energiesaum, auslaufende Spitze, kurze Leuchtspur, gestalteter Griff, eigene Überkopfpose/-klänge und getrennte Panzer-/Kerntreffer. Wirkung und sinnvolle Angriffswahl bleiben menschlich zu prüfen.
 
 **Systeme/Dateien:** `src/render/kayFighter.ts`, `arenaView.ts`, `src/app/stoneFeedback.ts`; `src/render/energyWhipView.ts`; passende Browser-/Performancefälle.
 **Tests/Regression:** K/N sowie A bei gemeinsamem Rig; zehn Retries, stummes Spiel, reduzierte Effekte, sichtbare Bahn gegen tatsächliche Treffer vergleichen.
@@ -873,7 +883,7 @@ Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen
 
 Der aktuelle Implementierungsauftrag umfasst **A5.1–A7.2 bis zum T2-Kandidaten**,
 einschließlich A4-Feedback-Feinschliff. Technik und Vergleich sind vorbereitet;
-**jetzt folgt T2 mit dem Nutzer**. A7.2, G2 und G3 sind noch nicht menschlich
+**T2 mit dem Nutzer läuft; die beauftragte Peitschen-Nacharbeit wird darin erneut geprüft**. A7.2, G2 und G3 sind noch nicht menschlich
 abgeschlossen. Keine automatische Freigabe für A8, weitere Bosskarten oder Release.
 Die ergänzend angesprochenen Charge-/Sprungangriffe bleiben Designkandidaten;
 Doppelsprung und zusätzliche Bossattacken wurden nicht eingeführt. Die Plateau-

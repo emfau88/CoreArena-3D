@@ -6,7 +6,8 @@ import type { Vec3 } from '../core/types';
 import { applyCourierLook } from './courierLook';
 import { applyArenaLook, createArenaWeapon, type ArenaRole } from './arenaEquipment';
 
-export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number; aimPitch?:number; whip?:{angle:number;active:boolean;dash:boolean} }
+export interface WhipMotion {angle:number;attack:'sweep'|'overhead';age:number;active:boolean;dash:boolean}
+export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number; aimPitch?:number; whip?:WhipMotion }
 let template: THREE.Group | undefined;
 let handSlot: THREE.Object3D | undefined;
 let clips: THREE.AnimationClip[] = [];
@@ -160,8 +161,16 @@ export function createKayFighter(color:number, arenaRole?:ArenaRole) {
         // Authored upper-body accents share the simulation swing angle, independent of render FPS.
         // The saved mixer pose is restored every frame, so these offsets cannot accumulate.
         const swing=state.whip.active?state.whip.angle:0;
-        chest.rotateY(swing*.22);rightArm.rotateY(swing*.65);rightArm.rotateZ(-.25);
-        rightForearm.rotateX(-.25-Math.abs(swing)*.18);
+        if(state.whip.attack==='overhead'&&state.whip.active){
+          const lift=Math.max(0,Math.min(1,swing/1.45));
+          const settle=Math.max(0,1-Math.max(0,state.whip.age-24)/40);
+          chest.rotateX(-lift*.18+(state.whip.age>=14?.16*settle:0));chest.rotateY(-lift*.15);
+          rightArm.rotateX(-lift*1.85);rightArm.rotateZ(-.2-lift*.3);
+          rightForearm.rotateX(-.35-lift*.6);
+        }else{
+          chest.rotateY(swing*.3);rightArm.rotateY(swing*.75);rightArm.rotateZ(-.3);
+          rightForearm.rotateX(-.25-Math.abs(swing)*.22);
+        }
         if(state.whip.dash)chest.rotateX(.22);
         upperState=state.whip.dash?'dash':state.whip.active?'whip':'whip-ready';
       }
