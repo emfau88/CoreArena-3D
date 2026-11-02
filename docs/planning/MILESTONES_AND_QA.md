@@ -18,9 +18,10 @@ erstellt und vom Nutzer grundsätzlich freigegeben, historische Quellen eingeord
 26 Bulks und sechs Gates bleiben erhalten; menschliche Abnahme gebündelt nach A4,
 bei A7.2 (erste Mission/Bossvergleich) und bei A11.4 (Mini-Kampagne/Release).
 Bossdarstellung gehört zu den bestehenden Boss-Abnahmen; Progression bleibt offen.
-Kein Gameplay verändert und kein neuer Implementierungs-Bulk freigegeben.
-Empfohlener erster Adventure-Auftrag: **A0.1 + A0.2 als gemeinsames A/B-Vergleichslabor**;
-Fortschritt und Gate-Status künftig nur in der Adventure-Roadmap pflegen.
+Anschließend wurde **A0.1 + A0.2 als gemeinsames A/B-Vergleichslabor** technisch abgeschlossen,
+mit unveränderten Kampfregeln auf `codex/adventure-combat-prototype`.
+[Umfang, lokale Startlinks und Prüfungen](../qa/ADVENTURE_A0_1_A0_2_RESULT.md).
+Fortschritt und Gate-Status nur in der Adventure-Roadmap pflegen; keine Folgefreigabe für A1.
 
 **Arena-Bestand vom 1. November, unverändert:** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.
@@ -82,7 +83,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b technisch geprüft; Produktplanung grundsätzlich freigegeben, Gameplay unverändert | A0.1 + A0.2 gemeinsam vorbereitet, Implementierungsfreigabe offen; drei menschliche Spieltermine |
+| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b; A0.1 + A0.2 technisch abgeschlossen, Kampfregeln unverändert | Nächster Umfang: A1, noch nicht beauftragt; drei menschliche Spieltermine |
 | **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch geprüft | Karten-/Handyabnahme; als Nächstes M3.1 Classic CTF, gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind

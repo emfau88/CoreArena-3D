@@ -5,7 +5,7 @@ Die folgenden Pakete, Entscheidungen und Berichte bleiben erhalten. Frühere
 „nächste Schritte“, Freigaben, Zeitschätzungen, Shooter-/Mobile-Vorgaben und offene
 Gestaltungsideen sind keine aktuelle Aufgabenliste. Für neue Adventure-Aufträge
 gelten ausschließlich [ADVENTURE_VISION.md](ADVENTURE_VISION.md) und
-[ADVENTURE_ROADMAP.md](ADVENTURE_ROADMAP.md). Alle neuen Bulks sind zunächst geplant.
+[ADVENTURE_ROADMAP.md](ADVENTURE_ROADMAP.md). Aktuelle Bulkstatus und Freigaben stehen ausschließlich dort.
 
 **Spielvariante: Adventure / PvE-Kampagne.** Arena, 2v2, CTF und Liga sind eine getrennte
 Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Dokuments.

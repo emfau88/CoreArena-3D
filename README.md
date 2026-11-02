@@ -7,9 +7,10 @@
   Science-Fantasy-Waffen, faire Bosse und drei kurze Missionen. Maßgeblich sind
   [Produktvision](docs/planning/ADVENTURE_VISION.md) und
   [Adventure-Roadmap mit Bulks und sechs Gates](docs/planning/ADVENTURE_ROADMAP.md).
-  **Planungsbasis grundsätzlich freigegeben; noch kein neuer Gameplay-Code oder
-  freigegebener Implementierungs-Bulk.** 26 Bulks, sechs Gates und drei gebündelte
-  menschliche Spieltermine; nächster vorbereiteter Auftrag: A0.1 + A0.2 Vergleichslabor.
+  **A0.1 + A0.2 technisch abgeschlossen: Vergleichslabor auf eigenem Entwicklungsbranch.**
+  [Auftrag, lokale Startlinks und Prüfungen](docs/qa/ADVENTURE_A0_1_A0_2_RESULT.md).
+  26 Bulks, sechs Gates und drei gebündelte menschliche Spieltermine bleiben erhalten.
+  Weitere Kampfmechaniken sind noch nicht beauftragt.
   Spielbarer Bestand: Steinmission L1.6a–c und L1.5b technisch abgeschlossen,
   persönliche Spiel-/Handyabnahme offen; alte Arc/Pulse-/Sprint-Regeln weiterhin aktiv.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).

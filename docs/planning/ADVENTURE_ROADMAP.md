@@ -4,8 +4,10 @@ Stand: **2. November 2026**. Maßgebliche Quelle für zukünftige Adventure-Auft
 Produktziel: [ADVENTURE_VISION.md](ADVENTURE_VISION.md). Die Erstellung dieser
 Dokumentation ist beauftragt; Vision und Struktur mit **26 Bulks und sechs Gates**
 sind grundsätzlich freigegeben. Menschliche Prüfungen sind auf **drei Spieltermine**
-gebündelt (Abschnitt 5). **Alle folgenden Bulks sind geplant, keiner ist zur
-Implementierung freigegeben**. Keine Gameplay-Änderung gehört zum Dokumentationsauftrag.
+gebündelt (Abschnitt 5). **A0.1 + A0.2 sind durch „ok go“ am 2.11.2026 gemeinsam
+zur Implementierung freigegeben und technisch abgeschlossen**. Die übrigen Bulks bleiben geplant.
+Dieser Auftrag ergänzt das Vergleichslabor; die bisherigen Kampfregeln bleiben unverändert.
+[Gemeinsamer Ergebnisbericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md).
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -168,7 +170,7 @@ versehentlich am eigenen Körper zu blockieren.
 
 ### Vergleichslabor und unveränderte Referenz
 
-Geplante Einstiege (heute **nicht implementiert**):
+Einstiege des A0-Vergleichslabors (Entwicklungs-/Testbuild):
 
 ```text
 ?mode=pve&level=stone&adventure=1                         reguläre bisherige Mission
@@ -321,9 +323,9 @@ Animationstechnik nutzen; kein zusätzlicher Grafik-Bulk, keine neue Assetproduk
 
 ## 6. Bulks: Vergleich und grundlegendes Spielgefühl
 
-### Vorbereiteter gemeinsamer Auftrag A0.1 + A0.2
+### Gemeinsamer Auftrag A0.1 + A0.2
 
-**Status: vorbereitet, noch nicht zur Implementierung freigegeben.** Die beiden
+**Status: gemeinsam freigegeben und technisch abgeschlossen am 2.11.2026.** Die beiden
 Bulk-IDs und ihre getrennten Abnahmekriterien bleiben erhalten. Der kombinierte
 Auftrag endet mit dem Vergleichslabor; A1 und alle neuen Kampfmechaniken sind nicht enthalten.
 
@@ -336,14 +338,14 @@ Profilwahl vor dem Versuch und Ein-Klick-Neustart bereitstellen. `legacy` und
 
 **Ergebnis und Abnahme:**
 
-- [ ] Referenzcommit, Konstanten, Start-/Messbedingungen und erlaubte URLs dokumentiert; keine verteilten URL-Sonderfälle.
-- [ ] Labstart mit identischer Spieler-/Bossposition, Bossphase, 100 HP, 50 Rüstung, Reserve aus und definierten Vorräten; Arc-/Pulse-Vergleich getrennt, Pulse mit 54 Schuss.
-- [ ] Gleiche Eingabefolge liefert in beiden Profilen gleiche Treffer, HP, Bossphasen und numerische Bewegungsresultate bei gleichem Simulationsstart; Profilkennung darf abweichen.
-- [ ] Zehn Neustarts je Profil ohne Zustands-/Effektreste oder fortlaufendes Ressourcenwachstum; warmes Lab in höchstens 3 s wieder steuerbar.
-- [ ] Je drei stationäre und aktive Referenzversuche pro Waffe mit lokalen Messdaten; noch nicht vorhandene Dash-/Peitschenmetriken als nicht anwendbar kennzeichnen.
-- [ ] `npm test`, `npm run build`, Testbuild und gezielte Browserfälle bestanden; reguläre Mission einschließlich Tod/Retry/Abschluss, Arena-/andere PvE-Einstiege und Legacy-Touch unverändert.
-- [ ] Produktionsbuild enthält weder Labzugang noch Test-API; Laborfixture ersetzt keinen vollständigen Missionsnachweis.
-- [ ] Ein gemeinsamer Ergebnisbericht mit getrennten A0.1-/A0.2-Nachweisen, Testlinks, Messmanifest und bekannten Grenzen; kein automatischer Beginn von A1.
+- [x] Referenzcommit, Konstanten, Start-/Messbedingungen und erlaubte URLs dokumentiert; keine verteilten URL-Sonderfälle.
+- [x] Labstart mit identischer Spieler-/Bossposition, Bossphase, 100 HP, 50 Rüstung, Reserve aus und definierten Vorräten; Arc-/Pulse-Vergleich getrennt, Pulse mit 54 Schuss.
+- [x] Gleiche Eingabefolge liefert in beiden Profilen gleiche Treffer, HP, Bossphasen und numerische Bewegungsresultate bei gleichem Simulationsstart; Profilkennung darf abweichen.
+- [x] Zehn Neustarts je Profil ohne Zustands-/Effektreste oder fortlaufendes Ressourcenwachstum; warmes Lab in höchstens 3 s wieder steuerbar.
+- [x] Je drei stationäre und aktive Referenzversuche pro Waffe mit lokalen Messdaten; noch nicht vorhandene Dash-/Peitschenmetriken als nicht anwendbar kennzeichnen.
+- [x] `npm test`, `npm run build`, Testbuild und gezielte Browserfälle bestanden; reguläre Mission einschließlich Tod/Retry/Abschluss, Arena-/andere PvE-Einstiege und Legacy-Touch unverändert.
+- [x] Produktionsbuild enthält weder Labzugang noch Test-API; Laborfixture ersetzt keinen vollständigen Missionsnachweis.
+- [x] Ein gemeinsamer Ergebnisbericht mit getrennten A0.1-/A0.2-Nachweisen, Testlinks, Messmanifest und bekannten Grenzen; kein automatischer Beginn von A1.
 
 **Nicht enthalten:** Dash, Peitsche, neue Kamera, veränderte Bosskörper oder Werte,
 neue Assets, Progression, Kartenumbau, öffentlicher Spiele-Release. Auch das bekannte
@@ -352,16 +354,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A0.1 — Referenz sichern und Variantenwahl begrenzen
 
-**Status:** geplant. **Voraussetzungen:** gesonderter Auftrag; sauberer/verstandener Arbeitsbaum.
+**Status:** abgeschlossen. **Freigabe:** 2.11.2026, „ok go“ zum gemeinsamen Auftrag A0.1 + A0.2.
+**Nachweis:** [A0.1 im gemeinsamen Bericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md#ergebnis-a01-abgegrenzte-variantenwahl), Implementierungscommit `f78690a`.
+**Voraussetzungen:** erfüllt; sauberer `main` bei `e8b730a`, eigener Branch `codex/adventure-combat-prototype`.
 **Ziel/Nutzen:** Ein neuer Einstieg kann entstehen, ohne alte Spielregeln zu verändern.
 **Umfang:** Referenzmanifest und ein kleiner Kompositionspunkt; beide Profile zunächst mit identischem Gameplay. Kein Dash, keine Waffe, kein Balancewechsel.
 
-- [ ] Basiscommit, bestehende URLs, Waffen-/Boss-/Bewegungswerte und aktuelle Testbefunde festhalten.
-- [ ] `legacy`/`prototype` am Adventure-Einstieg auswählen; unbekannte Werte fallen auf Legacy zurück.
-- [ ] Standardkonstruktoren und gemeinsame Konstanten unverändert wirksam halten; Profilkennung lesbar diagnostizieren.
-- [ ] Ungültige Kombinationen einschließlich Arena/Frost/Glut prüfen und Referenzbericht schreiben.
+- [x] Basiscommit, bestehende URLs, Waffen-/Boss-/Bewegungswerte und aktuelle Testbefunde festhalten.
+- [x] `legacy`/`prototype` am Adventure-Einstieg auswählen; unbekannte Werte fallen auf Legacy zurück.
+- [x] Standardkonstruktoren und gemeinsame Konstanten unverändert wirksam halten; Profilkennung lesbar diagnostizieren.
+- [x] Ungültige Kombinationen einschließlich Arena/Frost/Glut prüfen und Referenzbericht schreiben.
 
-**Systeme/Dateien:** `src/main.ts`, `src/app/adventureGame.ts`, bei Bedarf `src/core/adventureFight.ts`; `neu: src/app/adventureVariant.ts`, `tests/adventure-variant.test.ts`; QA-Manifest.
+**Systeme/Dateien:** `src/main.ts`, `src/app/adventureGame.ts`, `src/app/adventureVariant.ts`, `tests/adventure-variant.test.ts`; QA-Manifest. `src/core/adventureFight.ts` blieb unverändert.
 **Tests/Regression:** K, L-Einstieg, A/P-Routing; gleiche numerische Startzustände beider Profile, unveränderte reguläre Mission.
 **Abnahme:** Kein Unterschied in Schaden, Bewegung, Bosswerten und Missionszustand; alle bisherigen URLs behalten ihren Modus; neue Parameter wirken ausschließlich im erlaubten Adventure-Pfad.
 **Risiko/Gegenmaßnahme:** Breiter Umbau der App → nur tatsächlich nötige Konstruktor-Injektion; Änderungen gemeinsamer Defaults im Diff ausdrücklich ausschließen.
@@ -370,16 +374,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A0.2 — Direkteinstieg, Retry und vergleichbare Messung
 
-**Status:** geplant. **Voraussetzungen:** A0.1 abgeschlossen; eigener oder ausdrücklich gemeinsamer Auftrag A0.1 + A0.2.
+**Status:** abgeschlossen. **Freigabe:** 2.11.2026, gemeinsamer Auftrag A0.1 + A0.2.
+**Nachweis:** [A0.2 im gemeinsamen Bericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md#ergebnis-a02-reproduzierbarer-bossversuch), Implementierungscommit `f78690a`.
+**Voraussetzungen:** A0.1-Nachweis im gemeinsamen Bericht; gemeinsam beauftragter Umfang.
 **Ziel/Nutzen:** Bossversuche ohne wiederholte Anreise und mit überprüfbar gleichen Startwerten.
 **Umfang:** Entwicklungs-/Testlabor im bestehenden Wächterhof; eine explizite Szenario-Fixture und lokale Metriken. Regulärer Missionspfad bleibt erhalten.
 
-- [ ] Labzustand mit besiegten Läufern, Konsole, Checkpoint, Vorräten und definiertem Bossstart herstellen.
-- [ ] Profilwahl vor Versuch und Ein-Klick-Neustart mit vollständigem Zustand-/Effekt-/Eingabereset bereitstellen.
-- [ ] Startmanifest, Messbeginn und Metriken aus Abschnitt 3 aufzeichnen; Referenz-PC und Leistungsbudget dokumentieren.
-- [ ] Je drei stationäre und aktive Legacy-Arc-/Pulse-Versuche als Baseline aufnehmen; vollständige normale Anreise separat prüfen.
+- [x] Labzustand mit besiegten Läufern, Konsole, Checkpoint, Vorräten und definiertem Bossstart herstellen.
+- [x] Profilwahl vor Versuch und Ein-Klick-Neustart mit vollständigem Zustand-/Effekt-/Eingabereset bereitstellen.
+- [x] Startmanifest, Messbeginn und Metriken aus Abschnitt 3 aufzeichnen; Referenz-PC und Leistungsbudget dokumentieren.
+- [x] Je drei stationäre und aktive Legacy-Arc-/Pulse-Versuche als Baseline aufnehmen; vollständige normale Anreise separat prüfen.
 
-**Systeme/Dateien:** `src/app/adventureGame.ts`, `src/core/adventureFight.ts`, `tests/e2e/adventureMetrics.ts`, `boss-pressure.spec.ts`; `neu: src/app/adventureLab.ts`, Lab-E2E/Fixtures.
+**Systeme/Dateien:** `src/app/adventureGame.ts`, `src/app/adventureLab.ts`, `tests/e2e/adventure-lab.spec.ts`, `scripts/qa/adventureBuildGuard.ts`; explizite Darstellungs-/Audioresets. Kernregeln und bestehende Missionstests unverändert.
 **Tests/Regression:** K/L, N-Reset; normaler Spawn und Labstart werden nicht als derselbe Test ausgegeben; Produktionsbuild ohne Lab-/Test-API.
 **Abnahme:** Zehn Neustarts liefern identische Initialzustände ohne fortlaufendes Ressourcenwachstum; beide Profile starten gleich; Einstieg bis Steuerbarkeit im bereits geladenen Lab höchstens 3 s; abweichende historische Messdefinitionen benannt.
 **Risiko/Gegenmaßnahme:** Fixture verdeckt Missionsfehler → Labnachweise und vollständige Wegtests getrennt halten.
@@ -853,7 +859,6 @@ Vision. Ohne gesonderten Auftrag werden sie keine neuen Bulks. Überschreitet ei
 freigegebener Bulk seine hier beschriebene Grenze, den Rest als neuen begrenzten
 Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen.
 
-Der empfohlene nächste Implementierungsauftrag ist **A0.1 + A0.2 gemeinsam** nach
-dem vorbereiteten Zuschnitt in Abschnitt 6. Innerhalb des Auftrags folgt das Lab
-auf die abgesicherte Variantenwahl. Die bestehenden Regeln bleiben unverändert;
-die aktuelle Freigabe betrifft ausschließlich die Dokumentation, noch keine Codearbeit.
+Der abgeschlossene Implementierungsauftrag umfasst **A0.1 + A0.2 gemeinsam** nach
+dem Zuschnitt in Abschnitt 6. **A1** ist der nächste empfohlene Bulk,
+ohne automatische Folgefreigabe. Die bestehenden Kampfregeln bleiben in A0 unverändert.

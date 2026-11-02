@@ -1,0 +1,153 @@
+{
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "logicalCpus": 16,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "input": "mouse-keyboard",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 0.9999999761474712
+    },
+    "camera": "side"
+  },
+  "rows": [
+    {
+      "weapon": "arc",
+      "strategy": "stationary",
+      "attempt": 1,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 13.899999999999636,
+      "p99": 19.399999999999636,
+      "simP95": 0.900000000372529,
+      "dropped": 16
+    },
+    {
+      "weapon": "arc",
+      "strategy": "stationary",
+      "attempt": 2,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 13.900000000001455,
+      "p99": 16.799999999999272,
+      "simP95": 0.8000000007450581,
+      "dropped": 0
+    },
+    {
+      "weapon": "arc",
+      "strategy": "stationary",
+      "attempt": 3,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 16.700000000000728,
+      "p99": 25,
+      "simP95": 0.900000000372529,
+      "dropped": 0
+    },
+    {
+      "weapon": "arc",
+      "strategy": "reactive",
+      "attempt": 1,
+      "outcome": "victory",
+      "seconds": 14.05,
+      "p95": 13.900000000001455,
+      "p99": 19.5,
+      "simP95": 0.7000000011175871,
+      "dropped": 0
+    },
+    {
+      "weapon": "arc",
+      "strategy": "reactive",
+      "attempt": 2,
+      "outcome": "victory",
+      "seconds": 14.05,
+      "p95": 13.900000000001455,
+      "p99": 22.09999999999127,
+      "simP95": 0.8000000007450581,
+      "dropped": 0
+    },
+    {
+      "weapon": "arc",
+      "strategy": "reactive",
+      "attempt": 3,
+      "outcome": "victory",
+      "seconds": 14.05,
+      "p95": 16.60000000000582,
+      "p99": 22.30000000000291,
+      "simP95": 0.7000000011175871,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "stationary",
+      "attempt": 1,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 16.59999999999127,
+      "p99": 22.20000000001164,
+      "simP95": 0.7000000011175871,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "stationary",
+      "attempt": 2,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 16.69999999999709,
+      "p99": 22.20000000001164,
+      "simP95": 0.6000000014901161,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "stationary",
+      "attempt": 3,
+      "outcome": "defeat",
+      "seconds": 8.466666666666667,
+      "p95": 16.69999999999709,
+      "p99": 24.89999999999418,
+      "simP95": 0.6999999992549419,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "reactive",
+      "attempt": 1,
+      "outcome": "victory",
+      "seconds": 10.116666666666667,
+      "p95": 19.39999999999418,
+      "p99": 25,
+      "simP95": 0.7000000011175871,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "reactive",
+      "attempt": 2,
+      "outcome": "victory",
+      "seconds": 10.116666666666667,
+      "p95": 16.70000000001164,
+      "p99": 25,
+      "simP95": 0.6999999992549419,
+      "dropped": 0
+    },
+    {
+      "weapon": "pulse",
+      "strategy": "reactive",
+      "attempt": 3,
+      "outcome": "victory",
+      "seconds": 10.116666666666667,
+      "p95": 19.400000000023283,
+      "p99": 25,
+      "simP95": 0.7000000011175871,
+      "dropped": 0
+    }
+  ],
+  "planBudgets": {
+    "frameP95": 20,
+    "frameP99": 33,
+    "simulationP95": 4
+  }
+}

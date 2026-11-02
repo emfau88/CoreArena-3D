@@ -1,0 +1,85 @@
+{
+  "project": "chrome-1920",
+  "stats": {
+    "startTime": "2026-11-02T14:02:13.583Z",
+    "duration": 567525.053,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "name": "desktop Adventure manual pause survives focus and resize",
+      "status": "expected",
+      "durationMs": 4818,
+      "errors": []
+    },
+    {
+      "name": "touch Adventure manual pause survives focus and resize",
+      "status": "expected",
+      "durationMs": 5293,
+      "errors": []
+    },
+    {
+      "name": "menu entry, mission console, checkpoint death and retry, required core and relay, physical exit and full reset",
+      "status": "expected",
+      "durationMs": 59969,
+      "errors": []
+    },
+    {
+      "name": "touch full mission: simultaneous console input, checkpoint retry, core, relay, exit and full reset",
+      "status": "expected",
+      "durationMs": 47342,
+      "errors": []
+    },
+    {
+      "name": "lab profiles, twenty warm resets, held-input/effect cleanup and local export",
+      "status": "expected",
+      "durationMs": 20151,
+      "errors": []
+    },
+    {
+      "name": "twelve legacy baseline attempts: three stationary and reactive runs per weapon",
+      "status": "expected",
+      "durationMs": 154640,
+      "errors": []
+    },
+    {
+      "name": "desktop Arc acquires away from pointer, continues after release and renders five strands",
+      "status": "expected",
+      "durationMs": 5652,
+      "errors": []
+    },
+    {
+      "name": "touch Arc acquires away from pointer, continues after release and renders five strands",
+      "status": "expected",
+      "durationMs": 6310,
+      "errors": []
+    },
+    {
+      "name": "desktop expanded wings, Rail and complete 2v2",
+      "status": "expected",
+      "durationMs": 98598,
+      "errors": []
+    },
+    {
+      "name": "touch expanded wings, Rail and complete 2v2",
+      "status": "expected",
+      "durationMs": 94614,
+      "errors": []
+    },
+    {
+      "name": "three real boss victories progress through the complete mini campaign",
+      "status": "expected",
+      "durationMs": 47052,
+      "errors": []
+    },
+    {
+      "name": "PvE: ignoring telegraphs produces real defeat; pause and retry work",
+      "status": "expected",
+      "durationMs": 18282,
+      "errors": []
+    }
+  ]
+}

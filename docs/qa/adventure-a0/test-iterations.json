@@ -1,0 +1,75 @@
+{
+  "resourceCheck": {
+    "rawListeners": [
+      72,
+      75,
+      78,
+      81,
+      84,
+      87,
+      90,
+      93,
+      96,
+      99,
+      102,
+      105,
+      108,
+      111,
+      114,
+      117,
+      120,
+      123,
+      126,
+      129
+    ],
+    "collectedListeners": [
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71,
+      71
+    ],
+    "interpretation": "Raw counts include garbage; after collection no retained listener growth."
+  },
+  "iterations": [
+    {
+      "check": "Initial reset audio",
+      "result": "failed",
+      "cause": "Fresh spawn landing cue counted as stale voice",
+      "resolution": "Capture reset voices and wait for legitimate landing cue"
+    },
+    {
+      "check": "Raw CDP listener counts",
+      "result": "failed",
+      "cause": "Counts before garbage collection",
+      "resolution": "Compare retained counts after GC; explicitly release ended audio callbacks"
+    },
+    {
+      "check": "Intermediate baseline",
+      "result": "invalid",
+      "cause": "Read hook disappeared during concurrent rebuild; exact browser cause not established",
+      "resolution": "Immutable served build for final run"
+    },
+    {
+      "check": "Existing restart button",
+      "result": "failed",
+      "cause": "Lab panel intercepted pointer",
+      "resolution": "Move desktop panel below existing controls"
+    }
+  ]
+}

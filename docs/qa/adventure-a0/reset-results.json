@@ -1,0 +1,295 @@
+{
+  "results": [
+    {
+      "profile": "legacy",
+      "attempt": 1,
+      "setupMs": 2.799999998882413,
+      "browserReadyMs": 486
+    },
+    {
+      "profile": "legacy",
+      "attempt": 2,
+      "setupMs": 3,
+      "browserReadyMs": 476
+    },
+    {
+      "profile": "legacy",
+      "attempt": 3,
+      "setupMs": 4,
+      "browserReadyMs": 473
+    },
+    {
+      "profile": "legacy",
+      "attempt": 4,
+      "setupMs": 1,
+      "browserReadyMs": 442
+    },
+    {
+      "profile": "legacy",
+      "attempt": 5,
+      "setupMs": 2.599999999627471,
+      "browserReadyMs": 455
+    },
+    {
+      "profile": "legacy",
+      "attempt": 6,
+      "setupMs": 1.700000001117587,
+      "browserReadyMs": 462
+    },
+    {
+      "profile": "legacy",
+      "attempt": 7,
+      "setupMs": 1.099999999627471,
+      "browserReadyMs": 478
+    },
+    {
+      "profile": "legacy",
+      "attempt": 8,
+      "setupMs": 1.1000000014901161,
+      "browserReadyMs": 471
+    },
+    {
+      "profile": "legacy",
+      "attempt": 9,
+      "setupMs": 1.199999999254942,
+      "browserReadyMs": 492
+    },
+    {
+      "profile": "legacy",
+      "attempt": 10,
+      "setupMs": 1.300000000745058,
+      "browserReadyMs": 467
+    },
+    {
+      "profile": "prototype",
+      "attempt": 1,
+      "setupMs": 1.299999998882413,
+      "browserReadyMs": 502
+    },
+    {
+      "profile": "prototype",
+      "attempt": 2,
+      "setupMs": 1.900000000372529,
+      "browserReadyMs": 509
+    },
+    {
+      "profile": "prototype",
+      "attempt": 3,
+      "setupMs": 2.199999999254942,
+      "browserReadyMs": 532
+    },
+    {
+      "profile": "prototype",
+      "attempt": 4,
+      "setupMs": 1.300000000745058,
+      "browserReadyMs": 501
+    },
+    {
+      "profile": "prototype",
+      "attempt": 5,
+      "setupMs": 2.699999999254942,
+      "browserReadyMs": 525
+    },
+    {
+      "profile": "prototype",
+      "attempt": 6,
+      "setupMs": 1.5,
+      "browserReadyMs": 529
+    },
+    {
+      "profile": "prototype",
+      "attempt": 7,
+      "setupMs": 1.300000000745058,
+      "browserReadyMs": 558
+    },
+    {
+      "profile": "prototype",
+      "attempt": 8,
+      "setupMs": 1.5,
+      "browserReadyMs": 536
+    },
+    {
+      "profile": "prototype",
+      "attempt": 9,
+      "setupMs": 1.099999999627471,
+      "browserReadyMs": 536
+    },
+    {
+      "profile": "prototype",
+      "attempt": 10,
+      "setupMs": 2.099999999627471,
+      "browserReadyMs": 553
+    }
+  ],
+  "resources": [
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    },
+    {
+      "objects": 779,
+      "geometries": 334,
+      "textures": 52,
+      "programs": 35,
+      "audioVoices": 0
+    }
+  ],
+  "listenerCounts": [
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71
+  ],
+  "beforeGc": [
+    72,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    75,
+    74,
+    74,
+    74,
+    74
+  ],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "logicalCpus": 16,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "input": "mouse-keyboard",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 0.9999999761474712
+    },
+    "camera": "side"
+  },
+  "errors": []
+}

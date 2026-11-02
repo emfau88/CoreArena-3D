@@ -1,6 +1,11 @@
 # CORE ARENA 3D Architekturentscheidung
 
-## Adventure-Nachtrag vom 2. November 2026 — Planung, keine Implementierung
+## Adventure-Nachtrag vom 2. November 2026 — A0-Vergleich und weiterer Plan
+
+A0.1 + A0.2 wurden anschließend separat beauftragt. Das isolierte Entwicklungs-/Testlabor
+nutzt frische Instanzen der bestehenden Kampfregeln; weder eine Konstruktor-Injektion
+in `AdventureFight` noch Änderungen an den Kernregeln waren dafür nötig.
+[A0-Nachweis](../qa/ADVENTURE_A0_1_A0_2_RESULT.md). Die weiteren Mechaniken unten bleiben Planung.
 
 Die technische Grundlage Three.js/Rapier, numerische Simulation mit 60 Hz und
 Trennung von Eingabe, Regeln und Darstellung bleibt bestehen. Die neue
