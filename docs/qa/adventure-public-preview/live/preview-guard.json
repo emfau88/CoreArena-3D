@@ -1,0 +1,22 @@
+[
+  {
+    "mobile": false,
+    "url": "https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype&lab=boss",
+    "version": {
+      "commit": "d2737e815c26befa3586910f9f04eed3e68f3517",
+      "sourceHash": "ca13126d322ae786cef16d7e13802132e88e72800e021f4ec5b42d7533e4cf2d"
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "mobile": true,
+    "url": "https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype&lab=boss",
+    "version": {
+      "commit": "d2737e815c26befa3586910f9f04eed3e68f3517",
+      "sourceHash": "ca13126d322ae786cef16d7e13802132e88e72800e021f4ec5b42d7533e4cf2d"
+    },
+    "errors": [],
+    "failed": []
+  }
+]

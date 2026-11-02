@@ -71,8 +71,20 @@ damit ein späterer Hauptbuild die Vorschau nicht entfernt.
 - Fertiger Vorschau-Build lokal auf Desktop und Touch bestanden, ohne Testhook:
   Laden sämtlicher benötigter Assets, neue Aktionen, Doppelsprung, Pause und
   Orientierung. Regulärer Produktionsguard ebenfalls bestanden.
-- Die externe Pages-Abnahme folgt unmittelbar nach Push/Deployment mit demselben
-  `scripts/qa/adventurePreviewGuard.ts` gegen die öffentliche HTTPS-Adresse.
+- Externe Pages-Abnahme bestanden: derselbe `scripts/qa/adventurePreviewGuard.ts`
+  lädt die öffentliche HTTPS-Adresse auf Desktop und mit Touch. Alle benötigten
+  Assets erreichbar, keine Browserfehler; Doppelsprung, Pause und Orientierung
+  funktionieren ohne Diagnosezugriff. [Live-Nachweise](adventure-public-preview/live/).
+- Die öffentliche Hauptadresse wurde anschließend ebenfalls geladen: weiterhin
+  reguläre Legacy-Mission, auch bei angehängten Prototyp-/Lab-Parametern, ohne
+  Testhook und ohne Browserfehler.
+
+[Pages-Lauf 41507288812](https://github.com/emfau88/CoreArena-3D/actions/runs/41507288812)
+hat Build und Deployment erfolgreich abgeschlossen. Veröffentlicht ist Gameplay-
+Commit `d2737e815c26befa3586910f9f04eed3e68f3517`; README und Workflow auf `main`
+sind mit `9112181d9a94965b5d0dd0261a4149bb9c7bf132` gesichert. Beide Links wurden
+in der tatsächlichen GitHub-README geprüft. Der spätere Nachweiscommit verändert
+den veröffentlichten Gameplay-Stand nicht.
 
 Rohdaten und Bilder: [adventure-public-preview](adventure-public-preview/).
 Die Buildberichte vor dem Sicherungscommit nennen `40f4c96`; der öffentlich
