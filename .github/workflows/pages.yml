@@ -17,18 +17,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout live version
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          path: live
+      - name: Checkout Adventure preview
+        uses: actions/checkout@v6
+        with:
+          ref: codex/adventure-combat-prototype
+          path: adventure-source
       - uses: actions/setup-node@v7
         with:
-          node-version-file: .nvmrc
+          node-version-file: live/.nvmrc
           cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+          cache-dependency-path: |
+            live/package-lock.json
+            adventure-source/package-lock.json
+      - name: Build unchanged live game
+        working-directory: live
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Build public Adventure preview without diagnostics
+        working-directory: adventure-source
+        run: |
+          npm ci
+          npm test
+          npm run build:adventure-preview
+      - name: Include preview alongside live game
+        run: |
+          mkdir -p live/dist/adventure-preview
+          cp -a adventure-source/dist-preview/. live/dist/adventure-preview/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: live/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
