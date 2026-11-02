@@ -2,10 +2,17 @@
 
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
-- **Adventure / PvE-Kampagne — eigenständig.** Zusammenhängende Missionen,
-  Erkundung und Bosskämpfe. Das Stein-Testlevel ist spielbar, L1.6a–c sind umgesetzt;
-  L1.5b ist technisch abgeschlossen, persönliche Spiel-/Handyabnahme offen.
-  [Adventure-Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+- **Adventure — eigenständiges 3D-Action-Adventure mit Boss-Rush-Schwerpunkt.**
+  Neue strategische Richtung vom 2. November: präzise Bewegung, ungewöhnliche
+  Science-Fantasy-Waffen, faire Bosse und drei kurze Missionen. Maßgeblich sind
+  [Produktvision](docs/planning/ADVENTURE_VISION.md) und
+  [Adventure-Roadmap mit Bulks und sechs Gates](docs/planning/ADVENTURE_ROADMAP.md).
+  **Planungsbasis grundsätzlich freigegeben; noch kein neuer Gameplay-Code oder
+  freigegebener Implementierungs-Bulk.** 26 Bulks, sechs Gates und drei gebündelte
+  menschliche Spieltermine; nächster vorbereiteter Auftrag: A0.1 + A0.2 Vergleichslabor.
+  Spielbarer Bestand: Steinmission L1.6a–c und L1.5b technisch abgeschlossen,
+  persönliche Spiel-/Handyabnahme offen; alte Arc/Pulse-/Sprint-Regeln weiterhin aktiv.
+  [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und
   Railgun. **M2.4b:** Bot-Höhenrouten, bedarfsgerechte Ressourcenplanung und
@@ -79,7 +86,7 @@ und schmalere HP-/Rüstungsanzeige. [Ergebnis und Prüfungen](docs/qa/AP3_RESULT
 Als Nächstes ist M3.1 Classic CTF geplant; AP4/AP5 und M3–M5 bleiben offen.
 Echter Handytest bleibt separat.
 
-**Neu: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
+**Spielbarer Bestand: [Adventure-Level 1 spielen](https://emfau88.github.io/CoreArena-3D/?mode=pve&level=stone&adventure=1)**
 — drei große, offene Höfe mit breiten Verbindungen, erreichbaren Terrassen und festen
 Vorratsorten. Auch im Spielmenü über **„Adventure: Der verwitterte Hof“** erreichbar.
 Standardmäßig führt der Weg **von links nach rechts**. **V / Ansicht**
@@ -157,9 +164,9 @@ animierte Fackel. [Ursprüngliche Stilprobe: Vorher/Nachher](docs/qa/L1_4A_RESUL
 und am Ausgang; passende Wände, Treppen und Terrassen. Solide Eckpfeiler schließen
 die Maueranschlüsse, zusätzliche Pflanzen stehen auch innerhalb der Spielfläche.
 [Aktuelle Bilder und Prüfung](docs/qa/L1_4B_MATERIALS_RESULT.md).
-Die kostenlose Pflanzen-/Konsolenrunde ergänzt nun die drei Höfe. Weitere
-Lichtgestaltung ist optional; die abschließende Kampf-/Leistungsabnahme bleibt
-offen. [Aktuelle Roadmap](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
+Die kostenlose Pflanzen-/Konsolenrunde ergänzt die drei Höfe. Die technische
+Gesamtabnahme ist inzwischen durch L1.5b abgeschlossen; persönliches Spielurteil
+bleibt offen. Weitere Arbeiten folgen der [Adventure-Roadmap](docs/planning/ADVENTURE_ROADMAP.md).
 
 **Bewegung und Startwaffe aktualisiert:** Sprint 15 % langsamer (9,18 statt 10,8 m/s).
 Arc Lash sucht beim Aktivieren automatisch ein freies Ziel innerhalb von 5 m und
@@ -386,12 +393,15 @@ erst nach Bewährung des Spielgefühls. Weiterer Mobile-Ausbau bleibt optional.
 
 ## Planung und Referenz
 
-- [Adventure-Shooter: Vorbilder, Erkenntnisse und Empfehlungen](docs/planning/ADVENTURE_SHOOTER_REFERENCES.md)
-- [Erstes Testlevel: aktueller Stand und kompakter Ausbauplan](docs/planning/LEVEL_1_STONE_ADVENTURE.md)
+- [Adventure: verbindliche Produktvision](docs/planning/ADVENTURE_VISION.md)
+- [Adventure: maßgebliche Roadmap, Bulks und Qualitätstore](docs/planning/ADVENTURE_ROADMAP.md)
+- [Arena: eigene Produktvision und historische Grundlage](docs/VISION.md)
+- [Adventure-Shooter: historische Vorbildanalyse](docs/planning/ADVENTURE_SHOOTER_REFERENCES.md)
+- [Erstes Testlevel: Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md)
 - [Architektur](docs/planning/ARCHITECTURE_DECISION.md)
 - [M0-Auftrag](docs/planning/M0_IMPLEMENTATION_BRIEF.md)
 - [Meilensteine und QA](docs/planning/MILESTONES_AND_QA.md)
-- [Arbeitspakete und optionale Mobile-Erweiterung](docs/planning/MOBILE_AND_WORK_PACKAGES.md)
+- [Arena-Arbeitspakete; historische Mobile-/PvE-Notizen](docs/planning/MOBILE_AND_WORK_PACKAGES.md)
 - [Unveränderte V5-Referenz](references/Core_Arena_3D_Obsidian_Garden_V5.html)
 
 CTF-3.0 wird ausschließlich als Referenz gelesen. Die neue Runtime enthält keine

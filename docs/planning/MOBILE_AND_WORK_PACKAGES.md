@@ -1,8 +1,9 @@
 # CORE ARENA 3D: Arena-Roadmap und Arbeitspakete
 
-Stand: 1. November 2026. **Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
+Arena-Stand: 1. November 2026; Adventure-Verweise aktualisiert am 2. November.
+**Die M-Paketfolge dieses Dokuments gehört zur eigenständigen
 Spielvariante Arena / Teamspiel / CTF / Liga.** M0, M1 und M2.1–M2.3 sind technisch
-umgesetzt. **Arena ist wieder Schwerpunkt. M2.4a (kleines 2v2) ist umgesetzt.**
+umgesetzt. **M2.4a (kleines 2v2) ist umgesetzt.** Die Arena-Reihenfolge gilt nur für Arena.
 M2.4b (Routen/Ressourcen/Schwierigkeiten) ist umgesetzt und technisch geprüft.
 **M2.5 ist umgesetzt und technisch geprüft; M2.6 technisch abgeschlossen.**
 [M2.6-Nachweise](../qa/M2_6_RESULT.md). Persönliche Spiel-/Geräteabnahme und
@@ -41,7 +42,10 @@ mit M2.4b ergänzt; zusätzlich die Adventure-Sprungkurve und Treppenhilfe über
 [Ausbau/Prüfung](../qa/ARENA_EXPANSION_RESULT.md). Adventure bleibt unverändert.
 
 **Adventure / PvE-Kampagne bleibt eine separate Spielvariante.**
-Ihr [eigener Ausbauplan](LEVEL_1_STONE_ADVENTURE.md) ist maßgeblich:
+Für ihren Ausbau gelten die [neue Produktvision](ADVENTURE_VISION.md) und allein die
+[Adventure-Roadmap](ADVENTURE_ROADMAP.md). Neue Richtung: Desktop-first-Action-Adventure
+mit Boss-Rush-Schwerpunkt; alle neuen Bulks sind geplant, keiner freigegeben.
+Der [L1-Levelplan](LEVEL_1_STONE_ADVENTURE.md) ist Bestands-/Historiennachweis:
 L1.6a–c sind umgesetzt, L1.5b ist technisch abgeschlossen; persönliche Abnahme offen.
 Arena-Pakete sind keine nächsten
 Adventure-Schritte. [Vergleich und gemeinsame Systeme](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
@@ -291,6 +295,9 @@ Freigabestatus erteilen keinen Umsetzungsauftrag für dieses Repository.
 
 Die folgenden datierten Mobile-/PvE-Notizen dokumentieren frühere Zusatzaufträge.
 Sie sind historische Nachweise und keine zweite aktuelle Adventure-Roadmap.
+Ihre Aussagen über damalige „aktuelle Levelpläne“, Freigaben und Prioritäten gelten
+für den genannten Zeitpunkt. Heute bestimmt ausschließlich
+[ADVENTURE_ROADMAP.md](ADVENTURE_ROADMAP.md) neue Adventure-Arbeit.
 
 ## Freigegebener kleiner Mobile-Zusatz
 
@@ -466,7 +473,8 @@ Beobachtete Bearbeitungszeit bis zur technischen Prüfung etwa 35 Minuten inklus
 Grundrisswechsel; Dokumentation/Commit/Veröffentlichung anschließend. Keine getrennt
 gemessene reine Coding-Zeit. Die damalige Restschätzung von 2,5–5 Stunden für
 L1.2–L1.4 wurde durch die anschließende ausdrückliche Umfangsreduktion ersetzt;
-maßgeblich ist der aktuelle Levelplan oben.
+maßgeblich war anschließend der oben verlinkte historische Levelplan. Neue Aufträge
+folgen heute der Adventure-Roadmap.
 
 **27. Oktober, Umsetzungsplan für Adventure-Level 1:** Nach positiver Rückmeldung
 zum neuen Mockup zunächst vier Pakete L1.1–L1.4 geplant (inzwischen durch den

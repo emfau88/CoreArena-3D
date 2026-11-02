@@ -1,4 +1,11 @@
-# CORE ARENA 3D — Produktvision
+# CORE ARENA 3D — Arena-Produktvision
+
+**Geltungsbereich, 2.11.2026:** Dieses Dokument bewahrt die Arena-/Teamspiel-/CTF-/
+Liga-Vision. Für Adventure gelten ausschließlich die neue
+[Adventure-Produktvision](planning/ADVENTURE_VISION.md) und
+[Adventure-Roadmap](planning/ADVENTURE_ROADMAP.md). Shooter-, Waffen-, Kamera- und
+Mobile-Vorgaben dieses Arena-Briefs bestimmen keine neuen Adventure-Aufträge.
+Die Arena-Pakete und ihre Freigaben bleiben unverändert.
 
 **Aktueller Stand, 1.11.2026:** Arena und Adventure sind zwei eigenständige
 Spielvarianten. Arena M0/M1 und M2.1–M2.6 sowie das separate Map-Paket und
@@ -10,7 +17,7 @@ Spiel-/Geräteabnahme bleibt offen. Der CTF-3.0-Abgleich ist als
 integriert: AP1–AP3 sind erledigt; M3.1 Classic CTF ist der empfohlene nächste Bulk.
 Die übrigen Bulks bleiben geplant und sind nicht zur Umsetzung freigegeben.
 Adventure L1.6a–c und L1.5b sind technisch abgeschlossen; persönliche Abnahme offen.
-[Adventure-Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md).
+[Bestand und historische L1-Pakete](planning/LEVEL_1_STONE_ADVENTURE.md).
 Touch-Steuerung und Auto-Arc sind inzwischen gemeinsame Realität. Die folgenden
 historischen Aussagen zu ausschließlich manuellem Aim und nur rudimentärem Mobile
 sind insoweit überholt. Der historische Produktbrief ist keine aktuelle Statusliste.

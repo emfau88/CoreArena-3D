@@ -1,6 +1,28 @@
 # CORE ARENA 3D Meilensteine und Qualitätssicherung
 
-Stand: 1. November 2026. **Arena und Adventure bleiben getrennte Varianten.** M0/M1,
+Stand: **2. November 2026**. Diese Datei ist gemeinsamer Status-/Nachweisindex,
+keine zweite Adventure-Roadmap. **Arena und Adventure bleiben getrennte Varianten.**
+
+| Dokument | Verbindlicher Zweck |
+|---|---|
+| [Adventure-Produktvision](ADVENTURE_VISION.md) | Neue Identität: Desktop-first-Action-Adventure mit Boss-Rush-Schwerpunkt; Qualitätsziele und Nichtziele |
+| [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Einzige aktuelle Adventure-Bulkfolge, Abhängigkeiten, Status und sechs Qualitätstore bis Release |
+| [L1-Bestand und Historie](LEVEL_1_STONE_ADVENTURE.md) | Erhaltene Missionsbeschreibung und abgeschlossene historische Pakete, keine Folgefreigabe |
+| [Arena-Vision](../VISION.md) | Eigenständige Arena-/Teamspiel-/CTF-/Liga-Richtung |
+| [Arena-Roadmap](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Bestehende Arena-Bulks und deren unveränderte Freigaben |
+| [Architekturentscheidung](ARCHITECTURE_DECISION.md) | Gemeinsame technische Grundlage und abgegrenzter Adventure-Planungsnachtrag |
+| `docs/qa/*` | Datierte Umsetzungs-/Prüfnachweise; kein Ersatz für aktuelle Planung oder menschliche Abnahme |
+
+**Adventure-Planungsauftrag abgeschlossen:** Produktvision und vollständige Roadmap
+erstellt und vom Nutzer grundsätzlich freigegeben, historische Quellen eingeordnet.
+26 Bulks und sechs Gates bleiben erhalten; menschliche Abnahme gebündelt nach A4,
+bei A7.2 (erste Mission/Bossvergleich) und bei A11.4 (Mini-Kampagne/Release).
+Bossdarstellung gehört zu den bestehenden Boss-Abnahmen; Progression bleibt offen.
+Kein Gameplay verändert und kein neuer Implementierungs-Bulk freigegeben.
+Empfohlener erster Adventure-Auftrag: **A0.1 + A0.2 als gemeinsames A/B-Vergleichslabor**;
+Fortschritt und Gate-Status künftig nur in der Adventure-Roadmap pflegen.
+
+**Arena-Bestand vom 1. November, unverändert:** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.
 M2.4a brachte 2v2, M2.4b ergänzt Wege/Ressourcen/Schwierigkeiten und die
 Adventure-Bewegung. [M2.4b-Nachweis](../qa/M2_4B_RESULT.md).
@@ -34,7 +56,9 @@ Höhenrouten, Ressourcenwahl und die neue Waffe nicht erneut einplanen.
 Adventure bleibt eine eigenständige Variante. Das Steinlevel mit L1.6a–c ist
 anschließend durch L1.5b technisch geprüft; Pausenfehler und störende Bodenlinien
 wurden gezielt korrigiert. Persönliche Spiel-/Handyabnahme bleibt offen.
-Maßgeblich ist der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md).
+Der [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) dokumentiert diesen Bestand.
+Die neue [Produktvision](ADVENTURE_VISION.md) und [Roadmap](ADVENTURE_ROADMAP.md)
+führen die Zukunftsplanung; bisheriger Shooter-Kampf bleibt die spielbare Referenz.
 
 **L1.6a wurde freigegeben und umgesetzt:** Auftrag, Konsole und Relaisabschluss.
 [Umfang und Prüfungen](../qa/ADVENTURE_MISSION_RESULT.md).
@@ -58,12 +82,13 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / PvE-Kampagne — eigenständig** | [Adventure-Levelplan](LEVEL_1_STONE_ADVENTURE.md) | Ein zusammenhängendes Stein-Testlevel, L1.6a–c und technische L1.5b-Abnahme | Persönliche Spiel-/Handyabnahme; danach Kampagnenausbau gesondert planen |
+| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b technisch geprüft; Produktplanung grundsätzlich freigegeben, Gameplay unverändert | A0.1 + A0.2 gemeinsam vorbereitet, Implementierungsfreigabe offen; drei menschliche Spieltermine |
 | **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch geprüft | Karten-/Handyabnahme; als Nächstes M3.1 Classic CTF, gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind
 noch keine Adventure-Level mit der Ausarbeitung des neuen Stein-Testlevels.
-Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level.
+Der vollständige Paketplan dafür liegt jetzt in der Adventure-Roadmap vor;
+Frost-/Glut-Ausbau folgt erst nach positivem Kampfkern- und Missionsentscheid.
 
 **Vergleich, aktualisiert am 1. November einschließlich Arena-Map-Paket und AP1–AP3:**
 
@@ -78,12 +103,12 @@ Es gibt noch keinen vollständigen Paketplan für mehrere solche Adventure-Level
 | Kamera und Bewegung | Links-nach-rechts-Führung, volle Verfolgung mit mobilem Vorlauf, angepasste Adventure-Sprungkurve | Gemeinsame Eingabe/Physik und seit M2.4b dieselbe Sprungkurve/Treppenhilfe; Arena-spezifischer Kameraabstand und Kartenbegrenzung |
 | Mapdesign und Spielablauf | Drei funktionale Orte, geführte Mission, freiwillige Terrasse, Checkpoint/Retry, Belohnung und echter Abschluss | Obsidian Garden: beidseitig gleiche Ressourcen/Höhenrouten, Training, 1v1 und 2v2 bis Ergebnis/Restart; CTF/Liga noch offen |
 
-**Einordnung:** Das Adventure ist bei Umgebung, Inszenierung und zusammenhängendem
-Spielablauf deutlich weiter ausgearbeitet. Es ist kein Nachweis höherer technischer
-Leistung und keine fertige mehrteilige Kampagne. Die Arena besitzt bereits die
-gemeinsamen modernen Figuren-/Waffensysteme; ihre eigene Umgebung und Teamspiel-
-Systeme sind weniger weit. Ein späterer Arena-Ausbau muss deshalb gemeinsam
-vorhandene Verbesserungen zuerst prüfen und nur fehlende Teile übernehmen.
+**Einordnung:** Adventure besitzt eine ausgearbeitete zusammenhängende Steinmission;
+Arena besitzt einen eigenen technisch geprüften 2v2-Ablauf samt AP1–AP3-Präsentation.
+Das sind unterschiedliche Stärken und kein pauschales technisches Qualitätsranking.
+Frost und Glut sind noch keine gleich weit entwickelten Adventure-Missionen.
+Gemeinsame Verbesserungen vor Wiederverwendung prüfen; daraus entsteht keine
+verbindliche gemeinsame Produkt- oder Paketfolge.
 
 Quellen im Code: [Arena-Einstieg](../../src/app/game.ts),
 [Adventure-Einstieg](../../src/app/adventureGame.ts),
@@ -229,17 +254,21 @@ M2.1-Nachweise: [Ergebnis](../qa/M2_1_RESULT.md), 16 bestandene Kern-/Physiktest
 
 M2.2-Nachweise: [Ergebnis](../qa/M2_2_RESULT.md), 21 bestandene Kern-/Physiktests und acht Browserfälle (sieben Regressionen einschließlich vollständigem Match, ein neuer Waffen-/Pickup-Ablauf). Arc-Kegel/Randtreffer/Deckung, echte Pulse-Flugzeit und Kugel-Sweeps, Auswahl/Munition/Fallback, höhengebundene Teilaufnahmen und Respawn geprüft. GitHub-Playlink und Actions-Workflow ergänzt; keine persönliche Spielabnahme behauptet.
 
-**Aktuelle Priorität nach Nutzerfeedback:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gelten als späterer QA-Ausbau, nicht als automatisch vorzuziehende Voraussetzung für jeden frühen Zwischenstand. Der konkrete Testumfang wird mit dem nächsten freigegebenen Paket begrenzt. V5 bleibt die Richtung für Optik und Spielgefühl; wesentliche Abweichungen werden vorab abgestimmt.
+**Arbeitsprinzip:** Kleine, sichtbare und spielbare Ergebnisse zuerst. Pro Änderung die relevanten Kernprüfungen ausführen. Die weiter unten geplanten umfassenden Randfall-, Langzeit- und Balance-Matrizen gehören zur historischen Arena-Planung, nicht automatisch zu jedem frühen Zwischenstand. Den konkreten Testumfang bestimmt der freigegebene Bulk. Die V5-Referenz betrifft die ursprüngliche Arena-Richtung; Adventure verwendet seine neue Produktvision und die eigene Roadmap.
 
 Das erste Arena-Produktziel war ein verlässlich spielbares 2v2-TDM auf einer
 Höhenarena und ist bis M2.6 technisch geprüft. Der Adventure-Vorrang vom 28. Oktober
 war eine frühere Priorität; inzwischen wird Arena separat fortgesetzt. Maßgeblich
-für die nächste Reihenfolge ist die Arena-To-do-Liste oben. Jeder freigegebene
+für die nächste Arena-Reihenfolge ist die Arena-To-do-Liste oben. Jeder freigegebene
 Schritt endet mit einem sichtbaren Ergebnis und passender Prüfung.
 
 Die konkrete Reihenfolge der Arbeitspakete M0.1 bis M4.4 und die Einschätzung einer optionalen Mobile-Erweiterung stehen in [MOBILE_AND_WORK_PACKAGES.md](MOBILE_AND_WORK_PACKAGES.md). Die dortigen Pakete unterteilen die folgenden Aufwandsspannen; sie erweitern den Desktop-Umfang nicht. Ein Touch-Versuch wäre ein separat freizugebender Zusatz.
 
 ## Anpassung des Starterplans
+
+**Historische Arena-Planung:** Die folgenden Starteranpassungen, M-Aufwandsspannen
+und M-Gates erteilen keine Adventure-Aufträge. Für Adventure gelten die sechs Gates
+der [eigenen Roadmap](ADVENTURE_ROADMAP.md#5-verbindliche-qualitätstore).
 
 Der bisherige [IMPLEMENTATION_PLAN.md](../IMPLEMENTATION_PLAN.md) verlangt für M0 bereits eine Szene mindestens in vollständiger V5-Qualität, schiebt Höhen-/Kollisions-/Trefferkorrektheit aber nach M1. Das würde den ersten Auftrag entweder unnötig groß machen oder eine zweite vorläufige Physik festschreiben.
 

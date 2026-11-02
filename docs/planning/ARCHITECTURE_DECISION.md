@@ -1,5 +1,40 @@
 # CORE ARENA 3D Architekturentscheidung
 
+## Adventure-Nachtrag vom 2. November 2026 — Planung, keine Implementierung
+
+Die technische Grundlage Three.js/Rapier, numerische Simulation mit 60 Hz und
+Trennung von Eingabe, Regeln und Darstellung bleibt bestehen. Die neue
+[Adventure-Vision](ADVENTURE_VISION.md) ändert die Produktrichtung; allein die
+[Adventure-Roadmap](ADVENTURE_ROADMAP.md) führt neue Arbeitspakete und Freigaben.
+Die nachfolgenden ursprünglichen M0/M1/M2-Entscheidungen bleiben als technische
+Historie erhalten. Ihre damaligen Waffen-/Kamera-/Prioritätsvorgaben bestimmen
+nicht den neuen Adventure-Kampf. Arena bleibt bei seinen eigenen Regeln.
+
+Der heutige Code besitzt getrennte App-Einstiege, teilt aber unter anderem
+`Simulation`, `Combat`, `ArenaCamera`, `DesktopInput`, `kayFighter` und den
+Rapier-Adapter. Adventure-Neuerungen dürfen daher keine globalen Standardwerte
+oder gemeinsam gecachten Animationen verändern.
+
+Geplanter Weg: Variantenwahl einmalig am Adventure-Einstieg, kleiner
+Kompositionspunkt für Bewegung/Waffe/Kamera/Encounter, bisherige Instanzen als
+unveränderte Defaults. `AdventureFight` erhält nur die tatsächlich notwendige
+Injektion; Missionslogik und App werden nicht vollständig dupliziert. Neue
+Peitschenregeln verwenden bestehende Schadensereignisse und räumliche Abfragen.
+Simulation bestimmt Schlagbahn und Timing; Rendering bildet diese ab.
+
+Konkrete neue Risiken: aktive Bosscollider sind bisher durchlaufbare Sensoren;
+ein Bewegungsblocker braucht getrennte Filter und Schutz vor Einklemmung. Dash
+benötigt einen eigenen Simulationszustand und Resetregeln. Nahkampf-Aim und
+Kamera müssen gemeinsame Welt-/Höhenkonventionen benutzen. Ein dauerhafter
+Adventure-Save ist bisher nicht vorhanden; vorhandene Sitzungs-Checkpoints bleiben
+erhalten, ein kleiner lokaler Adapter ist erst für die bestätigte Kampagne geplant.
+
+Vollständige Abgrenzung, mögliche Dateien, Referenz-/Laborstarts und Regressionen:
+[Technische Integration in der Roadmap](ADVENTURE_ROADMAP.md#3-technische-integration-ohne-verteilte-sonderfälle).
+Dieser Nachtrag genehmigt weder einen Umbau noch eine neue Engine-/Frameworkschicht.
+
+## Historische ADR 001 und Umsetzungsnachträge
+
 ADR 001. Stand: 20. Oktober 2026. Status: M0 und M1 freigegeben und umgesetzt. Weiterführende M2–M4-Systeme bleiben Planung und benötigen ihre jeweiligen Aufträge.
 
 M1 konkretisiert diese Entscheidung: numerische Ziel-/Trefferdaten in `core/aim.ts`, gemeinsame Sprung-/Fallbefehle und gerichtete Verbindungen in der Arena-Beschreibung. Die goldene Navigationsprobe nutzt denselben Motor und eine identische, isolierte Rapier-Welt; sie blockiert den Spieler nicht und ist noch kein Kampfbotsystem. Die drei Dummies sind feste Treffer-Sensoren. Waffenschaden, Inventar und Kampf-KI folgen frühestens in M2.

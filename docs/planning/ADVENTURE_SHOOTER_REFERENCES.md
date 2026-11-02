@@ -1,5 +1,13 @@
 # Adventure-Shooter: Vorbilder und Empfehlungen für CORE ARENA
 
+**Archivstatus vom 2. November 2026:** Historische Recherche zur früheren
+Shooter-Richtung. Aussagen zur strategischen Richtung, Mobile-Priorität,
+Paketreihenfolge und damalige Statusmeldungen sind keine heutigen Vorgaben.
+Für neue Aufträge gelten [Adventure-Vision](ADVENTURE_VISION.md) und ausschließlich
+[Adventure-Roadmap](ADVENTURE_ROADMAP.md). L1.6a–c und L1.5b sind inzwischen technisch
+abgeschlossen; persönliche Spiel-/Geräteabnahme bleibt offen. Der nachfolgende
+datierte Recherchetext und seine Quellen bleiben als Historie erhalten.
+
 Recherche- und Designstand: **29. Oktober 2026**. Projektbasis: `bb8975d`.
 
 **Statusnachtrag 30. Oktober:** Die nachfolgende Analyse beschreibt den Stand
@@ -8,14 +16,16 @@ umgesetzt; [Missionsnachweis](../qa/ADVENTURE_MISSION_RESULT.md). Danach wurde
 L1.6b separat freigegeben und anhand aktueller Waffenvergleiche abgestimmt;
 [Bossvergleich](../qa/BOSS_PRESSURE_RESULT.md). Anschließend wurde L1.6c separat
 freigegeben und umgesetzt: [Ortsgestaltung und Wartungsreserve](../qa/OUTPOST_PLACES_RESULT.md).
-L1.5b bleibt offen.
+L1.5b war zu diesem Zeitpunkt offen; die technische Abnahme erfolgte später am
+1. November (siehe Archivstatus oben). Das persönliche Spielurteil bleibt offen.
 Historische Aussagen zur fehlenden Missionskette, zum optionalen Kern und zu
 alten Kampfwerten sind überholt; Empfehlungen sind keine Freigabe.
 
 Dieses Dokument sammelt die Erkenntnisse hinter dem geplanten Adventure-Ausbau.
 Es ist eine ausführliche Referenz, keine zusätzliche Aufgabenliste und keine
-Umsetzungsfreigabe. Maßgeblich für die nächsten Arbeitspakete bleibt der
-[kompakte Levelplan L1.6a–c](LEVEL_1_STONE_ADVENTURE.md).
+Umsetzungsfreigabe. Damals maßgeblich war der
+[kompakte Levelplan L1.6a–c](LEVEL_1_STONE_ADVENTURE.md); heutige Aufträge folgen
+der oben verlinkten neuen Adventure-Roadmap.
 
 ## Inhalt
 
@@ -768,9 +778,10 @@ bildet keine gemessene Erfolgswahrscheinlichkeit ab.
 - [x] L1.6a: Auftrag/Konsole/Kern/Relais — am 30. Oktober freigegeben und umgesetzt.
 - [x] L1.6b: Kampf und Bossdruck — am 30. Oktober separat freigegeben und umgesetzt.
 - [x] L1.6c: Orte und Erkundung — am 30. Oktober separat freigegeben und umgesetzt.
-- [ ] L1.5b: Abschließende technische und persönliche Spielabnahme.
+- [x] L1.5b: Technische Gesamtabnahme inzwischen durchgeführt, siehe [Bericht](../qa/L1_5B_RESULT.md).
+- [ ] Persönliche Spiel-/Geräteabnahme bleibt separat offen.
 
-Der [kompakte Levelplan](LEVEL_1_STONE_ADVENTURE.md) bleibt maßgeblich.
+Der [kompakte Levelplan](LEVEL_1_STONE_ADVENTURE.md) war für diesen historischen Ausbau maßgeblich.
 Ursprüngliche Umfangs- und Aufwandsschätzung vor L1.6a: grob 2–4 Stunden aktive Agent-Arbeit für die
 geplanten Pakete einschließlich gezielter Tests und Dokumentation. Die Länge
 dieses Referenzdokuments begründet keinen zusätzlichen Entwicklungsumfang.
@@ -779,7 +790,7 @@ Ein allgemeines Quest-System, neues Inventar, vertonte Dialogproduktion,
 persistente Charakterentwicklung, Mech-Gegner, weitere Räume oder zusätzliche
 Gegnerwellen sind mögliche spätere Richtungen. Keine davon muss für das erste
 Testlevel vorgezogen werden. **L1.6a–c sind inzwischen umgesetzt.** Weitere Umsetzung
-wartet auf eine neue Freigabe; maßgeblich bleibt der aktuelle Levelplan.
+wartet auf eine neue Freigabe; heute maßgeblich ist die [Adventure-Roadmap](ADVENTURE_ROADMAP.md).
 
 ## 16. Wie wir Wirkung prüfen und weitere Inspiration sammeln
 

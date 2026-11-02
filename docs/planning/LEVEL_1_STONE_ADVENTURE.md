@@ -1,8 +1,14 @@
 # Level 1: Der verwitterte Hof
 
-**Spielvariante: Adventure / PvE-Kampagne.** Dieser Plan beschreibt ausschließlich
-den Adventure-Ausbau. Arena, 2v2, CTF und Liga sind eine getrennte
-Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Plans.
+**Einordnung vom 2. November 2026: Bestandsdokument und historische L1-Planung.**
+Die folgenden Pakete, Entscheidungen und Berichte bleiben erhalten. Frühere
+„nächste Schritte“, Freigaben, Zeitschätzungen, Shooter-/Mobile-Vorgaben und offene
+Gestaltungsideen sind keine aktuelle Aufgabenliste. Für neue Adventure-Aufträge
+gelten ausschließlich [ADVENTURE_VISION.md](ADVENTURE_VISION.md) und
+[ADVENTURE_ROADMAP.md](ADVENTURE_ROADMAP.md). Alle neuen Bulks sind zunächst geplant.
+
+**Spielvariante: Adventure / PvE-Kampagne.** Arena, 2v2, CTF und Liga sind eine getrennte
+Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Dokuments.
 [Gemeinsame Grundlage und Unterschiede](MILESTONES_AND_QA.md#zwei-getrennte-spielvarianten).
 
 **1. November: L1.5b wurde freigegeben und technisch abgeschlossen.**
@@ -10,6 +16,10 @@ Spielvariante und keine Voraussetzung oder automatische Fortsetzung dieses Plans
 Persönliche Spiel-/Handyabnahme bleibt offen. Arena wird separat weitergeplant.
 
 ## Kompakter nächster Ausbau: „Der verstummte Außenposten“
+
+**Historische Überschrift:** Der hier geplante Ausbau ist inzwischen umgesetzt.
+Die neue Reihenfolge beginnt mit A0.1 der Adventure-Roadmap; die bisherigen
+Missionsobjekte und abgeschlossenen L1-Pakete bleiben ihre Grundlage.
 
 **Stand 30. Oktober 2026: L1.6a, L1.6b und anschließend L1.6c freigegeben und umgesetzt.**
 Die vollständige Missionskette ist spielbar; [Ergebnis und Browsernachweise](../qa/ADVENTURE_MISSION_RESULT.md).
@@ -44,7 +54,7 @@ durch das geöffnete Ausgangstor gehen.
 - [ ] Persönliche Spiel-/Stilabnahme und echter Handytest.
 
 **Reihenfolge:** L1.6a–c und anschließend die technische L1.5b-Abnahme sind erledigt.
-Nächster Schritt ist der persönliche Durchlauf und gezielte Nacharbeit nach Befund.
+Damals vorgesehener nächster Schritt war der persönliche Durchlauf und gezielte Nacharbeit nach Befund.
 Weitere Kampagnenlevel brauchen einen neuen begrenzten Plan und eigene Freigabe.
 Es gibt keine zusätzliche offene Coding-Restschätzung für L1.5b.
 
@@ -196,6 +206,9 @@ persönliche Schwierigkeitsabnahme und ist keine Garantie für jede Position.
 
 ## Umsetzungsplan: vom spielbaren Kern zum fertigen Testlevel
 
+**Historischer Paketplan.** Die Statusnachweise gelten für die damalige Umsetzung;
+neue Aufgaben werden ausschließlich in der [Adventure-Roadmap](ADVENTURE_ROADMAP.md) geführt.
+
 L1.1/L1.2 bleiben erledigt; L1.3 schließt inzwischen den Levelablauf ab. Der vorige Plan vom 27. Oktober reichte für einen kleinen
 Kampfversuch. Das ausdrücklich gewünschte Qualitätsziel vom 28. Oktober braucht
 zusätzlich einen fertigen Abschluss und einen eigenen Gestaltungsschritt. L1.4 wird
@@ -243,7 +256,8 @@ Wunsch wieder zu planen. Die separate Arena-/Liga-Roadmap M2.4 ff. bleibt besteh
 - [x] Sichtbar öffnendes Nordtor mit passender Kollision und begehbarem Ausgang.
 - [x] Abschluss erst nach Durchgehen; Wiederholen, Spielmenü und optionale Kristallkluft.
 - [x] Regulärer Desktop- und Touch-Durchlauf einschließlich Boss-Tod, Retry, Sieg und Ausgang.
-- [ ] Persönliche Spielabnahme; weitere Blickfänge/Lichtgestaltung und L1.5 noch offen.
+- [ ] Persönliche Spielabnahme. Historischer Zusatz zu L1.5: inzwischen technisch
+  abgeschlossen (siehe Statuskopf); weitere Gestaltung ist kein offener Pflichtbulk.
 
 ## L1.4a – erster Hof als Stilprobe erledigt
 

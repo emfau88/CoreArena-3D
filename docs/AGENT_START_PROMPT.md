@@ -1,5 +1,13 @@
 # Kopierfertiger Erstauftrag an den Coding-Agenten
 
+**Archivierter Starterauftrag, eingeordnet am 2.11.2026.** Der folgende Text bewahrt
+den ursprünglichen Arena-Projektstart; er ist kein aktueller Auftrag, M0 erneut
+zu beginnen. Für heutige Arbeit zuerst [Projektübersicht](planning/MILESTONES_AND_QA.md)
+und den tatsächlich beauftragten Bulk lesen. Adventure verwendet ausschließlich
+[ADVENTURE_VISION.md](planning/ADVENTURE_VISION.md) und
+[ADVENTURE_ROADMAP.md](planning/ADVENTURE_ROADMAP.md); Arena seine
+[eigene Paketfolge](planning/MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste).
+
 Du übernimmst die technische Planung eines **neuen eigenständigen Spielprojekts: CORE ARENA 3D**. Bitte **zunächst ausschließlich analysieren und einen konkreten Umsetzungsplan vorlegen – NICHT sofort das ganze Spiel programmieren**.
 
 ## Quellen in dieser Reihenfolge

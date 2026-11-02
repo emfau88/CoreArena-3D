@@ -1,10 +1,13 @@
 # CORE ARENA 3D — Technischer Ansatz und Gates
 
-**Einordnung vom 31.10.2026:** Dieses Starterdokument beschreibt die ursprüngliche
-Arena-Planung. Arena ist wieder aktiver Schwerpunkt; M2.4a ergänzt das kleine 2v2.
+**Einordnung vom 2.11.2026:** Dieses Starterdokument beschreibt die ursprüngliche
+Arena-Planung und ihre damaligen Gates. Arena M0–M2.6 und AP1–AP3 sind technisch umgesetzt.
 Aktueller Umfang und Restarbeit stehen in [MILESTONES_AND_QA](planning/MILESTONES_AND_QA.md)
 und den [Arena-Paketen](planning/MOBILE_AND_WORK_PACKAGES.md). Adventure L1.6a–c
-ist separat umgesetzt, L1.5b bleibt offen; siehe [Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md).
+und L1.5b sind technisch abgeschlossen; persönliche Spiel-/Geräteabnahme bleibt offen.
+Für neue Adventure-Aufträge sind [Produktvision](planning/ADVENTURE_VISION.md) und
+[Roadmap](planning/ADVENTURE_ROADMAP.md) maßgeblich; der
+[Levelplan](planning/LEVEL_1_STONE_ADVENTURE.md) bewahrt den bisherigen Stand.
 Die folgenden alten Phasen sind keine Aufforderung, das Fundament erneut aufzubauen.
 
 **Ziel:** Statt Mega-Rewrite ein separat überprüfbarer 3D-Vertical-Slice. CTF-3.0 bleibt unverändert. Alle Implementierungsschritte erst nach expliziter Freigabe des ersten Audit-Plans.
