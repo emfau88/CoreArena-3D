@@ -28,7 +28,7 @@ for(const reserve of [false,true])test(`T2 complete prototype mission, reserve $
   await walkT2(page,0,7);await defeatT2(page,1);
   if(reserve){await walkT2(page,0,2);await walkT2(page,-12.5,2);await page.keyboard.press('KeyE');
     await expect.poll(async()=>(await readT2(page)).mission.reserveRecovered).toBe(true);await walkT2(page,0,2);}
-  await walkT2(page,0,-14);await page.keyboard.press('KeyW',{delay:400});
+  await walkT2(page,0,-14);await page.keyboard.press('KeyD',{delay:400});
   expect((await readT2(page)).snapshot.position.z).toBeGreaterThan(-16);expect((await readT2(page)).checkpoint).toBe(false);
   await walkT2(page,0,-8);await walkT2(page,-1,-8);await page.keyboard.press('KeyE');
   await expect.poll(async()=>(await readT2(page)).mission.consoleActive).toBe(true);
@@ -43,7 +43,7 @@ for(const reserve of [false,true])test(`T2 complete prototype mission, reserve $
   const core=won.result.core!.position;await walkT2(page,core.x,core.z);expect((await readT2(page)).core?.collected).toBe(true);
   await walkT2(page,0,core.z);await walkT2(page,0,-39);await page.keyboard.press('KeyE');
   await expect.poll(async()=>(await readT2(page)).mission.relayActive).toBe(true);
-  await page.keyboard.down('KeyW');try{await expect.poll(async()=>(await readT2(page)).completed).toBe(true);}finally{await page.keyboard.up('KeyW');}
+  await page.keyboard.down('KeyD');try{await expect.poll(async()=>(await readT2(page)).completed).toBe(true);}finally{await page.keyboard.up('KeyD');}
   await page.screenshot({path:info.outputPath('complete.jpg'),quality:75});await page.locator('#pve-again').click();
   expect((await readT2(page)).mission.consoleActive).toBe(false);expect((await readT2(page)).mission.reserveRecovered).toBe(false);
   expect((await readT2(page)).enemies.every(r=>r.hp===70)).toBe(true);expect(errors).toEqual([]);

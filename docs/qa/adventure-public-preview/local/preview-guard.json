@@ -1,0 +1,22 @@
+[
+  {
+    "mobile": false,
+    "url": "http://127.0.0.1:8746/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype&lab=boss",
+    "version": {
+      "commit": "40f4c9611e6a9a5cb33bc1dc4f43004fa0a492ca",
+      "sourceHash": "b5f5e43b33cc3f9070c81efaa0eb2acf0cdac0a7ba2c8bb39b41d75e86fcdb43"
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "mobile": true,
+    "url": "http://127.0.0.1:8746/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype&lab=boss",
+    "version": {
+      "commit": "40f4c9611e6a9a5cb33bc1dc4f43004fa0a492ca",
+      "sourceHash": "b5f5e43b33cc3f9070c81efaa0eb2acf0cdac0a7ba2c8bb39b41d75e86fcdb43"
+    },
+    "errors": [],
+    "failed": []
+  }
+]

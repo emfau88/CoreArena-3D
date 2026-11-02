@@ -19,6 +19,10 @@ test('Adventure routing isolates lab/profile parameters and preserves legacy def
   assert.equal(route(stone+'&lab=boss&combat=typo')?.profile, 'legacy');
   assert.equal(route(stone+'&lab=typo&combat=prototype')?.lab, false);
   assert.deepEqual(route(stone+'&lab=boss&combat=prototype', false), route(stone));
+  assert.deepEqual(resolveAdventureEntry(new URLSearchParams(stone+'&combat=prototype&lab=boss'),false,true),
+    {profile:'prototype',lab:false,exploration:false,complement:false});
+  assert.deepEqual(resolveAdventureEntry(new URLSearchParams(stone),false,true),route(stone));
+  assert.equal(resolveAdventureEntry(new URLSearchParams('mode=pve&adventure=1&level=frost&combat=prototype'),false,true),null);
   assert.deepEqual(route(stone+'&lab=boss&explore=1&combat=prototype'), { profile: 'legacy', lab: false, exploration: true });
   for (const query of ['', 'mode=arena', 'mode=pve', 'mode=pve&adventure=0&level=stone',
     'mode=pve&adventure=1&level=frost', 'mode=pve&adventure=1&level=ember']) {

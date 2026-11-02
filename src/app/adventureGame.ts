@@ -45,6 +45,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   let {combat,pickups}=fight;
   const clock = new FixedClock();
   let labModule: typeof import('./adventureLab') | undefined;
+  let prototypeModule: typeof import('./adventurePrototype') | undefined;
   let lab: ReturnType<typeof import('./adventureLab')['installAdventureLab']> | undefined;
   let prototype:import('./adventurePrototype').AdventurePrototype|undefined;
   let whipView:import('../render/energyWhipView').EnergyWhipView|undefined;
@@ -162,8 +163,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   };
   const resetMissionPrototype=()=>{
     if(entry.profile!=='prototype')return;
-    prototype=new labModule!.AdventurePrototype(simulation,false);
-    configurePresentation();view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,prototype?'straight':'side');
+    prototype=new prototypeModule!.AdventurePrototype(simulation,false);
+    configurePresentation();view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side');
   };
   const restartLab = (running: boolean) => {
     const started = performance.now(), selection = lab!.selection();
@@ -172,10 +173,10 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     labModule!.prepareBossAttempt(fight, world, selection.weapon);
     // Simulation.reset intentionally preserves regular-mission tick/facing. A lab attempt gets a fresh clock/state.
     simulation = new Simulation(world, labModule!.LAB_SPAWN, STONE_ADVENTURE_JUMP);
-    prototype=selection.profile==='prototype'?new labModule!.AdventurePrototype(simulation,selection.practice):undefined;
+    prototype=selection.profile==='prototype'?new prototypeModule!.AdventurePrototype(simulation,selection.practice):undefined;
     if(prototype?.practice)fight.bossActive=false;
     configurePresentation();
-    view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, prototype?'straight':'side'); bossIntroduced = true;
+    view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, 'side'); bossIntroduced = true;
     placePlayer(labModule!.LAB_SPAWN);
     lab!.begin({ player: current, fight: fight.snapshot(), weapons: combat.snapshot(), pickups: pickups.snapshot(),
       camera: view.camera.mode, audioVoices: feedback.diagnostics().voices }, performance.now() - started, clock.droppedTicks, running);
@@ -381,11 +382,13 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },
   }) });
-  if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && (entry.lab||entry.profile==='prototype')) {
-    labModule = await import('./adventureLab');
-    whipView=new labModule.EnergyWhipView(view.scene,labModule.PRACTICE_TARGETS);
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test' || import.meta.env.MODE === 'adventure-preview') && (entry.lab||entry.profile==='prototype')) {
+    prototypeModule=await import('./adventurePrototype');
+    const {EnergyWhipView}=await import('../render/energyWhipView');
+    whipView=new EnergyWhipView(view.scene,prototypeModule.PRACTICE_TARGETS);
   }
   if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && entry.lab) {
+    labModule = await import('./adventureLab');
     lab = labModule!.installAdventureLab(host, entry.profile, restart, () => {
       const gl = view.renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
       return { userAgent: navigator.userAgent, logicalCpus: navigator.hardwareConcurrency,

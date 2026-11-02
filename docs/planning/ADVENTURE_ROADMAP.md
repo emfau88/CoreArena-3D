@@ -10,7 +10,9 @@ Nach bestandenem T1/G1 hat der Nutzer den empfohlenen Abschnitt A5.1–A7.2
 mit „ja so machen, leg los“ freigegeben. Der A4-Feedback-Feinschliff ist umgesetzt;
 seine Wirkung sowie **G2/G3 und der Richtungsentscheid bleiben menschlich offen**.
 A8 und spätere Bulks sind nicht beauftragt. Legacy bleibt der reguläre Standard;
-der Prototyp ist im Entwicklungs-/Testbuild auch als vollständige Mission anwählbar.
+der Prototyp ist im Entwicklungs-/Testbuild und als separate öffentliche T2-Vorschau
+als vollständige Mission anwählbar. Das ist keine Abnahme der Release-Gates.
+[Öffentliche Vorschau](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype).
 [Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md) ·
 [T2-Kandidat A5–A7](../qa/ADVENTURE_A5_A7_RESULT.md) ·
 [T2-Nacharbeit: zwei Peitschenangriffe und Darstellung](../qa/ADVENTURE_WHIP_MOVES_RESULT.md).
@@ -410,6 +412,10 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 ### A1 — Kampfansicht und gerichtetes Mausziel
 
 **Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+
+**Ergänzende T2-Entscheidung:** Nutzer bestätigt wieder durchgehend Links-nach-rechts
+statt der A1-Geradeausansicht, einschließlich Bossarena. Nachführung bleibt erhalten;
+Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentliche Vorschau](../qa/ADVENTURE_PUBLIC_PREVIEW_RESULT.md).
 **Nachweis:** [Ergebnis A1](../qa/ADVENTURE_A1_RESULT.md).
 **Ziel/Nutzen:** Richtungen und Gefahren sind bei dynamischer Bewegung zuverlässig lesbar.
 **Umfang:** Ein Adventure-Kameraprofil auf vorhandener Infrastruktur, Zielrichtung und einfacher Richtungsindikator. Höchstens ein zusätzlicher Perspektivvergleich bei belegter Grenze.

@@ -1,5 +1,14 @@
 # CORE ARENA 3D
 
+**[▶ Neue Adventure-Version spielen — auch auf dem Handy](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
+
+Öffentliche T2-Testversion: wieder **von links nach rechts**, Energiepeitsche mit
+drei Angriffsbewegungen, Dash und Doppelsprung. Handy im **Querformat**: links bewegen, ins Spielfeld tippen zum
+Schlagen, **Knall**, **Dash** und **Sprung ×2** rechts. Kein laufender PC nötig.
+Echte Android-/iPhone-Spieltests stehen noch aus.
+[Aktuelle Adventure-Roadmap und Fortschritt](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_ROADMAP.md).
+Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.github.io/CoreArena-3D/) bleibt separat erreichbar.
+
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
 - **Adventure — eigenständiges 3D-Action-Adventure mit Boss-Rush-Schwerpunkt.**
@@ -13,8 +22,8 @@
   [Ergänzung: Sprungangriff, kurzer Doppelsprung und Touch-Aktionen](docs/qa/ADVENTURE_AIR_RESULT.md).
   26 Bulks, sechs Gates und drei menschliche Spieltermine bleiben erhalten.
   G1 qualitativ bestanden; G2/G3 und der Richtungsentscheid folgen in T2.
-  Legacy bleibt unveränderter Standard. Im Entwicklungs-/Testbuild ist die
-  vollständige neue Mission über `combat=prototype` ausdrücklich anwählbar.
+  Legacy bleibt unveränderter Standard. Im Entwicklungs-/Testbuild und in der
+  separaten öffentlichen Vorschau ist die neue Mission über `combat=prototype` anwählbar.
   A8, weitere Maps und Progression sind noch nicht beauftragt.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und

@@ -16,7 +16,7 @@ export const PRACTICE_TARGETS:readonly CombatTarget[]=[
   {id:'practice-cover',center:{x:8,y:1.2,z:-28},radius:.4},
   {id:'practice-plateau',center:{x:-12,y:2.3,z:-23},radius:.4},
 ];
-/** Created only by the development lab. No URL parsing or boss-rule changes here. */
+/** Isolated combat used by the development lab, mission and public preview. */
 export class AdventurePrototype {
   readonly aim=new AdventureAim();
   readonly whip=new EnergyWhip();

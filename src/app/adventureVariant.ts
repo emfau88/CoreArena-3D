@@ -9,12 +9,12 @@ export interface AdventureEntry {
 }
 
 /** The only URL boundary for Adventure variants. Other modes retain their routes. */
-export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean): AdventureEntry | null {
+export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean, allowPrototype=allowLab): AdventureEntry | null {
   if (params.get('mode') !== 'pve' || params.get('adventure') !== '1'
     || (params.get('level') ?? 'stone') !== 'stone') return null;
   const exploration = params.get('explore') === '1';
   const lab = allowLab && !exploration && params.get('lab') === 'boss';
-  const profile=allowLab&&!exploration&&params.get('combat')==='prototype'?'prototype':'legacy';
+  const profile=allowPrototype&&!exploration&&params.get('combat')==='prototype'?'prototype':'legacy';
   return { lab, exploration, profile,...(profile==='prototype'?{complement:params.get('loadout')==='pulse'}:{}) };
 }
 

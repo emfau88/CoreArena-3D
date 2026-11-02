@@ -10,10 +10,10 @@ test('desktop air strike, double jump, no third jump, landing, pause and restart
   await page.goto(mission+'&lab=boss');await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   await page.selectOption('#lab-scenario','targets');await page.locator('#lab-start').click();await page.waitForTimeout(200);
   await page.keyboard.press('Space');await page.waitForTimeout(150);
-  const before=await read(page);expect(before.snapshot.grounded).toBe(false);
+  const before=await read(page);expect(before.snapshot.grounded).toBe(false);expect(before.camera).toBe('side');
   const point=before.prototype.targetScreens[0]!;await page.mouse.click(point.x,point.y);
   await page.waitForFunction(()=>{const w=(window as unknown as {__coreArena:{read():State}}).__coreArena.read().prototype.whip;return w.attack==='air'&&w.phase==='forward'&&w.age>=10;});
-  const capture=await page.evaluate(()=>{const api=(window as unknown as {__coreArena:{read():State;combatView(mode:string):string}}).__coreArena;return {state:api.read(),image:api.combatView('straight')};});
+  const capture=await page.evaluate(()=>{const api=(window as unknown as {__coreArena:{read():State;combatView(mode:string):string}}).__coreArena;return {state:api.read(),image:api.combatView('side')};});
   writeFileSync(info.outputPath('air-strike.jpg'),Buffer.from(capture.image.split(',')[1]!,'base64'));
   await page.keyboard.press('Space');await expect.poll(async()=>(await read(page)).prototype.airJump.uses).toBe(1);
   await page.keyboard.press('Space');await page.waitForTimeout(80);expect((await read(page)).prototype.airJump.uses).toBe(1);
@@ -53,7 +53,8 @@ for(const width of [667,844])test(`touch ${width}: independent fingers, dash, bo
     expect((await read(page)).prototype.whip.attack).toBe('overhead');await send('touchEnd',[heavy]);
     await send('touchStart',[finger,dash]);await page.waitForTimeout(160);await send('touchEnd',[dash]);
     const dashed=await read(page),events=await page.evaluate(()=>(window as unknown as {touchEvents:unknown[]}).touchEvents);
-    expect(dashed.prototype.dash.uses,JSON.stringify({events,player:dashed.snapshot,dash:dashed.prototype.dash})).toBe(1);expect(dashed.snapshot.position.x-before.x).toBeGreaterThan(2.5);
+    expect(dashed.prototype.dash.uses,JSON.stringify({events,player:dashed.snapshot,dash:dashed.prototype.dash})).toBe(1);
+    expect(dashed.camera).toBe('side');expect(before.z-dashed.snapshot.position.z).toBeGreaterThan(2.5);
     await send('touchEnd',[]);await page.waitForTimeout(1000);
     await page.locator('#touch-jump').tap();await page.waitForTimeout(120);
     await page.touchscreen.tap(width/2,160);await page.waitForTimeout(50);expect((await read(page)).prototype.whip.attack).toBe('air');

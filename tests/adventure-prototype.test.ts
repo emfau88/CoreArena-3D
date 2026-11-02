@@ -7,6 +7,7 @@ import { Simulation } from '../src/core/simulation';
 import { FixedClock } from '../src/core/fixedClock';
 import { createSpatialWorld } from '../src/physics/rapierWorld';
 import { ArenaCamera } from '../src/render/camera';
+import { screenMovement } from '../src/input/movement';
 import type { ArenaDefinition } from '../src/arena/arena';
 import type { CombatTarget } from '../src/core/combat';
 import type { Vec3,RayWorld } from '../src/core/types';
@@ -36,7 +37,7 @@ test('strike-height aim uses rendered camera, retains last direction off canvas 
 });
 
 test('combat framing keeps both figures visible at court edges, corners, plateau and melee; never rotates movement',()=>{
-  for(const aspect of [1366/768,1920/1080])for(const p of [
+  for(const aspect of [1366/768,1920/1080,667/375,844/390])for(const p of [
     {x:0,y:0,z:-21},{x:-14,y:0,z:-30},{x:14,y:0,z:-30},{x:0,y:0,z:-38},
     {x:-14,y:0,z:-38},{x:14,y:0,z:-22},{x:-12,y:1.1,z:-23},{x:0,y:0,z:-27.4}]){
     const c=new ArenaCamera(),boss={x:0,y:1.85,z:-30};c.trackPlayer(p);c.resize(1080*aspect,1080);c.combat(true,boss);
@@ -45,8 +46,16 @@ test('combat framing keeps both figures visible at court edges, corners, plateau
       const s=new THREE.Vector3(position.x,position.y+1.1,position.z).project(c.camera);
       assert.ok(Math.abs(s.x)<.8&&Math.abs(s.y)<.78,JSON.stringify({p,s}));
     }
-    c.toggle();assert.equal(c.mode,'straight');assert.deepEqual(c.basis(),basis);
+    c.toggle();assert.equal(c.mode,'side');assert.deepEqual(c.basis(),basis);
   }
+});
+
+test('Adventure mission progression projects left to right and input follows that view',()=>{
+  const c=new ArenaCamera();c.trackPlayer({x:0,y:0,z:33},1.2,'side');c.combat(true);c.resize(844,390,true);
+  const start=new THREE.Vector3(0,0,33).project(c.camera),ahead=new THREE.Vector3(0,0,30).project(c.camera);
+  assert.ok(ahead.x>start.x);assert.ok(Math.abs(ahead.y-start.y)<1e-8);
+  const right=screenMovement(1,0,false,c.basis()),up=screenMovement(0,1,false,c.basis());
+  assert.ok(Math.abs(right.x)<1e-8&&right.z<-.99);assert.ok(up.x<-.99&&Math.abs(up.z)<1e-8);
 });
 
 test('ground dash travels 3m at 30/60/144Hz, one charge, locked direction; sprint and air dash disabled',async()=>{

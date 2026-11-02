@@ -21,7 +21,7 @@ export class ArenaCamera {
   private combatHeight=19;
   combat(enabled:boolean,target:Vec3|null=null):void {
     this.combatEnabled=enabled;this.combatTarget=target;
-    if(enabled)this.mode='straight';
+    if(enabled&&this.mode!=='side'){this.mode='side';this.place();}
   }
   containArena(halfX: number, halfZ: number): void { this.bounds = { halfX, halfZ }; this.place(); }
   constructor() { this.place(); }
@@ -59,7 +59,16 @@ export class ArenaCamera {
       const target=this.combatTarget??position,dx=target.x-position.x,dz=target.z-position.z;
       const distance=Math.hypot(dx,dz),weight=Math.min(.3,3/Math.max(distance,.01)),blend=1-Math.exp(-8*dt);
       this.focus.lerp(new THREE.Vector3(position.x+dx*weight,Math.max(.8,position.y*.5),position.z+dz*weight),blend);
-      this.combatHeight+=(THREE.MathUtils.clamp(18+Math.max(0,distance-6)*.5,18,26)-this.combatHeight)*blend;
+      // Frame the projected heights as well as horizontal separation. In the side view
+      // a distant boss can otherwise disappear behind the top HUD across the courtyard.
+      const up=new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld,1);
+      const right=new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld,0);
+      let needed=18;
+      for(const [point,height] of [[position,0],[position,2.2],[target,0],[target,1.85]] as const){
+        const relative=new THREE.Vector3(point.x,point.y+height,point.z).sub(this.focus);
+        needed=Math.max(needed,2*Math.abs(relative.dot(up))/.74,2*Math.abs(relative.dot(right))/(this.aspect*.8));
+      }
+      this.combatHeight+=(THREE.MathUtils.clamp(needed,18,36)-this.combatHeight)*blend;
       this.camera.top=this.combatHeight/2;this.camera.bottom=-this.camera.top;
       this.camera.right=this.camera.top*this.aspect;this.camera.left=-this.camera.right;
       this.camera.updateProjectionMatrix();this.place();return;

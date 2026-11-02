@@ -1,4 +1,4 @@
-import {defeatT2} from './adventureT2Controls';
+import {defeatT2,worldKeyT2} from './adventureT2Controls';
 import {test,expect,type Page} from '@playwright/test';
 import {writeFileSync} from 'node:fs';
 import type {AdventurePrototype} from '../../src/app/adventurePrototype';
@@ -15,20 +15,20 @@ test('prototype real input: directed whip, return, miss, dash cancel, held keys,
   test.setTimeout(90_000);const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   await page.selectOption('#lab-scenario','targets');await page.locator('#lab-start').click();await page.waitForTimeout(600);
-  expect((await read(page)).combatRules).toBe('prototype-a7');expect((await read(page)).camera).toBe('straight');
+  expect((await read(page)).combatRules).toBe('prototype-a7');expect((await read(page)).camera).toBe('side');
   const target=(await read(page)).prototype.targetScreens[0]!;
   await page.mouse.click(target.x,target.y);await page.waitForTimeout(750);
   let state=await read(page);expect(state.prototype.whip.forwardHits).toBeGreaterThan(0);expect(state.prototype.whip.returnHits).toBeGreaterThan(0);
   const hits=state.prototype.whip.forwardHits+state.prototype.whip.returnHits;
   // Aim away from every dummy. Holding mouse produces one explicitly triggered swing.
-  await page.mouse.move(state.playerScreen.x,state.playerScreen.y+160);await page.mouse.down();await page.waitForTimeout(1500);await page.mouse.up();
+  await page.mouse.move(state.playerScreen.x-160,state.playerScreen.y);await page.mouse.down();await page.waitForTimeout(1500);await page.mouse.up();
   state=await read(page);expect(state.prototype.whip.sequence).toBe(2);
   expect(state.prototype.whip.forwardHits+state.prototype.whip.returnHits).toBe(hits);expect(state.prototype.whip.misses).toBeGreaterThanOrEqual(2);
   const before=state.snapshot.position;
   await page.mouse.move(state.playerScreen.x+250,state.playerScreen.y);await page.keyboard.down('ShiftLeft');await page.waitForTimeout(1200);await page.keyboard.up('ShiftLeft');
   state=await read(page);expect(state.prototype.dash.uses).toBe(1);expect(state.prototype.dash.invulnerable).toBe(false);
   expect(Math.hypot(state.snapshot.position.x-before.x,state.snapshot.position.z-before.z)).toBeCloseTo(3,1);
-  await page.keyboard.press('KeyV');expect((await read(page)).camera).toBe('straight');
+  await page.keyboard.press('KeyV');expect((await read(page)).camera).toBe('side');
   await page.locator('#lab-start').click();await page.waitForTimeout(300);
   const aim=(await read(page)).prototype.targetScreens[0]!;
   await page.mouse.click(aim.x,aim.y);
@@ -80,7 +80,7 @@ test('prototype camera tour through edges, corners and plateau with three docume
   const walk=async(x:number,z:number)=>{
     for(const [axis,target] of [['x',x],['z',z]] as const){
       const delta=target-(await read(page)).snapshot.position[axis];if(Math.abs(delta)<.2)continue;
-      const sign=Math.sign(delta),key=axis==='x'?sign>0?'KeyD':'KeyA':sign>0?'KeyS':'KeyW';
+      const sign=Math.sign(delta),key=worldKeyT2(axis,sign,(await read(page)).camera);
       await page.keyboard.down(key);
       try{await page.waitForFunction(({axis,target,sign})=>((window as unknown as {__coreArena:{read():State}}).__coreArena.read().snapshot.position[axis]-target)*sign>-.15,
         {axis,target,sign},{timeout:9000});}finally{await page.keyboard.up(key);}
@@ -142,7 +142,7 @@ test('prototype real reactive boss victory removes body and retry restores fresh
   await info.attach('reactive-boss',{body:JSON.stringify(result),contentType:'application/json'});
   expect(result.pve.outcome).toBe('victory');
   // Walk through the defeated boss's former cylinder using ordinary controls.
-  await page.keyboard.down('KeyW');await page.waitForTimeout(1100);await page.keyboard.up('KeyW');
+  await page.keyboard.down('KeyD');await page.waitForTimeout(1100);await page.keyboard.up('KeyD');
   expect((await read(page)).snapshot.position.z).toBeLessThan(result.pve.center.z-1.7);
   await page.locator('#lab-start').click();const reset=await read(page);expect(reset.pve.bossHp).toBe(900);expect(reset.prototype.whip.sequence).toBe(0);
 });

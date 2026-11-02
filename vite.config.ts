@@ -9,8 +9,12 @@ const files = readdirSync('src', { recursive: true, withFileTypes: true })
 for (const file of [...files, 'vite.config.ts', 'package-lock.json'].sort()) source.update(file).update(readFileSync(file));
 const build = { commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), sourceHash: source.digest('hex') };
 
-export default defineConfig({
-  base: '/CoreArena-3D/',
+export default defineConfig(({mode})=>({
+  base: mode==='adventure-preview'?'/CoreArena-3D/adventure-preview/':'/CoreArena-3D/',
   define: { __ADVENTURE_BUILD__: JSON.stringify(build) },
+  plugins: mode==='adventure-preview'?[{
+    name:'adventure-preview-version',
+    generateBundle(){this.emitFile({type:'asset',fileName:'preview-version.json',source:JSON.stringify(build,null,2)+'\n'});},
+  }]:[],
   build: { target: 'es2022' },
-});
+}));

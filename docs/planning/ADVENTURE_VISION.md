@@ -123,6 +123,12 @@ Warnflächen müssen im erkennbaren Gefahrenbereich bleiben; Kameraverkleinerung
 den Spieler nicht unlesbar machen. Falls nötig gezieltes Verblassen verdeckender
 Geometrie, bei unveränderter Kollision.
 
+Aktuelle T2-Entscheidung des Nutzers: **durchgehend Links-nach-rechts**, auch in
+der Bossarena. Die vorübergehende Geradeausansicht aus A1 wird ersetzt; die
+Kameranachführung bleibt ruhig und dreht beim Boss nicht automatisch. Der Zoom
+berücksichtigt die projizierte Höhe beider Figuren, damit der Wächter quer über
+den Hof nicht hinter dem oberen HUD verschwindet.
+
 Die Maus steuert eine Richtung in der Spielwelt. Höhenziel und zulässige Schlaghöhe
 werden ausdrücklich definiert; ein verdeckter Gegner wird nicht automatisch
 angewählt. Ein kleiner Richtungsindikator ist als Lernhilfe möglich. Erst bei

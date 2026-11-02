@@ -5,14 +5,17 @@ import type {PveSnapshot} from '../../src/core/pve';
 import type {WeaponSnapshot} from '../../src/core/combat';
 import type {RunnerState} from '../../src/core/stoneRunner';
 export interface T2State {prototype:ReturnType<AdventurePrototype['snapshot']>;snapshot:Snapshot;pve:PveSnapshot;weapons:WeaponSnapshot;
-  lab:unknown;paused:boolean;checkpoint:boolean;completed:boolean;bossActive:boolean;
+  lab:unknown;paused:boolean;checkpoint:boolean;completed:boolean;bossActive:boolean;camera:string;
   mission:{consoleActive:boolean;relayActive:boolean;reserveRecovered:boolean};core:{position:{x:number;z:number};collected:boolean}|null;
   enemies:(RunnerState&{screen:{x:number;y:number}})[];monsterScreen:{x:number;y:number};pickupVisuals:{id:string;visible:boolean}[]}
 export const readT2=(page:Page):Promise<T2State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():T2State}}).__coreArena.read());
+export const worldKeyT2=(axis:'x'|'z',sign:number,camera:string)=>camera==='side'
+  ?axis==='x'?sign>0?'KeyS':'KeyW':sign>0?'KeyA':'KeyD'
+  :axis==='x'?sign>0?'KeyD':'KeyA':sign>0?'KeyS':'KeyW';
 export async function walkT2(page:Page,x:number,z:number){
   for(const [axis,target] of [['z',z],['x',x]] as const){
     const delta=target-(await readT2(page)).snapshot.position[axis];if(Math.abs(delta)<.2)continue;
-    const sign=Math.sign(delta),key=axis==='x'?sign>0?'KeyD':'KeyA':sign>0?'KeyS':'KeyW';
+    const sign=Math.sign(delta),key=worldKeyT2(axis,sign,(await readT2(page)).camera);
     await page.keyboard.down(key);try{await page.waitForFunction(({axis,target,sign})=>
       ((window as unknown as {__coreArena:{read():T2State}}).__coreArena.read().snapshot.position[axis]-target)*sign>=-.15,
     {axis,target,sign},{timeout:10000});}finally{await page.keyboard.up(key);}
@@ -31,7 +34,8 @@ export async function defeatT2(page:Page,index:'boss'|number,complement=false,mo
     }else if(index==='boss'&&b.kind==='eruption'&&(b.phase==='warning'||b.phase==='attack')){
       if(Math.hypot(p.position.x-b.target.x,p.position.z-b.target.z)<3.8)x=p.position.x<0?1:-1;
     }else if(d>(index==='boss'?3.5:3)){x=dx/d;z=dz/d;}
-    for(const [key,on] of [['KeyD',x>.2],['KeyA',x<-.2],['KeyS',z>.2],['KeyW',z<-.2]] as const)
+    const horizontal=s.camera==='side'?-z:x,vertical=s.camera==='side'?x:z;
+    for(const [key,on] of [['KeyD',horizontal>.2],['KeyA',horizontal<-.2],['KeyS',vertical>.2],['KeyW',vertical<-.2]] as const)
       if(on)await page.keyboard.down(key);else await page.keyboard.up(key);
     if(index==='boss'&&b.phase==='melee'&&b.phaseTick>=16&&b.phaseTick<23&&p.tick-lastDash>60){await page.keyboard.press('ShiftLeft');lastDash=p.tick;}
     if(index==='boss'&&p.grounded&&b.kind==='wave'&&(b.phase==='warning'&&b.phaseTick>=76&&d<5||b.phase==='attack'&&d>b.waveRadius&&d-b.waveRadius<2.8))await page.keyboard.press('Space');
