@@ -6,7 +6,7 @@ import type { Vec3 } from '../core/types';
 import { applyCourierLook } from './courierLook';
 import { applyArenaLook, createArenaWeapon, type ArenaRole } from './arenaEquipment';
 
-export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number; aimPitch?:number }
+export interface FighterMotion { grounded:boolean; verticalSpeed:number; velocity:Vec3; facing:number; weapon:WeaponId; shot:boolean; alive:boolean; hp?:number; aimPitch?:number; whip?:{angle:number;active:boolean;dash:boolean} }
 let template: THREE.Group | undefined;
 let handSlot: THREE.Object3D | undefined;
 let clips: THREE.AnimationClip[] = [];
@@ -71,7 +71,8 @@ export function createKayFighter(color:number, arenaRole?:ArenaRole) {
   if(arenaRole) { applyArenaLook(body,arenaRole);equipment=createArenaEquipment(body); }
   const mixer=new THREE.AnimationMixer(body),axis=new THREE.Vector3(0,1,0),yaw=new THREE.Quaternion();
   const hips=body.getObjectByName('hips')!,chest=body.getObjectByName('chest')!;
-  const animatedPose=[hips,chest,...arenaRole?[body.getObjectByName('upperarml')!,body.getObjectByName('lowerarml')!]:[]]
+  const rightArm=body.getObjectByName('upperarmr')!,rightForearm=body.getObjectByName('lowerarmr')!,rightHand=body.getObjectByName('handr')!;
+  const animatedPose=[hips,chest,rightArm,rightForearm,...arenaRole?[body.getObjectByName('upperarml')!,body.getObjectByName('lowerarml')!]:[]]
     .map(bone=>({bone,rotation:bone.quaternion.clone()}));
   const updateAnimation=(dt:number)=>{
     mixer.update(dt);
@@ -107,6 +108,7 @@ export function createKayFighter(color:number, arenaRole?:ArenaRole) {
   };
   return {
     actor,
+    handPosition:()=>{body.updateWorldMatrix(true,true);return rightHand.getWorldPosition(new THREE.Vector3());},
     get deathVisible(){return !alive && deadAge<1.5;},
     resetPresentation() {
       mixer.stopAllAction(); mixer.time=0;
@@ -153,6 +155,15 @@ export function createKayFighter(color:number, arenaRole?:ArenaRole) {
         // Shoulder a two-handed rifle across the torso, with the barrel still
         // pointing along aim. This also keeps the foregrip inside the left arm's reach.
         if(state.weapon!=='arc')chest.rotateY(-Math.PI/6);
+      }
+      if(state.whip) {
+        // Authored upper-body accents share the simulation swing angle, independent of render FPS.
+        // The saved mixer pose is restored every frame, so these offsets cannot accumulate.
+        const swing=state.whip.active?state.whip.angle:0;
+        chest.rotateY(swing*.22);rightArm.rotateY(swing*.65);rightArm.rotateZ(-.25);
+        rightForearm.rotateX(-.25-Math.abs(swing)*.18);
+        if(state.whip.dash)chest.rotateX(.22);
+        upperState=state.whip.dash?'dash':state.whip.active?'whip':'whip-ready';
       }
       visual.scale.set(scale*(1+landing*.07),scale*(1-landing*.09),scale*(1+landing*.07));
       visual.position.z=-recoil*.055;

@@ -101,7 +101,9 @@ export class ArenaView {
   }
   draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
     aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot,
-    weapons?: WeaponSnapshot, pickups?: readonly PickupState[]): void {
+    weapons?: WeaponSnapshot, pickups?: readonly PickupState[], presentation?:{
+      yaw:number;whip:{angle:number;active:boolean;dash:boolean};beforeRender:(hand:THREE.Vector3)=>void;
+    }): void {
     this.position.set(
       THREE.MathUtils.lerp(previous.position.x, current.position.x, alpha),
       THREE.MathUtils.lerp(previous.position.y, current.position.y, alpha),
@@ -110,6 +112,7 @@ export class ArenaView {
     this.actor.position.copy(this.position);
     if(weapons?.selected==='arc' && weapons.lastArc) aim=weapons.lastArc.aim;
     this.actor.rotation.y = aim ? Math.atan2(aim.firePoint.x - current.position.x, aim.firePoint.z - current.position.z) : current.facing;
+    if(presentation)this.actor.rotation.y=presentation.yaw;
     const life = match?.phase === 'ready' ? undefined : match?.actors.player;
     const arcTick=weapons?.lastArc?.tick??-1;
     const railTick=weapons?.lastRail?.tick??-1;
@@ -120,7 +123,7 @@ export class ArenaView {
     this.lastAmmo=weapons?.ammo??0;this.lastArcTick=arcTick;
     this.fighter.animate(Math.hypot(current.velocity.x, current.velocity.z), dt,{grounded:current.grounded,
       verticalSpeed:current.velocity.y,velocity:current.velocity,facing:this.actor.rotation.y,weapon:weapons?.selected??'arc',shot:fired,
-      alive:life?.alive??true,hp:life?.hp,aimPitch:aim?Math.atan2(aim.firePoint.y-current.position.y-1.15,
+      alive:life?.alive??true,hp:life?.hp,whip:presentation?.whip,aimPitch:aim?Math.atan2(aim.firePoint.y-current.position.y-1.15,
         Math.hypot(aim.firePoint.x-current.position.x,aim.firePoint.z-current.position.z)):0});
     this.marker.position.set(this.position.x, this.position.y + 0.01, this.position.z);
     this.marker.visible = life?.alive ?? true;this.actor.visible=this.marker.visible||(this.keepDeathPose && this.fighter.deathVisible);
@@ -137,6 +140,7 @@ export class ArenaView {
     this.practice.update(current, aim, shot, bot, dt, match, this.camera.camera, weapons?.selected);
     this.combat.update(!!match && match.phase !== 'ready', match?.tick ?? 0, weapons, pickups, this.camera.mode === 'side');
     this.animateEnvironment?.(dt);
+    presentation?.beforeRender(this.fighter.handPosition());
     this.renderer.render(this.scene, this.camera.camera);
   }
   pointerRay(x: number, y: number): Ray {
@@ -161,6 +165,15 @@ export class ArenaView {
     camera.position.copy(new THREE.Vector3(3,2.5,4).applyAxisAngle(new THREE.Vector3(0,1,0),facing)).add(target);
     camera.lookAt(target);this.renderer.render(this.scene,camera);
     const png=this.renderer.domElement.toDataURL();this.renderer.render(this.scene,this.camera.camera);return png;
+  }
+  captureCombat(mode:'side'|'straight'|'isometric'):string {
+    // Read-only documentation comparison: same actors, scale and pose; independent camera.
+    const view=new ArenaCamera();view.trackPlayer(this.position);view.mode=mode;view.snap(this.position);
+    const camera=view.camera,live=this.camera.camera;
+    camera.left=live.left;camera.right=live.right;camera.top=live.top;camera.bottom=live.bottom;camera.updateProjectionMatrix();
+    const rotation=this.vitals.quaternion.clone();this.vitals.quaternion.copy(camera.quaternion);
+    this.renderer.render(this.scene,camera);const png=this.renderer.domElement.toDataURL('image/jpeg',.75);this.vitals.quaternion.copy(rotation);
+    this.renderer.render(this.scene,live);return png;
   }
   dispose(): void {
     const geometries = new Set<THREE.BufferGeometry>();

@@ -1,5 +1,7 @@
-type Cue = 'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
+type Cue = 'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
 const tones: Record<Cue, [number, number, number, number]> = {
+  'whip-swing':[300,650,.12,.045], 'whip-return':[640,210,.11,.04],
+  'whip-hit':[850,170,.08,.085], 'whip-back-hit':[1100,280,.065,.075],dash:[220,65,.13,.045],
   pulse: [480, 120, 0.09, 0.1], arc: [180, 85, 0.6, 0.13], hit: [240, 80, 0.07, 0.08],
   hurt: [95, 40, 0.22, 0.18], step: [80, 45, 0.055, 0.035], land: [100, 35, 0.16, 0.12],
   jump: [180, 300, 0.08, 0.055], windup: [80, 165, 0.28, 0.11], slam: [110, 28, 0.28, 0.21],

@@ -16,7 +16,7 @@ export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean
   return { lab, exploration, profile: lab && params.get('combat') === 'prototype' ? 'prototype' : 'legacy' };
 }
 
-/** A0 deliberately shares the existing rules, never shared mutable encounter state. */
+/** Boss rules stay shared; the optional lab controller composes prototype movement/weapon rules. */
 export function createAdventureVariant(id: AdventureProfile) {
-  return { id, rules: 'legacy-a0' as const, fight: new AdventureFight() };
+  return { id, rules: id==='prototype'?'prototype-a4':'legacy-a0', fight: new AdventureFight() };
 }

@@ -10,7 +10,7 @@ export interface Ray { readonly origin: Vec3; readonly direction: Vec3 }
 export interface RayHit { readonly id: string; readonly point: Vec3; readonly normal: Vec3; readonly distance: number }
 export interface RayWorld { raycast(ray: Ray, distance: number, surfacesOnly?: boolean): RayHit | null }
 export interface SpatialWorld {
-  move(displacement: Vec3): MotionResult;
+  move(displacement: Vec3, recoverGroundSlide?: boolean): MotionResult;
   reset(position: Vec3): void;
   dispose(): void;
 }

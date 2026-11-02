@@ -27,8 +27,9 @@ try {
   assert.equal(result.diagnosticHook, false); assert.equal(result.lab, false);
   assert.equal(result.restart, 'Level neu starten'); assert.equal(result.bossHidden, true);
   assert.deepEqual(errors, []);
-  mkdirSync('docs/qa/adventure-a0',{recursive:true});
-  writeFileSync('docs/qa/adventure-a0/production-guard.json',JSON.stringify({result,errors},null,2)+'\n');
+  const output=process.argv[2]??'docs/qa/adventure-a0';
+  mkdirSync(output,{recursive:true});
+  writeFileSync(`${output}/production-guard.json`,JSON.stringify({result,errors},null,2)+'\n');
   console.log(JSON.stringify(result));
 } finally {
   await browser.close();

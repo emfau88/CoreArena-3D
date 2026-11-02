@@ -1,6 +1,7 @@
 #adventure-lab { position:absolute; z-index:25; right:16px; top:152px; width:218px; padding:12px; display:grid; gap:8px;
   color:#e5f3ee; background:#172927ed; border:1px solid #76988c; border-radius:8px; font:13px system-ui; }
 #adventure-lab label { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+#adventure-lab select { min-width:0; max-width:145px; } #adventure-lab [hidden] { display:none; }
 #adventure-lab select, #adventure-lab button { color:#eff8f4; background:#29443c; border:1px solid #77998d; border-radius:4px; padding:6px; }
 #adventure-lab button { cursor:pointer; } #adventure-lab small, #lab-status { font-size:11px; color:#bfd8ce; }
 @media (max-height:500px) { #adventure-lab { top:58px; right:8px; width:190px; gap:4px; padding:7px; } }

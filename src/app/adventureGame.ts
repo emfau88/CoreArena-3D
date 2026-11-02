@@ -45,6 +45,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const clock = new FixedClock();
   let labModule: typeof import('./adventureLab') | undefined;
   let lab: ReturnType<typeof import('./adventureLab')['installAdventureLab']> | undefined;
+  let prototype:import('./adventurePrototype').AdventurePrototype|undefined;
+  let whipView:import('../render/energyWhipView').EnergyWhipView|undefined;
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
   let paused = false, menuPaused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0;
@@ -71,7 +73,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     <button id="pve-next" type="button" hidden>Optional: Kristallkluft erkunden</button><button id="pve-again" type="button">Neu versuchen</button>
     <button id="result-home" type="button">Zum Spielmenü</button></div></div>`);
   const el = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
-  const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused && fight.life.snapshot().outcome==='running') { if (id === 'cycle') combat.cycle(); else combat.select(id); } };
+  const chooseWeapon = (id: WeaponId | 'cycle') => { if (!prototype && !paused && fight.life.snapshot().outcome==='running') { if (id === 'cycle') combat.cycle(); else combat.select(id); } };
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
   const feedback = new StoneFeedback(host);
   const announce = (text:string,ticks=360) => { el('mission-message').textContent=text; messageUntil=current.tick+ticks; };
@@ -101,6 +103,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   };
   const setPaused = (value: boolean) => {
     paused = value || input.touchEnabled && innerHeight > innerWidth;
+    if(paused)prototype?.suspend();
     input.clear(); interactPending=false; clock.reset(); previous = current; lastTime = performance.now();
     feedback.pause(paused); el('pause').hidden = !paused;
   };
@@ -109,7 +112,10 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     state.runners.forEach((r,i)=>{ world.setTargetPosition(ADVENTURE_RUNNERS[i]!.id,r.center); world.setTargetEnabled(r.id,!exploration && r.hp>0); });
     world.setTargetPosition(ADVENTURE_BOSS.id,state.pve.center);
     world.setTargetEnabled(ADVENTURE_BOSS.id,!exploration && state.bossActive && state.pve.phase!=='emerging' && state.pve.outcome==='running');
-    world.setObstacleEnabled('dormant-warden',!state.bossActive);
+    world.setObstacleEnabled('dormant-warden',!state.bossActive&&!prototype?.practice);
+    if(labModule)world.setMovementBlocker('prototype-boss-body',
+      {x:state.pve.center.x,y:labModule.BOSS_BODY.height/2,z:state.pve.center.z},labModule.BOSS_BODY.radius,labModule.BOSS_BODY.height,
+      !!prototype&&!prototype.practice&&state.bossActive&&state.pve.outcome==='running');
     world.setObstacleEnabled('boss-entry-gate',!exploration && state.entryClosed);
     world.setObstacleEnabled('north-gate',!exploration && !state.relayActive);
   };
@@ -137,8 +143,13 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     labModule!.prepareBossAttempt(fight, world, selection.weapon);
     // Simulation.reset intentionally preserves regular-mission tick/facing. A lab attempt gets a fresh clock/state.
     simulation = new Simulation(world, labModule!.LAB_SPAWN, STONE_ADVENTURE_JUMP);
+    prototype=selection.profile==='prototype'?new labModule!.AdventurePrototype(simulation,selection.practice):undefined;
+    if(prototype?.practice)fight.bossActive=false;
+    whipView!.hide();view.camera.combat(!!prototype);
     feedback.reset(true); view.resetPresentation(); fightView.resetPresentation();
-    view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, 'side'); bossIntroduced = true;
+    view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, prototype?'straight':'side'); bossIntroduced = true;
+    el('weapon-panel').hidden=!!prototype;el('camera-toggle').hidden=!!prototype;
+    host.querySelectorAll('footer > span')[1]!.textContent=prototype?'SHIFT · Dash':'SHIFT · Sprint';
     placePlayer(labModule!.LAB_SPAWN);
     lab!.begin({ player: current, fight: fight.snapshot(), weapons: combat.snapshot(), pickups: pickups.snapshot(),
       camera: view.camera.mode, audioVoices: feedback.diagnostics().voices }, performance.now() - started, clock.droppedTicks, running);
@@ -164,17 +175,19 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       if(fight.life.snapshot().outcome==='defeat' || fight.completed) return;
       const stepStart = lab ? performance.now() : 0;
       const before=fight.snapshot();
-      previous = current; current = simulation.step(input.command(view.camera.basis()));
+      const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
+      previous = current;
+      const prototypeStep=prototype?.step(input.command(view.camera.basis()),input.dashPressed(),input.attackPressed()&&before.pve.outcome==='running',ray,world,fight.targets(),feedback);
+      current=prototypeStep?.current??simulation.step(input.command(view.camera.basis()));
       if (exploration && current.position.y < -6) { current = simulation.reset(); previous = current; view.camera.snap(current.position); }
       if (before.pve.outcome==='victory' && current.position.y < -6) {
         current=simulation.reset({x:0,y:.06,z:-37}); previous=current; view.camera.snap(current.position);
       }
-      const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
-      aim = ray ? solveAim(world, ray, current.position) : null;
+      aim = !prototype&&ray ? solveAim(world, ray, current.position) : null;
       const selected = combat.snapshot().selected;
-      const attack=combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets(), current.position);
-      if(attack.attacked) feedback.play(selected);
-      if(!exploration) {
+      const attack=prototypeStep?.attack??combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets(), current.position);
+      if(attack.attacked&&!prototype) feedback.play(selected);
+      if(!exploration&&!prototype?.practice) {
         if(interactPending) fight.interact(current.position,world);
         fight.step(current.position,world,attack.damage);
       }
@@ -194,7 +207,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       }
       if(after.pve.hitsTaken>before.pve.hitsTaken) { feedback.play('hurt'); feedback.playerHit(current.tick); }
       const damage=before.pve.bossHp-after.pve.bossHp;
-      if(damage>0) { feedback.play('hit'); feedback.bossHit(damage,current.tick); }
+      if(damage>0) { if(!prototype)feedback.play('hit'); feedback.bossHit(damage,current.tick); }
       if(after.runners.some((r,i)=>r.hp<before.runners[i]!.hp)) feedback.play('hit');
       if(after.pve.phase==='melee' && before.pve.phase!=='melee') feedback.play('boss-windup');
       if(after.pve.phase==='warning' && before.pve.phase!=='warning') feedback.play(after.pve.kind==='wave'?'wave-warning':'eruption-warning');
@@ -214,9 +227,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
         if (accepted) feedback.play('pickup'); return accepted;
       });
       if(before.pve.outcome==='running' && after.pve.outcome!=='running' || after.completed && !before.completed) {
+        prototype?.suspend();
         input.clear(); combat.clearEffects(); aim=null; previous=current;
       }
       lab?.step(before.pve, after.pve, current, attack.attacked, performance.now() - stepStart);
+      lab?.observe(prototype?.snapshot()??null);
     });
     const weapons = combat.snapshot();
     const state=fight.snapshot(), {hp,armor}=state.pve;
@@ -239,6 +254,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
             'Steinkern geborgen · Am Relais vor dem Nordtor einsetzen.':'Steinkern beim besiegten Wächter einsammeln · Das Relais braucht seine Energie.';
         }
         el('room-hint').textContent=objective;
+        if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent='Nahziele: Hin- und Rückschwung · Fernziel: Reichweite · Ein Klick pro Schlag';}
       }
       const interaction=exploration?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
       button.hidden=paused || !interaction;
@@ -250,7 +266,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
         warning:state.pve.kind==='wave'?'SCHOCKWELLE · Sprung vorbereiten!':'BODENAUSBRUCH · Kreis verlassen!',
         attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'ERHOLUNG · Jetzt feuern!',defeated:'Steinsiegel gebrochen.'};
       el('adventure-boss').dataset.phase=state.pve.phase;
-      el('pve-telegraph').textContent=messages[state.pve.phase];
+      el('pve-telegraph').textContent=prototype&&state.pve.phase==='recovery'?'ERHOLUNG · Jetzt kontern!':messages[state.pve.phase];
       el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?state.relayActive?'Relais online · Ausgang offen':'Steinsiegel gebrochen · Relais versorgen':
         state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:state.consoleActive?'Weiter zum Ruhepunkt.':'Wartungskonsole starten.';
       el('match-result').hidden=state.pve.outcome!=='defeat' && !state.completed;
@@ -273,11 +289,16 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     }
     const life: MatchSnapshot = { phase: state.pve.outcome==='defeat' || state.completed?'ended':'running', tick: current.tick, remainingTicks: 0, scores: { blue: 0, red: 0 },
       winner: null, reason: null, actors: { player: { id: 'player', team: 'blue', hp, armor, life: 1, alive: hp>0, respawnTicks: 0, protectionTicks: 0 } } };
-    fightView.update(state,view.camera.camera,paused?0:Math.min(elapsed,.05),exploration);
+    fightView.update(state,view.camera.camera,paused?0:Math.min(elapsed,.05),exploration||!!prototype?.practice);
+    if(prototype?.practice)view.scene.getObjectByName('adventure-dormant')!.visible=false;
     missionView.update(state,paused?0:Math.min(elapsed,.05));
     outpostView.update(state);
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
-    view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot());
+    if(prototype)view.camera.combat(true,prototype.practice?null:state.pve.center);
+    const whip=prototype?.whip.sample(alpha,world);
+    view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot(),
+      prototype?{...prototype.presentation(whip!),beforeRender:hand=>whipView!.update(whip!,hand,view.actor.position,
+        prototype!.aim.snapshot(),!prototype!.practice&&state.pve.outcome==='running'?state.pve.center:null,current.tick,prototype!.practice,lab!.reduced)}:undefined);
     if (lab && !paused) {
       let objects = 0; view.scene.traverse(() => objects++);
       lab.frame(elapsed * 1000, clock.droppedTicks, { objects, geometries: view.renderer.info.memory.geometries,
@@ -289,6 +310,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true, value: Object.freeze({
     read: () => ({ mode: 'adventure', level: 'stone', combatProfile: variant.id, combatRules: variant.rules,
       lab: lab?.read() ?? null, snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
+      prototype:prototype?{...prototype.snapshot(),targetScreens:prototype.snapshot().targets.map(t=>view.projectedPosition({...t.center,y:t.center.y-1.1}))}:null,
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
       checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
       mission:{consoleActive:fight.consoleActive,relayActive:fight.relayActive,reserveRecovered:fight.reserveRecovered,entryClosed:fight.snapshot().entryClosed,
@@ -299,6 +321,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),arcVisual:view.arcDiagnostics(),
       viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
     // Fixed documentation cameras only; no player/health/weapon mutation.
+    combatView:(mode:'side'|'straight'|'isometric')=>view.captureCombat(mode),
     guardView:(index=0)=>{
       setPaused(true);el('pause').hidden=true;overview=true;view.camera.snap(fight.runners[index]!.snapshot().center);
       const camera=view.camera.camera;camera.top=3;camera.bottom=-3;camera.left=-3*innerWidth/innerHeight;camera.right=-camera.left;camera.updateProjectionMatrix();
@@ -324,6 +347,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   }) });
   if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && entry.lab) {
     labModule = await import('./adventureLab');
+    whipView=new labModule.EnergyWhipView(view.scene,labModule.PRACTICE_TARGETS);
     lab = labModule.installAdventureLab(host, entry.profile, restart, () => {
       const gl = view.renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
       return { userAgent: navigator.userAgent, logicalCpus: navigator.hardwareConcurrency,

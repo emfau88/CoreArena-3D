@@ -15,6 +15,14 @@ export class ArenaCamera {
   private mobile = false;
   private tracked: Vec3 = { x: 0, y: 0, z: 0 };
   private bounds: { halfX: number; halfZ: number } | null = null;
+  private combatTarget:Vec3|null=null;
+  private combatEnabled=false;
+  private aspect=16/9;
+  private combatHeight=19;
+  combat(enabled:boolean,target:Vec3|null=null):void {
+    this.combatEnabled=enabled;this.combatTarget=target;
+    if(enabled)this.mode='straight';
+  }
   containArena(halfX: number, halfZ: number): void { this.bounds = { halfX, halfZ }; this.place(); }
   constructor() { this.place(); }
   trackPlayer(position: Vec3, viewScale = 1, initialView: 'straight' | 'side' = 'straight'): void {
@@ -22,16 +30,19 @@ export class ArenaCamera {
     this.horizontalView = initialView === 'side'; this.mode = initialView; this.snap(position);
   }
   snap(position: Vec3): void {
+    if(this.combatEnabled)this.combatHeight=19;
     this.tracked = position;
     this.focus.set(position.x * this.followFactor, 0, position.z * this.followFactor);
     this.place();
   }
   toggle(): void {
+    if(this.combatEnabled)return;
     this.mode = this.mode === 'side' ? 'straight' : this.mode === 'straight' ? 'isometric'
       : this.horizontalView ? 'side' : 'straight';
     if (this.bounds) this.snap(this.tracked); else this.place();
   }
   resize(width: number, height: number, mobile = false): void {
+    this.aspect=width/height;
     this.mobile = mobile;
     // A closer, steeper view fills the viewport, including ultrawide/landscape phones.
     const viewHeight = Math.min(21, 40 * height / width) * this.viewScale / (mobile ? 1.45 : 1);
@@ -44,6 +55,15 @@ export class ArenaCamera {
   }
   follow(position: Vec3, dt: number, velocity?: Vec3): void {
     this.tracked = position;
+    if(this.combatEnabled) {
+      const target=this.combatTarget??position,dx=target.x-position.x,dz=target.z-position.z;
+      const distance=Math.hypot(dx,dz),weight=Math.min(.3,3/Math.max(distance,.01)),blend=1-Math.exp(-8*dt);
+      this.focus.lerp(new THREE.Vector3(position.x+dx*weight,Math.max(.8,position.y*.5),position.z+dz*weight),blend);
+      this.combatHeight+=(THREE.MathUtils.clamp(18+Math.max(0,distance-6)*.5,18,26)-this.combatHeight)*blend;
+      this.camera.top=this.combatHeight/2;this.camera.bottom=-this.camera.top;
+      this.camera.right=this.camera.top*this.aspect;this.camera.left=-this.camera.right;
+      this.camera.updateProjectionMatrix();this.place();return;
+    }
     const blend = 1 - Math.exp(-5 * dt);
     const lead = this.mobile && this.followFactor === 1 ? .35 : 0;
     this.focus.x += (position.x * this.followFactor + (velocity?.x ?? 0) * lead - this.focus.x) * blend;

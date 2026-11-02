@@ -29,6 +29,7 @@ export function createFighter(color = 0xc7c9c3, arenaRole?:ArenaRole) {
   let phase = 0;
   return {
     actor,
+    handPosition:()=>actor.localToWorld(new THREE.Vector3(.36,.95,.2)),
     deathVisible:false,
     resetPresentation: () => { phase=0; },
     diagnostics:()=>({model:'primitive'}),

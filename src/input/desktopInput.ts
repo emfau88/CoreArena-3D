@@ -8,6 +8,8 @@ export class DesktopInput {
   private readonly abort = new AbortController();
   private jumpPending = false;
   private firePending = false;
+  private dashPending = false;
+  private touchFireHeld = false;
   private firing = false;
   private readonly mouse = { x: 0, y: 0, active: false };
   private readonly touch: TouchControls;
@@ -29,6 +31,7 @@ export class DesktopInput {
       if (event.code === 'Digit2' && !event.repeat) onWeapon('pulse');
       if (event.code === 'Digit3' && !event.repeat) onWeapon('rail');
       if (event.code === 'Space' && !event.repeat) this.jumpPending = true;
+      if ((event.code==='ShiftLeft'||event.code==='ShiftRight') && !event.repeat) this.dashPending=true;
       this.keys.add(event.code);
     }, options);
     canvas.addEventListener('wheel', (event) => { event.preventDefault(); if (event.deltaY) onWeapon('cycle'); }, { ...options, passive: false });
@@ -66,6 +69,9 @@ export class DesktopInput {
     this.firePending = false;
     return fire;
   }
-  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.firing = false; this.mouse.active = false; this.touch.clear(); }
+  attackPressed():boolean { const touch=this.touch.fire(), pressed=this.firePending || touch&&!this.touchFireHeld;
+    this.firePending=false;this.touchFireHeld=touch;return pressed; }
+  dashPressed():boolean {const pressed=this.dashPending;this.dashPending=false;return pressed;}
+  clear(): void { this.keys.clear(); this.jumpPending = this.firePending = this.firing = this.dashPending = this.touchFireHeld = false; this.mouse.active = false; this.touch.clear(); }
   dispose(): void { this.abort.abort(); this.clear(); this.touch.dispose(); }
 }

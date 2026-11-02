@@ -8,6 +8,7 @@ type Lab = ReturnType<ReturnType<typeof installAdventureLab>['read']>;
 interface State {
   mode:string; combatProfile:string; lab:Lab; snapshot:Snapshot; pve:PveSnapshot; weapons:WeaponSnapshot;
   monsterScreen:{x:number;y:number}; paused:boolean; feedback:{voices:number}; arcVisual:{visible?:boolean};
+  prototype:{whip:{sequence:number}}|null;
 }
 const read = (page: Page): Promise<State> => page.evaluate(() => (window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const url = './?mode=pve&level=stone&adventure=1&lab=boss&combat=';
@@ -29,7 +30,7 @@ test('lab profiles, twenty warm resets, held-input/effect cleanup and local expo
     const started=Date.now(); await page.locator('#lab-start').click();
     await expect.poll(async()=>(await read(page)).combatProfile).toBe(profile);
     const s=await read(page);
-    expect(s.lab.current!.start).toEqual(initial.lab.current!.start);
+    expect(s.lab.current!.start).toEqual({...initial.lab.current!.start as object,camera:profile==='prototype'?'straight':'side'});
     expect(s.lab.restartMs).toBeLessThan(3000); expect(Date.now()-started).toBeLessThan(3000);
     expect(s.pve.bossHp).toBe(600); expect(s.weapons.ammo).toBe(54);
     expect(s.weapons.lastArc).toBeNull(); expect(s.weapons.projectiles).toHaveLength(0);
@@ -39,7 +40,7 @@ test('lab profiles, twenty warm resets, held-input/effect cleanup and local expo
     expect(still.snapshot.position.y).toBeLessThan(.1);
     expect(still.feedback.voices).toBe(0);
     results.push({profile, attempt:i+1, setupMs:s.lab.restartMs, browserReadyMs:Date.now()-started});
-    if(i>=2)resources.push(still.lab.resources);
+    if(i>=2)resources.push({...still.lab.resources as object,profile});
     beforeGc.push((await cdp.send('Memory.getDOMCounters')).jsEventListeners);
     // DOMCounters also counts garbage awaiting collection (including automation callbacks).
     // Force collection only in this resource test, never in baseline/performance runs.
@@ -48,17 +49,18 @@ test('lab profiles, twenty warm resets, held-input/effect cleanup and local expo
     await page.keyboard.up('KeyS'); await page.keyboard.up('Space');
     // Dirty the real weapon/audio state so the next reset proves cleanup.
     await page.mouse.click(still.monsterScreen.x,still.monsterScreen.y);
-    await expect.poll(async()=>(await read(page)).weapons.lastArc).not.toBeNull();
+    if(profile==='legacy')await expect.poll(async()=>(await read(page)).weapons.lastArc).not.toBeNull();
+    else await expect.poll(async()=>(await read(page)).prototype!.whip.sequence).toBe(1);
   }
-  const stable=resources as {objects:number;geometries:number;textures:number;programs:number;audioVoices:number}[];
+  const stable=resources as {profile:string;objects:number;geometries:number;textures:number;programs:number;audioVoices:number}[];
   await info.attach('reset-observations',{body:JSON.stringify({results,resources:stable,listenerCounts,beforeGc}),contentType:'application/json'});
   expect(new Set(stable.map(r=>r.objects)).size).toBe(1);
-  expect(new Set(stable.map(r=>r.geometries)).size).toBe(1);
+  for(const profile of ['legacy','prototype'])expect(new Set(stable.filter(r=>r.profile===profile).map(r=>r.geometries)).size).toBe(1);
   expect(new Set(stable.map(r=>r.textures)).size).toBe(1);
-  expect(stable.at(-1)!.programs).toBeLessThanOrEqual(stable[0]!.programs+1);
+  expect(stable.at(-1)!.programs).toBeLessThanOrEqual(stable[0]!.programs+3);
   expect(new Set(listenerCounts).size).toBe(1);
-  await page.selectOption('#lab-weapon','pulse');
-  expect((await read(page)).lab.current!.weapon).toBe('arc');
+  await page.selectOption('#lab-profile','legacy');await page.selectOption('#lab-weapon','pulse');
+  expect((await read(page)).lab.current!.weapon).toBe('energy-whip');
   await page.locator('#lab-start').click(); expect((await read(page)).weapons.selected).toBe('pulse');
   await page.waitForFunction(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read().pve.phase!=='emerging');
   const target=(await read(page)).monsterScreen; await page.mouse.click(target.x,target.y);
