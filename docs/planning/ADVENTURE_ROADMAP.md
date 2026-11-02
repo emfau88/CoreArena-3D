@@ -1,5 +1,96 @@
 # CORE ARENA 3D — Adventure-Roadmap
 
+Stand: **2. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle Testversion spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)
+
+## Wo wir gerade stehen
+
+**Aktuell: A7.2 — Spieltest T2 und Entscheidung über den ersten vollständigen Adventure-Kern.**
+Der erste Hof samt Steinwächter ist spielbar. Deine bisherigen Rückmeldungen sind
+eingearbeitet; das abschließende Urteil zu Boss, Mission und Waffenwahl steht noch aus.
+
+| Umsetzung | Aktueller Spieltest | Noch nicht begonnen |
+|---|---|---|
+| **✅ 12 Pakete technisch fertig** | **🟡 1 Paket läuft: A7.2** | **⬜ 13 Pakete: A8.1–A11.5** |
+
+**„Technisch fertig“ heißt: eingebaut und geprüft.** Es heißt nicht automatisch,
+dass der Spieltest bestanden ist. Die separate Abnahme steht in der letzten
+Spalte unten. Die 26 Pakete sind unterschiedlich groß; ihre Anzahl ist keine
+Schätzung des verbleibenden Aufwands.
+
+### Was bereits spielbar ist
+
+Links-nach-rechts-Kamera, Dash, normaler Sprung und kurzer Doppelsprung;
+Energiepeitsche mit Seitenschwung, Überkopf-Knall und Lufthieb samt überarbeitetem
+Trefferfeedback; angepasster Steinwächter; komplette erste Mission mit Läufern,
+Konsole, Checkpoint, Kern, Relais und Ausgang; begrenzter Pulse-Vergleich.
+Die öffentliche Vorschau hat Touch-Bedienung. Echte Handytests stehen noch aus.
+
+### Was jetzt noch fehlt
+
+1. Die aktuelle erste Mission und mehrere Bossversuche spielen: Sind Steuerung,
+   Treffer, Warnungen, Schwierigkeit und Wiederholungen überzeugend?
+2. Waffenwahl beurteilen: Sind die drei Peitschenbewegungen sinnvoll, und soll
+   die begrenzte Pulse-Ergänzung bleiben?
+3. **A7.2 entscheiden:** gezielt nachbessern oder den Kern bestätigen. Dabei
+   **G2 (Steinwächter)** und **G3 (erste Mission)** ausdrücklich abnehmen.
+
+Danach können weitere Karten und gegebenenfalls Modifikationen beauftragt werden.
+Ein Progressionssystem ist weiterhin offen und nicht implementiert. Die öffentliche
+**Testversion** ist bereits online; der finale Release **A11.5** bleibt ein späterer Schritt.
+
+## Alle 26 Arbeitspakete auf einen Blick
+
+Die Paketnummer führt zum aufklappbaren Detailauftrag. **T1 ist abgeschlossen,
+T2 läuft, T3 liegt noch vor uns.** Bestehende Frost-/Glut-Maps zählen nicht als
+fertige Umsetzung ihrer neuen Adventure-Pakete.
+
+| Paket | Ergebnis / Aufgabe | Umsetzungsstand | Spielabnahme / verbleibender Schritt |
+|---|---|---|---|
+| [A0.1](#paket-a0-1) | Alten Kampf erhalten, Varianten trennen | ✅ Technisch fertig | Referenz geprüft |
+| [A0.2](#paket-a0-2) | Bosslabor, schneller Neustart, Messung | ✅ Technisch fertig | Technische Abnahme fertig |
+| [A1](#paket-a1) | Kamera und gerichtetes Zielen | ✅ Technisch fertig | G1 bestanden; Links-nach-rechts-Nacharbeit in T2 prüfen |
+| [A2.1](#paket-a2-1) | Bosskörper und Kollision | ✅ Technisch fertig | G1 bestanden |
+| [A2.2](#paket-a2-2) | Bewegung, Dash; später Doppelsprung | ✅ Technisch fertig | G1 bestanden; Luftsprung in T2 prüfen |
+| [A3](#paket-a3) | Trefferregeln der drei Peitschenbewegungen | ✅ Technisch fertig | G1 bestanden; zusätzliche Angriffe in T2 prüfen |
+| [A4](#paket-a4) | Peitschenoptik, Animation und Trefferfeedback | ✅ Technisch fertig | G1 bestanden; neues Feedback in T2 prüfen |
+| [A5.1](#paket-a5-1) | Steinwächter: Faust und Gegenangriff | ✅ Technisch fertig | G2-Urteil in T2 offen |
+| [A5.2](#paket-a5-2) | Steinwächter: Spezialangriffe und Rhythmus | ✅ Technisch fertig | G2-Urteil in T2 offen |
+| [A6.1](#paket-a6-1) | Läufer und Versorgung im ersten Hof | ✅ Technisch fertig | G3-Urteil in T2 offen |
+| [A6.2](#paket-a6-2) | Erste Mission vollständig durchspielbar | ✅ Technisch fertig | G3-Urteil in T2 offen |
+| [A7.1](#paket-a7-1) | Peitsche allein / begrenzte Pulse vergleichen | ✅ Technisch fertig | Entscheidung zur Waffenwahl in T2 offen |
+| **[A7.2](#paket-a7-2)** | **Ersten Kern beurteilen und Richtung entscheiden** | **🟡 Spieltest läuft** | **Aktueller Schritt: G2/G3 und Gesamturteil** |
+| [A8.1](#paket-a8-1) | Zwei Waffenmodifikationen erproben — optional | ⬜ Nicht begonnen | Erst nach positivem T2 und eigenem Auftrag |
+| [A8.2](#paket-a8-2) | Progression wählen oder streichen — optional | ⬜ Nicht begonnen | Nutzen / Wiederspielwert prüfen; G4 in T3 |
+| [A8.3](#paket-a8-3) | Kampagne fortsetzen und Bosse üben | ⬜ Nicht begonnen | Auch ohne Modifikationen möglich |
+| [A9.1](#paket-a9-1) | Frostspinne zum zweiten Referenzkampf ausbauen | ⬜ Nicht begonnen | Eigenes Kampfprofil entwickeln |
+| [A9.2](#paket-a9-2) | Kluftmission und Übergang aus Map 1 | ⬜ Nicht begonnen | Neue Kampfregeln in Map 2 integrieren |
+| [A10.1](#paket-a10-1) | Glutwurm zum dritten Referenzkampf ausbauen | ⬜ Nicht begonnen | Eigenes Kampfprofil entwickeln |
+| [A10.2](#paket-a10-2) | Schmiedemission und Kampagnenabschluss | ⬜ Nicht begonnen | Neue Kampfregeln in Map 3 integrieren |
+| [A10.3](#paket-a10-3) | Drei Missionen als Gesamtlauf abstimmen | ⬜ Nicht begonnen | G5 in T3 vorbereiten |
+| [A11.1](#paket-a11-1) | Einstieg, Bedienung und Lesbarkeit abschließen | ⬜ Nicht begonnen | Finale Bedienungsprüfung |
+| [A11.2](#paket-a11-2) | Leistung, Laden und Browser absichern | ⬜ Nicht begonnen | Finale Drei-Map-Prüfung |
+| [A11.3](#paket-a11-3) | Releaseumfang, Rechte und Kanal festlegen | ⬜ Nicht begonnen | Verbindlichen Releasekandidaten festlegen |
+| [A11.4](#paket-a11-4) | Externe Spieltests und Release-Abnahme | ⬜ Nicht begonnen | T3 mit G4/G5/G6 |
+| [A11.5](#paket-a11-5) | Freigegebenes fertiges Spiel veröffentlichen | ⬜ Nicht begonnen | Erst nach G6; separate Testvorschau bereits online |
+
+## Die sechs Qualitätstore
+
+| Gate | Was wird entschieden? | Status |
+|---|---|---|
+| **G1** | Grundgefühl von Bewegung und Peitsche | ✅ In T1 bestanden; spätere Nacharbeit wird in T2 geprüft |
+| **G2** | Überzeugt der Steinwächter? | 🟡 Technisch geprüft, dein T2-Urteil offen |
+| **G3** | Funktioniert die erste Mission als Spielerlebnis? | 🟡 Technisch geprüft, dein T2-Urteil offen |
+| **G4** | Bringen Modifikationen / Progression echten Mehrwert? | ⬜ Offen, noch nicht geprüft; bewusster Verzicht möglich |
+| **G5** | Überzeugt die gesamte Mini-Kampagne? | ⬜ Offen, noch nicht geprüft |
+| **G6** | Ist der konkrete Kandidat bereit für den finalen Release? | ⬜ Offen, noch nicht geprüft |
+
+Aufgaben, Abhängigkeiten und Abnahmekriterien bleiben vollständig erhalten.
+Für den Tagesstand reichen die Übersichten oben; die folgenden Details lassen
+sich nach Bedarf öffnen.
+
+<details>
+<summary>Bisherige Freigaben und Nacharbeiten — Verlauf und Nachweise</summary>
+
 Stand: **2. November 2026**. Maßgebliche Quelle für zukünftige Adventure-Aufträge.
 Produktziel: [ADVENTURE_VISION.md](ADVENTURE_VISION.md). Die Erstellung dieser
 Dokumentation ist beauftragt; Vision und Struktur mit **26 Bulks und sechs Gates**
@@ -25,6 +116,11 @@ Mods/Progression. Im anschließenden Nutzerauftrag kommt gezielt **A2.2/A3/A4-Na
 hinzu: kürzerer Doppelsprung, kontextabhängiger diagonaler Lufthieb und vollständige
 Touch-Eingaben für die Prototyp-Aktionen. [Regeln und Nachweise](../qa/ADVENTURE_AIR_RESULT.md).
 26 Bulks, sechs Gates und drei Spieltermine bleiben erhalten. G2/G3 und A7.2 bleiben offen.
+
+</details>
+
+<details>
+<summary>Arbeitsregeln, Architektur, Testmatrix und vollständige Gate-Kriterien</summary>
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -55,7 +151,8 @@ QA-Berichte und die Arena-Vision bleiben eigenständig.
 
 ### Status und Fertig-Definition
 
-Zulässige Bulk-Status: **geplant → freigegeben → in Arbeit → abgeschlossen**;
+Die Übersicht trennt **Technisch fertig**, **Spieltest läuft** und **Nicht begonnen**.
+Die interne Auftragsfolge bleibt **geplant → freigegeben → in Arbeit → abgeschlossen**;
 **blockiert** nur mit konkretem Hindernis, Verantwortlichkeit und nächstem Schritt.
 Eine unerfüllte spätere Abhängigkeit macht einen geplanten Bulk nicht automatisch
 blockiert. Freigaben mit Datum und Auftragsbezug direkt am Bulk ergänzen.
@@ -338,7 +435,12 @@ die anderen Bosse. A10.3 vergleicht alle drei im selben Darstellungsprofil.
 Menschliches Urteil gebündelt in T2 beziehungsweise T3. Vorhandene Assets und
 Animationstechnik nutzen; kein zusätzlicher Grafik-Bulk, keine neue Assetproduktion.
 
+</details>
+
 ## 6. Bulks: Vergleich und grundlegendes Spielgefühl
+
+<details>
+<summary>Abgeschlossener gemeinsamer Auftrag A0.1 + A0.2 — ursprünglicher Umfang</summary>
 
 ### Gemeinsamer Auftrag A0.1 + A0.2
 
@@ -369,9 +471,16 @@ neue Assets, Progression, Kartenumbau, öffentlicher Spiele-Release. Auch das be
 Durchlaufen des Boss-Sensors wird in diesem Auftrag nur dokumentiert und nicht behoben.
 Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme bleibt T1 nach A4.
 
+</details>
+
+<a id="paket-a0-1"></a>
+
+<details>
+<summary>A0.1 — Referenz sichern und Variantenwahl begrenzen · ✅ Technisch fertig</summary>
+
 ### A0.1 — Referenz sichern und Variantenwahl begrenzen
 
-**Status:** abgeschlossen. **Freigabe:** 2.11.2026, „ok go“ zum gemeinsamen Auftrag A0.1 + A0.2.
+**Status:** ✅ Technisch fertig. **Freigabe:** 2.11.2026, „ok go“ zum gemeinsamen Auftrag A0.1 + A0.2.
 **Nachweis:** [A0.1 im gemeinsamen Bericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md#ergebnis-a01-abgegrenzte-variantenwahl), Implementierungscommit `f78690a`.
 **Voraussetzungen:** erfüllt; sauberer `main` bei `e8b730a`, eigener Branch `codex/adventure-combat-prototype`.
 **Ziel/Nutzen:** Ein neuer Einstieg kann entstehen, ohne alte Spielregeln zu verändern.
@@ -389,9 +498,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 **Fertig:** Routing-/Referenznachweis und Diffprüfung liegen vor; kein neues Gameplay ausgeliefert.
 **Danach:** Im ausdrücklich beauftragten gemeinsamen Umfang mit A0.2 fortfahren; kein menschlicher Spieltermin erforderlich.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a0-2"></a>
+
+<details>
+<summary>A0.2 — Direkteinstieg, Retry und vergleichbare Messung · ✅ Technisch fertig</summary>
+
 ### A0.2 — Direkteinstieg, Retry und vergleichbare Messung
 
-**Status:** abgeschlossen. **Freigabe:** 2.11.2026, gemeinsamer Auftrag A0.1 + A0.2.
+**Status:** ✅ Technisch fertig. **Freigabe:** 2.11.2026, gemeinsamer Auftrag A0.1 + A0.2.
 **Nachweis:** [A0.2 im gemeinsamen Bericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md#ergebnis-a02-reproduzierbarer-bossversuch), Implementierungscommit `f78690a`.
 **Voraussetzungen:** A0.1-Nachweis im gemeinsamen Bericht; gemeinsam beauftragter Umfang.
 **Ziel/Nutzen:** Bossversuche ohne wiederholte Anreise und mit überprüfbar gleichen Startwerten.
@@ -409,9 +527,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 **Fertig:** Reproduzierbare Startlinks, Manifest, Messdatei und Resetnachweis vorhanden.
 **Danach:** Agent prüft Bedienung; A1 nur im beauftragten Umfang, noch keine Kampfqualitätsbehauptung.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a1"></a>
+
+<details>
+<summary>A1 — Kampfansicht und gerichtetes Mausziel · ✅ Technisch fertig</summary>
+
 ### A1 — Kampfansicht und gerichtetes Mausziel
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** G1 bestanden; jüngste Nacharbeit wird in T2 erneut geprüft. **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 
 **Ergänzende T2-Entscheidung:** Nutzer bestätigt wieder durchgehend Links-nach-rechts
 statt der A1-Geradeausansicht, einschließlich Bossarena. Nachführung bleibt erhalten;
@@ -432,9 +559,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Ein begründetes Standardprofil, Vergleichsaufnahmen und Projektionsnachweise liegen vor.
 **Danach:** Technische Sicht-/Kontrollprüfung durch Agent; menschliches Urteil gebündelt in T1/G1.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a2-1"></a>
+
+<details>
+<summary>A2.1 — Bosskörper und faire Bewegungsgrenzen · ✅ Technisch fertig</summary>
+
 ### A2.1 — Bosskörper und faire Bewegungsgrenzen
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** G1 bestanden; jüngste Nacharbeit wird in T2 erneut geprüft. **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.1](../qa/ADVENTURE_A2_1_RESULT.md).
 **Ziel/Nutzen:** Positionierung bleibt glaubwürdig; Spieler und Boss überlagern sich nicht beliebig.
 **Umfang:** Prototyp-only Körperform des aktiven Steinwächters und definierte Kontaktauflösung; keine Bossattacken oder Kontakt-Schäden ändern.
@@ -451,9 +587,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Körper-/Trefferformen und Kontaktregeln sind dokumentiert und im realen Browser geprüft.
 **Danach:** Agent prüft Grenzfälle; menschliches Kontaktgefühl in T1, A2.2 nur im beauftragten Umfang.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a2-2"></a>
+
+<details>
+<summary>A2.2 — Gerichteter Dash und unmittelbare Bewegung · ✅ Technisch fertig</summary>
+
 ### A2.2 — Gerichteter Dash und unmittelbare Bewegung
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** G1 bestanden; jüngste Nacharbeit wird in T2 erneut geprüft. **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.2](../qa/ADVENTURE_A2_2_RESULT.md).
 **Ziel/Nutzen:** Ausweichen wird eine präzise, begrenzte Handlung.
 **Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Boden-Sprungkurve bleibt Basis. Später ausdrücklich beauftragte T2-Nacharbeit: ein kürzerer Luftsprung pro Landung, kein Luftdash oder Immunitätsfenster.
@@ -471,9 +616,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Werteprofil, Reset-/Kollisionsnachweise und kurze Vergleichssequenz vorhanden.
 **Danach:** Technischen Bewegungsvergleich dokumentieren; menschlicher Vergleich in T1/G1, kein zusätzlicher Zwischenstopp.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a3"></a>
+
+<details>
+<summary>A3 — Energiepeitsche: räumliche Angriffsregeln · ✅ Technisch fertig</summary>
+
 ### A3 — Energiepeitsche: räumliche Angriffsregeln
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** G1 bestanden; jüngste Nacharbeit wird in T2 erneut geprüft. **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
 **Umfang:** Ursprünglich eine Grundattacke mit Vorschwung/Rücklauf; in der freigegebenen T2-Nacharbeit zusätzlich der direkt gewählte Überkopf-Knall und der kontextabhängige Lufthieb. Alle nutzen dieselbe räumliche Schadensschnittstelle; keine Mods oder neue Waffen.
@@ -493,9 +647,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Regeltests und sichtbarer Browserversuch stimmen überein; alte Arc bleibt unverändert.
 **Danach:** Agent prüft Funktion im Browser, A4 nur im beauftragten Umfang; menschliche Spielgefühlabnahme in T1.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a4"></a>
+
+<details>
+<summary>A4 — Peitschenbewegung, Kontaktfeedback und Gate 1 · ✅ Technisch fertig</summary>
+
 ### A4 — Peitschenbewegung, Kontaktfeedback und Gate 1
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** G1 bestanden; jüngste Nacharbeit wird in T2 erneut geprüft. **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A4](../qa/ADVENTURE_A4_RESULT.md).
 **Ziel/Nutzen:** Die funktionierende Attacke wird als eigenständige, befriedigende Peitsche wahrgenommen.
 **Umfang:** Spielerpose, kontrollierte Energieform, Kontaktreaktionen und wenige Sounds; keine neue Attackenregel ohne eigenen dokumentierten Korrekturumfang.
@@ -515,11 +678,20 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Technische Nachweise und ausdrückliches menschliches G1-Urteil vorliegend.
 **Danach:** Bei negativem Gate Nacharbeit an A1–A4; erst bei positivem Ergebnis A5.1 gesondert freigeben.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
 ## 7. Bulks: Steinwächter, Mission und Richtungsentscheidung
+
+<a id="paket-a5-1"></a>
+
+<details>
+<summary>A5.1 — Faustschlag und echtes Gegenangriffsfenster · ✅ Technisch fertig</summary>
 
 ### A5.1 — Faustschlag und echtes Gegenangriffsfenster
 
-**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** G1 bestanden, eigener Auftrag.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** T2-Urteil offen. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** G1 bestanden, eigener Auftrag.
 **Ziel/Nutzen:** Ein einzelner Bossangriff erzeugt einen verständlichen Wechsel aus Gefahr, Ausweichen und Gegenangriff.
 **Umfang:** Nur Prototyp-Faust, zugehörige Annäherung und Erholung. Spezialangriffe im Einzelangriffslabor deaktivierbar, im Legacy unverändert.
 
@@ -536,9 +708,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Eine reproduzierbare Faustsequenz samt Timingdiagramm oder Ticktabelle und Spielaufnahme liegt vor.
 **Danach:** Einzelnen Austausch für T2 dokumentieren; A5.2 im beauftragten Umfang vorbereiten, G2 menschlich noch offen.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a5-2"></a>
+
+<details>
+<summary>A5.2 — Spezialangriffe, Kampfrhythmus und Gate 2 · ✅ Technisch fertig</summary>
+
 ### A5.2 — Spezialangriffe, Kampfrhythmus und Gate 2
 
-**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.1, eigener Auftrag.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** T2-Urteil offen. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.1, eigener Auftrag.
 **Ziel/Nutzen:** Der Steinwächter trägt einen vollständigen fairen Kampf.
 **Umfang:** Vorhandene Welle/Ausbruch, begrenzte Angriffsfolge, lesbare Übergänge und Bossfeedback. Keine zusätzlichen Gegner oder generische Boss-Engine.
 
@@ -555,9 +736,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Bossbericht mit technischen Fällen, sieben Darstellungskriterien und vorbereiteten T2-Sequenzen; menschlicher Gate-Status ausdrücklich offen.
 **Danach:** A6.1 zur Vorbereitung von T2 im beauftragten Umfang möglich; Frost/Glut erst nach positivem T2-Urteil.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a6-1"></a>
+
+<details>
+<summary>A6.1 — Steinläufer und vorhandene Versorgung · ✅ Technisch fertig</summary>
+
 ### A6.1 — Steinläufer und vorhandene Versorgung
 
-**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; G2-Urteil wird in T2 gebündelt.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** T2-Urteil offen. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; G2-Urteil wird in T2 gebündelt.
 **Ziel/Nutzen:** Die Anreise lehrt dieselben räumlichen Regeln und unterstützt den Bossversuch.
 **Umfang:** Beide vorhandenen Läufer, ihre Körper-/Trefferregeln und vorhandene Vorräte im Prototyp; keine neue Gegnerart oder zusätzlichen Räume.
 
@@ -573,9 +763,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Anreisegefechte und Versorgungsregeln im regulären Weg geprüft und beschrieben.
 **Danach:** Agent prüft Anreise; menschliche Missionsabnahme in T2/G3, A6.2 im beauftragten Umfang vorbereiten.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a6-2"></a>
+
+<details>
+<summary>A6.2 — Vollständige erste Mission und Gate 3 · ✅ Technisch fertig</summary>
+
 ### A6.2 — Vollständige erste Mission und Gate 3
 
-**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A6.1, eigener Auftrag.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** T2-Urteil offen. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A6.1, eigener Auftrag.
 **Ziel/Nutzen:** Der neue Kampf funktioniert innerhalb des bestehenden Adventure-Ablaufs.
 **Umfang:** Konsole, Checkpoint, Retry, Kern, Relais, Tor, Ergebnis und Spielerführung; nur durch Tests belegte Anpassungen, kein Quest-Neubau.
 
@@ -592,9 +791,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Vollständiger technischer Missionsnachweis mit bekannten Grenzen; menschliches G3 ausdrücklich noch offen.
 **Danach:** A7.1 im freigegebenen Abschnitt vorbereitet; noch keine automatische Einführung der neuen Variante als Standard.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a7-1"></a>
+
+<details>
+<summary>A7.1 — Begrenzte Fernkampfoption vergleichen · ✅ Technisch fertig</summary>
+
 ### A7.1 — Begrenzte Fernkampfoption vergleichen
 
-**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2/A6.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; menschliches G2/G3 in T2.
+**Status:** ✅ Technisch fertig. **Spielabnahme:** T2-Urteil offen. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2/A6.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; menschliches G2/G3 in T2.
 **Ziel/Nutzen:** Entscheiden, ob der Nahkampfkern durch ein kleines Fernwerkzeug spielerisch gewinnt.
 **Umfang:** Peitsche allein gegen Peitsche plus eine begrenzte Pulse-Konfiguration, zunächst im Lab. Keine zusätzliche Hauptwaffe, neue Assets oder Upgradeökonomie.
 
@@ -610,9 +818,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Vergleich und Empfehlung vorliegend; keine voreilige Produktfestlegung.
 **Danach:** Menschlicher Vergleich und endgültige Richtungsentscheidung gemeinsam in A7.2/T2; kein zusätzlicher Termin.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a7-2"></a>
+
+<details open>
+<summary>A7.2 — Gesamtvergleich und verbindlicher Richtungsentscheid · 🟡 JETZT: Spieltest T2 läuft</summary>
+
 ### A7.2 — Gesamtvergleich und verbindlicher Richtungsentscheid
 
-**Status:** T2 vorbereitet; menschlicher Gesamtentscheid und G2/G3 ausdrücklich offen. [Testablauf und Empfehlung](../qa/ADVENTURE_A5_A7_RESULT.md#spieltermin-t2). **Voraussetzungen:** A7.1 oder ausdrücklicher begründeter Verzicht; G1 bestanden, technische G2/G3-Nachweise vorhanden, beauftragter Umfang.
+**Status:** 🟡 Spieltest T2 läuft; menschlicher Gesamtentscheid und G2/G3 ausdrücklich offen. [Testablauf und Empfehlung](../qa/ADVENTURE_A5_A7_RESULT.md#spieltermin-t2). **Voraussetzungen:** A7.1 oder ausdrücklicher begründeter Verzicht; G1 bestanden, technische G2/G3-Nachweise vorhanden, beauftragter Umfang.
 **Ziel/Nutzen:** Vor weiteren Inhalten klären, ob die Neuausrichtung trägt.
 **Umfang:** Testorganisation, Befundauswertung, Scope-/Produktentscheidung und Dokumentation. Codekorrekturen nur als separat begrenzter Folgeauftrag.
 
@@ -629,11 +846,20 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Richtungsentscheid dokumentiert, Gate- und Variantenstatus aktualisiert; auch begründetes Verwerfen ist ein vollständiges Entscheidungsergebnis.
 **Danach:** Nur nach positivem Entscheid neue Inhalte freigeben. Optional A8.1; unabhängig davon A8.3/A9.1 möglich. Kein automatischer öffentlicher Release.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
 ## 8. Bulks: optionale Modifikationen und kleine Kampagnenverwaltung
+
+<a id="paket-a8-1"></a>
+
+<details>
+<summary>A8.1 — Zwei verhaltensändernde Modifikationen erproben · ⬜ Nicht begonnen · optional</summary>
 
 ### A8.1 — Zwei verhaltensändernde Modifikationen erproben
 
-**Status:** geplant, optional. **Voraussetzungen:** A7.2 positiv und ausdrücklicher Modifikationsauftrag.
+**Status:** ⬜ Nicht begonnen (geplant, optional). **Voraussetzungen:** A7.2 positiv und ausdrücklicher Modifikationsauftrag.
 **Ziel/Nutzen:** Unterschiedliche Entscheidungen mit derselben Waffe statt Zahlenprogression.
 **Umfang:** Basis plus höchstens zwei Alternativen, ein Auswahlplatz vor dem Versuch, zunächst alles im Lab verfügbar. Kein Save, Zufall, Loot oder Ressourcenverbrauch.
 
@@ -650,9 +876,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Zwei begrenzte Versuche oder dokumentiert verworfene Kandidaten samt Kosten-/Nutzenbefund.
 **Danach:** Menschliche Stil-/Wiederholungsprobe für T3 vorbereiten; noch keine dauerhaften Freischaltungen.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a8-2"></a>
+
+<details>
+<summary>A8.2 — Progressionsmodell wählen oder streichen, Gate 4 · ⬜ Nicht begonnen · optional</summary>
+
 ### A8.2 — Progressionsmodell wählen oder streichen, Gate 4
 
-**Status:** geplant, optional. **Voraussetzungen:** A8.1, eigener Auftrag; bei Verzicht auf Mods entfällt dieser Bulk nach dokumentierter Scope-Entscheidung.
+**Status:** ⬜ Nicht begonnen (geplant, optional). **Voraussetzungen:** A8.1, eigener Auftrag; bei Verzicht auf Mods entfällt dieser Bulk nach dokumentierter Scope-Entscheidung.
 **Ziel/Nutzen:** Wiederholung verbessern, ohne Grind oder unnötige Verwaltung einzuführen.
 **Umfang:** Vergleich ohne Progression gegen deterministische Meilensteinfreischaltung und Auswahl pro Versuch; Entscheidung, keine Ressourcenökonomie.
 
@@ -669,9 +904,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Nach T3 liegt die Nutzerentscheidung samt genauer Freischalt-/Auswahlregel oder Wegfall vor. Bis dahin bleibt dieser Entscheidungsbulk in Arbeit, sobald seine Vorbereitung beauftragt ist.
 **Danach:** Kein Hindernis für die übrige Kampagne ohne Progression; eine tatsächliche Progressions-/Mod-Speicherung erst nach positivem G4 und eigenem Auftrag, anschließend betroffene Releasefälle erneut prüfen.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a8-3"></a>
+
+<details>
+<summary>A8.3 — Kampagnenfortsetzung und Bossübung · ⬜ Nicht begonnen</summary>
+
 ### A8.3 — Kampagnenfortsetzung und Bossübung
 
-**Status:** geplant. **Voraussetzungen:** A7.2 positiv; für gespeicherte Mods zusätzlich positiver A8.2-Entscheid, sonst ohne Mods; eigener Auftrag.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A7.2 positiv; für gespeicherte Mods zusätzlich positiver A8.2-Entscheid, sonst ohne Mods; eigener Auftrag.
 **Ziel/Nutzen:** Eine kleine Mehrkartenkampagne lässt sich fortsetzen und gezielt üben.
 **Umfang:** Kleine Level-/Freischaltverwaltung und versionierter lokaler Save; vorhandene Sitzungs-Checkpoints weiterverwenden. Keine Speicherung mitten in Bossanimationen.
 
@@ -687,11 +931,20 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Speicher-/Übungsfluss einschließlich Fehlerfällen durch reale Browserbedienung nachgewiesen.
 **Danach:** Agent prüft den Ablauf, menschliches Fortsetzen-/Übungsverständnis in T3; A9.2 darf den geprüften Kampagnenbaustein im beauftragten Umfang nutzen.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
 ## 9. Bulks: Kristallkluft und Glutschmiede
+
+<a id="paket-a9-1"></a>
+
+<details>
+<summary>A9.1 — Frostspinne als Winkel- und Bewegungsgegner · ⬜ Nicht begonnen</summary>
 
 ### A9.1 — Frostspinne als Winkel- und Bewegungsgegner
 
-**Status:** geplant. **Voraussetzungen:** A7.2 positiv, G1–G3 bestanden; eigener Auftrag. Mods nicht erforderlich.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A7.2 positiv, G1–G3 bestanden; eigener Auftrag. Mods nicht erforderlich.
 **Ziel/Nutzen:** Zweiter Boss verlangt Seitenwechsel und Winkelkontrolle statt einer Steinwächterkopie.
 **Umfang:** Bestehende Frostkarte im neuen Testpfad, Splitterfächer/Biss/Ausbruch und höchstens eine angekündigte Umpositionierung. Keine ausgebaute Mission in diesem Bulk.
 
@@ -707,9 +960,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Technischer Boss-/Darstellungsnachweis und T3-Prüfmaterial vorhanden; menschlicher Befund offen.
 **Danach:** A9.2 im beauftragten Umfang vorbereiten, menschliche Bossabnahme in T3.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a9-2"></a>
+
+<details>
+<summary>A9.2 — Kurze Kluftmission und Übergang aus Map 1 · ⬜ Nicht begonnen</summary>
+
 ### A9.2 — Kurze Kluftmission und Übergang aus Map 1
 
-**Status:** geplant. **Voraussetzungen:** A9.1 technisch abgenommen, A8.3, beauftragter Umfang; menschliches Gesamturteil folgt T3.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A9.1 technisch abgenommen, A8.3, beauftragter Umfang; menschliches Gesamturteil folgt T3.
 **Ziel/Nutzen:** Map 2 entwickelt bekannte Fähigkeiten weiter und bleibt ein eigener Ort.
 **Umfang:** Bestehender Grundriss, kurzer Hauptweg, ein optionaler Abstecher, kleine vorbereitende Begegnungen und eine funktionale Interaktion. Maximal ein neuer kleiner Gegnertyp.
 
@@ -725,9 +987,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Spielbare zweite Kurzmission mit technischem Abschluss-/Retrynachweis und Material für T3.
 **Danach:** A10.1 nach technischer Map-2-Abnahme im beauftragten Umfang möglich; menschliche Kampagnenprüfung bleibt T3.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a10-1"></a>
+
+<details>
+<summary>A10.1 — Glutwurm als Raumkontrollgegner · ⬜ Nicht begonnen</summary>
+
 ### A10.1 — Glutwurm als Raumkontrollgegner
 
-**Status:** geplant. **Voraussetzungen:** A9.2 technisch abgenommen, beauftragter Umfang.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A9.2 technisch abgenommen, beauftragter Umfang.
 **Ziel/Nutzen:** Dritter Boss verbindet gelernte Reaktionen zu einem erkennbaren Höhepunkt.
 **Umfang:** Bestehender Feuerfächer/Ausbruch, klare Angriffskette und höchstens ein zeitweise gefährlicher Bereich; keine neuen Grundfähigkeiten für den Spieler.
 
@@ -744,9 +1015,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Vollständiger Bosskampf mit technischen Fairness-/Darstellungsnachweisen und vorbereitetem T3-Vergleich.
 **Danach:** A10.2 im beauftragten Umfang möglich; menschliches Urteil in T3, bei negativem Befund gezielte Nacharbeit.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a10-2"></a>
+
+<details>
+<summary>A10.2 — Schmiedemission und Kampagnenabschluss · ⬜ Nicht begonnen</summary>
+
 ### A10.2 — Schmiedemission und Kampagnenabschluss
 
-**Status:** geplant. **Voraussetzungen:** A10.1 technisch abgenommen, beauftragter Umfang.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A10.1 technisch abgenommen, beauftragter Umfang.
 **Ziel/Nutzen:** Der letzte Ort bereitet auf Raumkontrolle vor und beendet den kleinen Bogen befriedigend.
 **Umfang:** Vorhandene Schmiedekarte, kurze Anreise mit bekannten Gegnertypen, eine Anlageninteraktion, Bosscheckpoint und kurzer Abschluss.
 
@@ -762,9 +1042,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Dritte Kurzmission und Ende sind regulär spielbar und durch Agent geprüft; menschliches Urteil offen bis T3.
 **Danach:** A10.3 gesondert; noch keine Behauptung einer abgenommenen Gesamtkampagne.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a10-3"></a>
+
+<details>
+<summary>A10.3 — Gesamtlauf, Wiederholung und Gate 5 · ⬜ Nicht begonnen</summary>
+
 ### A10.3 — Gesamtlauf, Wiederholung und Gate 5
 
-**Status:** geplant. **Voraussetzungen:** A9.2/A10.2 technisch abgeschlossen, A8.3; optionale Mods technisch verglichen, G4 darf bis T3 offen bleiben; beauftragter Umfang.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A9.2/A10.2 technisch abgeschlossen, A8.3; optionale Mods technisch verglichen, G4 darf bis T3 offen bleiben; beauftragter Umfang.
 **Ziel/Nutzen:** Drei gute Einzelbegegnungen ergeben eine stimmige Mini-Kampagne.
 **Umfang:** Übergänge, Startwerte, geringe Balancekorrekturen und vorhandener Übungszugang; optional eine reine Drei-Boss-Sequenz derselben Encounter, keine neue Kampfvariante.
 
@@ -780,11 +1069,20 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Technischer Gesamtlaufbericht und Inhaltsumfang liegen vor; G5 bleibt bis T3 menschlich offen.
 **Danach:** Releasepakete A11.1–A11.3 gesondert freigeben; keine weiteren Waffen/Maps automatisch hinzufügen.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
 ## 10. Bulks: begrenzte Veröffentlichungsvorbereitung
+
+<a id="paket-a11-1"></a>
+
+<details>
+<summary>A11.1 — Einstieg, Bedienung und Lesbarkeit · ⬜ Nicht begonnen</summary>
 
 ### A11.1 — Einstieg, Bedienung und Lesbarkeit
 
-**Status:** geplant. **Voraussetzungen:** A10.3 technisch abgeschlossen, beauftragter Umfang; menschliches G5 in T3.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A10.3 technisch abgeschlossen, beauftragter Umfang; menschliches G5 in T3.
 **Ziel/Nutzen:** Außenstehende verstehen das Spiel ohne mündliche Einweisung.
 **Umfang:** Vorhandene Menüs/HUD verbessern, kurze kontextbezogene Einführung, grundlegende Bedienungs-/Feedbackoptionen. Kein neuer Tutoriallevel oder umfassender UI-Neubau.
 
@@ -801,9 +1099,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Geprüfte Bedienung und vorbereiteter Erstnutzertest; menschlicher Befund folgt T3/G6.
 **Danach:** A11.2/A11.3 im beauftragten Umfang, kein zusätzlicher menschlicher Zwischenstopp.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a11-2"></a>
+
+<details>
+<summary>A11.2 — Leistung, Laden und Browserzuverlässigkeit · ⬜ Nicht begonnen</summary>
+
 ### A11.2 — Leistung, Laden und Browserzuverlässigkeit
 
-**Status:** geplant. **Voraussetzungen:** A10.3 technisch abgeschlossen, festgelegter Referenz-PC aus A0.2; beauftragter Umfang.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A10.3 technisch abgeschlossen, festgelegter Referenz-PC aus A0.2; beauftragter Umfang.
 **Ziel/Nutzen:** Gutes Spielgefühl bleibt auf der angegebenen Zielplattform stabil.
 **Umfang:** Gemessene Engpässe, Ladeweg, Ressourcenlebensdauer und festgelegte Browsermatrix. Keine Engine-Migration oder pauschale Physik-Neustrukturierung.
 
@@ -820,9 +1127,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Reproduzierbarer Leistungs-/Ladebericht mit Hardware, Browser, Build und verbleibenden Grenzen.
 **Danach:** Technischer Nachweis für A11.4, menschliche Ruckel-/Bedienungssichtung in T3. Mobile-Leistungsversprechen nur mit echtem Gerätenachweis.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a11-3"></a>
+
+<details>
+<summary>A11.3 — Releaseumfang, Assetherkunft und Veröffentlichungskanal · ⬜ Nicht begonnen</summary>
+
 ### A11.3 — Releaseumfang, Assetherkunft und Veröffentlichungskanal
 
-**Status:** geplant. **Voraussetzungen:** A10.3 technisch abgeschlossen, beauftragter Umfang; A11.1/A11.2 spätestens vor finaler Freigabe berücksichtigen.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A10.3 technisch abgeschlossen, beauftragter Umfang; A11.1/A11.2 spätestens vor finaler Freigabe berücksichtigen.
 **Ziel/Nutzen:** Ein kleiner, ehrlicher und tatsächlich veröffentlichbarer Umfang wird festgelegt.
 **Umfang:** Umfangsentscheidung, Quellen-/Lizenzinventar, vorhandene Build-/Hostingprüfung und Paketbeschreibung. Keine Veröffentlichung, Käufe, Storekonten oder neue Medienproduktion durch diesen Bulk.
 
@@ -840,9 +1156,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Prüffähiges Releasebriefing, Quelleninventar und noch unveröffentlichter Kandidat liegen vor.
 **Danach:** Nutzer bestätigt Umfang/Kanal für externe Abnahme; Publikation bleibt bis A11.5 separat.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a11-4"></a>
+
+<details>
+<summary>A11.4 — Externe Spieltests und Gate 6 · ⬜ Nicht begonnen</summary>
+
 ### A11.4 — Externe Spieltests und Gate 6
 
-**Status:** geplant. **Voraussetzungen:** A11.1–A11.3 abgeschlossen, eigener Auftrag und verfügbare Tester.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A11.1–A11.3 abgeschlossen, eigener Auftrag und verfügbare Tester.
 **Ziel/Nutzen:** Letzte Produktentscheidung anhand Außenstehender, nicht allein anhand Entwicklerkenntnis.
 **Umfang:** Mindestens fünf externe Ersttests, Befundtriage und Gate-Entscheid. Kein unbegrenzter Sammelauftrag „alle Probleme beheben“.
 
@@ -860,9 +1185,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Fertig:** Dokumentierter positiver oder negativer Gate-Entscheid. Bei Nacharbeit bleibt Release gesperrt.
 **Danach:** Bei positivem G6 kann A11.5 ausdrücklich beauftragt werden. Technische Abnahme allein genügt nicht.
 
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<a id="paket-a11-5"></a>
+
+<details>
+<summary>A11.5 — Freigegebenen Build veröffentlichen und nachprüfen · ⬜ Nicht begonnen</summary>
+
 ### A11.5 — Freigegebenen Build veröffentlichen und nachprüfen
 
-**Status:** geplant. **Voraussetzungen:** G6 bestanden; expliziter Veröffentlichungsauftrag für konkreten Build, Umfang und Kanal.
+**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** G6 bestanden; expliziter Veröffentlichungsauftrag für konkreten Build, Umfang und Kanal.
 **Ziel/Nutzen:** Die abgenommene Fassung ist erreichbar, nachvollziehbar und bei Fehlern rücksetzbar.
 **Umfang:** Gewählter Browserkanal, Releasebeschreibung, Produktions-Smoke und definierter Rückweg. Keine zusätzlichen Gameplayfunktionen oder Plattformen.
 
@@ -878,6 +1212,13 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Risiko/Gegenmaßnahme:** `main` löst bei Codeänderungen Pages-Deployment aus → bestehenden Workflow vor Merge prüfen, Preview-/Merge-/Publikationsfolge ausdrücklich planen; Dokumentationsänderungen sind dort bereits ausgenommen.
 **Fertig:** Live-Nachweis und Abschlussbericht vorhanden; Produktbetrieb/weitere Inhalte brauchen neue begrenzte Aufträge.
 **Danach:** Keine automatische Roadmapverlängerung oder wiederkehrende Automation. Wartung nach konkretem Fehler-/Nutzerbefund.
+
+[Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
+
+</details>
+
+<details>
+<summary>Pflegeregeln und Grenze des aktuellen Auftrags</summary>
 
 ## 11. Pflege nach Entscheidungen
 
@@ -899,3 +1240,5 @@ Die ergänzend angesprochenen Charge-/Sprungangriffe des Bosses bleiben Designka
 Spieler-Lufthieb und Doppelsprung sind auf späteren ausdrücklichen Auftrag umgesetzt;
 ihre Wirkung gehört zur laufenden T2-Abnahme. Die erneute Plateau-/Bossprüfung bleibt
 Bestandteil von A5.2, kein weiterer Bulk.
+
+</details>
