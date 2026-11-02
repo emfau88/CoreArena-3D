@@ -10,12 +10,13 @@ export const whipPhase = (age:number):WhipPhase => age<0||age>=WHIP.duration?'id
 const mix = (a:number,b:number,t:number) => a+(b-a)*Math.max(0,Math.min(1,t));
 const lerp = (a:Vec3,b:Vec3,t:number):Vec3 => ({x:mix(a.x,b.x,t),y:mix(a.y,b.y,t),z:mix(a.z,b.z,t)});
 const distance = (a:Vec3,b:Vec3) => Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
+const snap=(t:number)=>1-Math.pow(1-Math.max(0,Math.min(1,t)),3);
 export function whipPose(age:number) {
   const phase=whipPhase(age);
   if(phase==='windup')return {angle:mix(-1.45,-1.05,age/WHIP.windup),length:mix(.65,1.5,age/WHIP.windup)};
-  if(phase==='forward')return {angle:mix(-1.05,1.05,(age-WHIP.windup)/10),length:mix(1.5,WHIP.reach,(age-WHIP.windup)/4)};
+  if(phase==='forward')return {angle:mix(-1.05,1.05,snap((age-WHIP.windup)/10)),length:mix(1.5,WHIP.reach,(age-WHIP.windup)/2)};
   if(phase==='turn')return {angle:mix(1.05,1.2,(age-16)/5),length:mix(WHIP.reach,4.5,(age-16)/5)};
-  if(phase==='return')return {angle:mix(1.2,-1.05,(age-21)/10),length:mix(4.5,2.2,(age-21)/10)};
+  if(phase==='return')return {angle:mix(1.2,-1.05,snap((age-21)/10)),length:mix(4.5,2.2,(age-21)/10)};
   return {angle:mix(-1.05,-.5,(age-31)/11),length:phase==='idle'?.65:mix(2.2,.65,(age-31)/11)};
 }
 
@@ -81,7 +82,10 @@ export class EnergyWhip {
       // Integrate both rope motion and target motion. Sample spacing is smaller than the contact tube.
       const previous=this.previousFoot??foot;
       const targetMotion=Math.max(0,...targets.map(t=>distance(t.center,this.previousTargets.get(t.id)??t.center)));
-      const slices=Math.max(1,Math.ceil((distance(previous,foot)+targetMotion+1.4)/.08));
+      const fromPose=whipPose(Math.max(0,this.age-1)),toPose=whipPose(this.age);
+      // Cubic snap has a bounded derivative; 1.4 covers its largest within-tick/average ratio.
+      const ropeMotion=1.4*(WHIP.reach*Math.abs(toPose.angle-fromPose.angle)+Math.abs(toPose.length-fromPose.length));
+      const slices=Math.max(1,Math.ceil((distance(previous,foot)+targetMotion+ropeMotion+.1)/.06));
       for(let j=0;j<=slices;j++) {
         const t=j/slices,age=Math.max(0,this.age-1+t),active=whipPhase(age);
         if(active!=='forward'&&active!=='return')continue;

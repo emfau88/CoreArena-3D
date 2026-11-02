@@ -5,6 +5,7 @@ import type { AdventureFightState } from '../core/adventureFight';
 import { MonsterView } from './monsterView';
 import { createKayGuard } from './kayGuard';
 import type { CourtyardAssets } from './courtyardLook';
+import { PROTOTYPE_BOSS_RULES } from '../core/adventureBalance';
 
 class RunnerView {
   readonly root=new THREE.Group();
@@ -62,8 +63,11 @@ export class AdventureFightView {
     }
   }
   guardDiagnostics(){return this.runners.map(r=>r.diagnostics());}
-  resetPresentation():void { this.time=this.exitOpening=0; this.boss.resetPresentation(); }
+  resetPresentation(prototype=false):void {
+    this.time=this.exitOpening=0;this.boss.setTiming(prototype?PROTOTYPE_BOSS_RULES:ADVENTURE_BOSS_RULES);this.boss.resetPresentation();
+  }
   update(state:AdventureFightState,camera:THREE.Camera,dt:number,exploration=false):void {
+    this.boss.setTiming(state.pve.exchange?PROTOTYPE_BOSS_RULES:ADVENTURE_BOSS_RULES);
     this.time+=dt;
     this.core.visible=!!state.core&&!state.core.collected;
     if(state.core){

@@ -21,7 +21,7 @@ export class MonsterView {
   private previousHp = PVE_RULES.bossHp as number;
   private flash = 0;
   private deathTime = 0;
-  constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private readonly rules: EncounterRules = PVE_RULES,
+  constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private rules: EncounterRules = PVE_RULES,
     private readonly monster = MONSTER, groundSurface?:Pick<THREE.MeshStandardMaterialParameters,'map'|'normalMap'|'roughnessMap'>,
     private readonly adventureFeedback=false) {
     this.meleeArc = new THREE.Mesh(new THREE.RingGeometry(rules.meleeRange - 0.12, rules.meleeRange, 32, 1,
@@ -151,6 +151,8 @@ export class MonsterView {
     scene.add(ground, this.root, this.warning, this.wave, this.burst, this.shards, this.attackFan);
   }
   resetPresentation(): void { this.flash=0; this.deathTime=0; this.previousHp=this.rules.bossHp; }
+  /** These profiles share range/angle geometry; only timing changes. */
+  setTiming(rules:EncounterRules):void {this.rules=rules;}
   update(state: PveSnapshot, dt: number): void {
     this.root.position.set(state.center.x, state.center.y - this.monster.center.y, state.center.z);
     const turn = Math.atan2(Math.sin(state.facing - this.root.rotation.y), Math.cos(state.facing - this.root.rotation.y));
@@ -164,13 +166,14 @@ export class MonsterView {
       const step = stride * (i === 0 ? 1 : -1);
       foot.position.z = 0.2 + step * 0.42; foot.position.y = 0.35 + Math.max(0, step) * 0.24;
     });
-    if (state.bossHp < this.previousHp) this.flash = 0.1;
+    const prototype=!!state.exchange;
+    if (state.bossHp < this.previousHp) this.flash = prototype?(this.previousHp-state.bossHp>4?.18:.05):.1;
     this.previousHp = state.bossHp; this.flash = Math.max(0, this.flash - dt);
     this.coreMaterial.emissiveIntensity = this.flash > 0 ? 6 : 2 + Math.sin(state.tick / 10) * 0.5;
-    const recovering=this.adventureFeedback&&state.phase==='recovery'&&state.outcome==='running';
+    const recovering=this.adventureFeedback&&(state.phase==='recovery'||state.exchange?.window==='counter')&&state.outcome==='running';
     if(this.adventureFeedback){
-      this.coreMaterial.color.setHex(recovering?0xb3f3de:0xffcf75);
-      this.coreMaterial.emissive.setHex(recovering?0x56cbb0:0xff732c);
+      this.coreMaterial.color.setHex(recovering?0xb3f3de:prototype?0x738d99:0xffcf75);
+      this.coreMaterial.emissive.setHex(recovering?0x56cbb0:prototype?0x334b66:0xff732c);
     }
     const emergence = state.phase === 'emerging' ? Math.min(1, state.phaseTick / this.rules.emergeTicks) : 1;
     this.deathTime = state.outcome === 'victory' ? Math.min(1, this.deathTime + dt) : 0;
@@ -182,7 +185,7 @@ export class MonsterView {
       ? Math.max(0, 1 - (state.phaseTick - this.rules.meleeWarning) / this.rules.meleeRecovery) : 0;
     this.body.rotation.x = melee ? (strike ? strike * 0.22 : -preparation * 0.12) : recovering?.16:0;
     this.body.position.z = melee ? (strike ? strike * 0.55 : -preparation * 0.18) : 0;
-    this.meleeArc.visible = melee;
+    this.meleeArc.visible = melee&&(!prototype||!recovering);
     this.meleeArc.position.set(state.center.x, 0.07, state.center.z);
     this.meleeArc.rotation.set(Math.PI / 2, 0, -state.facing);
     (this.meleeArc.material as THREE.MeshBasicMaterial).opacity = strike ? 0.9 * strike : 0.25 + preparation * 0.45;
@@ -206,12 +209,24 @@ export class MonsterView {
           arm.rotation.x = preparation * 0.8 - (preparation * 0.8 + 1.25) * extension;
           arm.rotation.z = 0;
           arm.position.set(-1.55 + extension * 1.1, 2.55 + preparation * 0.25 - extension * 1.7, extension * 1.4);
+          if(prototype){
+            // High sweeping fist spans the standing/jumping player. Lock pose to the same active window.
+            const sweep=Math.max(0,Math.min(1,(state.phaseTick-this.rules.meleeWarning+5)/11));
+            arm.rotation.x=-.75;arm.rotation.z=-.8+1.9*sweep;
+            arm.position.set(-1.55+sweep*3.1,2.55,preparation*1.2);
+            if(recovering){
+              const t=Math.min(1,(state.phaseTick-this.rules.meleeWarning-6)/Math.max(1,this.rules.meleeRecovery-6));
+              const settle=t*t*(3-2*t);
+              arm.rotation.x=-.75+settle*1.05;arm.rotation.z=1.1-settle*.9;
+              arm.position.set(1.55-settle*3.1,2.55,1.2*(1-settle));
+            }
+          }
         }
       }
     });
     if (this.kind === 'stone') {
-      this.body.position.z -= this.flash * 0.8;
-      this.body.rotation.z += this.flash * 0.7;
+      this.body.position.z -= this.flash * (prototype?1.3:.8);
+      this.body.rotation.z += this.flash * (prototype?.9:.7);
     }
     this.debris.forEach((rock, i) => {
       rock.position.y = 0.15 + (state.phase === 'emerging' ? Math.sin(emergence * Math.PI) * (1 + i % 4 * 0.4) : 0);
@@ -238,6 +253,6 @@ export class MonsterView {
     this.wave.position.set(state.center.x, 0.09, state.center.z); this.wave.scale.setScalar(state.waveRadius);
     this.burst.visible = state.kind === 'eruption' && state.phase === 'attack' && state.outcome === 'running';
     this.burst.position.set(state.target.x, state.target.y, state.target.z);
-    this.burst.scale.y = Math.max(0.01, Math.sin(Math.min(1, state.phaseTick / this.rules.eruptionTicks) * Math.PI));
+    this.burst.scale.y = prototype?Math.max(.01,1-state.phaseTick/this.rules.eruptionTicks):Math.max(0.01, Math.sin(Math.min(1, state.phaseTick / this.rules.eruptionTicks) * Math.PI));
   }
 }

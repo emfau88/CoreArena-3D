@@ -102,7 +102,7 @@ export class ArenaView {
   draw(previous: Snapshot, current: Snapshot, alpha: number, dt: number,
     aim: AimSolution | null = null, shot: DiagnosticShot | null = null, bot: Snapshot | null = null, match?: MatchSnapshot,
     weapons?: WeaponSnapshot, pickups?: readonly PickupState[], presentation?:{
-      yaw:number;whip:{angle:number;active:boolean;dash:boolean};beforeRender:(hand:THREE.Vector3)=>void;
+      yaw:number;whip?:{angle:number;active:boolean;dash:boolean};beforeRender:(hand:THREE.Vector3)=>void;
     }): void {
     this.position.set(
       THREE.MathUtils.lerp(previous.position.x, current.position.x, alpha),

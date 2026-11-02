@@ -22,8 +22,7 @@ export function prepareBossAttempt(fight: AdventureFight, world: MonsterWorld, w
   for (const runner of fight.runners) runner.step(LAB_SPAWN, world,
     [{ source: 'player', target: runner.definition.id, amount: runner.snapshot().hp }]);
   fight.consoleActive = fight.checkpoint = fight.bossActive = true;
-  fight.combat.addAmmo(WEAPONS.pulse.maxAmmo, true);
-  fight.combat.select(weapon);
+  if(!fight.prototype){fight.combat.addAmmo(WEAPONS.pulse.maxAmmo, true);fight.combat.select(weapon);}
 }
 
 const distribution = (values: number[]) => {
@@ -47,12 +46,15 @@ export class LabMeasurement {
   private simulationMs: number[] = [];
   private eventsTruncated = false;
   private end: unknown = null;
+  private exchange:PveSnapshot['exchange'];
   private prototype:ReturnType<import('./adventurePrototype').AdventurePrototype['snapshot']>|null=null;
   observe(value:typeof this.prototype){this.prototype=value;}
-  constructor(readonly start: unknown, readonly profile: AdventureProfile, readonly weapon: LabWeapon, readonly practice=false) {}
+  constructor(readonly start: unknown, readonly profile: AdventureProfile, readonly weapon: LabWeapon, readonly practice=false,
+    readonly complement=false,readonly meleeOnly=false) {}
   step(before: PveSnapshot, after: PveSnapshot, player: Snapshot, attacked: boolean, milliseconds: number) {
     if (this.endTick !== null) return;
     this.tick = player.tick;
+    this.exchange=after.exchange;
     if (this.activeTick === null && (this.practice||after.phase !== 'emerging')) this.activeTick = player.tick;
     if (this.activeTick !== null && this.simulationMs.length < 18000) this.simulationMs.push(milliseconds);
     if (attacked) this.attacks++;
@@ -76,7 +78,9 @@ export class LabMeasurement {
     if (this.endTick === null) { this.endTick = this.tick; this.outcome = 'aborted'; this.abortReason = reason; }
   }
   read() {
-    return { profile: this.profile, weapon: this.profile==='prototype'?'energy-whip':this.weapon, scenario:this.practice?'practice':'boss', start: this.start, end: this.end,
+    return { profile: this.profile, weapon: this.profile==='prototype'?'energy-whip':this.weapon,
+      loadout:this.profile==='prototype'?(this.complement?'whip-pulse':'whip'):'legacy',
+      scenario:this.practice?'practice':this.meleeOnly?'melee':'boss', start: this.start, end: this.end,
       outcome: this.outcome, abortReason: this.abortReason, activeStartTick: this.activeTick,
       activeSeconds: this.activeTick === null ? 0 : ((this.endTick ?? this.tick) - this.activeTick) / 60,
       totalSeconds: (this.endTick ?? this.tick) / 60, attacks: this.attacks, damageDealt: this.damageDealt,
@@ -85,20 +89,21 @@ export class LabMeasurement {
       eventsTruncated: this.eventsTruncated,
       weaponMechanic:this.profile==='prototype'?'energy-whip':this.weapon, prototype:this.prototype,
       whipHits:this.prototype?{forward:this.prototype.whip.forwardHits,return:this.prototype.whip.returnHits}:null,
-      whipMisses:this.prototype?.whip.misses??null,dashUses:this.prototype?.dash.uses??null,countersAfterDodge:null,
-      unavailable:'Counter windows are evaluated in A5. Camera readability and enjoyment require human observation.' };
+      whipMisses:this.prototype?.whip.misses??null,dashUses:this.prototype?.dash.uses??null,countersAfterDodge:this.exchange?.counters??null,
+      exchange:this.exchange,unavailable:'Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation.' };
   }
 }
 
 export function installAdventureLab(host: HTMLElement, initial: AdventureProfile, restart: () => void,
-  environment: () => unknown) {
+  environment: () => unknown,initialComplement=false) {
   void import('./adventureLab.css');
   const panel = document.createElement('section'); panel.id = 'adventure-lab';
   panel.setAttribute('aria-label', 'Adventure Vergleichslabor');
   panel.innerHTML = `<strong>A/B · STEINWÄCHTER</strong><small>Legacy: Arc/Pulse · Prototype: Peitsche + Dash</small>
     <label>Nächstes Profil <select id="lab-profile"><option value="legacy">Legacy</option><option value="prototype">Prototype</option></select></label>
     <label>Startwaffe <select id="lab-weapon"><option value="arc">Arc Lash</option><option value="pulse">Pulse Repeater</option><option value="whip" hidden>Energiepeitsche</option></select></label>
-    <label>Versuch <select id="lab-scenario"><option value="boss">Steinwächter</option><option value="targets">Übungsziele ohne Gegnerdruck</option></select></label>
+    <label>Versuch <select id="lab-scenario"><option value="boss">Steinwächter</option><option value="melee">Nur Faust / Gegenangriff</option><option value="targets">Übungsziele ohne Gegnerdruck</option></select></label>
+    <label><input id="lab-complement" type="checkbox"> Zusätzlich Pulse · 12 Schuss (1/2 wechseln)</label>
     <label><input id="lab-reduced" type="checkbox"> Trefferfunken aus</label>
     <small id="lab-controls">Klick: Peitschenschlag · Shift: Dash · Leertaste: Sprung</small><output id="lab-combat"></output>
     <button id="lab-start" type="button">Bossversuch starten</button>
@@ -109,13 +114,14 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
   const status = panel.querySelector<HTMLOutputElement>('#lab-status')!;
   const scenario=panel.querySelector<HTMLSelectElement>('#lab-scenario')!;
   const reduced=panel.querySelector<HTMLInputElement>('#lab-reduced')!;
+  const complement=panel.querySelector<HTMLInputElement>('#lab-complement')!;complement.checked=initialComplement;
   profile.value = initial;
   const abort = new AbortController(), options = { signal: abort.signal };
   let legacyWeapon='arc';
   const showProfile=()=>{const prototype=profile.value==='prototype';
     if(prototype){if(weapon.value!=='whip')legacyWeapon=weapon.value;weapon.value='whip';}else if(weapon.value==='whip')weapon.value=legacyWeapon;
     weapon.querySelector<HTMLOptionElement>('option[value="whip"]')!.hidden=!prototype;
-    weapon.disabled=prototype;scenario.disabled=!prototype;
+    weapon.disabled=prototype;scenario.disabled=!prototype;complement.disabled=!prototype;
     panel.querySelector<HTMLElement>('#lab-controls')!.hidden=!prototype;};
   profile.addEventListener('change',showProfile,options);showProfile();
   let measurement: LabMeasurement | null = null, running = false, restartMs = 0, attempts = 0;
@@ -141,10 +147,11 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
     },
     selection: () => ({ profile: profile.value === 'prototype' ? 'prototype' as const : 'legacy' as const,
       weapon: profile.value==='legacy'&&weapon.value === 'pulse' ? 'pulse' as const : 'arc' as const,
-      practice:profile.value==='prototype'&&scenario.value==='targets' }),
+      practice:profile.value==='prototype'&&scenario.value==='targets',
+      meleeOnly:profile.value==='prototype'&&scenario.value==='melee',complement:profile.value==='prototype'&&complement.checked }),
     begin(start: unknown, elapsed: number, clockDropped: number, startRunning: boolean) {
       if (running && measurement) { measurement.abort('restart'); history.push(measurement.read()); if (history.length > 20) history.shift(); }
-      const selected = this.selection(); measurement = new LabMeasurement(start, selected.profile, selected.weapon,selected.practice);
+      const selected = this.selection(); measurement = new LabMeasurement(start, selected.profile, selected.weapon,selected.practice,selected.complement,selected.meleeOnly);
       running = startRunning; if (running) attempts++;
       restartMs = elapsed; droppedStart = clockDropped; dropped = 0;
       status.textContent = `${running ? 'Läuft' : 'Bereit'} · ${selected.profile} · ${selected.profile==='prototype'?'Peitsche':selected.weapon}`;

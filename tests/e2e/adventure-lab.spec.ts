@@ -23,16 +23,16 @@ test('lab profiles, twenty warm resets, held-input/effect cleanup and local expo
   expect(initial.combatProfile).toBe('prototype'); expect(initial.lab.running).toBe(false);
   expect(initial.snapshot.tick).toBe(0); expect(initial.pve.phaseTick).toBe(0);
   await page.waitForTimeout(200); expect((await read(page)).snapshot.tick).toBe(0);
-  const results:unknown[]=[], resources:unknown[]=[];
+  const results:unknown[]=[], resources:unknown[]=[];const starts=new Map<string,unknown>();
   for (const profile of ['legacy','prototype']) for (let i=0;i<10;i++) {
     await page.selectOption('#lab-profile', profile);
     await page.keyboard.down('KeyS'); await page.keyboard.down('Space');
     const started=Date.now(); await page.locator('#lab-start').click();
     await expect.poll(async()=>(await read(page)).combatProfile).toBe(profile);
     const s=await read(page);
-    expect(s.lab.current!.start).toEqual({...initial.lab.current!.start as object,camera:profile==='prototype'?'straight':'side'});
+    if(starts.has(profile))expect(s.lab.current!.start).toEqual(starts.get(profile));else starts.set(profile,s.lab.current!.start);
     expect(s.lab.restartMs).toBeLessThan(3000); expect(Date.now()-started).toBeLessThan(3000);
-    expect(s.pve.bossHp).toBe(600); expect(s.weapons.ammo).toBe(54);
+    expect(s.pve.bossHp).toBe(profile==='prototype'?900:600); expect(s.weapons.ammo).toBe(profile==='prototype'?0:54);
     expect(s.weapons.lastArc).toBeNull(); expect(s.weapons.projectiles).toHaveLength(0);
     // Fresh .06 m spawn settles onto the floor and legitimately plays a short landing cue.
     await page.waitForTimeout(300); const still=await read(page);

@@ -18,7 +18,8 @@ export interface RunnerState {
 export class StoneRunner {
   private state:RunnerState;
   private alerted=false;
-  constructor(readonly definition:RunnerDefinition, private readonly steer:(from:Vec3,target:Vec3)=>Vec3) { this.state=this.fresh(); }
+  constructor(readonly definition:RunnerDefinition, private readonly steer:(from:Vec3,target:Vec3)=>Vec3,
+    private readonly prototype=false) { this.state=this.fresh(); }
   private fresh():RunnerState { return {id:this.definition.id,center:{...this.definition.center},hp:RUNNER_RULES.hp,
     facing:0,phase:'idle',phaseTick:0,moving:false}; }
   snapshot():RunnerState { return this.state; }
@@ -61,10 +62,11 @@ export class StoneRunner {
       x:Math.max(territory.left+.1,Math.min(territory.right-.1,player.x)),
       z:Math.max(territory.back+.1,Math.min(territory.front-.1,player.z))} : this.definition.center;
     const distance=Math.hypot(goal.x-s.center.x,goal.z-s.center.z);
-    if(distance<.15) { this.state={...this.state,phase:'idle'}; return 0; }
+    if(distance<(this.prototype&&engaged?1.2:.15)) { this.state={...this.state,phase:'idle'}; return 0; }
     const waypoint=this.steer(s.center,goal), remaining=Math.hypot(waypoint.x-s.center.x,waypoint.z-s.center.z);
     if(remaining<.02) return 0;
-    const angle=Math.atan2(waypoint.x-s.center.x,waypoint.z-s.center.z), step=Math.min(RUNNER_RULES.speed/60,remaining);
+    const angle=Math.atan2(waypoint.x-s.center.x,waypoint.z-s.center.z), step=Math.min(RUNNER_RULES.speed/60,remaining,
+      this.prototype&&engaged?Math.max(0,distance-1.2):Infinity);
     for(const turn of [0,Math.PI/4,-Math.PI/4]) {
       const facing=angle+turn,direction={x:Math.sin(facing),y:0,z:Math.cos(facing)};
       if(world.sweepBall({origin:s.center,direction},step+.03,.65,true)) continue;

@@ -23,7 +23,7 @@ export class OutpostView {
     const line=(ax:number,az:number,bx:number,bz:number,m:THREE.Material,y=.035,width=.08)=>
       solid(new THREE.BoxGeometry(width,.025,Math.hypot(bx-ax,bz-az)),(ax+bx)/2,y,(az+bz)/2,m,Math.atan2(bx-ax,bz-az));
     const label=(text:string,x:number,z:number,w=3,y=.065)=>{
-      const mesh=labelMesh(text,w);mesh.rotation.set(-Math.PI/2,0,Math.PI/2);mesh.position.set(x,y,z);scene.add(mesh);
+      const mesh=labelMesh(text,w);mesh.rotation.set(-Math.PI/2,0,Math.PI/2);mesh.position.set(x,y,z);scene.add(mesh);return mesh;
     };
     const pad=(x:number,z:number,w:number,d:number,m:THREE.Material)=>{
       // Berth corners retain the place identity without full painted frames.
@@ -35,7 +35,7 @@ export class OutpostView {
     // Two grounded charging berths: one stranded courier, one empty. Amber supply and cargo.
     pad(-3,34,3,3.4,amber);pad(-9,34,3,3.4,amber);
     line(-7,34,-4.5,34,amber);line(-7,34,-7.5,34,amber);
-    label('01 · LADEN',-5.8,30.7,4.3);label('PULSE',-3,20.5,2.5);
+    label('01 · LADEN',-5.8,30.7,4.3);label('PULSE',-3,20.5,2.5).name='outpost-pulse-label';
     // The existing wide stair gets a low edge stripe and a visible optional destination.
     for(const [x,y]of[[-4.45,.28],[-5.45,.55],[-6.5,.82]] as const)
       for(const z of [.15,3.85])box(x,y+.025,z,.9,.035,.12,blue);

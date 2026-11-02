@@ -8,6 +8,7 @@ import { Pickups } from './pickups';
 import type { Damage } from './match';
 import type { Vec3 } from './types';
 import { ADVENTURE_MISSION } from '../arena/adventureMission';
+import { PROTOTYPE_BOSS_RULES, PROTOTYPE_TACTICS, PROTOTYPE_PICKUPS, COMPLEMENT_AMMO } from './adventureBalance';
 
 export interface MissionInteraction { kind:'console'|'relay'|'reserve'; enabled:boolean; label:string }
 
@@ -21,10 +22,18 @@ function navigationFor(floorId:string,radius:number):BossNavigation {
 export class AdventureFight {
   private readonly bossNavigation=navigationFor('floor-boss',ADVENTURE_BOSS_RULES.movementRadius);
   private readonly runnerNavigation=ADVENTURE_RUNNERS.map(d=>navigationFor(d.floor,.65));
-  readonly life=new PveEncounter(ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,'stone',(from,player)=>this.bossNavigation.steer(from,player));
-  readonly runners=ADVENTURE_RUNNERS.map((d,i)=>new StoneRunner(d,(from,player)=>this.runnerNavigation[i]!.steer(from,player)));
+  readonly life:PveEncounter;
+  readonly runners:StoneRunner[];
   readonly combat=new Combat();
-  readonly pickups=new Pickups(STONE_ADVENTURE_PICKUPS,false);
+  readonly pickups:Pickups;
+  constructor(readonly prototype=false,readonly complement=false,meleeOnly=false) {
+    this.life=new PveEncounter(prototype?PROTOTYPE_BOSS_RULES:ADVENTURE_BOSS_RULES,ADVENTURE_BOSS,'stone',
+      (from,player)=>this.bossNavigation.steer(from,player),prototype?{...PROTOTYPE_TACTICS,meleeOnly}:undefined);
+    this.runners=ADVENTURE_RUNNERS.map((d,i)=>new StoneRunner(d,(from,player)=>this.runnerNavigation[i]!.steer(from,player),prototype));
+    this.pickups=new Pickups(prototype?PROTOTYPE_PICKUPS:STONE_ADVENTURE_PICKUPS,false);
+    this.equip();
+  }
+  private equip(){if(this.prototype&&this.complement)this.combat.addAmmo(COMPLEMENT_AMMO,true);}
   bossActive=false;
   checkpoint=false;
   completed=false;
@@ -35,13 +44,14 @@ export class AdventureFight {
   reset():void { this.life.reset(); this.runners.forEach(r=>r.reset()); this.bossNavigation.reset();
     this.runnerNavigation.forEach(n=>n.reset()); this.bossActive=this.checkpoint=this.completed=false;
     this.consoleActive=this.relayActive=this.reserveRecovered=false;
-    this.core=null; this.combat.reset(); this.pickups.reset(); }
+    this.core=null; this.combat.reset();this.equip(); this.pickups.reset(); }
   /** Retry preserves the cleared approach, but never carries boss damage/effects into a new attempt. */
   retry():Vec3 {
     if(!this.checkpoint || this.life.snapshot().outcome!=='defeat') { this.reset(); return STONE_ADVENTURE_COMBAT.spawn; }
     this.life.reset(); this.bossNavigation.reset(); this.bossActive=false; this.core=null; this.relayActive=false;
     if(this.reserveRecovered) this.life.restoreArmor(ADVENTURE_MISSION.reserve.armor-50);
-    this.combat.reset(); this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true); this.combat.select('pulse');
+    this.combat.reset();this.equip();
+    if(!this.prototype){this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true); this.combat.select('pulse');}
     this.pickups.reset(ADVENTURE_BOSS_PICKUPS);
     return ADVENTURE_CHECKPOINT;
   }
@@ -97,7 +107,7 @@ export class AdventureFight {
     if(!this.checkpoint && this.consoleActive && cleared && player.z< -12.5 && player.z> -41 && Math.abs(player.x)<15 && player.y>-.2 && player.y<.4) {
       this.checkpoint=true; this.life.restore(100);
       this.life.restoreArmor(Math.max(0,(this.reserveRecovered?ADVENTURE_MISSION.reserve.armor:50)-this.life.snapshot().armor));
-      this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true);
+      if(!this.prototype)this.combat.addAmmo(WEAPONS.pulse.maxAmmo,true);
     }
     // The powered console releases the seal. Entering still wakes the existing boss.
     if(!this.bossActive && this.checkpoint && cleared && player.z< -20.5 && player.z> -41 && Math.abs(player.x)<15) this.bossActive=true;

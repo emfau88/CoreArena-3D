@@ -23,7 +23,7 @@ export class AdventurePrototype {
   readonly motor:AdventureMotor;
   private hitCounts:Record<string,number>={};
   constructor(simulation:Simulation,readonly practice:boolean) {this.motor=new AdventureMotor(simulation);}
-  step(command:MoveCommand,dash:boolean,pressed:boolean,ray:Ray|null,world:RapierWorld,targets:readonly CombatTarget[],feedback:StoneFeedback) {
+  step(command:MoveCommand,dash:boolean,pressed:boolean,ray:Ray|null,world:RapierWorld,targets:readonly CombatTarget[],feedback:StoneFeedback,guarded=false) {
     const direction=this.aim.update(ray,this.motor.simulation.snapshot().position);
     const move=this.motor.step(command,dash,direction);
     if(move.started){this.whip.cancel();feedback.play('dash');}
@@ -33,7 +33,7 @@ export class AdventurePrototype {
     if(attack.phase==='return'&&oldPhase!=='return')feedback.play('whip-return');
     for(const contact of attack.contacts){
       this.hitCounts[contact.target]=(this.hitCounts[contact.target]??0)+1;
-      feedback.play(contact.phase==='forward'?'whip-hit':'whip-back-hit');
+      feedback.play(guarded&&contact.target==='stone-warden'?'whip-guard':contact.phase==='forward'?'whip-hit':'whip-back-hit');
     }
     return {...move,attack};
   }

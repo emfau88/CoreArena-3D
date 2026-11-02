@@ -14,29 +14,53 @@ export type MonsterPhase = 'emerging' | 'chasing' | 'melee' | 'warning' | 'attac
 export interface MonsterWorld extends RayWorld {
   sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly?: boolean): RayHit | null;
 }
+export interface EncounterTactics {
+  readonly meleeTrigger:number; readonly stepDistance:number; readonly stepTicks:number;
+  readonly activeTicks:number; readonly meleeHeight:number; readonly meleeOnly?:boolean; readonly guardedDamage?:number;
+}
+export interface BossExchange { readonly serial:number; readonly window:'closed'|'warning'|'active'|'counter';
+  readonly resolved:number; readonly avoided:number; readonly counters:number }
 export interface PveSnapshot {
   readonly center: Vec3; readonly facing: number; readonly moving: boolean;
   readonly tick: number; readonly phase: MonsterPhase; readonly phaseTick: number;
   readonly kind: 'wave' | 'eruption'; readonly target: Vec3; readonly waveRadius: number;
   readonly hp: number; readonly armor: number; readonly bossHp: number;
   readonly outcome: 'running' | 'victory' | 'defeat'; readonly hitsTaken: number; readonly lastHit: number;
+  readonly exchange?:BossExchange;
 }
 
 /** One isolated encounter. No campaign save, TDM score or respawn rule is changed. */
 export class PveEncounter {
   private state: PveSnapshot;
   constructor(readonly rules: EncounterRules = PVE_RULES, readonly monster = MONSTER, readonly kind: MonsterKind = 'stone',
-    private readonly steering?: (from: Vec3, player: Vec3) => Vec3) {
+    private readonly steering?: (from: Vec3, player: Vec3) => Vec3, readonly tactics?:EncounterTactics) {
     this.state = this.fresh();
   }
   private attackHit = false;
   private chaseElapsed = 0;
   private nextMelee = 0;
+  private serial=0;
+  private resolved=0;
+  private avoided=0;
+  private counters=0;
+  private counterRecorded=false;
   private fresh(): PveSnapshot { return { tick: 0, phase: 'emerging', phaseTick: 0, kind: 'wave',
     target: { ...this.monster.center, y: 0 }, waveRadius: 2, hp: 100, armor: 50, bossHp: this.rules.bossHp,
     outcome: 'running', hitsTaken: 0, lastHit: -100, center: { ...this.monster.center }, facing: 0, moving: false }; }
-  snapshot(): PveSnapshot { return this.state; }
-  reset(): void { this.state = this.fresh(); this.attackHit = false; this.chaseElapsed = this.nextMelee = 0; }
+  snapshot(): PveSnapshot { return this.tactics?{...this.state,exchange:{serial:this.serial,window:this.window(),
+    resolved:this.resolved,avoided:this.avoided,counters:this.counters}}:this.state; }
+  private window():BossExchange['window'] {
+    const s=this.state;
+    if(s.outcome!=='running')return 'closed';
+    if(s.phase==='recovery')return 'counter';
+    if(s.phase==='warning')return 'warning';
+    if(s.phase==='attack')return 'active';
+    if(s.phase==='melee')return s.phaseTick<this.rules.meleeWarning?'warning':
+      s.phaseTick<this.rules.meleeWarning+(this.tactics?.activeTicks??1)?'active':'counter';
+    return 'closed';
+  }
+  reset(): void { this.state = this.fresh(); this.attackHit = false; this.chaseElapsed = this.nextMelee = 0;
+    this.serial=this.resolved=this.avoided=this.counters=0;this.counterRecorded=false; }
   restore(amount: number): number {
     if (this.state.outcome !== 'running') return 0;
     const accepted = Math.min(Math.max(0, amount), 100 - this.state.hp);
@@ -57,9 +81,13 @@ export class PveEncounter {
     const active = options.active ?? true;
     this.state = { ...this.state, tick: this.state.tick + 1, phaseTick: this.state.phaseTick + (active ? 1 : 0), moving: false };
     if (this.state.phase !== 'emerging') {
-      const damage = hits.filter(hit => hit.target === this.monster.id && hit.source === 'player' && Number.isFinite(hit.amount) && hit.amount > 0)
+      const raw = hits.filter(hit => hit.target === this.monster.id && hit.source === 'player' && Number.isFinite(hit.amount) && hit.amount > 0)
         .reduce((sum, hit) => sum + hit.amount, 0);
-      this.state = { ...this.state, bossHp: Math.max(0, this.state.bossHp - damage) };
+      const damage=this.tactics&&this.window()!=='counter'?Math.round(raw*(this.tactics.guardedDamage??1)*10)/10:raw;
+      this.state = { ...this.state, bossHp: this.tactics?Math.max(0,Math.round((this.state.bossHp-damage)*10)/10):Math.max(0, this.state.bossHp - damage) };
+      if(this.tactics&&damage>0&&this.window()==='counter'&&!this.attackHit&&!this.counterRecorded){
+        this.counters++;this.counterRecorded=true;
+      }
     }
     if (player.y < -8) this.hurt(1000);
     if (Number.isFinite(options.incomingDamage) && options.incomingDamage! > 0) this.hurt(options.incomingDamage!);
@@ -69,6 +97,7 @@ export class PveEncounter {
       this.state = { ...this.state, phase: 'defeated', phaseTick: 0, outcome: 'victory' }; return;
     }
     const s = this.state;
+    if(this.tactics&&s.phase==='melee')this.chaseElapsed++;
     if (s.phase === 'emerging' && s.phaseTick >= this.rules.emergeTicks) this.state = { ...s, phase: 'chasing', phaseTick: 0 };
     else if (s.phase === 'chasing') {
       this.chase(player, world);
@@ -79,19 +108,24 @@ export class PveEncounter {
         origin: { ...player, y: player.y + .1 }, direction: { x:0, y:-1, z:0 },
       }, .3, true) : null;
       const elevated = support !== null && support.point.y > s.center.y - this.monster.center.y + .65;
-      if (this.chaseElapsed >= (elevated ? this.rules.elevatedChaseTicks : this.rules.chaseTicks)) {
+      if (!this.tactics?.meleeOnly && this.chaseElapsed >= (elevated ? this.rules.elevatedChaseTicks : this.rules.chaseTicks)) {
         this.chaseElapsed = 0;
         if (elevated) this.state = { ...this.state, kind:'eruption' };
         this.warning(player, world);
       }
       else if (s.tick >= this.nextMelee && this.meleeCanReach(player, world, false)) {
+        this.serial++;this.attackHit=false;this.counterRecorded=false;
         this.state = { ...this.state, phase: 'melee', phaseTick: 0, moving: false,
           facing: Math.atan2(player.x - this.state.center.x, player.z - this.state.center.z) };
       }
     }
     else if (s.phase === 'melee') {
-      // A locked swing: one contact check after the windup, never tracking the dodge.
-      if (s.phaseTick === this.rules.meleeWarning && this.meleeCanReach(player, world, true)) this.hurt(this.rules.meleeDamage);
+      // The optional step happens early in the warning; both direction and final contact stay readable.
+      if(this.tactics&&s.phaseTick<=this.tactics.stepTicks)this.attackStep(player,world);
+      const activeTicks=this.tactics?.activeTicks??1;
+      if (!this.attackHit&&s.phaseTick>=this.rules.meleeWarning&&s.phaseTick<this.rules.meleeWarning+activeTicks
+        && this.meleeCanReach(player, world, true)) {this.hurt(this.rules.meleeDamage);this.attackHit=true;}
+      if(this.tactics&&s.phaseTick===this.rules.meleeWarning+activeTicks){this.resolved++;if(!this.attackHit)this.avoided++;}
       if (s.phaseTick >= this.rules.meleeWarning + this.rules.meleeRecovery) {
         this.nextMelee = s.tick + this.rules.meleeCooldown;
         this.state = { ...this.state, phase: 'chasing', phaseTick: 0 };
@@ -123,6 +157,7 @@ export class PveEncounter {
         this.hurt(this.rules.eruptionDamage); this.attackHit = true;
       }
       if (s.phaseTick >= (s.kind === 'wave' ? this.rules.waveTicks : this.rules.eruptionTicks)) {
+        if(this.tactics){this.resolved++;if(!this.attackHit)this.avoided++;}
         this.state = { ...this.state, phase: 'recovery', phaseTick: 0 };
       }
     } else if (s.phase === 'recovery' && s.phaseTick >= this.rules.recoveryTicks) {
@@ -131,13 +166,23 @@ export class PveEncounter {
   }
   private meleeCanReach(player: Vec3, world: RayWorld, directional: boolean): boolean {
     const s = this.state, groundY = s.center.y - this.monster.center.y;
-    if (player.y < groundY - 0.2 || player.y > groundY + 1.35) return false;
+    if (player.y < groundY - 0.2 || player.y > groundY + (this.tactics?.meleeHeight??1.35)) return false;
     const dx = player.x - s.center.x, dz = player.z - s.center.z;
-    if (Math.hypot(dx, dz) > this.rules.meleeRange) return false;
+    if (Math.hypot(dx, dz) > (!directional&&this.tactics?this.tactics.meleeTrigger:this.rules.meleeRange)) return false;
     if (directional && Math.cos(Math.atan2(dx, dz) - s.facing) < Math.cos(1.05)) return false;
     const origin = { ...s.center, y: groundY + 1.1 };
     const line = directionTo(origin, { ...player, y: player.y + 0.9 });
     return !world.raycast({ origin, direction: line.direction }, line.distance, true);
+  }
+  private attackStep(player:Vec3,world:MonsterWorld):void {
+    const s=this.state,t=this.tactics!,direction={x:Math.sin(s.facing),y:0,z:Math.cos(s.facing)};
+    const step=t.stepDistance/t.stepTicks;
+    const center={x:s.center.x+direction.x*step,y:s.center.y,z:s.center.z+direction.z*step};
+    if(Math.hypot(player.x-center.x,player.z-center.z)<this.rules.stopDistance
+      ||world.sweepBall({origin:s.center,direction},step+.04,this.rules.movementRadius,true))return;
+    if(![[0,0],[1.7,0],[-1.7,0],[0,1.7],[0,-1.7]].every(([x,z])=>world.raycast({
+      origin:{x:center.x+x!,y:.3,z:center.z+z!},direction:{x:0,y:-1,z:0}},.5,true)))return;
+    this.state={...s,center,moving:true};
   }
   private chase(player: Vec3, world: MonsterWorld): void {
     const s = this.state;
@@ -163,6 +208,7 @@ export class PveEncounter {
     }
   }
   private warning(player: Vec3, world: RayWorld): void {
+    this.serial++;this.attackHit=false;this.counterRecorded=false;
     // Lock the chosen ground point once: the warning never follows the dodging player.
     const ground = world.raycast({ origin: { ...player, y: player.y + 0.1 }, direction: { x: 0, y: -1, z: 0 } }, 30, true);
     this.state = { ...this.state, phase: 'warning', phaseTick: 0, moving: false,

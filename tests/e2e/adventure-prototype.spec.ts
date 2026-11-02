@@ -1,3 +1,4 @@
+import {defeatT2} from './adventureT2Controls';
 import {test,expect,type Page} from '@playwright/test';
 import {writeFileSync} from 'node:fs';
 import type {AdventurePrototype} from '../../src/app/adventurePrototype';
@@ -14,7 +15,7 @@ test('prototype real input: directed whip, return, miss, dash cancel, held keys,
   test.setTimeout(90_000);const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');
   await page.selectOption('#lab-scenario','targets');await page.locator('#lab-start').click();await page.waitForTimeout(600);
-  expect((await read(page)).combatRules).toBe('prototype-a4');expect((await read(page)).camera).toBe('straight');
+  expect((await read(page)).combatRules).toBe('prototype-a7');expect((await read(page)).camera).toBe('straight');
   const target=(await read(page)).prototype.targetScreens[0]!;
   await page.mouse.click(target.x,target.y);await page.waitForTimeout(750);
   let state=await read(page);expect(state.prototype.whip.forwardHits).toBeGreaterThan(0);expect(state.prototype.whip.returnHits).toBeGreaterThan(0);
@@ -62,12 +63,12 @@ test('prototype boss combat and camera remain readable during real movement, att
     if(i%3===0)await page.keyboard.press('Space');
     await page.waitForTimeout(750);snapshots.push(await read(page));
   }
-  expect(snapshots.some(s=>s.pve.bossHp<600)).toBe(true);
+  expect(snapshots.some(s=>s.pve.bossHp<900)).toBe(true);
   const state=await read(page);expect(state.prototype.whip.sequence).toBeGreaterThan(0);
   await page.screenshot({path:info.outputPath('boss-combat.jpg'),quality:75});
   // Lab restart remains reachable after a defeat overlay appears during capture.
   await page.locator('#lab-start').click();const restarted=await read(page);
-  expect(restarted.prototype.whip.forwardHits).toBe(0);expect(restarted.prototype.dash.uses).toBe(0);expect(restarted.pve.bossHp).toBe(600);
+  expect(restarted.prototype.whip.forwardHits).toBe(0);expect(restarted.prototype.dash.uses).toBe(0);expect(restarted.pve.bossHp).toBe(900);
   expect(restarted.lab.restartMs).toBeLessThan(3000);
   await info.attach('prototype-boss',{body:JSON.stringify({snapshots,errors}),contentType:'application/json'});expect(errors).toEqual([]);
 });
@@ -136,24 +137,12 @@ test('prototype 30Hz presentation preserves attacks, pause and resume',async({pa
 });
 
 test('prototype real reactive boss victory removes body and retry restores fresh state',async({page},info)=>{
-  test.setTimeout(75_000);await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');await page.locator('#lab-start').click();
-  const deadline=Date.now()+50_000;
-  while(Date.now()<deadline){
-    const s=await read(page),b=s.pve,p=s.snapshot;if(b.outcome!=='running')break;
-    const distance=Math.hypot(p.position.x-b.center.x,p.position.z-b.center.z);
-    const eruption=b.kind==='eruption'&&(b.phase==='warning'||b.phase==='attack')&&Math.hypot(p.position.x-b.target.x,p.position.z-b.target.z)<3.8;
-    const key=b.target.x>0?'KeyA':'KeyD';
-    for(const move of ['KeyA','KeyD'])if(eruption&&move===key)await page.keyboard.down(move);else await page.keyboard.up(move);
-    if(p.grounded&&(b.phase==='melee'&&b.phaseTick>=7&&b.phaseTick<24||b.kind==='wave'&&(
-      b.phase==='warning'&&b.phaseTick>=84&&distance<5||b.phase==='attack'&&distance>b.waveRadius&&distance-b.waveRadius<2.8)))await page.keyboard.press('Space');
-    if(s.prototype.whip.phase==='idle'&&b.phase!=='emerging')await page.mouse.click(s.monsterScreen.x,s.monsterScreen.y);
-    await page.waitForTimeout(40);
-  }
-  await page.keyboard.up('KeyA');await page.keyboard.up('KeyD');const result=await read(page);
+  test.setTimeout(120_000);await page.goto(url);await expect(page.locator('#app')).toHaveAttribute('data-ready','true');await page.locator('#lab-start').click();
+  const {result}=await defeatT2(page,'boss');
   await info.attach('reactive-boss',{body:JSON.stringify(result),contentType:'application/json'});
   expect(result.pve.outcome).toBe('victory');
   // Walk through the defeated boss's former cylinder using ordinary controls.
   await page.keyboard.down('KeyW');await page.waitForTimeout(1100);await page.keyboard.up('KeyW');
   expect((await read(page)).snapshot.position.z).toBeLessThan(result.pve.center.z-1.7);
-  await page.locator('#lab-start').click();const reset=await read(page);expect(reset.pve.bossHp).toBe(600);expect(reset.prototype.whip.sequence).toBe(0);
+  await page.locator('#lab-start').click();const reset=await read(page);expect(reset.pve.bossHp).toBe(900);expect(reset.prototype.whip.sequence).toBe(0);
 });

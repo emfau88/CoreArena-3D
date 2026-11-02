@@ -5,6 +5,7 @@ export interface AdventureEntry {
   readonly profile: AdventureProfile;
   readonly lab: boolean;
   readonly exploration: boolean;
+  readonly complement?:boolean;
 }
 
 /** The only URL boundary for Adventure variants. Other modes retain their routes. */
@@ -13,10 +14,11 @@ export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean
     || (params.get('level') ?? 'stone') !== 'stone') return null;
   const exploration = params.get('explore') === '1';
   const lab = allowLab && !exploration && params.get('lab') === 'boss';
-  return { lab, exploration, profile: lab && params.get('combat') === 'prototype' ? 'prototype' : 'legacy' };
+  const profile=allowLab&&!exploration&&params.get('combat')==='prototype'?'prototype':'legacy';
+  return { lab, exploration, profile,...(profile==='prototype'?{complement:params.get('loadout')==='pulse'}:{}) };
 }
 
-/** Boss rules stay shared; the optional lab controller composes prototype movement/weapon rules. */
-export function createAdventureVariant(id: AdventureProfile) {
-  return { id, rules: id==='prototype'?'prototype-a4':'legacy-a0', fight: new AdventureFight() };
+/** Explicit profile factory; default routes and all shared constants stay Legacy. */
+export function createAdventureVariant(id: AdventureProfile,complement=false,meleeOnly=false) {
+  return { id, rules: id==='prototype'?'prototype-a7':'legacy-a0', fight: new AdventureFight(id==='prototype',complement,meleeOnly) };
 }

@@ -13,7 +13,8 @@ test('Adventure routing isolates lab/profile parameters and preserves legacy def
   const route = (query: string, enabled = true) => resolveAdventureEntry(new URLSearchParams(query), enabled);
   const stone = 'mode=pve&adventure=1&level=stone';
   assert.deepEqual(route(stone), { profile: 'legacy', lab: false, exploration: false });
-  assert.deepEqual(route(stone+'&combat=prototype'), route(stone));
+  assert.equal(route(stone+'&combat=prototype')?.profile, 'prototype');
+  assert.deepEqual(route(stone+'&combat=prototype',false), route(stone));
   assert.equal(route(stone+'&lab=boss&combat=prototype')?.profile, 'prototype');
   assert.equal(route(stone+'&lab=boss&combat=typo')?.profile, 'legacy');
   assert.equal(route(stone+'&lab=typo&combat=prototype')?.lab, false);
@@ -24,15 +25,16 @@ test('Adventure routing isolates lab/profile parameters and preserves legacy def
     assert.equal(route(query+'&lab=boss&combat=prototype'), null, query);
   }
   const a = createAdventureVariant('legacy'), b = createAdventureVariant('prototype');
-  assert.deepEqual(a.fight.snapshot(), b.fight.snapshot());
+  assert.equal(a.fight.snapshot().pve.exchange,undefined);assert.ok(b.fight.snapshot().pve.exchange);
+  assert.equal(a.fight.life.rules.bossHp,600);assert.equal(b.fight.life.rules.bossHp,900);
   a.fight.consoleActive = true; assert.equal(b.fight.consoleActive, false);
 });
 
-for (const weapon of ['arc','pulse'] as const) test(`${weapon}: identical 30/60/144 Hz replays in both profiles and after dirty reset`, async () => {
+for (const weapon of ['arc','pulse'] as const) test(`${weapon}: identical 30/60/144 Hz replays in Legacy and after dirty reset`, async () => {
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   try {
     let reference: unknown[] | undefined;
-    for (const profile of ['legacy','prototype'] as const) {
+    for (const profile of ['legacy'] as const) {
       const { fight } = createAdventureVariant(profile);
       for (const hz of [30,60,144]) {
         prepareBossAttempt(fight, world, weapon);

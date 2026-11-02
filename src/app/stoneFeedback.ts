@@ -1,7 +1,8 @@
-type Cue = 'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
+type Cue = 'whip-guard'|'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
 const tones: Record<Cue, [number, number, number, number]> = {
+  'whip-guard':[1800,550,.055,.045],
   'whip-swing':[300,650,.12,.045], 'whip-return':[640,210,.11,.04],
-  'whip-hit':[850,170,.08,.085], 'whip-back-hit':[1100,280,.065,.075],dash:[220,65,.13,.045],
+  'whip-hit':[1200,95,.095,.1], 'whip-back-hit':[1500,150,.075,.09],dash:[220,65,.13,.045],
   pulse: [480, 120, 0.09, 0.1], arc: [180, 85, 0.6, 0.13], hit: [240, 80, 0.07, 0.08],
   hurt: [95, 40, 0.22, 0.18], step: [80, 45, 0.055, 0.035], land: [100, 35, 0.16, 0.12],
   jump: [180, 300, 0.08, 0.055], windup: [80, 165, 0.28, 0.11], slam: [110, 28, 0.28, 0.21],
@@ -67,7 +68,7 @@ export class StoneFeedback {
     oscillator.connect(gain); gain.connect(stereo); stereo.connect(this.master!);
     const noise = ctx.createBufferSource(), filter = ctx.createBiquadFilter(); noise.buffer = this.noise;
     noise.loop=cue==='arc';
-    filter.type = 'lowpass'; filter.frequency.value = cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450;
+    filter.type = 'lowpass'; filter.frequency.value = cue==='whip-hit'||cue==='whip-back-hit'?3200:cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450;
     noise.connect(filter); filter.connect(gain);
     this.voices++; this.played++;
     const cleanup = () => {
@@ -79,7 +80,7 @@ export class StoneFeedback {
     this.stops.add(stop); oscillator.onended = cleanup;
     oscillator.start(now); noise.start(now); oscillator.stop(now + duration); noise.stop(now + duration);
   }
-  bossHit(damage: number, tick: number): void { this.marker.textContent = `✣ −${damage}`; this.hitUntil = tick + 18; }
+  bossHit(damage: number, tick: number,guarded=false): void { this.marker.textContent = `${guarded?'SCHUTZ':'✣'} −${Math.round(damage*10)/10}`; this.hitUntil = tick + 18; }
   playerHit(tick: number): void { this.hurtUntil = tick + 18; }
   draw(tick: number, boss: { x: number; y: number }): void {
     this.marker.hidden = tick >= this.hitUntil;

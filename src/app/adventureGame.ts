@@ -1,5 +1,5 @@
 import { loadMeleeAssets } from '../render/kayFighter';
-import { STONE_ADVENTURE, STONE_ADVENTURE_COMBAT, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_RUNNERS, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
+import { STONE_ADVENTURE, STONE_ADVENTURE_COMBAT, ADVENTURE_BOSS, ADVENTURE_RUNNERS, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
 import { createAdventureVariant, type AdventureEntry } from './adventureVariant';
 import { AdventureFightView } from '../render/adventureFightView';
 import { buildStoneAdventure } from '../render/stoneAdventureView';
@@ -37,7 +37,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   view.renderer.domElement.setAttribute('aria-label', `Der verwitterte Hof – ${exploration ? 'Erkundung' : 'Adventure'}`);
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
   let simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
-  let variant = createAdventureVariant(entry.profile), fight = variant.fight;
+  let variant = createAdventureVariant(entry.profile,entry.complement), fight = variant.fight;
   const fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
   const outpostView=new OutpostView(view.scene,missionAssets.drone);
   const missionView = new AdventureMissionView(view.scene,missionAssets);
@@ -73,7 +73,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     <button id="pve-next" type="button" hidden>Optional: Kristallkluft erkunden</button><button id="pve-again" type="button">Neu versuchen</button>
     <button id="result-home" type="button">Zum Spielmenü</button></div></div>`);
   const el = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
-  const chooseWeapon = (id: WeaponId | 'cycle') => { if (!prototype && !paused && fight.life.snapshot().outcome==='running') { if (id === 'cycle') combat.cycle(); else combat.select(id); } };
+  const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused && fight.life.snapshot().outcome==='running') {
+    const old=combat.snapshot().selected;
+    if (id === 'cycle') combat.cycle(); else combat.select(id);
+    if(combat.snapshot().selected!==old)prototype?.whip.cancel();
+  } };
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon);
   const feedback = new StoneFeedback(host);
   const announce = (text:string,ticks=360) => { el('mission-message').textContent=text; messageUntil=current.tick+ticks; };
@@ -110,6 +114,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const syncWorld = () => {
     const state=fight.snapshot();
     state.runners.forEach((r,i)=>{ world.setTargetPosition(ADVENTURE_RUNNERS[i]!.id,r.center); world.setTargetEnabled(r.id,!exploration && r.hp>0); });
+    if(labModule)state.runners.forEach(r=>world.setMovementBlocker(`prototype-body-${r.id}`,
+      {x:r.center.x,y:.9,z:r.center.z},.65,1.8,!!prototype&&r.hp>0));
     world.setTargetPosition(ADVENTURE_BOSS.id,state.pve.center);
     world.setTargetEnabled(ADVENTURE_BOSS.id,!exploration && state.bossActive && state.pve.phase!=='emerging' && state.pve.outcome==='running');
     world.setObstacleEnabled('dormant-warden',!state.bossActive&&!prototype?.practice);
@@ -128,28 +134,40 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   };
   const restart = () => {
     if (lab) { restartLab(true); return; }
-    fight.reset();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
-    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.',540);
+    fight.reset();resetMissionPrototype();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
+    announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.'+(prototype?' Klick: Peitsche · Shift: Dash · Leertaste: Sprung.':''),540);
   };
   const retry = () => {
     if (lab) { restartLab(true); return; }
     if(!fight.checkpoint || fight.life.snapshot().outcome!=='defeat') restart();
-    else placePlayer(fight.retry());
+    else {const spawn=fight.retry();resetMissionPrototype();placePlayer(spawn);}
+  };
+  const configurePresentation=()=>{
+    view.scene.getObjectByName('outpost-pulse-label')!.visible=!prototype;
+    view.camera.combat(!!prototype);whipView?.hide();feedback.reset(true);view.resetPresentation();fightView.resetPresentation(!!prototype);
+    el('weapon-panel').hidden=!!prototype&&!fight.complement;el('camera-toggle').hidden=!!prototype;
+    el('weapon-arc').querySelector('.weapon-name')!.textContent=prototype?'Energiepeitsche':'Arc Lash';
+    el('weapon-arc').querySelector('.weapon-type')!.textContent=prototype?'KLICK · SCHWUNG':'AUTO-FÄCHER';
+    el('weapon-arc').title=prototype?'Ein Klick pro Peitschenschlag · Hin- und Rückschwung':'Automatischer Energiefächer · kurze Reichweite · halten für weitere Salven';
+    el('weapon-panel').querySelector('small')!.textContent=prototype?'Pulse: 12 Schuss pro Versuch · kein Munitionsfund':'Arc zum Start · Pulse am Norddurchgang';
+    host.querySelectorAll('footer > span')[1]!.textContent=prototype?'SHIFT · Dash':'SHIFT · Sprint';
+  };
+  const resetMissionPrototype=()=>{
+    if(entry.profile!=='prototype')return;
+    prototype=new labModule!.AdventurePrototype(simulation,false);
+    configurePresentation();view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,prototype?'straight':'side');
   };
   const restartLab = (running: boolean) => {
     const started = performance.now(), selection = lab!.selection();
-    variant = createAdventureVariant(selection.profile); fight = variant.fight;
+    variant = createAdventureVariant(selection.profile,selection.complement,selection.meleeOnly); fight = variant.fight;
     ({combat,pickups} = fight);
     labModule!.prepareBossAttempt(fight, world, selection.weapon);
     // Simulation.reset intentionally preserves regular-mission tick/facing. A lab attempt gets a fresh clock/state.
     simulation = new Simulation(world, labModule!.LAB_SPAWN, STONE_ADVENTURE_JUMP);
     prototype=selection.profile==='prototype'?new labModule!.AdventurePrototype(simulation,selection.practice):undefined;
     if(prototype?.practice)fight.bossActive=false;
-    whipView!.hide();view.camera.combat(!!prototype);
-    feedback.reset(true); view.resetPresentation(); fightView.resetPresentation();
+    configurePresentation();
     view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, prototype?'straight':'side'); bossIntroduced = true;
-    el('weapon-panel').hidden=!!prototype;el('camera-toggle').hidden=!!prototype;
-    host.querySelectorAll('footer > span')[1]!.textContent=prototype?'SHIFT · Dash':'SHIFT · Sprint';
     placePlayer(labModule!.LAB_SPAWN);
     lab!.begin({ player: current, fight: fight.snapshot(), weapons: combat.snapshot(), pickups: pickups.snapshot(),
       camera: view.camera.mode, audioVoices: feedback.diagnostics().voices }, performance.now() - started, clock.droppedTicks, running);
@@ -177,16 +195,18 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       const before=fight.snapshot();
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       previous = current;
-      const prototypeStep=prototype?.step(input.command(view.camera.basis()),input.dashPressed(),input.attackPressed()&&before.pve.outcome==='running',ray,world,fight.targets(),feedback);
+      const pressed=prototype?input.attackPressed():false;
+      const prototypeStep=prototype?.step(input.command(view.camera.basis()),input.dashPressed(),pressed&&combat.snapshot().selected==='arc'&&before.pve.outcome==='running',ray,world,fight.targets(),feedback,before.pve.exchange?.window!=='counter');
       current=prototypeStep?.current??simulation.step(input.command(view.camera.basis()));
       if (exploration && current.position.y < -6) { current = simulation.reset(); previous = current; view.camera.snap(current.position); }
       if (before.pve.outcome==='victory' && current.position.y < -6) {
         current=simulation.reset({x:0,y:.06,z:-37}); previous=current; view.camera.snap(current.position);
       }
-      aim = !prototype&&ray ? solveAim(world, ray, current.position) : null;
+      aim = (!prototype||combat.snapshot().selected==='pulse')&&ray ? solveAim(world, ray, current.position) : null;
       const selected = combat.snapshot().selected;
-      const attack=prototypeStep?.attack??combat.step(current.tick, input.fire() && before.pve.outcome==='running', aim, ray, world, exploration ? [] : fight.targets(), current.position);
-      if(attack.attacked&&!prototype) feedback.play(selected);
+      const ranged=combat.step(current.tick,(input.fire()||!!prototype&&pressed)&&before.pve.outcome==='running'&&(!prototype||selected==='pulse'&&!prototypeStep!.active),aim,ray,world,exploration?[]:fight.targets(),current.position);
+      const attack=prototypeStep?{attacked:prototypeStep.attack.attacked||ranged.attacked,damage:[...prototypeStep.attack.damage,...ranged.damage]}:ranged;
+      if(ranged.attacked) feedback.play(selected);
       if(!exploration&&!prototype?.practice) {
         if(interactPending) fight.interact(current.position,world);
         fight.step(current.position,world,attack.damage);
@@ -207,11 +227,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       }
       if(after.pve.hitsTaken>before.pve.hitsTaken) { feedback.play('hurt'); feedback.playerHit(current.tick); }
       const damage=before.pve.bossHp-after.pve.bossHp;
-      if(damage>0) { if(!prototype)feedback.play('hit'); feedback.bossHit(damage,current.tick); }
+      if(damage>0) { if(!prototype)feedback.play('hit'); feedback.bossHit(damage,current.tick,!!prototype&&before.pve.exchange?.window!=='counter'); }
       if(after.runners.some((r,i)=>r.hp<before.runners[i]!.hp)) feedback.play('hit');
       if(after.pve.phase==='melee' && before.pve.phase!=='melee') feedback.play('boss-windup');
       if(after.pve.phase==='warning' && before.pve.phase!=='warning') feedback.play(after.pve.kind==='wave'?'wave-warning':'eruption-warning');
-      if(after.pve.phase==='melee' && after.pve.phaseTick===ADVENTURE_BOSS_RULES.meleeWarning
+      if(after.pve.phase==='melee' && after.pve.phaseTick===fight.life.rules.meleeWarning
         || after.pve.phase==='attack' && before.pve.phase!=='attack') feedback.play('slam');
       if(after.pve.outcome==='victory' && before.pve.outcome!=='victory') feedback.play('victory');
       if(after.checkpoint && !before.checkpoint) feedback.play('pickup');
@@ -237,11 +257,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     const state=fight.snapshot(), {hp,armor}=state.pve;
     if (now-lastHud > 70) {
       const room = stoneRoomAt(current.position);
-      if (room) { el('room-name').textContent = room.name; el('room-hint').textContent = hints[room.id]!; }
+      if (room) { el('room-name').textContent = prototype&&room.id==='C'?'Ladestation':room.name; el('room-hint').textContent = hints[room.id]!; }
       const guards=state.runners.filter(r=>r.hp>0).length;
       if(!exploration) {
         let objective=guards ? `Anlage reaktivieren · ${guards}/2 Steinläufer sichern die Wartungskonsole im zweiten Hof.` : 'Wartungskonsole im zweiten Hof starten · goldene Markierung.';
-        if(!state.consoleActive && !state.runners[0]!.hp && !weapons.ownsPulse && room && ['B','C'].includes(room.id))
+        if(!prototype&&!state.consoleActive && !state.runners[0]!.hp && !weapons.ownsPulse && room && ['B','C'].includes(room.id))
           objective='Pulse am Durchgang aufnehmen · danach zur Wartungskonsole.';
         if(state.consoleActive) objective=state.bossActive?'Steinkern bergen · Bezwinge den Wächter!':
           state.checkpoint?'Ruhepunkt gesichert · Betritt den freigegebenen Wächterhof.':'Verbindung steht · Folge der leuchtenden Leitung zum Ruhepunkt.';
@@ -261,12 +281,12 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       button.disabled=!interaction?.enabled;
       button.textContent=interaction?`${interaction.enabled && !input.touchEnabled?'E · ':''}${interaction.label}`:'';
       el('adventure-boss').hidden=!state.bossActive || state.pve.outcome==='victory';
-      el('boss-hp-value').textContent=String(state.pve.bossHp); (el('boss-hp') as HTMLProgressElement).value=state.pve.bossHp;
+      (el('boss-hp') as HTMLProgressElement).max=fight.life.rules.bossHp;el('boss-hp-value').textContent=String(Math.ceil(state.pve.bossHp)); (el('boss-hp') as HTMLProgressElement).value=state.pve.bossHp;
       const messages={emerging:'Der Boden bricht auf …',chasing:'Er verfolgt dich · Bleib in Bewegung!',melee:'FAUSTSCHLAG · Seitlich ausweichen!',
         warning:state.pve.kind==='wave'?'SCHOCKWELLE · Sprung vorbereiten!':'BODENAUSBRUCH · Kreis verlassen!',
         attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'ERHOLUNG · Jetzt feuern!',defeated:'Steinsiegel gebrochen.'};
       el('adventure-boss').dataset.phase=state.pve.phase;
-      el('pve-telegraph').textContent=prototype&&state.pve.phase==='recovery'?'ERHOLUNG · Jetzt kontern!':messages[state.pve.phase];
+      el('pve-telegraph').textContent=state.pve.exchange?.window==='counter'?'KERN OFFEN · Voller Schaden!' :prototype&&state.pve.phase==='melee'?'HOHER FAUSTSCHWUNG · Seitlich ausweichen!':prototype&&state.pve.phase==='chasing'?'KERN GESCHÜTZT · Angriff abwarten!':messages[state.pve.phase];
       el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?state.relayActive?'Relais online · Ausgang offen':'Steinsiegel gebrochen · Relais versorgen':
         state.checkpoint?'Ruhepunkt gesichert':guards?`${2-guards}/2 Steinläufer besiegt`:state.consoleActive?'Weiter zum Ruhepunkt.':'Wartungskonsole starten.';
       el('match-result').hidden=state.pve.outcome!=='defeat' && !state.completed;
@@ -282,7 +302,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       el('campaign-story').hidden = exploration || paused || state.completed || state.pve.outcome==='defeat' || current.tick>=messageUntil;
       el('hp-value').textContent = String(hp); el('armor-value').textContent = String(armor);
       (el('hp-bar') as HTMLProgressElement).value = hp; (el('armor-bar') as HTMLProgressElement).value = armor;
-      el('ammo-count').textContent = weapons.ownsPulse ? `${weapons.ammo} / 54` : '—';
+      el('ammo-count').textContent = weapons.ownsPulse ? `${weapons.ammo} / ${prototype?12:54}` : '—';
       for (const id of ['arc','pulse']) el(`weapon-${id}`).setAttribute('aria-pressed', String(weapons.selected === id));
       (el('weapon-pulse') as HTMLButtonElement).disabled = !weapons.ownsPulse || weapons.ammo === 0;
       lastHud = now;
@@ -294,11 +314,12 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     missionView.update(state,paused?0:Math.min(elapsed,.05));
     outpostView.update(state);
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
-    if(prototype)view.camera.combat(true,prototype.practice?null:state.pve.center);
+    if(prototype)view.camera.combat(true,prototype.practice||!state.bossActive?null:state.pve.center);
+    if(prototype)for(const item of STONE_ADVENTURE_PICKUPS)if(item.kind==='pulse'||item.kind==='ammo')view.scene.getObjectByName(`pickup-${item.id}`)!.visible=false;
     const whip=prototype?.whip.sample(alpha,world);
     view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot(),
-      prototype?{...prototype.presentation(whip!),beforeRender:hand=>whipView!.update(whip!,hand,view.actor.position,
-        prototype!.aim.snapshot(),!prototype!.practice&&state.pve.outcome==='running'?state.pve.center:null,current.tick,prototype!.practice,lab!.reduced)}:undefined);
+      prototype?{...prototype.presentation(whip!),whip:weapons.selected==='arc'?prototype.presentation(whip!).whip:undefined,beforeRender:hand=>weapons.selected==='pulse'?whipView!.hide():whipView!.update(whip!,hand,view.actor.position,
+        prototype!.aim.snapshot(),!prototype!.practice&&state.bossActive&&state.pve.outcome==='running'?state.pve.center:null,current.tick,prototype!.practice,lab?.reduced??false)}:undefined);
     if (lab && !paused) {
       let objects = 0; view.scene.traverse(() => objects++);
       lab.frame(elapsed * 1000, clock.droppedTicks, { objects, geometries: view.renderer.info.memory.geometries,
@@ -345,16 +366,18 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },
   }) });
-  if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && entry.lab) {
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && (entry.lab||entry.profile==='prototype')) {
     labModule = await import('./adventureLab');
     whipView=new labModule.EnergyWhipView(view.scene,labModule.PRACTICE_TARGETS);
-    lab = labModule.installAdventureLab(host, entry.profile, restart, () => {
+  }
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && entry.lab) {
+    lab = labModule!.installAdventureLab(host, entry.profile, restart, () => {
       const gl = view.renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
       return { userAgent: navigator.userAgent, logicalCpus: navigator.hardwareConcurrency,
         gpu: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : 'unavailable',
         input: input.touchEnabled ? 'touch' : 'mouse-keyboard', viewport: { width: innerWidth, height: innerHeight,
           dpr: view.renderer.getPixelRatio() }, camera: view.camera.mode };
-    });
+    },entry.complement);
     el('pve-restart').textContent = 'Bossversuch neu starten';
     restartLab(false);
   } else restart();

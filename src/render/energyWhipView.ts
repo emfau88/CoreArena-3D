@@ -15,12 +15,13 @@ export class EnergyWhipView {
   private readonly arrow=new THREE.ArrowHelper(new THREE.Vector3(0,0,-1),new THREE.Vector3(),1.25,0xa6ece5,.3,.16);
   private readonly handle=new THREE.Mesh(new THREE.CylinderGeometry(.065,.08,.34,6),new THREE.MeshStandardMaterial({color:0x36545a,roughness:.6}));
   private readonly tip=new THREE.Mesh(new THREE.OctahedronGeometry(.1),this.core);
+  private readonly contactRing=new THREE.Mesh(new THREE.RingGeometry(.13,.2,12),new THREE.MeshBasicMaterial({color:0xfff4db,side:THREE.DoubleSide,transparent:true,depthWrite:false}));
   private readonly scratch=new THREE.Vector3();
   private readonly a=new THREE.Vector3();
   private readonly b=new THREE.Vector3();
   private readonly up=new THREE.Vector3(0,1,0);
   constructor(scene:THREE.Scene,targets:readonly CombatTarget[]){
-    this.group.name='prototype-whip';scene.add(this.group);this.group.add(this.ring,this.arrow,this.handle,this.tip);
+    this.group.name='prototype-whip';scene.add(this.group);this.group.add(this.ring,this.arrow,this.handle,this.tip,this.contactRing);
     this.ring.rotation.x=-Math.PI/2;
     const segment=new THREE.CylinderGeometry(.035,.035,1,6),spark=new THREE.SphereGeometry(.065,5,4);
     for(let i=0;i<18;i++){const mesh=new THREE.Mesh(segment,this.core);this.links.push(mesh);this.group.add(mesh);}
@@ -45,6 +46,9 @@ export class EnergyWhipView {
     this.arrow.position.set(foot.x,foot.y+.035,foot.z);this.arrow.setDirection(this.scratch.set(aim.x,0,aim.z));
     this.dummies.forEach(m=>{m.visible=practice;});
     const age=w.contact?(tick-w.contact.tick)/60:1;
+    this.contactRing.visible=age>=0&&age<.18;
+    if(this.contactRing.visible){const p=w.contact!.point;this.contactRing.position.set(p.x,p.y,p.z);
+      this.contactRing.lookAt(foot.x,foot.y+3,foot.z);this.contactRing.scale.setScalar(1+age*8);this.contactRing.material.opacity=1-age/.18;}
     this.sparks.forEach((mesh,i)=>{mesh.visible=!reduced&&age>=0&&age<.14;if(!mesh.visible)return;
       const angle=i*Math.PI/3,point=w.contact!.point;mesh.position.set(point.x+Math.cos(angle)*age*2,point.y+age,point.z+Math.sin(angle)*age*2);mesh.scale.setScalar(1-age/.14);});
   }
