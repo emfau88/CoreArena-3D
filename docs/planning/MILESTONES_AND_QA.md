@@ -22,8 +22,10 @@ Anschließend wurde **A0.1 + A0.2 als gemeinsames A/B-Vergleichslabor** technisc
 mit unveränderten Kampfregeln auf `codex/adventure-combat-prototype`.
 [Umfang, lokale Startlinks und Prüfungen](../qa/ADVENTURE_A0_1_A0_2_RESULT.md).
 Danach wurden A1–A4 ausdrücklich beauftragt und technisch abgeschlossen.
-[Nachweise und Spieltermin T1](../qa/ADVENTURE_A1_A4_RESULT.md); G1 qualitativ bestanden; Peitschen-/Trefferfeedback als Feinschliff offen.
-Fortschritt und Gate-Status führt die Adventure-Roadmap; A5 ist noch nicht beauftragt.
+[Nachweise und Spieltermin T1](../qa/ADVENTURE_A1_A4_RESULT.md); G1 qualitativ bestanden; Peitschen-/Trefferfeedback damals als Feinschliff zurückgestellt.
+Anschließend wurde A5.1–A7.2 bis zum T2-Kandidaten freigegeben: A5/A6/A7.1 sind
+technisch umgesetzt, A7.2 vorbereitet. [Nachweise und T2](../qa/ADVENTURE_A5_A7_RESULT.md).
+Der A4-Feinschliff ist umgesetzt; G2/G3 bleiben bis zum menschlichen Urteil offen.
 
 **Arena-Bestand vom 1. November, unverändert:** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.
@@ -85,7 +87,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b; A0.1–A4 technisch abgeschlossen; Legacy unverändert | G1 qualitativ bestanden; nächster Abschnitt A5–A7.2 noch nicht beauftragt |
+| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b; A0–A6.2/A7.1 technisch umgesetzt; Legacy unverändert | G1 bestanden; T2/A7.2 vorbereitet, G2/G3 menschlich offen |
 | **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch geprüft | Karten-/Handyabnahme; als Nächstes M3.1 Classic CTF, gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind

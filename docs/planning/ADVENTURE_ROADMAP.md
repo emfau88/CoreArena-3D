@@ -4,11 +4,15 @@ Stand: **2. November 2026**. Maßgebliche Quelle für zukünftige Adventure-Auft
 Produktziel: [ADVENTURE_VISION.md](ADVENTURE_VISION.md). Die Erstellung dieser
 Dokumentation ist beauftragt; Vision und Struktur mit **26 Bulks und sechs Gates**
 sind grundsätzlich freigegeben. Menschliche Prüfungen sind auf **drei Spieltermine**
-gebündelt (Abschnitt 5). **A0.1–A4 sind technisch abgeschlossen** auf
-`codex/adventure-combat-prototype`. A1–A4 wurden am 2.11.2026 ausdrücklich mit
-„ok dann zieh bis inkl. a4 durch“ beauftragt. **T1/G1 ist nach qualitativer Nutzerrückmeldung bestanden; Peitschen-/Trefferfeedback bleibt als nicht blockierender Feinschliff offen.**
-A5 und spätere Bulks bleiben geplant. Legacy und reguläre Mission behalten ihre Kampfregeln.
-[Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md).
+gebündelt (Abschnitt 5). **A0.1–A6.2 und A7.1 sind technisch umgesetzt** auf
+`codex/adventure-combat-prototype`; A7.2 ist als **T2-Kandidat vorbereitet**.
+Nach bestandenem T1/G1 hat der Nutzer den empfohlenen Abschnitt A5.1–A7.2
+mit „ja so machen, leg los“ freigegeben. Der A4-Feedback-Feinschliff ist umgesetzt;
+seine Wirkung sowie **G2/G3 und der Richtungsentscheid bleiben menschlich offen**.
+A8 und spätere Bulks sind nicht beauftragt. Legacy bleibt der reguläre Standard;
+der Prototyp ist im Entwicklungs-/Testbuild auch als vollständige Mission anwählbar.
+[Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md) ·
+[T2-Kandidat A5–A7](../qa/ADVENTURE_A5_A7_RESULT.md).
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -175,7 +179,7 @@ Einstiege des A0-Vergleichslabors (Entwicklungs-/Testbuild):
 
 ```text
 ?mode=pve&level=stone&adventure=1                         reguläre bisherige Mission
-?mode=pve&level=stone&adventure=1&combat=prototype        neue Mission nach A6
+?mode=pve&level=stone&adventure=1&combat=prototype        neue Mission (Entwicklungs-/Testbuild)
 ?mode=pve&level=stone&adventure=1&lab=boss&combat=legacy  alte Regeln im Kampflabor
 ?mode=pve&level=stone&adventure=1&lab=boss&combat=prototype
 ```
@@ -187,13 +191,13 @@ her; keine Tests behaupten dadurch eine absolvierte Anreise. Der lesende
 `__coreArena`-Hook bleibt lesend und nur im Testbuild. Späterer öffentlicher
 Boss-Übungszugang erhält einen regulären Spieleinstieg ohne Debug-API.
 
-Bis A6 beschränken sich neue Kampfregeln auf das Lab. Ein Prototypaufruf ohne
-Lab verwendet bis zur ausdrücklich beauftragten Missionsintegration weiterhin
-die bisherigen Missionsregeln; diese Begrenzung sitzt ebenfalls am Kompositionspunkt.
-In A0.1 sind ohnehin beide Profile noch verhaltensgleich. Jede Erweiterung der
-erlaubten Route wird mit dem dafür zuständigen Bulk geprüft.
+Seit A6 funktioniert die ausdrücklich gewählte neue Variante auch ohne Lab im
+Entwicklungs-/Testbuild. Ohne `combat=prototype`, in der Erkundung und im
+Produktionsbuild bleiben die bisherigen Regeln aktiv. `loadout=pulse` ergänzt
+im Prototyp zwölf Pulse-Schüsse; der Standard bleibt Peitsche allein. Im Lab
+stehen zusätzlich ein Faust-Einzelversuch und Übungsziele zur Verfügung.
 
-Referenzprofil: Spieler am Zugang ungefähr `(0, 0.06, -21)`, 100 HP, 50 Rüstung,
+Legacy-Referenzprofil: Spieler am Zugang ungefähr `(0, 0.06, -21)`, 100 HP, 50 Rüstung,
 Reserve aus, Boss an seiner Ausgangsposition mit 600 HP, definierte Vorräte,
 Pulse-Vergleich mit 54 Schuss. Arc-Vergleich separat. Genaue Koordinaten,
 Kamera, Bossphase und Messbeginn in A0.2 einfrieren. Kampfzeit ab erster aktiver
@@ -395,7 +399,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A1 — Kampfansicht und gerichtetes Mausziel
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A1](../qa/ADVENTURE_A1_RESULT.md).
 **Ziel/Nutzen:** Richtungen und Gefahren sind bei dynamischer Bewegung zuverlässig lesbar.
 **Umfang:** Ein Adventure-Kameraprofil auf vorhandener Infrastruktur, Zielrichtung und einfacher Richtungsindikator. Höchstens ein zusätzlicher Perspektivvergleich bei belegter Grenze.
@@ -414,7 +418,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.1 — Bosskörper und faire Bewegungsgrenzen
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.1](../qa/ADVENTURE_A2_1_RESULT.md).
 **Ziel/Nutzen:** Positionierung bleibt glaubwürdig; Spieler und Boss überlagern sich nicht beliebig.
 **Umfang:** Prototyp-only Körperform des aktiven Steinwächters und definierte Kontaktauflösung; keine Bossattacken oder Kontakt-Schäden ändern.
@@ -433,7 +437,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.2 — Gerichteter Dash und unmittelbare Bewegung
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A2.2](../qa/ADVENTURE_A2_2_RESULT.md).
 **Ziel/Nutzen:** Ausweichen wird eine präzise, begrenzte Handlung.
 **Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Sprungkurve bleibt Basis, keine zusätzlichen Mobilitätsfähigkeiten.
@@ -452,7 +456,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A3 — Energiepeitsche: räumliche Angriffsregeln
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
 **Umfang:** Eine Grundattacke mit Vorschwung/Rücklauf, einfache sichtbare Bahn und bestehende Schadensschnittstelle; keine Mods oder neue Waffen.
@@ -472,7 +476,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A4 — Peitschenbewegung, Kontaktfeedback und Gate 1
 
-**Status:** abgeschlossen (technisch und qualitatives T1/G1; dokumentierter Feedback-Feinschliff offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Status:** abgeschlossen (technisch und qualitatives T1/G1; Feedback-Feinschliff vor T2 technisch umgesetzt; Wirkung menschlich offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
 **Nachweis:** [Ergebnis A4](../qa/ADVENTURE_A4_RESULT.md).
 **Ziel/Nutzen:** Die funktionierende Attacke wird als eigenständige, befriedigende Peitsche wahrgenommen.
 **Umfang:** Spielerpose, kontrollierte Energieform, Kontaktreaktionen und wenige Sounds; keine neue Attackenregel ohne eigenen dokumentierten Korrekturumfang.
@@ -482,7 +486,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 - [x] Fehlschlag, Kontakt und Rücktreffer akustisch/visuell trennen; Gegnerwarnungen priorisieren.
 - [x] Effekte begrenzen, Pause/Retry/30-Hz-Darstellung technisch prüfen.
 - [x] Qualitative T1-Rückmeldung dokumentiert: Grundprototyp akzeptiert, G1 bestanden; keine Punktbewertung oder Versuchszahl behauptet.
-- [ ] Nicht blockierender Feinschliff vor T2: Peitsche knackiger/härter wirken lassen und tatsächliche Treffer deutlicher zeigen. Zuerst Schwungabschluss/Rückschnappen, Kontaktsound und kurze Gegnerreaktion prüfen; kein pauschaler Schadensbonus. Kein neuer Bulk.
+- [x] Nicht blockierender Feinschliff vor T2 technisch umgesetzt (Wirkung in T2 prüfen): Peitsche knackiger/härter wirken lassen und tatsächliche Treffer deutlicher zeigen. Zuerst Schwungabschluss/Rückschnappen, Kontaktsound und kurze Gegnerreaktion prüfen; kein pauschaler Schadensbonus. Kein neuer Bulk.
 
 **Systeme/Dateien:** `src/render/kayFighter.ts`, `arenaView.ts`, `src/app/stoneFeedback.ts`; `src/render/energyWhipView.ts`; passende Browser-/Performancefälle.
 **Tests/Regression:** K/N sowie A bei gemeinsamem Rig; zehn Retries, stummes Spiel, reduzierte Effekte, sichtbare Bahn gegen tatsächliche Treffer vergleichen.
@@ -495,15 +499,15 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A5.1 — Faustschlag und echtes Gegenangriffsfenster
 
-**Status:** geplant. **Voraussetzungen:** G1 bestanden, eigener Auftrag.
+**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** G1 bestanden, eigener Auftrag.
 **Ziel/Nutzen:** Ein einzelner Bossangriff erzeugt einen verständlichen Wechsel aus Gefahr, Ausweichen und Gegenangriff.
 **Umfang:** Nur Prototyp-Faust, zugehörige Annäherung und Erholung. Spezialangriffe im Einzelangriffslabor deaktivierbar, im Legacy unverändert.
 
-- [ ] Warnpose, feste Schlagrichtung, Trefferform und aktive Zeit gemeinsam definieren.
-- [ ] Ausweichen durch normale Bewegung und Dash prüfen; Sprungantwort bewusst dokumentieren.
-- [ ] Rückweg in Waffenreichweite in die Erholung einrechnen; mindestens einen gezielten Gegenangriff ermöglichen.
-- [ ] Reichweiten-Kreisen untersuchen; höchstens einen angekündigten Angriffsschritt bei belegtem Bedarf ergänzen.
-- [ ] Die sieben Kriterien zur Bossdarstellung an der Faustsequenz prüfen; Timing, Gewicht und Reaktion durch Sequenz-/Ticknachweis belegen.
+- [x] Warnpose, feste Schlagrichtung, Trefferform und aktive Zeit gemeinsam definieren.
+- [x] Ausweichen durch normale Bewegung und Dash prüfen; Sprungantwort bewusst dokumentieren.
+- [x] Rückweg in Waffenreichweite in die Erholung einrechnen; mindestens einen gezielten Gegenangriff ermöglichen.
+- [x] Reichweiten-Kreisen untersuchen; höchstens einen angekündigten Angriffsschritt bei belegtem Bedarf ergänzen.
+- [x] Die sieben Kriterien zur Bossdarstellung an der Faustsequenz prüfen; Timing, Gewicht und Reaktion durch Sequenz-/Ticknachweis belegen.
 
 **Systeme/Dateien:** `src/core/pve.ts`, `src/render/monsterView.ts`, Encounterprofil, Lab und Feedback; ggf. `neu: src/core/adventureBoss.ts` als begrenzte Erweiterung.
 **Tests/Regression:** K/N, P; Trefferfläche und Pose, festgelegte Richtung, Ausweichen mit dokumentiertem Reaktionsverzug, Körper-/Wandkontakt und echte Annäherung testen.
@@ -514,15 +518,15 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A5.2 — Spezialangriffe, Kampfrhythmus und Gate 2
 
-**Status:** geplant. **Voraussetzungen:** A5.1, eigener Auftrag.
+**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.1, eigener Auftrag.
 **Ziel/Nutzen:** Der Steinwächter trägt einen vollständigen fairen Kampf.
 **Umfang:** Vorhandene Welle/Ausbruch, begrenzte Angriffsfolge, lesbare Übergänge und Bossfeedback. Keine zusätzlichen Gegner oder generische Boss-Engine.
 
-- [ ] Welle als Sprung-/Deckungsaufgabe und Ausbruch als Ortswechsel erhalten; Dash-Durchquerung ausdrücklich prüfen.
-- [ ] Keine unlösbaren Überschneidungen mit Faust, Dash-Cooldown, Arena-Ecken oder Plateau erzeugen.
-- [ ] Gegenangriffsfenster und eine begrenzte Kombination abstimmen; erst danach HP/Schaden kalibrieren.
-- [ ] Die fünf G2-Exploit-Szenarien durchführen; Dauer, Phasen und Schadensursachen aufzeichnen.
-- [ ] Technische G2-Fälle und sieben Darstellungskriterien am vollständigen Boss vorprüfen; Sequenzen und Fragen für T2 vorbereiten, belegte Fehler nacharbeiten.
+- [x] Welle als Sprung-/Deckungsaufgabe und Ausbruch als Ortswechsel erhalten; Dash-Durchquerung ausdrücklich prüfen.
+- [x] Keine unlösbaren Überschneidungen mit Faust, Dash-Cooldown, Arena-Ecken oder Plateau erzeugen.
+- [x] Gegenangriffsfenster und eine begrenzte Kombination abstimmen; erst danach HP/Schaden kalibrieren.
+- [x] Die fünf G2-Exploit-Szenarien durchführen; Dauer, Phasen und Schadensursachen aufzeichnen.
+- [x] Technische G2-Fälle und sieben Darstellungskriterien am vollständigen Boss vorprüfen; Sequenzen und Fragen für T2 vorbereiten, belegte Fehler nacharbeiten.
 
 **Systeme/Dateien:** Prototyp-Encounter/Profil, `src/core/bossNavigation.ts` nur bei konkretem Befund, `src/render/monsterView.ts`, `src/app/stoneFeedback.ts`; Boss-/Browsertests.
 **Tests/Regression:** K/N/P; Sprung, Deckung, feste Ausbruchposition, einmaliger Schaden, Extremnähe, Höhen und Retry; Profilvergleich zum Legacy.
@@ -533,14 +537,14 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A6.1 — Steinläufer und vorhandene Versorgung
 
-**Status:** geplant. **Voraussetzungen:** A5.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; G2-Urteil wird in T2 gebündelt.
+**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; G2-Urteil wird in T2 gebündelt.
 **Ziel/Nutzen:** Die Anreise lehrt dieselben räumlichen Regeln und unterstützt den Bossversuch.
 **Umfang:** Beide vorhandenen Läufer, ihre Körper-/Trefferregeln und vorhandene Vorräte im Prototyp; keine neue Gegnerart oder zusätzlichen Räume.
 
-- [ ] Peitschenkontakt, Reaktion, Tod und territoriale Verfolgung der Läufer anpassen.
-- [ ] Prüfen, ob die beiden Begegnungen gerichtetes Angreifen lehren, ohne den Weg unnötig zu verlängern.
-- [ ] Pulse-Fund/Munition bis A7 eindeutig behandeln: in der isolierten Nahkampfvariante nicht als nötige neue Waffe anbieten; Legacy unverändert.
-- [ ] Heilung, Reserve und Checkpoint mit festen, dokumentierten Werten prüfen; keine wiederholbare Heil-/Ressourcenschleife schaffen.
+- [x] Peitschenkontakt, Reaktion, Tod und territoriale Verfolgung der Läufer anpassen.
+- [x] Prüfen, ob die beiden Begegnungen gerichtetes Angreifen lehren, ohne den Weg unnötig zu verlängern.
+- [x] Pulse-Fund/Munition bis A7 eindeutig behandeln: in der isolierten Nahkampfvariante nicht als nötige neue Waffe anbieten; Legacy unverändert.
+- [x] Heilung, Reserve und Checkpoint mit festen, dokumentierten Werten prüfen; keine wiederholbare Heil-/Ressourcenschleife schaffen.
 
 **Systeme/Dateien:** `src/core/stoneRunner.ts`, `adventureFight.ts`, Prototyp-Versorgungsprofil, `src/render/kayGuard.ts`, `src/arena/stoneAdventure.ts` nur opt-in Datenzugang, HUD-Hinweise.
 **Tests/Regression:** K/N/L, A bei Rigänderung; Höhen/Deckung, Fern-Aggro im Legacy, zwei Läufertode, einmalige Funde und Reset.
@@ -551,33 +555,33 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A6.2 — Vollständige erste Mission und Gate 3
 
-**Status:** geplant. **Voraussetzungen:** A6.1, eigener Auftrag.
+**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A6.1, eigener Auftrag.
 **Ziel/Nutzen:** Der neue Kampf funktioniert innerhalb des bestehenden Adventure-Ablaufs.
 **Umfang:** Konsole, Checkpoint, Retry, Kern, Relais, Tor, Ergebnis und Spielerführung; nur durch Tests belegte Anpassungen, kein Quest-Neubau.
 
-- [ ] Kompletten Weg mit/ohne Wartungsreserve vom normalen Spawn spielen.
-- [ ] Tod vor Checkpoint und beim Boss, Retry, Levelneustart und Pause/Fokusverlust prüfen.
-- [ ] Bossfreigabe, Eingangsversiegelung, Kernaufnahme, Relais und physischen Ausgang erhalten.
-- [ ] Kurze Hinweise auf neue Bedienung abstimmen; Erkundung/Interaktion von Angriffseingaben trennen.
-- [ ] Alte und neue Mission sowie Arena/PvE regressieren; technische G3-Nachweise und regulären T2-Einstieg vorbereiten.
+- [x] Kompletten Weg mit/ohne Wartungsreserve vom normalen Spawn spielen.
+- [x] Tod vor Checkpoint und beim Boss, Retry, Levelneustart und Pause/Fokusverlust prüfen.
+- [x] Bossfreigabe, Eingangsversiegelung, Kernaufnahme, Relais und physischen Ausgang erhalten.
+- [x] Kurze Hinweise auf neue Bedienung abstimmen; Erkundung/Interaktion von Angriffseingaben trennen.
+- [x] Alte und neue Mission sowie Arena/PvE regressieren; technische G3-Nachweise und regulären T2-Einstieg vorbereiten.
 
 **Systeme/Dateien:** `src/app/adventureGame.ts`, `src/core/adventureFight.ts`, `src/arena/adventureMission.ts`, Missions-/HUD-Ansichten, `tests/e2e/adventure-fight.spec.ts`, `adventure-acceptance.spec.ts`.
 **Tests/Regression:** K/L/A/P/N; vollständige echte Eingaben zusätzlich zu Lab-Fixtures; Legacy-Touch und Desktop prüfen.
 **Abnahme:** Technische G3-Kriterien bestanden; alle vorgesehenen Enden/Neustarts erreichbar, kein aus dem Lab übernommener Fortschritt; kein verpflichtender Vorratsumweg. Menschliches Urteil in T2.
 **Risiko/Gegenmaßnahme:** Neue Waffe löst Interaktionen aus oder Retry vergisst Phasen → Eingaben/Zustände explizit zurücksetzen, Start und Enden nicht nur per Button-Präsenz testen.
 **Fertig:** Vollständiger technischer Missionsnachweis mit bekannten Grenzen; menschliches G3 ausdrücklich noch offen.
-**Danach:** A7.1 gesondert freigeben; noch keine automatische Einführung der neuen Variante als Standard.
+**Danach:** A7.1 im freigegebenen Abschnitt vorbereitet; noch keine automatische Einführung der neuen Variante als Standard.
 
 ### A7.1 — Begrenzte Fernkampfoption vergleichen
 
-**Status:** geplant. **Voraussetzungen:** A5.2/A6.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; menschliches G2/G3 in T2.
+**Status:** technisch abgeschlossen; menschliche Bewertung in T2. [Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md). **Voraussetzungen:** A5.2/A6.2 technisch abgeschlossen, G1 bestanden, beauftragter Umfang; menschliches G2/G3 in T2.
 **Ziel/Nutzen:** Entscheiden, ob der Nahkampfkern durch ein kleines Fernwerkzeug spielerisch gewinnt.
 **Umfang:** Peitsche allein gegen Peitsche plus eine begrenzte Pulse-Konfiguration, zunächst im Lab. Keine zusätzliche Hauptwaffe, neue Assets oder Upgradeökonomie.
 
-- [ ] Taktische Aufgabe und Begrenzung vorab definieren, etwa wenige Schüsse pro Versuch; Schäden/Ressourcen offen protokollieren.
-- [ ] Vorhandene Projektil-/Aimtechnik wiederverwenden, Profile und Resets trennen.
-- [ ] Gleiche Boss-/Startbedingungen prüfen; Maximaldistanz, Dauerfeuer und Waffenauswahl beim Dash testen.
-- [ ] Technischen A/B-Vergleich durchführen und menschliche Läufe mit wechselnder Reihenfolge für T2 vorbereiten; Nutzenhypothese und zusätzliche Bedienlast festhalten.
+- [x] Taktische Aufgabe und Begrenzung vorab definieren, etwa wenige Schüsse pro Versuch; Schäden/Ressourcen offen protokollieren.
+- [x] Vorhandene Projektil-/Aimtechnik wiederverwenden, Profile und Resets trennen.
+- [x] Gleiche Boss-/Startbedingungen prüfen; Maximaldistanz, Dauerfeuer und Waffenauswahl beim Dash testen.
+- [x] Technischen A/B-Vergleich durchführen und menschliche Läufe mit wechselnder Reihenfolge für T2 vorbereiten; Nutzenhypothese und zusätzliche Bedienlast festhalten.
 
 **Systeme/Dateien:** Kompositionspunkt, Prototyp-Waffenadapter, bestehende `Combat`-Instanz ohne globale Wertmutation, HUD/Inputs, Labtests; Vergleichsbericht.
 **Tests/Regression:** K/R/N/L; kein Munitions-/Cooldown-Reset durch Wechsel, keine Geschosse nach Tod/Retry, Basisvariante weiterhin siegfähig.
@@ -588,7 +592,7 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A7.2 — Gesamtvergleich und verbindlicher Richtungsentscheid
 
-**Status:** geplant. **Voraussetzungen:** A7.1 oder ausdrücklicher begründeter Verzicht; G1 bestanden, technische G2/G3-Nachweise vorhanden, beauftragter Umfang.
+**Status:** T2 vorbereitet; menschlicher Gesamtentscheid und G2/G3 ausdrücklich offen. [Testablauf und Empfehlung](../qa/ADVENTURE_A5_A7_RESULT.md#spieltermin-t2). **Voraussetzungen:** A7.1 oder ausdrücklicher begründeter Verzicht; G1 bestanden, technische G2/G3-Nachweise vorhanden, beauftragter Umfang.
 **Ziel/Nutzen:** Vor weiteren Inhalten klären, ob die Neuausrichtung trägt.
 **Umfang:** Testorganisation, Befundauswertung, Scope-/Produktentscheidung und Dokumentation. Codekorrekturen nur als separat begrenzter Folgeauftrag.
 
@@ -867,8 +871,10 @@ Vision. Ohne gesonderten Auftrag werden sie keine neuen Bulks. Überschreitet ei
 freigegebener Bulk seine hier beschriebene Grenze, den Rest als neuen begrenzten
 Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen.
 
-Der aktuelle Implementierungsauftrag reicht ausdrücklich **bis einschließlich A4**.
-Die technische Umsetzung und das qualitative Nutzerurteil **T1/G1 sind abgeschlossen**.
-Empfohlener nächster Abschnitt: **A5.1–A7.2 bis Spieltermin T2**, einschließlich des
-dokumentierten A4-Feedback-Feinschliffs. Dieser Abschnitt ist noch nicht beauftragt.
-Die früher gemeldeten Arc-/Pulse-Siege betreffen die A0-Basis und ersetzen T1 nicht.
+Der aktuelle Implementierungsauftrag umfasst **A5.1–A7.2 bis zum T2-Kandidaten**,
+einschließlich A4-Feedback-Feinschliff. Technik und Vergleich sind vorbereitet;
+**jetzt folgt T2 mit dem Nutzer**. A7.2, G2 und G3 sind noch nicht menschlich
+abgeschlossen. Keine automatische Freigabe für A8, weitere Bosskarten oder Release.
+Die ergänzend angesprochenen Charge-/Sprungangriffe bleiben Designkandidaten;
+Doppelsprung und zusätzliche Bossattacken wurden nicht eingeführt. Die Plateau-
+Prüfung ist Bestandteil von A5.2, kein weiterer Bulk.

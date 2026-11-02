@@ -1,0 +1,209 @@
+[
+  {
+    "test": "prototype real reactive boss victory removes body and retry restores fresh state",
+    "bossTick": 2496,
+    "activeSeconds": 39.6,
+    "hp": 60,
+    "hits": 2,
+    "exchange": {
+      "serial": 13,
+      "window": "closed",
+      "resolved": 13,
+      "avoided": 11,
+      "counters": 11
+    }
+  },
+  {
+    "test": "T2 complete prototype mission, reserve false, deaths, checkpoint, core, relay, exit",
+    "bossTick": 2457,
+    "activeSeconds": null,
+    "hp": 60,
+    "hits": 2,
+    "exchange": {
+      "serial": 13,
+      "window": "closed",
+      "resolved": 12,
+      "avoided": 10,
+      "counters": 10
+    }
+  },
+  {
+    "test": "T2 complete prototype mission, reserve true, deaths, checkpoint, core, relay, exit",
+    "bossTick": 2503,
+    "activeSeconds": null,
+    "hp": 40,
+    "hits": 3,
+    "exchange": {
+      "serial": 13,
+      "window": "closed",
+      "resolved": 13,
+      "avoided": 10,
+      "counters": 10
+    }
+  },
+  {
+    "test": "T2 limited Pulse comparison: same start, switch persistence, real victory, bounded restart and Legacy isolation",
+    "bossTick": 2452,
+    "activeSeconds": 38.86666666666667,
+    "hp": 5,
+    "hits": 3,
+    "exchange": {
+      "serial": 13,
+      "window": "closed",
+      "resolved": 13,
+      "avoided": 10,
+      "counters": 10
+    }
+  },
+  {
+    "test": "reset-results",
+    "listeners": [
+      72
+    ],
+    "maxSetupMs": 2.800000000745058,
+    "resources": [
+      "{'objects': 817, 'geometries': 340, 'textures': 52, 'programs': 37, 'audioVoices': 0, 'profile': 'legacy'}",
+      "{'objects': 817, 'geometries': 342, 'textures': 52, 'programs': 37, 'audioVoices': 0, 'profile': 'prototype'}"
+    ]
+  },
+  {
+    "test": "performance",
+    "build": {
+      "commit": "6e0029d62e5d54cff09cbe28abda55a58e70fb27",
+      "sourceHash": "9449811b3517d2ecf9f4bb7d9aa8c1887a0dd7fa71837a61f35ee055adb95c39"
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "logicalCpus": 16,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "input": "mouse-keyboard",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 0.9999999761474712
+      },
+      "camera": "straight"
+    },
+    "frames": {
+      "samples": 3509,
+      "p50": 5.399999999999636,
+      "p95": 8.300000000000182,
+      "p99": 11,
+      "max": 17.600000000000364
+    },
+    "sim": {
+      "samples": 940,
+      "p50": 0.5,
+      "p95": 1.800000000745058,
+      "p99": 2.5,
+      "max": 4.300000000745058
+    },
+    "drops": 0,
+    "resources": {
+      "objects": 817,
+      "geometries": 231,
+      "textures": 41,
+      "programs": 33,
+      "audioVoices": 0
+    }
+  },
+  {
+    "test": "performance",
+    "build": {
+      "commit": "6e0029d62e5d54cff09cbe28abda55a58e70fb27",
+      "sourceHash": "9449811b3517d2ecf9f4bb7d9aa8c1887a0dd7fa71837a61f35ee055adb95c39"
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "logicalCpus": 16,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "input": "mouse-keyboard",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 0.9999999761474712
+      },
+      "camera": "straight"
+    },
+    "frames": {
+      "samples": 3538,
+      "p50": 5.299999999999272,
+      "p95": 8.299999999999272,
+      "p99": 11,
+      "max": 16.80000000000291
+    },
+    "sim": {
+      "samples": 946,
+      "p50": 0.5,
+      "p95": 1.699999999254942,
+      "p99": 2.199999999254942,
+      "max": 2.600000001490116
+    },
+    "drops": 0,
+    "resources": {
+      "objects": 817,
+      "geometries": 231,
+      "textures": 41,
+      "programs": 33,
+      "audioVoices": 0
+    }
+  },
+  {
+    "test": "performance",
+    "build": {
+      "commit": "6e0029d62e5d54cff09cbe28abda55a58e70fb27",
+      "sourceHash": "9449811b3517d2ecf9f4bb7d9aa8c1887a0dd7fa71837a61f35ee055adb95c39"
+    },
+    "environment": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "logicalCpus": 16,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "input": "mouse-keyboard",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 0.9999999761474712
+      },
+      "camera": "straight"
+    },
+    "frames": {
+      "samples": 3574,
+      "p50": 3,
+      "p95": 8.299999999995634,
+      "p99": 11,
+      "max": 19.5
+    },
+    "sim": {
+      "samples": 946,
+      "p50": 0.5,
+      "p95": 1.800000000745058,
+      "p99": 2.300000000745058,
+      "max": 2.899999998509884
+    },
+    "drops": 0,
+    "resources": {
+      "objects": 817,
+      "geometries": 231,
+      "textures": 41,
+      "programs": 33,
+      "audioVoices": 0
+    }
+  },
+  {
+    "test": "visual-sequences",
+    "phases": [
+      {
+        "name": "warning",
+        "tick": 25
+      },
+      {
+        "name": "contact",
+        "tick": 48
+      },
+      {
+        "name": "counter",
+        "tick": 60
+      }
+    ]
+  }
+]

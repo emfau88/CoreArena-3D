@@ -1,0 +1,260 @@
+{
+  "note": "Local PNG originals, intentionally not duplicated in Git; reports and candidate JPEGs are versioned.",
+  "files": [
+    {
+      "path": "test-results/a5-a7-original-png/browser-visual-performance-1920/adventure-lab-lab-profiles-ce7de-ct-cleanup-and-local-export-chrome-1920/lab.png",
+      "bytes": 3090710,
+      "sha256": "94d55729cd9cf0374efa7285f1ff25de4fab9199b2e0159d3892105c18365c9f"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-acceptance-deskt-306af-e-survives-focus-and-resize-chrome-1920/manual-pause.png",
+      "bytes": 234799,
+      "sha256": "ee404729f7a2f96e51a4c34c8af0cbb4b491ed6fc7ebea77873425005446ac6f"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-acceptance-touch-50759-e-survives-focus-and-resize-chrome-1920/manual-pause.png",
+      "bytes": 134018,
+      "sha256": "5402b07a90fbd0a3958241059b3b26e78d78da55246f6902df55ffc1356fd4c1"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-acceptance-touch-50759-e-survives-focus-and-resize-chrome-1920/small-landscape.png",
+      "bytes": 846463,
+      "sha256": "172f9bcd067fbf91b2c44bdb978c4be5a7d5b4367db31f21a615b46cde8542ae"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/boss-core-drop.png",
+      "bytes": 3120100,
+      "sha256": "f764030615ab6162c819cbb420fee547cad2b3ae8ffff641445a581039e08f1f"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/boss-emergence.png",
+      "bytes": 3145489,
+      "sha256": "1e5ff8f680611768ebbea3fa88733466747eb944689330d0e3879be4816bd011"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/boss.png",
+      "bytes": 3100852,
+      "sha256": "f5451c3fce1b2521fd9762c4ab4f22c95871dec537cc988129104ee0e301f67d"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/checkpoint-defeat.png",
+      "bytes": 591327,
+      "sha256": "b33dce3f8f29a4ddaa65b0135ca731756068a1539e7fb009c4373e6f2e813bad"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/checkpoint.png",
+      "bytes": 3190777,
+      "sha256": "aa235ba3ca7671f98069d82e7ed9457c4f4ea6b66680e747734f420f65f7f5d1"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/completion.png",
+      "bytes": 379282,
+      "sha256": "3c34873543b0c65b8d5ac9672eab80ae99a036fbc80616033180a48ee0eeffb0"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/menu.png",
+      "bytes": 1556947,
+      "sha256": "b833b245476b7cd954757de1e3c066bcab485e611388a14fc0dcbb1bfc781b91"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/mission-arrival.png",
+      "bytes": 2118856,
+      "sha256": "eda76cf49708706d032f5345f91348e3bac918f15b1360c9542db9490c656802"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/mission-console.png",
+      "bytes": 3089966,
+      "sha256": "94a74509fc5baaf8272f65c731fe45107ab824941ffdcc578b3a6d95b9bd5587"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/mission-online.png",
+      "bytes": 2151115,
+      "sha256": "61650725ed2ee822cd74716828b4cfa8bb46818e2b0e0c191aded89c13154e4e"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/mission-powered.png",
+      "bytes": 3076048,
+      "sha256": "a0959a4e658817582a5af77f5305c87be129fffaf599422238e5826494e90a15"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/mission-relay.png",
+      "bytes": 2127833,
+      "sha256": "25fdc67c09de3da62f5ca3cdf27e1d2c11d4fbdcc25fbf6d70c0eb5d3182a68d"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/open-gate.png",
+      "bytes": 2129662,
+      "sha256": "c49f203ad64b7119939fda7cc85e6d8777e285d150b65c8baddfdbe28de28605"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-menu-entry-f1db3-hysical-exit-and-full-reset-chrome-1920/runner.png",
+      "bytes": 2468923,
+      "sha256": "59b00cd0cbfaa21700b0fbb468ff38a5c58f7e4aa7df66b5f452682f7fb3e728"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-arrival.png",
+      "bytes": 1131357,
+      "sha256": "7e5ec6bb92d11f9deeb26882b4844bdcc22133e0e70c7418db1382133c2ba8ad"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-checkpoint.png",
+      "bytes": 1449680,
+      "sha256": "6808c13c08ab1dc858194ada712bdc194d5ad47c2cc8438981bb011c0a90a44c"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-completion.png",
+      "bytes": 310699,
+      "sha256": "cac71f00337194eb9f16328384b61dd4f22704043f6ded2c69fe22c35249e81a"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-console.png",
+      "bytes": 1470454,
+      "sha256": "f2469bd393d9d6625192e7eb7514165c518bc5bbcf722e1766ed4f00a66b2e30"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-online.png",
+      "bytes": 1152776,
+      "sha256": "40256f1e88b308355af928c731b1e539891e25e043a807f48ce06c0e23fce97d"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-open-gate.png",
+      "bytes": 1107755,
+      "sha256": "64ea8bbb6baec52b9cec8a8866abdfb0e9d0c1d7a2192cbc02534a9a538a2429"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-powered.png",
+      "bytes": 1438103,
+      "sha256": "489c152c0390ec0c91b8194316dad0c633eec1b29e039a121c0687eb0369b2f2"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-relay.png",
+      "bytes": 1165099,
+      "sha256": "e2cdb311f910b2f5a94588656b3f1c2b815495f5d3681fe0dad731116272cdf0"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/adventure-fight-touch-full-7a2c5-e-relay-exit-and-full-reset-chrome-1920/mobile-retry.png",
+      "bytes": 364352,
+      "sha256": "ed5fa13d4e340b0fcca42d2b491aca3d34fe97af8693bc8f1610d2bc359aa1bd"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arc-mobile-desktop-Arc-acq-afc61-se-and-renders-five-strands-chrome-1920/arc-desktop.png",
+      "bytes": 1250820,
+      "sha256": "160f52483cf975e8fa1ce717f961a292ed79343c8d78627d28406136bf1e7d8d"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arc-mobile-desktop-Arc-acq-afc61-se-and-renders-five-strands-chrome-1920/fan-desktop.png",
+      "bytes": 1264171,
+      "sha256": "cef90fc0e64d08cbcb36cfdb66e145c750d8efef53888894b7b5dec94734872b"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arc-mobile-touch-Arc-acqui-e4b20-se-and-renders-five-strands-chrome-1920/arc-mobile.png",
+      "bytes": 1337255,
+      "sha256": "c558532a5e8db83fe5614d00910eab9f99afc8e064726712596deb4baba83c21"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arc-mobile-touch-Arc-acqui-e4b20-se-and-renders-five-strands-chrome-1920/fan-mobile.png",
+      "bytes": 1336908,
+      "sha256": "7cd711e874c58dae2c699c5d630202708342738b579c1d32abb1f614bdbecf2f"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/east-rail.png",
+      "bytes": 915866,
+      "sha256": "c5ca923e432ae10ba5652537ed52ed4539339e720c5f332eba4eb7aad502f441"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/pause-settings.png",
+      "bytes": 214496,
+      "sha256": "66be8d54977bfcbbccf2d50c1054830704073c736194d2aaba6b407005c01cfb"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/rail-shot.png",
+      "bytes": 911691,
+      "sha256": "0cace0e4714732c75bc7482e3918d4718d8e8483a0a00d09bb4fb8db8d3a1e33"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/team-combat.png",
+      "bytes": 929628,
+      "sha256": "644fe749c74c81db28f82538d149f5781f339ac92551b51ae5d4b76d48fe4bc5"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/team-result.png",
+      "bytes": 229912,
+      "sha256": "ca010a5421862821351be4e38eaddfc4111d7f24d42c028eac5f918b8db0be5c"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/west-field.png",
+      "bytes": 912467,
+      "sha256": "d272d4cc56d38c571ede8deb1b77d008034342b7aff3a850cc57f0ffb2532d11"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-desktop-expanded-wings-Rail-and-complete-2v2-chrome-1920/west-rail.png",
+      "bytes": 910653,
+      "sha256": "c4548e401d5be374b11d65b23254f4cf4fd244bfa37bd9386b0c415cdcc2e657"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/east-rail.png",
+      "bytes": 912616,
+      "sha256": "db21074ab7a57603e32aa060a3ae796e605d88ee0f3361dcbe04336a2290721b"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/pause-settings.png",
+      "bytes": 267788,
+      "sha256": "3acf01266075295cf280735568d44e20562907139998f6192b1018879d525ca1"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/rail-shot.png",
+      "bytes": 955480,
+      "sha256": "1ca8e592d376b6547160b18dbbb55f2dbc240ffcdd9e0af6c68aedcf2fb6e744"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/team-combat.png",
+      "bytes": 932679,
+      "sha256": "eaa5544180316eb537719185db3f705bd2a7ce86151b8f82561a197ad75ac779"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/team-result.png",
+      "bytes": 306839,
+      "sha256": "4709c47d5d5cb0cbd787504bcf59a4ad4f0d322fb78e7b918f5940e1d1ef5147"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/west-field.png",
+      "bytes": 929291,
+      "sha256": "04459b9c79e569378787edb9a440e9565d1a759928ff807276e82907662ca55f"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/arena-expansion-touch-expanded-wings-Rail-and-complete-2v2-chrome-1920/west-rail.png",
+      "bytes": 928782,
+      "sha256": "8d9f66f8b10146d0a7a2843a3841f80841af1e2f1e5bb97b648066b54cf624d0"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/campaign-three-real-boss-v-c5fd3--the-complete-mini-campaign-chrome-1920/campaign-complete.png",
+      "bytes": 457746,
+      "sha256": "1dab3ace0bc035a1427c1d61edfda6c1153018a042756ae43aedee78157b39c9"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/campaign-three-real-boss-v-c5fd3--the-complete-mini-campaign-chrome-1920/ember.png",
+      "bytes": 1807753,
+      "sha256": "910e9a9ab85b6ed194907b8ca2636f90071f36e3482434ff767c81eb029051f7"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/campaign-three-real-boss-v-c5fd3--the-complete-mini-campaign-chrome-1920/frost.png",
+      "bytes": 1786068,
+      "sha256": "d8412a4c89f254316bea7bf3316da442de7a0f1dc41965df267096980fd5a216"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/campaign-three-real-boss-v-c5fd3--the-complete-mini-campaign-chrome-1920/stone.png",
+      "bytes": 1592549,
+      "sha256": "ba259627b144c86796625139b29217655637ccbda27b4eb39aece147141ebcf8"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-regression/pve-PvE-ignoring-telegraph-5bc8a-defeat-pause-and-retry-work-chrome-1920/defeat.png",
+      "bytes": 370121,
+      "sha256": "7aeaa4d23dac3a27183159744b13d94fb33ac9674330d66882f60572ecb602fd"
+    },
+    {
+      "path": "test-results/a5-a7-original-png/browser-final-reset/adventure-lab-lab-profiles-ce7de-ct-cleanup-and-local-export-chrome-1920/lab.png",
+      "bytes": 3090805,
+      "sha256": "8d91c83eead0b6a84c37cecbe07c97e502f0346ad177c8ccd23946bd04cffd6b"
+    }
+  ]
+}

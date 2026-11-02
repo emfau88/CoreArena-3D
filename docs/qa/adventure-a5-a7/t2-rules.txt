@@ -1,0 +1,41 @@
+TAP version 13
+# {"plateau":[{"x":-13,"leave":false,"target":{"x":-13,"y":1.0999999761581423,"z":-23},"hits":1},{"x":-13,"leave":true,"target":{"x":-13,"y":1.0999999761581423,"z":-23},"hits":0},{"x":-12,"leave":false,"target":{"x":-12.000006675720215,"y":1.0999999761581423,"z":-23.000001907348633},"hits":1},{"x":-12,"leave":true,"target":{"x":-12.000006675720215,"y":1.0999999761581423,"z":-23.000001907348633},"hits":0},{"x":-10,"leave":false,"target":{"x":-10.000005722045898,"y":1.0999999761581423,"z":-23},"hits":1},{"x":-10,"leave":true,"target":{"x":-10.000005722045898,"y":1.0999999761581423,"z":-23},"hits":0}]}
+# Subtest: prototype Faust: 0.2s reaction, walk/dash escape, jump is not protection, one active contact and full counter
+ok 1 - prototype Faust: 0.2s reaction, walk/dash escape, jump is not protection, one active contact and full counter
+  ---
+  duration_ms: 461.4788
+  type: 'test'
+  ...
+# Subtest: platform height: wave stays on floor; supported plateau receives a locked elevated eruption, walking out works
+ok 2 - platform height: wave stays on floor; supported plateau receives a locked elevated eruption, walking out works
+  ---
+  duration_ms: 118.7029
+  type: 'test'
+  ...
+# Subtest: prototype mission supplies/retries: no phantom ammo, optional reserve, no checkpoint refill loop, reset effects and progress
+ok 3 - prototype mission supplies/retries: no phantom ammo, optional reserve, no checkpoint refill loop, reset effects and progress
+  ---
+  duration_ms: 9.4025
+  type: 'test'
+  ...
+# Subtest: new boss/whip replay is deterministic at 30/60/144Hz and dirty reset
+ok 4 - new boss/whip replay is deterministic at 30/60/144Hz and dirty reset
+  ---
+  duration_ms: 1007.1375
+  type: 'test'
+  ...
+# Subtest: wave crossing: grounded dash has no immunity; jump clears annulus; repeated jump cannot add an air jump
+ok 5 - wave crossing: grounded dash has no immunity; jump clears annulus; repeated jump cannot add an air jump
+  ---
+  duration_ms: 8.2999
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2532.1702

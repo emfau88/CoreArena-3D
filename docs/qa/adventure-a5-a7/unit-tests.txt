@@ -1,0 +1,550 @@
+
+> core-arena-3d@0.0.1 test
+> tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: optional maintenance reserve survives refill and boss retry, is height-gated and resets with a new run
+ok 1 - optional maintenance reserve survives refill and boss retry, is height-gated and resets with a new run
+  ---
+  duration_ms: 591.1132
+  type: 'test'
+  ...
+# Subtest: reserve cannot be operated through cover; a late find raises checkpoint armor only once
+ok 2 - reserve cannot be operated through cover; a late find raises checkpoint armor only once
+  ---
+  duration_ms: 5.4039
+  type: 'test'
+  ...
+# Subtest: adventure boss warns for 0.5s, hits for 30, repeats after 1.4s and respects locked dodges and height
+ok 3 - adventure boss warns for 0.5s, hits for 30, repeats after 1.4s and respects locked dodges and height
+  ---
+  duration_ms: 50.4588
+  type: 'test'
+  ...
+# Subtest: adventure wave keeps its warning and 20m reach, hits once, then gives a real 0.8s recovery
+ok 4 - adventure wave keeps its warning and 20m reach, hits once, then gives a real 0.8s recovery
+  ---
+  duration_ms: 15.5816
+  type: 'test'
+  ...
+# Subtest: a real sidestep after 0.2s reaction escapes the locked adventure fist
+ok 5 - a real sidestep after 0.2s reaction escapes the locked adventure fist
+  ---
+  duration_ms: 46.4155
+  type: 'test'
+  ...
+# Subtest: small guard telegraphs one melee hit, respects dodge/height/cover, and stays dead
+ok 6 - small guard telegraphs one melee hit, respects dodge/height/cover, and stays dead
+  ---
+  duration_ms: 15.4698
+  type: 'test'
+  ...
+# Subtest: mission console, checkpoint retry, required core and relay, physical exit and full reset
+ok 7 - mission console, checkpoint retry, required core and relay, physical exit and full reset
+  ---
+  duration_ms: 4.7947
+  type: 'test'
+  ...
+# Subtest: closed boss threshold blocks walking, side bypass and jumps from the adjoining walls; opens on release
+ok 8 - closed boss threshold blocks walking, side bypass and jumps from the adjoining walls; opens on release
+  ---
+  duration_ms: 336.8334
+  type: 'test'
+  ...
+# Subtest: supported plateaus provoke locked, dodgeable eruptions; a jump does not
+ok 9 - supported plateaus provoke locked, dodgeable eruptions; a jump does not
+  ---
+  duration_ms: 68.2677
+  type: 'test'
+  ...
+# Subtest: distant player damage wakes a guard, pursues into arrival and lands melee; reset clears alert
+ok 10 - distant player damage wakes a guard, pursues into arrival and lands melee; reset clears alert
+  ---
+  duration_ms: 21.0316
+  type: 'test'
+  ...
+# Subtest: two guards share life with the dormant boss; console then entering wakes it, reset restores all
+ok 11 - two guards share life with the dormant boss; console then entering wakes it, reset restores all
+  ---
+  duration_ms: 4.1776
+  type: 'test'
+  ...
+# Subtest: mission interaction respects physical cover and a pre-checkpoint death resets the console
+ok 12 - mission interaction respects physical cover and a pre-checkpoint death resets the console
+  ---
+  duration_ms: 2.1936
+  type: 'test'
+  ...
+# Subtest: strike-height aim uses rendered camera, retains last direction off canvas and cannot auto-acquire
+ok 13 - strike-height aim uses rendered camera, retains last direction off canvas and cannot auto-acquire
+  ---
+  duration_ms: 8.4083
+  type: 'test'
+  ...
+# Subtest: combat framing keeps both figures visible at court edges, corners, plateau and melee; never rotates movement
+ok 14 - combat framing keeps both figures visible at court edges, corners, plateau and melee; never rotates movement
+  ---
+  duration_ms: 56.5474
+  type: 'test'
+  ...
+# Subtest: ground dash travels 3m at 30/60/144Hz, one charge, locked direction; sprint and air dash disabled
+ok 15 - ground dash travels 3m at 30/60/144Hz, one charge, locked direction; sprint and air dash disabled
+  ---
+  duration_ms: 1025.7482
+  type: 'test'
+  ...
+# Subtest: dash recovers floor-contact stalls across 360 directions and two resting phases without changing the legacy solver
+ok 16 - dash recovers floor-contact stalls across 360 directions and two resting phases without changing the legacy solver
+  ---
+  duration_ms: 6731.9904
+  type: 'test'
+  ...
+# Subtest: dash leaving a ledge ends instead of suspending gravity or allowing another air dash
+ok 17 - dash leaving a ledge ends instead of suspending gravity or allowing another air dash
+  ---
+  duration_ms: 1.2303
+  type: 'test'
+  ...
+# Subtest: movement-only boss body blocks walk/dash from four sides, permits retreat, never blocks its own rays or weapons
+ok 18 - movement-only boss body blocks walk/dash from four sides, permits retreat, never blocks its own rays or weapons
+  ---
+  duration_ms: 18.5959
+  type: 'test'
+  ...
+# Subtest: real boss can chase with body active, cannot overlap player, and dash cannot tunnel through courtyard walls
+ok 19 - real boss can chase with body active, cannot overlap player, and dash cannot tunnel through courtyard walls
+  ---
+  duration_ms: 23.7945
+  type: 'test'
+  ...
+# Subtest: whip has distinct forward/return contacts, no auto aim, correct reach/height, one hit per target per phase
+ok 20 - whip has distinct forward/return contacts, no auto aim, correct reach/height, one hit per target per phase
+  ---
+  duration_ms: 23.7995
+  type: 'test'
+  ...
+# Subtest: wall clipping, vertical separation, moving targets between ticks and dash cancellation cannot leave ghost damage
+ok 21 - wall clipping, vertical separation, moving targets between ticks and dash cancellation cannot leave ghost damage
+  ---
+  duration_ms: 21.0797
+  type: 'test'
+  ...
+# Subtest: moving-player whip replays and dash cancellation stay identical at 30/60/144Hz
+ok 22 - moving-player whip replays and dash cancellation stay identical at 30/60/144Hz
+  ---
+  duration_ms: 104.587
+  type: 'test'
+  ...
+# Subtest: boss contact at walls, corner and plateau retains an escape route; cooldown freezes on suspension
+ok 23 - boss contact at walls, corner and plateau retains an escape route; cooldown freezes on suspension
+  ---
+  duration_ms: 12.8316
+  type: 'test'
+  ...
+# {"plateau":[{"x":-13,"leave":false,"target":{"x":-13,"y":1.0999999761581423,"z":-23},"hits":1},{"x":-13,"leave":true,"target":{"x":-13,"y":1.0999999761581423,"z":-23},"hits":0},{"x":-12,"leave":false,"target":{"x":-12.000006675720215,"y":1.0999999761581423,"z":-23.000001907348633},"hits":1},{"x":-12,"leave":true,"target":{"x":-12.000006675720215,"y":1.0999999761581423,"z":-23.000001907348633},"hits":0},{"x":-10,"leave":false,"target":{"x":-10.000005722045898,"y":1.0999999761581423,"z":-23},"hits":1},{"x":-10,"leave":true,"target":{"x":-10.000005722045898,"y":1.0999999761581423,"z":-23},"hits":0}]}
+# Subtest: prototype Faust: 0.2s reaction, walk/dash escape, jump is not protection, one active contact and full counter
+ok 24 - prototype Faust: 0.2s reaction, walk/dash escape, jump is not protection, one active contact and full counter
+  ---
+  duration_ms: 1312.1556
+  type: 'test'
+  ...
+# Subtest: platform height: wave stays on floor; supported plateau receives a locked elevated eruption, walking out works
+ok 25 - platform height: wave stays on floor; supported plateau receives a locked elevated eruption, walking out works
+  ---
+  duration_ms: 461.0733
+  type: 'test'
+  ...
+# Subtest: prototype mission supplies/retries: no phantom ammo, optional reserve, no checkpoint refill loop, reset effects and progress
+ok 26 - prototype mission supplies/retries: no phantom ammo, optional reserve, no checkpoint refill loop, reset effects and progress
+  ---
+  duration_ms: 11.4742
+  type: 'test'
+  ...
+# Subtest: new boss/whip replay is deterministic at 30/60/144Hz and dirty reset
+ok 27 - new boss/whip replay is deterministic at 30/60/144Hz and dirty reset
+  ---
+  duration_ms: 2917.8231
+  type: 'test'
+  ...
+# Subtest: wave crossing: grounded dash has no immunity; jump clears annulus; repeated jump cannot add an air jump
+ok 28 - wave crossing: grounded dash has no immunity; jump clears annulus; repeated jump cannot add an air jump
+  ---
+  duration_ms: 14.4617
+  type: 'test'
+  ...
+# Subtest: Adventure routing isolates lab/profile parameters and preserves legacy defaults
+ok 29 - Adventure routing isolates lab/profile parameters and preserves legacy defaults
+  ---
+  duration_ms: 5.5646
+  type: 'test'
+  ...
+# Subtest: arc: identical 30/60/144 Hz replays in Legacy and after dirty reset
+ok 30 - arc: identical 30/60/144 Hz replays in Legacy and after dirty reset
+  ---
+  duration_ms: 1616.0258
+  type: 'test'
+  ...
+# Subtest: pulse: identical 30/60/144 Hz replays in Legacy and after dirty reset
+ok 31 - pulse: identical 30/60/144 Hz replays in Legacy and after dirty reset
+  ---
+  duration_ms: 775.4087
+  type: 'test'
+  ...
+# Subtest: lab metrics exclude emergence, freeze on result and distinguish restart from defeat
+ok 32 - lab metrics exclude emergence, freeze on result and distinguish restart from defeat
+  ---
+  duration_ms: 2.0052
+  type: 'test'
+  ...
+# Subtest: shared Adventure motor keeps E0/E1/E2 route reachable, steps .3m but blocks a full ledge
+ok 33 - shared Adventure motor keeps E0/E1/E2 route reachable, steps .3m but blocks a full ledge
+  ---
+  duration_ms: 553.444
+  type: 'test'
+  ...
+# Subtest: all difficulties physically reach high supplies and return; resources apply through normal pickups
+ok 34 - all difficulties physically reach high supplies and return; resources apply through normal pickups
+  ---
+  duration_ms: 170.6108
+  type: 'test'
+  ...
+# Subtest: both team sides have equal physical cover and supply distances on the 56 x 36 arena
+ok 35 - both team sides have equal physical cover and supply distances on the 56 x 36 arena
+  ---
+  duration_ms: 0.6203
+  type: 'test'
+  ...
+# Subtest: resource choice ignores full inventories and unavailable pickups; difficulty gates reaction without stat buffs
+ok 36 - resource choice ignores full inventories and unavailable pickups; difficulty gates reaction without stat buffs
+  ---
+  duration_ms: 1.3281
+  type: 'test'
+  ...
+# Subtest: a bot recovers from measured cover-clearance stalls using physical movement
+ok 37 - a bot recovers from measured cover-clearance stalls using physical movement
+  ---
+  duration_ms: 164.6709
+  type: 'test'
+  ...
+# Subtest: Rail is opt-in: Adventure defaults cannot unlock, select or cycle to it
+ok 38 - Rail is opt-in: Adventure defaults cannot unlock, select or cycle to it
+  ---
+  duration_ms: 1.8427
+  type: 'test'
+  ...
+# Subtest: Rail hits at range and height, stops at the first body/wall, consumes one round and observes cooldown/reset
+ok 39 - Rail hits at range and height, stops at the first body/wall, consumes one round and observes cooldown/reset
+  ---
+  duration_ms: 359.3724
+  type: 'test'
+  ...
+# Subtest: expanded arena keeps two Rail fields; a real bot walks both wings around cover and collects Rail
+ok 40 - expanded arena keeps two Rail fields; a real bot walks both wings around cover and collects Rail
+  ---
+  duration_ms: 112.1626
+  type: 'test'
+  ...
+# Subtest: team bots choose only visible opponents; changing target restarts reaction and aim
+ok 41 - team bots choose only visible opponents; changing target restarts reaction and aim
+  ---
+  duration_ms: 712.4079
+  type: 'test'
+  ...
+# Subtest: four actors finish a real bot-driven team match; deaths, respawns, scoring and restart stay independent
+ok 42 - four actors finish a real bot-driven team match; deaths, respawns, scoring and restart stay independent
+  ---
+  duration_ms: 2060.6781
+  type: 'test'
+  ...
+# Subtest: courtyard routing walks the real boss around a pillar without clipping through it
+ok 43 - courtyard routing walks the real boss around a pillar without clipping through it
+  ---
+  duration_ms: 390.4056
+  type: 'test'
+  ...
+# Subtest: a player on the healing platform produces a reachable ground approach, not a path through the platform
+ok 44 - a player on the healing platform produces a reachable ground approach, not a path through the platform
+  ---
+  duration_ms: 1.9945
+  type: 'test'
+  ...
+# Subtest: bot sensor uses real 3D cover, range and view cone; moving targets update ray queries
+ok 45 - bot sensor uses real 3D cover, range and view cone; moving targets update ray queries
+  ---
+  duration_ms: 304.2176
+  type: 'test'
+  ...
+# Subtest: reaction gate resets on lost sight; memory is a copied last-seen point, expires and never permits blind fire
+ok 46 - reaction gate resets on lost sight; memory is a copied last-seen point, expires and never permits blind fire
+  ---
+  duration_ms: 2.9041
+  type: 'test'
+  ...
+# Subtest: bot and player share Arc/Pulse damage, cooldown, ammunition and real projectile collisions
+ok 47 - bot and player share Arc/Pulse damage, cooldown, ammunition and real projectile collisions
+  ---
+  duration_ms: 6.4929
+  type: 'test'
+  ...
+# Subtest: integrated bot walks with the shared motor, earns an actual kill and resets its state
+ok 48 - integrated bot walks with the shared motor, earns an actual kill and resets its state
+  ---
+  duration_ms: 239.6383
+  type: 'test'
+  ...
+# Subtest: three distinct encounters form a finite campaign with a safe default
+ok 49 - three distinct encounters form a finite campaign with a safe default
+  ---
+  duration_ms: 1.9517
+  type: 'test'
+  ...
+# Subtest: frost shards can be sidestepped or jumped; ember breath requires leaving its cone
+ok 50 - frost shards can be sidestepped or jumped; ember breath requires leaving its cone
+  ---
+  duration_ms: 438.5618
+  type: 'test'
+  ...
+# Subtest: real cover blocks elemental attacks; only the current monster accepts combat damage
+ok 51 - real cover blocks elemental attacks; only the current monster accepts combat damage
+  ---
+  duration_ms: 48.8258
+  type: 'test'
+  ...
+# Subtest: Arc finds a target behind the cursor, crackles for 36 ticks and deals 35 total damage without duplicate beam hits
+ok 52 - Arc finds a target behind the cursor, crackles for 36 ticks and deals 35 total damage without duplicate beam hits
+  ---
+  duration_ms: 346.5912
+  type: 'test'
+  ...
+# Subtest: Arc fan hits separate nearby targets, keeps a 60-degree sector and needs no ground cursor hit
+ok 53 - Arc fan hits separate nearby targets, keeps a 60-degree sector and needs no ground cursor hit
+  ---
+  duration_ms: 3.6808
+  type: 'test'
+  ...
+# Subtest: Arc follows the shooter and moving targets, loses damage behind cover and cancels on switch/reset
+ok 54 - Arc follows the shooter and moving targets, loses damage behind cover and cancels on switch/reset
+  ---
+  duration_ms: 9.8581
+  type: 'test'
+  ...
+# Subtest: Pulse travels before damage; its swept radius catches thin cover and each hit consumes the projectile
+ok 55 - Pulse travels before damage; its swept radius catches thin cover and each hit consumes the projectile
+  ---
+  duration_ms: 5.1145
+  type: 'test'
+  ...
+# Subtest: inventory locks Pulse until pickup; caps ammo, preserves selection, falls back and clears on reset
+ok 56 - inventory locks Pulse until pickup; caps ammo, preserves selection, falls back and clears on reset
+  ---
+  duration_ms: 5.2904
+  type: 'test'
+  ...
+# Subtest: pickups require correct support/height and line of sight, retain partial resources, respawn only when depleted
+ok 57 - pickups require correct support/height and line of sight, retain partial resources, respawn only when depleted
+  ---
+  duration_ms: 3.0905
+  type: 'test'
+  ...
+# Subtest: health and armor pickups cap at 100 and cannot restore dead actors
+ok 58 - health and armor pickups cap at 100 and cannot restore dead actors
+  ---
+  duration_ms: 0.994
+  type: 'test'
+  ...
+# Subtest: 30, 60 and 144 Hz rendering produce exactly 120 fixed ticks over two seconds
+ok 59 - 30, 60 and 144 Hz rendering produce exactly 120 fixed ticks over two seconds
+  ---
+  duration_ms: 2.2931
+  type: 'test'
+  ...
+# Subtest: catch-up is bounded and reset prevents carrying partial time across a pause
+ok 60 - catch-up is bounded and reset prevents carrying partial time across a pause
+  ---
+  duration_ms: 0.31
+  type: 'test'
+  ...
+# Subtest: both camera views preserve screen directions, diagonal speed and analog magnitude
+ok 61 - both camera views preserve screen directions, diagonal speed and analog magnitude
+  ---
+  duration_ms: 2.8041
+  type: 'test'
+  ...
+# Subtest: aiming before or behind an enemy shoots through it on E0/E1/E2 in both camera angles
+ok 62 - aiming before or behind an enemy shoots through it on E0/E1/E2 in both camera angles
+  ---
+  duration_ms: 496.5407
+  type: 'test'
+  ...
+# Subtest: both weapons respect walls; only Arc acquires targets away from the cursor
+ok 63 - both weapons respect walls; only Arc acquires targets away from the cursor
+  ---
+  duration_ms: 12.3158
+  type: 'test'
+  ...
+# Subtest: aim at a different-height surface keeps its actual 3D target point
+ok 64 - aim at a different-height surface keeps its actual 3D target point
+  ---
+  duration_ms: 1.4695
+  type: 'test'
+  ...
+# Subtest: shared player motor traverses E0→E1→E2→E0 using directed jump/drop links
+ok 65 - shared player motor traverses E0→E1→E2→E0 using directed jump/drop links
+  ---
+  duration_ms: 638.8405
+  type: 'test'
+  ...
+# Subtest: a test-only overhang blocks a head from below, then gravity returns the player to E0
+ok 66 - a test-only overhang blocks a head from below, then gravity returns the player to E0
+  ---
+  duration_ms: 108.7528
+  type: 'test'
+  ...
+# Subtest: a direct standard jump from E0 cannot climb the full-height E2 wall
+ok 67 - a direct standard jump from E0 cannot climb the full-height E2 wall
+  ---
+  duration_ms: 17.4395
+  type: 'test'
+  ...
+# Subtest: 3D target selection and muzzle obstruction use the actual first Rapier collision
+ok 68 - 3D target selection and muzzle obstruction use the actual first Rapier collision
+  ---
+  duration_ms: 3.1939
+  type: 'test'
+  ...
+# Subtest: jumping against either plateau keeps its upward momentum and lands within one second
+ok 69 - jumping against either plateau keeps its upward momentum and lands within one second
+  ---
+  duration_ms: 31.1627
+  type: 'test'
+  ...
+# Subtest: protection blocks damage; attacking removes it; armor absorbs before HP
+ok 70 - protection blocks damage; attacking removes it; armor absorbs before HP
+  ---
+  duration_ms: 1.6741
+  type: 'test'
+  ...
+# Subtest: death scores once, dead targets ignore damage, respawn restores life after four seconds
+ok 71 - death scores once, dead targets ignore damage, respawn restores life after four seconds
+  ---
+  duration_ms: 2.3567
+  type: 'test'
+  ...
+# Subtest: friendly fire is off and environmental death awards no team point; hazard respects height
+ok 72 - friendly fire is off and environmental death awards no team point; hazard respects height
+  ---
+  duration_ms: 4.6961
+  type: 'test'
+  ...
+# Subtest: simultaneous score-limit kills resolve the whole tick, freeze result and restart cleanly
+ok 73 - simultaneous score-limit kills resolve the whole tick, freeze result and restart cleanly
+  ---
+  duration_ms: 13.7531
+  type: 'test'
+  ...
+# Subtest: last-tick kill counts before timeout; an empty match ends in a draw
+ok 74 - last-tick kill counts before timeout; an empty match ends in a draw
+  ---
+  duration_ms: 82.7649
+  type: 'test'
+  ...
+# Subtest: each boss winds up, hits once, respects dodges/height and resets its basic attack
+ok 75 - each boss winds up, hits once, respects dodges/height and resets its basic attack
+  ---
+  duration_ms: 529.011
+  type: 'test'
+  ...
+# Subtest: actual solid cover blocks basic attacks and all campaign pickups rest on their named surface
+ok 76 - actual solid cover blocks basic attacks and all campaign pickups rest on their named surface
+  ---
+  duration_ms: 108.303
+  type: 'test'
+  ...
+# Subtest: ten real capsule approaches from each of four wall sides never penetrate
+ok 77 - ten real capsule approaches from each of four wall sides never penetrate
+  ---
+  duration_ms: 1053.3274
+  type: 'test'
+  ...
+# Subtest: wall contact preserves tangential movement instead of sticking
+ok 78 - wall contact preserves tangential movement instead of sticking
+  ---
+  duration_ms: 4.2004
+  type: 'test'
+  ...
+# Subtest: real physics travel is independent of render rate, sprint and diagonal are correctly scaled
+ok 79 - real physics travel is independent of render rate, sprint and diagonal are correctly scaled
+  ---
+  duration_ms: 40.54
+  type: 'test'
+  ...
+# Subtest: warden pursues, changes direction, stops for attacks and resets its real hit position
+ok 80 - warden pursues, changes direction, stops for attacks and resets its real hit position
+  ---
+  duration_ms: 400.2991
+  type: 'test'
+  ...
+# Subtest: warden body cannot pass through a real wall or walk off unsupported ground
+ok 81 - warden body cannot pass through a real wall or walk off unsupported ground
+  ---
+  duration_ms: 231.6738
+  type: 'test'
+  ...
+# Subtest: monster emergence/warning cannot deal damage; expanding wave hits once per attack
+ok 82 - monster emergence/warning cannot deal damage; expanding wave hits once per attack
+  ---
+  duration_ms: 5.0174
+  type: 'test'
+  ...
+# Subtest: real cover and sufficient jump height protect against the shockwave
+ok 83 - real cover and sufficient jump height protect against the shockwave
+  ---
+  duration_ms: 7.9605
+  type: 'test'
+  ...
+# Subtest: eruption locks its ground warning; walking away avoids it, staying or jumping inside takes one hit
+ok 84 - eruption locks its ground warning; walking away avoids it, staying or jumping inside takes one hit
+  ---
+  duration_ms: 15.7946
+  type: 'test'
+  ...
+# Subtest: boss kill/player death end the encounter without respawn; reset restores all encounter state
+ok 85 - boss kill/player death end the encounter without respawn; reset restores all encounter state
+  ---
+  duration_ms: 20.7877
+  type: 'test'
+  ...
+# Subtest: the real adventure motor traverses the main route, side stairs and all three raised landings
+ok 86 - the real adventure motor traverses the main route, side stairs and all three raised landings
+  ---
+  duration_ms: 512.3799
+  type: 'test'
+  ...
+# Subtest: adventure pickups preserve partial contents, remain consumed and reset only explicitly
+ok 87 - adventure pickups preserve partial contents, remain consumed and reset only explicitly
+  ---
+  duration_ms: 6.1037
+  type: 'test'
+  ...
+# Subtest: adventure camera follows the whole level and snaps to spawn without changing the arena default
+ok 88 - adventure camera follows the whole level and snaps to spawn without changing the arena default
+  ---
+  duration_ms: 12.5176
+  type: 'test'
+  ...
+# Subtest: adventure jump lands in about 0.7 seconds and still clears the side terrace
+ok 89 - adventure jump lands in about 0.7 seconds and still clears the side terrace
+  ---
+  duration_ms: 14.1181
+  type: 'test'
+  ...
+# {"before":{"seconds":0.9833333333333333,"height":2.671222150325775},"after":{"seconds":0.7166666666666667,"height":2.146666646003723},"landing":"side-terrace"}
+1..89
+# tests 89
+# suites 0
+# pass 89
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9475.0244

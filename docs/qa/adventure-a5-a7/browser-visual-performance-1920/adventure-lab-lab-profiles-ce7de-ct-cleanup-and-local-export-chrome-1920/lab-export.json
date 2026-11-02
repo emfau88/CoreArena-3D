@@ -1,0 +1,6793 @@
+{
+  "reference": {
+    "commit": "e8b730abaa82f6bc03180989437ea4cfd0206347",
+    "fixture": "stone-boss-a0-v1",
+    "rules": "legacy-a0",
+    "walk": 7.2,
+    "sprint": 9.18,
+    "jump": {
+      "jumpSpeed": 11.8,
+      "gravity": 34
+    },
+    "weapons": {
+      "arc": {
+        "name": "Arc Lash",
+        "damage": 35,
+        "cooldown": 48,
+        "range": 5,
+        "coneDegrees": 30,
+        "burstTicks": 36,
+        "pulseTicks": 8,
+        "beams": 5
+      },
+      "pulse": {
+        "name": "Pulse Repeater",
+        "damage": 10,
+        "cooldown": 10,
+        "range": 32,
+        "speed": 30,
+        "radius": 0.08,
+        "maxAmmo": 54
+      },
+      "rail": {
+        "name": "Railgun",
+        "damage": 70,
+        "cooldown": 84,
+        "range": 40,
+        "maxAmmo": 6
+      }
+    },
+    "boss": {
+      "bossHp": 600,
+      "emergeTicks": 120,
+      "waveWarning": 90,
+      "eruptionWarning": 75,
+      "waveTicks": 90,
+      "eruptionTicks": 24,
+      "recoveryTicks": 48,
+      "waveSpeed": 0.2,
+      "waveDamage": 60,
+      "eruptionDamage": 65,
+      "eruptionRadius": 2.6,
+      "chaseTicks": 120,
+      "chaseSpeed": 3.1,
+      "stopDistance": 2.6,
+      "movementRadius": 1.7,
+      "meleeRange": 3.6,
+      "meleeWarning": 30,
+      "meleeRecovery": 15,
+      "meleeCooldown": 39,
+      "meleeDamage": 30,
+      "elevatedChaseTicks": 60
+    },
+    "camera": "side",
+    "timing": "Simulation 60 Hz; active time starts at first non-emerging boss phase (tick 120).",
+    "supplies": "All existing pickups at original quantities; approach is sealed. Pulse owned with 54 rounds in both weapon profiles."
+  },
+  "build": {
+    "commit": "6e0029d62e5d54cff09cbe28abda55a58e70fb27",
+    "sourceHash": "9449811b3517d2ecf9f4bb7d9aa8c1887a0dd7fa71837a61f35ee055adb95c39"
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "logicalCpus": 16,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "input": "mouse-keyboard",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 0.9999999761474712
+    },
+    "camera": "side"
+  },
+  "running": true,
+  "attempts": 22,
+  "restartMs": 1.199999999254942,
+  "droppedTicks": 0,
+  "resources": {
+    "objects": 817,
+    "geometries": 353,
+    "textures": 52,
+    "programs": 37,
+    "audioVoices": 1
+  },
+  "current": {
+    "profile": "legacy",
+    "weapon": "pulse",
+    "loadout": "legacy",
+    "scenario": "boss",
+    "start": {
+      "player": {
+        "tick": 0,
+        "position": {
+          "x": 0,
+          "y": 0.06,
+          "z": -21
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": false,
+        "facing": 0,
+        "surface": null,
+        "ceiling": false
+      },
+      "fight": {
+        "bossActive": true,
+        "checkpoint": true,
+        "completed": false,
+        "core": null,
+        "consoleActive": true,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "pve": {
+          "tick": 0,
+          "phase": "emerging",
+          "phaseTick": 0,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        },
+        "runners": [
+          {
+            "id": "courtyard-runner",
+            "center": {
+              "x": 2,
+              "y": 0.85,
+              "z": 24
+            },
+            "hp": 0,
+            "facing": 0,
+            "phase": "dead",
+            "phaseTick": 0,
+            "moving": false
+          },
+          {
+            "id": "inner-runner",
+            "center": {
+              "x": 2,
+              "y": 0.85,
+              "z": -1
+            },
+            "hp": 0,
+            "facing": 0,
+            "phase": "dead",
+            "phaseTick": 0,
+            "moving": false
+          }
+        ]
+      },
+      "weapons": {
+        "selected": "pulse",
+        "ownsPulse": true,
+        "ammo": 54,
+        "projectiles": [],
+        "lastArc": null,
+        "impact": null
+      },
+      "pickups": [
+        {
+          "id": "adventure-pulse",
+          "kind": "pulse",
+          "position": {
+            "x": -3,
+            "y": 0,
+            "z": 18.5
+          },
+          "surface": "floor-entry",
+          "amount": 54,
+          "remaining": 54,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-health",
+          "kind": "health",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 4
+          },
+          "surface": "side-terrace",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-armor",
+          "kind": "armor",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 0
+          },
+          "surface": "side-terrace",
+          "amount": 30,
+          "remaining": 30,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-ammo",
+          "kind": "ammo",
+          "position": {
+            "x": -9,
+            "y": 1.1,
+            "z": -0.4
+          },
+          "surface": "side-terrace",
+          "amount": 27,
+          "remaining": 27,
+          "respawnAt": 0
+        },
+        {
+          "id": "court-ammo",
+          "kind": "ammo",
+          "position": {
+            "x": 11,
+            "y": 0,
+            "z": 6.5
+          },
+          "surface": "floor-middle",
+          "amount": 27,
+          "remaining": 27,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-ammo-west",
+          "kind": "ammo",
+          "position": {
+            "x": -13,
+            "y": 0,
+            "z": -37
+          },
+          "surface": "floor-boss",
+          "amount": 18,
+          "remaining": 18,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-ammo-east",
+          "kind": "ammo",
+          "position": {
+            "x": 13,
+            "y": 0,
+            "z": -20
+          },
+          "surface": "floor-boss",
+          "amount": 18,
+          "remaining": 18,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-health",
+          "kind": "health",
+          "position": {
+            "x": -12,
+            "y": 1.1,
+            "z": -23
+          },
+          "surface": "boss-health-plateau",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        }
+      ],
+      "camera": "side",
+      "audioVoices": 0
+    },
+    "end": {
+      "player": {
+        "tick": 10,
+        "position": {
+          "x": 0,
+          "y": 0.035555577278137185,
+          "z": -21
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "surface": "floor-boss",
+        "ceiling": false,
+        "facing": 0
+      },
+      "boss": {
+        "tick": 10,
+        "phase": "emerging",
+        "phaseTick": 10,
+        "kind": "wave",
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": -29
+        },
+        "waveRadius": 2,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 600,
+        "outcome": "running",
+        "hitsTaken": 0,
+        "lastHit": -100,
+        "center": {
+          "x": 0,
+          "y": 1.85,
+          "z": -29
+        },
+        "facing": 0,
+        "moving": false
+      }
+    },
+    "outcome": "running",
+    "abortReason": null,
+    "activeStartTick": null,
+    "activeSeconds": 0,
+    "totalSeconds": 0.16666666666666666,
+    "attacks": 0,
+    "damageDealt": 0,
+    "damageTaken": {},
+    "phases": [],
+    "framesMs": {
+      "samples": 0,
+      "p50": 0,
+      "p95": 0,
+      "p99": 0,
+      "max": 0
+    },
+    "simulationMs": {
+      "samples": 0,
+      "p50": 0,
+      "p95": 0,
+      "p99": 0,
+      "max": 0
+    },
+    "samplesCapped": false,
+    "eventsTruncated": false,
+    "weaponMechanic": "pulse",
+    "prototype": null,
+    "whipHits": null,
+    "whipMisses": null,
+    "dashUses": null,
+    "countersAfterDodge": null,
+    "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+  },
+  "history": [
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 39,
+          "position": {
+            "x": 0.36000439524650574,
+            "y": 0.5863592386245727,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 39,
+          "phase": "emerging",
+          "phaseTick": 39,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.65,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 39,
+          "position": {
+            "x": 0.36000439524650574,
+            "y": 0.5863592386245727,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 39,
+          "phase": "emerging",
+          "phaseTick": 39,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.65,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 40,
+          "position": {
+            "x": 0.4800044000148773,
+            "y": 0.754692530632019,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.100000000000001,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 40,
+          "phase": "emerging",
+          "phaseTick": 40,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6666666666666666,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 40,
+          "position": {
+            "x": 0.4800044000148773,
+            "y": 0.5846925735473633,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 40,
+          "phase": "emerging",
+          "phaseTick": 40,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6666666666666666,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 41,
+          "position": {
+            "x": 0.4800044000148773,
+            "y": 0.5932998418807983,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 41,
+          "phase": "emerging",
+          "phaseTick": 41,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6833333333333333,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 41,
+          "position": {
+            "x": 0.4800044000148773,
+            "y": 0.7530258655548095,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.100000000000001,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 41,
+          "phase": "emerging",
+          "phaseTick": 41,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6833333333333333,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 42,
+          "position": {
+            "x": 0.4799971878528595,
+            "y": 0.5916849136352539,
+            "z": -21
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 42,
+          "phase": "emerging",
+          "phaseTick": 42,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.7,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 34,
+          "position": {
+            "x": 0.36000439524650574,
+            "y": 0.5833333492279053,
+            "z": -21.000003814697266
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.666666666666668,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 34,
+          "phase": "emerging",
+          "phaseTick": 34,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.5666666666666667,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "arc",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 44,
+          "position": {
+            "x": 0.48000437021255493,
+            "y": 0.7583331823348999,
+            "z": -21.000011444091797
+          },
+          "velocity": {
+            "x": 7.200000286102295,
+            "y": 10.100000000000001,
+            "z": 0
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 1.5707963267948963
+        },
+        "boss": {
+          "tick": 44,
+          "phase": "emerging",
+          "phaseTick": 44,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.7333333333333333,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "arc",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 42,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.5916665554046631,
+            "z": -20.6400089263916
+          },
+          "velocity": {
+            "x": 0,
+            "y": 10.666666666666668,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 42,
+          "phase": "emerging",
+          "phaseTick": 42,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.7,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -3.875645521195901e-7,
+          "y": 0,
+          "z": -0.9999999999999251
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 14,
+          "phase": "forward",
+          "yaw": -3.1415922953180395,
+          "points": [
+            {
+              "x": -0.27999575096730694,
+              "y": 1.6916665554046633,
+              "z": -20.96000882607549
+            },
+            {
+              "x": -0.41479683783155374,
+              "y": 1.7267828133675664,
+              "z": -21.228017532986698
+            },
+            {
+              "x": -0.602777484039982,
+              "y": 1.7605495732303793,
+              "z": -21.465787387102548
+            },
+            {
+              "x": -0.8355784648567937,
+              "y": 1.7916691973481917,
+              "z": -21.66805391505443
+            },
+            {
+              "x": -1.103031886127451,
+              "y": 1.818945776018242,
+              "z": -21.833285139862056
+            },
+            {
+              "x": -1.3945135762227459,
+              "y": 1.8413310856191214,
+              "z": -21.963926161909416
+            },
+            {
+              "x": -1.7001124043528977,
+              "y": 1.857964871256695,
+              "z": -22.06602360480899
+            },
+            {
+              "x": -2.0114099528990823,
+              "y": 1.8682079058772447,
+              "z": -22.14837108622555
+            },
+            {
+              "x": -2.3217953572162098,
+              "y": 1.8716665554046632,
+              "z": -22.221378862156033
+            },
+            {
+              "x": -2.6263727634897998,
+              "y": 1.8682079058772447,
+              "z": -22.29586619687
+            },
+            {
+              "x": -2.9216143332796283,
+              "y": 1.857964871256695,
+              "z": -22.381926990240448
+            },
+            {
+              "x": -3.2049512000071725,
+              "y": 1.8413310856191214,
+              "z": -22.487960272009555
+            },
+            {
+              "x": -3.4744784915260216,
+              "y": 1.818945776018242,
+              "z": -22.61991244384144
+            },
+            {
+              "x": -3.7288912005876136,
+              "y": 1.7916691973481917,
+              "z": -22.780755974250752
+            },
+            {
+              "x": -3.9676838620679864,
+              "y": 1.7605495732303795,
+              "z": -22.97022184843076
+            },
+            {
+              "x": -4.191559112490251,
+              "y": 1.7267828133675664,
+              "z": -23.18479467392497
+            },
+            {
+              "x": -4.4029183146873905,
+              "y": 1.6916665554046633,
+              "z": -23.41795706262723
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 41,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.22499988079071043,
+            "z": -20.8800106048584
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.8,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 41,
+          "phase": "emerging",
+          "phaseTick": 41,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6833333333333333,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -3.8162168518571237e-7,
+          "y": 0,
+          "z": -0.9999999999999272
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 12,
+          "phase": "forward",
+          "yaw": -3.141592293906389,
+          "points": [
+            {
+              "x": -0.27999575141903493,
+              "y": 1.3249998807907106,
+              "z": -21.200010504147023
+            },
+            {
+              "x": -0.4023473111076322,
+              "y": 1.3601161387536138,
+              "z": -21.473926724626512
+            },
+            {
+              "x": -0.5767229095213511,
+              "y": 1.3938828986164267,
+              "z": -21.72150162932992
+            },
+            {
+              "x": -0.7954522207257906,
+              "y": 1.425002522734239,
+              "z": -21.937780541658586
+            },
+            {
+              "x": -1.0489370071437223,
+              "y": 1.4522791014042893,
+              "z": -22.121275582853766
+            },
+            {
+              "x": -1.3269002765134883,
+              "y": 1.4746644110051688,
+              "z": -22.27425019589964
+            },
+            {
+              "x": -1.6194871586481558,
+              "y": 1.4912981966427423,
+              "z": -22.402409260782836
+            },
+            {
+              "x": -1.9180214847694868,
+              "y": 1.501541231263292,
+              "z": -22.514115407448777
+            },
+            {
+              "x": -2.21534342605208,
+              "y": 1.5049998807907106,
+              "z": -22.619316453649265
+            },
+            {
+              "x": -2.5057788205953555,
+              "y": 1.501541231263292,
+              "z": -22.728372283624658
+            },
+            {
+              "x": -2.7848827101734974,
+              "y": 1.4912981966427423,
+              "z": -22.850931860196976
+            },
+            {
+              "x": -3.0491384110784874,
+              "y": 1.4746644110051688,
+              "z": -22.994961459035256
+            },
+            {
+              "x": -3.2957775975905745,
+              "y": 1.4522791014042893,
+              "z": -23.165986052393283
+            },
+            {
+              "x": -3.522827728572298,
+              "y": 1.425002522734239,
+              "z": -23.366584012697395
+            },
+            {
+              "x": -3.729409137509878,
+              "y": 1.393882898616427,
+              "z": -23.596163106102356
+            },
+            {
+              "x": -3.916216796341643,
+              "y": 1.3601161387536138,
+              "z": -23.851028518507157
+            },
+            {
+              "x": -4.086052732366153,
+              "y": 1.3249998807907106,
+              "z": -24.124720790275155
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 34,
+          "position": {
+            "x": 0.000004392156370158773,
+            "y": 0.4038889169692993,
+            "z": -20.76000213623047
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.233333333333334,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 34,
+          "phase": "emerging",
+          "phaseTick": 34,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.5666666666666667,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -4.846725622904465e-7,
+          "y": 0,
+          "z": -0.9999999999998825
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 5,
+          "phase": "windup",
+          "yaw": -3.141592168917231,
+          "points": [
+            {
+              "x": -0.2799957629388169,
+              "y": 1.5038889169692995,
+              "z": -21.080002000522114
+            },
+            {
+              "x": -0.2489980564665311,
+              "y": 1.5390051749322027,
+              "z": -21.159036453204592
+            },
+            {
+              "x": -0.22032504741627162,
+              "y": 1.5727719347950155,
+              "z": -21.238963051658775
+            },
+            {
+              "x": -0.19286877486818757,
+              "y": 1.603891558912828,
+              "z": -21.31932314586032
+            },
+            {
+              "x": -0.16482485727736712,
+              "y": 1.6311681375828782,
+              "z": -21.39945857467093
+            },
+            {
+              "x": -0.13381076597337072,
+              "y": 1.6535534471837576,
+              "z": -21.478514873082386
+            },
+            {
+              "x": -0.0970433059272291,
+              "y": 1.6701872328213312,
+              "z": -21.555387411634428
+            },
+            {
+              "x": -0.05157130661278575,
+              "y": 1.680430267441881,
+              "z": -21.628618525157357
+            },
+            {
+              "x": 0.0054417176862381345,
+              "y": 1.6838889169692994,
+              "z": -21.69627532118879
+            },
+            {
+              "x": 0.07639419429556704,
+              "y": 1.680430267441881,
+              "z": -21.755855314702583
+            },
+            {
+              "x": 0.1629020533007614,
+              "y": 1.6701872328213312,
+              "z": -21.804275274988544
+            },
+            {
+              "x": 0.26547011096560913,
+              "y": 1.6535534471837576,
+              "z": -21.837993151530075
+            },
+            {
+              "x": 0.3832356941534748,
+              "y": 1.6311681375828782,
+              "z": -21.853290819026064
+            },
+            {
+              "x": 0.5138534607183102,
+              "y": 1.603891558912828,
+              "z": -21.846707638647338
+            },
+            {
+              "x": 0.6535850836500833,
+              "y": 1.5727719347950158,
+              "z": -21.815568514363747
+            },
+            {
+              "x": 0.7976274655876724,
+              "y": 1.5390051749322027,
+              "z": -21.758508628158424
+            },
+            {
+              "x": 0.940660920149942,
+              "y": 1.5038889169692995,
+              "z": -21.675876741113786
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 45,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.5866665601730346,
+            "z": -20.6400089263916
+          },
+          "velocity": {
+            "x": 0,
+            "y": 10.666666666666668,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 45,
+          "phase": "emerging",
+          "phaseTick": 45,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.75,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.207028696964389e-7,
+          "y": 0,
+          "z": -0.9999999999998644
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 14,
+          "phase": "forward",
+          "yaw": -3.141592150068826,
+          "points": [
+            {
+              "x": -0.27999579744703773,
+              "y": 1.6866665601730348,
+              "z": -20.96000878540569
+            },
+            {
+              "x": -0.41479692323933703,
+              "y": 1.721782818135938,
+              "z": -21.228017472737143
+            },
+            {
+              "x": -0.6027776039836477,
+              "y": 1.7555495779987509,
+              "z": -21.46578729954895
+            },
+            {
+              "x": -0.8355786141795111,
+              "y": 1.7866692021165633,
+              "z": -21.66805379368667
+            },
+            {
+              "x": -1.103032059449871,
+              "y": 1.8139457807866135,
+              "z": -21.833284979646898
+            },
+            {
+              "x": -1.3945137685206683,
+              "y": 1.836331090387493,
+              "z": -21.963925959356768
+            },
+            {
+              "x": -1.7001126114803902,
+              "y": 1.8529648760250665,
+              "z": -22.06602335786835
+            },
+            {
+              "x": -2.0114101719874786,
+              "y": 1.8632079106456163,
+              "z": -22.148370794069184
+            },
+            {
+              "x": -2.321795586908925,
+              "y": 1.8666665601730348,
+              "z": -22.22137852491643
+            },
+            {
+              "x": -2.6263730040017377,
+              "y": 1.8632079106456163,
+              "z": -22.295865815390773
+            },
+            {
+              "x": -2.921614586291826,
+              "y": 1.8529648760250665,
+              "z": -22.38192656587761
+            },
+            {
+              "x": -3.2049514684206177,
+              "y": 1.836331090387493,
+              "z": -22.48795980649226
+            },
+            {
+              "x": -3.4744787791054135,
+              "y": 1.8139457807866135,
+              "z": -22.619911939175516
+            },
+            {
+              "x": -3.7288915115293992,
+              "y": 1.7866692021165633,
+              "z": -22.78075543263158
+            },
+            {
+              "x": -3.9676842005295385,
+              "y": 1.755549577998751,
+              "z": -22.97022127212714
+            },
+            {
+              "x": -4.191559482118334,
+              "y": 1.721782818135938,
+              "z": -23.184794065103645
+            },
+            {
+              "x": -4.402918718182127,
+              "y": 1.6866665601730348,
+              "z": -23.417956423106144
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 45,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.4072221279144287,
+            "z": -20.6400089263916
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.233333333333334,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 45,
+          "phase": "emerging",
+          "phaseTick": 45,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.75,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.096105464108999e-7,
+          "y": 0,
+          "z": -0.9999999999998702
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 15,
+          "phase": "forward",
+          "yaw": -3.141592163131334,
+          "points": [
+            {
+              "x": -0.27999579326703705,
+              "y": 1.5072221279144289,
+              "z": -20.960008789063195
+            },
+            {
+              "x": -0.4163336408720797,
+              "y": 1.542338385877332,
+              "z": -21.22723901061462
+            },
+            {
+              "x": -0.6059774055126467,
+              "y": 1.576105145740145,
+              "z": -21.463730923257984
+            },
+            {
+              "x": -0.8404765937381773,
+              "y": 1.6072247698579574,
+              "z": -21.66418296659545
+            },
+            {
+              "x": -1.109587669653458,
+              "y": 1.6345013485280075,
+              "z": -21.82705972103528
+            },
+            {
+              "x": -1.402639607815758,
+              "y": 1.656886658128887,
+              "z": -21.954830816189403
+            },
+            {
+              "x": -1.70971181186564,
+              "y": 1.6735204437664606,
+              "z": -22.053586452589002
+            },
+            {
+              "x": -2.0224165563655823,
+              "y": 1.6837634783870103,
+              "z": -22.13217340392029
+            },
+            {
+              "x": -2.334210789479026,
+              "y": 1.6872221279144288,
+              "z": -22.2010570352397
+            },
+            {
+              "x": -2.6402956936665087,
+              "y": 1.6837634783870103,
+              "z": -22.27110923531979
+            },
+            {
+              "x": -2.9372582901315427,
+              "y": 1.6735204437664606,
+              "z": -22.352472800360225
+            },
+            {
+              "x": -3.2226488713226487,
+              "y": 1.656886658128887,
+              "z": -22.453592687680825
+            },
+            {
+              "x": -3.494671634394139,
+              "y": 1.6345013485280075,
+              "z": -22.580459108102247
+            },
+            {
+              "x": -3.752106488853824,
+              "y": 1.6072247698579574,
+              "z": -22.736085171877807
+            },
+            {
+              "x": -3.9944962058381823,
+              "y": 1.5761051457401452,
+              "z": -22.9202349711679
+            },
+            {
+              "x": -4.222545161539128,
+              "y": 1.542338385877332,
+              "z": -23.129410660256575
+            },
+            {
+              "x": -4.438603758505288,
+              "y": 1.5072221279144289,
+              "z": -23.357086132716706
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 45,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.4072221279144287,
+            "z": -20.760009765625
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.233333333333334,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 45,
+          "phase": "emerging",
+          "phaseTick": 45,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.75,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.187964714513036e-7,
+          "y": 0,
+          "z": -0.9999999999998654
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 14,
+          "phase": "forward",
+          "yaw": -3.1415921494190684,
+          "points": [
+            {
+              "x": -0.2799957976549601,
+              "y": 1.5072221279144289,
+              "z": -21.080009624457155
+            },
+            {
+              "x": -0.4147969236214,
+              "y": 1.542338385877332,
+              "z": -21.34801831170102
+            },
+            {
+              "x": -0.6027776045202035,
+              "y": 1.576105145740145,
+              "z": -21.585788138390683
+            },
+            {
+              "x": -0.835578614847491,
+              "y": 1.6072247698579574,
+              "z": -21.78805463237714
+            },
+            {
+              "x": -1.1030320602252113,
+              "y": 1.6345013485280075,
+              "z": -21.953285818163586
+            },
+            {
+              "x": -1.3945137693808933,
+              "y": 1.656886658128887,
+              "z": -22.083926797684065
+            },
+            {
+              "x": -1.7001126124069539,
+              "y": 1.6735204437664606,
+              "z": -22.186024195997085
+            },
+            {
+              "x": -2.0114101729675484,
+              "y": 1.6837634783870103,
+              "z": -22.26837163199565
+            },
+            {
+              "x": -2.321795587936432,
+              "y": 1.6872221279144288,
+              "z": -22.34137936264122
+            },
+            {
+              "x": -2.6263730050776433,
+              "y": 1.6837634783870103,
+              "z": -22.41586665291766
+            },
+            {
+              "x": -2.921614587423651,
+              "y": 1.6735204437664606,
+              "z": -22.50192740321266
+            },
+            {
+              "x": -3.2049514696213377,
+              "y": 1.656886658128887,
+              "z": -22.607960643643214
+            },
+            {
+              "x": -3.4744787803918706,
+              "y": 1.6345013485280075,
+              "z": -22.73991277615134
+            },
+            {
+              "x": -3.7288915129203657,
+              "y": 1.6072247698579574,
+              "z": -22.9007562694421
+            },
+            {
+              "x": -3.9676842020436123,
+              "y": 1.5761051457401452,
+              "z": -23.0902221087825
+            },
+            {
+              "x": -4.191559483771829,
+              "y": 1.542338385877332,
+              "z": -23.30479490161354
+            },
+            {
+              "x": -4.402918719987119,
+              "y": 1.5072221279144289,
+              "z": -23.53795725947871
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 36,
+          "position": {
+            "x": 0.000004392156370158773,
+            "y": 0.4119148015975952,
+            "z": -20.64000129699707
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.233333333333334,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 36,
+          "phase": "emerging",
+          "phaseTick": 36,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.6,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -4.937636530282185e-7,
+          "y": 0,
+          "z": -0.999999999999878
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 6,
+          "phase": "forward",
+          "yaw": -3.1415921658160886,
+          "points": [
+            {
+              "x": -0.27999576393118203,
+              "y": 1.5119148015975954,
+              "z": -20.960001160420394
+            },
+            {
+              "x": -0.24804936421884727,
+              "y": 1.5470310595604986,
+              "z": -21.04814019856706
+            },
+            {
+              "x": -0.219175028047983,
+              "y": 1.5807978194233114,
+              "z": -21.13736262209295
+            },
+            {
+              "x": -0.1921419860797439,
+              "y": 1.6119174435411239,
+              "z": -21.227177649313465
+            },
+            {
+              "x": -0.16493816783723678,
+              "y": 1.639194022211174,
+              "z": -21.316913964311038
+            },
+            {
+              "x": -0.13489833127819154,
+              "y": 1.6615793318120535,
+              "z": -21.405728989411934
+            },
+            {
+              "x": -0.09889509156479728,
+              "y": 1.678213117449627,
+              "z": -21.492550497541796
+            },
+            {
+              "x": -0.053587550627643726,
+              "y": 1.6884561520701769,
+              "z": -21.575958450700085
+            },
+            {
+              "x": 0.004277884093396522,
+              "y": 1.6919148015975953,
+              "z": -21.654038978582197
+            },
+            {
+              "x": 0.07752270981055576,
+              "y": 1.6884561520701769,
+              "z": -21.72426198202083
+            },
+            {
+              "x": 0.16816566149241358,
+              "y": 1.678213117449627,
+              "z": -21.78344368225315
+            },
+            {
+              "x": 0.2770622578769851,
+              "y": 1.6615793318120535,
+              "z": -21.82785075732021
+            },
+            {
+              "x": 0.40361231470462694,
+              "y": 1.639194022211174,
+              "z": -21.85348031228901
+            },
+            {
+              "x": 0.5456086963208047,
+              "y": 1.6119174435411239,
+              "z": -21.85651041174579
+            },
+            {
+              "x": 0.6992980061045846,
+              "y": 1.5807978194233117,
+              "z": -21.833866116789018
+            },
+            {
+              "x": 0.8596950026067083,
+              "y": 1.5470310595604986,
+              "z": -21.783799691111167
+            },
+            {
+              "x": 1.0211387104065788,
+              "y": 1.5119148015975954,
+              "z": -21.706358366917254
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 47,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.40388879776000974,
+            "z": -20.760009765625
+          },
+          "velocity": {
+            "x": 0,
+            "y": 11.233333333333334,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 47,
+          "phase": "emerging",
+          "phaseTick": 47,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.7833333333333333,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.196422276748422e-7,
+          "y": 0,
+          "z": -0.999999999999865
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 15,
+          "phase": "forward",
+          "yaw": -3.1415921541138396,
+          "points": [
+            {
+              "x": -0.279995796152634,
+              "y": 1.50388879776001,
+              "z": -21.080009625771694
+            },
+            {
+              "x": -0.41633364616742363,
+              "y": 1.5390050557229131,
+              "z": -21.347239846093693
+            },
+            {
+              "x": -0.6059774129405551,
+              "y": 1.572771815585726,
+              "z": -21.583731757026946
+            },
+            {
+              "x": -0.8404766029736608,
+              "y": 1.6038914397035384,
+              "z": -21.784183798249817
+            },
+            {
+              "x": -1.1095876803576816,
+              "y": 1.6311680183735886,
+              "z": -21.947060550262936
+            },
+            {
+              "x": -1.402639619672157,
+              "y": 1.653553327974468,
+              "z": -22.074831642774466
+            },
+            {
+              "x": -1.7097118246125675,
+              "y": 1.6701871136120416,
+              "z": -22.173587276405044
+            },
+            {
+              "x": -2.022416569821167,
+              "y": 1.6804301482325914,
+              "z": -22.25217422491652
+            },
+            {
+              "x": -2.3342108035557683,
+              "y": 1.6838887977600099,
+              "z": -22.32105785342433
+            },
+            {
+              "x": -2.6402957083749468,
+              "y": 1.6804301482325914,
+              "z": -22.3911100507443
+            },
+            {
+              "x": -2.9372583055736765,
+              "y": 1.6701871136120416,
+              "z": -22.472473613106875
+            },
+            {
+              "x": -3.2226488876766304,
+              "y": 1.653553327974468,
+              "z": -22.573593497853963
+            },
+            {
+              "x": -3.494671651892138,
+              "y": 1.6311680183735886,
+              "z": -22.70045991582242
+            },
+            {
+              "x": -3.752106507755179,
+              "y": 1.6038914397035384,
+              "z": -22.856085977276567
+            },
+            {
+              "x": -3.9944962264001074,
+              "y": 1.5727718155857262,
+              "z": -23.040235774380914
+            },
+            {
+              "x": -4.222545183987293,
+              "y": 1.5390050557229131,
+              "z": -23.249411461413157
+            },
+            {
+              "x": -4.438603783006515,
+              "y": 1.50388879776001,
+              "z": -23.477086931924983
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 39,
+          "position": {
+            "x": 0.000004392156370158773,
+            "y": 0.5863592386245727,
+            "z": -20.64000129699707
+          },
+          "velocity": {
+            "x": 0,
+            "y": 10.666666666666668,
+            "z": 7.200050354003906
+          },
+          "grounded": false,
+          "surface": null,
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 39,
+          "phase": "emerging",
+          "phaseTick": 39,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.65,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.170726673235135e-7,
+          "y": 0,
+          "z": -0.9999999999998663
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 7,
+          "phase": "forward",
+          "yaw": -3.141592144367266,
+          "points": [
+            {
+              "x": -0.2799957707948023,
+              "y": 1.686359238624573,
+              "z": -20.96000115441472
+            },
+            {
+              "x": -0.25536797248049986,
+              "y": 1.7214754965874761,
+              "z": -21.15532969092485
+            },
+            {
+              "x": -0.24659519599284735,
+              "y": 1.755242256450289,
+              "z": -21.352331963940173
+            },
+            {
+              "x": -0.250983132468561,
+              "y": 1.7863618805681014,
+              "z": -21.549913145683206
+            },
+            {
+              "x": -0.26409992592942594,
+              "y": 1.8136384592381516,
+              "z": -21.747340707667327
+            },
+            {
+              "x": -0.28006760325627783,
+              "y": 1.836023768839031,
+              "z": -21.944376151793815
+            },
+            {
+              "x": -0.29193515183764407,
+              "y": 1.8526575544766046,
+              "z": -22.141190814748875
+            },
+            {
+              "x": -0.2920967399767671,
+              "y": 1.8629005890971544,
+              "z": -22.33807302560644
+            },
+            {
+              "x": -0.2727397859876235,
+              "y": 1.8663592386245729,
+              "z": -22.534984440257613
+            },
+            {
+              "x": -0.22632987469292962,
+              "y": 1.8629005890971544,
+              "z": -22.73106326151898
+            },
+            {
+              "x": -0.14614797351636463,
+              "y": 1.8526575544766046,
+              "z": -22.924195984278526
+            },
+            {
+              "x": -0.026880450180856996,
+              "y": 1.836023768839031,
+              "z": -23.110783401666982
+            },
+            {
+              "x": 0.13477518772385905,
+              "y": 1.8136384592381516,
+              "z": -23.28580667121304
+            },
+            {
+              "x": 0.33957347184986086,
+              "y": 1.7863618805681014,
+              "z": -23.443251915854997
+            },
+            {
+              "x": 0.5853737479023113,
+              "y": 1.7552422564502892,
+              "z": -23.57687899997991
+            },
+            {
+              "x": 0.8671051583500623,
+              "y": 1.7214754965874761,
+              "z": -23.681233728815517
+            },
+            {
+              "x": 1.1771212511947042,
+              "y": 1.686359238624573,
+              "z": -23.752725627797016
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "prototype",
+      "weapon": "energy-whip",
+      "loadout": "whip",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "straight",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 43,
+          "position": {
+            "x": 0.000004363679636298912,
+            "y": 0.02333322763442991,
+            "z": -21.000011444091797
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": true,
+          "surface": "floor-boss",
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 43,
+          "phase": "emerging",
+          "phaseTick": 43,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 900,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": 0,
+            "y": 1.85,
+            "z": -29
+          },
+          "facing": 0,
+          "moving": false,
+          "exchange": {
+            "serial": 0,
+            "window": "closed",
+            "resolved": 0,
+            "avoided": 0,
+            "counters": 0
+          }
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": null,
+      "activeSeconds": 0,
+      "totalSeconds": 0.7166666666666667,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [],
+      "framesMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "simulationMs": {
+        "samples": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "energy-whip",
+      "prototype": {
+        "aim": {
+          "x": -5.131750045289431e-7,
+          "y": 0,
+          "z": -0.9999999999998683
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "whip": {
+          "age": 11,
+          "phase": "forward",
+          "yaw": -3.141592153054254,
+          "points": [
+            {
+              "x": -0.27999579649170125,
+              "y": 1.12333322763443,
+              "z": -21.320011303941808
+            },
+            {
+              "x": -0.3884934574050193,
+              "y": 1.1584494855973333,
+              "z": -21.599704452903914
+            },
+            {
+              "x": -0.5474762204637145,
+              "y": 1.1922162454601462,
+              "z": -21.85709064891027
+            },
+            {
+              "x": -0.7499419863550901,
+              "y": 1.2233358695779586,
+              "z": -22.087572753359954
+            },
+            {
+              "x": -0.9868419160909543,
+              "y": 1.2506124482480088,
+              "z": -22.289737328758857
+            },
+            {
+              "x": -1.2482216874477634,
+              "y": 1.2729977578488882,
+              "z": -22.465672084488276
+            },
+            {
+              "x": -1.5242492100172755,
+              "y": 1.2896315434864618,
+              "z": -22.6207162831473
+            },
+            {
+              "x": -1.8059449693712792,
+              "y": 1.2998745781070116,
+              "z": -22.76274451621223
+            },
+            {
+              "x": -2.0855422950187483,
+              "y": 1.30333322763443,
+              "z": -22.90115071640888
+            },
+            {
+              "x": -2.3565221184849836,
+              "y": 1.2998745781070116,
+              "z": -23.045710708261417
+            },
+            {
+              "x": -2.613454175212876,
+              "y": 1.2896315434864618,
+              "z": -23.205474640836997
+            },
+            {
+              "x": -2.85181369021696,
+              "y": 1.2729977578488882,
+              "z": -23.38780063593735
+            },
+            {
+              "x": -3.0679262167709584,
+              "y": 1.2506124482480088,
+              "z": -23.59760739888084
+            },
+            {
+              "x": -3.259133684122098,
+              "y": 1.2233358695779586,
+              "z": -23.836901735900476
+            },
+            {
+              "x": -3.424190463223278,
+              "y": 1.1922162454601464,
+              "z": -24.10461897786945
+            },
+            {
+              "x": -3.563812297610294,
+              "y": 1.1584494855973333,
+              "z": -24.39678708176203
+            },
+            {
+              "x": -3.6812364091119436,
+              "y": 1.12333322763443,
+              "z": -24.706980789346524
+            }
+          ],
+          "sequence": 1,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        }
+      },
+      "whipHits": {
+        "forward": 0,
+        "return": 0
+      },
+      "whipMisses": 0,
+      "dashUses": 0,
+      "countersAfterDodge": 0,
+      "exchange": {
+        "serial": 0,
+        "window": "closed",
+        "resolved": 0,
+        "avoided": 0,
+        "counters": 0
+      },
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    },
+    {
+      "profile": "legacy",
+      "weapon": "pulse",
+      "loadout": "legacy",
+      "scenario": "boss",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 600,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "pulse",
+          "ownsPulse": true,
+          "ammo": 54,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "adventure-pulse",
+            "kind": "pulse",
+            "position": {
+              "x": -3,
+              "y": 0,
+              "z": 18.5
+            },
+            "surface": "floor-entry",
+            "amount": 54,
+            "remaining": 54,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": -9,
+              "y": 1.1,
+              "z": -0.4
+            },
+            "surface": "side-terrace",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "court-ammo",
+            "kind": "ammo",
+            "position": {
+              "x": 11,
+              "y": 0,
+              "z": 6.5
+            },
+            "surface": "floor-middle",
+            "amount": 27,
+            "remaining": 27,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-west",
+            "kind": "ammo",
+            "position": {
+              "x": -13,
+              "y": 0,
+              "z": -37
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-ammo-east",
+            "kind": "ammo",
+            "position": {
+              "x": 13,
+              "y": 0,
+              "z": -20
+            },
+            "surface": "floor-boss",
+            "amount": 18,
+            "remaining": 18,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "audioVoices": 0
+      },
+      "end": {
+        "player": {
+          "tick": 129,
+          "position": {
+            "x": -0.00003895362897310406,
+            "y": 0.026632523536682107,
+            "z": -21.0000057220459
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": true,
+          "surface": "floor-boss",
+          "ceiling": false,
+          "facing": 0
+        },
+        "boss": {
+          "tick": 129,
+          "phase": "chasing",
+          "phaseTick": 9,
+          "kind": "wave",
+          "target": {
+            "x": 0,
+            "y": 0,
+            "z": -29
+          },
+          "waveRadius": 2,
+          "hp": 100,
+          "armor": 50,
+          "bossHp": 600,
+          "outcome": "running",
+          "hitsTaken": 0,
+          "lastHit": -100,
+          "center": {
+            "x": -0.000002264181303503501,
+            "y": 1.85,
+            "z": -28.535000000005507
+          },
+          "facing": -0.000004869207104327847,
+          "moving": true
+        }
+      },
+      "outcome": "aborted",
+      "abortReason": "restart",
+      "activeStartTick": 120,
+      "activeSeconds": 0.15,
+      "totalSeconds": 2.15,
+      "attacks": 1,
+      "damageDealt": 0,
+      "damageTaken": {},
+      "phases": [
+        {
+          "tick": 120,
+          "phase": "chasing",
+          "kind": "wave"
+        }
+      ],
+      "framesMs": {
+        "samples": 22,
+        "p50": 5.5,
+        "p95": 8.400000000001455,
+        "p99": 25,
+        "max": 25
+      },
+      "simulationMs": {
+        "samples": 10,
+        "p50": 0.6000000014901161,
+        "p95": 1.300000000745058,
+        "p99": 1.300000000745058,
+        "max": 1.699999999254942
+      },
+      "samplesCapped": false,
+      "eventsTruncated": false,
+      "weaponMechanic": "pulse",
+      "prototype": null,
+      "whipHits": null,
+      "whipMisses": null,
+      "dashUses": null,
+      "countersAfterDodge": null,
+      "unavailable": "Avoided means resolved without damage, including out-of-range. Readability and enjoyment require human observation."
+    }
+  ],
+  "historyLimit": 20
+}

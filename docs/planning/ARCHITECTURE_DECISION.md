@@ -1,6 +1,17 @@
 # CORE ARENA 3D Architekturentscheidung
 
-## Adventure-Nachtrag vom 2. November 2026 — A0–A4 und weiterer Plan
+## Adventure-Nachtrag vom 2. November 2026 — T2-Kandidat A5–A7
+
+`AdventureFight` erhält ein ausdrücklich gewähltes Prototyp-/Versorgungsprofil;
+Default-Konstruktoren bleiben Legacy. `PveEncounter` erhält optionale Taktikdaten
+für Angriffsschritt, aktive Faustphase, Kernschutz und lesende Austauschmetriken.
+Keine Kopie der Missionszustandsmaschine und keine Mutation gemeinsamer Konstanten.
+Der vorhandene `Combat` führt optional zwölf Pulse-Schüsse samt Projektilen und
+Cooldowns; Wechsel setzt ihn nicht zurück. Der Prototyp-Einstieg gilt nun auch für
+die vollständige Mission im Entwicklungs-/Testbuild. Production/Erkundung/Arena
+bleiben bei den bisherigen Routen und Regeln. [T2-Nachweis](../qa/ADVENTURE_A5_A7_RESULT.md).
+
+### Historischer Stand A0–A4
 
 A0.1 + A0.2 wurden anschließend separat beauftragt. Das isolierte Entwicklungs-/Testlabor
 nutzt frische Instanzen der bestehenden Kampfregeln; weder eine Konstruktor-Injektion

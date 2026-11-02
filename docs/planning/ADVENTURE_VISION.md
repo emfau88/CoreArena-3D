@@ -6,7 +6,9 @@ mit 26 Bulks und sechs Qualitätstoren bleibt erhalten. Die menschliche Abnahme
 wird auf drei Spieltermine gebündelt. Am 2.11.2026 wurden zunächst A0.1/A0.2,
 anschließend ausdrücklich **alle Bulks bis einschließlich A4** beauftragt.
 Der Kernprototyp ist technisch umgesetzt und in T1 grundsätzlich akzeptiert (G1).
-Knackigeres Peitschengefühl und deutlichere Treffer bleiben als Feinschliff offen.
+Anschließend wurde A5.1–A7.2 bis zum T2-Kandidaten freigegeben. Steinwächter,
+reguläre Prototyp-Mission, begrenzter Pulse-Vergleich und Feedback-Feinschliff sind
+technisch umgesetzt; menschliches T2/G2/G3 und die Produktentscheidung bleiben offen.
 Den jeweiligen Umsetzungsstand führt die Roadmap.
 Die [Adventure-Roadmap](ADVENTURE_ROADMAP.md) ist die einzige maßgebliche Quelle
 für zukünftige Adventure-Arbeitspakete, Status, Abnahmen und Freigaben.
@@ -371,3 +373,18 @@ Offene Entscheidungen und ihr spätester Klärpunkt:
 Die technische Integration, Testmatrizen und sechs verbindlichen Qualitätstore
 stehen in der [Roadmap](ADVENTURE_ROADMAP.md). Sie verhindern, dass offene Kandidaten
 still zu Pflichtfeatures oder bestandene technische Tests zu Spielspaßbelegen werden.
+
+## Technischer Kandidat für T2 — 2. November 2026
+
+Der aktuelle Steinwächter-Prototyp verwendet einen angekündigten, begrenzten
+Angriffsschritt, einen hohen Faustschwung und die vorhandenen Wellen/Ausbrüche.
+Sein geschlossener Kern nimmt wenig Schaden; in der sichtbaren Erholung wird er
+voll verwundbar. Diese experimentelle Abstimmung ist in T2 auf Lesbarkeit und
+Spielfluss zu prüfen und keine Vorentscheidung für spätere Bosse.
+
+Erhöhte Plattformen schützen vor der Bodenwelle. Der Ausbruch markiert dagegen
+die tatsächlich gewählte Oberfläche und kann die Plattform treffen; ein hoher
+Faustschwung bleibt nur bei passender Reichweite/Höhe und freier Sicht gefährlich.
+Ein Doppelsprung ist weiterhin nicht enthalten. Charge oder Sprungangriff bleiben
+Optionen für eine konkret nachgewiesene Lücke, kein automatisch geplanter Ausbau.
+[Umfang, Grenzen und T2-Ablauf](../qa/ADVENTURE_A5_A7_RESULT.md).
