@@ -4,10 +4,11 @@ Stand: **2. November 2026**. Maßgebliche Quelle für zukünftige Adventure-Auft
 Produktziel: [ADVENTURE_VISION.md](ADVENTURE_VISION.md). Die Erstellung dieser
 Dokumentation ist beauftragt; Vision und Struktur mit **26 Bulks und sechs Gates**
 sind grundsätzlich freigegeben. Menschliche Prüfungen sind auf **drei Spieltermine**
-gebündelt (Abschnitt 5). **A0.1 + A0.2 sind durch „ok go“ am 2.11.2026 gemeinsam
-zur Implementierung freigegeben und technisch abgeschlossen**. Die übrigen Bulks bleiben geplant.
-Dieser Auftrag ergänzt das Vergleichslabor; die bisherigen Kampfregeln bleiben unverändert.
-[Gemeinsamer Ergebnisbericht](../qa/ADVENTURE_A0_1_A0_2_RESULT.md).
+gebündelt (Abschnitt 5). **A0.1–A4 sind technisch abgeschlossen** auf
+`codex/adventure-combat-prototype`. A1–A4 wurden am 2.11.2026 ausdrücklich mit
+„ok dann zieh bis inkl. a4 durch“ beauftragt. **T1/G1 bleibt menschlich offen.**
+A5 und spätere Bulks bleiben geplant. Legacy und reguläre Mission behalten ihre Kampfregeln.
+[Ergebnis A0](../qa/ADVENTURE_A0_1_A0_2_RESULT.md) · [Ergebnis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md).
 
 ## 1. Zuständigkeit und Arbeitsweise
 
@@ -154,7 +155,7 @@ und kein allgemeines Plugin-/Strategie-Framework für eine einzige Variante.
 |---|---|---|
 | Input und Bewegung | `src/input/desktopInput.ts`, `src/core/simulation.ts`, `types.ts`, `movementProfile.ts` | Optionaler Adventure-Befehl/Profileinstieg; Dashphase im Simulationszustand, Standardpfad unverändert |
 | Physik | `src/physics/rapierWorld.ts` | Vorhandene Kapsel/Rays/Sweeps; zusätzliche gefilterte Körper-/Trefferabfragen nur bei Bedarf |
-| Peitsche | `src/core/combat.ts`, `aim.ts`, `match.ts` | Eigenes kleines Modul `neu: src/core/energyWhip.ts`; bestehendes Schadensformat |
+| Peitsche | `src/core/combat.ts`, `aim.ts`, `match.ts` | Eigenes kleines Modul `src/core/energyWhip.ts`; bestehendes Schadensformat |
 | Darstellung | `src/render/kayFighter.ts`, `arcView.ts`, `arenaView.ts`, `camera.ts` | Neue Peitschenansicht/Adventure-Kamerakonfiguration; alte Arc- und Arena-Präsentation unverändert |
 | Boss | `src/core/pve.ts`, `bossNavigation.ts`, `src/arena/stoneAdventure.ts` | Prototyp-Encounter/Regelprofil; vorhandene Zustände und Navigation vor Erweiterung prüfen |
 | Mission | `src/core/adventureFight.ts`, `src/arena/adventureMission.ts`, `src/app/adventureGame.ts` | Gleiche Konsole-/Checkpoint-/Abschlusslogik; Laborszenario ausdrücklich getrennt |
@@ -249,7 +250,7 @@ Netzbedingungen und ein Releasebudget fest und optimiert vor zusätzlichem Asset
 Für jedes Gate Commit, Profil, Datum, technische Nachweise und menschliche
 Teilnehmer getrennt dokumentieren. Ergebnisse: **offen, bestanden, Nacharbeit,
 Kurskorrektur**; nur Gate 4 kann bei gestrichener Progression ausdrücklich entfallen.
-Aktuell sind alle sechs Gates **offen**. Der Nutzer trifft das abschließende
+Aktuell sind alle sechs Gates **offen**. Für G1 liegen die technischen A1–A4-Nachweise vor; das Nutzerurteil folgt in T1. Der Nutzer trifft das abschließende
 Produkturteil. Kleine Testgruppen sind Entscheidungshilfe, keine statistische Marktvalidierung.
 
 ### Drei gebündelte menschliche Spieltermine
@@ -394,14 +395,15 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A1 — Kampfansicht und gerichtetes Mausziel
 
-**Status:** geplant. **Voraussetzungen:** A0.2, eigener Auftrag.
+**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Nachweis:** [Ergebnis A1](../qa/ADVENTURE_A1_RESULT.md).
 **Ziel/Nutzen:** Richtungen und Gefahren sind bei dynamischer Bewegung zuverlässig lesbar.
 **Umfang:** Ein Adventure-Kameraprofil auf vorhandener Infrastruktur, Zielrichtung und einfacher Richtungsindikator. Höchstens ein zusätzlicher Perspektivvergleich bei belegter Grenze.
 
-- [ ] Vorhandene drei Ansichten an Mitte, vier Rändern, Ecken, Plateau und Bossnähe vergleichen.
-- [ ] Feste Blickrichtung, begrenztes Spieler-/Boss-Framing und geglättete Übergänge abstimmen.
-- [ ] Mausprojektion für Boden-/Höhenziel und letztes gültiges Ziel explizit regeln; Autozielwahl der neuen Waffe nicht vorwegnehmen.
-- [ ] Sichtbar verdeckte Gefahren protokollieren und kleinste passende Kamera-/Verdeckungsmaßnahme testen.
+- [x] Vorhandene drei Ansichten an Mitte, vier Rändern, Ecken, Plateau und Bossnähe vergleichen.
+- [x] Feste Blickrichtung, begrenztes Spieler-/Boss-Framing und geglättete Übergänge abstimmen.
+- [x] Mausprojektion für Boden-/Höhenziel und letztes gültiges Ziel explizit regeln; Autozielwahl der neuen Waffe nicht vorwegnehmen.
+- [x] Sichtbar verdeckte Gefahren protokollieren und kleinste passende Kamera-/Verdeckungsmaßnahme testen.
 
 **Systeme/Dateien:** `src/render/camera.ts`, `arenaView.ts`, `src/input/desktopInput.ts`, `src/core/aim.ts`, Kompositionspunkt; ggf. `neu: src/render/adventureCamera.ts`.
 **Tests/Regression:** K/R, A/P bei gemeinsamen Änderungen; N-Projektion und reale Mausbewegung bei 1366×768/1920×1080, gleiche Kameraposen vor/nachher.
@@ -412,14 +414,15 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.1 — Bosskörper und faire Bewegungsgrenzen
 
-**Status:** geplant. **Voraussetzungen:** A1, eigener Auftrag.
+**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Nachweis:** [Ergebnis A2.1](../qa/ADVENTURE_A2_1_RESULT.md).
 **Ziel/Nutzen:** Positionierung bleibt glaubwürdig; Spieler und Boss überlagern sich nicht beliebig.
 **Umfang:** Prototyp-only Körperform des aktiven Steinwächters und definierte Kontaktauflösung; keine Bossattacken oder Kontakt-Schäden ändern.
 
-- [ ] Treffer-Sensor und Bewegungsblocker mit klaren Filtern trennen; Körperform sichtbar diagnostizieren.
-- [ ] Spielerbewegung gegen ruhenden und bewegten Boss begrenzen, ohne ihn durch Wände zu schieben.
-- [ ] Begegnung an Wänden, Ecken, Plateau und beim Auftauchen/Defeat prüfen; einen ausführbaren Fluchtweg erhalten.
-- [ ] Eigentreffer, Navigation gegen eigenen Collider sowie Restblocker nach Tod/Retry ausschließen.
+- [x] Treffer-Sensor und Bewegungsblocker mit klaren Filtern trennen; Körperform sichtbar diagnostizieren.
+- [x] Spielerbewegung gegen ruhenden und bewegten Boss begrenzen, ohne ihn durch Wände zu schieben.
+- [x] Begegnung an Wänden, Ecken, Plateau und beim Auftauchen/Defeat prüfen; einen ausführbaren Fluchtweg erhalten.
+- [x] Eigentreffer, Navigation gegen eigenen Collider sowie Restblocker nach Tod/Retry ausschließen.
 
 **Systeme/Dateien:** `src/physics/rapierWorld.ts`, `src/core/pve.ts`, `src/app/adventureGame.ts`, Lab-/Encounterprofil; neue gezielte Körperkontakt-Tests.
 **Tests/Regression:** K/R/A/P, N-Kontakt aus vier Richtungen und zehn Resets; alte Sensorregeln im Legacy erhalten.
@@ -430,14 +433,15 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A2.2 — Gerichteter Dash und unmittelbare Bewegung
 
-**Status:** geplant. **Voraussetzungen:** A2.1, eigener Auftrag.
+**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Nachweis:** [Ergebnis A2.2](../qa/ADVENTURE_A2_2_RESULT.md).
 **Ziel/Nutzen:** Ausweichen wird eine präzise, begrenzte Handlung.
 **Umfang:** Ein Bodendash als Sprintalternative im Prototyp; Sprungkurve bleibt Basis, keine zusätzlichen Mobilitätsfähigkeiten.
 
-- [ ] Dashbeginn auf Tastendruck, Richtung, Dauer, Reichweite und Wiederaufladung als Profil definieren.
-- [ ] Stillstand/Richtungswechsel vergleichen; Beschleunigung nur bei nachgewiesenem Vorteil verändern.
-- [ ] Bewegung durch vorhandene Kollisionsprüfung führen; Sprung-/Boden-/Abgrundverhalten festlegen.
-- [ ] Kleinen Bereitschaftshinweis und lesende Zeitmessung ergänzen; Pause, Tod und Retry vollständig zurücksetzen.
+- [x] Dashbeginn auf Tastendruck, Richtung, Dauer, Reichweite und Wiederaufladung als Profil definieren.
+- [x] Stillstand/Richtungswechsel vergleichen; Beschleunigung nur bei nachgewiesenem Vorteil verändern.
+- [x] Bewegung durch vorhandene Kollisionsprüfung führen; Sprung-/Boden-/Abgrundverhalten festlegen.
+- [x] Kleinen Bereitschaftshinweis und lesende Zeitmessung ergänzen; Pause, Tod und Retry vollständig zurücksetzen.
 
 **Systeme/Dateien:** `src/core/simulation.ts`, `types.ts`, `movementProfile.ts`, `src/input/desktopInput.ts`, `src/app/adventureGame.ts`; ggf. kleines Adventure-Movement-Modul.
 **Tests/Regression:** K/R/A/P; N für diagonale Richtung, gehaltene Taste, Cooldown, Wände/Treppen/Boss und 30/60/144 Hz.
@@ -448,17 +452,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A3 — Energiepeitsche: räumliche Angriffsregeln
 
-**Status:** geplant. **Voraussetzungen:** A2.2, eigener Auftrag.
+**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Nachweis:** [Ergebnis A3](../qa/ADVENTURE_A3_RESULT.md).
 **Ziel/Nutzen:** Gerichtete Schläge machen Reichweite, Position und Zeitpunkt relevant.
 **Umfang:** Eine Grundattacke mit Vorschwung/Rücklauf, einfache sichtbare Bahn und bestehende Schadensschnittstelle; keine Mods oder neue Waffen.
 
-- [ ] Phasen, Eingabe, Richtungsbindung und eine kontrollierte 3D-Kurve definieren.
-- [ ] Überstrichene Bahn zwischen Ticks prüfen; Weltblocker, Höhe und mehrere mögliche Ziele berücksichtigen.
-- [ ] Treffer je Ziel/Schlagphase begrenzen; Rücklauf besitzt ein eigenes Trefferfenster.
-- [ ] Bewegung während Angriff sowie Dash-Abbruch festlegen; ausstehenden Schaden bei Abbruch/Tod/Retry löschen.
-- [ ] Testziele mit Distanzen/Winkeln, Deckung und unterschiedlichen Höhen bereitstellen.
+- [x] Phasen, Eingabe, Richtungsbindung und eine kontrollierte 3D-Kurve definieren.
+- [x] Überstrichene Bahn zwischen Ticks prüfen; Weltblocker, Höhe und mehrere mögliche Ziele berücksichtigen.
+- [x] Treffer je Ziel/Schlagphase begrenzen; Rücklauf besitzt ein eigenes Trefferfenster.
+- [x] Bewegung während Angriff sowie Dash-Abbruch festlegen; ausstehenden Schaden bei Abbruch/Tod/Retry löschen.
+- [x] Testziele mit Distanzen/Winkeln, Deckung und unterschiedlichen Höhen bereitstellen.
 
-**Systeme/Dateien:** `neu: src/core/energyWhip.ts`, `tests/energy-whip.test.ts`; `src/core/combat.ts` nur Schnittstelle, `aim.ts`, Physikadapter, Kompositionspunkt, einfache Renderbahn.
+**Systeme/Dateien:** `src/core/energyWhip.ts`, `tests/adventure-prototype.test.ts`; `src/core/combat.ts` nur Schnittstelle, `aim.ts`, Physikadapter, Kompositionspunkt, einfache Renderbahn.
 **Tests/Regression:** K/R/A/P, N für treffen/verfehlen, zwischen Ticks kreuzendes Ziel, Wand, Höhenversatz, Rücklauf, Abbruch und Mehrfachtreffer; Frameratevergleich.
 **Abnahme:** Schaden nur bei aktiver durchlaufender Bahn; höchstens ein Treffer pro Ziel und Phase; keine unsichtbare Rundum-Zielwahl; absichtlicher Fehlschlag reproduzierbar.
 **Risiko/Gegenmaßnahme:** Grobe Sektoren oder dünne Strahlen täuschen Präzision vor → Debugbahn und Kollisionsvolumen gemeinsam prüfen, Abtastung nach Bewegung begrenzen.
@@ -467,16 +472,18 @@ Kein menschlicher Spieltermin nötig; die erste verbindliche Gefühlabnahme blei
 
 ### A4 — Peitschenbewegung, Kontaktfeedback und Gate 1
 
-**Status:** geplant. **Voraussetzungen:** A3, eigener Auftrag.
+**Status:** abgeschlossen (technisch; menschliches T1/G1 offen). **Freigabe:** 2.11.2026, gemeinsamer Auftrag bis einschließlich A4.
+**Nachweis:** [Ergebnis A4](../qa/ADVENTURE_A4_RESULT.md).
 **Ziel/Nutzen:** Die funktionierende Attacke wird als eigenständige, befriedigende Peitsche wahrgenommen.
 **Umfang:** Spielerpose, kontrollierte Energieform, Kontaktreaktionen und wenige Sounds; keine neue Attackenregel ohne eigenen dokumentierten Korrekturumfang.
 
-- [ ] Geeignete vorhandene Clips oder begrenzte prozedurale Oberkörperbewegung mit Handslot verbinden.
-- [ ] Animation und sichtbare Spitze an Simulationsphasen koppeln, Vorschwung/Rücklauf unterscheiden.
-- [ ] Fehlschlag, Kontakt und Rücktreffer akustisch/visuell trennen; Gegnerwarnungen priorisieren.
-- [ ] Effekte begrenzen, Pause/Retry/30-Hz-Darstellung prüfen; G1 mit Menschen durchführen und dokumentieren.
+- [x] Geeignete vorhandene Clips oder begrenzte prozedurale Oberkörperbewegung mit Handslot verbinden.
+- [x] Animation und sichtbare Spitze an Simulationsphasen koppeln, Vorschwung/Rücklauf unterscheiden.
+- [x] Fehlschlag, Kontakt und Rücktreffer akustisch/visuell trennen; Gegnerwarnungen priorisieren.
+- [x] Effekte begrenzen, Pause/Retry/30-Hz-Darstellung technisch prüfen.
+- [ ] G1 mit dem Nutzer in Spieltermin T1 durchführen und dokumentieren.
 
-**Systeme/Dateien:** `src/render/kayFighter.ts`, `arenaView.ts`, `src/app/stoneFeedback.ts`; `neu: src/render/energyWhipView.ts`; passende Browser-/Performancefälle.
+**Systeme/Dateien:** `src/render/kayFighter.ts`, `arenaView.ts`, `src/app/stoneFeedback.ts`; `src/render/energyWhipView.ts`; passende Browser-/Performancefälle.
 **Tests/Regression:** K/N sowie A bei gemeinsamem Rig; zehn Retries, stummes Spiel, reduzierte Effekte, sichtbare Bahn gegen tatsächliche Treffer vergleichen.
 **Abnahme:** G1 bestanden; keine Warnungsverdeckung, keine visuell nachlaufenden Treffer; Leistungsbudget eingehalten oder dokumentiert nachgebessert.
 **Risiko/Gegenmaßnahme:** Glanz verdeckt Mechanik → erst Silhouette/Timing/Sound, einzelne optionale Trefferpause separat vergleichen.
@@ -859,6 +866,7 @@ Vision. Ohne gesonderten Auftrag werden sie keine neuen Bulks. Überschreitet ei
 freigegebener Bulk seine hier beschriebene Grenze, den Rest als neuen begrenzten
 Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen.
 
-Der abgeschlossene Implementierungsauftrag umfasst **A0.1 + A0.2 gemeinsam** nach
-dem Zuschnitt in Abschnitt 6. **A1** ist der nächste empfohlene Bulk,
-ohne automatische Folgefreigabe. Die bestehenden Kampfregeln bleiben in A0 unverändert.
+Der aktuelle Implementierungsauftrag reicht ausdrücklich **bis einschließlich A4**.
+Die technische Umsetzung ist abgeschlossen; nächster Schritt ist **Spieltermin T1 / G1**.
+A5.1 wird erst nach positivem Nutzerurteil und passender Folgefreigabe umgesetzt.
+Die früher gemeldeten Arc-/Pulse-Siege betreffen die A0-Basis und ersetzen T1 nicht.

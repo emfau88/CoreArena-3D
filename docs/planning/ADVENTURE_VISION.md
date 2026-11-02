@@ -3,9 +3,10 @@
 Stand: **2. November 2026**. Verbindliche strategische Richtung für Adventure.
 Produktvision und Roadmap sind vom Nutzer grundsätzlich freigegeben; die Struktur
 mit 26 Bulks und sechs Qualitätstoren bleibt erhalten. Die menschliche Abnahme
-wird auf drei Spieltermine gebündelt. Am 2.11.2026 wurde anschließend **A0.1 + A0.2**
-als gemeinsamer Implementierungsauftrag freigegeben. Weitere Kampfmechaniken sind
-damit nicht beauftragt; den jeweiligen Umsetzungsstand führt die Roadmap.
+wird auf drei Spieltermine gebündelt. Am 2.11.2026 wurden zunächst A0.1/A0.2,
+anschließend ausdrücklich **alle Bulks bis einschließlich A4** beauftragt.
+Der Kernprototyp ist technisch umgesetzt; T1/G1 bleibt menschlich offen.
+Den jeweiligen Umsetzungsstand führt die Roadmap.
 Die [Adventure-Roadmap](ADVENTURE_ROADMAP.md) ist die einzige maßgebliche Quelle
 für zukünftige Adventure-Arbeitspakete, Status, Abnahmen und Freigaben.
 

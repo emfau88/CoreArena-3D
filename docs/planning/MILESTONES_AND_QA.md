@@ -21,7 +21,9 @@ Bossdarstellung gehört zu den bestehenden Boss-Abnahmen; Progression bleibt off
 Anschließend wurde **A0.1 + A0.2 als gemeinsames A/B-Vergleichslabor** technisch abgeschlossen,
 mit unveränderten Kampfregeln auf `codex/adventure-combat-prototype`.
 [Umfang, lokale Startlinks und Prüfungen](../qa/ADVENTURE_A0_1_A0_2_RESULT.md).
-Fortschritt und Gate-Status nur in der Adventure-Roadmap pflegen; keine Folgefreigabe für A1.
+Danach wurden A1–A4 ausdrücklich beauftragt und technisch abgeschlossen.
+[Nachweise und Spieltermin T1](../qa/ADVENTURE_A1_A4_RESULT.md); menschliches G1 bleibt offen.
+Fortschritt und Gate-Status führt die Adventure-Roadmap; A5 ist noch nicht beauftragt.
 
 **Arena-Bestand vom 1. November, unverändert:** M0/M1,
 M2.1–M2.4b sind umgesetzt und technisch geprüft.
@@ -83,7 +85,7 @@ Stände zusammen; ihre Ausbaupläne sind getrennt zu lesen:
 
 | Variante | Maßgeblicher Ausbauplan | Erreichter Stand | Nächster offener Umfang |
 |---|---|---|---|
-| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b; A0.1 + A0.2 technisch abgeschlossen, Kampfregeln unverändert | Nächster Umfang: A1, noch nicht beauftragt; drei menschliche Spieltermine |
+| **Adventure / Boss-Action-Adventure — eigenständig** | [Adventure-Roadmap](ADVENTURE_ROADMAP.md) | Steinmission L1.6a–c/L1.5b; A0.1–A4 technisch abgeschlossen; Legacy unverändert | Nächster Schritt: T1/G1; A5 noch nicht beauftragt |
 | **Arena / Teamspiel / CTF / Liga — aktiv** | [Arena-To-do-Liste](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste) | Training, 1v1, 2v2; M2.1–M2.6, Map-Paket, Konfetti und AP1–AP3 technisch geprüft | Karten-/Handyabnahme; als Nächstes M3.1 Classic CTF, gesonderte Freigabe |
 
 Die älteren Stein-/Frost-/Glut-Bosskarten sind PvE-Vorläufer. Frost und Glut sind

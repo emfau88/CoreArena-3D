@@ -1,11 +1,15 @@
 # CORE ARENA 3D Architekturentscheidung
 
-## Adventure-Nachtrag vom 2. November 2026 — A0-Vergleich und weiterer Plan
+## Adventure-Nachtrag vom 2. November 2026 — A0–A4 und weiterer Plan
 
 A0.1 + A0.2 wurden anschließend separat beauftragt. Das isolierte Entwicklungs-/Testlabor
 nutzt frische Instanzen der bestehenden Kampfregeln; weder eine Konstruktor-Injektion
 in `AdventureFight` noch Änderungen an den Kernregeln waren dafür nötig.
-[A0-Nachweis](../qa/ADVENTURE_A0_1_A0_2_RESULT.md). Die weiteren Mechaniken unten bleiben Planung.
+[A0-Nachweis](../qa/ADVENTURE_A0_1_A0_2_RESULT.md). Anschließend wurden A1–A4 beauftragt:
+`AdventurePrototype` komponiert Aim, Dash und Peitsche ausschließlich im dynamisch geladenen Lab.
+Ein optionaler Geschwindigkeitswert am vorhandenen Motor, gefilterter Bewegungsblocker
+und optionale Kamera-/Rig-Präsentation erhalten die bisherigen Defaults. Bosswerte
+und `AdventureFight` bleiben unverändert. [Nachweis A1–A4](../qa/ADVENTURE_A1_A4_RESULT.md).
 
 Die technische Grundlage Three.js/Rapier, numerische Simulation mit 60 Hz und
 Trennung von Eingabe, Regeln und Darstellung bleibt bestehen. Die neue
@@ -20,14 +24,13 @@ Der heutige Code besitzt getrennte App-Einstiege, teilt aber unter anderem
 Rapier-Adapter. Adventure-Neuerungen dürfen daher keine globalen Standardwerte
 oder gemeinsam gecachten Animationen verändern.
 
-Geplanter Weg: Variantenwahl einmalig am Adventure-Einstieg, kleiner
+Umgesetzter Weg bis A4: Variantenwahl einmalig am Adventure-Einstieg, kleiner
 Kompositionspunkt für Bewegung/Waffe/Kamera/Encounter, bisherige Instanzen als
-unveränderte Defaults. `AdventureFight` erhält nur die tatsächlich notwendige
-Injektion; Missionslogik und App werden nicht vollständig dupliziert. Neue
+unveränderte Defaults. `AdventureFight` benötigt bis A4 keine Injektion; Missionslogik und App werden nicht vollständig dupliziert. Neue
 Peitschenregeln verwenden bestehende Schadensereignisse und räumliche Abfragen.
 Simulation bestimmt Schlagbahn und Timing; Rendering bildet diese ab.
 
-Konkrete neue Risiken: aktive Bosscollider sind bisher durchlaufbare Sensoren;
+Im Legacy bleiben aktive Bosscollider durchlaufbare Sensoren;
 ein Bewegungsblocker braucht getrennte Filter und Schutz vor Einklemmung. Dash
 benötigt einen eigenen Simulationszustand und Resetregeln. Nahkampf-Aim und
 Kamera müssen gemeinsame Welt-/Höhenkonventionen benutzen. Ein dauerhafter

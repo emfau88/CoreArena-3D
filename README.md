@@ -7,12 +7,13 @@
   Science-Fantasy-Waffen, faire Bosse und drei kurze Missionen. Maßgeblich sind
   [Produktvision](docs/planning/ADVENTURE_VISION.md) und
   [Adventure-Roadmap mit Bulks und sechs Gates](docs/planning/ADVENTURE_ROADMAP.md).
-  **A0.1 + A0.2 technisch abgeschlossen: Vergleichslabor auf eigenem Entwicklungsbranch.**
-  [Auftrag, lokale Startlinks und Prüfungen](docs/qa/ADVENTURE_A0_1_A0_2_RESULT.md).
+  **A0.1–A4 technisch abgeschlossen: Vergleichslabor, Kampfansicht, Dash und Energiepeitsche.**
+  [Ergebnis und Spieltest T1](docs/qa/ADVENTURE_A1_A4_RESULT.md).
   26 Bulks, sechs Gates und drei gebündelte menschliche Spieltermine bleiben erhalten.
-  Weitere Kampfmechaniken sind noch nicht beauftragt.
+  Menschliches G1 ist offen; A5 und spätere Mechaniken sind noch nicht beauftragt.
   Spielbarer Bestand: Steinmission L1.6a–c und L1.5b technisch abgeschlossen,
-  persönliche Spiel-/Handyabnahme offen; alte Arc/Pulse-/Sprint-Regeln weiterhin aktiv.
+  persönliche Spiel-/Handyabnahme offen; alte Arc/Pulse-/Sprint-Regeln bleiben in Legacy
+  und der regulären Mission aktiv. Neue Regeln nur im ausdrücklich gewählten Entwicklungslabor.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und

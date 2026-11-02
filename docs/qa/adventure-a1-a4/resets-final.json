@@ -1,0 +1,311 @@
+{
+  "results": [
+    {
+      "profile": "legacy",
+      "attempt": 1,
+      "setupMs": 3.199999999254942,
+      "browserReadyMs": 700
+    },
+    {
+      "profile": "legacy",
+      "attempt": 2,
+      "setupMs": 1.900000000372529,
+      "browserReadyMs": 450
+    },
+    {
+      "profile": "legacy",
+      "attempt": 3,
+      "setupMs": 1.199999999254942,
+      "browserReadyMs": 436
+    },
+    {
+      "profile": "legacy",
+      "attempt": 4,
+      "setupMs": 1.700000001117587,
+      "browserReadyMs": 455
+    },
+    {
+      "profile": "legacy",
+      "attempt": 5,
+      "setupMs": 2.299999998882413,
+      "browserReadyMs": 457
+    },
+    {
+      "profile": "legacy",
+      "attempt": 6,
+      "setupMs": 0.900000000372529,
+      "browserReadyMs": 460
+    },
+    {
+      "profile": "legacy",
+      "attempt": 7,
+      "setupMs": 1,
+      "browserReadyMs": 464
+    },
+    {
+      "profile": "legacy",
+      "attempt": 8,
+      "setupMs": 1.400000000372529,
+      "browserReadyMs": 468
+    },
+    {
+      "profile": "legacy",
+      "attempt": 9,
+      "setupMs": 2,
+      "browserReadyMs": 462
+    },
+    {
+      "profile": "legacy",
+      "attempt": 10,
+      "setupMs": 1.700000001117587,
+      "browserReadyMs": 488
+    },
+    {
+      "profile": "prototype",
+      "attempt": 1,
+      "setupMs": 1.8999999985098839,
+      "browserReadyMs": 487
+    },
+    {
+      "profile": "prototype",
+      "attempt": 2,
+      "setupMs": 1.299999998882413,
+      "browserReadyMs": 494
+    },
+    {
+      "profile": "prototype",
+      "attempt": 3,
+      "setupMs": 1.699999999254942,
+      "browserReadyMs": 496
+    },
+    {
+      "profile": "prototype",
+      "attempt": 4,
+      "setupMs": 0.8000000007450581,
+      "browserReadyMs": 500
+    },
+    {
+      "profile": "prototype",
+      "attempt": 5,
+      "setupMs": 1.099999999627471,
+      "browserReadyMs": 519
+    },
+    {
+      "profile": "prototype",
+      "attempt": 6,
+      "setupMs": 1.099999999627471,
+      "browserReadyMs": 517
+    },
+    {
+      "profile": "prototype",
+      "attempt": 7,
+      "setupMs": 1.300000000745058,
+      "browserReadyMs": 504
+    },
+    {
+      "profile": "prototype",
+      "attempt": 8,
+      "setupMs": 2.100000001490116,
+      "browserReadyMs": 529
+    },
+    {
+      "profile": "prototype",
+      "attempt": 9,
+      "setupMs": 1.799999998882413,
+      "browserReadyMs": 546
+    },
+    {
+      "profile": "prototype",
+      "attempt": 10,
+      "setupMs": 1.599999999627471,
+      "browserReadyMs": 574
+    }
+  ],
+  "resources": [
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 340,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "legacy"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    },
+    {
+      "objects": 816,
+      "geometries": 342,
+      "textures": 52,
+      "programs": 37,
+      "audioVoices": 0,
+      "profile": "prototype"
+    }
+  ],
+  "listenerCounts": [
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72
+  ],
+  "beforeGc": [
+    73,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75
+  ],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "logicalCpus": 16,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "input": "mouse-keyboard",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 0.9999999761474712
+    },
+    "camera": "side"
+  },
+  "errors": []
+}
