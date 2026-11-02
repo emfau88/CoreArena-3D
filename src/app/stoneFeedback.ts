@@ -19,6 +19,7 @@ export class StoneFeedback {
   private muted = false;
   private paused = false;
   private voices = 0;
+  private readonly stops = new Set<() => void>();
   private peak = 0;
   private played = 0;
   private hitUntil = 0;
@@ -67,7 +68,13 @@ export class StoneFeedback {
     filter.type = 'lowpass'; filter.frequency.value = cue === 'pulse' ? 2200 : cue === 'arc' ? 1800 : cue === 'hit' ? 1500 : 450;
     noise.connect(filter); filter.connect(gain);
     this.voices++; this.played++;
-    oscillator.onended = () => { oscillator.disconnect(); noise.disconnect(); filter.disconnect(); gain.disconnect(); stereo.disconnect(); this.voices--; };
+    const cleanup = () => {
+      if (!this.stops.delete(stop)) return;
+      oscillator.onended = null;
+      oscillator.disconnect(); noise.disconnect(); filter.disconnect(); gain.disconnect(); stereo.disconnect(); this.voices--;
+    };
+    const stop = () => { oscillator.onended = null; oscillator.stop(); noise.stop(); cleanup(); };
+    this.stops.add(stop); oscillator.onended = cleanup;
     oscillator.start(now); noise.start(now); oscillator.stop(now + duration); noise.stop(now + duration);
   }
   bossHit(damage: number, tick: number): void { this.marker.textContent = `✣ −${damage}`; this.hitUntil = tick + 18; }
@@ -78,7 +85,10 @@ export class StoneFeedback {
     this.hurt.style.opacity = String(Math.max(0, (this.hurtUntil - tick) / 18) * 0.65);
     if (this.analyser) { this.analyser.getFloatTimeDomainData(this.samples); for (const sample of this.samples) this.peak = Math.max(this.peak, Math.abs(sample)); }
   }
-  reset(): void { this.hitUntil = this.hurtUntil = 0; this.marker.hidden = true; this.hurt.style.opacity = '0'; }
-  diagnostics() { return { state: this.context?.state ?? 'locked', muted: this.muted, played: this.played, peak: this.peak }; }
+  reset(stopAudio = false): void {
+    if (stopAudio) for (const stop of this.stops) stop();
+    this.hitUntil = this.hurtUntil = 0; this.marker.hidden = true; this.hurt.style.opacity = '0';
+  }
+  diagnostics() { return { state: this.context?.state ?? 'locked', muted: this.muted, played: this.played, peak: this.peak, voices: this.voices }; }
   dispose(): void { this.abort.abort(); this.button.remove(); this.marker.remove(); this.hurt.remove(); void this.context?.close(); }
 }

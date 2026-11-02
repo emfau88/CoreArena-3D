@@ -3,11 +3,12 @@ import { installDisplayControls } from './app/hud';
 import './style.css';
 import './hud.css';
 import { loadFighterAssets } from './render/kayFighter';
+import { resolveAdventureEntry } from './app/adventureVariant';
 
 const host = document.querySelector<HTMLElement>('#app')!;
 const params = new URLSearchParams(location.search);
-const adventure = params.get('mode') === 'pve' && params.get('adventure') === '1' && (params.get('level') ?? 'stone') === 'stone';
-const game = loadFighterAssets().then(()=>adventure ? import('./app/adventureGame').then(({ startAdventure }) => startAdventure(host))
+const adventure = resolveAdventureEntry(params, import.meta.env.DEV || import.meta.env.MODE === 'test');
+const game = loadFighterAssets().then(()=>adventure ? import('./app/adventureGame').then(({ startAdventure }) => startAdventure(host, adventure))
   : params.get('mode') === 'pve' ? import('./app/pveGame').then(({ startPve }) => startPve(host)) : startGame(host));
 game.then((dispose) => {
   const disposeDisplay = installDisplayControls(host);

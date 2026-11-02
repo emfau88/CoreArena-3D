@@ -62,6 +62,7 @@ export class AdventureFightView {
     }
   }
   guardDiagnostics(){return this.runners.map(r=>r.diagnostics());}
+  resetPresentation():void { this.time=this.exitOpening=0; this.boss.resetPresentation(); }
   update(state:AdventureFightState,camera:THREE.Camera,dt:number,exploration=false):void {
     this.time+=dt;
     this.core.visible=!!state.core&&!state.core.collected;

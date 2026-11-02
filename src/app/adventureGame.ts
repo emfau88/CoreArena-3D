@@ -1,6 +1,6 @@
 import { loadMeleeAssets } from '../render/kayFighter';
 import { STONE_ADVENTURE, STONE_ADVENTURE_COMBAT, ADVENTURE_BOSS, ADVENTURE_BOSS_RULES, ADVENTURE_RUNNERS, STONE_ADVENTURE_PICKUPS, STONE_ADVENTURE_JUMP, stoneRoomAt } from '../arena/stoneAdventure';
-import { AdventureFight } from '../core/adventureFight';
+import { createAdventureVariant, type AdventureEntry } from './adventureVariant';
 import { AdventureFightView } from '../render/adventureFightView';
 import { buildStoneAdventure } from '../render/stoneAdventureView';
 import { loadCourtyardAssets } from '../render/courtyardLook';
@@ -26,8 +26,8 @@ const hints: Record<string, string> = {
 };
 
 /** Small adventure slice: two melee guards, then the existing stone boss. */
-export async function startAdventure(host: HTMLElement): Promise<() => void> {
-  const exploration = new URLSearchParams(location.search).get('explore') === '1';
+export async function startAdventure(host: HTMLElement, entry: AdventureEntry): Promise<() => void> {
+  const exploration = entry.exploration;
   const [courtyardAssets,missionAssets] = await Promise.all([loadCourtyardAssets(),loadMissionAssets(),loadMeleeAssets()]);
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
@@ -36,11 +36,15 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
   catch (error) { world.dispose(); throw error; }
   view.renderer.domElement.setAttribute('aria-label', `Der verwitterte Hof – ${exploration ? 'Erkundung' : 'Adventure'}`);
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
-  const simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
-  const fight = new AdventureFight(), fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
+  let simulation = new Simulation(world, STONE_ADVENTURE.spawn, STONE_ADVENTURE_JUMP);
+  let variant = createAdventureVariant(entry.profile), fight = variant.fight;
+  const fightView = new AdventureFightView(view.scene,courtyardAssets.floor);
   const outpostView=new OutpostView(view.scene,missionAssets.drone);
   const missionView = new AdventureMissionView(view.scene,missionAssets);
-  const {combat,pickups}=fight, clock = new FixedClock();
+  let {combat,pickups}=fight;
+  const clock = new FixedClock();
+  let labModule: typeof import('./adventureLab') | undefined;
+  let lab: ReturnType<typeof import('./adventureLab')['installAdventureLab']> | undefined;
   const abort = new AbortController(), options = { signal: abort.signal };
   let current = simulation.snapshot(), previous = current, aim: AimSolution | null = null;
   let paused = false, menuPaused = false, overview = false, lastTime = performance.now(), frameId = 0, lastHud = 0;
@@ -117,12 +121,27 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     view.resize(); view.camera.snap(current.position); view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   };
   const restart = () => {
+    if (lab) { restartLab(true); return; }
     fight.reset();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
     announce('Lieferung angekommen. Außenposten antwortet nicht. Bring die Anlage wieder zum Laufen.',540);
   };
   const retry = () => {
+    if (lab) { restartLab(true); return; }
     if(!fight.checkpoint || fight.life.snapshot().outcome!=='defeat') restart();
     else placePlayer(fight.retry());
+  };
+  const restartLab = (running: boolean) => {
+    const started = performance.now(), selection = lab!.selection();
+    variant = createAdventureVariant(selection.profile); fight = variant.fight;
+    ({combat,pickups} = fight);
+    labModule!.prepareBossAttempt(fight, world, selection.weapon);
+    // Simulation.reset intentionally preserves regular-mission tick/facing. A lab attempt gets a fresh clock/state.
+    simulation = new Simulation(world, labModule!.LAB_SPAWN, STONE_ADVENTURE_JUMP);
+    feedback.reset(true); view.resetPresentation(); fightView.resetPresentation();
+    view.camera.trackPlayer(labModule!.LAB_SPAWN, 1.2, 'side'); bossIntroduced = true;
+    placePlayer(labModule!.LAB_SPAWN);
+    lab!.begin({ player: current, fight: fight.snapshot(), weapons: combat.snapshot(), pickups: pickups.snapshot(),
+      camera: view.camera.mode, audioVoices: feedback.diagnostics().voices }, performance.now() - started, clock.droppedTicks, running);
   };
   window.addEventListener('blur', () => setPaused(true), options);
   window.addEventListener('focus', () => setPaused(menuPaused || document.hidden), options);
@@ -141,7 +160,9 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     const elapsed = Math.max(0, (now-lastTime)/1000); lastTime = now;
     let alpha = 1;
     if (!paused) alpha = clock.advance(elapsed, () => {
+      if (lab && !lab.running) return;
       if(fight.life.snapshot().outcome==='defeat' || fight.completed) return;
+      const stepStart = lab ? performance.now() : 0;
       const before=fight.snapshot();
       previous = current; current = simulation.step(input.command(view.camera.basis()));
       if (exploration && current.position.y < -6) { current = simulation.reset(); previous = current; view.camera.snap(current.position); }
@@ -195,6 +216,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       if(before.pve.outcome==='running' && after.pve.outcome!=='running' || after.completed && !before.completed) {
         input.clear(); combat.clearEffects(); aim=null; previous=current;
       }
+      lab?.step(before.pve, after.pve, current, attack.attacked, performance.now() - stepStart);
     });
     const weapons = combat.snapshot();
     const state=fight.snapshot(), {hp,armor}=state.pve;
@@ -239,6 +261,7 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
         el('result-detail').textContent+=' Wartungsreserve geborgen: 75 Rüstung am Ruhepunkt.';
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';
       el('pve-next').hidden=!state.completed;
+      if (lab) { el('pve-again').textContent='Bossversuch neu starten'; el('pve-next').hidden=true; }
       if (input.touchEnabled) el('camera-toggle').textContent = `Ansicht: ${{side:'seitlich',straight:'gerade',isometric:'isometrisch'}[view.camera.mode]}`;
       el('campaign-story').hidden = exploration || paused || state.completed || state.pve.outcome==='defeat' || current.tick>=messageUntil;
       el('hp-value').textContent = String(hp); el('armor-value').textContent = String(armor);
@@ -255,10 +278,17 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
     outpostView.update(state);
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
     view.draw(previous,current,alpha,paused ? 0 : Math.min(elapsed,.05),aim,weapons.lastArc,null,life,weapons,pickups.snapshot());
+    if (lab && !paused) {
+      let objects = 0; view.scene.traverse(() => objects++);
+      lab.frame(elapsed * 1000, clock.droppedTicks, { objects, geometries: view.renderer.info.memory.geometries,
+        textures: view.renderer.info.memory.textures, programs: view.renderer.info.programs?.length ?? 0,
+        audioVoices: feedback.diagnostics().voices });
+    }
     frameId = requestAnimationFrame(frame);
   }
   if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true, value: Object.freeze({
-    read: () => ({ mode: 'adventure', level: 'stone', snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
+    read: () => ({ mode: 'adventure', level: 'stone', combatProfile: variant.id, combatRules: variant.rules,
+      lab: lab?.read() ?? null, snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
       checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
       mission:{consoleActive:fight.consoleActive,relayActive:fight.relayActive,reserveRecovered:fight.reserveRecovered,entryClosed:fight.snapshot().entryClosed,
@@ -292,10 +322,22 @@ export async function startAdventure(host: HTMLElement): Promise<() => void> {
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },
   }) });
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test') && entry.lab) {
+    labModule = await import('./adventureLab');
+    lab = labModule.installAdventureLab(host, entry.profile, restart, () => {
+      const gl = view.renderer.getContext(), ext = gl.getExtension('WEBGL_debug_renderer_info');
+      return { userAgent: navigator.userAgent, logicalCpus: navigator.hardwareConcurrency,
+        gpu: ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : 'unavailable',
+        input: input.touchEnabled ? 'touch' : 'mouse-keyboard', viewport: { width: innerWidth, height: innerHeight,
+          dpr: view.renderer.getPixelRatio() }, camera: view.camera.mode };
+    });
+    el('pve-restart').textContent = 'Bossversuch neu starten';
+    restartLab(false);
+  } else restart();
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
-  restart(); frameId = requestAnimationFrame(frame);
+  frameId = requestAnimationFrame(frame);
   return () => {
-    cancelAnimationFrame(frameId); abort.abort(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
+    cancelAnimationFrame(frameId); abort.abort(); lab?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud,#pause,#match-result').forEach(node => node.remove()); Reflect.deleteProperty(window,'__coreArena');
     delete host.dataset.adventure;
   };

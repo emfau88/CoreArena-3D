@@ -150,6 +150,7 @@ export class MonsterView {
     }
     scene.add(ground, this.root, this.warning, this.wave, this.burst, this.shards, this.attackFan);
   }
+  resetPresentation(): void { this.flash=0; this.deathTime=0; this.previousHp=this.rules.bossHp; }
   update(state: PveSnapshot, dt: number): void {
     this.root.position.set(state.center.x, state.center.y - this.monster.center.y, state.center.z);
     const turn = Math.atan2(Math.sin(state.facing - this.root.rotation.y), Math.cos(state.facing - this.root.rotation.y));

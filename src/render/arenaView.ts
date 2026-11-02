@@ -41,6 +41,11 @@ export class ArenaView {
   fighterDiagnostics(){return this.fighter.diagnostics();}
   pickupDiagnostics(){return this.combat.diagnostics();}
   arcDiagnostics(){return this.combat.arcDiagnostics();}
+  /** Opt-in lab reset; existing Arena/mission restart behavior is unchanged. */
+  resetPresentation() {
+    this.fighter.resetPresentation(); this.lastAmmo=0;
+    this.lastArcTick=this.lastRailTick=this.lastArenaShot=-1;
+  }
 
   constructor(host: HTMLElement, arena: ArenaDefinition, options: { training?: boolean; pickups?: readonly PickupDefinition[]; shadowSpan?: number; playerColor?: number; playerLabel?: string;
     build?: (scene: THREE.Scene, arena: ArenaDefinition) => void | ((dt: number) => void); keepDeathPose?: boolean; arenaPads?: boolean; arenaRole?:ArenaRole } = {}) {

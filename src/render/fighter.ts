@@ -30,6 +30,7 @@ export function createFighter(color = 0xc7c9c3, arenaRole?:ArenaRole) {
   return {
     actor,
     deathVisible:false,
+    resetPresentation: () => { phase=0; },
     diagnostics:()=>({model:'primitive'}),
     animate(speed: number, dt: number, _motion?:FighterMotion) {
       phase += speed * dt * 2.2;

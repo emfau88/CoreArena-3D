@@ -108,6 +108,14 @@ export function createKayFighter(color:number, arenaRole?:ArenaRole) {
   return {
     actor,
     get deathVisible(){return !alive && deadAge<1.5;},
+    resetPresentation() {
+      mixer.stopAllAction(); mixer.time=0;
+      lowerState='idle'; upperState='arc'; activeLower=lower.idle; activeUpper=aiming.arc;
+      activeLower.reset().setEffectiveWeight(1).play(); activeUpper.reset().setEffectiveWeight(1).play();
+      wasGrounded=true; alive=true; previousHp=100;
+      deadAge=recoil=landing=upperAge=legYaw=0;
+      visual.scale.setScalar(scale); visual.position.z=0;
+    },
     animate(speed:number,dt:number,motion?:FighterMotion) {
       // The mixer skips writes for constant tracks (Walking_A hips). Restore its
       // last unmodified pose so waist offsets never accumulate, even while paused.
