@@ -2,13 +2,16 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import type { ArenaDefinition } from '../arena/arena';
+import type { ArenaDefinition, ArenaBox } from '../arena/arena';
 import { STONE_CONSOLES } from '../arena/stoneDressing';
 import { buildCourtyardDressing, loadDressingAssets, type DressingAssets } from './courtyardDressing';
 
 const assetRoot = `${import.meta.env.BASE_URL}assets/courtyard/`;
 interface Surface { map: THREE.Texture; normalMap: THREE.Texture; roughnessMap: THREE.Texture }
 export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[]; dressing:DressingAssets }
+export interface CourtyardStyle {
+  material(shape:ArenaBox,part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial):THREE.MeshStandardMaterial;
+}
 
 /** Local assets loaded only by the adventure; source/licence records live beside each pack. */
 export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
@@ -52,7 +55,7 @@ export async function loadCourtyardAssets(): Promise<CourtyardAssets> {
 }
 
 /** Shared materials for all three courts; arena boxes remain the collision authority. */
-export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, assets: CourtyardAssets): (dt: number) => void {
+export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, assets: CourtyardAssets, style?:CourtyardStyle): (dt: number) => void {
   const floor = new THREE.MeshStandardMaterial({ ...assets.floor, color: 0xc7cbd2, roughness: .95, normalScale: new THREE.Vector2(.55,.55) });
   const wall = new THREE.MeshStandardMaterial({ ...assets.wall, color: 0xe6e7df, roughness: 1, normalScale: new THREE.Vector2(.55,.55),
     emissiveMap: assets.wall.map, emissive: 0xb8bec2, emissiveIntensity: .45 });
@@ -62,6 +65,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   const earth = new THREE.MeshStandardMaterial({ ...assets.wall, color: 0x999b73, roughness: 1, normalScale: new THREE.Vector2(.3,.3),
     emissiveMap: assets.wall.map, emissive: 0x7a8067, emissiveIntensity: .2 });
   const batches = new Map<THREE.Material, THREE.BufferGeometry[]>();
+  const floorMaterials=new Set<THREE.Material>([floor]);
   const box = (x:number,y:number,z:number,w:number,h:number,d:number,material:THREE.Material,bevel=.035,metres=2) => {
     const geometry = bevel ? new RoundedBoxGeometry(w,h,d,1,Math.min(bevel,h/3,w/3,d/3)) : new THREE.BoxGeometry(w,h,d);
     const pos=geometry.getAttribute('position'), normal=geometry.getAttribute('normal'), uv=geometry.getAttribute('uv');
@@ -79,24 +83,26 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     if(STONE_CONSOLES.some(station=>station.id===shape.id)) continue;
     if(shape.id.startsWith('outpost-')) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
+    const surface=(part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial)=>style?.material(shape,part,original)??original;
     if(shape.material==='floor') {
       // Physics floors overlap at doorways. Clip only the visible overlap; world
       // UVs keep the paving continuous through every court, link and exit.
       const exit=shape.id==='floor-exit',link=shape.id.startsWith('floor-link-');
-      box(c.x,c.y,c.z-(exit ? .5 : 0),s.x,s.y,exit ? s.z-1 : link ? 4 : s.z,floor,0,4);continue;
+      const floorMaterial=surface('floor',floor);floorMaterials.add(floorMaterial);
+      box(c.x,c.y,c.z-(exit ? .5 : 0),s.x,s.y,exit ? s.z-1 : link ? 4 : s.z,floorMaterial,0,4);continue;
     }
-    box(c.x,c.y-.055,c.z,s.x,s.y-.11,s.z,wall);
+    box(c.x,c.y-.055,c.z,s.x,s.y-.11,s.z,surface('wall',wall));
     // A grounded darker foot and pale stone cap make the actual height readable.
-    box(c.x,.055,c.z,s.x+.035,.11,s.z+.035,base,.015);
+    box(c.x,.055,c.z,s.x+.035,.11,s.z+.035,surface('base',base),.015);
     if(Math.min(s.x,s.z)>.5) {
       // One continuous cap, including every corner; no crossing trim strips.
-      box(c.x,top-.055,c.z,s.x,.11,s.z,cap,.025,3);
+      box(c.x,top-.055,c.z,s.x,.11,s.z,surface('cap',cap),.025,3);
     } else {
       const alongX=s.x>s.z,length=alongX?s.x:s.z,count=Math.ceil(length/1.55),step=length/count;
       for(let i=0;i<count;i++) {
         const offset=-length/2+(i+.5)*step;
         box(c.x+(alongX?offset:0),top-.065,c.z+(alongX?0:offset),
-          alongX?step-.025:s.x+.055,.13,alongX?s.z+.055:step-.025,cap,.035,3);
+          alongX?step-.025:s.x+.055,.13,alongX?s.z+.055:step-.025,surface('cap',cap),.035,3);
       }
     }
   }
@@ -109,7 +115,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   }
   for(const [material,geometries] of batches) {
     const geometry=mergeGeometries(geometries),mesh=new THREE.Mesh(geometry,material);
-    geometries.forEach(g=>g.dispose());mesh.castShadow=material!==floor && material!==earth;mesh.receiveShadow=true;
+    geometries.forEach(g=>g.dispose());mesh.castShadow=!floorMaterials.has(material) && material!==earth;mesh.receiveShadow=true;
     mesh.name='courtyard-masonry';scene.add(mesh);
   }
   const place = (source:THREE.Mesh,x:number,y:number,z:number,scale:number,turn:number) => {

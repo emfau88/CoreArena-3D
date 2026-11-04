@@ -2,6 +2,8 @@ node_modules/
 dist/
 dist-test/
 dist-preview/
+dist-environment-test/
+dist-reference-baseline/
 test-results/
 playwright-report/
 .env

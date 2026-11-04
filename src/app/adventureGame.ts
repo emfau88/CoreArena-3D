@@ -30,10 +30,16 @@ const hints: Record<string, string> = {
 export async function startAdventure(host: HTMLElement, entry: AdventureEntry): Promise<() => void> {
   const exploration = entry.exploration;
   const [courtyardAssets,missionAssets] = await Promise.all([loadCourtyardAssets(),loadMissionAssets(),loadMeleeAssets()]);
+  const environment=import.meta.env.MODE==='environment-test' && entry.environment
+    ?await (await import('../experiments/adventureEnvironment/environmentTest')).createEnvironmentTest(host,entry.environment,courtyardAssets):undefined;
+  const simulationTimes:number[]=[];
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
   try { view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
-    build: (scene,arena) => buildStoneAdventure(scene,arena,courtyardAssets), shadowSpan: 58 }); }
+    build: (scene,arena) => {
+      const animate=buildStoneAdventure(scene,arena,courtyardAssets,environment?.style);
+      environment?.build(scene);return animate;
+    }, shadowSpan: 58 }); }
   catch (error) { world.dispose(); throw error; }
   view.renderer.domElement.setAttribute('aria-label', `Der verwitterte Hof – ${exploration ? 'Erkundung' : 'Adventure'}`);
   view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side'); view.resize();
@@ -200,7 +206,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     if (!paused) alpha = clock.advance(elapsed, () => {
       if (lab && !lab.running) return;
       if(fight.life.snapshot().outcome==='defeat' || fight.completed) return;
-      const stepStart = lab ? performance.now() : 0;
+      const stepStart = lab || import.meta.env.MODE==='environment-test' ? performance.now() : 0;
       const before=fight.snapshot();
       const ray = input.pointer.active ? view.pointerRay(input.pointer.x, input.pointer.y) : null;
       previous = current;
@@ -262,6 +268,9 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       }
       lab?.step(before.pve, after.pve, current, attack.attacked, performance.now() - stepStart);
       lab?.observe(prototype?.snapshot()??null);
+      if(import.meta.env.MODE==='environment-test'){
+        simulationTimes.push(performance.now()-stepStart);if(simulationTimes.length>600)simulationTimes.shift();
+      }
     });
     const weapons = combat.snapshot();
     const state=fight.snapshot(), {hp,armor}=state.pve;
@@ -329,6 +338,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     if(prototype?.practice)view.scene.getObjectByName('adventure-dormant')!.visible=false;
     missionView.update(state,paused?0:Math.min(elapsed,.05));
     outpostView.update(state);
+    environment?.update(state,paused?0:Math.min(elapsed,.05));
     feedback.draw(current.tick, view.projectedPosition(state.pve.center));
     if(prototype)view.camera.combat(true,prototype.practice||!state.bossActive?null:state.pve.center);
     if(prototype)for(const item of STONE_ADVENTURE_PICKUPS)if(item.kind==='pulse'||item.kind==='ammo')view.scene.getObjectByName(`pickup-${item.id}`)!.visible=false;
@@ -344,8 +354,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     }
     frameId = requestAnimationFrame(frame);
   }
-  if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true, value: Object.freeze({
-    read: () => ({ mode: 'adventure', level: 'stone', combatProfile: variant.id, combatRules: variant.rules,
+  const readDiagnostics=() => ({ mode: 'adventure', level: 'stone', combatProfile: variant.id, combatRules: variant.rules,
       lab: lab?.read() ?? null, snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       prototype:prototype?{...prototype.snapshot(),targetScreens:prototype.snapshot().targets.map(t=>view.projectedPosition({...t.center,y:t.center.y-1.1}))}:null,
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
@@ -356,7 +365,18 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       monsterScreen:view.projectedPosition({...fight.life.snapshot().center,y:.95}),
       paused, overview, camera: view.camera.mode, section: stoneRoomAt(current.position)?.id,whipVisual:whipView?.diagnostics()??null,
       playerScreen: view.projectedPosition(current.position), feedback: feedback.diagnostics(),fighter:view.fighterDiagnostics(),guards:fightView.guardDiagnostics(),pickupVisuals:view.pickupDiagnostics(),arcVisual:view.arcDiagnostics(),
-      viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls }),
+      viewport: { width: innerWidth, height: innerHeight, dpr: view.renderer.getPixelRatio(), viewHeight: view.camera.camera.top-view.camera.camera.bottom }, renderCalls: view.renderer.info.render.calls,
+      ...(import.meta.env.MODE==='environment-test'?{
+        environment:environment?.diagnostics()??null,
+        renderResources:{...view.renderer.info.memory,triangles:view.renderer.info.render.triangles,objects:(()=>{let n=0;view.scene.traverse(()=>n++);return n;})()},
+        simulationTimes:[...simulationTimes],
+      }:{}),
+    });
+  if(import.meta.env.MODE==='environment-test')Object.defineProperty(window,'__coreArena',{
+    configurable:true,value:Object.freeze({read:readDiagnostics}),
+  });
+  if (import.meta.env.MODE === 'test') Object.defineProperty(window, '__coreArena', { configurable: true, value: Object.freeze({
+    read:readDiagnostics,
     // Fixed documentation cameras only; no player/health/weapon mutation.
     combatView:(mode:'side'|'straight'|'isometric')=>view.captureCombat(mode),
     guardView:(index=0)=>{
@@ -382,7 +402,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },
   }) });
-  if ((import.meta.env.DEV || import.meta.env.MODE === 'test' || import.meta.env.MODE === 'adventure-preview') && (entry.lab||entry.profile==='prototype')) {
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test' || import.meta.env.MODE === 'adventure-preview' || import.meta.env.MODE==='environment-test') && (entry.lab||entry.profile==='prototype')) {
     prototypeModule=await import('./adventurePrototype');
     const {EnergyWhipView}=await import('../render/energyWhipView');
     whipView=new EnergyWhipView(view.scene,prototypeModule.PRACTICE_TARGETS);
@@ -402,7 +422,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
   frameId = requestAnimationFrame(frame);
   return () => {
-    cancelAnimationFrame(frameId); abort.abort(); lab?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
+    cancelAnimationFrame(frameId); abort.abort(); lab?.dispose(); environment?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud,#pause,#match-result').forEach(node => node.remove()); Reflect.deleteProperty(window,'__coreArena');
     delete host.dataset.adventure;
   };

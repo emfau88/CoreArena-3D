@@ -8,6 +8,9 @@
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 8740 --strictPort",
+    "dev:environment-test": "vite --mode environment-test --host 127.0.0.1 --port 8750 --strictPort",
+    "build:environment-test": "npm run typecheck && vite build --mode environment-test --outDir dist-environment-test",
+    "preview:environment-test": "vite preview --mode environment-test --outDir dist-environment-test --host 127.0.0.1 --port 8751 --strictPort",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && vite build",
     "build:test": "npm run typecheck && vite build --mode test --outDir dist-test",
