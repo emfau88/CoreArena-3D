@@ -12,9 +12,9 @@ const build = { commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: '
 export default defineConfig(({mode})=>({
   base: mode==='adventure-preview'?'/CoreArena-3D/adventure-preview/':'/CoreArena-3D/',
   define: { __ADVENTURE_BUILD__: JSON.stringify(build) },
-  plugins: mode==='adventure-preview'?[{
-    name:'adventure-preview-version',
-    generateBundle(){this.emitFile({type:'asset',fileName:'preview-version.json',source:JSON.stringify(build,null,2)+'\n'});},
+  plugins: mode==='adventure-preview'||mode==='environment-test'?[{
+    name:'adventure-build-version',
+    generateBundle(){this.emitFile({type:'asset',fileName:mode==='environment-test'?'environment-version.json':'preview-version.json',source:JSON.stringify(build,null,2)+'\n'});},
   }]:[],
   build: { target: 'es2022' },
 }));

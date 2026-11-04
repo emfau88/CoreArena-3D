@@ -50,16 +50,12 @@ export function createOutpostEnvironment(assets:CourtyardAssets) {
   const material=(color:number,roughness=.9,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness});
   const stone=material(0x929c8b),pale=material(0xc8c8ac),iron=material(0x354e48,.72,.3),
     edge=material(0x687e71,.8,.2),brass=material(0xaa9060,.75,.25),earth=material(0x34483e);
-  stone.map=assets.wall.map;stone.normalMap=assets.wall.normalMap;stone.normalScale.setScalar(.3);
-  pale.map=assets.floor.map;pale.normalMap=assets.floor.normalMap;pale.normalScale.setScalar(.22);
+  stone.map=assets.wall.map;pale.map=assets.floor.map;
   const floor=new THREE.MeshStandardMaterial({map:loadingFloor(assets.floor.map.image as CanvasImageSource),normalMap:assets.floor.normalMap,
     normalScale:new THREE.Vector2(.22,.22),roughness:.95});
-  const style:CourtyardStyle={material(shape,part,original){
-    if(shape.id==='floor-entry')return floor!;
-    if(!shape.id.startsWith('entry-')&&!shape.id.startsWith('wall-joint-'))return original;
-    if(shape.center.z<16||shape.center.z>38.5||Math.abs(shape.center.x)>16.5)return original;
-    return part==='cap'?pale:part==='base'?iron:stone;
-  }};
+  // Keep the original wall batches and shadow passes shared across all courts.
+  // The floor is the only existing surface replaced by the experiment.
+  const style:CourtyardStyle={material:(shape,_part,original)=>shape.id==='floor-entry'?floor:original};
 
   function build(scene:THREE.Scene) {
     scene.add(group);
@@ -145,14 +141,28 @@ export function createOutpostEnvironment(assets:CourtyardAssets) {
       box(x!,-10.8,z!,w!,2.4,d!,edge);box(x!,-9.56,z!,w!+.1,.08,d!+.1,pale);
       for(const sign of [-1,1])box(x!+sign*w!*.3,-10.8,z!,.14,2.45,d!+.03,iron);
     }
+    // The distant architecture has fixed lighting. Bake its broad face shading into
+    // vertices, then batch by texture instead of colour: three cheap opaque draws.
+    const texturedBatches=new Map<THREE.Texture|null,THREE.BufferGeometry[]>();
+    const sun=new THREE.Vector3(-20,35,18).normalize();
     for(const [m,parts] of batches){
-      // Background architecture does not need the fighting area's per-pixel PBR and shadows.
       const source=m as THREE.MeshStandardMaterial;
-      const shade=new THREE.MeshLambertMaterial({color:source.color,map:source.map});
+      for(const part of parts){
+        const normal=part.getAttribute('normal'),colors=new Float32Array(normal.count*3);
+        for(let i=0;i<normal.count;i++){
+          const light=.9+.65*Math.max(0,normal.getX(i)*sun.x+normal.getY(i)*sun.y+normal.getZ(i)*sun.z);
+          colors[i*3]=source.color.r*light;colors[i*3+1]=source.color.g*light;colors[i*3+2]=source.color.b*light;
+        }
+        part.setAttribute('color',new THREE.BufferAttribute(colors,3));
+      }
+      const list=texturedBatches.get(source.map)??[];list.push(...parts);texturedBatches.set(source.map,list);
+    }
+    for(const [map,parts] of texturedBatches){
+      const shade=new THREE.MeshBasicMaterial({vertexColors:true,map});
       const mesh=new THREE.Mesh(mergeGeometries(parts),shade);parts.forEach(g=>g.dispose());
       mesh.name='environment-static';mesh.receiveShadow=false;mesh.castShadow=false;group.add(mesh);
     }
-    edge.dispose();brass.dispose();earth.dispose();
+    stone.dispose();pale.dispose();edge.dispose();brass.dispose();earth.dispose();
     // Matching dark-green, low-detail growth in the lower yard. Shared foliage assets.
     const placements=[[-20,18,.8],[-21,29,.9],[-23,41,1],[-12,48,.8],[13,45,.9],[22,36,1],[21,23,.8]];
     for(const part of assets.dressing.plants.Blackberry_Bush_1b){

@@ -1,18 +1,20 @@
 import {preview} from 'vite';
 import {chromium,expect,type Page} from '@playwright/test';
 import assert from 'node:assert/strict';
-import {mkdirSync,readdirSync,writeFileSync} from 'node:fs';
+import {mkdirSync,readdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {walkT2,defeatT2,type T2State} from '../../tests/e2e/adventureT2Controls';
 
 const journeyOnly=process.argv.includes('--journey-only');
 const performanceOnly=process.argv.includes('--performance-only');
+const runs=process.argv.includes('--quick')?1:3;
 const output='test-results/adventure-environment-test/'+(journeyOnly?'journey':performanceOnly?'paired-performance':'verification');mkdirSync(output,{recursive:true});
 type State=T2State&{renderCalls:number;environment:{variant:string;stage?:string;animationTime?:number;rotors?:number[]};
   renderResources:{geometries:number;textures:number;objects:number;triangles:number};simulationTimes:number[]};
 const read=(page:Page):Promise<State>=>page.evaluate(()=>(window as unknown as {__coreArena:{read():State}}).__coreArena.read());
 const query='?mode=pve&level=stone&adventure=1&combat=prototype';
 let browser=await chromium.launch({channel:'chrome',headless:true});
-const results:Record<string,unknown>={};
+const versionFile='dist-environment-test/environment-version.json';
+const results:Record<string,unknown>={build:JSON.parse(readFileSync(versionFile,'utf8')),startedAt:new Date().toISOString(),runs,journeyOnly,performanceOnly};
 let server:Awaited<ReturnType<typeof preview>>|undefined;
 const save=()=>writeFileSync(output+'/results.json',JSON.stringify(results,null,2));
 async function start(mode:string,dir:string){
@@ -51,7 +53,7 @@ try{
   if(!journeyOnly){
   // Each observation gets a fresh browser/GPU context. Reverse the middle pair
   // to expose order effects; do not let earlier build guards accumulate contexts.
-  for(let run=0;run<3;run++)for(const variant of run===1?['outpost-test','reference']:['reference','outpost-test']){
+  for(let run=0;run<runs;run++)for(const variant of run===1?['outpost-test','reference']:['reference','outpost-test']){
     await browser.close();browser=await chromium.launch({channel:'chrome',headless:true});
     const context=await browser.newContext({viewport:{width:1920,height:1080},deviceScaleFactor:1});
     await context.addInitScript('window.__name = value => value');
@@ -63,7 +65,7 @@ try{
     if(run===0)await page.screenshot({path:`${output}/${variant}-arrival.jpg`,quality:85});
     await walkT2(page,0,27);await defeatT2(page,0);await walkT2(page,0,27);
     const court=await sample(page);assert.equal((await read(page)).camera,'side');
-    if(run===0){
+    if(run===0&&!performanceOnly){
       await page.screenshot({path:`${output}/${variant}-court.jpg`,quality:85});
       for(const [name,x,z] of [['back',-12,27],['front',12,27],['exit',0,17]] as const){
         await walkT2(page,0,27);await walkT2(page,x,z);await page.waitForTimeout(250);
@@ -73,11 +75,11 @@ try{
     const warmStart=Date.now();await ready(page,base+query+'&environment='+variant);const warmReadyMs=Date.now()-warmStart;
     assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);
     if(variant==='reference')assert.ok(!arrival.network.some(r=>r.url.includes('outpostEnvironment-')));
-    perf.push({variant,run,coldReadyMs,warmReadyMs,arrival,court});await context.close();
+    perf.push({variant,run,coldReadyMs,warmReadyMs,arrival,court});results.performance=perf;save();await context.close();
     console.log(variant,run,'p95',arrival.p95,court.p95,'calls',arrival.calls,court.calls);
   }
   results.performance=perf;save();
-  for(let run=0;run<3;run++){
+  for(let run=0;run<runs;run++){
     const a=perf.find(p=>p.run===run&&p.variant==='reference')!,b=perf.find(p=>p.run===run&&p.variant==='outpost-test')!;
     for(const point of ['arrival','court'] as const){assert.ok(b[point].p95<=20);assert.ok(b[point].p99<=33);
       assert.ok(b[point].p95-a[point].p95<=2,`${point} run ${run}: B p95 ${b[point].p95} - A ${a[point].p95} exceeds 2 ms`);assert.ok(b[point].simP95<=4);assert.ok(b[point].calls-a[point].calls<=20);}
