@@ -105,7 +105,10 @@ try{
   await page.locator('#pve-again').click();const retry=await read(page);
   assert.equal(retry.pve.armor,75);assert.equal(retry.environment.stage,'standby');assert.ok(retry.enemies.every(e=>e.hp===0));
   await walkT2(page,0,-21);const won=await defeatT2(page,'boss',false,'mixed');
-  const core=won.result.core!.position;await walkT2(page,core.x,core.z);await walkT2(page,0,core.z);await walkT2(page,0,-39);await page.keyboard.press('KeyE');
+  const core=won.result.core!.position;await walkT2(page,core.x,core.z);
+  await expect.poll(async()=>(await read(page)).core?.collected).toBe(true);
+  // x=0 is at the edge of the 3.1 m interaction radius; stand safely within it.
+  await walkT2(page,0,core.z);await walkT2(page,-1,-39);await page.keyboard.press('KeyE');
   await expect.poll(async()=>(await read(page)).environment.stage).toBe('online');
   await walkT2(page,0,33);await page.screenshot({path:output+'/online-return.jpg',quality:85});
   await walkT2(page,0,-39);await page.keyboard.down('KeyD');
@@ -143,5 +146,10 @@ try{
   }
   results.touch=touch;save();console.log('Environment verification passed');
   }
-}catch(error){results.failure=String(error);save();throw error;}
+}catch(error){
+  results.failure=String(error);
+  const failedPage=browser.contexts().flatMap(c=>c.pages()).find(p=>p.url().includes('/CoreArena-3D/'));
+  if(failedPage){results.failureState=await read(failedPage).catch(()=>null);await failedPage.screenshot({path:output+'/failure.jpg',quality:85}).catch(()=>undefined);}
+  save();throw error;
+}
 finally{await browser.close();await stop();}
