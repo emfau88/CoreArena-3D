@@ -10,7 +10,7 @@ const assetRoot = `${import.meta.env.BASE_URL}assets/courtyard/`;
 interface Surface { map: THREE.Texture; normalMap: THREE.Texture; roughnessMap: THREE.Texture }
 export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[]; dressing:DressingAssets }
 export interface CourtyardStyle {
-  material(shape:ArenaBox,part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial):THREE.MeshStandardMaterial;
+  material(shape:ArenaBox,part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial):THREE.Material;
 }
 
 /** Local assets loaded only by the adventure; source/licence records live beside each pack. */

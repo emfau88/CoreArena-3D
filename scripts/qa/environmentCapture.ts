@@ -18,9 +18,13 @@ try{
     rows.push({variant,arrival:await readT2(page)});
     if(process.argv.includes('--walk')){
       await walkT2(page,0,27);await defeatT2(page,0);
+      // Clear the second guard as well so ranged knockback cannot move the actor
+      // during the comparison at the connecting doorway.
+      await walkT2(page,0,7);await defeatT2(page,1);await walkT2(page,0,27);
       for(const [name,x,z] of [['centre',0,27],['back',-12,27],['front',12,27],['exit',0,17]] as const){
         await walkT2(page,0,27);await walkT2(page,x,z);await page.waitForTimeout(300);
         await page.screenshot({path:`${output}/${variant}-${name}.jpg`,quality:85});
+        rows.push({variant,point:name,state:await readT2(page)});
       }
     }
     rows.push({variant,errors});await context.close();

@@ -51,8 +51,8 @@ export function createOutpostEnvironment(assets:CourtyardAssets) {
   const stone=material(0x929c8b),pale=material(0xc8c8ac),iron=material(0x354e48,.72,.3),
     edge=material(0x687e71,.8,.2),brass=material(0xaa9060,.75,.25),earth=material(0x34483e);
   stone.map=assets.wall.map;pale.map=assets.floor.map;
-  const floor=new THREE.MeshStandardMaterial({map:loadingFloor(assets.floor.map.image as CanvasImageSource),normalMap:assets.floor.normalMap,
-    normalScale:new THREE.Vector2(.22,.22),roughness:.95});
+  // A broad matte floor needs diffuse light and actor shadows, not per-pixel PBR.
+  const floor=new THREE.MeshLambertMaterial({map:loadingFloor(assets.floor.map.image as CanvasImageSource)});
   // Keep the original wall batches and shadow passes shared across all courts.
   // The floor is the only existing surface replaced by the experiment.
   const style:CourtyardStyle={material:(shape,_part,original)=>shape.id==='floor-entry'?floor:original};
