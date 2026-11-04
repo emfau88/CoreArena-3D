@@ -1,0 +1,264 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\madde\\.codex\\worktrees\\adventure-environment-test\\CoreArena 3D\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/adventure-t2.spec.ts",
+      "tests/e2e/arena-ap2.spec.ts",
+      "--project=chrome-1366",
+      "--grep",
+      "Legacy preserves|AP2 desktop",
+      "--output=test-results/environment-regression"
+    ],
+    "configFile": "C:\\Users\\madde\\.codex\\worktrees\\adventure-environment-test\\CoreArena 3D\\playwright.config.ts",
+    "rootDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/test-results/environment-regression",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1366",
+        "name": "chromium-1366",
+        "testDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/test-results/environment-regression",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium-1920",
+        "name": "chromium-1920",
+        "testDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/test-results/environment-regression",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1366",
+        "name": "chrome-1366",
+        "testDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/test-results/environment-regression",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chrome-1920",
+        "name": "chrome-1920",
+        "testDir": "C:/Users/madde/.codex/worktrees/adventure-environment-test/CoreArena 3D/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\madde\\.codex\\worktrees\\adventure-environment-test\\CoreArena 3D\\test-results\\environment-regression",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chrome-1366",
+        "testDir": "C:\\Users\\madde\\.codex\\worktrees\\adventure-environment-test\\CoreArena 3D\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\madde\\.codex\\worktrees\\adventure-environment-test\\CoreArena 3D\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8744/CoreArena-3D/",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium",
+          "channel": "chrome",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chrome-1366"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run preview:test",
+      "url": "http://127.0.0.1:8744/CoreArena-3D/",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "adventure-t2.spec.ts",
+      "file": "adventure-t2.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "T2 Legacy preserves the chosen camera on regular level restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome-1366",
+              "projectName": "chrome-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3889,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T19:30:11.550Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00457f843a45aee7d627-ea75c0882807d2eaa7f8",
+          "file": "adventure-t2.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "arena-ap2.spec.ts",
+      "file": "arena-ap2.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "AP2 desktop lobby, HUD, pause and separate entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 65000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome-1366",
+              "projectName": "chrome-1366",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-04T19:30:15.838Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "AP2-ui-report",
+                      "contentType": "application/json",
+                      "body": "eyJtb2JpbGUiOmZhbHNlLCJ2aWV3cG9ydCI6eyJ3aWR0aCI6MTM2NiwiaGVpZ2h0Ijo3Njh9LCJsb2JieSI6eyJzY3JvbGwiOjUyMywiY2xpZW50Ijo1MjN9LCJwYW5lbHMiOlt7ImlkIjoibWF0Y2gtcGFuZWwiLCJ4Ijo1MzYuMzYzNjQ3NDYwOTM3NSwieSI6MTMuOTkzNzEwNTE3ODgzMywicmlnaHQiOjgzMC4zNjAxOTg5NzQ2MDk0LCJib3R0b20iOjExNS45MjMzODI3NTkwOTQyNH0seyJpZCI6IndlYXBvbi1wYW5lbCIsIngiOjk4NC43MzQxMzA4NTkzNzUsInkiOjY2NC42MzY5MDE4NTU0Njg4LCJyaWdodCI6MTM0Ni43MjY2ODQ1NzAzMTI1LCJib3R0b20iOjc0OC40NDE5MzI2NzgyMjI3fSx7ImlkIjoibGlmZS1wYW5lbCIsIngiOjE5Ljk5NzE0MDg4NDM5OTQxNCwieSI6NjUxLjYyOTUxNjYwMTU2MjUsInJpZ2h0IjoyNDcuOTg0NTUyMzgzNDIyODUsImJvdHRvbSI6NzQ4LjQ0MTk3ODQ1NDU4OTh9LHsiaWQiOiJhcmVuYS1tZW51IiwieCI6MTI2MS4wOTIwNDEwMTU2MjUsInkiOjEzLjk5MzcxMDUxNzg4MzMsInJpZ2h0IjoxMzQ2LjcyNjY5MjE5OTcwNywiYm90dG9tIjo1Ny45OTAyODExMDUwNDE1MDR9XSwiZXJyb3JzIjpbXSwiZmFpbGVkIjpbXX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "95d0264c9ef7b34c0264-46ef95d96bf1bafbdfb5",
+          "file": "arena-ap2.spec.ts",
+          "line": 11,
+          "column": 37
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-04T19:30:08.734Z",
+    "duration": 16105.14,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

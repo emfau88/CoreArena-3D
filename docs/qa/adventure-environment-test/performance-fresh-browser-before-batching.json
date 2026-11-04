@@ -1,0 +1,2695 @@
+{
+  "guards": [
+    {
+      "mode": "production",
+      "prototype": false,
+      "errors": [],
+      "experimentRequests": 0
+    },
+    {
+      "mode": "test",
+      "prototype": true,
+      "errors": [],
+      "experimentRequests": 0
+    },
+    {
+      "mode": "adventure-preview",
+      "prototype": true,
+      "errors": [],
+      "experimentRequests": 0
+    }
+  ],
+  "performance": [
+    {
+      "variant": "reference",
+      "run": 0,
+      "coldReadyMs": 4696,
+      "warmReadyMs": 959,
+      "arrival": {
+        "p95": 8.400000000001455,
+        "p99": 11.200000000000728,
+        "simP95": 1,
+        "calls": 248,
+        "resources": {
+          "geometries": 170,
+          "textures": 42,
+          "triangles": 633528,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 9502.700000017881,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 60.39999997615814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 160.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 59.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 59.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 380.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 86.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 57
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 64
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 93.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 118.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 16.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 15.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 18.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 223.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 107.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 143.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 381.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 447
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 456.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 462.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 464.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 494.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 502.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 507.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 525.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 222.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 150.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 158.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 214
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 263.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 399.2999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 263
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 279.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 367.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 6.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 6
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 5.9000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 11.799999982118607
+          }
+        ]
+      },
+      "court": {
+        "p95": 8.400000000001455,
+        "p99": 11.100000000000364,
+        "simP95": 1.0999999940395355,
+        "calls": 208,
+        "resources": {
+          "geometries": 215,
+          "textures": 42,
+          "triangles": 617488,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 16181,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 60.39999997615814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 160.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 59.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 59.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 380.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 86.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 57
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 64
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 93.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 118.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 16.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 15.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 18.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 223.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 107.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 143.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 381.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 447
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 456.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 462.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 464.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 494.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 502.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 507.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 525.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 222.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 150.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 158.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 214
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 263.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 399.2999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 263
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 279.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 367.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 6.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 6
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 5.9000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 11.799999982118607
+          }
+        ]
+      }
+    },
+    {
+      "variant": "outpost-test",
+      "run": 0,
+      "coldReadyMs": 2743,
+      "warmReadyMs": 1114,
+      "arrival": {
+        "p95": 11.100000000000364,
+        "p99": 13.899999999999636,
+        "simP95": 1.100000023841858,
+        "calls": 265,
+        "resources": {
+          "geometries": 183,
+          "textures": 43,
+          "triangles": 655396,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 8463.5,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 15.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 22.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 12.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 12.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 155.2999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 13.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 16.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 18.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 19.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 9.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 9.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 47.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 21.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 21.899999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 76.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 110.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 103.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 102.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 96.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 112
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 116.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 114.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 114.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 43.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 19.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 23.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 32.79999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 37.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 82.10000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 41.20000001788139
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 41.29999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 46.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 4.5999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 4.0999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 3.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.5
+          }
+        ]
+      },
+      "court": {
+        "p95": 11.100000000000364,
+        "p99": 13.899999999999636,
+        "simP95": 1.5999999940395355,
+        "calls": 223,
+        "resources": {
+          "geometries": 228,
+          "textures": 43,
+          "triangles": 639236,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 15776.699999988079,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 15.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 22.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 12.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 12.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 155.2999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 13.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 16.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 18.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 19.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 9.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 9.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 47.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 21.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 21.899999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 76.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 110.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 103.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 102.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 96.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 112
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 116.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 114.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 114.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 43.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 19.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 23.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 32.79999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 37.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 82.10000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 41.20000001788139
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 41.29999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 46.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 4.5999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 4.0999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 3.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.5
+          }
+        ]
+      }
+    },
+    {
+      "variant": "outpost-test",
+      "run": 1,
+      "coldReadyMs": 2864,
+      "warmReadyMs": 1607,
+      "arrival": {
+        "p95": 11,
+        "p99": 11.300000000000182,
+        "simP95": 1.2999999821186066,
+        "calls": 265,
+        "resources": {
+          "geometries": 183,
+          "textures": 43,
+          "triangles": 655396,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 8823.5,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 24.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 16.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 17.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 187.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 18.399999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 25.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 28.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 27.899999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 29.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.300000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 5.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 9.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 11.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 31.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 13
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 12
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 86.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 115.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 39.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 40.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 64.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 110.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 113.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 118.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 113.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 36.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 34
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 36
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 40.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 68.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 88.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 54.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 57.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 71.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 4
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 3.0999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 3.7000000178813934
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 3.9000000059604645
+          }
+        ]
+      },
+      "court": {
+        "p95": 11.199999999998909,
+        "p99": 14,
+        "simP95": 1.699999988079071,
+        "calls": 224,
+        "resources": {
+          "geometries": 228,
+          "textures": 43,
+          "triangles": 639248,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 17624.90000000596,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 24.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 16.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 17.200000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 187.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 18.399999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 25.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 28.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 27.899999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 29.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.300000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 5.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 9.800000011920929
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 11.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 31.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 13
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 12
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 86.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 115.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 39.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 40.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 64.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 110.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 113.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 118.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 113.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 36.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 34
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 36
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 40.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 68.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 88.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 54.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 57.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 71.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 4
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 3.0999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 3.7000000178813934
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 3.9000000059604645
+          }
+        ]
+      }
+    },
+    {
+      "variant": "reference",
+      "run": 1,
+      "coldReadyMs": 3116,
+      "warmReadyMs": 1045,
+      "arrival": {
+        "p95": 8.400000000000546,
+        "p99": 11.199999999999818,
+        "simP95": 1.0999999940395355,
+        "calls": 248,
+        "resources": {
+          "geometries": 170,
+          "textures": 42,
+          "triangles": 633528,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 8131.9000000059605,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 25.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 15.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 17.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 194.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 24.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 27.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 26.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 27.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 10.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 11
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 26.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 14.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 13.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 86.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 97.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 36.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 37
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 39.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 41.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 70.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 53.79999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 50.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 28.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 12.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 16.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 16.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 37.20000001788139
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 24.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 14.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 14.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 18.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 5.699999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.699999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.799999982118607
+          }
+        ]
+      },
+      "court": {
+        "p95": 8.400000000001455,
+        "p99": 11.100000000000364,
+        "simP95": 1.2999999821186066,
+        "calls": 208,
+        "resources": {
+          "geometries": 215,
+          "textures": 42,
+          "triangles": 617488,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 13959,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 25.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 15.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 17.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 194.09999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 24.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 27.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 26.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 27.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 5.4000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 10.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 11
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 26.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 14.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 13.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 86.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 97.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 36.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 37
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 39.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 41.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 70.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 53.79999998211861
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 50.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 28.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 12.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 16.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 16.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 37.20000001788139
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 24.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 14.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 14.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 18.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 5.699999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.699999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.799999982118607
+          }
+        ]
+      }
+    },
+    {
+      "variant": "reference",
+      "run": 2,
+      "coldReadyMs": 2398,
+      "warmReadyMs": 1495,
+      "arrival": {
+        "p95": 8.5,
+        "p99": 11.199999999999818,
+        "simP95": 1,
+        "calls": 247,
+        "resources": {
+          "geometries": 170,
+          "textures": 42,
+          "triangles": 633516,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 7616.9000000059605,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 23.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 15.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 18.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 162.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 15.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 18.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 17.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 4.5999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 8.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 8.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 32.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 11.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 10
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 72.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 87.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 44.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 42.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 94
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 100.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 96.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 99.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 99.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 34.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 31.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 43.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 50.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 53.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 75.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 52.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 62.10000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 66.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 3.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 3.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.0999999940395355
+          }
+        ]
+      },
+      "court": {
+        "p95": 11.100000000000364,
+        "p99": 14,
+        "simP95": 1.5999999940395355,
+        "calls": 207,
+        "resources": {
+          "geometries": 215,
+          "textures": 42,
+          "triangles": 617476,
+          "objects": 884
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 14171.5,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 23.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 15.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 16
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 18.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 162.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 15.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 18.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 17.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 18.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 4.5999999940395355
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 4.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 8.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 8.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 32.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 11.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 10
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 72.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 87.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 44.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 42.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 94
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 100.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 96.7000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 99.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 99.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 34.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 31.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 43.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 50.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 53.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 75.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 52.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 62.10000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 66.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 3.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 3.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 4.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 4.0999999940395355
+          }
+        ]
+      }
+    },
+    {
+      "variant": "outpost-test",
+      "run": 2,
+      "coldReadyMs": 4069,
+      "warmReadyMs": 1846,
+      "arrival": {
+        "p95": 13.900000000000546,
+        "p99": 19.5,
+        "simP95": 2.2000000178813934,
+        "calls": 266,
+        "resources": {
+          "geometries": 187,
+          "textures": 43,
+          "triangles": 655408,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 10726.09999999404,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 37.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 42.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 39.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 36.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 38.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 319
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 16.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 21.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 20
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 29.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 10.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 7.9000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 12.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 12.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 41.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 18.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 16.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 154.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 216.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 60.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 70.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 251.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 248.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 257.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 269.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 250.2000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 47.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 47.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 98.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 112
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 112.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 194.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 134.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 135.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 146.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 6.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 6
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 8
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 9.399999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 11.599999994039536
+          }
+        ]
+      },
+      "court": {
+        "p95": 13.900000000001455,
+        "p99": 16.700000000000728,
+        "simP95": 2.399999976158142,
+        "calls": 222,
+        "resources": {
+          "geometries": 228,
+          "textures": 43,
+          "triangles": 639224,
+          "objects": 901
+        },
+        "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "viewport": {
+          "width": 1920,
+          "height": 1080,
+          "dpr": 1
+        },
+        "readyMs": 18610.59999999404,
+        "network": [
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-CS5_JJO_.js",
+            "size": 69943,
+            "duration": 37.30000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/three.core-DIG_5YtB.js",
+            "size": 274964,
+            "duration": 42.900000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/RoundedBoxGeometry-NELzoLRu.js",
+            "size": 6414,
+            "duration": 39.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/simulation-CD1LGF2t.js",
+            "size": 1280,
+            "duration": 36.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/index-BcgFFPC4.css",
+            "size": 35894,
+            "duration": 38.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/pve-BwS5wdAa.js",
+            "size": 4805238,
+            "duration": 319
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+            "size": 420044,
+            "duration": 16.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/General.glb",
+            "size": 828240,
+            "duration": 21.299999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Movement.glb",
+            "size": 689624,
+            "duration": 20
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Ranged.glb",
+            "size": 1014852,
+            "duration": 29.100000023841858
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventureGame-DbiKKxZH.js",
+            "size": 43890,
+            "duration": 10.199999988079071
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/stoneFeedback-UMQfQWjF.js",
+            "size": 15069,
+            "duration": 7.9000000059604645
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+            "size": 6899,
+            "duration": 12.700000017881393
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+            "size": 9987,
+            "duration": 12.799999982118607
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/assetquest/forest-details.glb",
+            "size": 1418636,
+            "duration": 41.099999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-a.glb",
+            "size": 275948,
+            "duration": 18.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/retro-tech/console-b.glb",
+            "size": 249316,
+            "duration": 16.400000005960464
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/hoverbot.glb",
+            "size": 2570764,
+            "duration": 154.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/hexwars/relay.glb",
+            "size": 3253504,
+            "duration": 216.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+            "size": 1132879,
+            "duration": 60.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+            "size": 1056266,
+            "duration": 70.40000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+            "size": 580296,
+            "duration": 251.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+            "size": 264278,
+            "duration": 248.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+            "size": 621925,
+            "duration": 257.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+            "size": 981733,
+            "duration": 269.90000000596046
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+            "size": 114589,
+            "duration": 250.2000000178814
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/kaykit/Melee.glb",
+            "size": 999416,
+            "duration": 47.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+            "size": 176176,
+            "duration": 47.599999994039536
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+            "size": 315705,
+            "duration": 98.60000002384186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+            "size": 280359,
+            "duration": 112
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+            "size": 367222,
+            "duration": 112.59999999403954
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+            "size": 1466380,
+            "duration": 194.69999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+            "size": 168099,
+            "duration": 134.7999999821186
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+            "size": 82624,
+            "duration": 135.19999998807907
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+            "size": 209975,
+            "duration": 146.80000001192093
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-J4n_-L-u.js",
+            "size": 1337,
+            "duration": 6.5
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/environmentTest-Cej3zJxR.css",
+            "size": 792,
+            "duration": 6
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/outpostEnvironment-D6DvvrTp.js",
+            "size": 5995,
+            "duration": 8
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/adventurePrototype-B9MYe2Pf.js",
+            "size": 9782,
+            "duration": 9.399999976158142
+          },
+          {
+            "url": "http://127.0.0.1:8753/CoreArena-3D/assets/energyWhipView-Dow-TJ5f.js",
+            "size": 6411,
+            "duration": 11.599999994039536
+          }
+        ]
+      }
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: arrival run 0: B p95 11.100000000000364 - A 8.400000000001455 exceeds 2 ms"
+}

@@ -1,0 +1,1478 @@
+[
+  {
+    "p95": 8.300000000000182,
+    "p99": 8.400000000000546,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "state": {
+      "mode": "adventure",
+      "level": "stone",
+      "combatProfile": "prototype",
+      "combatRules": "prototype-a7",
+      "lab": null,
+      "snapshot": {
+        "tick": 289,
+        "position": {
+          "x": 0.00009428100747754797,
+          "y": 0.026624059677124,
+          "z": 32.99993133544922
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "surface": "floor-entry",
+        "ceiling": false,
+        "facing": 0
+      },
+      "weapons": {
+        "selected": "arc",
+        "ownsPulse": false,
+        "ammo": 0,
+        "projectiles": [],
+        "lastArc": null,
+        "impact": null
+      },
+      "pickups": [
+        {
+          "id": "side-health",
+          "kind": "health",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 4
+          },
+          "surface": "side-terrace",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-armor",
+          "kind": "armor",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 0
+          },
+          "surface": "side-terrace",
+          "amount": 30,
+          "remaining": 30,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-health",
+          "kind": "health",
+          "position": {
+            "x": -12,
+            "y": 1.1,
+            "z": -23
+          },
+          "surface": "boss-health-plateau",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        }
+      ],
+      "prototype": {
+        "aim": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "airJump": {
+          "available": false,
+          "uses": 0,
+          "lastTick": -100
+        },
+        "whip": {
+          "age": -1,
+          "phase": "idle",
+          "attack": "sweep",
+          "readyIn": 0,
+          "yaw": 0,
+          "points": [],
+          "sequence": 0,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        },
+        "targetScreens": []
+      },
+      "hp": 100,
+      "armor": 50,
+      "pve": {
+        "tick": 289,
+        "phase": "emerging",
+        "phaseTick": 0,
+        "kind": "wave",
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": -29
+        },
+        "waveRadius": 2,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 900,
+        "outcome": "running",
+        "hitsTaken": 0,
+        "lastHit": -100,
+        "center": {
+          "x": 0,
+          "y": 1.85,
+          "z": -29
+        },
+        "facing": 0,
+        "moving": false,
+        "exchange": {
+          "serial": 0,
+          "window": "closed",
+          "resolved": 0,
+          "avoided": 0,
+          "counters": 0
+        }
+      },
+      "bossActive": false,
+      "checkpoint": false,
+      "completed": false,
+      "core": null,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "enemies": [
+        {
+          "id": "courtyard-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": 24
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 289,
+          "moving": false,
+          "screen": {
+            "x": 1499.9958800975392,
+            "y": 603.757413607302
+          }
+        },
+        {
+          "id": "inner-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": -1
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 289,
+          "moving": false,
+          "screen": {
+            "x": 2999.9958800975373,
+            "y": 603.7574136073018
+          }
+        }
+      ],
+      "monsterScreen": {
+        "x": 4679.995880097535,
+        "y": 503.0453001492281
+      },
+      "paused": false,
+      "overview": false,
+      "camera": "side",
+      "section": "A",
+      "whipVisual": {
+        "visible": true,
+        "trail": false,
+        "segments": 0,
+        "bursts": 0,
+        "guarded": false
+      },
+      "playerScreen": {
+        "x": 959.9999999705869,
+        "y": 535.5440248370397
+      },
+      "feedback": {
+        "state": "locked",
+        "muted": false,
+        "played": 0,
+        "peak": 0,
+        "voices": 0
+      },
+      "fighter": {
+        "model": "kaykit-mannequin-medium",
+        "style": "ruins-courier",
+        "lower": "idle",
+        "upper": "whip-ready",
+        "time": 4.777299999999994,
+        "legYaw": 0,
+        "deathAge": 0,
+        "facing": 3.141592653589793,
+        "bones": 21,
+        "hips": [
+          0.0047378981033601416,
+          0.04315726037343258,
+          0.00020467141940530643,
+          0.9990570360636234
+        ],
+        "chest": [
+          0.09570537823096609,
+          -0.12942948135339674,
+          0.0876978257221836,
+          0.9830552279998617
+        ],
+        "leg": [
+          0.3333632008264813,
+          6.224941328166395e-8,
+          -2.3072342719041571e-7,
+          0.9427984812963297
+        ],
+        "scale": [
+          0.8077307637070464,
+          0.8077307637070464,
+          0.8077307637070464
+        ]
+      },
+      "guards": [
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.5106331108093229,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5644418609406063,
+            0.654090037927352,
+            24.146018774767878
+          ],
+          "visible": true
+        },
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.5106331108093229,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5644418609406063,
+            0.654090037927352,
+            -0.853981225232121
+          ],
+          "visible": true
+        }
+      ],
+      "pickupVisuals": [
+        {
+          "id": "adventure-pulse",
+          "visible": false,
+          "remaining": 54,
+          "particles": true
+        },
+        {
+          "id": "side-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        },
+        {
+          "id": "side-armor",
+          "visible": true,
+          "remaining": 30,
+          "particles": true
+        },
+        {
+          "id": "side-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "court-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-west",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-east",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        }
+      ],
+      "arcVisual": {
+        "visible": false,
+        "beams": 0
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000025
+      },
+      "renderCalls": 248
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BOQpGKEx.js",
+        "bytes": 5153800
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/simulation-7bqsRsrM.js",
+        "bytes": 1307
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BcgFFPC4.css",
+        "bytes": 35894
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+        "bytes": 420044
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/General.glb",
+        "bytes": 828240
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Movement.glb",
+        "bytes": 689624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Ranged.glb",
+        "bytes": 1014852
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventureGame-DuOYlFgx.js",
+        "bytes": 45859
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/stoneFeedback-B2Ayr6WG.js",
+        "bytes": 15040
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+        "bytes": 6899
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+        "bytes": 9987
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/assetquest/forest-details.glb",
+        "bytes": 1418636
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-a.glb",
+        "bytes": 275948
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-b.glb",
+        "bytes": 249316
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/hoverbot.glb",
+        "bytes": 2570764
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/relay.glb",
+        "bytes": 3253504
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+        "bytes": 1132879
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+        "bytes": 580296
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+        "bytes": 621925
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+        "bytes": 1056266
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+        "bytes": 264278
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+        "bytes": 114589
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+        "bytes": 981733
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Melee.glb",
+        "bytes": 999416
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+        "bytes": 176176
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+        "bytes": 315705
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+        "bytes": 367222
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+        "bytes": 280359
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+        "bytes": 1466380
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+        "bytes": 168099
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+        "bytes": 82624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+        "bytes": 209975
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventurePrototype-9C18FIVo.js",
+        "bytes": 9769
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/energyWhipView-BuzIgzfH.js",
+        "bytes": 6571
+      }
+    ]
+  },
+  {
+    "p95": 8.399999999999636,
+    "p99": 8.599999999999909,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "state": {
+      "mode": "adventure",
+      "level": "stone",
+      "combatProfile": "prototype",
+      "combatRules": "prototype-a7",
+      "lab": null,
+      "snapshot": {
+        "tick": 291,
+        "position": {
+          "x": 0.00009428100747754797,
+          "y": 0.023290729522705056,
+          "z": 32.99993133544922
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "surface": "floor-entry",
+        "ceiling": false,
+        "facing": 0
+      },
+      "weapons": {
+        "selected": "arc",
+        "ownsPulse": false,
+        "ammo": 0,
+        "projectiles": [],
+        "lastArc": null,
+        "impact": null
+      },
+      "pickups": [
+        {
+          "id": "side-health",
+          "kind": "health",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 4
+          },
+          "surface": "side-terrace",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-armor",
+          "kind": "armor",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 0
+          },
+          "surface": "side-terrace",
+          "amount": 30,
+          "remaining": 30,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-health",
+          "kind": "health",
+          "position": {
+            "x": -12,
+            "y": 1.1,
+            "z": -23
+          },
+          "surface": "boss-health-plateau",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        }
+      ],
+      "prototype": {
+        "aim": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "airJump": {
+          "available": false,
+          "uses": 0,
+          "lastTick": -100
+        },
+        "whip": {
+          "age": -1,
+          "phase": "idle",
+          "attack": "sweep",
+          "readyIn": 0,
+          "yaw": 0,
+          "points": [],
+          "sequence": 0,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        },
+        "targetScreens": []
+      },
+      "hp": 100,
+      "armor": 50,
+      "pve": {
+        "tick": 291,
+        "phase": "emerging",
+        "phaseTick": 0,
+        "kind": "wave",
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": -29
+        },
+        "waveRadius": 2,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 900,
+        "outcome": "running",
+        "hitsTaken": 0,
+        "lastHit": -100,
+        "center": {
+          "x": 0,
+          "y": 1.85,
+          "z": -29
+        },
+        "facing": 0,
+        "moving": false,
+        "exchange": {
+          "serial": 0,
+          "window": "closed",
+          "resolved": 0,
+          "avoided": 0,
+          "counters": 0
+        }
+      },
+      "bossActive": false,
+      "checkpoint": false,
+      "completed": false,
+      "core": null,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "enemies": [
+        {
+          "id": "courtyard-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": 24
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 291,
+          "moving": false,
+          "screen": {
+            "x": 1499.995880104363,
+            "y": 603.7574135970754
+          }
+        },
+        {
+          "id": "inner-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": -1
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 291,
+          "moving": false,
+          "screen": {
+            "x": 2999.9958801043617,
+            "y": 603.7574135970751
+          }
+        }
+      ],
+      "monsterScreen": {
+        "x": 4679.9958801043595,
+        "y": 503.04530013900137
+      },
+      "paused": false,
+      "overview": false,
+      "camera": "side",
+      "section": "A",
+      "whipVisual": {
+        "visible": true,
+        "trail": false,
+        "segments": 0,
+        "bursts": 0,
+        "guarded": false
+      },
+      "playerScreen": {
+        "x": 959.9999999774107,
+        "y": 535.6613266773755
+      },
+      "feedback": {
+        "state": "locked",
+        "muted": false,
+        "played": 0,
+        "peak": 0,
+        "voices": 0
+      },
+      "fighter": {
+        "model": "kaykit-mannequin-medium",
+        "style": "ruins-courier",
+        "lower": "idle",
+        "upper": "whip-ready",
+        "time": 4.8296999999940295,
+        "legYaw": 0,
+        "deathAge": 0,
+        "facing": 3.141592653589793,
+        "bones": 21,
+        "hips": [
+          0.004735003452064815,
+          0.043157260674007436,
+          0.00020454635227219433,
+          0.9990570497995671
+        ],
+        "chest": [
+          0.09539731841792166,
+          -0.1294344183336521,
+          0.08741554329578838,
+          0.9831096611159922
+        ],
+        "leg": [
+          0.3333251497191997,
+          6.329014243430976e-8,
+          -2.3060923473019772e-7,
+          0.9428119348866008
+        ],
+        "scale": [
+          0.8077307637070464,
+          0.8077307637070464,
+          0.8077307637070464
+        ]
+      },
+      "guards": [
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.5630331108033636,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5644415654097854,
+            0.6541422234941394,
+            24.14604947486516
+          ],
+          "visible": true
+        },
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.5630331108033636,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5644415654097854,
+            0.6541422234941394,
+            -0.8539505251348422
+          ],
+          "visible": true
+        }
+      ],
+      "pickupVisuals": [
+        {
+          "id": "adventure-pulse",
+          "visible": false,
+          "remaining": 54,
+          "particles": true
+        },
+        {
+          "id": "side-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        },
+        {
+          "id": "side-armor",
+          "visible": true,
+          "remaining": 30,
+          "particles": true
+        },
+        {
+          "id": "side-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "court-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-west",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-east",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        }
+      ],
+      "arcVisual": {
+        "visible": false,
+        "beams": 0
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.00000000000002
+      },
+      "renderCalls": 248
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BOQpGKEx.js",
+        "bytes": 5153800
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BcgFFPC4.css",
+        "bytes": 35894
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/simulation-7bqsRsrM.js",
+        "bytes": 1307
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+        "bytes": 420044
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/General.glb",
+        "bytes": 828240
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Movement.glb",
+        "bytes": 689624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Ranged.glb",
+        "bytes": 1014852
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventureGame-DuOYlFgx.js",
+        "bytes": 45859
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/stoneFeedback-B2Ayr6WG.js",
+        "bytes": 15040
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+        "bytes": 6899
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+        "bytes": 9987
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/assetquest/forest-details.glb",
+        "bytes": 1418636
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-a.glb",
+        "bytes": 275948
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-b.glb",
+        "bytes": 249316
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/hoverbot.glb",
+        "bytes": 2570764
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/relay.glb",
+        "bytes": 3253504
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+        "bytes": 1132879
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+        "bytes": 1056266
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+        "bytes": 580296
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+        "bytes": 621925
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+        "bytes": 981733
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+        "bytes": 264278
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+        "bytes": 114589
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Melee.glb",
+        "bytes": 999416
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+        "bytes": 176176
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+        "bytes": 315705
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+        "bytes": 280359
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+        "bytes": 367222
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+        "bytes": 1466380
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+        "bytes": 168099
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+        "bytes": 82624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+        "bytes": 209975
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventurePrototype-9C18FIVo.js",
+        "bytes": 9769
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/energyWhipView-BuzIgzfH.js",
+        "bytes": 6571
+      }
+    ]
+  },
+  {
+    "p95": 8.400000000000546,
+    "p99": 11.199999999999818,
+    "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "state": {
+      "mode": "adventure",
+      "level": "stone",
+      "combatProfile": "prototype",
+      "combatRules": "prototype-a7",
+      "lab": null,
+      "snapshot": {
+        "tick": 311,
+        "position": {
+          "x": 0.00009428100747754797,
+          "y": 0.02495739459991453,
+          "z": 32.99993133544922
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "grounded": true,
+        "surface": "floor-entry",
+        "ceiling": false,
+        "facing": 0
+      },
+      "weapons": {
+        "selected": "arc",
+        "ownsPulse": false,
+        "ammo": 0,
+        "projectiles": [],
+        "lastArc": null,
+        "impact": null
+      },
+      "pickups": [
+        {
+          "id": "side-health",
+          "kind": "health",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 4
+          },
+          "surface": "side-terrace",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        },
+        {
+          "id": "side-armor",
+          "kind": "armor",
+          "position": {
+            "x": -13.5,
+            "y": 1.1,
+            "z": 0
+          },
+          "surface": "side-terrace",
+          "amount": 30,
+          "remaining": 30,
+          "respawnAt": 0
+        },
+        {
+          "id": "boss-health",
+          "kind": "health",
+          "position": {
+            "x": -12,
+            "y": 1.1,
+            "z": -23
+          },
+          "surface": "boss-health-plateau",
+          "amount": 35,
+          "remaining": 35,
+          "respawnAt": 0
+        }
+      ],
+      "prototype": {
+        "aim": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "dash": {
+          "remaining": 0,
+          "readyIn": 0,
+          "direction": {
+            "x": 0,
+            "y": 0,
+            "z": -1
+          },
+          "uses": 0,
+          "lastStart": -1,
+          "invulnerable": false
+        },
+        "airJump": {
+          "available": false,
+          "uses": 0,
+          "lastTick": -100
+        },
+        "whip": {
+          "age": -1,
+          "phase": "idle",
+          "attack": "sweep",
+          "readyIn": 0,
+          "yaw": 0,
+          "points": [],
+          "sequence": 0,
+          "contact": null,
+          "forwardHits": 0,
+          "returnHits": 0,
+          "misses": 0,
+          "cancelled": 0
+        },
+        "practice": false,
+        "targets": [],
+        "body": {
+          "radius": 1.7,
+          "height": 3.4
+        },
+        "targetScreens": []
+      },
+      "hp": 100,
+      "armor": 50,
+      "pve": {
+        "tick": 311,
+        "phase": "emerging",
+        "phaseTick": 0,
+        "kind": "wave",
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": -29
+        },
+        "waveRadius": 2,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 900,
+        "outcome": "running",
+        "hitsTaken": 0,
+        "lastHit": -100,
+        "center": {
+          "x": 0,
+          "y": 1.85,
+          "z": -29
+        },
+        "facing": 0,
+        "moving": false,
+        "exchange": {
+          "serial": 0,
+          "window": "closed",
+          "resolved": 0,
+          "avoided": 0,
+          "counters": 0
+        }
+      },
+      "bossActive": false,
+      "checkpoint": false,
+      "completed": false,
+      "core": null,
+      "mission": {
+        "consoleActive": false,
+        "relayActive": false,
+        "reserveRecovered": false,
+        "entryClosed": true,
+        "interaction": null
+      },
+      "enemies": [
+        {
+          "id": "courtyard-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": 24
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 311,
+          "moving": false,
+          "screen": {
+            "x": 1499.9958801252747,
+            "y": 603.7574135654975
+          }
+        },
+        {
+          "id": "inner-runner",
+          "center": {
+            "x": 2,
+            "y": 0.85,
+            "z": -1
+          },
+          "hp": 70,
+          "facing": 0,
+          "phase": "idle",
+          "phaseTick": 311,
+          "moving": false,
+          "screen": {
+            "x": 2999.9958801252733,
+            "y": 603.7574135654972
+          }
+        }
+      ],
+      "monsterScreen": {
+        "x": 4679.9958801252715,
+        "y": 503.04530010742343
+      },
+      "paused": false,
+      "overview": false,
+      "camera": "side",
+      "section": "A",
+      "whipVisual": {
+        "visible": true,
+        "trail": false,
+        "segments": 0,
+        "bursts": 0,
+        "guarded": false
+      },
+      "playerScreen": {
+        "x": 959.999999998322,
+        "y": 535.6026757205163
+      },
+      "feedback": {
+        "state": "locked",
+        "muted": false,
+        "played": 0,
+        "peak": 0,
+        "voices": 0
+      },
+      "fighter": {
+        "model": "kaykit-mannequin-medium",
+        "style": "ruins-courier",
+        "lower": "idle",
+        "upper": "whip-ready",
+        "time": 5.138399999999995,
+        "legYaw": 0,
+        "deathAge": 0,
+        "facing": 3.141592653589793,
+        "bones": 21,
+        "hips": [
+          0.0014493575726632763,
+          0.04315770580548268,
+          0.00006261225135353087,
+          0.9990672188956757
+        ],
+        "chest": [
+          0.0955093422610445,
+          -0.12942628503835568,
+          0.08751818227012077,
+          0.9830907232062394
+        ],
+        "leg": [
+          0.2864764964162137,
+          6.453040612119075e-8,
+          -1.922885500458021e-7,
+          0.9580872700339201
+        ],
+        "scale": [
+          0.8077307637070464,
+          0.8077307637070464,
+          0.8077307637070464
+        ]
+      },
+      "guards": [
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.871733110809324,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5643722936462006,
+            0.669148895655773,
+            24.15483248019019
+          ],
+          "visible": true
+        },
+        {
+          "model": "kaykit-stone-guard",
+          "state": "idle",
+          "clipTime": 0.871733110809324,
+          "contactTime": 0.5,
+          "bones": 21,
+          "hand": [
+            1.5643722936462006,
+            0.669148895655773,
+            -0.845167519809809
+          ],
+          "visible": true
+        }
+      ],
+      "pickupVisuals": [
+        {
+          "id": "adventure-pulse",
+          "visible": false,
+          "remaining": 54,
+          "particles": true
+        },
+        {
+          "id": "side-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        },
+        {
+          "id": "side-armor",
+          "visible": true,
+          "remaining": 30,
+          "particles": true
+        },
+        {
+          "id": "side-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "court-ammo",
+          "visible": false,
+          "remaining": 27,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-west",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-ammo-east",
+          "visible": false,
+          "remaining": 18,
+          "particles": true
+        },
+        {
+          "id": "boss-health",
+          "visible": true,
+          "remaining": 35,
+          "particles": true
+        }
+      ],
+      "arcVisual": {
+        "visible": false,
+        "beams": 0
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000018
+      },
+      "renderCalls": 248
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BOQpGKEx.js",
+        "bytes": 5153800
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/index-BcgFFPC4.css",
+        "bytes": 35894
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/simulation-7bqsRsrM.js",
+        "bytes": 1307
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Mannequin_Medium.glb",
+        "bytes": 420044
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/General.glb",
+        "bytes": 828240
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Movement.glb",
+        "bytes": 689624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Ranged.glb",
+        "bytes": 1014852
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventureGame-DuOYlFgx.js",
+        "bytes": 45859
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/stoneFeedback-B2Ayr6WG.js",
+        "bytes": 15040
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.gltf",
+        "bytes": 6899
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.gltf",
+        "bytes": 9987
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/assetquest/forest-details.glb",
+        "bytes": 1418636
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-a.glb",
+        "bytes": 275948
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/retro-tech/console-b.glb",
+        "bytes": 249316
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/hoverbot.glb",
+        "bytes": 2570764
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/hexwars/relay.glb",
+        "bytes": 3253504
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/nor_gl.jpg",
+        "bytes": 1056266
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Diffuse.jpg",
+        "bytes": 1132879
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_tile_floor/Rough.jpg",
+        "bytes": 580296
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Diffuse.jpg",
+        "bytes": 621925
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/nor_gl.jpg",
+        "bytes": 981733
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/stone_wall_02/Rough.jpg",
+        "bytes": 264278
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_alpha_1k.png",
+        "bytes": 114589
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/kaykit/Melee.glb",
+        "bytes": 999416
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/fern_02.bin",
+        "bytes": 176176
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_diff_1k.jpg",
+        "bytes": 315705
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_arm_1k.jpg",
+        "bytes": 280359
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/fern_02/textures/fern_02_nor_gl_1k.jpg",
+        "bytes": 367222
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/rock_moss_set_01.bin",
+        "bytes": 1466380
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_diff_1k.jpg",
+        "bytes": 168099
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_rough_1k.jpg",
+        "bytes": 82624
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/courtyard/rock_moss_set_01/textures/rock_moss_set_01_nor_gl_1k.jpg",
+        "bytes": 209975
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/adventurePrototype-9C18FIVo.js",
+        "bytes": 9769
+      },
+      {
+        "url": "http://127.0.0.1:8752/CoreArena-3D/assets/energyWhipView-BuzIgzfH.js",
+        "bytes": 6571
+      }
+    ]
+  }
+]

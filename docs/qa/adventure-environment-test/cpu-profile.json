@@ -1,0 +1,588 @@
+[
+  {
+    "variant": "reference",
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 3.432154999987688
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 0
+      },
+      {
+        "name": "Frames",
+        "value": 0
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 0
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 276
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 644
+      },
+      {
+        "name": "Resources",
+        "value": 0
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 0
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 0
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 0
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 0
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 0
+      },
+      {
+        "name": "LayoutCount",
+        "value": 46
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 608
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.015226
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.056747
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.0006230000000000001
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 2.086182
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0
+      },
+      {
+        "name": "TaskDuration",
+        "value": 2.373931
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.215153
+      },
+      {
+        "name": "ThreadTime",
+        "value": 2.370996
+      },
+      {
+        "name": "ProcessTime",
+        "value": 2.820806
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 2193376
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 524288
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 201421.73988
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 0
+      },
+      {
+        "name": "NavigationStart",
+        "value": 0
+      }
+    ],
+    "costs": {
+      "FireAnimationFrame": {
+        "ms": 2088.1819999999993,
+        "count": 1201
+      },
+      "FunctionCall ve": {
+        "ms": 2058.140999999998,
+        "count": 601
+      },
+      "UpdateLayoutTree": {
+        "ms": 55.986999999999945,
+        "count": 601
+      },
+      "Layout": {
+        "ms": 14.418999999999997,
+        "count": 46
+      },
+      "PrePaint": {
+        "ms": 35.26499999999998,
+        "count": 601
+      },
+      "Paint": {
+        "ms": 8.799999999999997,
+        "count": 184
+      },
+      "Layerize": {
+        "ms": 3.15799999999996,
+        "count": 601
+      },
+      "FunctionCall ": {
+        "ms": 13.281999999999968,
+        "count": 600
+      },
+      "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+        "ms": 0.062,
+        "count": 6
+      },
+      "MinorGC": {
+        "ms": 2.1,
+        "count": 6
+      },
+      "V8.GC_HEAP_PROLOGUE": {
+        "ms": 0.007,
+        "count": 6
+      },
+      "V8.GC_TIME_TO_SAFEPOINT": {
+        "ms": 0.008,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER": {
+        "ms": 1.842,
+        "count": 6
+      },
+      "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+        "ms": 0.005,
+        "count": 5
+      },
+      "V8.GC_SCAVENGER_SCAVENGE": {
+        "ms": 1.752,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+        "ms": 0.127,
+        "count": 6
+      },
+      "ComputeWeaknessProcessor start": {
+        "ms": 0.006,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+        "ms": 0.032,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+        "ms": 0.08499999999999999,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+        "ms": 0.812,
+        "count": 6
+      },
+      "Parallel scavenge started": {
+        "ms": 0.003,
+        "count": 3
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+        "ms": 0.08199999999999999,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+        "ms": 0.391,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+        "ms": 1.9679999999999993,
+        "count": 41
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+        "ms": 0.103,
+        "count": 6
+      },
+      "ClearWeaknessProcessor start": {
+        "ms": 0.019000000000000003,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+        "ms": 0.026000000000000002,
+        "count": 5
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+        "ms": 0.164,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+        "ms": 0.055,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+        "ms": 0.05999999999999999,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+        "ms": 0.009000000000000001,
+        "count": 6
+      },
+      "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+        "ms": 0.017,
+        "count": 6
+      },
+      "V8.GC_HEAP_EPILOGUE": {
+        "ms": 0.020999999999999998,
+        "count": 6
+      },
+      "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+        "ms": 0.010000000000000002,
+        "count": 6
+      },
+      "HitTest": {
+        "ms": 0.10800000000000001,
+        "count": 3
+      },
+      "V8.GC_SCAVENGER_BACKGROUND_TRACED_HANDLES_RESET_PARALLEL": {
+        "ms": 0.005,
+        "count": 1
+      }
+    }
+  },
+  {
+    "variant": "outpost-test",
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 3.5345410000008997
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 0
+      },
+      {
+        "name": "Frames",
+        "value": 0
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 0
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 288
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 672
+      },
+      {
+        "name": "Resources",
+        "value": 0
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 0
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 0
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 0
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 0
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 0
+      },
+      {
+        "name": "LayoutCount",
+        "value": 48
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 606
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.01618
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.059273
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.00036700000000000003
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 2.077169
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0
+      },
+      {
+        "name": "TaskDuration",
+        "value": 2.370379
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.21739
+      },
+      {
+        "name": "ThreadTime",
+        "value": 2.37609
+      },
+      {
+        "name": "ProcessTime",
+        "value": 2.8162720000000006
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 4211052
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 786432
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 201430.941576
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 0
+      },
+      {
+        "name": "NavigationStart",
+        "value": 0
+      }
+    ],
+    "costs": {
+      "FireAnimationFrame": {
+        "ms": 2084.195,
+        "count": 1201
+      },
+      "FunctionCall ve": {
+        "ms": 2055.652,
+        "count": 601
+      },
+      "UpdateLayoutTree": {
+        "ms": 58.591000000000015,
+        "count": 601
+      },
+      "PrePaint": {
+        "ms": 36.769,
+        "count": 601
+      },
+      "Layerize": {
+        "ms": 3.8559999999999537,
+        "count": 601
+      },
+      "FunctionCall ": {
+        "ms": 12.227999999999966,
+        "count": 600
+      },
+      "Layout": {
+        "ms": 15.239000000000004,
+        "count": 47
+      },
+      "Paint": {
+        "ms": 9.142,
+        "count": 188
+      },
+      "V8.GC_HEAP_EXTERNAL_PROLOGUE": {
+        "ms": 0.028,
+        "count": 6
+      },
+      "MinorGC": {
+        "ms": 2.318,
+        "count": 6
+      },
+      "V8.GC_HEAP_PROLOGUE": {
+        "ms": 0.008,
+        "count": 6
+      },
+      "V8.GC_TIME_TO_SAFEPOINT": {
+        "ms": 0.009000000000000001,
+        "count": 5
+      },
+      "V8.GC_SCAVENGER": {
+        "ms": 1.99,
+        "count": 6
+      },
+      "V8.GC_HEAP_PROLOGUE_SAFEPOINT": {
+        "ms": 0.007,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE": {
+        "ms": 1.8730000000000002,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": {
+        "ms": 0.17099999999999999,
+        "count": 6
+      },
+      "ComputeWeaknessProcessor start": {
+        "ms": 0.006,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": {
+        "ms": 0.05,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": {
+        "ms": 0.11,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": {
+        "ms": 0.749,
+        "count": 6
+      },
+      "Parallel scavenge started": {
+        "ms": 0.006,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_ROOTS": {
+        "ms": 0.08499999999999999,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": {
+        "ms": 0.365,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL": {
+        "ms": 1.89,
+        "count": 42
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": {
+        "ms": 0.07100000000000001,
+        "count": 6
+      },
+      "ClearWeaknessProcessor start": {
+        "ms": 0.006,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": {
+        "ms": 0.03,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": {
+        "ms": 0.15499999999999997,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": {
+        "ms": 0.049,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": {
+        "ms": 0.07100000000000001,
+        "count": 6
+      },
+      "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": {
+        "ms": 0.007,
+        "count": 6
+      },
+      "V8.GC_HEAP_EPILOGUE_SAFEPOINT": {
+        "ms": 0.013000000000000001,
+        "count": 6
+      },
+      "V8.GC_HEAP_EPILOGUE": {
+        "ms": 0.018,
+        "count": 6
+      },
+      "V8.GC_HEAP_EXTERNAL_EPILOGUE": {
+        "ms": 0.013000000000000001,
+        "count": 6
+      },
+      "HitTest": {
+        "ms": 0.266,
+        "count": 3
+      }
+    }
+  }
+]

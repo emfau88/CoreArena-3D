@@ -9,6 +9,16 @@ Echte Android-/iPhone-Spieltests stehen noch aus.
 [Aktuelle Adventure-Roadmap und Fortschritt](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_ROADMAP.md).
 Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.github.io/CoreArena-3D/) bleibt separat erreichbar.
 
+**Isolierter Adventure-Umgebungstest:**
+[Roadmap mit sieben Bulks U0–U6](docs/planning/ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md)
+für einen Vergleich am Ladehof bei unveränderter Kamera und Links-nach-rechts-Führung.
+Eigener Branch `codex/adventure-environment-test`; [Umsetzung, Bilder und Prüfergebnisse](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
+Lokal mit `npm run build:environment-test` und `npm run preview:environment-test` starten:
+[A – bisheriger Hof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=reference) ·
+[B – neuer Ladehof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=outpost-test).
+Oben links umschalten; jeder Wechsel startet die Mission neu. Die öffentliche Vorschau bleibt unverändert.
+U5 ist wegen des noch überschrittenen relativen Framezeitbudgets nicht vollständig abgenommen.
+
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
 - **Adventure — eigenständiges 3D-Action-Adventure mit Boss-Rush-Schwerpunkt.**
