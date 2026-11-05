@@ -9,6 +9,11 @@ Echte Android-/iPhone-Spieltests stehen noch aus.
 [Aktuelle Adventure-Roadmap und Fortschritt](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_ROADMAP.md).
 Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.github.io/CoreArena-3D/) bleibt separat erreichbar.
 
+**Planung des Adventure-Umgebungstests vom 4. November 2026:**
+[Roadmap mit sieben Bulks U0–U6](docs/planning/ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md)
+für einen Vergleich am Ladehof bei unveränderter Kamera und Links-nach-rechts-Führung.
+[Aktueller Adventure-Entwicklungsstand mit Wächterklamm und Vergleich A–F](https://github.com/emfau88/CoreArena-3D/tree/codex/adventure-environment-test). Dieser Branch dient der öffentlichen T2-Vorschau.
+
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
 
 - **Adventure — eigenständiges 3D-Action-Adventure mit Boss-Rush-Schwerpunkt.**

@@ -1,6 +1,6 @@
 # CORE ARENA 3D — Adventure-Roadmap
 
-Stand: **2. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle Testversion spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)
+Stand: **4. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle Testversion spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)
 
 ## Wo wir gerade stehen
 
@@ -37,6 +37,15 @@ Die öffentliche Vorschau hat Touch-Bedienung. Echte Handytests stehen noch aus.
 Danach können weitere Karten und gegebenenfalls Modifikationen beauftragt werden.
 Ein Progressionssystem ist weiterhin offen und nicht implementiert. Die öffentliche
 **Testversion** ist bereits online; der finale Release **A11.5** bleibt ein späterer Schritt.
+
+[Aktueller Adventure-Entwicklungsstand mit Wächterklamm und Vergleich A–F](https://github.com/emfau88/CoreArena-3D/tree/codex/adventure-environment-test).
+
+**Ursprüngliche Planung vom 4. November 2026:**
+[Eigene Roadmap mit U0–U6](ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md) für einen isolierten
+A/B-Versuch am Ladehof: Außenraum, Architektur, Boden und sichtbare Missionszustände.
+Kamera und Links-nach-rechts-Führung bleiben erhalten. Zu diesem Zeitpunkt war nur die Planung
+erstellt; eigene Branch-/Build-Isolation war vorgesehen. Die 26 Pakete, A7.2,
+G2/G3 und der öffentliche T2-Kanal bleiben davon unberührt.
 
 ## Alle 26 Arbeitspakete auf einen Blick
 
@@ -125,6 +134,8 @@ Touch-Eingaben für die Prototyp-Aktionen. [Regeln und Nachweise](../qa/ADVENTUR
 ## 1. Zuständigkeit und Arbeitsweise
 
 Diese Roadmap ersetzt ältere Adventure-Ausbauaufträge als Planungsquelle.
+Der begrenzte [Umgebungstest](ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md) führt seine
+eigenen Bulks separat; er ändert diese Hauptaufgabenfolge nicht.
 [LEVEL_1_STONE_ADVENTURE.md](LEVEL_1_STONE_ADVENTURE.md) bleibt Bestands- und
 Historiennachweis. [MILESTONES_AND_QA.md](MILESTONES_AND_QA.md) ist der gemeinsame
 Index. [Arena-Bulks](MOBILE_AND_WORK_PACKAGES.md#arena-to-do-liste), historische
