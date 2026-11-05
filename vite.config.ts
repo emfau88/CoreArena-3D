@@ -10,11 +10,12 @@ for (const file of [...files, 'vite.config.ts', 'package-lock.json'].sort()) sou
 const build = { commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), sourceHash: source.digest('hex') };
 
 export default defineConfig(({mode})=>({
-  base: mode==='adventure-preview'?'/CoreArena-3D/adventure-preview/':'/CoreArena-3D/',
+  base: mode==='environment-preview'?'/CoreArena-3D/adventure-environment/':
+    mode==='adventure-preview'?'/CoreArena-3D/adventure-preview/':'/CoreArena-3D/',
   define: { __ADVENTURE_BUILD__: JSON.stringify(build) },
-  plugins: mode==='adventure-preview'||mode==='environment-test'?[{
+  plugins: ['adventure-preview','environment-test','environment-preview'].includes(mode)?[{
     name:'adventure-build-version',
-    generateBundle(){this.emitFile({type:'asset',fileName:mode==='environment-test'?'environment-version.json':'preview-version.json',source:JSON.stringify(build,null,2)+'\n'});},
+    generateBundle(){this.emitFile({type:'asset',fileName:mode==='adventure-preview'?'preview-version.json':'environment-version.json',source:JSON.stringify(build,null,2)+'\n'});},
   }]:[],
   build: { target: 'es2022' },
 }));

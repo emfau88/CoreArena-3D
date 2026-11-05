@@ -1,8 +1,10 @@
 # CORE ARENA 3D
 
-**Aktueller Adventure-Entwicklungsstand:** Dieser Branch enthält den Kampfprototyp und die Umgebungsvarianten A–F mit der Wächterklamm. [Lokaler Vergleich und Spielbilder](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md). Der folgende öffentliche Playlink öffnet die T2-Vorschau.
+**[▶ Aktuelles Adventure spielen · Wächterklamm (F)](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine)**
 
-**[▶ Neue Adventure-Version spielen — auch auf dem Handy](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
+Auf dem Handy im Querformat öffnen. Zum Vergleich im Spiel oben links **A · Bisheriger Hof** wählen. [Spielbilder und Testergebnisse](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
+
+**[Frühere Adventure-Kampfvorschau T2 spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
 
 Öffentliche T2-Testversion: wieder **von links nach rechts**, Energiepeitsche mit
 drei Angriffsbewegungen, Dash und Doppelsprung. Handy im **Querformat**: links bewegen, ins Spielfeld tippen zum

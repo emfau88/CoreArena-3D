@@ -3,6 +3,7 @@ dist/
 dist-test/
 dist-preview/
 dist-environment-test/
+dist-environment-preview/
 dist-reference-baseline/
 test-results/
 playwright-report/

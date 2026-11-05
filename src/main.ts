@@ -8,9 +8,9 @@ import { resolveAdventureEntry } from './app/adventureVariant';
 const host = document.querySelector<HTMLElement>('#app')!;
 const params = new URLSearchParams(location.search);
 const diagnostics = import.meta.env.DEV || import.meta.env.MODE === 'test';
+const environment = import.meta.env.MODE === 'environment-test' || import.meta.env.MODE === 'environment-preview';
 const adventure = resolveAdventureEntry(params, diagnostics,
-  diagnostics || import.meta.env.MODE === 'adventure-preview' || import.meta.env.MODE === 'environment-test',
-  import.meta.env.MODE === 'environment-test');
+  diagnostics || import.meta.env.MODE === 'adventure-preview' || environment, environment);
 const game = loadFighterAssets().then(()=>adventure ? import('./app/adventureGame').then(({ startAdventure }) => startAdventure(host, adventure))
   : params.get('mode') === 'pve' ? import('./app/pveGame').then(({ startPve }) => startPve(host)) : startGame(host));
 game.then((dispose) => {

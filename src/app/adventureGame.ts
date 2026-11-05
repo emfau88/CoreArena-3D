@@ -31,7 +31,8 @@ const hints: Record<string, string> = {
 export async function startAdventure(host: HTMLElement, entry: AdventureEntry): Promise<() => void> {
   const exploration = entry.exploration;
   const [courtyardAssets,missionAssets] = await Promise.all([loadCourtyardAssets(),loadMissionAssets(),loadMeleeAssets()]);
-  const environment=import.meta.env.MODE==='environment-test' && entry.environment
+  const environmentEnabled=import.meta.env.MODE==='environment-test' || import.meta.env.MODE==='environment-preview';
+  const environment=environmentEnabled && entry.environment
     ?await (await import('../experiments/adventureEnvironment/environmentTest')).createEnvironmentTest(host,entry.environment,courtyardAssets):undefined;
   const simulationTimes:number[]=[];
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
@@ -410,7 +411,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       camera.left = -halfHeight * innerWidth/innerHeight; camera.right = -camera.left; camera.updateProjectionMatrix();
     },
   }) });
-  if ((import.meta.env.DEV || import.meta.env.MODE === 'test' || import.meta.env.MODE === 'adventure-preview' || import.meta.env.MODE==='environment-test') && (entry.lab||entry.profile==='prototype')) {
+  if ((import.meta.env.DEV || import.meta.env.MODE === 'test' || import.meta.env.MODE === 'adventure-preview' || environmentEnabled) && (entry.lab||entry.profile==='prototype')) {
     prototypeModule=await import('./adventurePrototype');
     const {EnergyWhipView}=await import('../render/energyWhipView');
     whipView=new EnergyWhipView(view.scene,prototypeModule.PRACTICE_TARGETS);
