@@ -1,0 +1,423 @@
+{
+  "build": {
+    "commit": "f57476f1537310f9334f98ce6affdb4934c87ade",
+    "sourceHash": "ec336adddb6c3c834f79b710949456ce132873c60a57030f049d495ac13bad33"
+  },
+  "frames": 600,
+  "results": [
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "ankunft",
+      "p50": 8.399999999999636,
+      "p95": 13.900000000000546,
+      "p99": 19.399999999999636,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.026624059677124,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000007
+      },
+      "calls": 248,
+      "triangles": 679148,
+      "textures": 43
+    },
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "hofrand",
+      "p50": 8.299999999999272,
+      "p95": 11.200000000000728,
+      "p99": 14,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.884265899658203,
+        "y": 0.024894988536834695,
+        "z": 32.71839904785156
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 237,
+      "triangles": 677552,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "rinne",
+      "p50": 8.30000000000291,
+      "p95": 13.69999999999709,
+      "p99": 16.69999999999709,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.445088863372803,
+        "y": 0.028297698497772195,
+        "z": 36.67835998535156
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 260,
+      "triangles": 685268,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "ankunft",
+      "p50": 8.199999999999818,
+      "p95": 11.199999999998909,
+      "p99": 13.899999999999636,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.026624059677124,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.00000000000001
+      },
+      "calls": 248,
+      "triangles": 657520,
+      "textures": 43
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "hofrand",
+      "p50": 8.300000000001091,
+      "p95": 13.899999999999636,
+      "p99": 16.5,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.910249710083008,
+        "y": 0.028228259086608865,
+        "z": 32.718360900878906
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 236,
+      "triangles": 655912,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "rinne",
+      "p50": 8.299999999999272,
+      "p95": 11.200000000000728,
+      "p99": 14,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.376372814178467,
+        "y": 0.024968779087066628,
+        "z": 36.678192138671875
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 258,
+      "triangles": 663616,
+      "textures": 44
+    },
+    {
+      "run": 2,
+      "variant": "retaining-corner",
+      "spot": "ankunft",
+      "p50": 5.600000000000364,
+      "p95": 8.5,
+      "p99": 11.100000000000364,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.028290724754333474,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000014
+      },
+      "calls": 247,
+      "triangles": 657508,
+      "textures": 43
+    },
+    {
+      "run": 2,
+      "variant": "retaining-corner",
+      "spot": "hofrand",
+      "p50": 8.300000000001091,
+      "p95": 13.699999999998909,
+      "p99": 14,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.90895938873291,
+        "y": 0.028240776062011697,
+        "z": 32.718082427978516
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 233,
+      "triangles": 655876,
+      "textures": 44
+    },
+    {
+      "run": 2,
+      "variant": "retaining-corner",
+      "spot": "rinne",
+      "p50": 8.299999999999272,
+      "p95": 11.200000000000728,
+      "p99": 13.900000000001455,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.348053932189941,
+        "y": 0.024882054328918435,
+        "z": 36.67771911621094
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 260,
+      "triangles": 663640,
+      "textures": 44
+    },
+    {
+      "run": 2,
+      "variant": "rocky-bank",
+      "spot": "ankunft",
+      "p50": 8.299999999999272,
+      "p95": 11.200000000000728,
+      "p99": 14.100000000000364,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.021624064445495583,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.00000000000001
+      },
+      "calls": 247,
+      "triangles": 679136,
+      "textures": 43
+    },
+    {
+      "run": 2,
+      "variant": "rocky-bank",
+      "spot": "hofrand",
+      "p50": 8.300000000001091,
+      "p95": 13.900000000001455,
+      "p99": 19.299999999999272,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.90895938873291,
+        "y": 0.02490744590759275,
+        "z": 32.718082427978516
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 234,
+      "triangles": 677516,
+      "textures": 44
+    },
+    {
+      "run": 2,
+      "variant": "rocky-bank",
+      "spot": "rinne",
+      "p50": 8.200000000000728,
+      "p95": 11.099999999998545,
+      "p99": 11.200000000000728,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.348909378051758,
+        "y": 0.02821538448333738,
+        "z": 36.67626190185547
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000004
+      },
+      "calls": 259,
+      "triangles": 685256,
+      "textures": 44
+    },
+    {
+      "run": 3,
+      "variant": "rocky-bank",
+      "spot": "ankunft",
+      "p50": 5.600000000000364,
+      "p95": 11,
+      "p99": 11.200000000000728,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.02495739459991453,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000014
+      },
+      "calls": 245,
+      "triangles": 679112,
+      "textures": 43
+    },
+    {
+      "run": 3,
+      "variant": "rocky-bank",
+      "spot": "hofrand",
+      "p50": 8.299999999999272,
+      "p95": 11.200000000000728,
+      "p99": 13.900000000001455,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.910249710083008,
+        "y": 0.021561598777770974,
+        "z": 32.718360900878906
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000007
+      },
+      "calls": 235,
+      "triangles": 677528,
+      "textures": 44
+    },
+    {
+      "run": 3,
+      "variant": "rocky-bank",
+      "spot": "rinne",
+      "p50": 8.200000000000728,
+      "p95": 11.19999999999709,
+      "p99": 13.799999999999272,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.350152969360352,
+        "y": 0.02488211393356321,
+        "z": 36.67219924926758
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000007
+      },
+      "calls": 259,
+      "triangles": 685256,
+      "textures": 44
+    },
+    {
+      "run": 3,
+      "variant": "retaining-corner",
+      "spot": "ankunft",
+      "p50": 8.199999999999818,
+      "p95": 11.099999999998545,
+      "p99": 13.899999999999636,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": 0.00009428100747754797,
+        "y": 0.01995739936828611,
+        "z": 32.99993133544922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000014
+      },
+      "calls": 248,
+      "triangles": 657520,
+      "textures": 43
+    },
+    {
+      "run": 3,
+      "variant": "retaining-corner",
+      "spot": "hofrand",
+      "p50": 8.19999999999709,
+      "p95": 11.100000000000364,
+      "p99": 11.299999999999272,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -11.909690856933594,
+        "y": 0.02822831869125364,
+        "z": 32.71770477294922
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000007
+      },
+      "calls": 236,
+      "triangles": 655912,
+      "textures": 44
+    },
+    {
+      "run": 3,
+      "variant": "retaining-corner",
+      "spot": "rinne",
+      "p50": 8.200000000000728,
+      "p95": 11.100000000002183,
+      "p99": 11.400000000001455,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "position": {
+        "x": -4.360800743103027,
+        "y": 0.026548659801483132,
+        "z": 36.67763900756836
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000007
+      },
+      "calls": 257,
+      "triangles": 663604,
+      "textures": 44
+    }
+  ]
+}

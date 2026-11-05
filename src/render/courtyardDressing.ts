@@ -67,7 +67,7 @@ export async function loadDressingAssets(): Promise<DressingAssets> {
   return { plants, consoles };
 }
 
-export function buildCourtyardDressing(scene: THREE.Scene, assets: DressingAssets): (dt:number)=>void {
+export function buildCourtyardDressing(scene: THREE.Scene, assets: DressingAssets, replaceBeds?: 'arrival' | 'all'): (dt:number)=>void {
   type Placement = [x:number,y:number,z:number,scale:number,yaw:number];
   const placements = new Map<PlantName, Placement[]>();
   const plant = (name:PlantName,x:number,z:number,scale=1,y=0,yaw=0) => {
@@ -98,13 +98,16 @@ export function buildCourtyardDressing(scene: THREE.Scene, assets: DressingAsset
   // Sparse crowns beyond the walls frame the courts without covering enemies or landings.
   for(const [x,z,s] of [[-17.3,35,.46],[-17.3,20,.42],[-19.1,8,.48],[-19.1,-8,.46],[-19.1,-22,.44],[-19.1,-39,.48],
     [17.3,33.5,.36],[19.1,3,.36],[19.1,-34,.36]]) {
+    if (replaceBeds === 'all' || (replaceBeds === 'arrival' && z! >= 16)) continue;
     plant('Birch_Tree_1',x!,z!,s!,-.04,z!);
     plant('Blackberry_Bush_1b',x!+.25,z!-.8,.85,-.04,z!);
     plant('Forest_Grass_1',x!-.2,z!+.8,.65,-.04,x!);
   }
-  plant('Tree_Stump_1',-17.4,28,1.25,-.1,.5);
-  plant('Tree_Stump_1',19.1,-6,1.3,-.1,1);
-  plant('Tree_Stump_1',-19.2,-35,1.2,-.1,2);
+  if (!replaceBeds) plant('Tree_Stump_1',-17.4,28,1.25,-.1,.5);
+  if (replaceBeds !== 'all') {
+    plant('Tree_Stump_1',19.1,-6,1.3,-.1,1);
+    plant('Tree_Stump_1',-19.2,-35,1.2,-.1,2);
+  }
   plant('Woodruff_Cluster_1',-14.8,5.1,.55,1.1,.7);
   plant('Woodruff_Cluster_1',-14.2,-24.6,.5,1.1,2);
   plant('Fern_1a',12.8,-8.8,.4,.8,1.2);

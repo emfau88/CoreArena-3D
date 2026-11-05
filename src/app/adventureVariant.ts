@@ -1,12 +1,13 @@
 import { AdventureFight } from '../core/adventureFight';
 
 export type AdventureProfile = 'legacy' | 'prototype';
+export type AdventureEnvironment = 'reference' | 'outpost-test' | 'stone-yard' | 'rocky-bank' | 'retaining-corner' | 'warden-ravine';
 export interface AdventureEntry {
   readonly profile: AdventureProfile;
   readonly lab: boolean;
   readonly exploration: boolean;
   readonly complement?:boolean;
-  readonly environment?:'reference'|'outpost-test';
+  readonly environment?: AdventureEnvironment;
 }
 
 /** The only URL boundary for Adventure variants. Other modes retain their routes. */
@@ -16,8 +17,12 @@ export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean
   const exploration = params.get('explore') === '1';
   const lab = allowLab && !exploration && params.get('lab') === 'boss';
   const profile=allowPrototype&&!exploration&&params.get('combat')==='prototype'?'prototype':'legacy';
-  const environment=allowEnvironment && profile==='prototype' && !params.has('lab')
-    ? params.get('environment')==='outpost-test'?'outpost-test':'reference' : undefined;
+  let environment: AdventureEnvironment | undefined;
+  if (allowEnvironment && profile === 'prototype' && !params.has('lab')) {
+    const requested = params.get('environment');
+    environment = requested === 'outpost-test' || requested === 'stone-yard' || requested === 'rocky-bank'
+      || requested === 'retaining-corner' || requested === 'warden-ravine' ? requested : 'reference';
+  }
   return { lab, exploration, profile,...(profile==='prototype'?{complement:params.get('loadout')==='pulse'}:{}),
     ...(environment?{environment}:{}) };
 }

@@ -1,5 +1,7 @@
 # CORE ARENA 3D
 
+**Aktueller Adventure-Entwicklungsstand:** Dieser Branch enthält den Kampfprototyp und die Umgebungsvarianten A–F mit der Wächterklamm. [Lokaler Vergleich und Spielbilder](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md). Der folgende öffentliche Playlink öffnet die T2-Vorschau.
+
 **[▶ Neue Adventure-Version spielen — auch auf dem Handy](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
 
 Öffentliche T2-Testversion: wieder **von links nach rechts**, Energiepeitsche mit
@@ -15,7 +17,11 @@ für einen Vergleich am Ladehof bei unveränderter Kamera und Links-nach-rechts-
 Eigener Branch `codex/adventure-environment-test`; [Umsetzung, Bilder und Prüfergebnisse](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
 Lokal mit `npm run build:environment-test` und `npm run preview:environment-test` starten:
 [A – bisheriger Hof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=reference) ·
-[B – neuer Ladehof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=outpost-test).
+[B – neuer Ladehof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=outpost-test) ·
+[C – bisheriger Hof mit Außenraum](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=stone-yard) ·
+[D – Felsböschung am Ladehof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=rocky-bank) ·
+[E – Stützmauer am Ladehof](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=retaining-corner) ·
+[F – Wächterklamm bis zum Nordtor](http://127.0.0.1:8751/CoreArena-3D/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine).
 Oben links umschalten; jeder Wechsel startet die Mission neu. Die öffentliche Vorschau bleibt unverändert.
 U5 ist wegen des noch überschrittenen relativen Framezeitbudgets nicht vollständig abgenommen.
 

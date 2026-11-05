@@ -1,0 +1,74 @@
+{
+  "build": {
+    "commit": "f57476f1537310f9334f98ce6affdb4934c87ade",
+    "sourceHash": "be7b9d949b1c0ceb9603a9d7d0b0c962542f0cfd024d34755d8881e6909df3c0"
+  },
+  "spot": "spawn",
+  "viewport": [
+    1600,
+    900
+  ],
+  "frames": 300,
+  "samples": [
+    {
+      "variant": "reference",
+      "p50": 5.599999999999909,
+      "p95": 8.400000000000091,
+      "p99": 11.199999999999818,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 249,
+      "triangles": 633540,
+      "textures": 42
+    },
+    {
+      "variant": "warden-ravine",
+      "p50": 5.600000000000364,
+      "p95": 8.5,
+      "p99": 11.099999999999909,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 245,
+      "triangles": 575543,
+      "textures": 43
+    },
+    {
+      "variant": "warden-ravine",
+      "p50": 5.600000000000364,
+      "p95": 8.5,
+      "p99": 11.199999999999818,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 245,
+      "triangles": 575543,
+      "textures": 43
+    },
+    {
+      "variant": "reference",
+      "p50": 5.599999999999909,
+      "p95": 11.199999999999818,
+      "p99": 14,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 249,
+      "triangles": 633540,
+      "textures": 42
+    },
+    {
+      "variant": "reference",
+      "p50": 5.599999999999909,
+      "p95": 8.400000000000091,
+      "p99": 11.099999999999909,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 249,
+      "triangles": 633540,
+      "textures": 42
+    },
+    {
+      "variant": "warden-ravine",
+      "p50": 5.599999999999909,
+      "p95": 11,
+      "p99": 14,
+      "gpu": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "calls": 245,
+      "triangles": 575543,
+      "textures": 43
+    }
+  ]
+}

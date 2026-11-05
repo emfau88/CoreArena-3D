@@ -215,3 +215,96 @@ Die Bilder sind eine technische Eigenkontrolle. Ob der Hof stimmiger wirkt und
 der Gewinn den zusätzlichen Detailgrad rechtfertigt, entscheidet U6. Insbesondere
 die helle Bodenpalette, das sichtbare Stück des Ladeobjekts beim Start und die
 Stärke der Statusreaktion sollten im direkten Spielvergleich beurteilt werden.
+
+## D · Felsböschung am Ladehof, 5. November 2026
+
+Am Außenrand ersetzt D die rechteckigen Beete durch eine abgesenkte Böschung.
+Das ursprüngliche Pflaster liegt im spielbaren Hof. Am [Hofrand in C](adventure-environment-test/2026-11-05/stone-yard-hofrand.jpg)
+und am [gleichen Standpunkt in D](adventure-environment-test/2026-11-05/rocky-bank-hofrand.jpg)
+lässt sich der Übergang aus der Seitenkamera vergleichen.
+
+In Chrome erschien die [Randwarnung](adventure-environment-test/2026-11-05/rocky-bank-absturzkante.jpg)
+vor dem Absprung und verschwand beim Zurückgehen. Ein einfacher Sprung über die
+Startmauer und ein Doppelsprung über die hintere Seitenmauer endeten unter −8 m
+mit „Abgestürzt“. Beide Neustarts führten in einen laufenden Versuch.
+Der offene Durchgang war mit normaler Bewegung erreichbar. Auf dem emulierten
+Touchgerät (667 × 375) waren Variantenwechsel und Spieltasten erreichbar.
+
+## E · Stützmauer und D/E-Vergleich, 5. November 2026
+
+Die schräge Stützmauer verbindet die Außenmauer mit einem gemauerten Pfeiler im
+Fels. Ihre Kollision folgt der Neigung der Decksteine. Zwei lose Mauersteine
+liegen im Geröll, die trockene Rinne kreuzt beide Stirnseiten des mittleren
+Bogens. E verwendet die vorhandenen Stein- und Schiefertexturen.
+
+Das Gelände bildet ein zusammenhängendes Netz. An der Rinne liegen seine
+Stützpunkte 0,5 bis 0,6 m auseinander, am entfernten Rand rund 3 m.
+D zeichnet das Gelände mit 36.000 Dreiecken, E mit 11.200.
+
+| Blick aus der Spielkamera | D | E |
+|---|---|---|
+| Ankunft | [Bild](adventure-environment-test/2026-11-05/d-e/d-ankunft.jpg) | [Bild](adventure-environment-test/2026-11-05/d-e/e-ankunft.jpg) |
+| Linke Ecke | [Bild](adventure-environment-test/2026-11-05/d-e/d-hofrand.jpg) | [Bild](adventure-environment-test/2026-11-05/d-e/e-hofrand.jpg) |
+| Rinne und Bogen | [Bild](adventure-environment-test/2026-11-05/d-e/d-rinne.jpg) | [Bild](adventure-environment-test/2026-11-05/d-e/e-rinne.jpg) |
+
+Die Aufnahmen entstanden bei 1920 × 1080 mit normaler Bewegung. Die Warnung
+erschien vor dem Sprung an der Ecke. Beim diagonalen Doppelsprung über die
+Außenmauer folgten der Absturz und ein erfolgreicher Neustart. Der Durchgang
+zum zweiten Hof war begehbar. Im emulierten Touchbrowser bei 667 × 375 waren
+die Spieltasten und der Wechsel D → E erreichbar.
+[Kamerapositionen und Build](adventure-environment-test/2026-11-05/d-e/views.json).
+
+**Framezeiten auf dem lokalen Desktop.** Chrome mit AMD Radeon Graphics,
+1920 × 1080, DPR 1. Drei Paare in der Reihenfolge D/E, E/D, D/E. Jede Variante
+lief in einem frischen Browserprozess. Je Standpunkt wurden nach dem Aufwärmen
+600 Browser-Frameintervalle erfasst. Die Angaben in der Tabelle sind die
+Mediane der drei p95-Werte. Kleinere Werte bedeuten kürzere Frameintervalle.
+
+| Standpunkt | D | E |
+|---|---:|---:|
+| Ankunft | 11,2 ms | 11,1 ms |
+| Hofrand | 11,2 ms | 13,7 ms |
+| Rinne | 11,2 ms | 11,2 ms |
+
+E lag in allen neun Beobachtungen unter 20 ms p95. Am Hofrand kostete E im
+ersten Paar zusätzlich 2,7 ms und überschritt dort den Vergleichsrichtwert von
+2 ms. In den anderen beiden Hofrand-Paaren betrug die Differenz −0,2 und
+−0,1 ms. In der gesamten gerenderten Szene sparte E je nach Standpunkt rund
+21.600 Dreiecke. Die Zahl der Renderaufrufe wich um −2 bis +3 ab, die
+Texturanzahl war paarweise gleich. Für physische Mobilgeräte steht eine
+Framezeitmessung aus. [Alle Messungen](adventure-environment-test/2026-11-05/d-e/performance.json).
+
+Mit laufender Umgebungsvorschau reproduzierbar über
+`node --import tsx scripts/qa/compareRetainingCorner.mjs` für die Bilder und
+`node --import tsx scripts/qa/compareRetainingCorner.mjs --performance` für die Messung.
+
+### F · Wächterklamm
+
+Der isolierte Test legt eine durchgehende Schlucht um alle drei Höfe, die zwei
+Durchgänge und das Nordtor. Der Felskern unter dem Hof folgt auch an den schmalen
+Übergängen dem tatsächlichen Bodenumriss. Die Schluchtensohle liegt unter der
+Absturzhöhe. An einer erreichbaren Außenkante warnt das Spiel vor dem Sprung.
+
+Am Ladehof ist ein gehörnter Steinkopf freigelegt. Gegenüber der Wartungsterrasse
+ragen die Finger einer versteinerten Hand aus dem Hang. Am Nordtor bricht die
+Bernsteinader zwischen geneigten Felsspitzen auf. Alle Formen werden in der
+Spielkamera aus Geometrie gerendert. Die vorhandenen Bodenscans, Schiefertextur
+und Farnmodelle liefern die Oberflächen und kleine Details.
+
+[Ankunft](adventure-environment-test/2026-11-05/f/ankunft.jpg) ·
+[Erster Durchgang](adventure-environment-test/2026-11-05/f/durchgang.jpg) ·
+[Wartungsterrasse](adventure-environment-test/2026-11-05/f/terrasse.jpg) ·
+[Nordtor](adventure-environment-test/2026-11-05/f/nordtor.jpg).
+
+Im lokalen Chrome-Test wurden der Sturz über die Startmauer mit Doppelsprung,
+Neustart, Wartungsreserve, Rückkehr zum Ruhepunkt, Bosskampf, Einsetzen des
+Steinkerns und der Ausgang mit den normalen Spielaktionen geprüft. Die
+Vergleichslinks und die großen Touch-Bedienelemente waren im emulierten
+667 × 375-Fenster erreichbar. Beide Builds und alle 107 Unit-Tests liefen durch.
+
+Am Start ergaben je drei Durchläufe mit 300 Frameintervallen bei 1600 × 900
+Pixeln auf der AMD-Radeon-Testmaschine einen Median der p95-Framezeiten von
+8,4 ms für A und 8,5 ms für F. A und F zeichneten dort 633.540 bzw. 575.543
+Dreiecke. Für den Bosskampf und für physische Mobilgeräte steht eine
+Framezeitmessung aus. Reproduzierbar mit `node --import tsx scripts/qa/wardenRavine.mjs --timing`.
+[Rohmessungen mit Build-Kennung](adventure-environment-test/2026-11-05/f/performance.json).

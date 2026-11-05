@@ -43,8 +43,8 @@ try{
     await expect(page.locator('#environment-comparison')).toHaveCount(0);
     assert.equal(await page.locator('#whip-controls').count()>0,prototype);
     assert.equal(await page.evaluate(()=>'__coreArena' in window),mode==='test');
-    assert.ok(!requests.some(r=>/environmentTest-|outpostEnvironment-/.test(r)));
-    assert.ok(!readdirSync(dir+'/assets').some(f=>/environmentTest-|outpostEnvironment-/.test(f)));
+    assert.ok(!requests.some(r=>/environmentTest-|outpostEnvironment-|stoneYard-|rockyBank-|retainingCorner-|wardenRavine-|shale-ground-/.test(r)));
+    assert.ok(!readdirSync(dir+'/assets').some(f=>/environmentTest-|outpostEnvironment-|stoneYard-|rockyBank-|retainingCorner-|wardenRavine-|shale-ground-/.test(f)));
     assert.deepEqual(errors,[]);guards.push({mode,prototype,errors,experimentRequests:0});await page.close();await stop();
   }
   results.guards=guards;save();console.log('Build boundaries passed');
@@ -74,7 +74,7 @@ try{
     }
     const warmStart=Date.now();await ready(page,base+query+'&environment='+variant);const warmReadyMs=Date.now()-warmStart;
     assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);
-    if(variant==='reference')assert.ok(!arrival.network.some(r=>r.url.includes('outpostEnvironment-')));
+    if(variant==='reference')assert.ok(!arrival.network.some(r=>/outpostEnvironment-|stoneYard-|rockyBank-|retainingCorner-|wardenRavine-|shale-ground-/.test(r.url)));
     perf.push({variant,run,coldReadyMs,warmReadyMs,arrival,court});results.performance=perf;save();await context.close();
     console.log(variant,run,'p95',arrival.p95,court.p95,'calls',arrival.calls,court.calls);
   }

@@ -1,0 +1,122 @@
+{
+  "build": {
+    "commit": "f57476f1537310f9334f98ce6affdb4934c87ade",
+    "sourceHash": "ec336adddb6c3c834f79b710949456ce132873c60a57030f049d495ac13bad33"
+  },
+  "results": [
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "ankunft",
+      "position": {
+        "x": 0.000057399294746574014,
+        "y": 0.029917335510253884,
+        "z": 32.99989318847656
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000049695309777
+      },
+      "calls": 248,
+      "triangles": 679148,
+      "textures": 43
+    },
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "hofrand",
+      "position": {
+        "x": -11.9121675491333,
+        "y": 0.02990136146545408,
+        "z": 32.71849822998047
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000018
+      },
+      "calls": 232,
+      "triangles": 677492,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "rocky-bank",
+      "spot": "rinne",
+      "position": {
+        "x": -4.352014541625977,
+        "y": 0.02663079500198362,
+        "z": 36.67839050292969
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000014
+      },
+      "calls": 261,
+      "triangles": 685280,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "ankunft",
+      "position": {
+        "x": 0.000057399294746574014,
+        "y": 0.029917335510253884,
+        "z": 32.99989318847656
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000049695309777
+      },
+      "calls": 249,
+      "triangles": 657532,
+      "textures": 43
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "hofrand",
+      "position": {
+        "x": -11.908966064453125,
+        "y": 0.029907619953155495,
+        "z": 32.71791076660156
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000018
+      },
+      "calls": 236,
+      "triangles": 655912,
+      "textures": 44
+    },
+    {
+      "run": 1,
+      "variant": "retaining-corner",
+      "spot": "rinne",
+      "position": {
+        "x": -4.348666667938232,
+        "y": 0.029882168769836404,
+        "z": 36.67770004272461
+      },
+      "view": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "viewHeight": 18.000000000000014
+      },
+      "calls": 261,
+      "triangles": 663652,
+      "textures": 44
+    }
+  ]
+}

@@ -18,6 +18,7 @@ import { StoneFeedback } from './stoneFeedback';
 import { PROTOTYPE_EXIT_SEAL } from '../core/adventureBalance';
 import { AdventureMissionView, loadMissionAssets } from '../render/adventureMissionView';
 import { OutpostView } from '../render/outpostView';
+import { PVE_FALL_HEIGHT } from '../core/pve';
 
 const hints: Record<string, string> = {
   A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
@@ -35,7 +36,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const simulationTimes:number[]=[];
   const world = await createSpatialWorld(STONE_ADVENTURE_COMBAT, { stepHeight: .32 });
   let view: ArenaView;
-  try { view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
+  try { environment?.installColliders?.(world);
+    view = new ArenaView(host, {...STONE_ADVENTURE_COMBAT,targets:[]}, { training: false, pickups: STONE_ADVENTURE_PICKUPS,
     build: (scene,arena) => {
       const animate=buildStoneAdventure(scene,arena,courtyardAssets,environment?.style);
       environment?.build(scene);return animate;
@@ -298,7 +300,9 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
           objective=state.relayActive?'Nordtor offen · Verlasse den Außenposten.':state.core?.collected?
             'Steinkern geborgen · Am Relais vor dem Nordtor einsetzen.':'Steinkern beim besiegten Wächter einsammeln · Das Relais braucht seine Energie.';
         }
-        el('room-hint').textContent=objective;
+        const edgeWarning = state.pve.outcome==='running' ? environment?.edgeHint?.(current.position) : undefined;
+        el('room-hint').textContent=edgeWarning ?? objective;
+        if (environment?.edgeHint) el('room-hint').classList.toggle('edge-warning', !!edgeWarning);
         if(prototype?.practice){el('room-name').textContent='Peitschenübung';el('room-hint').textContent=input.touchEnabled?'Feld tippen: Schlag · Knall: schwerer Schlag · Sprung zweimal: Doppelsprung · Luft: Lufthieb':'Links: Schwung · Rechts: Überkopf-Knall · Luft: Lufthieb · Leertaste erneut: Doppelsprung';}
       }
       const interaction=exploration?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
@@ -318,6 +322,10 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       el('result-title').textContent=state.completed?'Der verwitterte Hof ist frei.':'Der Hof bleibt bewacht.';
       el('result-detail').textContent=state.completed?'Steinkern eingesetzt, Relais online. Der Außenposten arbeitet wieder. Dein Weg zur Kristallkluft ist frei.':
         state.checkpoint?'Kehre mit frischen Vorräten zum Ruhepunkt zurück. Die Konsole bleibt aktiv und die beiden Höfe bleiben befreit.':'Nutze die Vorräte und weiche den angekündigten Schlägen aus.';
+      if (environment?.edgeHint && state.pve.outcome==='defeat' && current.position.y<PVE_FALL_HEIGHT) {
+        el('result-title').textContent='Abgestürzt';
+        el('result-detail').textContent=state.checkpoint?'Du bist in die Tiefe gestürzt. Am Ruhepunkt geht es weiter.':'Du bist in die Tiefe gestürzt. Du kannst am Ladehof neu starten.';
+      }
       if(state.reserveRecovered && (state.completed || state.checkpoint && state.pve.outcome==='defeat'))
         el('result-detail').textContent+=' Wartungsreserve geborgen: 75 Rüstung am Ruhepunkt.';
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';

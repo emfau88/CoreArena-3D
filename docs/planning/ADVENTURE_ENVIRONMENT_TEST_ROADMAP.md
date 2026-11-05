@@ -5,14 +5,24 @@ Stand: **4. November 2026** · [Adventure-Roadmap](ADVENTURE_ROADMAP.md) · [Pro
 **Ziel:** Am vorhandenen Ladehof erproben, wie stark eine ausgearbeitete Umgebung,
 ruhigere Bodenflächen und erkennbare Architektur das Adventure verbessern.
 Die bestehende Perspektive, Kameranachführung und Links-nach-rechts-Führung bleiben
-erhalten. Der Versuch vergleicht zwei Darstellungen derselben spielbaren Mission.
+erhalten. Die Varianten zeigen dieselbe spielbare Mission.
 
 **Aktueller Stand: U0 bis U4 umgesetzt; U5 geprüft, Leistungsfreigabe offen.**
 Der beauftragte Versuch liegt im eigenen Worktree und Branch
 `codex/adventure-environment-test`. [Ergebnisse und Vergleich](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
 Der Vergleich ist spielbar. Das relative Framezeitbudget von +2 ms wird in
 einzelnen Paaren noch überschritten; U5 ist deshalb nicht vollständig abgenommen.
-Die persönliche Bewertung in **U6** steht aus; keine automatische Übernahme.
+**U6, Rückmeldung vom 5. November 2026.** Die ursprünglichen Texturen von A
+gefallen besser. B wirkt zu stark vereinfacht. Der Hintergrund soll mehr Raumtiefe
+bekommen. Variante C erprobt deshalb einen verwitterten Außenhof hinter dem
+Originalhof. In C wirkte das rechteckige Beet mit seiner Reihe aus Steinen und
+Pflanzen aufgesetzt. D prüft am Ladehof eine modellierte Felsböschung, eine
+trockene Geröllrinne und einen Warnhinweis an der überspringbaren Außenmauer.
+E verbindet die linke Ecke des Hofs mit dem Hang. Eine Stützmauer reicht bis
+zu einem Pfeiler im Fels. Die Geröllrinne führt von dort durch den mittleren
+Bogen. Der Vergleich D/E dokumentiert diese Ecke. Variante F erprobt mit der
+Wächterklamm eine durchgehende 3D-Umgebung vom Ladehof bis zum Nordtor.
+[Spielbilder und Messwerte zu F](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md#f--wächterklamm).
 
 Diese Roadmap ist die Aufgabenquelle für den begrenzten Umgebungstest. Die
 26 Pakete und sechs Gates der Hauptroadmap bleiben unverändert; insbesondere

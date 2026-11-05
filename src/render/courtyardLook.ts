@@ -10,7 +10,8 @@ const assetRoot = `${import.meta.env.BASE_URL}assets/courtyard/`;
 interface Surface { map: THREE.Texture; normalMap: THREE.Texture; roughnessMap: THREE.Texture }
 export interface CourtyardAssets { floor: Surface; wall: Surface; ferns: THREE.Mesh[]; rocks: THREE.Mesh[]; dressing:DressingAssets }
 export interface CourtyardStyle {
-  material(shape:ArenaBox,part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial):THREE.Material;
+  material?(shape:ArenaBox,part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial):THREE.Material;
+  replaceExteriorBeds?: 'arrival' | 'all';
 }
 
 /** Local assets loaded only by the adventure; source/licence records live beside each pack. */
@@ -83,7 +84,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     if(STONE_CONSOLES.some(station=>station.id===shape.id)) continue;
     if(shape.id.startsWith('outpost-')) continue;
     const {center:c,size:s}=shape, top=c.y+s.y/2;
-    const surface=(part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial)=>style?.material(shape,part,original)??original;
+    const surface=(part:'floor'|'wall'|'cap'|'base',original:THREE.MeshStandardMaterial)=>style?.material?.(shape,part,original)??original;
     if(shape.material==='floor') {
       // Physics floors overlap at doorways. Clip only the visible overlap; world
       // UVs keep the paving continuous through every court, link and exit.
@@ -107,9 +108,12 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     }
   }
   // Grounded exterior beds: large decorative rocks never become invisible walk-through obstacles.
-  for(const side of [-1,1]) box(side*17.15,-.14,27,2.3,.22,22.7,earth,.05);
-  box(0,-.14,39.1,36.6,.22,2.2,earth,.05);
-  for(const side of [-1,1]) {
+  const replaceBeds = style?.replaceExteriorBeds;
+  if (!replaceBeds) {
+    for(const side of [-1,1]) box(side*17.15,-.14,27,2.3,.22,22.7,earth,.05);
+    box(0,-.14,39.1,36.6,.22,2.2,earth,.05);
+  }
+  if (replaceBeds !== 'all') for(const side of [-1,1]) {
     box(side*19.05,-.14,0,2.1,.22,24.8,earth,.05);
     box(side*19.05,-.14,-29,2.1,.22,26.8,earth,.05);
   }
@@ -136,10 +140,12 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
     [-15.5,-.025,-18.4,2.1],[-14.2,-.025,-18.9,1.35],[-15.6,-.025,-32.5,2.2],
     [15.2,-.025,-29.7,2.1],[14.2,-.025,-30.6,1.4],[11.3,-.025,-39,2],
     [-10.5,-.025,-39.2,1.8],[-13.8,1.075,-24.7,1.35],
+  ];
+  if (!replaceBeds) plants.push(
     [-17.1,-.04,36,2.5],[-17.3,-.04,34.5,1.8],[-17,-.04,27,2.2],[-17.5,-.04,20,2.5],
     [17.2,-.04,33,2.2],[17.1,-.04,31.7,1.6],[17.3,-.04,23.7,2.3],[17.1,-.04,18,1.8],
     [-12,-.04,39,2.4],[-10.8,-.04,39.5,1.7],[9.5,-.04,39.2,2.1],
-  ];
+  );
   // Many clumps still cost four plant draw calls, one per shared model variant.
   assets.ferns.forEach((source,variant)=>{
     const instances=plants.map((plant,i)=>({plant,i})).filter(({i})=>i%assets.ferns.length===variant);
@@ -152,7 +158,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   });
   const rocks = [[-17.2,31.5,1.1],[-17.2,30,.65],[-17.1,17.3,.9],[17.2,36,1.1],[17.2,35,.6],
     [17.3,26.5,1.1],[-13.5,39.1,.85],[8,39.2,1]];
-  rocks.forEach(([x,z,s],i)=>place(assets.rocks[[0,2,4][i%3]!]!,x!,-.16,z!,s!,i*1.9));
+  if (!replaceBeds) rocks.forEach(([x,z,s],i)=>place(assets.rocks[[0,2,4][i%3]!]!,x!,-.16,z!,s!,i*1.9));
 
   // One small iron basket on the existing doorway wall. Its warm pool is local and shadow-free.
   const torch=new THREE.Group();torch.position.set(-6,1.3,16);scene.add(torch);
@@ -164,7 +170,7 @@ export function buildCourtyardLook(scene: THREE.Scene, arena: ArenaDefinition, a
   const heart=new THREE.Mesh(new THREE.SphereGeometry(1,8,6),new THREE.MeshBasicMaterial({color:0xffe7a0}));
   heart.position.set(.025,1.01,.02);heart.scale.set(.1,.23,.1);torch.add(heart);
   const light=new THREE.PointLight(0xffb55d,8,6,2);light.position.y=1.15;torch.add(light);
-  const animateDressing=buildCourtyardDressing(scene,assets.dressing);
+  const animateDressing=buildCourtyardDressing(scene,assets.dressing,replaceBeds);
   let elapsed=0;
   return dt=>{ animateDressing(dt);elapsed+=dt;flame.scale.y=.36+Math.sin(elapsed*9)*.045;
     flame.position.x=Math.sin(elapsed*7)*.035;heart.scale.y=.23+Math.sin(elapsed*13)*.025;

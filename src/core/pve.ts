@@ -2,6 +2,7 @@ import type { Damage } from './match';
 import { directionTo } from './combat';
 import { TICK_SECONDS, type Ray, type RayHit, type RayWorld, type Vec3 } from './types';
 
+export const PVE_FALL_HEIGHT = -8;
 export const MONSTER = { id: 'stone-warden', center: { x: 0, y: 1.85, z: -1 }, radius: 1.85, level: 'PVE' };
 export const PVE_RULES = Object.freeze({ bossHp: 600, emergeTicks: 120, waveWarning: 90, eruptionWarning: 75,
   waveTicks: 150, eruptionTicks: 24, recoveryTicks: 90, waveSpeed: 0.12, waveDamage: 60, eruptionDamage: 65, eruptionRadius: 2.6,
@@ -89,7 +90,7 @@ export class PveEncounter {
         this.counters++;this.counterRecorded=true;
       }
     }
-    if (player.y < -8) this.hurt(1000);
+    if (player.y < PVE_FALL_HEIGHT) this.hurt(1000);
     if (Number.isFinite(options.incomingDamage) && options.incomingDamage! > 0) this.hurt(options.incomingDamage!);
     if (this.state.hp === 0) return;
     if (!active) return;

@@ -125,6 +125,12 @@ export class RapierWorld implements SpatialWorld, RayWorld {
       this.world.step();
     }
   }
+  addStaticHull(id: string, points: Float32Array): void {
+    const shape = RAPIER.ColliderDesc.convexHull(points);
+    if (!shape) throw new Error(`Invalid solid geometry for ${id}`);
+    const collider = this.world.createCollider(shape);
+    this.names.set(collider.handle,id);
+  }
   setObstacleEnabled(id: string, enabled: boolean): void {
     const collider = this.obstacles.get(id);
     if (collider && collider.isEnabled() !== enabled) { collider.setEnabled(enabled); this.world.step(); }
