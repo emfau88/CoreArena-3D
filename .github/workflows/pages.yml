@@ -2,7 +2,7 @@ name: Build and deploy game
 
 on:
   push:
-    branches: [main]
+    branches: [main, codex/adventure-environment-test]
     paths-ignore: ['docs/**', '**.md']
   workflow_dispatch:
 
@@ -14,7 +14,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  refresh-adventure-preview:
+    if: github.ref == 'refs/heads/codex/adventure-environment-test' && github.event.created != true
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Request Pages release from the permitted deployment branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout live version
@@ -27,6 +38,11 @@ jobs:
         with:
           ref: codex/adventure-combat-prototype
           path: adventure-source
+      - name: Checkout current Adventure environment
+        uses: actions/checkout@v6
+        with:
+          ref: codex/adventure-environment-test
+          path: environment-source
       - uses: actions/setup-node@v7
         with:
           node-version-file: live/.nvmrc
@@ -34,6 +50,7 @@ jobs:
           cache-dependency-path: |
             live/package-lock.json
             adventure-source/package-lock.json
+            environment-source/package-lock.json
       - name: Build unchanged live game
         working-directory: live
         run: |
@@ -46,10 +63,18 @@ jobs:
           npm ci
           npm test
           npm run build:adventure-preview
-      - name: Include preview alongside live game
+      - name: Build public Adventure environment
+        working-directory: environment-source
+        run: |
+          npm ci
+          npm test
+          npm run build:environment-preview
+      - name: Include both previews alongside live game
         run: |
           mkdir -p live/dist/adventure-preview
           cp -a adventure-source/dist-preview/. live/dist/adventure-preview/
+          mkdir -p live/dist/adventure-environment
+          cp -a environment-source/dist-environment-preview/. live/dist/adventure-environment/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
