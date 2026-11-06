@@ -4,6 +4,11 @@
 
 Auf dem Handy im Querformat öffnen. **F ist die gewählte Umgebung für die weitere Adventure-Arbeit.** [Adventure-Entwicklungsbranch mit Spielbildern](https://github.com/emfau88/CoreArena-3D/tree/codex/adventure-environment-test).
 
+**[▶ Waffenvergleich A8 spielen · Basis / Rückhaken / Gabelspitze](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine&trial=mods)**
+
+Ein Slot vor dem Bossversuch, alle Varianten frei verfügbar, Kamera und Umgebung F bleiben erhalten.
+Noch keine dauerhaften Freischaltungen. [Mechaniken, Prüfung und offener menschlicher Vergleich](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-environment-test/docs/qa/ADVENTURE_A8_MODS_RESULT.md).
+
 **[Frühere Adventure-Kampfvorschau T2 spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
 
 Öffentliche T2-Testversion: wieder **von links nach rechts**, Energiepeitsche mit
@@ -22,7 +27,9 @@ Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.gith
   [Adventure-Roadmap mit Bulks und sechs Gates](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-environment-test/docs/planning/ADVENTURE_ROADMAP.md).
   **A0–A6.2 und A7.1 auf dem Entwicklungsbranch technisch umgesetzt; Spieltest T2 / A7.2 läuft.**
   G1 bestanden; G2/G3 und die Richtungsentscheidung bleiben menschlich offen.
-  A8, Progression und weitere Bosskarten sind noch nicht beauftragt. 26 Bulks,
+  A8.1 ist technisch fertig; A8.2 als Vergleich vorbereitet. Drei menschliche
+  Befunde und der Progressionsentscheid sind offen. Weitere Bosskarten und
+  Speicherung sind noch nicht beauftragt. 26 Bulks,
   sechs Gates und drei Spieltermine bleiben bestehen. Die öffentliche Vorschau
   enthält den neuen Kampfkern; der Gameplay-Code auf `main` bleibt beim Legacy-Stand.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
@@ -419,3 +426,4 @@ erst nach Bewährung des Spielgefühls. Weiterer Mobile-Ausbau bleibt optional.
 
 CTF-3.0 wird ausschließlich als Referenz gelesen. Die neue Runtime enthält keine
 Imports aus diesem Repository und lädt keine Bibliotheken von einem CDN.
+
