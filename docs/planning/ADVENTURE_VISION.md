@@ -10,6 +10,9 @@ Anschließend wurde A5.1–A7.2 bis zum T2-Kandidaten freigegeben. Steinwächter
 reguläre Prototyp-Mission, begrenzter Pulse-Vergleich und Feedback-Feinschliff sind
 technisch umgesetzt; menschliches T2/G2/G3 und die Produktentscheidung bleiben offen.
 Den jeweiligen Umsetzungsstand führt die Roadmap.
+Am 6. November wurden Meilensteinfreischaltungen sowie A8.3 und A9.1–A9.2
+ausdrücklich beauftragt und technisch umgesetzt: lokale Kampagnenfortsetzung,
+Bossübungen und Kristallkluft. Die menschlichen G2-/G3-/G4-Urteile bleiben offen.
 Die [Adventure-Roadmap](ADVENTURE_ROADMAP.md) ist die einzige maßgebliche Quelle
 für zukünftige Adventure-Arbeitspakete, Status, Abnahmen und Freigaben.
 

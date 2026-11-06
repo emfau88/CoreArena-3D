@@ -1,6 +1,7 @@
 import type { Damage } from './match';
 import { directionTo } from './combat';
 import { TICK_SECONDS, type Ray, type RayHit, type RayWorld, type Vec3 } from './types';
+import {FROST_PATTERN} from './frostPattern';
 
 export const PVE_FALL_HEIGHT = -8;
 export const MONSTER = { id: 'stone-warden', center: { x: 0, y: 1.85, z: -1 }, radius: 1.85, level: 'PVE' };
@@ -11,13 +12,14 @@ export const PVE_RULES = Object.freeze({ bossHp: 600, emergeTicks: 120, waveWarn
   elevatedChaseTicks: 0 });
 export type EncounterRules = { readonly [K in keyof typeof PVE_RULES]: number };
 export type MonsterKind = 'stone' | 'frost' | 'ember';
-export type MonsterPhase = 'emerging' | 'chasing' | 'melee' | 'warning' | 'attack' | 'recovery' | 'defeated';
+export type MonsterPhase = 'emerging' | 'chasing' | 'melee' | 'warning' | 'attack' | 'recovery' | 'reposition' | 'defeated';
 export interface MonsterWorld extends RayWorld {
   sweepBall(ray: Ray, distance: number, radius: number, surfacesOnly?: boolean): RayHit | null;
 }
 export interface EncounterTactics {
   readonly meleeTrigger:number; readonly stepDistance:number; readonly stepTicks:number;
   readonly activeTicks:number; readonly meleeHeight:number; readonly meleeOnly?:boolean; readonly guardedDamage?:number;
+  readonly frostProfile?:boolean;
 }
 export interface BossExchange { readonly serial:number; readonly window:'closed'|'warning'|'active'|'counter';
   readonly resolved:number; readonly avoided:number; readonly counters:number }
@@ -28,6 +30,8 @@ export interface PveSnapshot {
   readonly hp: number; readonly armor: number; readonly bossHp: number;
   readonly outcome: 'running' | 'victory' | 'defeat'; readonly hitsTaken: number; readonly lastHit: number;
   readonly exchange?:BossExchange;
+  readonly frostProfile?:boolean;
+  readonly relocation?:{readonly from:Vec3;readonly to:Vec3};
 }
 
 /** One isolated encounter. No campaign save, TDM score or respawn rule is changed. */
@@ -48,12 +52,14 @@ export class PveEncounter {
   private fresh(): PveSnapshot { return { tick: 0, phase: 'emerging', phaseTick: 0, kind: 'wave',
     target: { ...this.monster.center, y: 0 }, waveRadius: 2, hp: 100, armor: 50, bossHp: this.rules.bossHp,
     outcome: 'running', hitsTaken: 0, lastHit: -100, center: { ...this.monster.center }, facing: 0, moving: false }; }
-  snapshot(): PveSnapshot { return this.tactics?{...this.state,exchange:{serial:this.serial,window:this.window(),
+  snapshot(): PveSnapshot { return this.tactics?{...this.state,...(this.tactics.frostProfile?{frostProfile:true}:{}),exchange:{serial:this.serial,window:this.window(),
     resolved:this.resolved,avoided:this.avoided,counters:this.counters}}:this.state; }
   private window():BossExchange['window'] {
     const s=this.state;
     if(s.outcome!=='running')return 'closed';
     if(s.phase==='recovery')return 'counter';
+    if(s.phase==='reposition')return s.phaseTick<FROST_PATTERN.relocateWarning?'warning':
+      s.phaseTick<FROST_PATTERN.relocateWarning+FROST_PATTERN.relocateMove?'active':'counter';
     if(s.phase==='warning')return 'warning';
     if(s.phase==='attack')return 'active';
     if(s.phase==='melee')return s.phaseTick<this.rules.meleeWarning?'warning':
@@ -84,7 +90,8 @@ export class PveEncounter {
     if (this.state.phase !== 'emerging') {
       const raw = hits.filter(hit => hit.target === this.monster.id && hit.source === 'player' && Number.isFinite(hit.amount) && hit.amount > 0)
         .reduce((sum, hit) => sum + hit.amount, 0);
-      const damage=this.tactics&&this.window()!=='counter'?Math.round(raw*(this.tactics.guardedDamage??1)*10)/10:raw;
+      const flank=this.tactics?.frostProfile&&Math.cos(Math.atan2(player.x-this.state.center.x,player.z-this.state.center.z)-this.state.facing)<=Math.cos(FROST_PATTERN.flankAngle);
+      const damage=this.tactics&&this.window()!=='counter'&&!flank?Math.round(raw*(this.tactics.guardedDamage??1)*10)/10:raw;
       this.state = { ...this.state, bossHp: this.tactics?Math.max(0,Math.round((this.state.bossHp-damage)*10)/10):Math.max(0, this.state.bossHp - damage) };
       if(this.tactics&&damage>0&&this.window()==='counter'&&!this.attackHit&&!this.counterRecorded){
         this.counters++;this.counterRecorded=true;
@@ -141,8 +148,8 @@ export class PveEncounter {
         const distance = Math.hypot(player.x - s.center.x, player.z - s.center.z);
         // Swept annulus: never misses a tick crossing, never damages the whole disk.
         let touching = distance >= radius - this.rules.waveSpeed - 0.55 && distance <= radius + 0.55 && player.y < 0.7;
-        if (this.kind === 'frost') touching = player.y < 1.3 && frostShards(s, radius).some(point =>
-          Math.hypot(player.x - point.x, player.z - point.z) < 0.85 + this.rules.waveSpeed);
+        if (this.kind === 'frost') touching = player.y < 1.3 && frostShards({...s,frostProfile:this.tactics?.frostProfile}, radius).some(point =>
+          Math.hypot(player.x - point.x, player.z - point.z) < (this.tactics?.frostProfile?FROST_PATTERN.shardRadius:.85) + this.rules.waveSpeed);
         if (this.kind === 'ember') {
           const angle = Math.atan2(player.x - s.center.x, player.z - s.center.z) - s.facing;
           touching = distance < 11 && Math.cos(angle) >= Math.cos(0.48) && player.y < 3.4;
@@ -161,8 +168,10 @@ export class PveEncounter {
         if(this.tactics){this.resolved++;if(!this.attackHit)this.avoided++;}
         this.state = { ...this.state, phase: 'recovery', phaseTick: 0 };
       }
-    } else if (s.phase === 'recovery' && s.phaseTick >= this.rules.recoveryTicks) {
-      this.state = { ...s, kind: s.kind === 'wave' ? 'eruption' : 'wave', phase: 'chasing', phaseTick: 0 };
+    } else if(s.phase==='reposition')this.reposition(player,world);
+    else if (s.phase === 'recovery' && s.phaseTick >= this.rules.recoveryTicks) {
+      if(!(this.tactics?.frostProfile&&s.kind==='eruption'&&this.startReposition(player,world)))
+        this.state = { ...s, kind: s.kind === 'wave' ? 'eruption' : 'wave', phase: 'chasing', phaseTick: 0 };
     }
   }
   private meleeCanReach(player: Vec3, world: RayWorld, directional: boolean): boolean {
@@ -170,7 +179,7 @@ export class PveEncounter {
     if (player.y < groundY - 0.2 || player.y > groundY + (this.tactics?.meleeHeight??1.35)) return false;
     const dx = player.x - s.center.x, dz = player.z - s.center.z;
     if (Math.hypot(dx, dz) > (!directional&&this.tactics?this.tactics.meleeTrigger:this.rules.meleeRange)) return false;
-    if (directional && Math.cos(Math.atan2(dx, dz) - s.facing) < Math.cos(1.05)) return false;
+    if (directional && Math.cos(Math.atan2(dx, dz) - s.facing) < Math.cos(this.tactics?.frostProfile?FROST_PATTERN.biteAngle:1.05)) return false;
     const origin = { ...s.center, y: groundY + 1.1 };
     const line = directionTo(origin, { ...player, y: player.y + 0.9 });
     return !world.raycast({ origin, direction: line.direction }, line.distance, true);
@@ -200,12 +209,39 @@ export class PveEncounter {
     for (const offset of [0, Math.PI / 4, -Math.PI / 4, Math.PI / 2, -Math.PI / 2]) {
       const facing = angle + offset;
       const direction = { x: Math.sin(facing), y: 0, z: Math.cos(facing) };
-      if (world.sweepBall({ origin: s.center, direction }, step + 0.04, this.rules.movementRadius, true)) continue;
+      const origin=this.tactics?.frostProfile?{...s.center,y:2.35}:s.center;
+      if (world.sweepBall({ origin, direction }, step + 0.04, this.rules.movementRadius, true)) continue;
       const center = { x: s.center.x + direction.x * step, y: s.center.y, z: s.center.z + direction.z * step };
       const supported = ([[0, 0], [1.7, 0], [-1.7, 0], [0, 1.7], [0, -1.7]] as const).every(([x, z]) =>
         world.raycast({ origin: { x: center.x + x, y: 0.3, z: center.z + z }, direction: { x: 0, y: -1, z: 0 } }, 0.5, true));
       if (!supported) continue;
       this.state = { ...s, center, facing, moving: true }; return;
+    }
+  }
+  private startReposition(player:Vec3,world:MonsterWorld):boolean{
+    const s=this.state;
+    for(const side of [this.serial%2?1:-1,this.serial%2?-1:1]){
+      const direction={x:Math.cos(s.facing)*side,y:0,z:-Math.sin(s.facing)*side},distance=FROST_PATTERN.relocateDistance;
+      const to={x:s.center.x+direction.x*distance,y:s.center.y,z:s.center.z+direction.z*distance};
+      if(Math.hypot(to.x-player.x,to.z-player.z)<2.5||world.sweepBall({origin:{...s.center,y:2.35},direction},distance+.05,this.rules.movementRadius,true))continue;
+      if(!this.frostSupported(to,world))continue;
+      this.state={...s,phase:'reposition',phaseTick:0,relocation:{from:{...s.center},to}};return true;
+    }
+    return false;
+  }
+  private frostSupported(center:Vec3,world:MonsterWorld){return [[0,0],[2.1,0],[-2.1,0],[0,2.1],[0,-2.1]].every(([x,z])=>world.raycast({origin:{x:center.x+x!,y:.3,z:center.z+z!},direction:{x:0,y:-1,z:0}},.5,true));}
+  private reposition(player:Vec3,world:MonsterWorld){
+    const s=this.state,r=s.relocation!,p=FROST_PATTERN,t=(s.phaseTick-p.relocateWarning)/p.relocateMove;
+    if(t>0&&t<=1){
+      const smooth=t*t*(3-2*t),center={x:r.from.x+(r.to.x-r.from.x)*smooth,y:s.center.y,z:r.from.z+(r.to.z-r.from.z)*smooth};
+      const line=directionTo(s.center,center);
+      if(Math.hypot(center.x-player.x,center.z-player.z)>2.5&&this.frostSupported(center,world)&&
+        !world.sweepBall({origin:{...s.center,y:2.35},direction:line.direction},line.distance+.02,this.rules.movementRadius,true))
+        this.state={...s,center,moving:true};
+      else this.state={...s,phaseTick:p.relocateWarning+p.relocateMove,relocation:{from:r.from,to:{...s.center}},moving:false};
+    }
+    if(s.phaseTick>=p.relocateWarning+p.relocateMove+p.relocateRecovery){
+      this.state={...this.state,phase:'chasing',phaseTick:0,kind:'wave',relocation:undefined};
     }
   }
   private warning(player: Vec3, world: RayWorld): void {
@@ -219,6 +255,6 @@ export class PveEncounter {
 }
 
 export function frostShards(state: PveSnapshot, radius = state.waveRadius): Vec3[] {
-  return [-0.38, 0, 0.38].map(offset => ({ x: state.center.x + Math.sin(state.facing + offset) * radius,
+  return (state.frostProfile?FROST_PATTERN.angles:[-0.38, 0, 0.38]).map(offset => ({ x: state.center.x + Math.sin(state.facing + offset) * radius,
     y: 0.85, z: state.center.z + Math.cos(state.facing + offset) * radius }));
 }

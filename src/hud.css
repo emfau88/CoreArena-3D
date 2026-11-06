@@ -139,7 +139,9 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 .touch-mode .adventure-hud #campaign-story { display: none; }
 @media (max-width: 1100px) and (pointer: fine) { #adventure-location { top: 100px; left: 24px; transform: none; text-align: left; width: 300px; } }
 
-#adventure-settings { display: none; }
+#adventure-settings { display: grid; gap: 8px; margin-top: 12px; }
+#app[data-adventure] #pause > div { width: min(420px, calc(100vw - 40px)); max-height: calc(100dvh - 24px); overflow: auto; box-sizing: border-box; padding: 24px; border: 1px solid #bad9d544; border-radius: 10px; background: #101e29f2; }
+#adventure-settings > button { position: static; min-height: 44px; padding: 8px; }
 .touch-mode #app[data-adventure] #touch-camera,
 .touch-mode #app[data-adventure] #touch-hint,
 .touch-mode #app[data-adventure] #life-status { display: none; }
@@ -152,6 +154,7 @@ footer kbd { font-size: 9px; color: #d5e2e8; margin-right: 5px; }
 .touch-mode #app[data-adventure] #pause h2 { margin: 8px 0 15px; font-size: 22px; }
 .touch-mode #app[data-adventure] #resume { width: 100%; min-height: 46px; color: #b5efd6; border-color: #9be8ca66; }
 .touch-mode #adventure-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.touch-mode #adventure-settings .adventure-loadout { grid-column: 1 / -1; min-width: 0; }
 .touch-mode #adventure-settings > button { position: static; min-height: 44px; padding: 8px; font-size: 11px; border: 1px solid #bad9d533; background: #233640; text-shadow: none; }
 #adventure-boss { position:fixed; top:92px; left:50%; transform:translateX(-50%); width:310px; font-size:10px; color:#ead4a5; }
 #adventure-boss > span { float:right; }

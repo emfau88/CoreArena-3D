@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { MONSTER, PVE_RULES, frostShards, type MonsterKind, type EncounterRules, type PveSnapshot } from '../core/pve';
+import {FROST_PATTERN} from '../core/frostPattern';
+import type {RayWorld} from '../core/types';
 
 /** Procedural stone creature: all geometry stays in the repo; no asset/CDN dependency. */
 export class MonsterView {
@@ -21,16 +23,22 @@ export class MonsterView {
   private previousHp = PVE_RULES.bossHp as number;
   private flash = 0;
   private deathTime = 0;
+  private readonly weakArc=new THREE.Mesh(new THREE.RingGeometry(2.8,2.95,48,1,Math.PI/2+FROST_PATTERN.flankAngle,Math.PI*2-FROST_PATTERN.flankAngle*2),new THREE.MeshBasicMaterial({color:0x6cffe2,transparent:true,opacity:.65,side:THREE.DoubleSide,depthWrite:false}));
+  private readonly relocateArrow=new THREE.ArrowHelper(new THREE.Vector3(1,0,0),new THREE.Vector3(),4.2,0x99dcff,.65,.45);
+  private readonly relocateRing=new THREE.Mesh(new THREE.RingGeometry(2.1,2.2,48),new THREE.MeshBasicMaterial({color:0x99dcff,transparent:true,opacity:.55,side:THREE.DoubleSide,depthWrite:false}));
   constructor(scene: THREE.Object3D, private readonly kind: MonsterKind = 'stone', private rules: EncounterRules = PVE_RULES,
     private readonly monster = MONSTER, groundSurface?:Pick<THREE.MeshStandardMaterialParameters,'map'|'normalMap'|'roughnessMap'>,
-    private readonly adventureFeedback=false) {
+    private readonly adventureFeedback=false,private readonly world?:RayWorld) {
+    const bite=kind==='frost'&&adventureFeedback?FROST_PATTERN.biteAngle:1.05;
     this.meleeArc = new THREE.Mesh(new THREE.RingGeometry(rules.meleeRange - 0.12, rules.meleeRange, 32, 1,
-      Math.PI / 2 - 1.05, 2.1), new THREE.MeshBasicMaterial({ color: 0xff9b73, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false }));
+      Math.PI / 2 - bite, bite*2), new THREE.MeshBasicMaterial({ color: 0xff9b73, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false }));
     this.meleeArc.rotation.x = Math.PI / 2;
     scene.add(this.meleeArc);
-    this.meleeArea=new THREE.Mesh(new THREE.CircleGeometry(rules.meleeRange,32,Math.PI/2-1.05,2.1),
+    this.meleeArea=new THREE.Mesh(new THREE.CircleGeometry(rules.meleeRange,32,Math.PI/2-bite,bite*2),
       new THREE.MeshBasicMaterial({color:0xffb04b,transparent:true,opacity:.18,side:THREE.DoubleSide,depthWrite:false}));
     this.meleeArea.rotation.x=Math.PI/2;this.meleeArea.visible=false;scene.add(this.meleeArea);
+    this.weakArc.visible=this.relocateArrow.visible=this.relocateRing.visible=false;
+    this.relocateRing.rotation.x=-Math.PI/2;scene.add(this.weakArc,this.relocateArrow,this.relocateRing);
     this.previousHp = rules.bossHp;
     const rock = new THREE.MeshStandardMaterial({ color: 0x343b40, roughness: 0.8, metalness: 0.3, flatShading: true });
     const edge = new THREE.MeshStandardMaterial({ color: 0x727c76, roughness: 0.7, metalness: 0.2, flatShading: true });
@@ -74,6 +82,7 @@ export class MonsterView {
             limb.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize()); leg.add(limb);
           }
           this.body.add(leg); this.limbs.push(leg);
+          if(adventureFeedback)leg.scale.set(.7,1,.85);
         }
         for (let i = 0; i < 2; i++) chunk(this.body, 0.12, side * (0.22 + i * 0.27), 1.55, 1.73 - i * 0.1, this.coreMaterial);
         const fang = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.8, 5), edge);
@@ -129,10 +138,10 @@ export class MonsterView {
     this.warning.rotation.x = this.wave.rotation.x = -Math.PI / 2;
     if (kind === 'frost') {
       for (let i = 0; i < 3; i++) {
-        const shard = new THREE.Mesh(new THREE.OctahedronGeometry(0.5), this.coreMaterial); shard.scale.set(0.65, 0.65, 1.8); this.shards.add(shard);
+        const shard = new THREE.Mesh(new THREE.OctahedronGeometry(0.5), this.coreMaterial); shard.scale.set(0.65, 0.65, adventureFeedback?1:1.8); this.shards.add(shard);
         const line = new THREE.Mesh(new THREE.PlaneGeometry(0.08, 16), this.warningMaterial);
         line.rotation.x = -Math.PI / 2;
-        const pivot = new THREE.Group(); pivot.rotation.y = (i - 1) * 0.38; line.position.set(0, 0.05, 8); pivot.add(line); this.attackFan.add(pivot);
+        const pivot = new THREE.Group(); pivot.rotation.y = adventureFeedback?FROST_PATTERN.angles[i]!:(i - 1) * 0.38; line.position.set(0, 0.05, 8); pivot.add(line); this.attackFan.add(pivot);
       }
     } else if (kind === 'ember') {
       const vertices: number[] = [];
@@ -156,7 +165,7 @@ export class MonsterView {
   update(state: PveSnapshot, dt: number): void {
     this.root.position.set(state.center.x, state.center.y - this.monster.center.y, state.center.z);
     const turn = Math.atan2(Math.sin(state.facing - this.root.rotation.y), Math.cos(state.facing - this.root.rotation.y));
-    this.root.rotation.y = state.phase === 'emerging' ? 0 : this.root.rotation.y + turn * Math.min(1, dt * 9);
+    this.root.rotation.y = state.phase === 'emerging' ? 0 : state.frostProfile?state.facing:this.root.rotation.y + turn * Math.min(1, dt * 9);
     const stride = state.moving ? Math.sin(state.tick * 0.16) : 0;
     this.limbs.forEach((limb, i) => {
       if (this.kind === 'frost') limb.rotation.z = stride * (i % 2 ? 0.13 : -0.13);
@@ -228,6 +237,21 @@ export class MonsterView {
       this.body.position.z -= this.flash * (prototype?1.3:.8);
       this.body.rotation.z += this.flash * (prototype?.9:.7);
     }
+    if(state.frostProfile){
+      const warning=state.phase==='warning'||state.phase==='melee'||state.phase==='reposition'&&state.phaseTick<FROST_PATTERN.relocateWarning;
+      const load=state.phase==='melee'?preparation:state.phase==='warning'?windup:warning?state.phaseTick/FROST_PATTERN.relocateWarning:0;
+      this.body.position.y-=load*.2;this.body.rotation.x+=load*.08;
+      // Plant alternate leg pairs, then release the front pair with the bite; settle during recovery.
+      this.limbs.forEach((limb,i)=>{limb.rotation.z=stride*(i%2?.11:-.11)+(i<4?-1:1)*load*.12;
+        limb.rotation.x=melee&&i%4>=2?-load*.12+strike*.3:recovering?.045:0;});
+      this.body.position.z-=this.flash*.7;this.body.rotation.z+=this.flash*.4;
+      this.weakArc.visible=state.outcome==='running'&&state.phase!=='emerging';
+      this.weakArc.position.set(state.center.x,.06,state.center.z);this.weakArc.rotation.set(Math.PI/2,0,-state.facing);
+      this.relocateArrow.visible=this.relocateRing.visible=state.phase==='reposition'&&state.outcome==='running';
+      if(state.relocation){const {from,to}=state.relocation,d=new THREE.Vector3(to.x-from.x,0,to.z-from.z);
+        this.relocateArrow.position.set(from.x,.12,from.z);this.relocateArrow.setLength(d.length(),.65,.45);this.relocateArrow.setDirection(d.normalize());
+        this.relocateRing.position.set(to.x,.07,to.z);}
+    }
     this.debris.forEach((rock, i) => {
       rock.position.y = 0.15 + (state.phase === 'emerging' ? Math.sin(emergence * Math.PI) * (1 + i % 4 * 0.4) : 0);
     });
@@ -243,8 +267,13 @@ export class MonsterView {
     this.attackFan.position.set(state.center.x, 0, state.center.z); this.attackFan.rotation.y = state.facing;
     this.shards.visible = this.kind !== 'stone' && specialWave && state.phase === 'attack';
     if (this.kind === 'frost') frostShards(state).forEach((point, i) => {
+      const origin={...state.center,y:.85},dx=point.x-origin.x,dz=point.z-origin.z,d=Math.hypot(dx,dz);
+      this.shards.children[i]!.visible=d>0&&!this.world?.raycast({origin,direction:{x:dx/d,y:0,z:dz/d}},d,true);
       this.shards.children[i]!.position.set(point.x, point.y, point.z);
-      this.shards.children[i]!.rotation.y = state.facing + (i - 1) * 0.38;
+      this.shards.children[i]!.rotation.y = state.facing + (state.frostProfile?FROST_PATTERN.angles[i]!:(i - 1) * 0.38);
+      if(state.frostProfile&&this.world){const angle=state.facing+FROST_PATTERN.angles[i]!,direction={x:Math.sin(angle),y:0,z:Math.cos(angle)};
+        const hit=this.world.raycast({origin,direction},16,true),length=hit?.distance??16,line=this.attackFan.children[i]!.children[0]!;
+        line.scale.y=length/16;line.position.z=length/2;}
     });
     if (this.kind === 'ember') {
       this.shards.position.set(state.center.x, 0, state.center.z); this.shards.rotation.y = state.facing;

@@ -20,9 +20,10 @@ import { AdventureMissionView, loadMissionAssets } from '../render/adventureMiss
 import { OutpostView } from '../render/outpostView';
 import { PVE_FALL_HEIGHT } from '../core/pve';
 import { LAB_SPAWN, prepareBossAttempt } from './adventureBossAttempt';
-import { WHIP_MODS, type WhipMod } from '../core/whipMods';
+import { WHIP_MODS, resolveWhipMod, type WhipMod } from '../core/whipMods';
 import {adventureCampaign,adventureSave} from './adventureCampaignSession';
 import {installAdventureLoadout} from './adventureLoadout';
+import {adventureUrl,navigateAdventure} from './adventureNavigation';
 
 const hints: Record<string, string> = {
   A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
@@ -33,6 +34,7 @@ const hints: Record<string, string> = {
 
 /** Small adventure slice: two melee guards, then the existing stone boss. */
 export async function startAdventure(host: HTMLElement, entry: AdventureEntry): Promise<() => void> {
+  if(entry.practice&&!adventureCampaign.canPractice('stone'))return (await import('./adventureHub')).startAdventureHub(host,'Besiege den Steinwächter zuerst in der Mission.');
   const exploration = entry.exploration;
   const [courtyardAssets,missionAssets] = await Promise.all([loadCourtyardAssets(),loadMissionAssets(),loadMeleeAssets()]);
   const environmentEnabled=import.meta.env.MODE==='environment-test' || import.meta.env.MODE==='environment-preview';
@@ -89,8 +91,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     <button id="pve-next" type="button" hidden>Optional: Kristallkluft erkunden</button><button id="pve-again" type="button">Neu versuchen</button>
     <button id="result-home" type="button">Zum Spielmenü</button></div></div>`);
   const el = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
-  const campaign=entry.profile==='prototype'&&!entry.lab&&!entry.modTrial?adventureCampaign:undefined;
+  const campaign=entry.profile==='prototype'&&!entry.lab&&!entry.modTrial&&!entry.practice?adventureCampaign:undefined;
   const loadout=campaign?installAdventureLoadout([el('adventure-settings'),el('match-result').firstElementChild as HTMLElement],campaign,adventureSave.message):undefined;
+  let practiceMod=resolveWhipMod(new URLSearchParams(location.search).get('mod'));
+  const practiceLoadout=entry.practice?installAdventureLoadout([el('adventure-settings'),el('match-result').firstElementChild as HTMLElement],{
+    availableMods:()=>['base','hook','fork'],snapshot:()=>({selectedMod:practiceMod}),select:mod=>{practiceMod=mod;}},()=> 'Bossübung · alle Profile frei · kein Kampagnenfortschritt.'):undefined;
   const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused && fight.life.snapshot().outcome==='running') {
     const old=combat.snapshot().selected;
     if (id === 'cycle') combat.cycle(); else combat.select(id);
@@ -99,7 +104,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const input = new DesktopInput(view.renderer.domElement, () => view.camera.toggle(), () => {}, () => {}, chooseWeapon,()=>!!prototype);
   const feedback = new StoneFeedback(host);
   const announce = (text:string,ticks=360) => { el('mission-message').textContent=text; messageUntil=current.tick+ticks; };
-  const requestInteraction = () => { if(!paused && !exploration && !modTrial) interactPending=true; };
+  const requestInteraction = () => { if(!paused && !exploration && !modTrial && !entry.practice) interactPending=true; };
   window.addEventListener('keydown',event=>{
     if(event.code==='KeyE' && !event.repeat && !event.ctrlKey && !event.altKey && !event.metaKey) {
       event.preventDefault();requestInteraction();
@@ -132,12 +137,12 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   const syncWorld = () => {
     const state=fight.snapshot();
     state.runners.forEach((r,i)=>{ world.setTargetPosition(ADVENTURE_RUNNERS[i]!.id,r.center); world.setTargetEnabled(r.id,!exploration && r.hp>0); });
-    if(labModule||modTrial)state.runners.forEach(r=>world.setMovementBlocker(`prototype-body-${r.id}`,
+    if(labModule||modTrial||entry.practice)state.runners.forEach(r=>world.setMovementBlocker(`prototype-body-${r.id}`,
       {x:r.center.x,y:.9,z:r.center.z},.65,1.8,!!prototype&&r.hp>0));
     world.setTargetPosition(ADVENTURE_BOSS.id,state.pve.center);
     world.setTargetEnabled(ADVENTURE_BOSS.id,!exploration && state.bossActive && state.pve.phase!=='emerging' && state.pve.outcome==='running');
     world.setObstacleEnabled('dormant-warden',!state.bossActive&&!prototype?.practice);
-    if(labModule||modTrial)world.setMovementBlocker('prototype-boss-body',
+    if(labModule||modTrial||entry.practice)world.setMovementBlocker('prototype-boss-body',
       {x:state.pve.center.x,y:prototypeModule!.BOSS_BODY.height/2,z:state.pve.center.z},prototypeModule!.BOSS_BODY.radius,prototypeModule!.BOSS_BODY.height,
       !!prototype&&!prototype.practice&&state.bossActive&&state.pve.outcome==='running');
     world.setObstacleEnabled('boss-entry-gate',!exploration && state.entryClosed);
@@ -151,6 +156,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     view.resize(); view.camera.snap(current.position); view.renderer.domElement.focus(); setPaused(false); lastHud = 0;
   };
   const restart = () => {
+    if(entry.practice){startModTrial(practiceMod);return;}
     if(modTrial){finishModTrial('aborted');prototype?.suspend();input.clear();return;}
     if (lab) { restartLab(true); return; }
     fight.reset();resetMissionPrototype();bossIntroduced=false;placePlayer(STONE_ADVENTURE.spawn);
@@ -158,6 +164,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       input.touchEnabled?' Feld tippen: Schlag · Knall: schwerer Schlag · Sprung zweimal: Doppelsprung.':' Links: Schwung · Rechts: Überkopf-Knall · Shift: Dash · 2× Space: Doppelsprung.':''),540);
   };
   const retry = () => {
+    if(entry.practice){restart();return;}
     if(modTrial){restart();return;}
     if (lab) { restartLab(true); return; }
     if(!fight.checkpoint || fight.life.snapshot().outcome!=='defeat') restart();
@@ -222,7 +229,9 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   el('pve-pause').addEventListener('click', () => { menuPaused = true; setPaused(true); }, options);
   el('pve-restart').addEventListener('click', restart, options);
   el('pve-again').addEventListener('click', retry, options);
-  el('pve-next').addEventListener('click', () => { if(fight.completed) location.assign(`${location.pathname}?mode=pve&level=frost`); }, options);
+  el('pve-next').addEventListener('click', () => { if(fight.completed) {
+    if(campaign)navigateAdventure(adventureUrl('frost'));else location.assign(`${location.pathname}?mode=pve&level=frost`);
+  } }, options);
   for(const id of ['adventure-home','result-home']) el(id).addEventListener('click',()=>location.assign(location.pathname),options);
   el('camera-toggle').addEventListener('click', () => view.camera.toggle(), options);
   for (const id of ['arc', 'pulse'] as const) el(`weapon-${id}`).addEventListener('click', () => chooseWeapon(id), options);
@@ -233,6 +242,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     if (!paused) alpha = clock.advance(elapsed, () => {
       if (lab && !lab.running) return;
       if (modTrial && !modTrial.running) return;
+      if(entry.practice&&fight.life.snapshot().outcome!=='running')return;
       if(fight.life.snapshot().outcome==='defeat' || fight.completed) return;
       const stepStart = lab || import.meta.env.MODE==='environment-test' ? performance.now() : 0;
       const before=fight.snapshot();
@@ -339,7 +349,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       }
       if(modTrial&&prototype){el('room-name').textContent=`Waffenvergleich · ${WHIP_MODS[prototype.whip.mod].name}`;
         el('room-hint').textContent='Steinwächter besiegen · Auswahl gilt für diesen Versuch.';}
-      const interaction=exploration||modTrial?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
+      const interaction=exploration||modTrial||entry.practice?null:fight.interaction(current.position,world),button=el('mission-interact') as HTMLButtonElement;
       button.hidden=paused || !interaction;
       button.disabled=!interaction?.enabled;
       button.textContent=interaction?`${interaction.enabled && !input.touchEnabled?'E · ':''}${interaction.label}`:'';
@@ -347,7 +357,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       (el('boss-hp') as HTMLProgressElement).max=fight.life.rules.bossHp;el('boss-hp-value').textContent=String(Math.ceil(state.pve.bossHp)); (el('boss-hp') as HTMLProgressElement).value=state.pve.bossHp;
       const messages={emerging:'Der Boden bricht auf …',chasing:'Er verfolgt dich · Bleib in Bewegung!',melee:'FAUSTSCHLAG · Seitlich ausweichen!',
         warning:state.pve.kind==='wave'?'SCHOCKWELLE · Sprung vorbereiten!':'BODENAUSBRUCH · Kreis verlassen!',
-        attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'ERHOLUNG · Jetzt feuern!',defeated:'Steinsiegel gebrochen.'};
+        attack:state.pve.kind==='wave'?'JETZT SPRINGEN oder Deckung!':'Einschlag!',recovery:'ERHOLUNG · Jetzt feuern!',reposition:'Positionswechsel',defeated:'Steinsiegel gebrochen.'};
       el('adventure-boss').dataset.phase=state.pve.phase;
       el('pve-telegraph').textContent=state.pve.exchange?.window==='counter'?'KERN OFFEN · Voller Schaden!' :prototype&&state.pve.phase==='melee'?'HOHER FAUSTSCHWUNG · Seitlich ausweichen!':prototype&&state.pve.phase==='chasing'?'KERN GESCHÜTZT · Angriff abwarten!':messages[state.pve.phase];
       el('life-status').textContent=exploration?'Der Hof liegt still.':state.pve.outcome==='victory'?state.relayActive?'Relais online · Ausgang offen':'Steinsiegel gebrochen · Relais versorgen':
@@ -365,6 +375,12 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       el('pve-again').textContent=state.completed?'Level erneut spielen':state.checkpoint?'Am Ruhepunkt versuchen':'Neu versuchen';
       el('pve-next').hidden=!state.completed;
       if (lab) { el('pve-again').textContent='Bossversuch neu starten'; el('pve-next').hidden=true; }
+      if(entry.practice){el('room-name').textContent=`Steinwächter üben · ${WHIP_MODS[prototype!.whip.mod].name}`;
+        el('room-hint').textContent='Feste Vorräte · alle Profile frei · Fortschritt bleibt unverändert.';
+        el('match-result').hidden=state.pve.outcome==='running';el('pve-next').hidden=true;
+        el('result-title').textContent=state.pve.outcome==='victory'?'Übungsboss besiegt.':'Noch ein Versuch?';
+        el('result-detail').textContent='Alle drei Profile sind frei verfügbar. Jeder Versuch startet mit frischen Vorräten.';
+        el('pve-again').textContent='Boss erneut üben';}
       if (input.touchEnabled) el('camera-toggle').textContent = `Ansicht: ${{side:'seitlich',straight:'gerade',isometric:'isometrisch'}[view.camera.mode]}`;
       el('campaign-story').hidden = exploration || paused || state.completed || state.pve.outcome==='defeat' || current.tick>=messageUntil;
       el('hp-value').textContent = String(hp); el('armor-value').textContent = String(armor);
@@ -397,7 +413,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     frameId = requestAnimationFrame(frame);
   }
   const readDiagnostics=() => ({ mode: 'adventure', level: 'stone', combatProfile: variant.id, combatRules: variant.rules,
-      lab: lab?.read() ?? null, modTrial:modTrial?.read()??null, snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
+      lab: lab?.read() ?? null, modTrial:modTrial?.read()??null, campaign:campaign?.snapshot()??null,practice:!!entry.practice,saveStatus:adventureSave.status(), snapshot: current, weapons: combat.snapshot(), pickups: pickups.snapshot(),
       prototype:prototype?{...prototype.snapshot(),targetScreens:prototype.snapshot().targets.map(t=>view.projectedPosition({...t.center,y:t.center.y-1.1}))}:null,
       hp:fight.life.snapshot().hp, armor:fight.life.snapshot().armor, pve:fight.life.snapshot(), bossActive:fight.bossActive,
       checkpoint:fight.checkpoint, completed:fight.completed,core:fight.snapshot().core,
@@ -475,10 +491,17 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       el('adventure-settings').append(link);
     }
   }
+  if(campaign||entry.practice){
+    for(const parent of [el('adventure-settings'),el('match-result').firstElementChild as HTMLElement]){
+      const button=document.createElement('button');button.type='button';button.textContent='Kampagne / Bossübung';
+      button.addEventListener('click',()=>navigateAdventure(adventureUrl('menu')),options);parent.append(button);
+    }
+    if(campaign)el('pve-next').textContent='Weiter: Kristallkluft';
+  }
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
   frameId = requestAnimationFrame(frame);
   return () => {
-    cancelAnimationFrame(frameId); abort.abort(); loadout?.dispose(); lab?.dispose(); modTrial?.dispose(); environment?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
+    cancelAnimationFrame(frameId); abort.abort(); loadout?.dispose(); practiceLoadout?.dispose(); lab?.dispose(); modTrial?.dispose(); environment?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud,#pause,#match-result').forEach(node => node.remove()); Reflect.deleteProperty(window,'__coreArena');
     delete host.dataset.adventure;
   };

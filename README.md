@@ -1,13 +1,17 @@
 # CORE ARENA 3D
 
-**[▶ Aktuelles Adventure spielen · Wächterklamm (F)](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine)**
+**[▶ Aktuelles Adventure starten / fortsetzen · zwei Missionen](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&adventure=1&combat=prototype&campaign=menu)**
 
-Auf dem Handy im Querformat öffnen. **F ist die gewählte Umgebung für die weitere Adventure-Arbeit.** [Roadmap und aktueller Stand](docs/planning/ADVENTURE_ROADMAP.md) · [Spielbilder und Testergebnisse](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
+Auf dem Handy im Querformat spielen. **Wächterklamm (F) → Kristallkluft**, lokale Meilensteinfreischaltungen, Missionsneustart und Bossübungen. Kamera und Links-nach-rechts-Steuerung bleiben erhalten. [Roadmap](docs/planning/ADVENTURE_ROADMAP.md) · [A8.3–A9.2: Umsetzung und Prüfung](docs/qa/ADVENTURE_A8_A9_RESULT.md).
+
+Basis ab Start, Rückhaken nach Steinwächter, Gabelspitze nach Frostspinne. Ein Profil für den nächsten Versuch; beim Tod bleibt alles freigeschaltet. Fortsetzen beginnt am Missionsanfang, Checkpoints gelten innerhalb der laufenden Mission. Speicherung gilt nur für denselben Browser auf demselben Gerät.
+
+[Frostmission direkt ausprobieren — ohne Freischaltungen oder Speichern](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=frost&adventure=1&combat=prototype&trial=frost-mission) · [Erste Mission F direkt](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine)
 
 **[▶ Waffenvergleich A8 spielen · Basis / Rückhaken / Gabelspitze](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine&trial=mods)**
 
 Ein Slot vor dem Bossversuch, alle drei frei verfügbar, gleiche Startbedingungen.
-Kamera und Umgebung F bleiben erhalten. Noch keine dauerhaften Freischaltungen.
+Kamera und Umgebung F bleiben erhalten. Dieser Vergleich schreibt keinen Kampagnenfortschritt.
 [Mechaniken, Prüfergebnisse und offener menschlicher Vergleich](docs/qa/ADVENTURE_A8_MODS_RESULT.md).
 
 **[Frühere Adventure-Kampfvorschau T2 spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
@@ -55,9 +59,9 @@ Oben links umschalten; jeder Wechsel startet die Mission neu. Die öffentliche V
   G1 qualitativ bestanden; G2/G3 und der Richtungsentscheid folgen in T2.
   Legacy bleibt unveränderter Standard. Im Entwicklungs-/Testbuild und in der
   separaten öffentlichen Vorschau ist die neue Mission über `combat=prototype` anwählbar.
-  A8.1 ist technisch fertig, A8.2 als Vergleich vorbereitet; drei menschliche
-  Befunde und der Progressionsentscheid stehen aus. Weitere Maps und Speicherung
-  sind noch nicht beauftragt.
+  A8.1, A8.3 und A9.1–A9.2 sind technisch umgesetzt. Der Nutzer hat die
+  Meilensteinfreischaltungen gewählt und ihren Ausbau ausdrücklich beauftragt.
+  A7.2 und drei menschliche Mod-Vergleiche/G4 bleiben offen; Glut folgt in A10.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und

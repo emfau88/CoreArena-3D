@@ -1,5 +1,6 @@
-type Cue = 'whip-charge'|'whip-crack'|'whip-impact'|'whip-guard'|'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
+type Cue = 'frost-windup'|'frost-cast'|'frost-shift'|'whip-charge'|'whip-crack'|'whip-impact'|'whip-guard'|'whip-swing'|'whip-return'|'whip-hit'|'whip-back-hit'|'dash'|'pulse' | 'arc' | 'hit' | 'hurt' | 'step' | 'land' | 'jump' | 'windup' | 'slam' | 'pickup' | 'victory' | 'console' | 'relay' | 'boss-windup' | 'wave-warning' | 'eruption-warning';
 const tones: Record<Cue, [number, number, number, number]> = {
+  'frost-windup':[520,1300,.45,.13],'frost-cast':[1600,380,.18,.16],'frost-shift':[780,420,.38,.1],
   'whip-guard':[1800,550,.055,.045],
   'whip-charge':[230,920,.19,.025], 'whip-crack':[1900,180,.085,.075], 'whip-impact':[180,45,.15,.12],
   'whip-swing':[850,180,.085,.055], 'whip-return':[1100,240,.075,.045],

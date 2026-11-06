@@ -4,12 +4,14 @@ Stand: **6. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle
 
 ## Wo wir gerade stehen
 
-**Aktuell: A8.1 technisch fertig; A8.2 als menschlicher Vergleich vorbereitet.**
-Basis, Rückhaken und Gabelspitze sind in einem begrenzten Bossversuch spielbar.
-Der ausdrückliche Auftrag „mach weiter mit A8.1 - A8.2“ erlaubt diesen Versuch
-bereits jetzt. A7.2 und die menschlichen G2-/G3-Urteile bleiben offen.
-[Modifikationen ausprobieren](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine&trial=mods)
-· [Regeln, Nachweise und T3-Protokoll](../qa/ADVENTURE_A8_MODS_RESULT.md).
+**Aktuell: Meilensteinfreischaltungen, A8.3 und A9.1–A9.2 technisch umgesetzt.**
+Zwei zusammenhängende Missionen, lokales Fortsetzen und Bossübungen sind spielbar.
+Basis ab Start, Rückhaken nach dem Steinwächter, Gabelspitze nach der Frostspinne;
+ein Auswahlplatz für den nächsten Versuch, kein Grind und kein Verlust beim Tod.
+Der ausdrückliche Folgeauftrag vom 6. November erlaubt diesen Ausbau trotz offener
+menschlicher G2-/G3-/G4-Urteile. Das ersetzt keine Spielabnahme.
+[Kampagne starten / fortsetzen](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&adventure=1&combat=prototype&campaign=menu)
+· [Umsetzung und Nachweise A8.3–A9.2](../qa/ADVENTURE_A8_A9_RESULT.md).
 
 **Gewählte Umgebung für die erste Mission ist F · Wächterklamm.**
 Am 6. November 2026 hat der Nutzer F als Grundlage für die weitere Arbeit gewählt.
@@ -18,7 +20,7 @@ verwendet dieselbe Gestaltung, Kamera und Links-nach-rechts-Führung.
 
 | Umsetzung | Aktueller Spieltest | Noch nicht begonnen |
 |---|---|---|
-| **✅ 13 Pakete technisch fertig** | **🟡 2 Pakete laufen: A7.2, A8.2** | **⬜ 11 Pakete: A8.3–A11.5** |
+| **✅ 16 Pakete technisch fertig** | **🟡 2 Pakete: A7.2, A8.2 — menschliche Prüfung offen** | **⬜ 8 Pakete: A10.1–A11.5** |
 
 **„Technisch fertig“ heißt: eingebaut und geprüft.** Es heißt nicht automatisch,
 dass der Spieltest bestanden ist. Die separate Abnahme steht in der letzten
@@ -31,8 +33,11 @@ Links-nach-rechts-Kamera, Dash, normaler Sprung und kurzer Doppelsprung;
 Energiepeitsche mit Seitenschwung, Überkopf-Knall und Lufthieb samt überarbeitetem
 Trefferfeedback; angepasster Steinwächter; komplette erste Mission mit Läufern,
 Konsole, Checkpoint, Kern, Relais und Ausgang; begrenzter Pulse-Vergleich.
-Zusätzlich: isolierter Vergleich von Basis, Rückhaken und Gabelspitze am selben
-Boss, mit Auswahl vor dem Versuch und Export der Sitzungsergebnisse.
+Zusätzlich: dauerhafte Meilensteinfreischaltungen, Kampagnenmenü, versionierter
+lokaler Save und freie Profilwahl in Übungen bereits besiegter Bosse. Die zweite
+Mission nutzt den vorhandenen Frostgrundriss, zwei Splitterwächter, ein Kühlventil
+und die Frostspinne mit Splitterlücken, Flankentreffern und angekündigtem Seitenschritt.
+Der isolierte Modvergleich mit Sitzungsexport bleibt für T3 verfügbar.
 Die Wächterklamm umfasst den Außenraum aller drei Höfe bis zum Nordtor. Die
 öffentliche Version hat Touch-Bedienung und wurde mit Touch-Emulation geprüft.
 Echte Handytests stehen noch aus.
@@ -47,11 +52,11 @@ Echte Handytests stehen noch aus.
    **G2 (Steinwächter)** und **G3 (erste Mission)** ausdrücklich abnehmen.
 
 4. A8.2/G4: mindestens drei menschliche Mod-Vergleiche in T3, tatsächliche freiwillige
-   Zusatzversuche und Gründe beurteilen; freie Auswahl, Meilensteine oder Verzicht wählen.
+   Zusatzversuche und Gründe beurteilen; das gewählte Meilensteinmodell bestätigen oder ändern.
 
-A8.1 ist auf ausdrücklichen Auftrag umgesetzt. Weitere Karten sind noch offen.
-Ein dauerhaftes Progressionssystem ist weiterhin nicht implementiert. Die öffentliche
-**Testversion** ist bereits online; der finale Release **A11.5** bleibt ein späterer Schritt.
+A8.3 und A9 sind auf ausdrücklichen Auftrag umgesetzt. Als nächster Inhaltsbulk
+folgt A10.1 (Glutwurm), danach A10.2 (Schmiedemission) und A10.3 (Gesamtlauf).
+Die öffentliche **Testversion** bleibt vom finalen Release **A11.5** getrennt.
 
 **Umgebungstest U0–U6, Entscheidung vom 6. November 2026**
 U0–U4 sind umgesetzt. U6 ist mit der Wahl von F abgeschlossen. F ist die
@@ -87,10 +92,10 @@ fertige Umsetzung ihrer neuen Adventure-Pakete.
 | [A7.1](#paket-a7-1) | Peitsche allein / begrenzte Pulse vergleichen | ✅ Technisch fertig | Entscheidung zur Waffenwahl in T2 offen |
 | **[A7.2](#paket-a7-2)** | **Ersten Kern beurteilen und Richtung entscheiden** | **🟡 Spieltest läuft** | **Aktueller Schritt: G2/G3 und Gesamturteil** |
 | [A8.1](#paket-a8-1) | Zwei Waffenmodifikationen erproben — optional | ✅ Technisch fertig | Rückhaken/Gabelspitze, drei Bosssiege und zehn UI-Resets geprüft; Nutzenurteil offen |
-| [A8.2](#paket-a8-2) | Progression wählen oder streichen — optional | 🟡 Vergleich vorbereitet | Freie Auswahl im Versuch; endgültiges Modell und drei menschliche Befunde in T3/G4 offen |
-| [A8.3](#paket-a8-3) | Kampagne fortsetzen und Bosse üben | ⬜ Nicht begonnen | Auch ohne Modifikationen möglich |
-| [A9.1](#paket-a9-1) | Frostspinne zum zweiten Referenzkampf ausbauen | ⬜ Nicht begonnen | Eigenes Kampfprofil entwickeln |
-| [A9.2](#paket-a9-2) | Kluftmission und Übergang aus Map 1 | ⬜ Nicht begonnen | Neue Kampfregeln in Map 2 integrieren |
+| [A8.2](#paket-a8-2) | Progression wählen oder streichen — optional | 🟡 Modell gewählt und umgesetzt | Nutzer wählt Meilensteine; drei menschliche Befunde/G4 in T3 offen |
+| [A8.3](#paket-a8-3) | Kampagne fortsetzen und Bosse üben | ✅ Technisch fertig | Save, Fehlerfälle, Fortsetzen und Übungszugang geprüft; T3 offen |
+| [A9.1](#paket-a9-1) | Frostspinne zum zweiten Referenzkampf ausbauen | ✅ Technisch fertig | Drei Profile siegfähig; Winkel, Warnungen und Bewegung geprüft; T3 offen |
+| [A9.2](#paket-a9-2) | Kluftmission und Übergang aus Map 1 | ✅ Technisch fertig | Übergang, Anreise, Ventil, Tod/Retry und Ausgang geprüft; T3 offen |
 | [A10.1](#paket-a10-1) | Glutwurm zum dritten Referenzkampf ausbauen | ⬜ Nicht begonnen | Eigenes Kampfprofil entwickeln |
 | [A10.2](#paket-a10-2) | Schmiedemission und Kampagnenabschluss | ⬜ Nicht begonnen | Neue Kampfregeln in Map 3 integrieren |
 | [A10.3](#paket-a10-3) | Drei Missionen als Gesamtlauf abstimmen | ⬜ Nicht begonnen | G5 in T3 vorbereiten |
@@ -107,7 +112,7 @@ fertige Umsetzung ihrer neuen Adventure-Pakete.
 | **G1** | Grundgefühl von Bewegung und Peitsche | ✅ In T1 bestanden; spätere Nacharbeit wird in T2 geprüft |
 | **G2** | Überzeugt der Steinwächter? | 🟡 Technisch geprüft, dein T2-Urteil offen |
 | **G3** | Funktioniert die erste Mission als Spielerlebnis? | 🟡 Technisch geprüft, dein T2-Urteil offen |
-| **G4** | Bringen Modifikationen / Progression echten Mehrwert? | 🟡 Technischer Vergleich geprüft; drei menschliche Befunde und Entscheidung offen; Verzicht möglich |
+| **G4** | Bringen Modifikationen / Progression echten Mehrwert? | 🟡 Meilensteinmodell auf Nutzerauftrag umgesetzt; drei menschliche Befunde und Nutzenurteil offen |
 | **G5** | Überzeugt die gesamte Mini-Kampagne? | ⬜ Offen, noch nicht geprüft |
 | **G6** | Ist der konkrete Kandidat bereit für den finalen Release? | ⬜ Offen, noch nicht geprüft |
 
@@ -127,7 +132,7 @@ gebündelt (Abschnitt 5). **A0.1–A6.2 und A7.1 sind technisch umgesetzt** auf
 Nach bestandenem T1/G1 hat der Nutzer den empfohlenen Abschnitt A5.1–A7.2
 mit „ja so machen, leg los“ freigegeben. Der A4-Feedback-Feinschliff ist umgesetzt;
 seine Wirkung sowie **G2/G3 und der Richtungsentscheid bleiben menschlich offen**.
-A8 und spätere Bulks sind nicht beauftragt. Legacy bleibt der reguläre Standard;
+Dieser historische A5–A7-Stand wurde am 6. November durch den ausdrücklichen Auftrag für A8 und A9 erweitert. Legacy bleibt der reguläre Standard;
 der Prototyp ist im Entwicklungs-/Testbuild und als separate öffentliche T2-Vorschau
 als vollständige Mission anwählbar. Das ist keine Abnahme der Release-Gates.
 [Öffentliche Vorschau](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype).
@@ -222,8 +227,7 @@ Der Verzicht auf Progression wird in A7.2 oder einer späteren Scope-Entscheidun
 festgehalten, Gate 4 wird dann ausdrücklich „entfällt — keine Progression“ gesetzt.
 A9.1 benötigt keine neuen Mods. A9.2 benötigt A8.3 für den Kampagnenübergang.
 Mit Mods müssen technische Vergleichsergebnisse vor der abschließenden Kampagnenbalance
-vorliegen. Ohne positives menschliches G4 bleiben sie frei verfügbare Versuchsvarianten;
-keine Freischaltökonomie oder Mod-Persistenz vorwegnehmen.
+vorliegen. Der Nutzer hat am 6. November die konkrete Meilensteinregel und ihre Speicherung ausdrücklich beauftragt. Der freie Modvergleich bleibt erhalten; ein positives menschliches G4 wird dadurch nicht behauptet.
 A11.1–A11.3 dürfen nach technischer G5-Prüfung in anderer ausdrücklich freigegebener Reihenfolge
 bearbeitet werden; A11.4 benötigt alle drei Ergebnisse.
 
@@ -418,8 +422,7 @@ A6 und A7 den T2-Kandidaten fertigstellen. Nach technischer A9.1-/A10.1-Abnahme
 dürfen die jeweiligen Missionen folgen. Nach technischer A10.3-Abnahme dürfen
 A11.1–A11.3 den T3-Kandidaten vorbereiten. G2/G3/G5 gelten dabei ausdrücklich noch
 nicht als menschlich bestanden. G4 ist kein Hindernis für die Kampagne ohne
-Progression: optionale Mods bleiben bis T3 sofort verfügbare Versuche, A8.3 speichert
-ohne positives G4 ausschließlich Kampagnenfortschritt. Ein späterer Progressionsumbau
+Progression. Abweichend vom ursprünglichen Ablauf hat der Nutzer die Meilensteine und Mod-Persistenz am 6. November ausdrücklich vorgezogen; T3 prüft weiter ihren tatsächlichen Nutzen. Ein späterer Progressionsumbau
 erfordert einen eigenen Auftrag und die erneute Prüfung seiner betroffenen Flows
 vor G6-Freigabe. Ein Release ohne Progression bleibt möglich.
 
@@ -912,18 +915,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a8-2"></a>
 
 <details>
-<summary>A8.2 — Progressionsmodell wählen oder streichen, Gate 4 · 🟡 Vergleich vorbereitet · optional</summary>
+<summary>A8.2 — Progressionsmodell wählen oder streichen, Gate 4 · 🟡 Modell gewählt, menschlicher Vergleich offen</summary>
 
 ### A8.2 — Progressionsmodell wählen oder streichen, Gate 4
 
-**Status:** 🟡 In Arbeit: Vergleich vorbereitet (6. November 2026). **Voraussetzungen:** A8.1 technisch fertig, eigener Auftrag liegt vor. Freie Auswahl gilt für den Versuch; endgültiger Entscheid nach drei menschlichen Befunden in T3. [Versuchs- und Entscheidungsprotokoll](../qa/ADVENTURE_A8_MODS_RESULT.md).
+**Status:** 🟡 Meilensteinmodell vom Nutzer gewählt und Umsetzung beauftragt (6. November 2026): Basis ab Start, Rückhaken nach Stein, Gabelspitze nach Frost; Tod verliert nichts, Auswahl vor dem nächsten Versuch. Übungen bieten alle drei frei. Drei menschliche Befunde und G4 bleiben offen. [Entscheidungsprotokoll](../qa/ADVENTURE_A8_MODS_RESULT.md) · [Umsetzung](../qa/ADVENTURE_A8_A9_RESULT.md).
 **Ziel/Nutzen:** Wiederholung verbessern, ohne Grind oder unnötige Verwaltung einzuführen.
 **Umfang:** Vergleich ohne Progression gegen deterministische Meilensteinfreischaltung und Auswahl pro Versuch; Entscheidung, keine Ressourcenökonomie.
 
 - [x] Basis-/Mod-Versuche gemäß G4 für T3 vorbereiten: gleiche Startbedingungen, drei empfohlene Reihenfolgen, alle Varianten sofort zugänglich.
 - [ ] In T3 nach Pflichtversuchen ein freiwilliges Zusatzfenster ohne Freischaltung/Belohnung anbieten; Zusatzversuche, Variantenwahl und Gründe erfassen, geäußerte Absicht getrennt berichten.
 - [ ] Freischaltung nach Boss 1/2 versus sofortige Auswahl beurteilen; gescheiterte Versuche niemals kostenpflichtig machen.
-- [ ] Genau ein Modell oder vollständigen Verzicht festhalten; Basis bleibt wählbar, Tod verliert keine Freischaltungen.
+- [x] Genau ein Modell oder vollständigen Verzicht festhalten; Basis bleibt wählbar, Tod verliert keine Freischaltungen.
 - [ ] G4-Entscheid, spätere All-Boss-Balancepflicht und möglichen Kürzungsumfang dokumentieren.
 
 **Systeme/Dateien:** Mod-Auswahl nur bei erforderlichem kleinen Test, ansonsten Vision/Roadmap/QA-Protokoll; Persistenz gehört zu A8.3.
@@ -931,7 +934,7 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 **Abnahme:** G4 bestanden oder ausdrückliche Streichung; mindestens drei menschliche Vergleichsbefunde; keine Pflicht zum Wiederholen leichter Begegnungen für Stärke.
 **Risiko/Gegenmaßnahme:** Freischalten fühlt sich kurzfristig gut an, Kampf bleibt gleich → Varianten zuerst ohne Freischaltung testen; Spielstil und Motivation getrennt bewerten.
 **Fertig:** Nach T3 liegt die Nutzerentscheidung samt genauer Freischalt-/Auswahlregel oder Wegfall vor. Bis dahin bleibt dieser Entscheidungsbulk in Arbeit, sobald seine Vorbereitung beauftragt ist.
-**Danach:** Kein Hindernis für die übrige Kampagne ohne Progression; eine tatsächliche Progressions-/Mod-Speicherung erst nach positivem G4 und eigenem Auftrag, anschließend betroffene Releasefälle erneut prüfen.
+**Danach:** Der ausdrückliche Nutzerauftrag zieht die Meilensteinumsetzung vor die menschliche G4-Abnahme. G4 bleibt offen; T3 muss das Modell bestätigen, ändern oder streichen und betroffene Releasefälle erneut prüfen.
 
 [Zur Statusübersicht](#alle-26-arbeitspakete-auf-einen-blick)
 
@@ -940,18 +943,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a8-3"></a>
 
 <details>
-<summary>A8.3 — Kampagnenfortsetzung und Bossübung · ⬜ Nicht begonnen</summary>
+<summary>A8.3 — Kampagnenfortsetzung und Bossübung · ✅ Technisch fertig</summary>
 
 ### A8.3 — Kampagnenfortsetzung und Bossübung
 
-**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A7.2 positiv; für gespeicherte Mods zusätzlich positiver A8.2-Entscheid, sonst ohne Mods; eigener Auftrag.
+**Status:** ✅ Technisch fertig (6. November 2026), auf ausdrücklichen Folgeauftrag trotz offener menschlicher Gates. Sichere Missionsstarts, getrennte Übungen und Speicherfehler geprüft. [Nachweis](../qa/ADVENTURE_A8_A9_RESULT.md).
 **Ziel/Nutzen:** Eine kleine Mehrkartenkampagne lässt sich fortsetzen und gezielt üben.
 **Umfang:** Kleine Level-/Freischaltverwaltung und versionierter lokaler Save; vorhandene Sitzungs-Checkpoints weiterverwenden. Keine Speicherung mitten in Bossanimationen.
 
-- [ ] Nur abgeschlossene Maps, nächsten Einstieg, besiegte Übungsbosse und gegebenenfalls bestätigte Mod-IDs speichern.
-- [ ] Eigenen Adventure-Namespace und getrennte Prototyp-/Legacy-Daten verwenden; unbekannte/defekte Daten sicher behandeln.
-- [ ] Fortsetzen am Mapstart beziehungsweise freigegebenen sicheren Einstieg, Neustart mit klarer Bedeutung und Bossübung mit festen Ressourcen anbieten.
-- [ ] Reload, verweigerten Speicher, Versionswechsel und doppelte Abschlussereignisse prüfen; Speicherfehler dürfen laufendes Spiel nicht blockieren.
+- [x] Nur abgeschlossene Maps, nächsten Einstieg, besiegte Übungsbosse und gegebenenfalls bestätigte Mod-IDs speichern.
+- [x] Eigenen Adventure-Namespace und getrennte Prototyp-/Legacy-Daten verwenden; unbekannte/defekte Daten sicher behandeln.
+- [x] Fortsetzen am Mapstart beziehungsweise freigegebenen sicheren Einstieg, Neustart mit klarer Bedeutung und Bossübung mit festen Ressourcen anbieten.
+- [x] Reload, verweigerten Speicher, Versionswechsel und doppelte Abschlussereignisse prüfen; Speicherfehler dürfen laufendes Spiel nicht blockieren.
 
 **Systeme/Dateien:** `src/arena/campaign.ts`, Adventure-App/Missionszustand; `neu: src/core/adventureCampaign.ts`, `src/app/adventureSave.ts`, zugehörige Tests. Keine generische Save-Engine.
 **Tests/Regression:** K/L/A/P/N, Browser Reload/Fortsetzen, beschädigter/leerer Speicher, keine Überschreibung fremder Schlüssel; Mods nur bei gewähltem Umfang.
@@ -969,18 +972,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a9-1"></a>
 
 <details>
-<summary>A9.1 — Frostspinne als Winkel- und Bewegungsgegner · ⬜ Nicht begonnen</summary>
+<summary>A9.1 — Frostspinne als Winkel- und Bewegungsgegner · ✅ Technisch fertig</summary>
 
 ### A9.1 — Frostspinne als Winkel- und Bewegungsgegner
 
-**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A7.2 positiv, G1–G3 bestanden; eigener Auftrag. Mods nicht erforderlich.
+**Status:** ✅ Technisch fertig (6. November 2026), auf ausdrücklichen Folgeauftrag. Basis, Rückhaken und Gabelspitze siegfähig; Legacy bleibt getrennt. Menschliches T3-Urteil offen. [Nachweis](../qa/ADVENTURE_A8_A9_RESULT.md).
 **Ziel/Nutzen:** Zweiter Boss verlangt Seitenwechsel und Winkelkontrolle statt einer Steinwächterkopie.
 **Umfang:** Bestehende Frostkarte im neuen Testpfad, Splitterfächer/Biss/Ausbruch und höchstens eine angekündigte Umpositionierung. Keine ausgebaute Mission in diesem Bulk.
 
-- [ ] Bestehende Angriffsausprägungen in getrenntes Prototypprofil übernehmen, Legacy erhalten.
-- [ ] Splitterlücken und seitliche Gegenangriffe sichtbar machen; Umpositionierung mit klarer Bindung/Erholung testen.
-- [ ] Reichweite, Körperkontakt und Kamera an Eisrücken/Plateaus prüfen; Basiswaffensieg nachweisen.
-- [ ] Sieben Bossdarstellungskriterien technisch/visuell prüfen; typische Sequenzen und unterschiedliche Reaktionsaufgaben für den menschlichen T3-Vergleich sichern.
+- [x] Bestehende Angriffsausprägungen in getrenntes Prototypprofil übernehmen, Legacy erhalten.
+- [x] Splitterlücken und seitliche Gegenangriffe sichtbar machen; Umpositionierung mit klarer Bindung/Erholung testen.
+- [x] Reichweite, Körperkontakt und Kamera an Eisrücken/Plateaus prüfen; Basiswaffensieg nachweisen.
+- [x] Sieben Bossdarstellungskriterien technisch/visuell prüfen; typische Sequenzen und unterschiedliche Reaktionsaufgaben für den menschlichen T3-Vergleich sichern.
 
 **Systeme/Dateien:** `src/arena/campaign.ts`, Prototyp-Encounter, `src/render/monsterView.ts`, `campaignArena.ts`, Variantenrouting; ggf. kleines Frostprofil und Tests.
 **Tests/Regression:** K/P/N und G2-Fairnessfälle sinngemäß; Verfolgung, Lücken/Deckung, Abstand, Körperkontakt und Wiederholung.
@@ -996,18 +999,18 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a9-2"></a>
 
 <details>
-<summary>A9.2 — Kurze Kluftmission und Übergang aus Map 1 · ⬜ Nicht begonnen</summary>
+<summary>A9.2 — Kurze Kluftmission und Übergang aus Map 1 · ✅ Technisch fertig</summary>
 
 ### A9.2 — Kurze Kluftmission und Übergang aus Map 1
 
-**Status:** ⬜ Nicht begonnen (geplant). **Voraussetzungen:** A9.1 technisch abgenommen, A8.3, beauftragter Umfang; menschliches Gesamturteil folgt T3.
+**Status:** ✅ Technisch fertig (6. November 2026). A8.3 und A9.1 integriert; echter Weg Stein → Frost → Tod/Retry → Sieg → Ausgang geprüft. Menschliches Gesamturteil folgt T3. [Nachweis](../qa/ADVENTURE_A8_A9_RESULT.md).
 **Ziel/Nutzen:** Map 2 entwickelt bekannte Fähigkeiten weiter und bleibt ein eigener Ort.
 **Umfang:** Bestehender Grundriss, kurzer Hauptweg, ein optionaler Abstecher, kleine vorbereitende Begegnungen und eine funktionale Interaktion. Maximal ein neuer kleiner Gegnertyp.
 
-- [ ] Seitliche Deckungswechsel im vorhandenen Gelände als Hauptaufgabe einrichten; keine obligatorische neue Mobilitätsfähigkeit.
-- [ ] Höchstens 2–3 kleine Begegnungen setzen; optional einen langsamen gerichteten Splittergegner aus vorhandener Basis testen und bei fehlendem Lernnutzen streichen.
-- [ ] Eine kurze Interaktion, Bosscheckpoint und Abschluss mit vorhandenen Missionsprinzipien verbinden.
-- [ ] Map-1-Abschluss → Map 2 → Tod/Retry → Sieg/Fortsetzen vollständig spielen; Hinweise auf gewählte Mod-/Waffenregeln begrenzen.
+- [x] Seitliche Deckungswechsel im vorhandenen Gelände als Hauptaufgabe einrichten; keine obligatorische neue Mobilitätsfähigkeit.
+- [x] Höchstens 2–3 kleine Begegnungen setzen; optional einen langsamen gerichteten Splittergegner aus vorhandener Basis testen und bei fehlendem Lernnutzen streichen.
+- [x] Eine kurze Interaktion, Bosscheckpoint und Abschluss mit vorhandenen Missionsprinzipien verbinden.
+- [x] Map-1-Abschluss → Map 2 → Tod/Retry → Sieg/Fortsetzen vollständig spielen; Hinweise auf gewählte Mod-/Waffenregeln begrenzen.
 
 **Systeme/Dateien:** `src/arena/campaign.ts`, `campaignArena.ts`, `campaignDetails.ts`, Kampagnenzustand; ggf. `neu: src/arena/frostAdventure.ts`, kleine Missionsdefinition und Gegnerprofil.
 **Tests/Regression:** K/L/P/N, vollständiger Kampagnenübergang mit Basis und gewählter Ausstattung, Vorräte/Checkpoint/Reload, keine Umgehung des Bossabschlusses.
@@ -1264,7 +1267,7 @@ Vorschlag formulieren und bereits autorisierte, unabhängige Arbeit abschließen
 Der aktuelle Implementierungsauftrag umfasst **A5.1–A7.2 bis zum T2-Kandidaten**,
 einschließlich A4-Feedback-Feinschliff. Technik und Vergleich sind vorbereitet;
 **T2 mit dem Nutzer läuft; die beauftragte Peitschen-Nacharbeit wird darin erneut geprüft**. A7.2, G2 und G3 sind noch nicht menschlich
-abgeschlossen. Keine automatische Freigabe für A8, weitere Bosskarten oder Release.
+abgeschlossen. A8 und A9 wurden inzwischen ausdrücklich beauftragt; daraus folgt keine automatische Release-Freigabe.
 Die ergänzend angesprochenen Charge-/Sprungangriffe des Bosses bleiben Designkandidaten.
 Spieler-Lufthieb und Doppelsprung sind auf späteren ausdrücklichen Auftrag umgesetzt;
 ihre Wirkung gehört zur laufenden T2-Abnahme. Die erneute Plateau-/Bossprüfung bleibt

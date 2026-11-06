@@ -135,7 +135,7 @@ export async function startPve(host: HTMLElement): Promise<() => void> {
       const messages = { emerging: 'Der Boden bricht auf …', chasing: 'Er verfolgt dich · Bleib in Bewegung!',
         melee: state.phaseTick < level.rules.meleeWarning ? (level.kind === 'stone' ? 'FAUSTSCHLAG · Abstand oder ausweichen!' : level.kind === 'frost' ? 'BISS · Abstand oder ausweichen!' : 'VORSTOSS · Abstand oder ausweichen!') : 'Nahkampfangriff!',
         warning: state.kind === 'wave' ? 'SCHOCKWELLE · Sprung vorbereiten!' : 'BODENAUSBRUCH · Kreis verlassen!',
-        attack: state.kind === 'wave' ? 'JETZT SPRINGEN oder Deckung suchen!' : 'Einschlag!', recovery: 'Kurze Pause · Gegenfeuer!', defeated: 'Siegel gebrochen.' };
+        attack: state.kind === 'wave' ? 'JETZT SPRINGEN oder Deckung suchen!' : 'Einschlag!', recovery: 'Kurze Pause · Gegenfeuer!', reposition:'Positionswechsel',defeated: 'Siegel gebrochen.' };
       if (level.kind !== 'stone' && state.kind === 'wave') {
         messages.warning = level.kind === 'frost' ? 'EISSPLITTER · Fächer ausweichen!' : 'FEUERATEM · Seitlich raus oder Deckung!';
         messages.attack = level.kind === 'frost' ? 'Eissplitter! Ausweichen oder springen.' : 'Feueratem! Springen schützt nicht.';

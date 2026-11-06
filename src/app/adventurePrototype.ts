@@ -27,7 +27,7 @@ export class AdventurePrototype {
   constructor(simulation:Simulation,readonly practice:boolean,mod:WhipMod='base') {
     this.whip=new EnergyWhip(mod);this.motor=new AdventureMotor(simulation);this.aimHeight=simulation.snapshot().position.y;
   }
-  step(command:MoveCommand,dash:boolean,pressed:boolean,ray:Ray|null,world:RapierWorld,targets:readonly CombatTarget[],feedback:StoneFeedback,guarded=false,overhead=false) {
+  step(command:MoveCommand,dash:boolean,pressed:boolean,ray:Ray|null,world:RapierWorld,targets:readonly CombatTarget[],feedback:StoneFeedback,guarded=false,overhead=false,guardedTarget='stone-warden') {
     const before=this.motor.simulation.snapshot();if(before.grounded)this.aimHeight=before.position.y;
     // Keep the cursor plane at takeoff height; rising must not slide aim away from a ground target.
     const direction=this.aim.update(ray,{...before.position,y:this.aimHeight});
@@ -37,7 +37,7 @@ export class AdventurePrototype {
     const oldPhase=this.whip.snapshot().phase;
     const kind=!move.current.grounded?'air':overhead?'overhead':'sweep';
     const attack=this.whip.step(move.current.tick,move.current.position,direction,(pressed||overhead)&&!move.active,world,this.practice?PRACTICE_TARGETS:targets,
-      kind,guarded?'stone-warden':undefined);
+      kind,guarded?guardedTarget:undefined);
     if(attack.attacked&&overhead)feedback.play('whip-charge');
     if(attack.phase==='forward'&&oldPhase!=='forward')feedback.play(this.whip.snapshot().attack==='sweep'?'whip-swing':'whip-crack');
     if(attack.phase==='return'&&oldPhase!=='return')feedback.play('whip-return');

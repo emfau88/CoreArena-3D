@@ -1,0 +1,10 @@
+#adventure-hub{position:fixed;inset:0;overflow:auto;background:radial-gradient(ellipse at 70% 20%,#33594c,#10252a 65%);padding:28px 16px;box-sizing:border-box;color:#e3eee8;display:grid;place-items:center}
+#adventure-hub .campaign-card{width:min(760px,100%);display:grid;gap:14px}
+#adventure-hub h1,#adventure-hub h2,#adventure-hub p{margin:0}#adventure-hub h1{font-size:34px}#adventure-hub h2{font-size:18px}
+#adventure-hub small{color:#b6cbc3;line-height:1.5}#adventure-hub .campaign-missions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#adventure-hub article{display:grid;gap:10px;padding:16px;border:1px solid #668779;border-radius:12px;background:#152d2be6}
+#adventure-hub button,#adventure-hub select{border:1px solid #709889;background:#26473f;color:#e3eee8;border-radius:8px;padding:12px;font:inherit;min-height:44px;cursor:pointer}
+#adventure-hub button:disabled{opacity:.45;cursor:default}#adventure-hub #campaign-continue{background:#bfdfbf;color:#122d24;font-weight:700}
+#adventure-hub label{display:grid;gap:6px}#adventure-hub .adventure-loadout{margin:0}
+#adventure-hub #fullscreen-toggle{position:static;justify-self:start;transform:none}
+@media(max-width:550px){#adventure-hub .campaign-missions{grid-template-columns:1fr}#adventure-hub h1{font-size:27px}}
