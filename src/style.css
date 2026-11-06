@@ -67,6 +67,8 @@ button:focus-visible { outline: 2px solid #d6b680; outline-offset: 3px; }
 @media (max-width: 900px) { #match-panel { width: 265px; right: 20px; } #life-panel { left: 20px; width: 260px; } }
 #pause h2 { font-size: 28px; font-weight: 500; }
 [hidden] { display: none !important; }
+.adventure-loadout{display:grid;gap:6px;margin:12px 0;color:#cce1dc;font-size:13px;text-align:left}
+.adventure-loadout select{max-width:100%;padding:12px;border:1px solid #587575;border-radius:8px;background:#14292d;color:#e9f6ee;font:inherit}
 #diagnostics { position: fixed; left: 20px; top: 110px; margin: 0; background: #080c11e8; padding: 16px; color: #8fecd0; font: 12px/1.7 Consolas, monospace; pointer-events: none; }
 @media (max-width: 1400px) { .location { bottom: 105px; } header { left: 20px; right: 20px; top: 20px; } footer { left: 20px; right: auto; bottom: 20px; max-width: calc(100vw - 40px); flex-wrap: wrap; white-space: normal; } }
 @media (max-height: 600px) { .location { display: none; } }

@@ -61,7 +61,21 @@ ist auf 60 Versuche begrenzt. Der Export enthält den Build-Commit und Sourcehas
 
 ## A8.2: aktueller Entscheidungsstand
 
-**Für diesen Versuch festgelegt:** sofortige freie Auswahl aller drei Profile,
+**Aktualisierung nach Nutzerentscheidung vom 6. November 2026:** „ok so umsetzen
+comitten und pushen und dann weiter mit a8.3 un dan a9.1 - a9.2“. Damit sind
+Meilensteinfreischaltungen gewählt und ihre Umsetzung freigegeben: Rückhaken
+nach Steinwächter, Gabelspitze nach Frostspinne, ein Slot vor dem nächsten Versuch,
+dauerhaft auf diesem Gerät, Basis immer verfügbar. Bossübungen erlauben alle Mods.
+Die folgende ursprüngliche Vergleichsbeschreibung bleibt als Testprotokoll erhalten;
+die drei menschlichen Nutzenbefunde wurden noch nicht erhoben. G4 wird deshalb
+nicht als menschlich bestanden geführt. Der Mod-Vergleich bleibt frei zugänglich.
+
+Erster Implementierungsschritt: idempotente Meilensteinregeln, Auswahl im Pausen-
+und Retrymenü, Freischalthinweis beim Steinwächter-Sieg sowie kleiner versionierter
+Save-Adapter. Fortsetzen und Bossübungszugänge folgen im unmittelbar beauftragten
+A8.3-Paket. Regel-/Speicherfehlerfälle und Typecheck sind geprüft.
+
+**Für den ursprünglichen Versuch festgelegt:** sofortige freie Auswahl aller drei Profile,
 keine Progression. **Die endgültige Produktentscheidung ist offen.** Es gibt noch
 keine drei menschlichen Vergleichsbefunde und keinen positiven G4-Entscheid.
 Eine Freischaltökonomie wird damit nicht vorweggenommen.

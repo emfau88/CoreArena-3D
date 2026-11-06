@@ -285,8 +285,12 @@ Versuchen gibt es ein freiwilliges Zusatzfenster ohne neue Belohnung. Gewählte
 Variante, zusätzliche Versuche und genannter Grund werden erfasst; kein Bonus allein
 für eine kürzere Kampfzeit. Wiederholungswunsch und beobachtetes Wiederholen werden
 getrennt berichtet. Die menschliche Bewertung findet im dritten Spieltermin statt.
-Die Entscheidung für ein Progressionssystem bleibt bis zu positivem G4-Urteil und
-gesonderter Umsetzungsfreigabe offen; die Kampagne kann ohne Progression erscheinen.
+Der Nutzer hat am 6. November 2026 die Meilensteinfreischaltung ausdrücklich
+bestätigt und ihre Umsetzung sowie A8.3/A9.1/A9.2 beauftragt: Rückhaken nach
+Steinwächter, Gabelspitze nach Frostspinne; ein Slot, dauerhaft, Basis immer wählbar,
+in Bossübungen alle Mods frei. Diese Produktentscheidung erlaubt die Umsetzung
+jetzt. Die drei menschlichen G4-Befunde bleiben als qualitative Validierung offen;
+sie werden nicht durch technische Tests ersetzt.
 
 Ein kleiner lokaler Kampagnensave kann später abgeschlossene Maps, freigegebene
 Übungsbosse und gegebenenfalls Modifikationen speichern. Kein Inventar oder

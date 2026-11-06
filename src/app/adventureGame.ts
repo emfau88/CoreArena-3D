@@ -21,6 +21,8 @@ import { OutpostView } from '../render/outpostView';
 import { PVE_FALL_HEIGHT } from '../core/pve';
 import { LAB_SPAWN, prepareBossAttempt } from './adventureBossAttempt';
 import { WHIP_MODS, type WhipMod } from '../core/whipMods';
+import {adventureCampaign,adventureSave} from './adventureCampaignSession';
+import {installAdventureLoadout} from './adventureLoadout';
 
 const hints: Record<string, string> = {
   A: 'Durch den offenen Ruinenhof zum nächsten Durchgang.', B: 'Am Norddurchgang liegt die Waffe der verlassenen Wache.',
@@ -87,6 +89,8 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
     <button id="pve-next" type="button" hidden>Optional: Kristallkluft erkunden</button><button id="pve-again" type="button">Neu versuchen</button>
     <button id="result-home" type="button">Zum Spielmenü</button></div></div>`);
   const el = (id: string) => host.querySelector<HTMLElement>(`#${id}`)!;
+  const campaign=entry.profile==='prototype'&&!entry.lab&&!entry.modTrial?adventureCampaign:undefined;
+  const loadout=campaign?installAdventureLoadout([el('adventure-settings'),el('match-result').firstElementChild as HTMLElement],campaign,adventureSave.message):undefined;
   const chooseWeapon = (id: WeaponId | 'cycle') => { if (!paused && fight.life.snapshot().outcome==='running') {
     const old=combat.snapshot().selected;
     if (id === 'cycle') combat.cycle(); else combat.select(id);
@@ -177,7 +181,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   };
   const resetMissionPrototype=()=>{
     if(entry.profile!=='prototype')return;
-    prototype=new prototypeModule!.AdventurePrototype(simulation,false);
+    prototype=new prototypeModule!.AdventurePrototype(simulation,false,campaign?.snapshot().selectedMod??'base');
     configurePresentation();view.camera.trackPlayer(STONE_ADVENTURE.spawn,1.2,'side');
   };
   const restartLab = (running: boolean) => {
@@ -253,6 +257,11 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
       }
       interactPending=false;
       const after=fight.snapshot(); syncWorld();
+      if(campaign&&before.pve.outcome!=='victory'&&after.pve.outcome==='victory'){
+        const unlocked=campaign.defeat('stone');loadout?.refresh();
+        if(unlocked)announce(`${WHIP_MODS[unlocked].name} freigeschaltet. ${WHIP_MODS[unlocked].description} Im Menü für den nächsten Versuch wählen.`,600);
+      }
+      if(campaign&&after.completed&&!before.completed)campaign.complete('stone');
       if(after.consoleActive && !before.consoleActive) {
         feedback.play('console');announce('Verbindung steht. Dem Relais fehlt sein Kern. Das Signal kommt aus dem Wächterhof.');
       }
@@ -469,7 +478,7 @@ export async function startAdventure(host: HTMLElement, entry: AdventureEntry): 
   document.querySelector('#loading')?.remove(); host.dataset.ready = 'true';
   frameId = requestAnimationFrame(frame);
   return () => {
-    cancelAnimationFrame(frameId); abort.abort(); lab?.dispose(); modTrial?.dispose(); environment?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
+    cancelAnimationFrame(frameId); abort.abort(); loadout?.dispose(); lab?.dispose(); modTrial?.dispose(); environment?.dispose(); feedback.dispose(); input.dispose(); world.dispose(); view.dispose();
     host.querySelectorAll('#hud,#pause,#match-result').forEach(node => node.remove()); Reflect.deleteProperty(window,'__coreArena');
     delete host.dataset.adventure;
   };
