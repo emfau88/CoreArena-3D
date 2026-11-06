@@ -280,6 +280,10 @@ Mit laufender Umgebungsvorschau reproduzierbar über
 
 ### F · Wächterklamm
 
+**Nutzerentscheidung vom 6. November 2026**
+F ist als Umgebungsrichtung für die weitere erste Mission gewählt. Damit ist U6
+abgeschlossen. Die offenen Leistungsprüfungen von F stehen unten.
+
 Der isolierte Test legt eine durchgehende Schlucht um alle drei Höfe, die zwei
 Durchgänge und das Nordtor. Der Felskern unter dem Hof folgt auch an den schmalen
 Übergängen dem tatsächlichen Bodenumriss. Die Schluchtensohle liegt unter der

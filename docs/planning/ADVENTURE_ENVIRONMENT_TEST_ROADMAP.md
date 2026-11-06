@@ -1,13 +1,23 @@
 # Roadmap für den isolierten Adventure Umgebungstest
 
-Stand: **4. November 2026** · [Adventure-Roadmap](ADVENTURE_ROADMAP.md) · [Produktvision](ADVENTURE_VISION.md)
+Stand: **6. November 2026** · [Adventure-Roadmap](ADVENTURE_ROADMAP.md) · [Produktvision](ADVENTURE_VISION.md)
 
 **Ziel:** Am vorhandenen Ladehof erproben, wie stark eine ausgearbeitete Umgebung,
 ruhigere Bodenflächen und erkennbare Architektur das Adventure verbessern.
 Die bestehende Perspektive, Kameranachführung und Links-nach-rechts-Führung bleiben
 erhalten. Die Varianten zeigen dieselbe spielbare Mission.
 
-**Aktueller Stand: U0 bis U4 umgesetzt; U5 geprüft, Leistungsfreigabe offen.**
+**Gewählt ist F · Wächterklamm. U6 ist mit der Nutzerentscheidung vom 6. November 2026 abgeschlossen.**
+Die weitere Arbeit nutzt F als gestalterische Grundlage der ersten Mission.
+[Öffentliche Version spielen](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine).
+
+U0–U4 sind umgesetzt. Die Funktionsprüfungen von F und der Desktop-Vergleich am
+Start sind bestanden. U5 bleibt für die Leistung im Bosskampf und auf echten
+Mobilgeräten offen.
+
+<details>
+<summary>Verlauf des Umgebungstests bis zur Wahl von F</summary>
+
 Der beauftragte Versuch liegt im eigenen Worktree und Branch
 `codex/adventure-environment-test`. [Ergebnisse und Vergleich](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
 Der Vergleich ist spielbar. Das relative Framezeitbudget von +2 ms wird in
@@ -24,11 +34,18 @@ Bogen. Der Vergleich D/E dokumentiert diese Ecke. Variante F erprobt mit der
 Wächterklamm eine durchgehende 3D-Umgebung vom Ladehof bis zum Nordtor.
 [Spielbilder und Messwerte zu F](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md#f--wächterklamm).
 
+</details>
+
 Diese Roadmap ist die Aufgabenquelle für den begrenzten Umgebungstest. Die
 26 Pakete und sechs Gates der Hauptroadmap bleiben unverändert; insbesondere
 ersetzt der Versuch weder A7.2 noch die offenen Entscheidungen G2/G3.
 
 ## Umfang und feste Vorgaben
+
+Die folgenden Vorgaben beschreiben den ursprünglichen Ladehofversuch vom
+4. November. Der Nutzer hat den Umfang anschließend auf den Außenraum der ganzen
+ersten Mission erweitert und am 5. November die Veröffentlichung auf GitHub Pages
+beauftragt. Mit der Wahl von F am 6. November dient dieser Stand der weiteren Arbeit.
 
 Der Test gestaltet den **Ladehof einschließlich Außenraum und sichtbarem Übergang
 zum Wartungshof**. Wartungs- und Wächterhof behalten ihre bisherige Gestaltung;
@@ -272,17 +289,17 @@ Prüfung, visuelle Eigenkontrolle und noch offene persönliche Bewertung.
 
 ### U6 Persönlicher Vergleich und Entscheidung
 
-**Ergebnis:** Dokumentierte Entscheidung über den getesteten Ausschnitt.
+**Ergebnis am 6. November 2026 ist die Wahl von F · Wächterklamm.**
+Der Nutzer bestätigt die Gestaltung für die weitere Arbeit. Die Auswahl beruht
+auf den gezeigten Spielansichten und Rückmeldungen im Verlauf des Versuchs.
 
-- [ ] A und B auf derselben Bildschirmgröße und mit denselben Kameraeinstellungen spielen.
-- [ ] Ortswirkung, Wiedererkennbarkeit, Lesbarkeit und Bewegungsfreiheit vergleichen.
-- [ ] Entscheiden: **beibehalten**, **gezielt nacharbeiten** oder **verwerfen**.
-- [ ] Nur überzeugende Bauteile und Regeln als mögliche Grundlage für Wartungs-/Relaisgestaltung festhalten.
+- [x] Varianten anhand von Spielbildern, Playlinks und Nutzerfeedback vergleichen.
+- [x] Die detailreichen Hoftexturen als Grundlage festlegen.
+- [x] F mit durchgehender 3D-Schlucht, Wächterrelief und versteinerten Fragmenten wählen.
+- [x] F als gemeinsame Umgebungsrichtung für die erste Mission dokumentieren.
 
-**Abnahme:** Der Nutzer beurteilt den konkreten Kandidaten. Ein positives Ergebnis
-ist keine automatische Veröffentlichung oder Umstellung des regulären Adventure.
-Eine spätere Übernahme erhält einen getrennten Auftrag mit Zielbranch, Umfang
-und Kanal. Bei Verwerfen bleibt der Versuch isoliert; die Referenz funktioniert weiter.
+Die technische Leistung wird in U5 weiter geprüft. Die spielerische Abnahme des
+Steinwächters und der ersten Mission folgt im Hauptpaket A7.2 mit G2/G3.
 
 ## Prüfungen und Grenzen
 

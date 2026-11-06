@@ -1,12 +1,17 @@
 # CORE ARENA 3D — Adventure-Roadmap
 
-Stand: **4. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle Testversion spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)
+Stand: **6. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelles Adventure mit Wächterklamm spielen](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine)
 
 ## Wo wir gerade stehen
 
 **Aktuell: A7.2 — Spieltest T2 und Entscheidung über den ersten vollständigen Adventure-Kern.**
 Der erste Hof samt Steinwächter ist spielbar. Deine bisherigen Rückmeldungen sind
 eingearbeitet; das abschließende Urteil zu Boss, Mission und Waffenwahl steht noch aus.
+
+**Gewählte Umgebung für die erste Mission ist F · Wächterklamm.**
+Am 6. November 2026 hat der Nutzer F als Grundlage für die weitere Arbeit gewählt.
+Die Auswahl der Umgebungsrichtung U6 ist abgeschlossen. Nächster Schwerpunkt ist
+der bestehende Spieltest T2 mit dieser Gestaltung.
 
 | Umsetzung | Aktueller Spieltest | Noch nicht begonnen |
 |---|---|---|
@@ -23,7 +28,9 @@ Links-nach-rechts-Kamera, Dash, normaler Sprung und kurzer Doppelsprung;
 Energiepeitsche mit Seitenschwung, Überkopf-Knall und Lufthieb samt überarbeitetem
 Trefferfeedback; angepasster Steinwächter; komplette erste Mission mit Läufern,
 Konsole, Checkpoint, Kern, Relais und Ausgang; begrenzter Pulse-Vergleich.
-Die öffentliche Vorschau hat Touch-Bedienung. Echte Handytests stehen noch aus.
+Die Wächterklamm umfasst den Außenraum aller drei Höfe bis zum Nordtor. Die
+öffentliche Version hat Touch-Bedienung und wurde mit Touch-Emulation geprüft.
+Echte Handytests stehen noch aus.
 
 ### Was jetzt noch fehlt
 
@@ -38,14 +45,17 @@ Danach können weitere Karten und gegebenenfalls Modifikationen beauftragt werde
 Ein Progressionssystem ist weiterhin offen und nicht implementiert. Die öffentliche
 **Testversion** ist bereits online; der finale Release **A11.5** bleibt ein späterer Schritt.
 
-**Separater Umgebungstest umgesetzt und geprüft — 4. November 2026:**
-[Eigene Roadmap mit U0–U6](ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md) für einen isolierten
-A/B-Versuch am Ladehof: Außenraum, Architektur, Boden und sichtbare Missionszustände.
-Kamera und Links-nach-rechts-Führung bleiben erhalten. Eigener Branch, Worktree und
-Build sind eingerichtet; [Umsetzung und Nachweise](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
-U5 bleibt wegen des relativen Framezeitbudgets technisch offen; die persönliche
-Bewertung U6 steht aus. Die 26 Pakete, A7.2,
-G2/G3 und der öffentliche T2-Kanal bleiben davon unberührt.
+**Umgebungstest U0–U6, Entscheidung vom 6. November 2026**
+U0–U4 sind umgesetzt. U6 ist mit der Wahl von F abgeschlossen. F ist die
+gestalterische Grundlage für die weitere erste Mission. U5 enthält noch offene
+Leistungsprüfungen für den Bosskampf und echte Mobilgeräte. Am Start lag F in
+drei Desktop-Messläufen bei 8,5 ms p95 im Median, A bei 8,4 ms.
+[Umgebungsroadmap](ADVENTURE_ENVIRONMENT_TEST_ROADMAP.md) ·
+[Umsetzung und Nachweise](../qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
+
+Der aktuelle Entwicklungsstand liegt auf `codex/adventure-environment-test`.
+Sein öffentlicher Playlink steht oben. Die Entscheidung zur Umgebung ist in U6
+dokumentiert; das Urteil zu Kampf, Mission und Waffenwahl folgt in A7.2.
 
 ## Alle 26 Arbeitspakete auf einen Blick
 
@@ -153,8 +163,8 @@ QA-Berichte und die Arena-Vision bleiben eigenständig.
   Module. `neu:` bezeichnet heute nicht vorhandene Dateien.
 - Änderungen an gemeinsamen Komponenten nur mit beschriebenem Anlass, neutralem
   Standardverhalten und passenden Arena-/Legacy-Regressionsprüfungen.
-- Für spätere Codearbeit ist `codex/adventure-combat-prototype` ein sinnvoller
-  Branchname. Dokumentation benötigt keinen zusätzlichen Branch. Branchwahl allein
+- Die weitere Adventure-Arbeit läuft auf `codex/adventure-environment-test`.
+  Dort liegen Kampfprototyp und gewählte Umgebung F gemeinsam. Branchwahl allein
   schützt den alten Modus nicht; die Laufzeittrennung bleibt erforderlich.
 - Keine pauschalen Minutenversprechen: Physik-/Kamera-/Animationspakete besitzen
   hohe Iterationsunsicherheit. Vor jedem freigegebenen Bulk eine begrenzte Schätzung
