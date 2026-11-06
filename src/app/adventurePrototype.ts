@@ -5,6 +5,7 @@ import type { Ray, MoveCommand } from '../core/types';
 import type { CombatTarget } from '../core/combat';
 import type { RapierWorld } from '../physics/rapierWorld';
 import type { StoneFeedback } from './stoneFeedback';
+import type { WhipMod } from '../core/whipMods';
 export { EnergyWhipView } from '../render/energyWhipView';
 export { BOSS_BODY };
 
@@ -19,11 +20,13 @@ export const PRACTICE_TARGETS:readonly CombatTarget[]=[
 /** Isolated combat used by the development lab, mission and public preview. */
 export class AdventurePrototype {
   readonly aim=new AdventureAim();
-  readonly whip=new EnergyWhip();
+  readonly whip:EnergyWhip;
   readonly motor:AdventureMotor;
   private hitCounts:Record<string,number>={};
   private aimHeight:number;
-  constructor(simulation:Simulation,readonly practice:boolean) {this.motor=new AdventureMotor(simulation);this.aimHeight=simulation.snapshot().position.y;}
+  constructor(simulation:Simulation,readonly practice:boolean,mod:WhipMod='base') {
+    this.whip=new EnergyWhip(mod);this.motor=new AdventureMotor(simulation);this.aimHeight=simulation.snapshot().position.y;
+  }
   step(command:MoveCommand,dash:boolean,pressed:boolean,ray:Ray|null,world:RapierWorld,targets:readonly CombatTarget[],feedback:StoneFeedback,guarded=false,overhead=false) {
     const before=this.motor.simulation.snapshot();if(before.grounded)this.aimHeight=before.position.y;
     // Keep the cursor plane at takeoff height; rising must not slide aim away from a ground target.
@@ -49,7 +52,7 @@ export class AdventurePrototype {
     targets:this.practice?PRACTICE_TARGETS.map(t=>({...t,hits:this.hitCounts[t.id]??0})):[],body:BOSS_BODY};}
   presentation(w:WhipSnapshot){const dir=this.aim.snapshot();return {
     yaw:w.phase==='idle'?Math.atan2(dir.x,dir.z):w.yaw,
-    whip:{angle:whipPose(w.age,w.attack).angle,attack:w.attack,age:w.age,active:w.phase!=='idle',dash:this.motor.snapshot().remaining>0,
+    whip:{angle:whipPose(w.age,w.attack,w.mod).angle,attack:w.attack,age:w.age,active:w.phase!=='idle',dash:this.motor.snapshot().remaining>0,
       airJump:Math.max(0,1-(this.motor.simulation.snapshot().tick-this.motor.jumpSnapshot().lastTick)/15)},
   };}
 }

@@ -1,13 +1,13 @@
 import { ADVENTURE_BOSS_RULES, STONE_ADVENTURE_JUMP } from '../arena/stoneAdventure';
-import type { AdventureFight } from '../core/adventureFight';
 import { WEAPONS } from '../core/combat';
-import type { MonsterWorld, PveSnapshot } from '../core/pve';
+import type { PveSnapshot } from '../core/pve';
+import { resolveWhipMod } from '../core/whipMods';
+import type { LabWeapon } from './adventureBossAttempt';
+export { LAB_SPAWN, prepareBossAttempt, type LabWeapon } from './adventureBossAttempt';
 import { WALK_SPEED, SPRINT_SPEED, type Snapshot } from '../core/types';
 import type { AdventureProfile } from './adventureVariant';
 export { AdventurePrototype, EnergyWhipView, BOSS_BODY, PRACTICE_TARGETS } from './adventurePrototype';
 
-export type LabWeapon = 'arc' | 'pulse';
-export const LAB_SPAWN = Object.freeze({ x: 0, y: .06, z: -21 });
 export const LAB_REFERENCE = Object.freeze({
   commit: 'e8b730abaa82f6bc03180989437ea4cfd0206347', fixture: 'stone-boss-a0-v1',
   rules: 'legacy-a0', walk: WALK_SPEED, sprint: SPRINT_SPEED, jump: STONE_ADVENTURE_JUMP,
@@ -15,15 +15,6 @@ export const LAB_REFERENCE = Object.freeze({
   timing: 'Simulation 60 Hz; active time starts at first non-emerging boss phase (tick 120).',
   supplies: 'All existing pickups at original quantities; approach is sealed. Pulse owned with 54 rounds in both weapon profiles.',
 });
-
-/** Explicit lab fixture, never called by the regular mission or a diagnostic hook. */
-export function prepareBossAttempt(fight: AdventureFight, world: MonsterWorld, weapon: LabWeapon): void {
-  fight.reset();
-  for (const runner of fight.runners) runner.step(LAB_SPAWN, world,
-    [{ source: 'player', target: runner.definition.id, amount: runner.snapshot().hp }]);
-  fight.consoleActive = fight.checkpoint = fight.bossActive = true;
-  if(!fight.prototype){fight.combat.addAmmo(WEAPONS.pulse.maxAmmo, true);fight.combat.select(weapon);}
-}
 
 const distribution = (values: number[]) => {
   const sorted = [...values].sort((a, b) => a - b);
@@ -102,6 +93,7 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
   panel.innerHTML = `<strong>A/B · STEINWÄCHTER</strong><small>Legacy: Arc/Pulse · Prototype: Peitsche + Dash</small>
     <label>Nächstes Profil <select id="lab-profile"><option value="legacy">Legacy</option><option value="prototype">Prototype</option></select></label>
     <label>Startwaffe <select id="lab-weapon"><option value="arc">Arc Lash</option><option value="pulse">Pulse Repeater</option><option value="whip" hidden>Energiepeitsche</option></select></label>
+    <label>Peitschenmod <select id="lab-mod"><option value="base">Basis</option><option value="hook">Rückhaken</option><option value="fork">Gabelspitze</option></select></label>
     <label>Versuch <select id="lab-scenario"><option value="boss">Steinwächter</option><option value="melee">Nur Faust / Gegenangriff</option><option value="targets">Übungsziele ohne Gegnerdruck</option></select></label>
     <label><input id="lab-complement" type="checkbox"> Zusätzlich Pulse · 12 Schuss (1/2 wechseln)</label>
     <label><input id="lab-reduced" type="checkbox"> Trefferfunken aus</label>
@@ -122,6 +114,7 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
     if(prototype){if(weapon.value!=='whip')legacyWeapon=weapon.value;weapon.value='whip';}else if(weapon.value==='whip')weapon.value=legacyWeapon;
     weapon.querySelector<HTMLOptionElement>('option[value="whip"]')!.hidden=!prototype;
     weapon.disabled=prototype;scenario.disabled=!prototype;complement.disabled=!prototype;
+    panel.querySelector<HTMLSelectElement>('#lab-mod')!.disabled=!prototype;
     panel.querySelector<HTMLElement>('#lab-controls')!.hidden=!prototype;};
   profile.addEventListener('change',showProfile,options);showProfile();
   let measurement: LabMeasurement | null = null, running = false, restartMs = 0, attempts = 0;
@@ -146,6 +139,7 @@ export function installAdventureLab(host: HTMLElement, initial: AdventureProfile
         `${value.dash.readyIn===0?'Dash bereit':`Dash ${(value.dash.readyIn/60).toFixed(1)} s`} · ${value.whip.phase} · Treffer ${value.whip.forwardHits} / ${value.whip.returnHits}`:'';
     },
     selection: () => ({ profile: profile.value === 'prototype' ? 'prototype' as const : 'legacy' as const,
+      mod:resolveWhipMod(panel.querySelector<HTMLSelectElement>('#lab-mod')!.value),
       weapon: profile.value==='legacy'&&weapon.value === 'pulse' ? 'pulse' as const : 'arc' as const,
       practice:profile.value==='prototype'&&scenario.value==='targets',
       meleeOnly:profile.value==='prototype'&&scenario.value==='melee',complement:profile.value==='prototype'&&complement.checked }),

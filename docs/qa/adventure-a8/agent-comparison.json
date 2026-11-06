@@ -1,0 +1,660 @@
+{
+  "schema": "adventure-mod-trial-v1",
+  "order": [
+    "hook",
+    "fork",
+    "base"
+  ],
+  "requiredComplete": true,
+  "running": false,
+  "attempts": [
+    {
+      "number": 1,
+      "mod": "base",
+      "kind": "comparison",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "mod": "base"
+      },
+      "result": {
+        "outcome": "victory",
+        "ticks": 2857,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 0,
+        "forwardHits": 44,
+        "returnHits": 17,
+        "misses": 7,
+        "cancelled": 5,
+        "dashUses": 8
+      },
+      "reason": "Agentenlauf base; kein menschlicher Spaßbefund."
+    },
+    {
+      "number": 2,
+      "mod": "hook",
+      "kind": "comparison",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "mod": "hook"
+      },
+      "result": {
+        "outcome": "victory",
+        "ticks": 2890,
+        "hp": 95,
+        "armor": 0,
+        "bossHp": 0,
+        "forwardHits": 41,
+        "returnHits": 25,
+        "misses": 0,
+        "cancelled": 8,
+        "dashUses": 8
+      },
+      "reason": "Agentenlauf hook; kein menschlicher Spaßbefund."
+    },
+    {
+      "number": 3,
+      "mod": "fork",
+      "kind": "comparison",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "mod": "fork"
+      },
+      "result": {
+        "outcome": "victory",
+        "ticks": 2902,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 0,
+        "forwardHits": 40,
+        "returnHits": 22,
+        "misses": 13,
+        "cancelled": 4,
+        "dashUses": 8
+      },
+      "reason": "Agentenlauf fork; kein menschlicher Spaßbefund."
+    },
+    {
+      "number": 4,
+      "mod": "fork",
+      "kind": "voluntary",
+      "start": {
+        "player": {
+          "tick": 0,
+          "position": {
+            "x": 0,
+            "y": 0.06,
+            "z": -21
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "grounded": false,
+          "facing": 0,
+          "surface": null,
+          "ceiling": false
+        },
+        "fight": {
+          "bossActive": true,
+          "checkpoint": true,
+          "completed": false,
+          "core": null,
+          "consoleActive": true,
+          "relayActive": false,
+          "reserveRecovered": false,
+          "entryClosed": true,
+          "pve": {
+            "tick": 0,
+            "phase": "emerging",
+            "phaseTick": 0,
+            "kind": "wave",
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": -29
+            },
+            "waveRadius": 2,
+            "hp": 100,
+            "armor": 50,
+            "bossHp": 900,
+            "outcome": "running",
+            "hitsTaken": 0,
+            "lastHit": -100,
+            "center": {
+              "x": 0,
+              "y": 1.85,
+              "z": -29
+            },
+            "facing": 0,
+            "moving": false,
+            "exchange": {
+              "serial": 0,
+              "window": "closed",
+              "resolved": 0,
+              "avoided": 0,
+              "counters": 0
+            }
+          },
+          "runners": [
+            {
+              "id": "courtyard-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": 24
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            },
+            {
+              "id": "inner-runner",
+              "center": {
+                "x": 2,
+                "y": 0.85,
+                "z": -1
+              },
+              "hp": 0,
+              "facing": 0,
+              "phase": "dead",
+              "phaseTick": 0,
+              "moving": false
+            }
+          ]
+        },
+        "weapons": {
+          "selected": "arc",
+          "ownsPulse": false,
+          "ammo": 0,
+          "projectiles": [],
+          "lastArc": null,
+          "impact": null
+        },
+        "pickups": [
+          {
+            "id": "side-health",
+            "kind": "health",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 4
+            },
+            "surface": "side-terrace",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          },
+          {
+            "id": "side-armor",
+            "kind": "armor",
+            "position": {
+              "x": -13.5,
+              "y": 1.1,
+              "z": 0
+            },
+            "surface": "side-terrace",
+            "amount": 30,
+            "remaining": 30,
+            "respawnAt": 0
+          },
+          {
+            "id": "boss-health",
+            "kind": "health",
+            "position": {
+              "x": -12,
+              "y": 1.1,
+              "z": -23
+            },
+            "surface": "boss-health-plateau",
+            "amount": 35,
+            "remaining": 35,
+            "respawnAt": 0
+          }
+        ],
+        "camera": "side",
+        "mod": "fork"
+      },
+      "result": {
+        "outcome": "aborted",
+        "ticks": 35,
+        "hp": 100,
+        "armor": 50,
+        "bossHp": 900,
+        "forwardHits": 0,
+        "returnHits": 0,
+        "misses": 0,
+        "cancelled": 0,
+        "dashUses": 0
+      },
+      "reason": ""
+    }
+  ],
+  "voluntaryStarted": 1,
+  "voluntaryFinished": 0,
+  "reportedIntent": "unanswered",
+  "preferredModel": "unanswered",
+  "input": "mouse-keyboard",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "fixture": "stone-boss-a8-v1",
+  "rules": "60 Hz; sweep only; no complement; all original supplies; no rewards or unlocks",
+  "build": {
+    "commit": "c9423065f9d7b0280e8a00fea21fa02c4af85794",
+    "sourceHash": "699c4bf4ec5dfaacb185d5ef2978420f538ff0f09d0147269cc59e495e929cad"
+  },
+  "limitations": "Agent checks are not human enjoyment evidence. Milestone preference is hypothetical."
+}

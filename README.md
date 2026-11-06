@@ -4,6 +4,12 @@
 
 Auf dem Handy im Querformat öffnen. **F ist die gewählte Umgebung für die weitere Adventure-Arbeit.** [Roadmap und aktueller Stand](docs/planning/ADVENTURE_ROADMAP.md) · [Spielbilder und Testergebnisse](docs/qa/ADVENTURE_ENVIRONMENT_TEST_RESULT.md).
 
+**[▶ Waffenvergleich A8 spielen · Basis / Rückhaken / Gabelspitze](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine&trial=mods)**
+
+Ein Slot vor dem Bossversuch, alle drei frei verfügbar, gleiche Startbedingungen.
+Kamera und Umgebung F bleiben erhalten. Noch keine dauerhaften Freischaltungen.
+[Mechaniken, Prüfergebnisse und offener menschlicher Vergleich](docs/qa/ADVENTURE_A8_MODS_RESULT.md).
+
 **[Frühere Adventure-Kampfvorschau T2 spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
 
 Öffentliche T2-Testversion: wieder **von links nach rechts**, Energiepeitsche mit
@@ -49,7 +55,9 @@ Oben links umschalten; jeder Wechsel startet die Mission neu. Die öffentliche V
   G1 qualitativ bestanden; G2/G3 und der Richtungsentscheid folgen in T2.
   Legacy bleibt unveränderter Standard. Im Entwicklungs-/Testbuild und in der
   separaten öffentlichen Vorschau ist die neue Mission über `combat=prototype` anwählbar.
-  A8, weitere Maps und Progression sind noch nicht beauftragt.
+  A8.1 ist technisch fertig, A8.2 als Vergleich vorbereitet; drei menschliche
+  Befunde und der Progressionsentscheid stehen aus. Weitere Maps und Speicherung
+  sind noch nicht beauftragt.
   [Bestand und historische L1-Pakete](docs/planning/LEVEL_1_STONE_ADVENTURE.md).
 - **Arena / Teamspiel / CTF / Liga — eigenständig.** Training, 1v1 und
   jetzt **2v2-Teamkampf** sind spielbar (M2.4a), ergänzt um eine größere Arena und

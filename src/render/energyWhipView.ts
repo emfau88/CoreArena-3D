@@ -12,6 +12,9 @@ export class EnergyWhipView {
   readonly group=new THREE.Group();
   private readonly links:THREE.Mesh[]=[];
   private readonly sheaths:THREE.Mesh[]=[];
+  private readonly forkLinks:THREE.Mesh[]=[];
+  private readonly forkSheaths:THREE.Mesh[]=[];
+  private readonly forkTip=new THREE.Group();
   private readonly dummies:THREE.Mesh[]=[];
   private readonly core=new THREE.MeshBasicMaterial({color:0xf0fffd});
   private readonly energy=glow(0x53e5dc,.24);
@@ -41,12 +44,16 @@ export class EnergyWhipView {
   private readonly up=new THREE.Vector3(0,1,0);
   constructor(scene:THREE.Scene,targets:readonly CombatTarget[]){
     this.group.name='prototype-whip';scene.add(this.group);
-    this.group.add(this.ring,this.arrow,this.handle,this.tip,this.trail,...this.bursts.map(b=>b.root));
+    this.group.add(this.ring,this.arrow,this.handle,this.tip,this.forkTip,this.trail,...this.bursts.map(b=>b.root));
     this.ring.rotation.x=-Math.PI/2;
     const segment=new THREE.CylinderGeometry(1,1,1,8);
     for(let i=0;i<LINKS;i++){
       const mesh=new THREE.Mesh(segment,this.core),aura=new THREE.Mesh(segment,this.energy);
       this.links.push(mesh);this.sheaths.push(aura);this.group.add(aura,mesh);
+    }
+    for(let i=0;i<6;i++){
+      const mesh=new THREE.Mesh(segment,this.core),aura=new THREE.Mesh(segment,this.energy);
+      this.forkLinks.push(mesh);this.forkSheaths.push(aura);this.group.add(aura,mesh);
     }
     // Dark grip, warm metal collars and an inset energy cell; no external asset or global bloom pass.
     const metal=new THREE.MeshStandardMaterial({color:0xb59662,metalness:.7,roughness:.32});
@@ -57,6 +64,7 @@ export class EnergyWhipView {
     for(let i=0;i<3;i++){const band=new THREE.Mesh(new THREE.TorusGeometry(.074,.008,4,10),metal);band.rotation.x=Math.PI/2;band.position.y=-.09+i*.06;this.handle.add(band);}
     const tipCore=new THREE.Mesh(new THREE.OctahedronGeometry(.09),this.core);tipCore.scale.set(.65,2.4,.65);this.tip.add(tipCore);
     const tipGlow=new THREE.Mesh(new THREE.OctahedronGeometry(.15),this.energy);tipGlow.scale.set(.6,2,.6);this.tip.add(tipGlow);
+    this.forkTip.add(tipCore.clone(),tipGlow.clone());
     this.trailGeometry.setAttribute('position',new THREE.BufferAttribute(this.trailPositions,3).setUsage(THREE.DynamicDrawUsage));
     this.trailGeometry.setAttribute('color',new THREE.BufferAttribute(this.trailColors,3).setUsage(THREE.DynamicDrawUsage));
     this.trail.frustumCulled=false;this.trail.name='whip-trail';
@@ -67,6 +75,21 @@ export class EnergyWhipView {
   }
   hide(){this.group.visible=false;this.clearHistory();this.lastContact='';for(const b of this.bursts){b.tick=-100;b.root.visible=false;}}
   private clearHistory(){for(const h of this.history)h.time=-100;this.trail.visible=false;}
+  private drawStrand(points:readonly Vec3[],links:THREE.Mesh[],sheaths:THREE.Mesh[],tip:THREE.Group,heavy:boolean,fork=false){
+    tip.visible=points.length>1;
+    if(tip.visible){const p=points.at(-1)!,q=points.at(-2)!;tip.position.set(p.x,p.y,p.z);
+      this.scratch.set(p.x-q.x,p.y-q.y,p.z-q.z);if(this.scratch.lengthSq()>1e-8)tip.quaternion.setFromUnitVectors(this.up,this.scratch.normalize());
+      tip.scale.setScalar(heavy?1.25:1);}
+    links.forEach((mesh,i)=>{
+      const aura=sheaths[i]!;mesh.visible=aura.visible=i<points.length-1;if(!mesh.visible)return;
+      const p=points[i]!,q=points[i+1]!;this.a.set(p.x,p.y,p.z);this.b.set(q.x,q.y,q.z);
+      this.scratch.subVectors(this.b,this.a);const length=this.scratch.length(),t=fork?(11+i)/16:i/Math.max(1,points.length-2);
+      const radius=(.034-.019*t)*(heavy?1.15:1);
+      mesh.position.copy(this.a).add(this.b).multiplyScalar(.5);mesh.scale.set(radius,length,radius);
+      if(length>1e-8)mesh.quaternion.setFromUnitVectors(this.up,this.scratch.normalize());
+      aura.position.copy(mesh.position);aura.quaternion.copy(mesh.quaternion);aura.scale.set(radius*2.7,length,radius*2.7);
+    });
+  }
   private drawTrail(points:readonly Vec3[],time:number,active:boolean){
     if(!active){this.clearHistory();return;}
     let vertex=0;
@@ -95,19 +118,9 @@ export class EnergyWhipView {
     this.energy.opacity=reduced?.12:.24;
     this.handle.position.copy(hand);this.handle.rotation.set(0,w.yaw,Math.PI/3);
     const points=w.points.length?[hand,...w.points]:[];
-    this.tip.visible=points.length>1;
-    if(this.tip.visible){const p=points.at(-1)!,q=points.at(-2)!;this.tip.position.set(p.x,p.y,p.z);
-      this.scratch.set(p.x-q.x,p.y-q.y,p.z-q.z);if(this.scratch.lengthSq()>1e-8)this.tip.quaternion.setFromUnitVectors(this.up,this.scratch.normalize());
-      this.tip.scale.setScalar(heavy?1.25:1);}
-    this.links.forEach((mesh,i)=>{
-      const aura=this.sheaths[i]!;mesh.visible=aura.visible=i<points.length-1;if(!mesh.visible)return;
-      const p=points[i]!,q=points[i+1]!;this.a.set(p.x,p.y,p.z);this.b.set(q.x,q.y,q.z);
-      this.scratch.subVectors(this.b,this.a);const length=this.scratch.length(),t=i/Math.max(1,points.length-2);
-      const radius=(.034-.019*t)*(heavy?1.15:1);
-      mesh.position.copy(this.a).add(this.b).multiplyScalar(.5);mesh.scale.set(radius,length,radius);
-      if(length>1e-8)mesh.quaternion.setFromUnitVectors(this.up,this.scratch.normalize());
-      aura.position.copy(mesh.position);aura.quaternion.copy(mesh.quaternion);aura.scale.set(radius*2.7,length,radius*2.7);
-    });
+    this.drawStrand(points,this.links,this.sheaths,this.tip,heavy);
+    // The shared trunk is drawn once. The second branch uses the identical clipped collision curve.
+    this.drawStrand(w.branches[0]?.slice(10)??[],this.forkLinks,this.forkSheaths,this.forkTip,false,true);
     // Short, dim history only during damage windows; it never adds collision or survives a cancel.
     this.drawTrail(points,tick+(w.age%1),!reduced&&points.length>1&&(w.phase==='forward'||w.phase==='return'));
     this.ring.visible=!!boss;if(boss)this.ring.position.set(boss.x,.025,boss.z);
@@ -138,5 +151,6 @@ export class EnergyWhipView {
     }
   }
   diagnostics(){return {visible:this.group.visible,trail:this.trail.visible,segments:this.links.filter(l=>l.visible).length,
+    forkSegments:this.forkLinks.filter(l=>l.visible).length,
     bursts:this.bursts.filter(b=>b.root.visible).length,guarded:this.bursts.some(b=>b.root.visible&&b.guarded)};}
 }

@@ -1,0 +1,23 @@
+#mod-trial { color:#e5eee9; background:#122529; border:1px solid #587575; border-radius:16px; width:min(820px,94vw); max-height:92dvh; padding:22px; box-sizing:border-box; overflow:auto; box-shadow:0 20px 80px #0009; }
+#mod-trial::backdrop { background:#071214c9; }
+#mod-trial form { display:grid; gap:12px; }
+#mod-trial h2,#mod-trial p { margin:0; }
+#mod-trial h2 { font-size:clamp(19px,3vw,26px); }
+#mod-trial .mod-help,#mod-trial small { color:#b0c4c3; font-size:13px; line-height:1.5; }
+#mod-trial fieldset { padding:0; border:0; margin:0; }
+#mod-trial legend { margin-bottom:8px; font-size:13px; }
+#mod-trial .mod-options { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+#mod-trial .mod-options label { display:grid; grid-template-columns:auto 1fr; gap:8px; border:1px solid #456263; border-radius:10px; padding:14px; cursor:pointer; background:#1b3336; }
+#mod-trial .mod-options label:has(:checked) { border-color:#b6e9d6; background:#244b4c; outline:1px solid #b6e9d6; }
+#mod-trial input { accent-color:#8bdcc6; }
+#mod-trial .mod-options span { grid-column:1/-1; font-size:13px; line-height:1.45; }
+#mod-trial textarea,#mod-trial select { box-sizing:border-box; width:100%; margin-top:5px; color:#eef9f3; background:#0f2024; border:1px solid #587575; border-radius:6px; padding:8px; font:inherit; }
+#mod-trial label { font-size:14px; }
+#mod-trial summary { cursor:pointer; color:#cee4dc; font-size:14px; }
+#mod-trial details label { display:block; margin-top:10px; }
+#mod-trial .mod-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+#mod-trial button,#mod-trial a { padding:12px; min-height:44px; box-sizing:border-box; border:1px solid #587575; border-radius:8px; font:inherit; font-size:14px; color:#e5eee9; background:#253c40; cursor:pointer; text-decoration:none; }
+#mod-trial #mod-start { color:#0d2929; background:#a4ddc9; border-color:#a4ddc9; font-weight:700; }
+#mod-trial [hidden] { display:none; }
+@media(max-width:560px) { #mod-trial {padding:15px;} #mod-trial .mod-options {grid-template-columns:1fr;} }
+@media(max-height:500px) { #mod-trial {padding:14px;max-height:96dvh;} #mod-trial form {gap:6px;} #mod-trial .mod-options label {padding:9px;} #mod-trial .mod-input-help {display:none;} }

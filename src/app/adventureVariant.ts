@@ -8,6 +8,7 @@ export interface AdventureEntry {
   readonly exploration: boolean;
   readonly complement?:boolean;
   readonly environment?: AdventureEnvironment;
+  readonly modTrial?:boolean;
 }
 
 /** The only URL boundary for Adventure variants. Other modes retain their routes. */
@@ -24,6 +25,7 @@ export function resolveAdventureEntry(params: URLSearchParams, allowLab: boolean
       || requested === 'retaining-corner' || requested === 'warden-ravine' ? requested : 'reference';
   }
   return { lab, exploration, profile,...(profile==='prototype'?{complement:params.get('loadout')==='pulse'}:{}),
+    ...(profile==='prototype'&&!lab&&params.get('trial')==='mods'?{modTrial:true}:{}),
     ...(environment?{environment}:{}) };
 }
 

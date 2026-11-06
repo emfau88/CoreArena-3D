@@ -4,18 +4,21 @@ Stand: **6. November 2026** · [Produktvision](ADVENTURE_VISION.md) · [Aktuelle
 
 ## Wo wir gerade stehen
 
-**Aktuell: A7.2 — Spieltest T2 und Entscheidung über den ersten vollständigen Adventure-Kern.**
-Der erste Hof samt Steinwächter ist spielbar. Deine bisherigen Rückmeldungen sind
-eingearbeitet; das abschließende Urteil zu Boss, Mission und Waffenwahl steht noch aus.
+**Aktuell: A8.1 technisch fertig; A8.2 als menschlicher Vergleich vorbereitet.**
+Basis, Rückhaken und Gabelspitze sind in einem begrenzten Bossversuch spielbar.
+Der ausdrückliche Auftrag „mach weiter mit A8.1 - A8.2“ erlaubt diesen Versuch
+bereits jetzt. A7.2 und die menschlichen G2-/G3-Urteile bleiben offen.
+[Modifikationen ausprobieren](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine&trial=mods)
+· [Regeln, Nachweise und T3-Protokoll](../qa/ADVENTURE_A8_MODS_RESULT.md).
 
 **Gewählte Umgebung für die erste Mission ist F · Wächterklamm.**
 Am 6. November 2026 hat der Nutzer F als Grundlage für die weitere Arbeit gewählt.
-Die Auswahl der Umgebungsrichtung U6 ist abgeschlossen. Nächster Schwerpunkt ist
-der bestehende Spieltest T2 mit dieser Gestaltung.
+Die Auswahl der Umgebungsrichtung U6 ist abgeschlossen. Der Waffenvergleich
+verwendet dieselbe Gestaltung, Kamera und Links-nach-rechts-Führung.
 
 | Umsetzung | Aktueller Spieltest | Noch nicht begonnen |
 |---|---|---|
-| **✅ 12 Pakete technisch fertig** | **🟡 1 Paket läuft: A7.2** | **⬜ 13 Pakete: A8.1–A11.5** |
+| **✅ 13 Pakete technisch fertig** | **🟡 2 Pakete laufen: A7.2, A8.2** | **⬜ 11 Pakete: A8.3–A11.5** |
 
 **„Technisch fertig“ heißt: eingebaut und geprüft.** Es heißt nicht automatisch,
 dass der Spieltest bestanden ist. Die separate Abnahme steht in der letzten
@@ -28,6 +31,8 @@ Links-nach-rechts-Kamera, Dash, normaler Sprung und kurzer Doppelsprung;
 Energiepeitsche mit Seitenschwung, Überkopf-Knall und Lufthieb samt überarbeitetem
 Trefferfeedback; angepasster Steinwächter; komplette erste Mission mit Läufern,
 Konsole, Checkpoint, Kern, Relais und Ausgang; begrenzter Pulse-Vergleich.
+Zusätzlich: isolierter Vergleich von Basis, Rückhaken und Gabelspitze am selben
+Boss, mit Auswahl vor dem Versuch und Export der Sitzungsergebnisse.
 Die Wächterklamm umfasst den Außenraum aller drei Höfe bis zum Nordtor. Die
 öffentliche Version hat Touch-Bedienung und wurde mit Touch-Emulation geprüft.
 Echte Handytests stehen noch aus.
@@ -41,8 +46,11 @@ Echte Handytests stehen noch aus.
 3. **A7.2 entscheiden:** gezielt nachbessern oder den Kern bestätigen. Dabei
    **G2 (Steinwächter)** und **G3 (erste Mission)** ausdrücklich abnehmen.
 
-Danach können weitere Karten und gegebenenfalls Modifikationen beauftragt werden.
-Ein Progressionssystem ist weiterhin offen und nicht implementiert. Die öffentliche
+4. A8.2/G4: mindestens drei menschliche Mod-Vergleiche in T3, tatsächliche freiwillige
+   Zusatzversuche und Gründe beurteilen; freie Auswahl, Meilensteine oder Verzicht wählen.
+
+A8.1 ist auf ausdrücklichen Auftrag umgesetzt. Weitere Karten sind noch offen.
+Ein dauerhaftes Progressionssystem ist weiterhin nicht implementiert. Die öffentliche
 **Testversion** ist bereits online; der finale Release **A11.5** bleibt ein späterer Schritt.
 
 **Umgebungstest U0–U6, Entscheidung vom 6. November 2026**
@@ -78,8 +86,8 @@ fertige Umsetzung ihrer neuen Adventure-Pakete.
 | [A6.2](#paket-a6-2) | Erste Mission vollständig durchspielbar | ✅ Technisch fertig | G3-Urteil in T2 offen |
 | [A7.1](#paket-a7-1) | Peitsche allein / begrenzte Pulse vergleichen | ✅ Technisch fertig | Entscheidung zur Waffenwahl in T2 offen |
 | **[A7.2](#paket-a7-2)** | **Ersten Kern beurteilen und Richtung entscheiden** | **🟡 Spieltest läuft** | **Aktueller Schritt: G2/G3 und Gesamturteil** |
-| [A8.1](#paket-a8-1) | Zwei Waffenmodifikationen erproben — optional | ⬜ Nicht begonnen | Erst nach positivem T2 und eigenem Auftrag |
-| [A8.2](#paket-a8-2) | Progression wählen oder streichen — optional | ⬜ Nicht begonnen | Nutzen / Wiederspielwert prüfen; G4 in T3 |
+| [A8.1](#paket-a8-1) | Zwei Waffenmodifikationen erproben — optional | ✅ Technisch fertig | Rückhaken/Gabelspitze, drei Bosssiege und zehn UI-Resets geprüft; Nutzenurteil offen |
+| [A8.2](#paket-a8-2) | Progression wählen oder streichen — optional | 🟡 Vergleich vorbereitet | Freie Auswahl im Versuch; endgültiges Modell und drei menschliche Befunde in T3/G4 offen |
 | [A8.3](#paket-a8-3) | Kampagne fortsetzen und Bosse üben | ⬜ Nicht begonnen | Auch ohne Modifikationen möglich |
 | [A9.1](#paket-a9-1) | Frostspinne zum zweiten Referenzkampf ausbauen | ⬜ Nicht begonnen | Eigenes Kampfprofil entwickeln |
 | [A9.2](#paket-a9-2) | Kluftmission und Übergang aus Map 1 | ⬜ Nicht begonnen | Neue Kampfregeln in Map 2 integrieren |
@@ -99,7 +107,7 @@ fertige Umsetzung ihrer neuen Adventure-Pakete.
 | **G1** | Grundgefühl von Bewegung und Peitsche | ✅ In T1 bestanden; spätere Nacharbeit wird in T2 geprüft |
 | **G2** | Überzeugt der Steinwächter? | 🟡 Technisch geprüft, dein T2-Urteil offen |
 | **G3** | Funktioniert die erste Mission als Spielerlebnis? | 🟡 Technisch geprüft, dein T2-Urteil offen |
-| **G4** | Bringen Modifikationen / Progression echten Mehrwert? | ⬜ Offen, noch nicht geprüft; bewusster Verzicht möglich |
+| **G4** | Bringen Modifikationen / Progression echten Mehrwert? | 🟡 Technischer Vergleich geprüft; drei menschliche Befunde und Entscheidung offen; Verzicht möglich |
 | **G5** | Überzeugt die gesamte Mini-Kampagne? | ⬜ Offen, noch nicht geprüft |
 | **G6** | Ist der konkrete Kandidat bereit für den finalen Release? | ⬜ Offen, noch nicht geprüft |
 
@@ -876,19 +884,19 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a8-1"></a>
 
 <details>
-<summary>A8.1 — Zwei verhaltensändernde Modifikationen erproben · ⬜ Nicht begonnen · optional</summary>
+<summary>A8.1 — Zwei verhaltensändernde Modifikationen erproben · ✅ Technisch fertig · optional</summary>
 
 ### A8.1 — Zwei verhaltensändernde Modifikationen erproben
 
-**Status:** ⬜ Nicht begonnen (geplant, optional). **Voraussetzungen:** A7.2 positiv und ausdrücklicher Modifikationsauftrag.
+**Status:** ✅ Technisch fertig (6. November 2026). **Freigabe:** ausdrücklicher Auftrag für A8.1–A8.2; vorgezogener begrenzter Versuch, kein Ersatz für die offene A7.2-Abnahme. [Regeln und Prüfung](../qa/ADVENTURE_A8_MODS_RESULT.md).
 **Ziel/Nutzen:** Unterschiedliche Entscheidungen mit derselben Waffe statt Zahlenprogression.
 **Umfang:** Basis plus höchstens zwei Alternativen, ein Auswahlplatz vor dem Versuch, zunächst alles im Lab verfügbar. Kein Save, Zufall, Loot oder Ressourcenverbrauch.
 
-- [ ] Rückhaken und Gabelspitze auf je einen mechanischen Unterschied mit Kosten/Nachteil begrenzen.
-- [ ] Zeit-/Raumverhalten und Schadensbudget pro Variante festlegen; keine stapelbaren Kombinationen.
-- [ ] Basis, Variante 1 und Variante 2 am selben Boss vergleichen; Wechsel nur zwischen Versuchen.
-- [ ] Je Variante eine beobachtbare Änderung von Timing, Position, Risiko oder Zielwahl nachweisen; reine Schadens-/Zeitverbesserung genügt nicht.
-- [ ] Treffer-/Reset-/Unterbrechungsfälle für beide Varianten ergänzen, Aufwand und unklare Vorteile protokollieren.
+- [x] Rückhaken und Gabelspitze auf je einen mechanischen Unterschied mit Kosten/Nachteil begrenzen.
+- [x] Zeit-/Raumverhalten und Schadensbudget pro Variante festlegen; keine stapelbaren Kombinationen.
+- [x] Basis, Variante 1 und Variante 2 am selben Boss vergleichen; Wechsel nur zwischen Versuchen.
+- [x] Je Variante eine beobachtbare Änderung von Timing, Position, Risiko oder Zielwahl nachweisen; äußerer später Rücktreffer versus breitere kurze Spitzen in Regeltests belegt. Menschlicher Nutzen offen.
+- [x] Treffer-/Reset-/Unterbrechungsfälle für beide Varianten ergänzen, Aufwand und unklare Vorteile protokollieren.
 
 **Systeme/Dateien:** `src/core/energyWhip.ts` (nach A3), Peitschenansicht, Lab-Auswahl, Modifikations-Regeltests; keine allgemeine Inventararchitektur.
 **Tests/Regression:** K/N; Rücklauf-/Gabeltreffer je Phase begrenzt, keine kostenlose zusätzliche volle Schadensladung; Basiswaffensieg und zehn Resets.
@@ -904,15 +912,15 @@ Zoom berücksichtigt beide projizierten Figurenhöhen. [Prüfung und öffentlich
 <a id="paket-a8-2"></a>
 
 <details>
-<summary>A8.2 — Progressionsmodell wählen oder streichen, Gate 4 · ⬜ Nicht begonnen · optional</summary>
+<summary>A8.2 — Progressionsmodell wählen oder streichen, Gate 4 · 🟡 Vergleich vorbereitet · optional</summary>
 
 ### A8.2 — Progressionsmodell wählen oder streichen, Gate 4
 
-**Status:** ⬜ Nicht begonnen (geplant, optional). **Voraussetzungen:** A8.1, eigener Auftrag; bei Verzicht auf Mods entfällt dieser Bulk nach dokumentierter Scope-Entscheidung.
+**Status:** 🟡 In Arbeit: Vergleich vorbereitet (6. November 2026). **Voraussetzungen:** A8.1 technisch fertig, eigener Auftrag liegt vor. Freie Auswahl gilt für den Versuch; endgültiger Entscheid nach drei menschlichen Befunden in T3. [Versuchs- und Entscheidungsprotokoll](../qa/ADVENTURE_A8_MODS_RESULT.md).
 **Ziel/Nutzen:** Wiederholung verbessern, ohne Grind oder unnötige Verwaltung einzuführen.
 **Umfang:** Vergleich ohne Progression gegen deterministische Meilensteinfreischaltung und Auswahl pro Versuch; Entscheidung, keine Ressourcenökonomie.
 
-- [ ] Basis-/Mod-Versuche gemäß G4 für T3 vorbereiten: gleiche Startbedingungen, wechselnde Reihenfolge, alle Varianten sofort zugänglich.
+- [x] Basis-/Mod-Versuche gemäß G4 für T3 vorbereiten: gleiche Startbedingungen, drei empfohlene Reihenfolgen, alle Varianten sofort zugänglich.
 - [ ] In T3 nach Pflichtversuchen ein freiwilliges Zusatzfenster ohne Freischaltung/Belohnung anbieten; Zusatzversuche, Variantenwahl und Gründe erfassen, geäußerte Absicht getrennt berichten.
 - [ ] Freischaltung nach Boss 1/2 versus sofortige Auswahl beurteilen; gescheiterte Versuche niemals kostenpflichtig machen.
 - [ ] Genau ein Modell oder vollständigen Verzicht festhalten; Basis bleibt wählbar, Tod verliert keine Freischaltungen.
