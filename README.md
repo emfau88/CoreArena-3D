@@ -2,7 +2,7 @@
 
 **[▶ Aktuelles Adventure spielen · Wächterklamm (F)](https://emfau88.github.io/CoreArena-3D/adventure-environment/?mode=pve&level=stone&adventure=1&combat=prototype&environment=warden-ravine)**
 
-Auf dem Handy im Querformat öffnen. Zum Vergleich im Spiel oben links **A · Bisheriger Hof** wählen. [Adventure-Entwicklungsbranch mit Spielbildern](https://github.com/emfau88/CoreArena-3D/tree/codex/adventure-environment-test).
+Auf dem Handy im Querformat öffnen. **F ist die gewählte Umgebung für die weitere Adventure-Arbeit.** [Adventure-Entwicklungsbranch mit Spielbildern](https://github.com/emfau88/CoreArena-3D/tree/codex/adventure-environment-test).
 
 **[Frühere Adventure-Kampfvorschau T2 spielen](https://emfau88.github.io/CoreArena-3D/adventure-preview/?mode=pve&level=stone&adventure=1&combat=prototype)**
 
@@ -10,7 +10,7 @@ Auf dem Handy im Querformat öffnen. Zum Vergleich im Spiel oben links **A · Bi
 drei Angriffsbewegungen, Dash und Doppelsprung. Handy im **Querformat**: links bewegen,
 ins Spielfeld tippen zum Schlagen, **Knall**, **Dash** und **Sprung ×2** rechts.
 Kein laufender PC nötig. Echte Android-/iPhone-Spieltests stehen noch aus.
-[Aktuelle Adventure-Roadmap und Fortschritt](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_ROADMAP.md).
+[Aktuelle Adventure-Roadmap und Fortschritt](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-environment-test/docs/planning/ADVENTURE_ROADMAP.md).
 Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.github.io/CoreArena-3D/) bleibt separat erreichbar.
 
 **Zwei getrennte Spielvarianten auf gemeinsamer Technik:**
@@ -19,7 +19,7 @@ Die [bisherige Live-Version mit Arena und Legacy-Adventure](https://emfau88.gith
   Neue strategische Richtung vom 2. November: präzise Bewegung, ungewöhnliche
   Science-Fantasy-Waffen, faire Bosse und drei kurze Missionen. Maßgeblich sind
   [aktuelle Produktvision](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_VISION.md) und
-  [Adventure-Roadmap mit Bulks und sechs Gates](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-combat-prototype/docs/planning/ADVENTURE_ROADMAP.md).
+  [Adventure-Roadmap mit Bulks und sechs Gates](https://github.com/emfau88/CoreArena-3D/blob/codex/adventure-environment-test/docs/planning/ADVENTURE_ROADMAP.md).
   **A0–A6.2 und A7.1 auf dem Entwicklungsbranch technisch umgesetzt; Spieltest T2 / A7.2 läuft.**
   G1 bestanden; G2/G3 und die Richtungsentscheidung bleiben menschlich offen.
   A8, Progression und weitere Bosskarten sind noch nicht beauftragt. 26 Bulks,
